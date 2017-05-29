@@ -22,7 +22,6 @@ Markdown:
 {:toc}
 ~~~
 
-<!-- ## Markdown -->
 ## Adding message boxes
 You can add a message box by adding the `message` class to a paragraph.
 
@@ -82,12 +81,6 @@ Markdown:
 I'm faded, faded, faded.
 {:.faded}
 ~~~
-
-<!-- ### Adding a figure with caption
-<figure>
-  <img src="https://placehold.it/400x200" />
-  <figcaption>My caption</figcaption>
-</figure> -->
 
 ## Adding code blocks
 To add a code block without syntax highlighting, simply indent 4 spaces (regular markdown).

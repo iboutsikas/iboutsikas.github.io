@@ -6,7 +6,7 @@ sitemap: false
 ---
 
 Here you should be able to find everything you need to know to accomplish the most common tasks when blogging with Hydejack.
-Should you think something is missing, [please let me know](https://github.com/qwtel/hydejack/issues).
+Should you think something is missing, [please let me know](mailto:f.klampfer@gmail.com).
 Should you discover a mistake in the docs (or a bug in general) feel free to [open an issue](https://github.com/qwtel/hydejack/issues) on GitHub.
 
 **NOTE**: While this manual tries to be beginner-friendly, as a user of Jekyll it is assumed that you are comfortable with editing multiple text files and running shell commands.
@@ -57,7 +57,7 @@ Look for the `theme` key (or add it when missing) and set its value to `jekyll-t
 theme: jekyll-theme-hydejack
 ~~~
 
-The dependencies will be fetched from [RubyGems](https://rubygems.org/) when running Jekyll via [Bundler](http://bundler.io/).
+All dependencies will be fetched from [RubyGems](https://rubygems.org/) when running Jekyll via [Bundler](http://bundler.io/).
 
     $ bundle exec jekyll serve
 
@@ -69,7 +69,7 @@ You can now point your browser to [http://localhost:4000](http://localhost:4000)
 For more information on gem-based themes, see the [Jekyll Documentation](http://jekyllrb.com/docs/themes/).
 
 ## Via zip
-If you downloaded the zip, the folder structure will look like:
+If you downloaded the zip, the folder structure will look something like:
 
 ~~~
 ├── _data
@@ -81,7 +81,6 @@ If you downloaded the zip, the folder structure will look like:
 ├── _js
 │   ├── lib
 │   └── src
-│       └── flip
 ├── _layouts
 ├── _posts
 ├── _sass
@@ -92,8 +91,6 @@ If you downloaded the zip, the folder structure will look like:
 │   ├── icomoon
 │   ├── img
 │   └── js
-├── docs
-│   └── 6.2.0
 ├── _config.yml
 ├── 404.md
 ├── about.md
@@ -101,7 +98,7 @@ If you downloaded the zip, the folder structure will look like:
 └── posts.md
 ~~~
 
-The dependencies will be fetched from [RubyGems](https://rubygems.org/) when running Jekyll via [Bundler](http://bundler.io/).
+All dependencies will be fetched from [RubyGems](https://rubygems.org/) when running Jekyll via [Bundler](http://bundler.io/).
 
     $ bundle exec jekyll serve
 
@@ -121,12 +118,13 @@ If you do not want to use Bundler, you can install the dependencies yourself via
 ## Via git
 If you are familiar with using git, you can add the [Hydejack repository](https://github.com/qwtel/hydejack) as a remote, and merge its master branch into your working branch.
 
-    $ git remote add hydejack ...
+    $ git remote add hydejack git@github.com:qwtel/hydejack.git
     $ git merge hydejack/master
 
 You can also update Hydejack this way. The master branch will not contain work in progress, but will contain major (breaking) releases.
 
-If you are starting a new blog you can also fork or clone the repository and use it as basis, though it's debatable whether that's desirable.
+If you are starting a new blog you can also fork or clone the repository and use it as basis, though it's debatable whether that's a good idea.
+
 
 # Configuration
 Once Jekyll is running, you can start with basic configuration by adding various entries to `_config.yml`.
@@ -178,7 +176,7 @@ Hydejack lets you configure the fonts of regular text and headings. It has built
     font:         "'Noto Serif', Georgia, serif"
     google_fonts: "Roboto+Slab:700|Noto+Serif:400,400i,700,700i"
 
-As you can see, `font` and `font_heading` are values you would pass to the `font-family` CSS property (without the `;`). When using a Google Font, it should consist of at least 2 fonts, where everything but the first entry will be used as a fallback until the desired font is fetched from Google.
+As you can see, `font` and `font_heading` are values you would pass to the `font-family` CSS property (without the `;`). When using a Google Font, it should consist of at least 2 fonts, where everything except the first entry will be used as a fallback until the desired font is fetched from Google.
 
 The `google_fonts` key is the string necessary to fetch the fonts from Google. You can get it from the download page at [Google Fonts](https://fonts.google.com) after you've selected one or more fonts:
 
@@ -190,33 +188,31 @@ If you prefer not to use Google Fonts and use [safe web fonts](http://www.cssfon
 ## Choosing a blog layout
 Hydejack features two layouts for showing your blog posts.
 
-*   The `list` layout only shows the title and groups the posts by year of publication. This layout is recommended for blogs with a smaller number of posts and infrequent updates.
+*   The `list` layout only shows the title and groups the posts by year of publication. This layout is recommended for blogs with a smaller number of posts and infrequent updates. You can also used it for an "archive" page.
 [Demo][posts].
 
 *   The `blog` layout is a traditional blog layout that is paginated and shows the title and an excerpt of each post. This layout is recommended for blogs with a large number of posts and frequent updates.
 [Demo][blog].
 
-    If you are using the gem-based theme, you need to add the following to your `_config.yml` to use this layout:
-
-    ~~~yml
-    paginate: 5
-    paginate_path: '/page-:num/'
-    ~~~
-
-    For more information see [Pagination](https://jekyllrb.com/docs/pagination/).
-
-In order to use either layout, open `index.html` in the root folder and change the `layout` property in the front matter, e.g.
+In order to use either layout, open `index.html` (or `index.md`) in the root folder and change the `layout` property in the front matter, e.g.
 
 ~~~yml
 ---
-layout: blog
+layout: list # or blog
 title:  Home
 ---
 ~~~
 
-**NOTE**: The paginated `blog` layout needs to have the `.html` file extension, while the (non-paginated) `list` layout may have the `.md` or `.markdown` extension. This is due to the `jekyll-paginate` plugin.
-{:.message}
+If you want to use the `blog` layout with the gem-based theme, you need to add the following to your `_config.yml` to use this layout:
 
+~~~yml
+paginate: 5
+paginate_path: '/page-:num/'
+~~~
+
+The `blog` layout needs to have the `.html` file extension and the `paginate_path` needs to match the path to the `index.html` file, i.e. if you want the blog to appear at `/blog/`, put a `index.html` in a `blog` dir and set `paginate_path` to be `/blog/page-:num/`. Jekyll will print additional error messages if you violate this.
+
+For more information see [Pagination](https://jekyllrb.com/docs/pagination/).
 
 ## Adding an author
 At the very least, you should add an `author` key with a `name` and `email` sub-key (used by the [feed plugin](https://github.com/jekyll/jekyll-feed)) to `_config.yml`:
@@ -236,7 +232,7 @@ The `authors.yml` consists of key-value pairs, where the key is a shorthand for 
       about: |
         Hi, I'm Florian or `@qwtel`...
 
-Now, if an author's `about` value isn't empty, the text will appear (markdownifyed) at the bottom of each blog post and project*, as well as at the top of a page using the `about` and `welcome`\* layout.
+If an author's `about` value isn't empty, the text will appear (markdownifyed) at the bottom of each blog post and project*, as well as at the top of pages using the `about` and `welcome`\* layout.
 
 ### Dealing with multiple authors
 The first entry in `authors.yml` will be used as the default author.
@@ -245,13 +241,13 @@ However, if a blog post, project\*, about or welcome\* page doesn't belong to th
 ~~~yml
 ---
 layout: post
-title: "Hello World"
+title: Hello World
 author: qwtel
 ---
 ~~~
 
 ## Adding an author's picture
-If you'd like for the author's picture to appear in addition the the about text (see previous chapter), you have to provide an URL to the author's `picture` key in `_data/authors.yml`.
+If you'd like for the author's picture to appear in addition the the about text (see previous chapter), you have to provide an URL to the `picture` key in `_data/authors.yml`.
 
     picture:  /assets/img/me.jpg
 
@@ -302,25 +298,23 @@ Should providing a username not produce a correct link for some reason, you can 
 {:.message}
 
 ### Adding an email or RSS icon
-If you'd like to add email <span class="icon-envelop"></span> or RSS <span class="icon-rss"></span> to the list, add:
+If you'd like to add email <span class="icon-envelop"></span> or RSS <span class="icon-rss"></span> to the list, add the `email` and `rss` keys, e.g.:
 
     social:
       email: mailto:f.klampfer@gmail.com
       rss:   https://qwtel.com/hydejack/feed.xml
 
-Note the the location of your `feed.xml` may vary.
-
 ## Enabling comments
-Hydejack supports comments via [Disqus](https://disqus.com/). Before you can add comments to a page, you need to register and add your Hydejack site to Disqus' admin console. Once you have your "Disqus shortname", you must add it to `_config.yml`, e.g.
+Hydejack supports comments via [Disqus](https://disqus.com/). Before you can add comments to a post or project*, you need to register and add your Hydejack site to Disqus' admin console. Once you have your "Disqus shortname", you must add it to `_config.yml`:
 
     disqus_shortname: qwtel
 
-Now comments can be enabled on every page by adding `comments: true` to the front matter, e.g.
+Now comments can be enabled for posts and projects* by adding `comments: true` to the front matter.
 
 ~~~yml
 ---
-layout:   page
-title:    Configuration
+layout: post
+title: Hello World
 comments: true
 ---
 ~~~
@@ -338,6 +332,7 @@ Conversely, if you want to disable it, you only have to remove the key and no GA
 **Note**: Pasting code snippets provided by 3rd parties into the body will have undesired side effects (and may not work at all), because pages are loaded and swapped via JavaScript.
 {:.message}
 
+
 # Migration
 ## From Hydejack v5
 Unfortunately, upgrading form v5 is not straightforward. A lot of patterns and names have changed, motivated by a variety of reasons, including better integration with the rest of the Jekyll ecosystem and simplified workflows enabled by Jekyll Collections.
@@ -346,17 +341,16 @@ Unfortunately, upgrading form v5 is not straightforward. A lot of patterns and n
 Copy the the following folders and files from Hydejack v6 into your existing repository.
 Make sure you merge the folder contents.
 
-* `_data`
-* `_includes`
-* `_layouts`
-* `_sass`
-* `assets`
+* `_data/`
+* `_includes/`
+* `_layouts/`
+* `_sass/`
+* `assets/`
 * `404.md`
-* `index.html` or `index.md`
+* `index.html` (`index.md`\*)
 
-1. Delete the `public` folder. If you have placed files in the `public` folder, only delete `public/css`, `public/js` and `public/fonts` instead. Static files are now located in the `assets` folder.
-1. Delete `404.html` (now provided by `404.md` and the `not-found` layout)
-
+1. Delete the `public` folder. If you have placed files in the `public` folder, only delete `public/css`, `public/js` and `public/fonts`. Static files are now located in the `assets` folder.
+2. Delete `404.html` (now provided by `404.md` and the `not-found` layout)
 
 ### Updating the configuration
 `_config.yml` has changed considerably. Open it and make the following changes.
@@ -368,7 +362,7 @@ Make sure you merge the folder contents.
     * `google_analytics_id` => `google_analytics`
     * `disqus` => `disqus_shortname`
 
-1.  Enable Jekyll Collections by adding
+2.  Enable Jekyll Collections by adding
 
     ~~~yml
     collections:
@@ -383,9 +377,9 @@ Make sure you merge the folder contents.
         output:    true
     ~~~
 
-1.  Copy the entire `author` hash (including the top-level `author` key) from `_config.yml` into the new file `_data/authors.yml` and add it to the top of the file (you can delete the rest of the file).
-1.  In `_config.yml`, delete every key of the `author` hash except `name` and `email`.
-1.  Choose a shortname and use it as the key for the author, e.g.
+3.  Copy the entire `author` hash (including the top-level `author` key) from `_config.yml` into the new file `_data/authors.yml` and add it to the top of the file (you can delete the rest of the file).
+4.  In `_config.yml`, delete every key of the `author` hash except `name` and `email`.
+5.  Choose a shortname and use it as the key for the author, e.g.
 
     ~~~yml
     qwtel:
@@ -407,7 +401,7 @@ You can take a look at the [full `authors.yml`](https://github.com/qwtel/hydejac
 
 ### Updating the author
 1.  Open `_data/authors.yml`
-1.  Delete `photo` and `photo2x` form the author you've copied and add a `picture` hash instead that looks like
+2.  Delete `photo` and `photo2x` form the author you've copied and add a `picture` hash instead that looks like
 
     ~~~yml
     picture:
@@ -424,12 +418,13 @@ For more information, see [Adding an author]({{ site.baseurl }}{% link docs/6.2.
 ### Restoring the tags
 1.  Delete the `tag` folder.
 2.  Create a top-level folder called `_featured_tags`.
-3.  For each entry in `_data/tags.yml`, create a markdown file in `_features_tags` with the tag name as filename,
-    e.g. `hyde.md`.
+3.  For each entry in `_data/tags.yml`, create a markdown file in `_features_tags` with the name of the tag as filename,
+    e.g. `hyde.md` for tag "hyde".
 4.  For each tag, copy its contents from `_data/tags.yml` into the new file's front matter, e.g.
 
     ~~~yml
     ---
+    layout: list
     name: Hyde
     image: /hydejack/public/img/hyde.jpg
     color: '#949667'
@@ -444,16 +439,16 @@ For more information, see [Adding an author]({{ site.baseurl }}{% link docs/6.2.
 ### Restoring the sidebar entries
 Hydejack can now link to any kind of page in the sidebar.
 
-1. Delete `sidebar_tags` in `_config.yml` as this key is no longer used.
+1. Delete `sidebar_tags` in `_config.yml`.
 2. Open a file who's page you would like to add to the sidebar. If you want to add a tag, open `_featured_tags/<tagname>.md`.
 3. Add `menu: true` to its front matter.
-4. (Optional) Set `order: <position>`, where `<position>` is the position at which you would like the link to appear.
+4. (Optional) Set `order: <number>`, where `<number>` is the number at which you would like the link to appear.
 
 ### Restoring the RSS feed
 The feed is now provided by the `jekyll-feed` plugin instead of a custom solution.
 
 1.  Delete `atom.xml`
-1.  Add `- jekyll-feed` to `gems` in `_config.yml`, e.g.
+2.  Add `- jekyll-feed` to `gems` in `_config.yml`, e.g.
 
     ~~~yml
     gems:
@@ -462,7 +457,7 @@ The feed is now provided by the `jekyll-feed` plugin instead of a custom solutio
       - jekyll-paginate
     ~~~
 
-2.  Add the following to `_config.yml`:
+3.  (Optional) Add the following to `_config.yml` to make the feed appear at the same URL as the old `atom.xml`.
 
     ~~~yml
     feed:
@@ -470,7 +465,7 @@ The feed is now provided by the `jekyll-feed` plugin instead of a custom solutio
     ~~~
 
 ### Restoring the comments
-Hydejack now supports comments on every page. However, you have to enable them per page by adding `comments: true` to the front matter (shold you have followed the [Disqus integration guide](https://disqus.com/admin/install/platforms/jekyll/), this should be familiar).
+The way comments are enabled has changed slightly. You now have to enable them per page by adding `comments: true` to the front matter (this is what the [Disqus integration guide](https://disqus.com/admin/install/platforms/jekyll/) suggests).
 
 As mentioned above, don't forget to rename `disqus` to `disqus_shortname` in `_config.yml`.
 
@@ -481,26 +476,28 @@ To use it, open `about.md` and change the `layout` in the front matter to `about
 ## From free to PRO version*
 Upgrading form the free version to PRO is straightforward. All that is necessary to copy the following folders from PRO into your repository.
 
-* `_includes`
-* `_layouts`
-* `_sass`
-* `assets`
+* `_includes/`
+* `_layouts/`
+* `_sass/`
+* `assets/`
+* `_data/` (when upgrading from gem-based theme)
 
-Since you've probably added files to some of these folders, make sure you merge the contents.
-If you've modified any files (discouraged) the changes will be overwritten and you have to redo those changes.
+Since you've probably added files to some of these folders, be sure to merge the contents.
+If you've modified any files the changes will be overwritten and you have to redo those changes.
 
-If you'd like to add examples of the new layouts, you can additionally copy:
+If you'd like to add examples of the new layouts, you can also copy:
 
+* `_projects/`
 * `projects.md`
 * `resume.md`
-* `welcome.md`
+* `index.md`
 
 
 # Basics
 ## Adding a category or tag
 Hydejack allows you to use the `list` layout to show all posts of a particular tag or category.
 
-### Tags and categories in Jekyll
+### Recap: Tags and categories in Jekyll
 Posts in Jekyll can belong to one or more categories, as well as one or more tags. They are defined in a post's front matter:
 
 ~~~yml
@@ -512,7 +509,7 @@ tags:       [jekyll, update]
 ---
 ~~~
 
-Posts can also be assigned to a category based on their position within a folder structure, e.g.
+Posts can also be assigned to a category based on their position within the folder structure, e.g.
 
 ~~~
 ├── jekyll
@@ -521,7 +518,7 @@ Posts can also be assigned to a category based on their position within a folder
 │           └── 2017-04-07-welcome-to-jekyll.markdown
 ~~~
 
-would place `welcome-to-jekyll` in the categories `jekyll` and `update`.
+would place "Welcome to Jekyll" in the categories `jekyll` and `update`.
 Whether you use this method or not, categories will always be part of a posts URL, while tags will not, e.g.
 
 Categories | `/jekyll/update/2017/04/07/welcome-to-jekyll/`
@@ -542,12 +539,7 @@ Be default, categories and tags are rendered as plain text. Further steps are ne
 For each "featured" category or tag, a file called `<categoryname>.md` or `<tagname>.md` has to be created in `_featured_tags` or `_featured_categories`, respectively.
 Each file in these folders is part of a [Jekyll Collection](https://jekyllrb.com/docs/collections/).
 
-<!-- In order for the category or tag to render its own page, it needs to have the `list` layout.
-Like posts, featured tags and categories may have a `description`.
-A tag's or category's `image` and `color` will be used as fallback for all pages that belong to that category or tag.
-It is recommended that the `slug` is set manually (normally it is derived from the title) because it must match the names used on a post's front matter. -->
-
-Essential properties are set in the files front matter:
+The the data of a category or tag is set in the files front matter, e.g.
 
 ~~~yml
 ---
@@ -572,7 +564,7 @@ menu:   true
 Can be different from the name of the tag or category, as long as `slug` is identical to the name.
 
 `slug`
-: Must be identical to the key used in the blog's front matter, i.e. if you use `categories: [jekyll]` or `tags:       [jekyll]`, the `slug` must be `jekyll`. Normally the slug is derived from the title, but since it is used to find all posts that belong to a certain tag or category, it is recommended that you set it explicitly.
+: Must be identical to the key used in the blog's front matter, i.e. if you use `categories: [jekyll]` or `tags:       [jekyll]`, the `slug` must be `jekyll`. Normally the slug is derived from the title, but it is recommended that you set it explicitly.
 
 `description`
 : A medium-length description, used on the tag or category's detail page as meta description and shown in a message box below the title.
@@ -593,7 +585,7 @@ Once the file is created, the page can be found at `/category/<categoryname>` or
 You can add generic pages that support markdown content but aren't blog posts.
 For example, this documentation is written in markdown, consisting of several generic pages.
 
-To create a page, create a new markdown file and put `layout: page` in a front matter
+To add a page, create a new markdown file and put `layout: page` in a front matter
 
 ~~~yml
 ---
@@ -605,27 +597,15 @@ title:  Documentation
 Now you can add content as you would in a blog post.
 
 ## Adding an entry to the sidebar
-Hydejack's sidebar can add links to any Jekyll page. In order for a page to appear in the sidebar, it needs to have a truthy `menu` value defined in its front matter. The page also needs to have a `title`, otherwise the entry in the sidebar will be blank.
+Hydejack's sidebar can add links to any page within the site. In order for a page to appear in the sidebar, it needs to have a truthy `menu` value defined in its front matter. The page also needs to have a `title`, otherwise the entry in the sidebar will be blank.
 
-If you want the link to appear at a particular position, you can set a numeric value to the `order` key. However, the page is not guaranteed to appear in the 5th position if you set a value of `5`, since it will only use the number to sort the pages. The position of a page also depends on the `order` of other pages in the sidebar.
-
-E.g., this page's front matter is
-
-~~~yml
----
-layout: page
-title:  Documentation
-menu:   true
-order:  5
----
-~~~
+If you want the link to appear at a particular position, you can set a numeric value to the `order` key. However, the page is not guaranteed to appear in the 5th position when you set a value of `5`, since it will only use that number to sort the pages, i.e. the position of a page also depends on the `order` of all other pages in the sidebar.
 
 ## Adding an about page
-About pages are such a frequent use case that Hydejack has a special layout for it.
-However, it's only a slight modification of the `page` layout.
+About pages are a frequent use case, so Hydejack has a special layout for it, which is a slight modification of the `page` layout.
 [Demo][about].
-
 The main difference is that it will display an author's `about` text and `picture` above the regular content.
+
 To create an about page, make sure `layout` is set to `about`, and that the `author` key is set to an author defined in `_data/authors.yml`. For more on authors, see [Adding an author]({{ site.baseurl }}{% link docs/6.2.0/configuration.md %}#adding-an-author).
 
 ~~~yml
@@ -652,11 +632,8 @@ author: qwtel
 ---
 ~~~
 
-**NOTE**: If you would like the welcome page to be at the site's root, you'd  have to name the file `index.md`. Additionally, you should move the blog layout (`index.html`) to a subdirectory like `blog` or `posts`. See [Choosing a blog layout]({{ site.baseurl }}{% link docs/6.2.0/configuration.md %}#choosing-a-blog-layout)
-{:.message}
-
 Without further configuration, the welcome page will show the two most recent projects and five most recent blog posts.
-However, the welcome layout supports selecting specific projects and posts in the front matter.
+However, the welcome layout supports selecting specific projects and posts, by adding to the front matter:
 
 ~~~yml
 ---
@@ -695,12 +672,11 @@ The path is relative to the main directory with no leading `./`.
 The path is relative to the main directory with no leading `./`.
 
 ## Adding a project*
-Projects are organized using Jekyll's [Collection feature](https://jekyllrb.com/docs/collections/).
-Each project generates an entry on the projects layout ([Demo][projects] and its own detail view ([Demo][project]).
+Projects are organized using [Jekyll Collections](https://jekyllrb.com/docs/collections/).
+Each project generates an entry on the projects layout ([Demo][projects]) as well as its own detail page ([Demo][project]).
 
-A project is represented by a file in the `_projects` directory.
-The project's meta information is defined in the files front matter.
-Additionally, you can add markdown content. A project's front matter may look like:
+Each project is defined by a file in the `_projects` directory.
+The project's meta information is defined in the file's front matter. You can also add markdown content. A project's front matter may look like:
 
 ~~~yml
 ---
@@ -759,10 +735,12 @@ It generates the resume page from a valid [JSON Resume](https://jsonresume.org/)
 * If you have a LinkedIn profile, you can try [LinkedIn to Json Résumé](https://jmperezperez.com/linkedin-to-json-resume/).
 * You can edit the [example `resume.json`](https://github.com/qwtel/hydejack/blob/v6/_data/resume.json) in the `_data` directly. It contains example entries for each type of entry.
 
-If you prefer editing YAML files, there is an [example `_resume.yml`](https://github.com/qwtel/hydejack/blob/v6/_data/_resume.yml) file in `_data`.
-In order to use it, delete `resume.json`, and rename `_resume.yml` to `resume.yml`.
+Once you have a JSON Resume, place it into `_data`.
 
-Once you have a JSON Resume, place it into `_data`. To render the resume page, create a new markdown file and set the layout to `resume` in the front matter.
+If you prefer editing YAML files, there is an [example `_resume.yml`](https://github.com/qwtel/hydejack/blob/v6/_data/_resume.yml) file in `_data`.
+In order to use it, rename it to `resume.yml` and delete `resume.json`.
+
+To render the resume page, create a new markdown file and set the layout to `resume` in the front matter:
 
 ~~~yml
 ---
@@ -774,11 +752,16 @@ title: Resume
 **NOTE**: You can download the final [`resume.json`]({{ site.baseurl }}{% link assets/resume.json %}){:.no-push-state download="resume.json"} (minified) from the assets folder. When running locally, you can also find it at `_site/assets/resume.json`.
 {:.message}
 
+
 # Writing
 Hydejack offers a few additional features to markup your markdown. Don't worry, these are merely CSS classes added via the standard `{:.my-class}` syntax, so that your posts remain compatible with other kramdown processors.
 
 **NOTE**: For an introduction to markdown in general, see [Mastering Markdown](https://guides.github.com/features/mastering-markdown/) and [kramdown Syntax](https://kramdown.gettalong.org/syntax.html).
 {:.message}
+
+## Table of Contents
+* this unordered seed list will be replaced by toc as unordered list
+{:toc}
 
 ## Adding a table of contents
 You can add a generated table of contents to any page by adding `{:toc}` below a list.
@@ -940,12 +923,9 @@ $$
 $$
 ~~~
 
+
 # Build
 Hydejack supports building locally and on GitHub pages. However, when building on GitHub Pages, providing better related posts via the LSI is not available.
-
-## Table of Contents
-* this unordered seed list will be replaced by toc as unordered list
-{:toc}
 
 ## Building locally
 When building Hydejack it is important to set the environment variable `JEKYLL_ENV` to `production`.
@@ -953,13 +933,13 @@ Otherwise the output will not be minified. Building itself happens via Jekyll's 
 
     $ JEKYLL_ENV=production bundle exec jekyll build
 
-This will generate the finished static files in `_site` which can be deployed using the methods outlined in the [Jekyll Documentation][deploy].
+This will generate the finished static files in `_site`, which can be deployed using the methods outlined in the [Jekyll Documentation][deploy].
 
 ### With latent semantic analysis
 By default, related posts are simply the most recent posts.
-Hydejack modifies this a bit, by showing the most recent posts of the same category/tag.
+Hydejack modifies this a bit, by showing the most recent posts of the same category or tag.
 However, the results are still pretty "unrelated".
-To provide better results, Jekyll supports [latent semantic analysis](https://en.wikipedia.org/wiki/Latent_semantic_analysis) via [`classifier-reborn`](http://www.classifier-reborn.com/)'s [Latent Semantic Indexer](http://www.classifier-reborn.com/lsi) (LSI).
+To provide better results, Jekyll supports [latent semantic analysis](https://en.wikipedia.org/wiki/Latent_semantic_analysis) via [`classifier-reborn`](http://www.classifier-reborn.com/)'s [Latent Semantic Indexer](http://www.classifier-reborn.com/lsi).
 
 To use the LSI, you first have to disable Hydejack's default behaviour, by setting `use_lsi: true` in `_config.yml`
 
@@ -969,13 +949,13 @@ Then, you have to run `jekyll build` with the `--lsi` flag:
 
     $ JEKYLL_ENV=production bundle exec jekyll build --lsi
 
-This will generate the finished static files in `_site` which can be deployed using the methods outlined in the [Jekyll Documentation][deploy].
+This will generate the finished static files in `_site`, which can be deployed using the methods outlined in the [Jekyll Documentation][deploy].
 
 ## Building on GitHub Pages
-If you are using the PRO version of Hydejack, this method is discouraged because it will publish the source code of the theme on GitHub.
+**NOTE**: If you are using the PRO version of Hydejack, this method is discouraged because it will publish the source code of the theme on GitHub.
 {:.message}
 
-GitHub Pages offers the possibility to upload your site's Jekyll source directly. Then, GitHub will run the build process in the cloud, provided you site only uses [certain plugins](https://pages.github.com/versions/). Hydejack supports GitHub Pages out of the box.
+GitHub Pages offers the possibility to upload your site's Jekyll source directly. Then, GitHub will run the build process in the cloud, provided your site only uses [certain plugins](https://pages.github.com/versions/). Hydejack supports building on GitHub Pages out of the box.
 
 However, when using this method, the LSI is not available (see above), so make sure `use_lsi` is set to `false` in `_config.yml`.
 
@@ -983,27 +963,23 @@ However, when using this method, the LSI is not available (see above), so make s
 
 Builds on GitHub run in the `production` environment, so no further steps are necessary. For the deployment process, see [Jekyll's documentation on GitHub Pages](https://jekyllrb.com/docs/github-pages/) as well as [GitHub Help](https://help.github.com/categories/github-pages-basics/).
 
-***
-
-Continue with [Advanced]({{ site.baseurl }}{% link docs/6.2.0/advanced.md %}){:data-flip="title"} »
-{:.faded.heading}
 
 # Advanced
 ## Adding a custom social media icon
 Hydejack includes a number of social media icons by default (in fact, everything that is provided by [IcoMoon](https://icomoon.io/)), but since the landscape is always changing, it is likely that a platform that is important to you will be missing at some point.
 
-**NOTE**: You can add any platform by simply providing an URL (just make sure it contains `//`). However, a fallback icon <span class="icon-link"></span> will be used instead of the platform's icon.
+**NOTE**: You can add any platform by simply providing a complete URL. However, a fallback icon <span class="icon-link"></span> will be used.
 {:.message}
 
 ### Creating the icon font
-In order to add a custom social media icon you have to use the [IcoMoon App](https://icomoon.io/app/) (free) to create a custom icon webfont. However, it is important that the generated font include all icons already in use by Hydejack. For this purpose, find the `selection.json` at [`assets/icomoon/selection.json`](https://github.com/qwtel/hydejack/blob/v6/assets/icomoon/selection.json) and upload it to the app via "Import Icons".
+In order to add a custom social media icon you have to use the [IcoMoon App](https://icomoon.io/app/) (free) to create a custom icon webfont. However, it is important that the generated font include all icons already in use by Hydejack. For this purpose, find the `selection.json` in [`assets/icomoon/selection.json`](https://github.com/qwtel/hydejack/blob/v6/assets/icomoon/selection.json) and upload it to the app via "Import Icons".
 Then, use the app to add your icon(s).
 Consult the [IcoMoon docs](https://icomoon.io/#docs) for additional help.
 
-Once you've created and downloaded the icon font form IconMoon, replace the `icomoon` folder in `assets` in it's entirety. Keep in mind that future updates of Hydejack will override this folder.
+Once you've created and downloaded the icon font form IconMoon, replace the `icomoon` folder in `assets` in its entirety. Keep in mind that future updates of Hydejack will override this folder.
 
 ### Adding the platform's metadata
-In this second step it is necessary, to add the network's metadata to `_data/social.yml`.
+For the second step it is necessary to add the network's metadata to `_data/social.yml`.
 An entry looks like:
 
     deviantart:
@@ -1028,6 +1004,13 @@ An entry looks like:
 **NOTE**: In order to build the JavaScript you need to have [node.js](https://nodejs.org/en/) installed. Specifically, the `npm` command needs to be available, which is part of node.js.
 {:.message}
 
+Before you start, make sure you've copied the following files:
+* `_js/`
+* `package.json`
+* `.babelrc`
+* `.eslintignore`
+* `.eslintrc`
+
 When building for the first time (and after each update of Hydejack) you have to run
 
     $ npm install
@@ -1042,7 +1025,8 @@ If you want to actively develop the scripts, it is better to run
 
     $ npm run dev
 
-which will build a non-minified, non-transpiled (ES6) version of `hydejack.js` after every filechange.
+which will build a non-minified, non-transpiled (ES2016) version of `hydejack.js` after each filechange.
+
 
 # Versions
 ## v6.2.0
@@ -1065,7 +1049,7 @@ May 23 2017
 * Add support for `keywords` in front matter and `_config.yml`.
 
 ## v6.1.0
-May 9 2017
+May 15 2017
 {:.heading.post-date}
 
 * Updated JS dependencies
@@ -1542,3 +1526,4 @@ SOFTWARE.
 *[FLIP]: First Last Invert Play
 *[LSI]: Latent Semantic Indexer
 *[FOIT]: Flash of Invisible Text
+*[GA]: Google Analytics

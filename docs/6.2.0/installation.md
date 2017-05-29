@@ -45,7 +45,7 @@ Look for the `theme` key (or add it when missing) and set its value to `jekyll-t
 theme: jekyll-theme-hydejack
 ~~~
 
-The dependencies will be fetched from [RubyGems](https://rubygems.org/) when running Jekyll via [Bundler](http://bundler.io/).
+All dependencies will be fetched from [RubyGems](https://rubygems.org/) when running Jekyll via [Bundler](http://bundler.io/).
 
     $ bundle exec jekyll serve
 
@@ -57,7 +57,7 @@ You can now point your browser to [http://localhost:4000](http://localhost:4000)
 For more information on gem-based themes, see the [Jekyll Documentation](http://jekyllrb.com/docs/themes/).
 
 ## Via zip
-If you downloaded the zip, the folder structure will look like:
+If you downloaded the zip, the folder structure will look something like:
 
 ~~~
 ├── _data
@@ -69,7 +69,6 @@ If you downloaded the zip, the folder structure will look like:
 ├── _js
 │   ├── lib
 │   └── src
-│       └── flip
 ├── _layouts
 ├── _posts
 ├── _sass
@@ -80,8 +79,6 @@ If you downloaded the zip, the folder structure will look like:
 │   ├── icomoon
 │   ├── img
 │   └── js
-├── docs
-│   └── 6.2.0
 ├── _config.yml
 ├── 404.md
 ├── about.md
@@ -89,7 +86,7 @@ If you downloaded the zip, the folder structure will look like:
 └── posts.md
 ~~~
 
-The dependencies will be fetched from [RubyGems](https://rubygems.org/) when running Jekyll via [Bundler](http://bundler.io/).
+All dependencies will be fetched from [RubyGems](https://rubygems.org/) when running Jekyll via [Bundler](http://bundler.io/).
 
     $ bundle exec jekyll serve
 
@@ -109,12 +106,12 @@ If you do not want to use Bundler, you can install the dependencies yourself via
 ## Via git
 If you are familiar with using git, you can add the [Hydejack repository](https://github.com/qwtel/hydejack) as a remote, and merge its master branch into your working branch.
 
-    $ git remote add hydejack ...
+    $ git remote add hydejack git@github.com:qwtel/hydejack.git
     $ git merge hydejack/master
 
 You can also update Hydejack this way. The master branch will not contain work in progress, but will contain major (breaking) releases.
 
-If you are starting a new blog you can also fork or clone the repository and use it as basis, though it's debatable whether that's desirable.
+If you are starting a new blog you can also fork or clone the repository and use it as basis, though it's debatable whether that's a good idea.
 
 ***
 

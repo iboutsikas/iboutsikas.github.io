@@ -15,17 +15,16 @@ Unfortunately, upgrading form v5 is not straightforward. A lot of patterns and n
 Copy the the following folders and files from Hydejack v6 into your existing repository.
 Make sure you merge the folder contents.
 
-* `_data`
-* `_includes`
-* `_layouts`
-* `_sass`
-* `assets`
+* `_data/`
+* `_includes/`
+* `_layouts/`
+* `_sass/`
+* `assets/`
 * `404.md`
-* `index.html` or `index.md`
+* `index.html` (`index.md`\*)
 
-1. Delete the `public` folder. If you have placed files in the `public` folder, only delete `public/css`, `public/js` and `public/fonts` instead. Static files are now located in the `assets` folder.
-1. Delete `404.html` (now provided by `404.md` and the `not-found` layout)
-
+1. Delete the `public` folder. If you have placed files in the `public` folder, only delete `public/css`, `public/js` and `public/fonts`. Static files are now located in the `assets` folder.
+2. Delete `404.html` (now provided by `404.md` and the `not-found` layout)
 
 ### Updating the configuration
 `_config.yml` has changed considerably. Open it and make the following changes.
@@ -37,7 +36,7 @@ Make sure you merge the folder contents.
     * `google_analytics_id` => `google_analytics`
     * `disqus` => `disqus_shortname`
 
-1.  Enable Jekyll Collections by adding
+2.  Enable Jekyll Collections by adding
 
     ~~~yml
     collections:
@@ -52,9 +51,9 @@ Make sure you merge the folder contents.
         output:    true
     ~~~
 
-1.  Copy the entire `author` hash (including the top-level `author` key) from `_config.yml` into the new file `_data/authors.yml` and add it to the top of the file (you can delete the rest of the file).
-1.  In `_config.yml`, delete every key of the `author` hash except `name` and `email`.
-1.  Choose a shortname and use it as the key for the author, e.g.
+3.  Copy the entire `author` hash (including the top-level `author` key) from `_config.yml` into the new file `_data/authors.yml` and add it to the top of the file (you can delete the rest of the file).
+4.  In `_config.yml`, delete every key of the `author` hash except `name` and `email`.
+5.  Choose a shortname and use it as the key for the author, e.g.
 
     ~~~yml
     qwtel:
@@ -76,7 +75,7 @@ You can take a look at the [full `authors.yml`](https://github.com/qwtel/hydejac
 
 ### Updating the author
 1.  Open `_data/authors.yml`
-1.  Delete `photo` and `photo2x` form the author you've copied and add a `picture` hash instead that looks like
+2.  Delete `photo` and `photo2x` form the author you've copied and add a `picture` hash instead that looks like
 
     ~~~yml
     picture:
@@ -93,12 +92,13 @@ For more information, see [Adding an author]({{ site.baseurl }}{% link docs/6.2.
 ### Restoring the tags
 1.  Delete the `tag` folder.
 2.  Create a top-level folder called `_featured_tags`.
-3.  For each entry in `_data/tags.yml`, create a markdown file in `_features_tags` with the tag name as filename,
-    e.g. `hyde.md`.
+3.  For each entry in `_data/tags.yml`, create a markdown file in `_features_tags` with the name of the tag as filename,
+    e.g. `hyde.md` for tag "hyde".
 4.  For each tag, copy its contents from `_data/tags.yml` into the new file's front matter, e.g.
 
     ~~~yml
     ---
+    layout: list
     name: Hyde
     image: /hydejack/public/img/hyde.jpg
     color: '#949667'
@@ -113,16 +113,16 @@ For more information, see [Adding an author]({{ site.baseurl }}{% link docs/6.2.
 ### Restoring the sidebar entries
 Hydejack can now link to any kind of page in the sidebar.
 
-1. Delete `sidebar_tags` in `_config.yml` as this key is no longer used.
+1. Delete `sidebar_tags` in `_config.yml`.
 2. Open a file who's page you would like to add to the sidebar. If you want to add a tag, open `_featured_tags/<tagname>.md`.
 3. Add `menu: true` to its front matter.
-4. (Optional) Set `order: <position>`, where `<position>` is the position at which you would like the link to appear.
+4. (Optional) Set `order: <number>`, where `<number>` is the number at which you would like the link to appear.
 
 ### Restoring the RSS feed
 The feed is now provided by the `jekyll-feed` plugin instead of a custom solution.
 
 1.  Delete `atom.xml`
-1.  Add `- jekyll-feed` to `gems` in `_config.yml`, e.g.
+2.  Add `- jekyll-feed` to `gems` in `_config.yml`, e.g.
 
     ~~~yml
     gems:
@@ -131,7 +131,7 @@ The feed is now provided by the `jekyll-feed` plugin instead of a custom solutio
       - jekyll-paginate
     ~~~
 
-2.  Add the following to `_config.yml`:
+3.  (Optional) Add the following to `_config.yml` to make the feed appear at the same URL as the old `atom.xml`.
 
     ~~~yml
     feed:
@@ -139,7 +139,7 @@ The feed is now provided by the `jekyll-feed` plugin instead of a custom solutio
     ~~~
 
 ### Restoring the comments
-Hydejack now supports comments on every page. However, you have to enable them per page by adding `comments: true` to the front matter (shold you have followed the [Disqus integration guide](https://disqus.com/admin/install/platforms/jekyll/), this should be familiar).
+The way comments are enabled has changed slightly. You now have to enable them per page by adding `comments: true` to the front matter (this is what the [Disqus integration guide](https://disqus.com/admin/install/platforms/jekyll/) suggests).
 
 As mentioned above, don't forget to rename `disqus` to `disqus_shortname` in `_config.yml`.
 
@@ -150,19 +150,21 @@ To use it, open `about.md` and change the `layout` in the front matter to `about
 ## From free to PRO version*
 Upgrading form the free version to PRO is straightforward. All that is necessary to copy the following folders from PRO into your repository.
 
-* `_includes`
-* `_layouts`
-* `_sass`
-* `assets`
+* `_includes/`
+* `_layouts/`
+* `_sass/`
+* `assets/`
+* `_data/` (when upgrading from gem-based theme)
 
-Since you've probably added files to some of these folders, make sure you merge the contents.
-If you've modified any files (discouraged) the changes will be overwritten and you have to redo those changes.
+Since you've probably added files to some of these folders, be sure to merge the contents.
+If you've modified any files the changes will be overwritten and you have to redo those changes.
 
-If you'd like to add examples of the new layouts, you can additionally copy:
+If you'd like to add examples of the new layouts, you can also copy:
 
+* `_projects/`
 * `projects.md`
 * `resume.md`
-* `welcome.md`
+* `index.md`
 
 ***
 

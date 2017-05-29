@@ -57,7 +57,7 @@ Hydejack lets you configure the fonts of regular text and headings. It has built
     font:         "'Noto Serif', Georgia, serif"
     google_fonts: "Roboto+Slab:700|Noto+Serif:400,400i,700,700i"
 
-As you can see, `font` and `font_heading` are values you would pass to the `font-family` CSS property (without the `;`). When using a Google Font, it should consist of at least 2 fonts, where everything but the first entry will be used as a fallback until the desired font is fetched from Google.
+As you can see, `font` and `font_heading` are values you would pass to the `font-family` CSS property (without the `;`). When using a Google Font, it should consist of at least 2 fonts, where everything except the first entry will be used as a fallback until the desired font is fetched from Google.
 
 The `google_fonts` key is the string necessary to fetch the fonts from Google. You can get it from the download page at [Google Fonts](https://fonts.google.com) after you've selected one or more fonts:
 
@@ -69,13 +69,13 @@ If you prefer not to use Google Fonts and use [safe web fonts](http://www.cssfon
 ## Choosing a blog layout
 Hydejack features two layouts for showing your blog posts.
 
-*   The `list` layout only shows the title and groups the posts by year of publication. This layout is recommended for blogs with a smaller number of posts and infrequent updates.
+*   The `list` layout only shows the title and groups the posts by year of publication. This layout is recommended for blogs with a smaller number of posts and infrequent updates. You can also used it for an "archive" page.
 [Demo][posts].
 
 *   The `blog` layout is a traditional blog layout that is paginated and shows the title and an excerpt of each post. This layout is recommended for blogs with a large number of posts and frequent updates.
 [Demo][blog].
 
-In order to use either layout, open `index.html` in the root folder and change the `layout` property in the front matter, e.g.
+In order to use either layout, open `index.html` (or `index.md`) in the root folder and change the `layout` property in the front matter, e.g.
 
 ~~~yml
 ---
@@ -84,14 +84,14 @@ title:  Home
 ---
 ~~~
 
-If you are using the `blog` layout with the gem-based theme, you need to add the following to your `_config.yml` to use this layout:
+If you want to use the `blog` layout with the gem-based theme, you need to add the following to your `_config.yml` to use this layout:
 
 ~~~yml
 paginate: 5
 paginate_path: '/page-:num/'
 ~~~
 
-The `blog` layout also needs to have the `.html` file extension and the `paginate_path` needs to match the path to the `index.html` file, i.e. if you want the blog to appear at `/blog/`, put the `index.html` in a `blog` dir and set `paginate_path` to be `/blog/page-:num/`. Jekyll will print additional error messages if you violate this.
+The `blog` layout needs to have the `.html` file extension and the `paginate_path` needs to match the path to the `index.html` file, i.e. if you want the blog to appear at `/blog/`, put a `index.html` in a `blog` dir and set `paginate_path` to be `/blog/page-:num/`. Jekyll will print additional error messages if you violate this.
 
 For more information see [Pagination](https://jekyllrb.com/docs/pagination/).
 
@@ -113,7 +113,7 @@ The `authors.yml` consists of key-value pairs, where the key is a shorthand for 
       about: |
         Hi, I'm Florian or `@qwtel`...
 
-Now, if an author's `about` value isn't empty, the text will appear (markdownifyed) at the bottom of each blog post and project*, as well as at the top of a page using the `about` and `welcome`\* layout.
+If an author's `about` value isn't empty, the text will appear (markdownifyed) at the bottom of each blog post and project*, as well as at the top of pages using the `about` and `welcome`\* layout.
 
 ### Dealing with multiple authors
 The first entry in `authors.yml` will be used as the default author.
@@ -122,13 +122,13 @@ However, if a blog post, project\*, about or welcome\* page doesn't belong to th
 ~~~yml
 ---
 layout: post
-title: "Hello World"
+title: Hello World
 author: qwtel
 ---
 ~~~
 
 ## Adding an author's picture
-If you'd like for the author's picture to appear in addition the the about text (see previous chapter), you have to provide an URL to the author's `picture` key in `_data/authors.yml`.
+If you'd like for the author's picture to appear in addition the the about text (see previous chapter), you have to provide an URL to the `picture` key in `_data/authors.yml`.
 
     picture:  /assets/img/me.jpg
 
@@ -179,25 +179,23 @@ Should providing a username not produce a correct link for some reason, you can 
 {:.message}
 
 ### Adding an email or RSS icon
-If you'd like to add email <span class="icon-envelop"></span> or RSS <span class="icon-rss"></span> to the list, add:
+If you'd like to add email <span class="icon-envelop"></span> or RSS <span class="icon-rss"></span> to the list, add the `email` and `rss` keys, e.g.:
 
     social:
       email: mailto:f.klampfer@gmail.com
       rss:   https://qwtel.com/hydejack/feed.xml
 
-Note the the location of your `feed.xml` may vary.
-
 ## Enabling comments
-Hydejack supports comments via [Disqus](https://disqus.com/). Before you can add comments to a page, you need to register and add your Hydejack site to Disqus' admin console. Once you have your "Disqus shortname", you must add it to `_config.yml`, e.g.
+Hydejack supports comments via [Disqus](https://disqus.com/). Before you can add comments to a post or project*, you need to register and add your Hydejack site to Disqus' admin console. Once you have your "Disqus shortname", you must add it to `_config.yml`:
 
     disqus_shortname: qwtel
 
-Now comments can be enabled on every page by adding `comments: true` to the front matter, e.g.
+Now comments can be enabled for posts and projects* by adding `comments: true` to the front matter.
 
 ~~~yml
 ---
-layout:   page
-title:    Configuration
+layout: post
+title: Hello World
 comments: true
 ---
 ~~~
@@ -224,3 +222,4 @@ Continue with [Migration]({{ site.baseurl }}{% link docs/6.2.0/migration.md %}){
 [posts]: https://qwtel.com/hydejack/posts/
 
 *[FOIT]: Flash of Invisible Text
+*[GA]: Google Analytics

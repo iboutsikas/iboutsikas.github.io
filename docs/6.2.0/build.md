@@ -16,13 +16,13 @@ Otherwise the output will not be minified. Building itself happens via Jekyll's 
 
     $ JEKYLL_ENV=production bundle exec jekyll build
 
-This will generate the finished static files in `_site` which can be deployed using the methods outlined in the [Jekyll Documentation][deploy].
+This will generate the finished static files in `_site`, which can be deployed using the methods outlined in the [Jekyll Documentation][deploy].
 
 ### With latent semantic analysis
 By default, related posts are simply the most recent posts.
-Hydejack modifies this a bit, by showing the most recent posts of the same category/tag.
+Hydejack modifies this a bit, by showing the most recent posts of the same category or tag.
 However, the results are still pretty "unrelated".
-To provide better results, Jekyll supports [latent semantic analysis](https://en.wikipedia.org/wiki/Latent_semantic_analysis) via [`classifier-reborn`](http://www.classifier-reborn.com/)'s [Latent Semantic Indexer](http://www.classifier-reborn.com/lsi) (LSI).
+To provide better results, Jekyll supports [latent semantic analysis](https://en.wikipedia.org/wiki/Latent_semantic_analysis) via [`classifier-reborn`](http://www.classifier-reborn.com/)'s [Latent Semantic Indexer](http://www.classifier-reborn.com/lsi).
 
 To use the LSI, you first have to disable Hydejack's default behaviour, by setting `use_lsi: true` in `_config.yml`
 
@@ -32,13 +32,13 @@ Then, you have to run `jekyll build` with the `--lsi` flag:
 
     $ JEKYLL_ENV=production bundle exec jekyll build --lsi
 
-This will generate the finished static files in `_site` which can be deployed using the methods outlined in the [Jekyll Documentation][deploy].
+This will generate the finished static files in `_site`, which can be deployed using the methods outlined in the [Jekyll Documentation][deploy].
 
 ## Building on GitHub Pages
-If you are using the PRO version of Hydejack, this method is discouraged because it will publish the source code of the theme on GitHub.
+**NOTE**: If you are using the PRO version of Hydejack, this method is discouraged because it will publish the source code of the theme on GitHub.
 {:.message}
 
-GitHub Pages offers the possibility to upload your site's Jekyll source directly. Then, GitHub will run the build process in the cloud, provided you site only uses [certain plugins](https://pages.github.com/versions/). Hydejack supports GitHub Pages out of the box.
+GitHub Pages offers the possibility to upload your site's Jekyll source directly. Then, GitHub will run the build process in the cloud, provided your site only uses [certain plugins](https://pages.github.com/versions/). Hydejack supports building on GitHub Pages out of the box.
 
 However, when using this method, the LSI is not available (see above), so make sure `use_lsi` is set to `false` in `_config.yml`.
 
