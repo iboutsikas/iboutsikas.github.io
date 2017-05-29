@@ -196,3 +196,5 @@ Jan 2 2014
 ## v1.0.0 (Hyde)
 Oct 15 2013
 {:.heading.post-date}
+
+[tag]: http://www.minddust.com/post/tags-and-categories-on-github-pages/

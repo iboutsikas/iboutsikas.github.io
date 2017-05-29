@@ -70,10 +70,10 @@ If you prefer not to use Google Fonts and use [safe web fonts](http://www.cssfon
 Hydejack features two layouts for showing your blog posts.
 
 *   The `list` layout only shows the title and groups the posts by year of publication. This layout is recommended for blogs with a smaller number of posts and infrequent updates.
-[Demo]({{ site.baseurl }}{% link posts.md %}).
+[Demo][posts].
 
 *   The `blog` layout is a traditional blog layout that is paginated and shows the title and an excerpt of each post. This layout is recommended for blogs with a large number of posts and frequent updates.
-[Demo]({{ site.baseurl }}{% link blog.md %}).
+[Demo][blog].
 
 In order to use either layout, open `index.html` in the root folder and change the `layout` property in the front matter, e.g.
 
@@ -219,5 +219,8 @@ Conversely, if you want to disable it, you only have to remove the key and no GA
 
 Continue with [Migration]({{ site.baseurl }}{% link docs/6.2.0/migration.md %}){:data-flip="title"} »
 {:.faded.heading}
+
+[blog]: https://qwtel.com/hydejack/blog/
+[posts]: https://qwtel.com/hydejack/posts/
 
 *[FOIT]: Flash of Invisible Text

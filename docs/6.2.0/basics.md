@@ -134,7 +134,7 @@ order:  5
 ## Adding an about page
 About pages are such a frequent use case that Hydejack has a special layout for it.
 However, it's only a slight modification of the `page` layout.
-[Demo]({{ site.baseurl }}{% link about.md %}).
+[Demo][about].
 
 The main difference is that it will display an author's `about` text and `picture` above the regular content.
 To create an about page, make sure `layout` is set to `about`, and that the `author` key is set to an author defined in `_data/authors.yml`. For more on authors, see [Adding an author]({{ site.baseurl }}{% link docs/6.2.0/configuration.md %}#adding-an-author).
@@ -151,7 +151,7 @@ author: qwtel
 If you bought the PRO version of Hydejack you have access to the `welcome` layout.
 It is intended to showcase your projects and blog posts in a compact way.
 Technically, it is a modified version of the `about` layout, so it will also show author information at the top.
-[Demo]({{ site.baseurl }}{% link index.md %}).
+[Demo][welcome].
 
 You can create a welcome page by creating a new markdown file and setting the layout to `welcome` in the front matter.
 
@@ -207,7 +207,7 @@ The path is relative to the main directory with no leading `./`.
 
 ## Adding a project*
 Projects are organized using Jekyll's [Collection feature](https://jekyllrb.com/docs/collections/).
-Each project generates an entry on the projects layout ([Demo]({{ site.baseurl }}{% link projects.md %})) and its own detail view ([Demo]({{ site.baseurl }}{% link _projects/hydejack-v6.md %})).
+Each project generates an entry on the projects layout ([Demo][projects]) and its own detail view ([Demo][project]).
 
 A project is represented by a file in the `_projects` directory.
 The project's meta information is defined in the files front matter.
@@ -262,7 +262,7 @@ For more information on `srcset`, see the [documentation at MDN](https://develop
 
 ## Adding a resume*
 Hydejack's PRO version features a generalized resume layout.
-[Demo]({{ site.baseurl }}{% link resume.md %}).
+[Demo][resume].
 
 It generates the resume page from a valid [JSON Resume](https://jsonresume.org/), which is good news if you already have a JSON resume. Otherwise, there are various ways of obtaining one:
 
@@ -289,5 +289,11 @@ title: Resume
 
 Continue with [Writing]({{ site.baseurl }}{% link docs/6.2.0/writing.md %}){:data-flip="title"} »
 {:.faded.heading}
+
+[about]: https://qwtel.com/hydejack/about/
+[welcome]: https://qwtel.com/hydejack/
+[resume]: https://qwtel.com/hydejack/resume/
+[projects]: https://qwtel.com/hydejack/projects/
+[project]: https://qwtel.com/hydejack/projects/hydejack-v6/
 
 [mipmap]: https://en.wikipedia.org/wiki/Mipmap
