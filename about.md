@@ -11,16 +11,4 @@ comments via Disqus, multiple authors, a sidebar that turns into a drawer menu o
 
 The site works all the way down to IE10. It works in IE9 if you don't need fancy animations, and even IE5 if you don't need fancy anything. Rumor has it, you can even view it via [`lynx`](http://lynx.browser.org/).
 
-***
-
-You can download the latest version of Hydejack on [GitHub](https://github.com/qwtel/hydejack/releases/tag/v6.2.0), or use the [gem-based theme](https://rubygems.org/gems/jekyll-theme-hydejack/versions/6.2.0).
-For further instructions, check out the [Documentation]({{ site.baseurl }}{% link docs/6.2.0/index.md %}){:.heading data-flip="title"}.
-
-## Image Credit
-Sidebar (default)
-: [Napoleon Crossing the Alps ](https://en.wikipedia.org/wiki/Napoleon_Crossing_the_Alps#/media/File:Jacques_Louis_David_-_Bonaparte_franchissant_le_Grand_Saint-Bernard,_20_mai_1800_-_Google_Art_Project.jpg)
-
-Sidebar (Documentation)
-: [Annie Spratt](https://unsplash.com/search/library?photo=lIWF2uHxs0Q)
-
 [^1]: Hydejack is fast in two different ways. Its *perceived speed* hides latency through a combination of animations and a complex pre-fetching logic. *Load speed* is achieved through inlining critical CSS and removing non-essential requests from the critical rendering path.
