@@ -120,7 +120,7 @@ About pages are a frequent use case, so Hydejack has a special layout for it, wh
 [Demo][about].
 The main difference is that it will display an author's `about` text and `picture` above the regular content.
 
-To create an about page, make sure `layout` is set to `about`, and that the `author` key is set to an author defined in `_data/authors.yml`. For more on authors, see [Adding an author]({{ site.baseurl }}{% link docs/6.2.0/configuration.md %}#adding-an-author).
+To create an about page, make sure `layout` is set to `about`, and that the `author` key is set to an author defined in `_data/authors.yml`. For more on authors, see [Adding an author]({{ site.baseurl }}{% link docs/6.3.0/configuration.md %}#adding-an-author).
 
 ~~~yml
 ---
@@ -268,7 +268,7 @@ title: Resume
 
 ***
 
-Continue with [Writing]({{ site.baseurl }}{% link docs/6.2.0/writing.md %}){:data-flip="title"} »
+Continue with [Writing]({{ site.baseurl }}{% link docs/6.3.0/writing.md %}){:data-flip="title"} »
 {:.faded.heading}
 
 [about]: https://qwtel.com/hydejack/about/
