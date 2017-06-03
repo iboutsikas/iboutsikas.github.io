@@ -94,7 +94,7 @@ $pad: 2.5rem;
   margin-left: -$pad;
 
   &::after {
-    @extend .clearfix
+    @include clearfix();
   }
 }
 
