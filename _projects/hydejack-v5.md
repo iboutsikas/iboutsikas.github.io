@@ -12,8 +12,7 @@ caption: This release dramatically increases page load speed.
 description: >
   This release dramatically increases page load speed which matters to Google and visitors with slow connections alike.
 links:
-  -
-    title: Source
+  - title: Source
     url: https://github.com/qwtel/hydejack/tree/v5
 ---
 

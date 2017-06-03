@@ -12,8 +12,7 @@ caption: An elegant open source, mobile first theme for Jekyll.
 description: >
   An elegant open source, mobile first theme for Jekyll. It includes lightweight styles and placeholder content to get you up and running with a simple blog in no time.
 links:
-  -
-    title: Source
+  - title: Source
     url: https://github.com/mdo/hyde
 author: mdo
 ---

@@ -12,8 +12,7 @@ caption: This release adds *a lot* of social media icons.
 description: >
   This release adds *a lot* of social media icons and introduces a new default layout. It also breaks things, hence a new major release number.
 links:
-  -
-    title: Source
+  - title: Source
     url: https://github.com/qwtel/hydejack/tree/v4
 ---
 

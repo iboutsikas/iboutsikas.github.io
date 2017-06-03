@@ -15,8 +15,7 @@ description: >
   [Hyde](http://hyde.getpoole.com).
   You could say it was.. [hydejacked](http://media3.giphy.com/media/makedRIckZBW8/giphy.gif).
 links:
-  -
-    title: Source
+  - title: Source
     url: https://github.com/qwtel/hydejack/tree/v3.0.2
 ---
 

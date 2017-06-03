@@ -13,11 +13,9 @@ description: >
   The last release made the theme fast in the eyes of Google, but not so much in the eyes of its readers.
   This release addresses this by adding a layer of JavaScript, effectively turning the whole site into a single page app.
 links:
-  -
-    title: Download
+  - title: Download
     url: https://github.com/qwtel/hydejack/releases/tag/v6.3.0
-  -
-    title: Source
+  - title: Source
     url: https://github.com/qwtel/hydejack/tree/v6
 ---
 
