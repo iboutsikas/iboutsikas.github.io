@@ -8,6 +8,32 @@ redirect_from: /docs/latest/versions/
 * this unordered seed list will be replaced by toc as unordered list
 {:toc}
 
+## v6.3.0
+June 3 2017
+{:.heading.post-date}
+
+This release makes including 3rd party plugins easier.
+Until now, the push state approach to loading new pages has been interfering with embedded `script` tags.
+This version changes this by simulating the sequential loading of script tags on a fresh page load.
+
+This approach should work in a majority of cases, but it can still cause problems with scripts that can't be added more than once per page. 
+For these cases there's now also the option to disable push state by setting `disable_push_state: true` in `config.yml`.
+
+### Minor
+* Support embedding `script` tags in markdown content
+* Add `disable_push_state` option to `_config.yml`
+* Add `disable_drawer` option to `_config.yml`
+* Rename syntax highlighting file to `syntax.scss`
+
+### Design
+* Add subtle intro animation
+* Rename "Check out X for more" to "See X for more" on welcome\* page
+* Replace "»" with "→" in "read more"-type of links
+* Make "read more"-type of links align right
+
+### Fixes
+* Fix default color in gem-based theme
+
 ## v6.2.0
 May 29 2017
 {:.heading.post-date}
