@@ -121,9 +121,7 @@ If you are familiar with using git, you can add the [Hydejack repository](https:
     $ git remote add hydejack git@github.com:qwtel/hydejack.git
     $ git merge hydejack/master
 
-You can also update Hydejack this way. The master branch will not contain work in progress, but will contain major (breaking) releases.
-
-If you are starting a new blog you can also fork or clone the repository and use it as basis, though it's debatable whether that's a good idea.
+You can also update Hydejack this way. The master branch will not contain work in progress, but will contain major (breaking) releases. This approach is recommended if you intend to heavily customize Hydejack.
 
 
 # Configuration
@@ -1030,27 +1028,28 @@ which will build a non-minified, non-transpiled (ES2016) version of `hydejack.js
 
 # Versions
 ## v6.3.0
-June 3 2017
+June 6 2017
 {:.heading.post-date}
 
 This release makes including 3rd party plugins easier.
 Until now, the push state approach to loading new pages has been interfering with embedded `script` tags.
 This version changes this by simulating the sequential loading of script tags on a fresh page load.
 
-This approach should work in a majority of cases, but it can still cause problems with scripts that can't be added more than once per page.
-For these cases there's now also the option to disable push state by setting `disable_push_state: true` in `config.yml`.
+This approach should work in a majority of cases, but can still cause problems with scripts that can't be added more than once per page.
+
+If an issue can't be resolved, there's now also the option to disable push state by setting `disable_push_state: true` in `config.yml`.
 
 ### Minor
 * Support embedding `script` tags in markdown content
 * Add `disable_push_state` option to `_config.yml`
 * Add `disable_drawer` option to `_config.yml`
 * Rename syntax highlighting file to `syntax.scss`
+* Added chapter on 3rd party scripts to documentation
 
 ### Design
 * Add subtle intro animation
 * Rename "Check out X for more" to "See X for more" on welcome\* page
 * Replace "»" with "→" in "read more"-type of links
-* Make "read more"-type of links align right
 
 ### Fixes
 * Fix default color in gem-based theme

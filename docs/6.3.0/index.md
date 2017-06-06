@@ -14,22 +14,20 @@ Should you discover a mistake in the docs (or a bug in general) feel free to [op
 {:.message}
 
 ## Getting started
-
 * [Installation]{:.heading data-flip="title"} -- How to install and run Hydejack.
 * [Configuration]{:.heading data-flip="title"} -- Once Jekyll is running you can start with basic configuration.
 * [Migration]{:.heading data-flip="title"} -- You can skip this if you haven't used Hydejack before.
 {:.related-posts.faded}
 
 ## Using Hydejack
-
 * [Basics]{:.heading data-flip="title"} -- How to add different types of content.
 * [Writing]{:.heading data-flip="title"} -- Producing markdown content for Hydejack.
+* [Scripts]{:.heading data-flip="title"} -- How to include 3rd party scripts on your site.
 * [Build]{:.heading data-flip="title"} -- How to build the static files for deployment.
 * [Advanced]{:.heading data-flip="title"} -- Guides for more advanced tasks.
 {:.related-posts.faded}
 
 ## Miscellaneous
-
 * [Versions]{:.heading data-flip="title"} -- Version history of Hydejack.
 * [Licenses]{:.heading data-flip="title"} -- Open Source license texts of libraries used by Hydejack.
 {:.related-posts.faded}
@@ -39,6 +37,7 @@ Should you discover a mistake in the docs (or a bug in general) feel free to [op
 [migration]: {{ site.baseurl }}{% link docs/6.3.0/migration.md %}
 [basics]: {{ site.baseurl }}{% link docs/6.3.0/basics.md %}
 [writing]: {{ site.baseurl }}{% link docs/6.3.0/writing.md %}
+[scripts]: {{ site.baseurl }}{% link docs/6.3.0/scripts.md %}
 [build]: {{ site.baseurl }}{% link docs/6.3.0/build.md %}
 [advanced]: {{ site.baseurl }}{% link docs/6.3.0/advanced.md %}
 [versions]: {{ site.baseurl }}{% link docs/6.3.0/versions.md %}

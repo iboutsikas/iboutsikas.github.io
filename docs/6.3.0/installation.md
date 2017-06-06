@@ -109,9 +109,7 @@ If you are familiar with using git, you can add the [Hydejack repository](https:
     $ git remote add hydejack git@github.com:qwtel/hydejack.git
     $ git merge hydejack/master
 
-You can also update Hydejack this way. The master branch will not contain work in progress, but will contain major (breaking) releases.
-
-If you are starting a new blog you can also fork or clone the repository and use it as basis, though it's debatable whether that's a good idea.
+You can also update Hydejack this way. The master branch will not contain work in progress, but will contain major (breaking) releases. This approach is recommended if you intend to heavily customize Hydejack.
 
 ***
 

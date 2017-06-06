@@ -17,20 +17,20 @@ Until now, the push state approach to loading new pages has been interfering wit
 This version changes this by simulating the sequential loading of script tags on a fresh page load.
 
 This approach should work in a majority of cases, but can still cause problems with scripts that can't be added more than once per page.
-For these cases there's now also the option to disable push state by setting `disable_push_state: true` in `config.yml`.
+
+If an issue can't be resolved, there's now also the option to disable push state by setting `disable_push_state: true` in `config.yml`.
 
 ### Minor
 * Support embedding `script` tags in markdown content
 * Add `disable_push_state` option to `_config.yml`
 * Add `disable_drawer` option to `_config.yml`
 * Rename syntax highlighting file to `syntax.scss`
-* Added chapter on 3rd party plugins to docs/advanced
+* Added chapter on 3rd party scripts to documentation
 
 ### Design
 * Add subtle intro animation
 * Rename "Check out X for more" to "See X for more" on welcome\* page
 * Replace "»" with "→" in "read more"-type of links
-* Make "read more"-type of links align right
 
 ### Fixes
 * Fix default color in gem-based theme
