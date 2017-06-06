@@ -175,5 +175,5 @@ $$
 
 ***
 
-Continue with [Build]({{ site.baseurl }}{% link docs/6.3.0/build.md %}){:data-flip="title"} »
-{:.faded.heading}
+Continue with [Build]({{ site.baseurl }}{% link docs/6.3.0/scripts.md %}){:data-flip="title"}
+{:.read-more}

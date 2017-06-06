@@ -168,5 +168,5 @@ If you'd like to add examples of the new layouts, you can also copy:
 
 ***
 
-Continue with [Basics]({{ site.baseurl }}{% link docs/6.3.0/basics.md %}){:data-flip="title"} »
-{:.faded.heading}
+Continue with [Basics]({{ site.baseurl }}{% link docs/6.3.0/basics.md %}){:data-flip="title"}
+{:.read-more}
