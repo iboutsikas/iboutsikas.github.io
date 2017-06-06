@@ -268,7 +268,7 @@ title: Resume
 
 ***
 
-Continue with [Writing]({{ site.baseurl }}{% link docs/6.3.0/writing.md %}){:data-flip="title"}
+Continue with [Writing]({{ site.baseurl }}{% link docs/6.3.0/writing.md %}){:.heading data-flip="title"}
 {:.read-more}
 
 [about]: https://qwtel.com/hydejack/about/

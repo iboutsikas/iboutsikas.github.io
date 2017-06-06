@@ -62,7 +62,7 @@ layout: about
 {% if page.more_projects %}
   {% assign more_projects = site.pages | where:"path", page.more_projects | first %}
   {% if more_projects %}
-    <p class="read-more">See <a href="{{ more_projects.url | relative_url }}" data-flip="title">{{ more_projects.title }}</a> for more</p>
+    <p class="read-more">See <a class="heading" href="{{ more_projects.url | relative_url }}" data-flip="title">{{ more_projects.title }}</a> for more</p>
   {% else %}
     Page with path <code>{{ page.more_posts }}</code> not found.
   {% endif  %}
@@ -94,7 +94,7 @@ layout: about
 {% if page.more_posts %}
   {% assign more_posts = site.pages | where:"path", page.more_posts | first %}
   {% if more_posts %}
-    <p class="read-more">See <a href="{{ more_posts.url | relative_url }}" data-flip="title">{{ more_posts.title }}</a> for more</p>
+    <p class="read-more">See <a class="heading" href="{{ more_posts.url | relative_url }}" data-flip="title">{{ more_posts.title }}</a> for more</p>
   {% else %}
     Page with path <code>{{ page.more_posts }}</code> not found.
   {% endif  %}

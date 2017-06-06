@@ -48,7 +48,7 @@ Builds on GitHub run in the `production` environment, so no further steps are ne
 
 ***
 
-Continue with [Advanced]({{ site.baseurl }}{% link docs/6.3.0/advanced.md %}){:data-flip="title"}
+Continue with [Advanced]({{ site.baseurl }}{% link docs/6.3.0/advanced.md %}){:.heading data-flip="title"}
 {:.read-more}
 
 [deploy]: https://jekyllrb.com/docs/deployment-methods/

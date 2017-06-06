@@ -113,5 +113,5 @@ You can also update Hydejack this way. The master branch will not contain work i
 
 ***
 
-Continue with [Configuration]({{ site.baseurl }}{% link docs/6.3.0/configuration.md %}){:data-flip="title"}
+Continue with [Configuration]({{ site.baseurl }}{% link docs/6.3.0/configuration.md %}){:.heading data-flip="title"}
 {:.read-more}

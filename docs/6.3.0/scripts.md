@@ -112,5 +112,5 @@ Other events you can register on `_yPushState` include
 
 ***
 
-Continue with [Build]({{ site.baseurl }}{% link docs/6.3.0/build.md %}){:data-flip="title"}
+Continue with [Build]({{ site.baseurl }}{% link docs/6.3.0/build.md %}){:.heading data-flip="title"}
 {:.read-more}

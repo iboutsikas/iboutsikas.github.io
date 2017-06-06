@@ -215,7 +215,7 @@ Conversely, if you want to disable it, you only have to remove the key and no GA
 
 ***
 
-Continue with [Migration]({{ site.baseurl }}{% link docs/6.3.0/migration.md %}){:data-flip="title"}
+Continue with [Migration]({{ site.baseurl }}{% link docs/6.3.0/migration.md %}){:.heading data-flip="title"}
 {:.read-more}
 
 [blog]: https://qwtel.com/hydejack/blog/
