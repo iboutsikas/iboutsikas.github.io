@@ -288,7 +288,7 @@ layout: base
         <dl class="skills">
           {% for lng in resume.languages %}
             <dt class="h4 fl">{{ lng.language }}</dt>
-            <dd class="faded">
+            <dd class="faded clearafter">
               <div class="heading fr" style="margin-bottom:0.5rem">
                 <span class="sr-only">Fluency:</span>
                 {% assign fluency = lng.fluency | slugify %}
@@ -328,7 +328,6 @@ layout: base
                 {% endcase %}
               </div>
             </dd>
-            <div class="clearfix"></div>
           {% endfor %}
         </dl>
       {% endif %}
@@ -339,7 +338,7 @@ layout: base
           {% for skl in resume.skills %}
             <dt class="h4 fl">{{ skl.name }}</dt>
             <dd class="faded">
-              <div class="heading fr" style="margin-bottom:0.5rem">
+              <div class="heading fr clearafter" style="margin-bottom:0.5rem">
                 <span class="sr-only">Level:</span>
                 {% assign level = skl.level | slugify %}
                 {% case level %}
@@ -363,7 +362,7 @@ layout: base
                 {% endcase %}
               </div>
               {% if skl.keywords.size > 0 %}
-              <div class="clearfix">
+              <div>
                 <span class="sr-only">Keywords:</span>
                 <ul class="tags">
                   {% for key in skl.keywords %}
@@ -373,7 +372,6 @@ layout: base
               </div>
               {% endif %}
             </dd>
-            <div class="clearfix"></div>
           {% endfor %}
         </dl>
       {% endif %}
