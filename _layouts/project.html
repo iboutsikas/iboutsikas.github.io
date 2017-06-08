@@ -55,7 +55,7 @@ layout: base
 {% assign p1 = page.previous | default:page.next.next %}
 {% assign p2 = page.next | default:page.previous.previous %}
 {% if p1 or p2 %}
-  <h2>Other Projects</h2>
+  <h2>Related Projects</h2>
   <div class="grid">
     {% assign p1 = page.previous | default:page.next.next %}
     {% if p1 %}
