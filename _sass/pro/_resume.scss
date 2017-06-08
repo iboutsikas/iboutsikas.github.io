@@ -7,10 +7,6 @@ main {
     margin-top: 1rem;
   }
 
-  .h3 {
-    // margin-top: 1rem;
-  }
-
   .h4 {
     margin-top: 0;
   }
@@ -69,24 +65,19 @@ blockquote > footer {
 }
 
 .skills {
-  // dt, dd {
-  //   margin-bottom: .5rem;
-  // }
-
   dt {
-    // clear: both;
-    // float: left;
     margin-bottom: 0;
   }
 
   dd {
-    // float: left;
     margin-left: 0;
     margin-bottom: 1.5rem;
   }
 }
 
 .contact {
+  margin-top: 2.5rem;
+
   dt, dd {
     margin-bottom: .5rem;
   }
@@ -95,7 +86,7 @@ blockquote > footer {
     clear: both;
     float: left;
     width: 2rem;
-    text-align: center;
+    // text-align: center;
 
     [class*="icon-"] {
       font-size: 1.17rem;
@@ -108,7 +99,7 @@ blockquote > footer {
     float: left;
     margin-left: 0;
     width: calc(100% - 2rem);
-    padding-left: 0.5rem;
+    padding-left: 0.25rem;
   }
 }
 
@@ -133,8 +124,8 @@ $pad: 2.5rem;
   .col-2-5 { width: 40% }
 }
 
-@media screen and (min-width: $break-point-2) {
-  dt {
-    text-align: left;
-  }
-}
+// @media screen and (min-width: $break-point-2) {
+//   dt {
+//     text-align: left;
+//   }
+// }

@@ -22,11 +22,9 @@ layout: base
     {% endif %}
   </header>
 
-  <div class="hr">
-    {% if basics.summary.size > 0 %}
-      {{ basics.summary | markdownify }}
-    {% endif %}
-  </div>
+  {% if basics.summary.size > 0 %}
+    {{ basics.summary | markdownify }}
+  {% endif %}
 
   <dl class="grid contact">
     <div class="col col-3-5">
@@ -64,9 +62,9 @@ layout: base
             {% assign countryCode = location.countryCode | upcase %}
             {% assign country = site.data.countries | where:"code", countryCode | first %}
             {% if country %}
-              <span>{{ country.name }}</span>
+              {{ country.name }}
             {% else %}
-              <span>{{ location.countryCode }}</span>
+              {{ location.countryCode }}
             {% endif %}
           {% endif %}
         </dd>
