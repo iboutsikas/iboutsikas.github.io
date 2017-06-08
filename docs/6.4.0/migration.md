@@ -87,7 +87,7 @@ You can take a look at the [full `authors.yml`](https://github.com/qwtel/hydejac
 
     If you have only one photo, you can just provide the URL directly, e.g. `picture: <url>`.
 
-For more information, see [Adding an author]({{ site.baseurl }}{% link docs/6.3.0/configuration.md %}#adding-an-author).
+For more information, see [Adding an author]({{ site.baseurl }}{% link docs/6.4.0/configuration.md %}#adding-an-author).
 
 ### Restoring the tags
 1.  Delete the `tag` folder.
@@ -166,5 +166,5 @@ If you'd like to add examples of the new layouts, you can also copy:
 * `resume.md`
 * `index.md`
 
-Continue with [Basics]({{ site.baseurl }}{% link docs/6.3.0/basics.md %}){:.heading data-flip="title"}
+Continue with [Basics]({{ site.baseurl }}{% link docs/6.4.0/basics.md %}){:.heading data-flip="title"}
 {:.read-more}

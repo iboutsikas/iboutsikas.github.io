@@ -20,7 +20,7 @@ Please start by reading the [Documentation]{:.heading data-flip="title"}. Specif
 Should you have any trouble with the theme, you can send me an email at [f.klampfer@gmail.com](mailto:f.klampfer@gmail.com). I try to answer request within 1 business day, and sometimes I answer instantly, when a mail makes it though Google's low priority filter 😉
 
 
-[documentation]: {{ site.baseurl }}{% link docs/6.3.0/index.md %}
-[installation]: {{ site.baseurl }}{% link docs/6.3.0/installation.md %}
-[configuration]: {{ site.baseurl }}{% link docs/6.3.0/configuration.md %}
-[migration]: {{ site.baseurl }}{% link docs/6.3.0/migration.md %}
+[documentation]: {{ site.baseurl }}{% link docs/6.4.0/index.md %}
+[installation]: {{ site.baseurl }}{% link docs/6.4.0/installation.md %}
+[configuration]: {{ site.baseurl }}{% link docs/6.4.0/configuration.md %}
+[migration]: {{ site.baseurl }}{% link docs/6.4.0/migration.md %}

@@ -46,7 +46,7 @@ However, when using this method, the LSI is not available (see above), so make s
 
 Builds on GitHub run in the `production` environment, so no further steps are necessary. For the deployment process, see [Jekyll's documentation on GitHub Pages](https://jekyllrb.com/docs/github-pages/) as well as [GitHub Help](https://help.github.com/categories/github-pages-basics/).
 
-Continue with [Advanced]({{ site.baseurl }}{% link docs/6.3.0/advanced.md %}){:.heading data-flip="title"}
+Continue with [Advanced]({{ site.baseurl }}{% link docs/6.4.0/advanced.md %}){:.heading data-flip="title"}
 {:.read-more}
 
 [deploy]: https://jekyllrb.com/docs/deployment-methods/

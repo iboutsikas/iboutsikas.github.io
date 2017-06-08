@@ -111,5 +111,5 @@ If you are familiar with using git, you can add the [Hydejack repository](https:
 
 You can also update Hydejack this way. The master branch will not contain work in progress, but will contain major (breaking) releases. This approach is recommended if you intend to heavily customize Hydejack.
 
-Continue with [Configuration]({{ site.baseurl }}{% link docs/6.3.0/configuration.md %}){:.heading data-flip="title"}
+Continue with [Configuration]({{ site.baseurl }}{% link docs/6.4.0/configuration.md %}){:.heading data-flip="title"}
 {:.read-more}
