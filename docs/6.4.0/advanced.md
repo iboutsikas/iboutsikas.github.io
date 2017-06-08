@@ -4,6 +4,10 @@ title: Advanced
 redirect_from: /docs/latest/advanced/
 ---
 
+## Table of Contents
+* this unordered seed list will be replaced by toc as unordered list
+{:toc}
+
 ## Adding a custom social media icon
 Hydejack includes a number of social media icons by default (in fact, everything that is provided by [IcoMoon](https://icomoon.io/)), but since the landscape is always changing, it is likely that a platform that is important to you will be missing at some point.
 
