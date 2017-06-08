@@ -9,7 +9,7 @@ layout: about
 {{ content }}
 
 {% if page.selected_projects %}
-  <h2 class="hr">Selected Projects</h2>
+  <h2>Selected Projects</h2>
   {% assign is_newline = true %}
   {% for project_path in page.selected_projects %}
     {% assign project = site.projects | where:"path", project_path | first %}
@@ -37,7 +37,7 @@ layout: about
     {% endif %}
   {% endfor %}
 {% else %}
-  <h2 class="hr">Recent Projects</h2>
+  <h2>Recent Projects</h2>
   {% assign ordered_projects = site.projects | sort:"date" | reverse %}
   {% assign is_newline = true %}
   {% for project in ordered_projects limit:2 %}

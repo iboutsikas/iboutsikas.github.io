@@ -2,6 +2,10 @@
 layout: base
 ---
 
+<!--[if gt IE 8]><!---->
+<style>{% capture include_to_scssify %}{% include pro/styles/projects.scss %}{% endcapture %}{{ include_to_scssify | scssify }}</style>
+<!--<![endif]-->
+
 {% assign project = page %}
 
 <article class="page" role="article">
@@ -47,3 +51,24 @@ layout: base
 {% endunless %}
 
 {% include about.html %}
+
+{% assign p1 = page.previous | default:page.next.next %}
+{% assign p2 = page.next | default:page.previous.previous %}
+{% if p1 or p2 %}
+  <h2>Other Projects</h2>
+  <div class="grid">
+    {% assign p1 = page.previous | default:page.next.next %}
+    {% if p1 %}
+      <div class="col col-1-2">
+        {% include pro/project-card.html project=p1 %}
+      </div>
+    {% endif %}
+
+    {% assign p2 = page.next | default:page.previous.previous %}
+    {% if p2 %}
+      <div class="col col-1-2">
+        {% include pro/project-card.html project=p2 %}
+      </div>
+    {% endif %}
+  </div>
+{% endif %}
