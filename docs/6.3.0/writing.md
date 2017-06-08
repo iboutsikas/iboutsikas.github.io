@@ -173,7 +173,5 @@ $$
 $$
 ~~~
 
-***
-
 Continue with [Scripts]({{ site.baseurl }}{% link docs/6.3.0/scripts.md %}){:.heading data-flip="title"}
 {:.read-more}

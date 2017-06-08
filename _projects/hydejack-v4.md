@@ -16,16 +16,16 @@ links:
     url: https://github.com/qwtel/hydejack/tree/v4
 ---
 
-**NOTE**: This post is outdated and only included for legacy reasons.
-See the [Documentation]({{ site.baseurl }}{% link docs/6.3.0/index.md %}){:.heading data-flip="title"} for up-to-date instructions.
-{:.message}
-
 ## Breaking
 * Structure of `_config.yml` has changed
   * Social media usernames are now located under `author: social: <platform>: <username>`.
   * `disqus` is now a top-level entry (moved from `author`).
   * Now has `font`, `font_accent` and `google_fonts` fields that are mandatory.
 * Now defaults to the `blog` layout, old style is available via `blog-by-tag` layout, see `archive.html`.
+
+**NOTE**: This post is outdated and only included for legacy reasons.
+See the [Documentation]({{ site.baseurl }}{% link docs/6.3.0/index.md %}){:.heading data-flip="title"} for up-to-date instructions.
+{:.message}
 
 ## New features
 * Added *a lot* of social media icons, configurable via `_config.yml`.
@@ -41,3 +41,7 @@ See the [Documentation]({{ site.baseurl }}{% link docs/6.3.0/index.md %}){:.head
 
 ## Internal
 * Refactoring, preventing code duplications, heavier usage of `includes`.
+
+***
+
+[Get *Social Media Impocalypse* on GitHub](https://github.com/qwtel/hydejack/releases/tag/v4.0.0)

@@ -15,19 +15,18 @@ layout: base
     {% include srcset-img.html class="me" img=basics.picture alt=basics.name %}
   {% endif %}
 
-  <header>
+  <header class="hr">
     <h1 class="page-title">{{ basics.name }}</h1>
     {% if basics.label %}
       <p class="h3 faded subline">{{ basics.label }}</p>
     {% endif %}
   </header>
 
-  <hr/>
-
-  {% if basics.summary.size > 0 %}
-    {{ basics.summary | markdownify }}
-    <hr/>
-  {% endif %}
+  <div class="hr">
+    {% if basics.summary.size > 0 %}
+      {{ basics.summary | markdownify }}
+    {% endif %}
+  </div>
 
   <dl class="grid contact">
     <div class="col col-3-5">
@@ -130,9 +129,8 @@ layout: base
   <div class="grid">
     <div class="col col-3-5">
       {% if resume.work.size > 0 %}
-        <h2 class="h3 faded">Experience <span class="symbol icon-briefcase"></span></h2>
+        <h2 class="h3 faded hr">Experience <span class="symbol icon-briefcase"></span></h2>
         {% for work in resume.work %}
-          <hr/>
           <header>
             <p class="heading faded">
               <time datetime="{{ work.startDate }}">{{ work.startDate | date: "%b %Y"  }}</time>
@@ -155,15 +153,14 @@ layout: base
             {% endfor %}
           </ul>
 
+          {% unless forloop.last %}<br/>{% endunless %}
         {% endfor %}
 
-        <br/>
       {% endif %}
 
       {% if resume.volunteer.size > 0 %}
-        <h2 class="h3 faded">Volunteer <span class="symbol icon-earth"></span></h2>
+        <h2 class="h3 faded hr">Volunteer <span class="symbol icon-earth"></span></h2>
         {% for vol in resume.volunteer %}
-          <hr/>
           <header>
             <p class="heading faded">
               <time datetime="{{ vol.startDate }}">{{ vol.startDate | date: "%b %Y"  }}</time>
@@ -186,15 +183,14 @@ layout: base
             {% endfor %}
           </ul>
 
+          {% unless forloop.last %}<br/>{% endunless %}
         {% endfor %}
 
-        <br/>
       {% endif %}
 
       {% if resume.education.size > 0 %}
-        <h2 class="h3 faded">Education <span class="symbol icon-library"></span></h2>
+        <h2 class="h3 faded hr">Education <span class="symbol icon-library"></span></h2>
         {% for edu in resume.education %}
-          <hr/>
           <header>
             <p class="heading faded">
               <time datetime="{{ edu.startDate }}">{{ edu.startDate | date: "%b %Y"  }}</time>
@@ -224,15 +220,15 @@ layout: base
               <li>{{ course }}</li>
             {% endfor %}
           </ul>
+
+          {% unless forloop.last %}<br/>{% endunless %}
         {% endfor %}
 
-        <br/>
       {% endif %}
 
       {% if resume.awards.size > 0 %}
-        <h2 class="h3 faded">Awards <span class="symbol icon-trophy"></span></h2>
+        <h2 class="h3 faded hr">Awards <span class="symbol icon-trophy"></span></h2>
         {% for awa in resume.awards %}
-          <hr/>
           <header>
             <p class="heading faded">
               <time datetime="{{ awa.date }}">{{ awa.date | date: "%b %Y"  }}</time>
@@ -247,15 +243,15 @@ layout: base
           </header>
 
           {% include message.html text=awa.summary %}
+
+          {% unless forloop.last %}<br/>{% endunless %}
         {% endfor %}
 
-        <br/>
       {% endif %}
 
       {% if resume.publications.size > 0 %}
-        <h2 class="h3 faded">Publications <span class="symbol icon-book"></span></h2>
+        <h2 class="h3 faded hr">Publications <span class="symbol icon-book"></span></h2>
         {% for pub in resume.publications %}
-          <hr/>
           <header>
             <p class="heading faded">
               <time datetime="{{ pub.releaseDate }}">{{ pub.releaseDate | date: "%b %Y"  }}</time>
@@ -270,127 +266,135 @@ layout: base
           </header>
 
           {% include message.html text=pub.summary %}
+
+          {% unless forloop.last %}<br/>{% endunless %}
         {% endfor %}
 
-        <br/>
       {% endif %}
 
       {% if resume.references.size > 0 %}
-        <h2 class="h3 faded">References <span class="symbol icon-quotes-right"></span></h2>
-        <hr/>
+        <h2 class="h3 faded hr">References <span class="symbol icon-quotes-right"></span></h2>
         {% for ref in resume.references %}
           <blockquote>
             <p>{{ ref.reference }}</p>
             <footer>— <cite>{{ ref.name }}</cite></footer>
           </blockquote>
-          <br/>
+          {% unless forloop.last %}<br/>{% endunless %}
         {% endfor %}
       {% endif %}
     </div>
 
     <div class="col col-2-5">
       {% if resume.languages.size > 0 %}
-        <h2 class="h3 faded">Languages <span class="symbol icon-bubbles"></span></h2>
-        <hr/>
-        {% for lng in resume.languages %}
-          <h3 class="h4">
-            {{ lng.language }}
-            <span class="faded pull-right">
-              <span class="sr-only"> | Fluency: </span>
-              {% assign fluency = lng.fluency | slugify %}
-              {% case fluency %}
-                {% when 5 or "native-or-bilingual-proficiency" %}
-                  <span class="help" title="{{ lng.fluency }}">
-                    <span class="sr-only">{{ lng.fluency }}</span>
-                    <span class="icon-star-full"></span><span class="icon-star-full"></span><span class="icon-star-full"></span>
-                  </span>
-                {% when 4 or "full-professional-proficiency" %}
-                  <span class="help" title="{{ lng.fluency }}">
-                    <span class="sr-only">{{ lng.fluency }}</span>
-                    <span class="icon-star-full"></span><span class="icon-star-full"></span><span class="icon-star-half"></span>
-                  </span>
-                {% when 3 or "professional-working-proficiency" %}
-                  <span class="help" title="{{ lng.fluency }}">
-                    <span class="sr-only">{{ lng.fluency }}</span>
-                    <span class="icon-star-full"></span><span class="icon-star-full"></span><span class="icon-star-empty"></span>
-                  </span>
-                {% when 2 or "limited-working-proficiency" %}
-                  <span class="help" title="{{ lng.fluency }}">
-                    <span class="sr-only">{{ lng.fluency }}</span>
-                    <span class="icon-star-full"></span><span class="icon-star-half"></span><span class="icon-star-empty"></span>
-                  </span>
-                {% when 1 or "elementary-proficiency" %}
-                  <span class="help" title="{{ lng.fluency }}">
-                    <span class="sr-only">{{ lng.fluency }}</span>
-                    <span class="icon-star-full"></span><span class="icon-star-empty"></span><span class="icon-star-empty"></span>
-                  </span>
-                {% when 0 or "no-proficiency" %}
-                  <span class="help" title="{{ lng.fluency }}">
-                    <span class="sr-only">{{ lng.fluency }}</span>
-                    <span class="icon-star-half"></span><span class="icon-star-empty"></span><span class="icon-star-empty"></span>
-                  </span>
-                {% else %}
-                  {{ lng.fluency }}
-              {% endcase %}
-            </span>
-          </h3>
-        {% endfor %}
-        <br/>
+        <h2 class="h3 faded hr">Languages <span class="symbol icon-bubbles"></span></h2>
+        <dl class="skills">
+          {% for lng in resume.languages %}
+            <dt class="h4 fl">{{ lng.language }}</dt>
+            <dd class="faded">
+              <div class="heading fr" style="margin-bottom:0.5rem">
+                <span class="sr-only">Fluency:</span>
+                {% assign fluency = lng.fluency | slugify %}
+                {% case fluency %}
+                  {% when 5 or "native-or-bilingual-proficiency" %}
+                    <span class="help" title="{{ lng.fluency }}">
+                      <span class="sr-only">{{ lng.fluency }}</span>
+                      <span class="icon-star-full"></span><span class="icon-star-full"></span><span class="icon-star-full"></span>
+                    </span>
+                  {% when 4 or "full-professional-proficiency" %}
+                    <span class="help" title="{{ lng.fluency }}">
+                      <span class="sr-only">{{ lng.fluency }}</span>
+                      <span class="icon-star-full"></span><span class="icon-star-full"></span><span class="icon-star-half"></span>
+                    </span>
+                  {% when 3 or "professional-working-proficiency" %}
+                    <span class="help" title="{{ lng.fluency }}">
+                      <span class="sr-only">{{ lng.fluency }}</span>
+                      <span class="icon-star-full"></span><span class="icon-star-full"></span><span class="icon-star-empty"></span>
+                    </span>
+                  {% when 2 or "limited-working-proficiency" %}
+                    <span class="help" title="{{ lng.fluency }}">
+                      <span class="sr-only">{{ lng.fluency }}</span>
+                      <span class="icon-star-full"></span><span class="icon-star-half"></span><span class="icon-star-empty"></span>
+                    </span>
+                  {% when 1 or "elementary-proficiency" %}
+                    <span class="help" title="{{ lng.fluency }}">
+                      <span class="sr-only">{{ lng.fluency }}</span>
+                      <span class="icon-star-full"></span><span class="icon-star-empty"></span><span class="icon-star-empty"></span>
+                    </span>
+                  {% when 0 or "no-proficiency" %}
+                    <span class="help" title="{{ lng.fluency }}">
+                      <span class="sr-only">{{ lng.fluency }}</span>
+                      <span class="icon-star-half"></span><span class="icon-star-empty"></span><span class="icon-star-empty"></span>
+                    </span>
+                  {% else %}
+                    {{ lng.fluency }}
+                {% endcase %}
+              </div>
+            </dd>
+            <div class="clearfix"></div>
+          {% endfor %}
+        </dl>
       {% endif %}
 
       {% if resume.skills.size > 0 %}
-        <h2 class="h3 faded">Skills <span class="symbol icon-wrench"></span></h2>
-        {% for skl in resume.skills %}
-          <hr/>
-          <h3 class="h4">
-            {{ skl.name }}
-            <span class="faded pull-right">
-              <span class="sr-only"> | Level: </span>
-              {% assign level = skl.level | slugify %}
-              {% case level %}
-                {% when 3 or "master" or "expert" or "senior" %}
-                  <span class="help" title="{{ skl.level }}">
-                    <span class="sr-only">{{ skl.level }}</span>
-                    <span class="icon-star-full"></span><span class="icon-star-full"></span><span class="icon-star-full"></span>
-                  </span>
-                {% when 2 or "intermediate" or "amateur"  %}
-                  <span class="help" title="{{ skl.level }}">
-                    <span class="sr-only">Intermediate</span>
-                    <span class="icon-star-full"></span><span class="icon-star-full"></span><span class="icon-star-empty"></span>
-                  </span>
-                {% when 1 or "beginner" or "novice" or "junior" %}
-                  <span class="help" title="{{ skl.level }}">
-                    <span class="sr-only">{{ skl.level }}</span>
-                    <span class="icon-star-full"></span><span class="icon-star-empty"></span><span class="icon-star-empty"></span>
-                  </span>
-                {% else %}
-                  {{ skl.level }}
-              {% endcase %}
-            </span>
-          </h3>
-          <span class="sr-only">Keywords: </span>
-          <ul class="tags">
-            {% for key in skl.keywords %}
-              <li class="tag">{{ key }}</li>
-            {% endfor %}
-          </ul>
-        {% endfor %}
-        <br/>
+        <h2 class="h3 faded hr">Skills <span class="symbol icon-wrench"></span></h2>
+        <dl class="skills">
+          {% for skl in resume.skills %}
+            <dt class="h4 fl">{{ skl.name }}</dt>
+            <dd class="faded">
+              <div class="heading fr" style="margin-bottom:0.5rem">
+                <span class="sr-only">Level:</span>
+                {% assign level = skl.level | slugify %}
+                {% case level %}
+                  {% when 3 or "master" or "expert" or "senior" %}
+                    <span class="help" title="{{ skl.level }}">
+                      <span class="sr-only">{{ skl.level }}</span>
+                      <span class="icon-star-full"></span><span class="icon-star-full"></span><span class="icon-star-full"></span>
+                    </span>
+                  {% when 2 or "intermediate" or "amateur"  %}
+                    <span class="help" title="{{ skl.level }}">
+                      <span class="sr-only">Intermediate</span>
+                      <span class="icon-star-full"></span><span class="icon-star-full"></span><span class="icon-star-empty"></span>
+                    </span>
+                  {% when 1 or "beginner" or "novice" or "junior" %}
+                    <span class="help" title="{{ skl.level }}">
+                      <span class="sr-only">{{ skl.level }}</span>
+                      <span class="icon-star-full"></span><span class="icon-star-empty"></span><span class="icon-star-empty"></span>
+                    </span>
+                  {% else %}
+                    {{ skl.level }}
+                {% endcase %}
+              </div>
+              {% if skl.keywords.size > 0 %}
+              <div class="clearfix">
+                <span class="sr-only">Keywords:</span>
+                <ul class="tags">
+                  {% for key in skl.keywords %}
+                    <li class="tag">{{ key }}</li>
+                  {% endfor %}
+                </ul>
+              </div>
+              {% endif %}
+            </dd>
+            <div class="clearfix"></div>
+          {% endfor %}
+        </dl>
       {% endif %}
 
       {% if resume.interests.size > 0 %}
-        <h2 class="h3 faded">Interests <span class="symbol icon-heart"></span></h2>
-        <hr/>
-        {% for int in resume.interests %}
-          <h3 class="h4">{{ int.name }}</h3>
-          <span class="sr-only">Keywords: </span>
-          <ul class="tags">
-            {% for key in int.keywords %}
-              <li class="tag">{{ key }}</li>
-            {% endfor %}
-          </ul>
-          <br/>
-        {% endfor %}
+        <h2 class="h3 faded hr">Interests <span class="symbol icon-heart"></span></h2>
+        <dl class="skills">
+          {% for int in resume.interests %}
+            <dt class="h4">{{ int.name }}</dt>
+            <dd>
+              <span class="sr-only">Keywords: </span>
+              <ul class="tags">
+                {% for key in int.keywords %}
+                  <li class="tag">{{ key }}</li>
+                {% endfor %}
+              </ul>
+            </dd>
+          {% endfor %}
+        </dl>
       {% endif %}
     </div>
   </div>

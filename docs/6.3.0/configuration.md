@@ -213,8 +213,6 @@ Conversely, if you want to disable it, you only have to remove the key and no GA
 **Note**: Pasting code snippets provided by 3rd parties into the body will have undesired side effects (and may not work at all), because pages are loaded and swapped via JavaScript.
 {:.message}
 
-***
-
 Continue with [Migration]({{ site.baseurl }}{% link docs/6.3.0/migration.md %}){:.heading data-flip="title"}
 {:.read-more}
 

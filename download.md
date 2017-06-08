@@ -45,14 +45,10 @@ Both the PRO *and* free version includes all of the features listed below:
 ## Free Version
 The Free Version features the design and tech of Hydejack, but only supports basic blogging.
 
-***
-
 **[Download on GitHub][download]** -- or -- **[Use the RubyGem][gem]**
 
 ## PRO Version
 The PRO Version aims to be the complete package for professionals on the web. It includes layouts for your [portfolio], your [resume] (with support for [JSON Resume](https://jsonresume.org/)) and a [welcome] page to introduce yourself to visitors.
-
-***
 
 **[Buy on Simple Goods][buy]**
 

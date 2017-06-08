@@ -19,10 +19,6 @@ links:
     url: https://github.com/qwtel/hydejack/tree/v3.0.2
 ---
 
-**NOTE**: This post is outdated and only included for legacy reasons.
-See the [Documentation]({{ site.baseurl }}{% link docs/6.3.0/index.md %}){:.heading data-flip="title"} for up-to-date instructions.
-{:.message}
-
 ## Features
 Unlike Hyde, it's very opinionated about how you are going to use it.
 
@@ -36,6 +32,10 @@ Features include:
 * Layout for posts grouped by year
 * Wide array of social media icons on sidebar.
 * Math blocks via [KaTeX](https://khan.github.io/KaTeX/).
+
+**NOTE**: This post is outdated and only included for legacy reasons.
+See the [Documentation]({{ site.baseurl }}{% link docs/6.3.0/index.md %}){:.heading data-flip="title"} for up-to-date instructions.
+{:.message}
 
 ## Download
 Hydejack is developed on and hosted with GitHub. Head to the [GitHub repository](https://github.com/qwtel/hydejack) for downloads, bug reports, and feature requests.
@@ -64,7 +64,7 @@ In the manifest of a blog post, simply add an url as `image` and a CSS color as 
 ~~~yml
 layout: post
 title: Introducing Hydejack
-image: https://qwtel.com/hydejack/public/img/hyde.jpg
+image: https://qwtel.com/hydejack/assets/img/hyde.jpg
 color: '#949667'
 ~~~
 

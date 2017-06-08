@@ -266,8 +266,6 @@ title: Resume
 **NOTE**: You can download the final [`resume.json`]({{ site.baseurl }}{% link assets/resume.json %}){:.no-push-state download="resume.json"} (minified) from the assets folder. When running locally, you can also find it at `_site/assets/resume.json`.
 {:.message}
 
-***
-
 Continue with [Writing]({{ site.baseurl }}{% link docs/6.3.0/writing.md %}){:.heading data-flip="title"}
 {:.read-more}
 

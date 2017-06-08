@@ -166,7 +166,5 @@ If you'd like to add examples of the new layouts, you can also copy:
 * `resume.md`
 * `index.md`
 
-***
-
 Continue with [Basics]({{ site.baseurl }}{% link docs/6.3.0/basics.md %}){:.heading data-flip="title"}
 {:.read-more}

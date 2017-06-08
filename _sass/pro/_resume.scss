@@ -8,7 +8,7 @@ main {
   }
 
   .h3 {
-    margin-top: 1rem;
+    // margin-top: 1rem;
   }
 
   .h4 {
@@ -50,7 +50,11 @@ blockquote > footer {
   line-height: 1.4;
 }
 
-.pull-right {
+.fl {
+  float: left;
+}
+
+.fr {
   float: right;
 }
 
@@ -64,28 +68,48 @@ blockquote > footer {
   margin-top: 4px;
 }
 
-dt, dd {
-  margin-bottom: .5rem;
-}
+.skills {
+  // dt, dd {
+  //   margin-bottom: .5rem;
+  // }
 
-dt {
-  clear: both;
-  float: left;
-  width: 2rem;
-  text-align: center;
+  dt {
+    // clear: both;
+    // float: left;
+    margin-bottom: 0;
+  }
 
-  [class*="icon-"] {
-    font-size: 1.17rem;
-    position: relative;
-    top: 2px;
+  dd {
+    // float: left;
+    margin-left: 0;
+    margin-bottom: 1.5rem;
   }
 }
 
-dd {
-  float: left;
-  margin-left: 0;
-  width: calc(100% - 2rem);
-  padding-left: 0.5rem;
+.contact {
+  dt, dd {
+    margin-bottom: .5rem;
+  }
+
+  dt {
+    clear: both;
+    float: left;
+    width: 2rem;
+    text-align: center;
+
+    [class*="icon-"] {
+      font-size: 1.17rem;
+      position: relative;
+      top: 2px;
+    }
+  }
+
+  dd {
+    float: left;
+    margin-left: 0;
+    width: calc(100% - 2rem);
+    padding-left: 0.5rem;
+  }
 }
 
 $pad: 2.5rem;
