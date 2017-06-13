@@ -1,7 +1,9 @@
 ---
 layout: page
 title: Build
-redirect_from: /docs/latest/deployment/
+redirect_from:
+  - /docs/latest/build/
+  - /docs/build/
 ---
 
 Hydejack supports building locally and on GitHub pages. However, when building on GitHub Pages, providing better related posts via the LSI is not available.

@@ -1,7 +1,9 @@
 ---
 layout: page
 title: Basics
-redirect_from: /docs/latest/basics/
+redirect_from:
+  - /docs/latest/basics/
+  - /docs/basics/
 ---
 
 ## Table of Contents

@@ -1,7 +1,9 @@
 ---
 layout: page
 title: Advanced
-redirect_from: /docs/latest/advanced/
+redirect_from:
+  - /docs/latest/advanced/
+  - /docs/advanced/
 ---
 
 ## Table of Contents

@@ -1,7 +1,9 @@
 ---
 layout: page
 title: Migration
-redirect_from: /docs/latest/migration/
+redirect_from:
+  - /docs/latest/migration/
+  - /docs/migration/
 ---
 
 ## Table of Contents

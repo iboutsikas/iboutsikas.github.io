@@ -1,7 +1,9 @@
 ---
 layout: page
 title: Versions
-redirect_from: /docs/latest/versions/
+redirect_from:
+  - /docs/latest/versions/
+  - /docs/versions/
 ---
 
 ## Table of Contents

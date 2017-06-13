@@ -1,7 +1,9 @@
 ---
 layout: page
 title: Licenses
-redirect_from: /docs/latest/licenses/
+redirect_from:
+  - /docs/latest/licenses/
+  - /docs/licenses/
 ---
 
 ## Table of Contents

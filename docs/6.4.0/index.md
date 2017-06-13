@@ -3,7 +3,9 @@ layout: page
 title: Documentation
 menu: true
 order: 5
-redirect_from: /docs/latest/
+redirect_from:
+  - /docs/latest/
+  - /docs/
 ---
 
 Here you should be able to find everything you need to know to accomplish the most common tasks when blogging with Hydejack.

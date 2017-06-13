@@ -1,7 +1,9 @@
 ---
 layout: page
 title: Scripts
-redirect_from: /docs/latest/scripts/
+redirect_from:
+  - /docs/latest/scripts/
+  - /docs/scripts/
 ---
 
 There are two ways of adding 3rd party scripts.

@@ -1,7 +1,9 @@
 ---
 layout: page
 title: Writing
-redirect_from: /docs/latest/writing/
+redirect_from:
+  - /docs/latest/writing/
+  - /docs/writing/
 ---
 
 Hydejack offers a few additional features to markup your markdown.

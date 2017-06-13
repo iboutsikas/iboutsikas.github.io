@@ -1,7 +1,6 @@
 ---
 layout: page
 title: Documentation
-redirect_from: /docs/latest/complete/
 sitemap: false
 ---
 
