@@ -49,6 +49,7 @@ Specific to Hydejack is the `loadJSDeferred` function, which is used to load Hyd
 | Execution | asap        | before document `load` | after document `load` |
 | Ordering  | none        | preserves order        | via callback nesting  |
 | Support   | IE8+        | IE9+                   | IE5+ (Hydejack only)  |
+{:.flip-table-small}
 
 ## Using `loadJSDeferred` (Hydejack only)
 Using `loadJSDeferred` is slightly more work than just adding `defer` to a script tag.

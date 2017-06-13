@@ -37,6 +37,7 @@ Whether you use this method or not, categories will always be part of a posts UR
 
 Categories | `/jekyll/update/2017/04/07/welcome-to-jekyll/`
 Tags       | `/2017/04/07/welcome-to-jekyll/`
+{:.scroll-table-small}
 
 As far as Jekyll is concerned, these are the only differences.
 
@@ -46,6 +47,7 @@ Categories and tags are displayed by Hydejack below the title, after the date. C
 Categories | Welcome to Jekyll¬ 07 Apr 2017 **in** Jekyll / Update
 Tags       | Welcome to Jekyll¬ 07 Apr 2017 **on** Jekyll, Update
 Both       | Welcome to Jekyll¬ 07 Apr 2017 **in** Jekyll / Update **on** Jekyll, Update
+{:.scroll-table-small}
 
 ### Adding a new category or tag
 Be default, categories and tags are rendered as plain text. Further steps are necessary if you want them to link to a page that contains a list of all posts that belong to that category or tag.
