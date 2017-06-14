@@ -17,7 +17,7 @@ Please start by reading the [Documentation]{:.heading data-flip="title"}. Specif
 {:.related-posts.faded}
 
 ## Support
-Should you have any trouble with the theme, you can send me an email at [f.klampfer@gmail.com](mailto:f.klampfer@gmail.com). I try to answer request within 1 business day, and sometimes I answer instantly, when a mail makes it though Google's low priority filter 😉
+Should you have any trouble with the theme, you can send me an email at [mail@qwtel.com](mailto:mail@qwtel.com). I try to answer request within 1 business day. Sometimes I answer instantly when a mail makes it though the priority filter 😉
 
 
 [documentation]: {{ site.baseurl }}{% link docs/6.4.0/index.md %}
