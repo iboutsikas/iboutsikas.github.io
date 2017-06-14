@@ -34,24 +34,29 @@ Features include:
 * Math blocks via [KaTeX](https://khan.github.io/KaTeX/).
 
 **NOTE**: This post is outdated and only included for legacy reasons.
-See the [Documentation]({{ site.baseurl }}{% link docs/6.4.0/index.md %}){:.heading data-flip="title"} for up-to-date instructions.
+See the [Documentation][docs]{:.heading data-flip="title"} for up-to-date instructions.
 {:.message}
 
 ## Download
-Hydejack is developed on and hosted with GitHub. Head to the [GitHub repository](https://github.com/qwtel/hydejack) for downloads, bug reports, and feature requests.
+Hydejack is developed on and hosted with GitHub. Head to the [GitHub repository](https://github.com/qwtel/hydejack)
+for downloads, bug reports, and feature requests.
 
 ## Sidebar
 I love the original Hyde theme, but unfortunately the layout isn't as great on small screens.
 Since the sidebar moves to the top, the user has to scroll down just to read the title of a blog post.
 
-By using a drawer component I was able to retain the original two column layout. It's possible to move the drawer via touch input (with the help of a little JavaScript).
+By using a drawer component I was able to retain the original two column layout.
+It's possible to move the drawer via touch input (with the help of a little JavaScript).
 
-Since the background image contributes to the feel of the page I'm letting it peek over the edge a bit. This also provides a hint to the user that an interaction is possible.
+Since the background image contributes to the feel of the page I'm letting it peek over the edge a bit.
+This also provides a hint to the user that an interaction is possible.
 
 ## Manual
 
 ### Configuration
-You can configure important aspects of the theme via [`_config.yml`](https://github.com/qwtel/hydejack/blob/v3/_config.yml). This includes:
+You can configure important aspects of the theme via
+[`_config.yml`](https://github.com/qwtel/hydejack/blob/v3/_config.yml).
+This includes:
 
 * the blog description in the sidebar
 * the (optional) author description and photo
@@ -69,9 +74,11 @@ color: '#949667'
 ~~~
 
 ### How to Add a New Tag
-Tags are not meant to be used #instagram #style: #food #goodfood #happy #happylife #didimentionfood #yougetthepoint, as each tag requires some setup work. I tend to think of it as categories that can be combined.
+Tags are not meant to be used #instagram #style: #food #goodfood #happy #happylife #didimentionfood #yougetthepoint,
+as each tag requires some setup work. I tend to think of it as categories that can be combined.
 
-1.  Add an entry to `_data/tags.yml`, where the key represents a slug and provide at least a `name` value and optionally `image`, `color` and `description`.
+1.  Add an entry to `_data/tags.yml`, where the key represents a slug and provide at least a `name` value and
+    optionally `image`, `color` and `description`.
 
     Example `/_data/tags.yml`:
 
@@ -80,7 +87,8 @@ Tags are not meant to be used #instagram #style: #food #goodfood #happy #happyli
       name: My Tag
     ~~~
 
-2.  Make a new file in the `tag` folder, using the same name you've used as the key / slug and change the `tag` and `permalink` entries.
+2.  Make a new file in the `tag` folder, using the same name you've used as the key / slug and
+    change the `tag` and `permalink` entries.
 
     Example `/tag/mytag.md`:
 
@@ -105,4 +113,6 @@ Tags are not meant to be used #instagram #style: #food #goodfood #happy #happyli
    sidebar_tags: [mytag, othertag]
    ~~~
 
+
+[docs]: {{ site.baseurl }}{% link docs/6.4.0/index.md %}
 [tag]: http://www.minddust.com/post/tags-and-categories-on-github-pages/
