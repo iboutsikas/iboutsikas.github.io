@@ -60,7 +60,7 @@ Make sure you merge the folder contents.
     ~~~yml
     qwtel:
       name:    Florian Klampfer
-      email:   f.klampfer@gmail.com
+      email:   mail@qwtel.com
       photo:   ...
       photo2x: ...
       about: |

@@ -5,7 +5,7 @@ sitemap: false
 ---
 
 Here you should be able to find everything you need to know to accomplish the most common tasks when blogging with Hydejack.
-Should you think something is missing, [please let me know](mailto:f.klampfer@gmail.com).
+Should you think something is missing, [please let me know](mailto:mail@qwtel.com).
 Should you discover a mistake in the docs (or a bug in general) feel free to [open an issue](https://github.com/qwtel/hydejack/issues) on GitHub.
 
 **NOTE**: While this manual tries to be beginner-friendly, as a user of Jekyll it is assumed that you are comfortable with editing multiple text files and running shell commands.
@@ -216,7 +216,7 @@ At the very least, you should add an `author` key with a `name` and `email` sub-
 
     author:
       name:  Florian Klampfer
-      email: f.klampfer@gmail.com
+      email: mail@qwtel.com
 
 If you would like the author information to be displayed in the about section of a post or project\*, as well as on the about and welcome\* page, you have to provide additional information in `_data/authors.yml`. If you've installed Hydejack via zip, this file already exists. Otherwise you have to create it (and possibly the `_data` directory as well). You can find the default file [here](https://github.com/qwtel/hydejack/blob/v6/_data/authors.yml).
 
@@ -224,7 +224,7 @@ The `authors.yml` consists of key-value pairs, where the key is a shorthand for 
 
     qwtel:
       name:  Florian Klampfer
-      email: f.klampfer@gmail.com
+      email: mail@qwtel.com
 
       about: |
         Hi, I'm Florian or `@qwtel`...
@@ -298,7 +298,7 @@ Should providing a username not produce a correct link for some reason, you can 
 If you'd like to add email <span class="icon-envelop"></span> or RSS <span class="icon-rss"></span> to the list, add the `email` and `rss` keys, e.g.:
 
     social:
-      email: mailto:f.klampfer@gmail.com
+      email: mailto:mail@qwtel.com
       rss:   https://qwtel.com/hydejack/feed.xml
 
 ## Enabling comments
@@ -381,7 +381,7 @@ Make sure you merge the folder contents.
     ~~~yml
     qwtel:
       name:    Florian Klampfer
-      email:   f.klampfer@gmail.com
+      email:   mail@qwtel.com
       photo:   ...
       photo2x: ...
       about: |
