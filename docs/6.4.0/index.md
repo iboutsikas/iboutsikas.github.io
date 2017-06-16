@@ -17,8 +17,8 @@ Should you discover a mistake in the docs (or a bug in general) feel free to [op
 
 ## Getting started
 * [Installation]{:.heading data-flip="title"} -- How to install and run Hydejack.
-* [Configuration]{:.heading data-flip="title"} -- Once Jekyll is running you can start with basic configuration.
 * [Migration]{:.heading data-flip="title"} -- You can skip this if you haven't used Hydejack before.
+* [Configuration]{:.heading data-flip="title"} -- Once Jekyll is running you can start with basic configuration.
 {:.related-posts.faded}
 
 ## Using Hydejack

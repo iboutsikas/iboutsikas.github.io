@@ -6,8 +6,6 @@ redirect_from:
   - /docs/build/
 ---
 
-Hydejack supports building locally and on GitHub pages. However, when building on GitHub Pages, providing better related posts via the LSI is not available.
-
 ## Table of Contents
 * this unordered seed list will be replaced by toc as unordered list
 {:toc}
@@ -16,15 +14,41 @@ Hydejack supports building locally and on GitHub pages. However, when building o
 When building Hydejack it is important to set the environment variable `JEKYLL_ENV` to `production`.
 Otherwise the output will not be minified. Building itself happens via Jekyll's `build` command.
 
-    $ JEKYLL_ENV=production bundle exec jekyll build
+~~~bash
+$ JEKYLL_ENV=production bundle exec jekyll build
+~~~
 
-This will generate the finished static files in `_site`, which can be deployed using the methods outlined in the [Jekyll Documentation][deploy].
+This will generate the finished static files in `_site`,
+which can be deployed using the methods outlined in the [Jekyll Documentation][deploy].
 
-### With latent semantic analysis
+### GitHub Pages
+To deploy to GitHub Pages, the steps are:
+
+~~~bash
+$ JEKYLL_ENV=production bundle exec jekyll build
+$ cd _site
+$ git init # you only need to do this once
+$ git remote add origin <github_remote_url> # you only need to do this once
+$ git add .
+$ git commit -m "Build"
+$ git push origin master:<remote_branch>
+$ cd ..
+~~~
+
+`github_remote_url`
+: Find this on your repository's GitHub page.
+
+`remote_branch`
+: Either `master` for "user or organization pages", or `gh-pages` for "project pages"
+
+More on [user, organization, and project pages](https://help.github.com/articles/user-organization-and-project-pages/).
+
+## Building locally with latent semantic analysis
 By default, related posts are simply the most recent posts.
 Hydejack modifies this a bit, by showing the most recent posts of the same category or tag.
 However, the results are still pretty "unrelated".
-To provide better results, Jekyll supports [latent semantic analysis](https://en.wikipedia.org/wiki/Latent_semantic_analysis) via [`classifier-reborn`](http://www.classifier-reborn.com/)'s [Latent Semantic Indexer](http://www.classifier-reborn.com/lsi).
+To provide better results, Jekyll supports [latent semantic analysis][lsa] via [`classifier-reborn`][crb]'s
+[Latent Semantic Indexer][lsi]
 
 To use the LSI, you first have to disable Hydejack's default behaviour, by setting `use_lsi: true` in `_config.yml`
 
@@ -32,25 +56,42 @@ To use the LSI, you first have to disable Hydejack's default behaviour, by setti
 
 Then, you have to run `jekyll build` with the `--lsi` flag:
 
-    $ JEKYLL_ENV=production bundle exec jekyll build --lsi
+~~~bash
+$ JEKYLL_ENV=production bundle exec jekyll build --lsi
+~~~
 
-This will generate the finished static files in `_site`, which can be deployed using the methods outlined in the [Jekyll Documentation][deploy].
+This will generate the finished static files in `_site`,
+which can be deployed using the methods outlined in the [Jekyll Documentation][deploy].
 
-## Building on GitHub Pages
-**NOTE**: If you are using the PRO version of Hydejack, this method is discouraged because it will publish the source code of the theme on GitHub.
-{:.message}
+### GitHub Pages
+To deploy to GitHub Pages, the steps are:
 
-GitHub Pages offers the possibility to upload your site's Jekyll source directly. Then, GitHub will run the build process in the cloud, provided your site only uses [certain plugins](https://pages.github.com/versions/). Hydejack supports building on GitHub Pages out of the box.
+~~~bash
+$ JEKYLL_ENV=production bundle exec jekyll build --lsi
+$ cd _site
+$ git init # you only need to do this once
+$ git remote add origin <github_remote_url> # you only need to do this once
+$ git add .
+$ git commit -m "Build"
+$ git push origin master:<remote_branch>
+$ cd ..
+~~~
 
-However, when using this method, the LSI is not available (see above), so make sure `use_lsi` is set to `false` in `_config.yml`.
+`github_remote_url`
+: Find this on your repository's GitHub page.
 
-    use_lsi: false
+`remote_branch`
+: Either `master` for "user or organization pages", or `gh-pages` for "project pages"
 
-Builds on GitHub run in the `production` environment, so no further steps are necessary. For the deployment process, see [Jekyll's documentation on GitHub Pages](https://jekyllrb.com/docs/github-pages/) as well as [GitHub Help](https://help.github.com/categories/github-pages-basics/).
+More on [user, organization, and project pages](https://help.github.com/articles/user-organization-and-project-pages/).
+
 
 Continue with [Advanced]({{ site.baseurl }}{% link docs/6.4.0/advanced.md %}){:.heading data-flip="title"}
 {:.read-more}
 
 [deploy]: https://jekyllrb.com/docs/deployment-methods/
+[lsa]: https://en.wikipedia.org/wiki/Latent_semantic_analysis
+[crb]: http://www.classifier-reborn.com/
+[lsi]: http://www.classifier-reborn.com/lsi
 
 *[LSI]: Latent Semantic Indexer

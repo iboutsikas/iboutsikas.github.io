@@ -21,15 +21,25 @@ Should you discover a mistake in the docs (or a bug in general) feel free to [op
 # Installation
 There are multiple ways of installing Hydejack.
 The easiest is [via the Ruby gem](#via-gem).
-If you bought the PRO version of Hydejack or downloaded the zip, you'll want to install [via the zip file](#via-zip).
+If you downloaded the zip, you'll want to install [via the zip file](#via-zip).
 If you know what you are doing, you can [fork or clone the git repository](#via-git).
 
-## Via gem
-Installation via the gem-based theme has the advantage of not cluttering your blog repository, so it is especially recommended for beginners.
+Buyers of the PRO version should [follow these steps](#pro-buyers).
+
+**NOTE**: If you've used any version of Hydejack before,
+also check out the [Migration]{:.heading data-flip="title"} guide.
+{:.message}
+
+## Setup
+### Via gem
+Installation via the gem-based theme has the advantage of not cluttering your blog repository,
+so it is especially recommended for beginners.
 
 If you haven't already, create a new Jekyll site first:
 
-    $ jekyll new <PATH>
+~~~bash
+$ jekyll new <PATH>
+~~~
 
 Your blog directory should look something like this
 
@@ -56,18 +66,11 @@ Look for the `theme` key (or add it when missing) and set its value to `jekyll-t
 theme: jekyll-theme-hydejack
 ~~~
 
-All dependencies will be fetched from [RubyGems](https://rubygems.org/) when running Jekyll via [Bundler](http://bundler.io/).
-
-    $ bundle exec jekyll serve
-
-You can now point your browser to [http://localhost:4000](http://localhost:4000) and see Hydejack in action.
-
-**NOTE**: If you are missing the `bundle` command, you can install Bundler by running `gem install bundler`.
-{:.message}
-
 For more information on gem-based themes, see the [Jekyll Documentation](http://jekyllrb.com/docs/themes/).
 
-## Via zip
+You can now continue with [running locally](#running-locally).
+
+### Via zip
 If you downloaded the zip, the folder structure will look something like:
 
 ~~~
@@ -97,30 +100,248 @@ If you downloaded the zip, the folder structure will look something like:
 └── posts.md
 ~~~
 
-All dependencies will be fetched from [RubyGems](https://rubygems.org/) when running Jekyll via [Bundler](http://bundler.io/).
+You can now continue with [running locally](#running-locally).
 
-    $ bundle exec jekyll serve
+### Via git
+If you are familiar with using git, you can add the [Hydejack repository](https://github.com/qwtel/hydejack)
+as a remote, and merge its master branch into your working branch.
 
-You can now point your browser to [http://localhost:4000](http://localhost:4000) and see Hydejack in action.
+~~~bash
+$ git remote add hydejack git@github.com:qwtel/hydejack.git
+$ git pull hydejack master
+~~~
+
+You can also update Hydejack this way. The master branch will not contain work in progress,
+but will contain major (breaking) changes. This approach is recommended if you intend to heavily customize Hydejack.
+
+You can now continue with [running locally](#running-locally).
+
+### PRO Version
+If you bought the PRO version, you've received a zip archive with the following contents:
+
+~~~
+├── hydejack-docs-6.4.0.pdf
+├── pro_version_complete
+├── upgrade_from_existing
+└── sidebar-bg.psd
+~~~
+
+`hydejack-docs-6.4.0.pdf`
+: This documentation in PDF form.
+
+`pro_version_complete`
+: Contains all files and folders needed to create a new blog.
+
+`upgrade_from_existing`
+: Contains only the files and folders needed for upgrading form an earlier version of Hydejack (6.0.0 or above).
+  See the [migration guide][v6to6] for more.
+
+`sidebar-bg.psd`
+: A Photoshop template for blurred sidebar backgrounds.
+
+Unzip the archive somewhere on your machine, then `cd` *into* the `pro_version_complete` folder, e.g.
+
+~~~bash
+$ cd ~/Downloads/hydejack-pro-6.4.0/pro_version_complete/
+~~~
+
+You can now continue with [running locally](#running-locally).
+
+## Running locally
+Make sure you've `cd`ed into the directory where `_config.yml` is located.
+
+~~~bash
+$ cd <path/to/hydejack>/
+~~~
+
+Before running for the first time, dependencies need to be fetched from [RubyGems](https://rubygems.org/):
+
+~~~bash
+$ bundle install
+~~~
 
 **NOTE**: If you are missing the `bundle` command, you can install Bundler by running `gem install bundler`.
 {:.message}
 
-### Without Bundler
-If you do not want to use Bundler, you can install the dependencies yourself via `gem install <dep>`. They are
+Now you can run Jekyll on your local machine:
 
-- `jekyll`
-- `jekyll-paginate`
-- `jekyll-feed`
-- `jekyll-sitemap`
+~~~bash
+$ bundle exec jekyll serve
+~~~
 
-## Via git
-If you are familiar with using git, you can add the [Hydejack repository](https://github.com/qwtel/hydejack) as a remote, and merge its master branch into your working branch.
+You can now point your browser to [http://localhost:4000](http://localhost:4000) and see Hydejack in action.
 
-    $ git remote add hydejack git@github.com:qwtel/hydejack.git
-    $ git merge hydejack/master
+[migration]: #migration
+[v5to6]: #from-hydejack-v5
+[v6to6]: #from-hydejack-v6
 
-You can also update Hydejack this way. The master branch will not contain work in progress, but will contain major (breaking) releases. This approach is recommended if you intend to heavily customize Hydejack.
+
+# Migration
+## From Hydejack v6
+Unless otherwise noted, to upgrade from an older to a newer version of Hydejack (6.0.0 and above), copy to following folders from the zip into your repository.
+
+* `_includes/`
+* `_layouts/`
+* `_sass/`
+* `assets/`
+
+**NOTE**: If you've modified any of Hydejack's files, changes will be overwritten and you have to redo those changes.
+{:.message}
+
+Buyers of the PRO version will find the files necessary for an upgrade in the `upgrade_from_existing` folder of the downloaded zip archive. Unless you've made any changes to Hydejack's own files, you can safely copy them into your blog directory.
+
+### From gem-based to zip
+When upgrading from the gem-based version to any zip version (free *or* PRO) copy to following files and folders:
+
+* `_data/`
+* `_includes/`
+* `_layouts/`
+* `_sass/`
+* `assets/`
+* `404.md`
+
+Also make sure to remove the following line from `_config.yml`, as all necessary files are now located in the directory itself:
+
+    theme: jekyll-theme-hydejack
+
+## From Hydejack v5
+Unfortunately, upgrading form v5 is not straightforward. A lot of patterns and names have changed, motivated by a variety of reasons, including better integration with the rest of the Jekyll ecosystem and simplified workflows enabled by Jekyll Collections.
+
+### Updating the folder structure
+Copy the the following folders and files from Hydejack v6 into your existing repository.
+Make sure you merge the folder contents.
+
+* `_data/`
+* `_includes/`
+* `_layouts/`
+* `_sass/`
+* `assets/`
+* `404.md`
+* `index.html` (`index.md`\*)
+
+1. Delete the `public` folder. If you have placed files in the `public` folder, only delete `public/css`, `public/js` and `public/fonts`. Static files are now located in the `assets` folder.
+2. Delete `404.html` (now provided by `404.md` and the `not-found` layout)
+
+### Updating the configuration
+`_config.yml` has changed considerably. Open it and make the following changes.
+
+1.  Rename the following keys
+
+    * `font_accent` => `font_heading`
+    * `load_google_fonts` => `google_fonts`
+    * `google_analytics_id` => `google_analytics`
+    * `disqus` => `disqus_shortname`
+
+2.  Enable Jekyll Collections by adding
+
+    ~~~yml
+    collections:
+      featured_categories:
+        permalink: /category/:name/
+        output:    true
+      featured_tags:
+        permalink: /tag/:name/
+        output:    true
+      projects:
+        permalink: /projects/:path/
+        output:    true
+    ~~~
+
+3.  Copy the entire `author` hash (including the top-level `author` key) from `_config.yml` into the new file `_data/authors.yml` and add it to the top of the file (you can delete the rest of the file).
+4.  In `_config.yml`, delete every key of the `author` hash except `name` and `email`.
+5.  Choose a shortname and use it as the key for the author, e.g.
+
+    ~~~yml
+    qwtel:
+      name:    Florian Klampfer
+      email:   mail@qwtel.com
+      photo:   ...
+      photo2x: ...
+      about: |
+        Hi, I'm Florian or `@qwtel`...
+      social:
+        twitter: qwtel
+        github:  qwtel
+    ~~~
+
+You can take a look at the [full `authors.yml`](https://github.com/qwtel/hydejack/blob/v6/_data/authors.yml) for reference.
+
+**NOTE**: When making changes to `_config.yml`, it is necessary to restart the Jekyll process for the changes to take effect.
+{:.message}
+
+### Updating the author
+1.  Open `_data/authors.yml`
+2.  Delete `photo` and `photo2x` form the author you've copied and add a `picture` hash instead that looks like
+
+    ~~~yml
+    picture:
+      src: <photo>
+      srcset:
+        1x: <photo>
+        2x: <photo2x>
+    ~~~
+
+    If you have only one photo, you can just provide the URL directly, e.g. `picture: <url>`.
+
+For more information, see [Adding an author](#adding-an-author).
+
+### Restoring the tags
+1.  Delete the `tag` folder.
+2.  Create a top-level folder called `_featured_tags`.
+3.  For each entry in `_data/tags.yml`, create a markdown file in `_features_tags` with the name of the tag as filename,
+    e.g. `hyde.md` for tag "hyde".
+4.  For each tag, copy its contents from `_data/tags.yml` into the new file's front matter, e.g.
+
+    ~~~yml
+    ---
+    layout: list
+    name: Hyde
+    image: /hydejack/public/img/hyde.jpg
+    color: '#949667'
+    description: >
+      Hyde is a brazen two-column Jekyll theme...
+    ---
+    ~~~
+
+5. Add `layout: list` to the front matter.
+6. Once you've copied all tags into their own files, delete `_data/tags.yml`.
+
+### Restoring the sidebar entries
+Hydejack can now link to any kind of page in the sidebar.
+
+1. Delete `sidebar_tags` in `_config.yml`.
+2. Open a file who's page you would like to add to the sidebar. If you want to add a tag, open `_featured_tags/<tagname>.md`.
+3. Add `menu: true` to its front matter.
+4. (Optional) Set `order: <number>`, where `<number>` is the number at which you would like the link to appear.
+
+### Restoring the RSS feed
+The feed is now provided by the `jekyll-feed` plugin instead of a custom solution.
+
+1.  Delete `atom.xml`
+2.  Add `- jekyll-feed` to `gems` in `_config.yml`, e.g.
+
+    ~~~yml
+    gems:
+      - jekyll-feed
+      - jekyll-sitemap
+      - jekyll-paginate
+    ~~~
+
+3.  (Optional) Add the following to `_config.yml` to make the feed appear at the same URL as the old `atom.xml`.
+
+    ~~~yml
+    feed:
+      path: atom.xml
+    ~~~
+
+### Restoring the comments
+The way comments are enabled has changed slightly. You now have to enable them per page by adding `comments: true` to the front matter (this is what the [Disqus integration guide](https://disqus.com/admin/install/platforms/jekyll/) suggests).
+
+As mentioned above, don't forget to rename `disqus` to `disqus_shortname` in `_config.yml`.
+
+### Restoring the about page
+Hydejack now has a dedicated layout for about pages.
+To use it, open `about.md` and change the `layout` in the front matter to `about` and delete `{\% include about-short.html author=site.author %\}`.
 
 
 # Configuration
@@ -163,7 +384,7 @@ It is recommended that you provide fallback values in `_config.yml`, should no o
     image: /hydejack/assets/img/nap.jpg
     color: '#A85641'
 
-**Note**: It is recommended that you use a blurred image in order for the text to remain readable. If you save a blurred image as JPG, it will also drastically reduce its file size.
+**NOTE**: It is recommended that you use a blurred image in order for the text to remain readable. If you save a blurred image as JPG, it will also drastically reduce its file size.
 {:.message}
 
 ## Changing `font` and `font_heading`
@@ -291,14 +512,14 @@ Should providing a username not produce a correct link for some reason, you can 
       youtube: https://www.youtube.com/channel/UCu0PYX_kVANdmgIZ4bw6_kA
 
 
-**NOTE**: You can add any platform, even if it's not defined in [`social.yml`](https://github.com/qwtel/hydejack/blob/v6/_data/social.yml), by providing a complete URL. However, a fallback icon <span class="icon-link"></span> will be used when no icon is available. Supplying your own icons is an [advanced topic]({{ site.baseurl }}{% link docs/6.4.0/advanced.md %}).
+**NOTE**: You can add any platform, even if it's not defined in [`social.yml`](https://github.com/qwtel/hydejack/blob/v6/_data/social.yml), by providing a complete URL. However, a fallback icon <span class="icon-link"></span> will be used when no icon is available. Supplying your own icons is an [advanced topic](#advanced).
 {:.message}
 
 ### Adding an email or RSS icon
-If you'd like to add email <span class="icon-envelop"></span> or RSS <span class="icon-rss"></span> to the list, add the `email` and `rss` keys, e.g.:
+If you'd like to add email <span class="icon-mail"></span> or RSS <span class="icon-rss2"></span> to the list, add the `email` and `rss` keys, e.g.:
 
     social:
-      email: mailto:mail@qwtel.com
+      email: mailto:mail@gmail.com
       rss:   https://qwtel.com/hydejack/feed.xml
 
 ## Enabling comments
@@ -316,7 +537,7 @@ comments: true
 ---
 ~~~
 
-**Note**: Pasting code snippets provided by 3rd parties into the body will have undesired side effects (and may not work at all), because pages are loaded and swapped via JavaScript.
+**NOTE**: Pasting code snippets provided by 3rd parties into the body will have undesired side effects (and may not work at all), because pages are loaded and swapped via JavaScript.
 {:.message}
 
 ## Enabling Google Analytics
@@ -326,168 +547,11 @@ Enabling Google Analytics is as simple as setting the `google_analytics` key in 
 
 Conversely, if you want to disable it, you only have to remove the key and no GA code will be part of the generated pages.
 
-**Note**: Pasting code snippets provided by 3rd parties into the body will have undesired side effects (and may not work at all), because pages are loaded and swapped via JavaScript.
+**NOTE**: Pasting code snippets provided by 3rd parties into the body will have undesired side effects (and may not work at all), because pages are loaded and swapped via JavaScript.
 {:.message}
 
-
-# Migration
-## From Hydejack v5
-Unfortunately, upgrading form v5 is not straightforward. A lot of patterns and names have changed, motivated by a variety of reasons, including better integration with the rest of the Jekyll ecosystem and simplified workflows enabled by Jekyll Collections.
-
-### Updating the folder structure
-Copy the the following folders and files from Hydejack v6 into your existing repository.
-Make sure you merge the folder contents.
-
-* `_data/`
-* `_includes/`
-* `_layouts/`
-* `_sass/`
-* `assets/`
-* `404.md`
-* `index.html` (`index.md`\*)
-
-1. Delete the `public` folder. If you have placed files in the `public` folder, only delete `public/css`, `public/js` and `public/fonts`. Static files are now located in the `assets` folder.
-2. Delete `404.html` (now provided by `404.md` and the `not-found` layout)
-
-### Updating the configuration
-`_config.yml` has changed considerably. Open it and make the following changes.
-
-1.  Rename the following keys
-
-    * `font_accent` => `font_heading`
-    * `load_google_fonts` => `google_fonts`
-    * `google_analytics_id` => `google_analytics`
-    * `disqus` => `disqus_shortname`
-
-2.  Enable Jekyll Collections by adding
-
-    ~~~yml
-    collections:
-      featured_categories:
-        permalink: /category/:name/
-        output:    true
-      featured_tags:
-        permalink: /tag/:name/
-        output:    true
-      projects:
-        permalink: /projects/:path/
-        output:    true
-    ~~~
-
-3.  Copy the entire `author` hash (including the top-level `author` key) from `_config.yml` into the new file `_data/authors.yml` and add it to the top of the file (you can delete the rest of the file).
-4.  In `_config.yml`, delete every key of the `author` hash except `name` and `email`.
-5.  Choose a shortname and use it as the key for the author, e.g.
-
-    ~~~yml
-    qwtel:
-      name:    Florian Klampfer
-      email:   mail@qwtel.com
-      photo:   ...
-      photo2x: ...
-      about: |
-        Hi, I'm Florian or `@qwtel`...
-      social:
-        twitter: qwtel
-        github:  qwtel
-    ~~~
-
-You can take a look at the [full `authors.yml`](https://github.com/qwtel/hydejack/blob/v6/_data/authors.yml) for reference.
-
-**NOTE**: When making changes to `_config.yml`, it is necessary to restart the Jekyll process for the changes to take effect.
-{:.message}
-
-### Updating the author
-1.  Open `_data/authors.yml`
-2.  Delete `photo` and `photo2x` form the author you've copied and add a `picture` hash instead that looks like
-
-    ~~~yml
-    picture:
-      src: <photo>
-      srcset:
-        1x: <photo>
-        2x: <photo2x>
-    ~~~
-
-    If you have only one photo, you can just provide the URL directly, e.g. `picture: <url>`.
-
-For more information, see [Adding an author]({{ site.baseurl }}{% link docs/6.4.0/configuration.md %}#adding-an-author).
-
-### Restoring the tags
-1.  Delete the `tag` folder.
-2.  Create a top-level folder called `_featured_tags`.
-3.  For each entry in `_data/tags.yml`, create a markdown file in `_features_tags` with the name of the tag as filename,
-    e.g. `hyde.md` for tag "hyde".
-4.  For each tag, copy its contents from `_data/tags.yml` into the new file's front matter, e.g.
-
-    ~~~yml
-    ---
-    layout: list
-    name: Hyde
-    image: /hydejack/public/img/hyde.jpg
-    color: '#949667'
-    description: >
-      Hyde is a brazen two-column Jekyll theme...
-    ---
-    ~~~
-
-5. Add `layout: list` to the front matter.
-6. Once you've copied all tags into their own files, delete `_data/tags.yml`.
-
-### Restoring the sidebar entries
-Hydejack can now link to any kind of page in the sidebar.
-
-1. Delete `sidebar_tags` in `_config.yml`.
-2. Open a file who's page you would like to add to the sidebar. If you want to add a tag, open `_featured_tags/<tagname>.md`.
-3. Add `menu: true` to its front matter.
-4. (Optional) Set `order: <number>`, where `<number>` is the number at which you would like the link to appear.
-
-### Restoring the RSS feed
-The feed is now provided by the `jekyll-feed` plugin instead of a custom solution.
-
-1.  Delete `atom.xml`
-2.  Add `- jekyll-feed` to `gems` in `_config.yml`, e.g.
-
-    ~~~yml
-    gems:
-      - jekyll-feed
-      - jekyll-sitemap
-      - jekyll-paginate
-    ~~~
-
-3.  (Optional) Add the following to `_config.yml` to make the feed appear at the same URL as the old `atom.xml`.
-
-    ~~~yml
-    feed:
-      path: atom.xml
-    ~~~
-
-### Restoring the comments
-The way comments are enabled has changed slightly. You now have to enable them per page by adding `comments: true` to the front matter (this is what the [Disqus integration guide](https://disqus.com/admin/install/platforms/jekyll/) suggests).
-
-As mentioned above, don't forget to rename `disqus` to `disqus_shortname` in `_config.yml`.
-
-### Restoring the about page
-Hydejack now has a dedicated layout for about pages.
-To use it, open `about.md` and change the `layout` in the front matter to `about` and delete `{\% include about-short.html author=site.author %\}`.
-
-## From free to PRO version*
-Upgrading form the free version to PRO is straightforward. All that is necessary to copy the following folders from PRO into your repository.
-
-* `_includes/`
-* `_layouts/`
-* `_sass/`
-* `assets/`
-* `_data/` (when upgrading from gem-based theme)
-
-Since you've probably added files to some of these folders, be sure to merge the contents.
-If you've modified any files the changes will be overwritten and you have to redo those changes.
-
-If you'd like to add examples of the new layouts, you can also copy:
-
-* `_projects/`
-* `projects.md`
-* `resume.md`
-* `index.md`
+[blog]: https://qwtel.com/hydejack/blog/
+[posts]: https://qwtel.com/hydejack/posts/
 
 
 # Basics
@@ -603,7 +667,7 @@ About pages are a frequent use case, so Hydejack has a special layout for it, wh
 [Demo][about].
 The main difference is that it will display an author's `about` text and `picture` above the regular content.
 
-To create an about page, make sure `layout` is set to `about`, and that the `author` key is set to an author defined in `_data/authors.yml`. For more on authors, see [Adding an author]({{ site.baseurl }}{% link docs/6.4.0/configuration.md %}#adding-an-author).
+To create an about page, make sure `layout` is set to `about`, and that the `author` key is set to an author defined in `_data/authors.yml`. For more on authors, see [Adding an author](#adding-an-author).
 
 ~~~yml
 ---
@@ -749,11 +813,15 @@ title: Resume
 **NOTE**: You can download the final [`resume.json`]({{ site.baseurl }}{% link assets/resume.json %}){:.no-push-state download="resume.json"} (minified) from the assets folder. When running locally, you can also find it at `_site/assets/resume.json`.
 {:.message}
 
+[mipmap]: https://en.wikipedia.org/wiki/Mipmap
+
 
 # Writing
-Hydejack offers a few additional features to markup your markdown. Don't worry, these are merely CSS classes added via the standard `{:.my-class}` syntax, so that your posts remain compatible with other kramdown processors.
+Hydejack offers a few additional features to markup your markdown.
+Don't worry, these are merely CSS classes added via the standard `{:.my-class}` syntax,
+so that your posts remain compatible with other Jekyll themes.
 
-**NOTE**: For an introduction to markdown in general, see [Mastering Markdown](https://guides.github.com/features/mastering-markdown/) and [kramdown Syntax](https://kramdown.gettalong.org/syntax.html).
+**NOTE**: For an introduction to markdown in general, see [Mastering Markdown][mm] and [kramdown Syntax][ksyn].
 {:.message}
 
 ## Table of Contents
@@ -763,6 +831,8 @@ Hydejack offers a few additional features to markup your markdown. Don't worry, 
 ## Adding a table of contents
 You can add a generated table of contents to any page by adding `{:toc}` below a list.
 
+Example: see above
+
 Markdown:
 ~~~md
 * this unordered seed list will be replaced by toc as unordered list
@@ -771,6 +841,8 @@ Markdown:
 
 ## Adding message boxes
 You can add a message box by adding the `message` class to a paragraph.
+
+Example:
 
 **NOTE**: You can add a message box.
 {:.message}
@@ -784,6 +856,8 @@ Markdown:
 ## Adding large text
 You can add large text by adding the `lead` class to the paragraph.
 
+Example:
+
 You can add large text.
 {:.lead}
 
@@ -796,6 +870,8 @@ You can add large text.
 ## Adding large images
 You can make an image span the full width by adding the `lead` class.
 
+Example:
+
 ![Full-width image](https://placehold.it/800x100){:.lead}
 
 Markdown:
@@ -805,6 +881,8 @@ Markdown:
 
 ## Adding large quotes
 You can make a quote "pop out" by adding the `lead` class.
+
+Example:
 
 > You can make a quote "pop out".
 {:.lead}
@@ -818,7 +896,10 @@ Markdown:
 ## Adding faded text
 You can gray out text by adding the `faded` class.
 
-Use this sparingly and for information that is not essential --- or you don't want viewers to read at all, like when you pull a line form a dirty rap song..
+Use this sparingly and for information that is not essential
+--- or you don't want viewers to read at all, like when you pull a line form a dirty rap song..
+
+Example:
 
 I'm faded, faded, faded.
 {:.faded}
@@ -829,10 +910,107 @@ I'm faded, faded, faded.
 {:.faded}
 ~~~
 
+## Adding tables
+Adding tables is straightforward and works just as described in the [kramdown docs][ksyntab].
+
+However, as you'll discover, this only works for small tables like the one below.
+Larger (data-) tables will be cut off on the right.
+Typically, even smaller tables will be cut off when viewed on a mobile device.
+
+| Default aligned |Left aligned| Center aligned  | Right aligned  |
+|-----------------|:-----------|:---------------:|---------------:|
+| First body part |Second cell | Third cell      | fourth cell    |
+
+When it comes to displaying large tables on mobile, there is no one-size-fits-all solution.
+There are however [two straight-forward, CSS-only solutions](https://dbushell.com/2016/03/04/css-only-responsive-tables/) that are included in Hydejack.
+
+### Scroll Table
+Adding either `scroll-table` or `scroll-table-small` to the CSS classes of a table will enable horizontal scrolling.
+The `-small` version will only enable scrolling on "small" screens (< 1080px wide).
+This is useful when the table displays correctly on desktop, but not mobile.
+
+Example:
+
+| Default aligned |Left aligned| Center aligned  | Right aligned  | Default aligned |Left aligned| Center aligned  | Right aligned  | Default aligned |Left aligned| Center aligned  | Right aligned  | Default aligned |Left aligned| Center aligned  | Right aligned  |
+|-----------------|:-----------|:---------------:|---------------:|-----------------|:-----------|:---------------:|---------------:|-----------------|:-----------|:---------------:|---------------:|-----------------|:-----------|:---------------:|---------------:|
+| First body part |Second cell | Third cell      | fourth cell    | First body part |Second cell | Third cell      | fourth cell    | First body part |Second cell | Third cell      | fourth cell    | First body part |Second cell | Third cell      | fourth cell    |
+| Second line     |foo         | **strong**      | baz            | Second line     |foo         | **strong**      | baz            | Second line     |foo         | **strong**      | baz            | Second line     |foo         | **strong**      | baz            |
+| Third line      |quux        | baz             | bar            | Third line      |quux        | baz             | bar            | Third line      |quux        | baz             | bar            | Third line      |quux        | baz             | bar            |
+|-----------------+------------+-----------------+----------------|-----------------+------------+-----------------+----------------|-----------------+------------+-----------------+----------------|-----------------+------------+-----------------+----------------|
+| Second body     |            |                 |                | Second body     |            |                 |                | Second body     |            |                 |                | Second body     |            |                 |                |
+| 2 line          |            |                 |                | 2 line          |            |                 |                | 2 line          |            |                 |                | 2 line          |            |                 |                |
+|=================+============+=================+================|=================+============+=================+================|=================+============+=================+================|=================+============+=================+================|
+| Footer row      |            |                 |                | Footer row      |            |                 |                | Footer row      |            |                 |                | Footer row      |            |                 |                |
+{:.scroll-table}
+
+Markdown:
+~~~md
+| Default aligned |Left aligned| Center aligned  | Right aligned  | Default aligned |Left aligned| Center aligned  | Right aligned  | Default aligned |Left aligned| Center aligned  | Right aligned  | Default aligned |Left aligned| Center aligned  | Right aligned  |
+|-----------------|:-----------|:---------------:|---------------:|-----------------|:-----------|:---------------:|---------------:|-----------------|:-----------|:---------------:|---------------:|-----------------|:-----------|:---------------:|---------------:|
+| First body part |Second cell | Third cell      | fourth cell    | First body part |Second cell | Third cell      | fourth cell    | First body part |Second cell | Third cell      | fourth cell    | First body part |Second cell | Third cell      | fourth cell    |
+| Second line     |foo         | **strong**      | baz            | Second line     |foo         | **strong**      | baz            | Second line     |foo         | **strong**      | baz            | Second line     |foo         | **strong**      | baz            |
+| Third line      |quux        | baz             | bar            | Third line      |quux        | baz             | bar            | Third line      |quux        | baz             | bar            | Third line      |quux        | baz             | bar            |
+|-----------------+------------+-----------------+----------------|-----------------+------------+-----------------+----------------|-----------------+------------+-----------------+----------------|-----------------+------------+-----------------+----------------|
+| Second body     |            |                 |                | Second body     |            |                 |                | Second body     |            |                 |                | Second body     |            |                 |                |
+| 2 line          |            |                 |                | 2 line          |            |                 |                | 2 line          |            |                 |                | 2 line          |            |                 |                |
+|=================+============+=================+================|=================+============+=================+================|=================+============+=================+================|=================+============+=================+================|
+| Footer row      |            |                 |                | Footer row      |            |                 |                | Footer row      |            |                 |                | Footer row      |            |                 |                |
+{:.scroll-table}
+~~~
+
+### Flip Table
+Alternatively, you can "flip" (transpose) the table.
+Unlike the other approach, this will keep the table head (now the first column) fixed in place.
+
+You can enable this behavior by adding `flip-table` or `flip-table-small` to the CSS classes of the table.
+Again, the `-small` version will only enable scrolling on "small" screens (< 1080px wide).
+
+**NOTE**: This approach only works on simple tables that have a single `tbody` and an optional `thead`.
+{:.message}
+
+Example:
+
+| Default aligned |Left aligned| Center aligned  | Right aligned  | Default aligned |Left aligned| Center aligned  | Right aligned  | Default aligned |Left aligned| Center aligned  | Right aligned  | Default aligned |Left aligned| Center aligned  | Right aligned  |
+|-----------------|:-----------|:---------------:|---------------:|-----------------|:-----------|:---------------:|---------------:|-----------------|:-----------|:---------------:|---------------:|-----------------|:-----------|:---------------:|---------------:|
+| First body part |Second cell | Third cell      | fourth cell    | First body part |Second cell | Third cell      | fourth cell    | First body part |Second cell | Third cell      | fourth cell    | First body part |Second cell | Third cell      | fourth cell    |
+| Second line     |foo         | **strong**      | baz            | Second line     |foo         | **strong**      | baz            | Second line     |foo         | **strong**      | baz            | Second line     |foo         | **strong**      | baz            |
+| Third line      |quux        | baz             | bar            | Third line      |quux        | baz             | bar            | Third line      |quux        | baz             | bar            | Third line      |quux        | baz             | bar            |
+| 4th line        |quux        | baz             | bar            | 4th line        |quux        | baz             | bar            | 4th line        |quux        | baz             | bar            | 4th line        |quux        | baz             | bar            |
+| 5th line        |quux        | baz             | bar            | 5th line        |quux        | baz             | bar            | 5th line        |quux        | baz             | bar            | 5th line        |quux        | baz             | bar            |
+| 6th line        |quux        | baz             | bar            | 6th line        |quux        | baz             | bar            | 6th line        |quux        | baz             | bar            | 6th line        |quux        | baz             | bar            |
+| 7th line        |quux        | baz             | bar            | 7th line        |quux        | baz             | bar            | 7th line        |quux        | baz             | bar            | 7th line        |quux        | baz             | bar            |
+| 8th line        |quux        | baz             | bar            | 8th line        |quux        | baz             | bar            | 8th line        |quux        | baz             | bar            | 8th line        |quux        | baz             | bar            |
+| 9th line        |quux        | baz             | bar            | 9th line        |quux        | baz             | bar            | 9th line        |quux        | baz             | bar            | 9th line        |quux        | baz             | bar            |
+| 10th line       |quux        | baz             | bar            | 10th line       |quux        | baz             | bar            | 10th line       |quux        | baz             | bar            | 10th line       |quux        | baz             | bar            |
+{:.flip-table}
+
+Markdown:
+~~~md
+| Default aligned |Left aligned| Center aligned  | Right aligned  | Default aligned |Left aligned| Center aligned  | Right aligned  | Default aligned |Left aligned| Center aligned  | Right aligned  | Default aligned |Left aligned| Center aligned  | Right aligned  |
+|-----------------|:-----------|:---------------:|---------------:|-----------------|:-----------|:---------------:|---------------:|-----------------|:-----------|:---------------:|---------------:|-----------------|:-----------|:---------------:|---------------:|
+| First body part |Second cell | Third cell      | fourth cell    | First body part |Second cell | Third cell      | fourth cell    | First body part |Second cell | Third cell      | fourth cell    | First body part |Second cell | Third cell      | fourth cell    |
+| Second line     |foo         | **strong**      | baz            | Second line     |foo         | **strong**      | baz            | Second line     |foo         | **strong**      | baz            | Second line     |foo         | **strong**      | baz            |
+| Third line      |quux        | baz             | bar            | Third line      |quux        | baz             | bar            | Third line      |quux        | baz             | bar            | Third line      |quux        | baz             | bar            |
+| 4th line        |quux        | baz             | bar            | 4th line        |quux        | baz             | bar            | 4th line        |quux        | baz             | bar            | 4th line        |quux        | baz             | bar            |
+| 5th line        |quux        | baz             | bar            | 5th line        |quux        | baz             | bar            | 5th line        |quux        | baz             | bar            | 5th line        |quux        | baz             | bar            |
+| 6th line        |quux        | baz             | bar            | 6th line        |quux        | baz             | bar            | 6th line        |quux        | baz             | bar            | 6th line        |quux        | baz             | bar            |
+| 7th line        |quux        | baz             | bar            | 7th line        |quux        | baz             | bar            | 7th line        |quux        | baz             | bar            | 7th line        |quux        | baz             | bar            |
+| 8th line        |quux        | baz             | bar            | 8th line        |quux        | baz             | bar            | 8th line        |quux        | baz             | bar            | 8th line        |quux        | baz             | bar            |
+| 9th line        |quux        | baz             | bar            | 9th line        |quux        | baz             | bar            | 9th line        |quux        | baz             | bar            | 9th line        |quux        | baz             | bar            |
+| 10th line       |quux        | baz             | bar            | 10th line       |quux        | baz             | bar            | 10th line       |quux        | baz             | bar            | 10th line       |quux        | baz             | bar            |
+{:.flip-table}
+~~~
+
+Two things to keep in mind when using `scroll-table` or `flip-table`:
+* Smaller tables will no longer be stretched to span the full width.
+* The layout engine will not attempt to add line-breaks within cells, making columns that contain text unusually large.
+
 ## Adding code blocks
 To add a code block without syntax highlighting, simply indent 4 spaces (regular markdown).
 For code blocks with code highlighting, use `~~~<language>`. This syntax is also supported by GitHub.
 For more information and a list of supported languages, see [{ Rouge }](http://rouge.jneen.net/).
+
+Example:
 
 ~~~js
 // Example can be run directly in your JavaScript console
@@ -861,7 +1039,7 @@ Markdown:
     ~~~
 
 ## Adding math
-Hydejack supports [math blocks](https://kramdown.gettalong.org/syntax.html#math-blocks) via [KaTeX](https://khan.github.io/KaTeX/).
+Hydejack supports [math blocks][ksynmath] via [KaTeX][katex].
 
 Why KaTeX instead of MathJax? KaTeX is faster and more lightweight at the cost of having less features, which,
 for the purpose of writing blog posts, should be a favorable tradeoff.
@@ -871,14 +1049,19 @@ Instead, `aligned` should be used, e.g. `\begin{aligned} ... \end{aligned}`.
 {:.message}
 
 ### Inline
-Inline math $$ f(x) = x^2 $$.
+
+Example:
+
+Lorem ipsum $$ f(x) = x^2 $$.
 
 Markdown:
 ~~~md
-Inline math $$ f(x) = x^2 $$.
+Lorem ipsum $$ f(x) = x^2 $$.
 ~~~
 
 ### Block
+
+Example:
 
 $$
 \begin{aligned}
@@ -920,23 +1103,158 @@ $$
 $$
 ~~~
 
+[mm]:https://guides.github.com/features/mastering-markdown/
+[ksyn]: https://kramdown.gettalong.org/syntax.html
+[ksyntab]:https://kramdown.gettalong.org/syntax.html#tables
+[ksynmath]: https://kramdown.gettalong.org/syntax.html#math-blocks
+[katex]:https://khan.github.io/KaTeX/
+
+
+# Scripts
+There are two ways of adding 3rd party scripts.
+[Embedding](#embedding) is ideal for one-off scripts, e.g. `widgets.js` that is part of embedded tweets (see below).
+Adding [global scripts](#global-scripts) is for scripts that should be loaded on every page.
+
+```html
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">The next version of Hydejack (v6.4.0) will allow embedding 3rd party scripts, like the one that comes with this tweet for example.</p>&mdash; Florian Klampfer (@qwtel) <a href="https://twitter.com/qwtel/status/871098943505039362">June 3, 2017</a></blockquote>
+```
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">The next version of Hydejack (v6.4.0) will allow embedding 3rd party scripts, like the one that comes with this tweet for example.</p>&mdash; Florian Klampfer (@qwtel) <a href="https://twitter.com/qwtel/status/871098943505039362">June 3, 2017</a></blockquote>
+
+## Embedding
+Hydejack supports embedding 3rd party scripts directly inside markdown content. This will work in most cases, except when a script can not be loaded on a page more than once (this will occur when a user navigates to the same page twice).
+
+**NOTE**: Adding "raw" script tags will make the page slow, unless they have the `async` or `defer` attribute set. For more see [below](#async-vs-defer-vs-loadjsdeferred).
+{:.message}
+
+## Global scripts
+If you have scripts that should be loaded on every page you can add them globally.
+Hydejack's own script is loaded from `_includes/scripts.html`, but I'd recommend creating your own file called `my-scripts.html` (inside `_includes`).
+
+You can put arbitrary HTML into `my-scripts.html`, but generally you'd want to add script tags. The [same rules](#async-vs-defer-vs-loadjsdeferred) apply.
+
+Lastly, you have to open `_includes/scripts.html` and remove the lines `{\% comment %\}` and `{\% endcomment %\}` around `{\% include my-scripts.html %\}`.
+
+**NOTE**: Upgrading to a new version of Hydejack will overwrite `scripts.html`, so you have to go in and uncomment the line again. This is due to how Jekyll includes work.
+{:.message}
+
+## `async` vs. `defer` vs. `loadJSDeferred`
+I highly recommended setting the `async` or `defer` attribute on your external scripts (i.e. the ones that have a `src` attribute).
+Otherwise the entire page can't finish loading until a separate HTTP request is completed, which can take a long time (this applies to the web in general, not just Hydejack).
+
+Specific to Hydejack is the `loadJSDeferred` function, which is used to load Hydejack's own scripts. It has various advantages which are detailed in the table below.
+
+|           | `async`     | `defer`                | `loadJSDeferred`      |
+|:----------|:------------|:-----------------------|:----------------------|
+| Download  | immediately | immediately            | after document `load` |
+| Execution | asap        | before document `load` | after document `load` |
+| Ordering  | none        | preserves order        | via callback nesting  |
+| Support   | IE8+        | IE9+                   | IE5+ (Hydejack only)  |
+{:.flip-table-small}
+
+## Using `loadJSDeferred` (Hydejack only)
+Using `loadJSDeferred` is slightly more work than just adding `defer` to a script tag.
+
+```html
+<script>
+  loadJSDeferred('<script-src>', function () {
+    // <callback code>
+  });
+</script>
+```
+
+If you have scripts that depend on other scripts, you can nest calls, e.g.
+
+```html
+<script>
+  loadJSDeferred('<script-src-1>', function () {
+    // <callback script 1>
+    loadJSDeferred('<script-src-2>', function () {
+      // <callback script 1 + 2>
+      loadJSDeferred('<script-src-3>', function () {
+        // <callback script 1 + 2 + 3>
+      });
+    });
+  });
+</script>
+```
+
+## Registering push state event listeners
+When embedding scripts globally you might want to run some init code after each page load. However, the problem with push state-based page loads is that the `load` event won't fire again. Luckily, Hydejack's push state component exposes an event that you can listen to instead.
+
+```html
+<script>
+  document.getElementById('_yPushState').addEventListener('y-push-state-load', function() {
+    // <your init code>
+  });
+</script>
+```
+
+Note that the above code must only run once, so include it in your `my-scripts.html`.
+
+Other events you can register on `_yPushState` include
+
+`y-push-state-start`
+: Occurs when clicking a link
+
+`y-push-state-ready`
+: Animation fished and response has been parsed, ready to swap out the content.
+
+`y-push-state-after`
+: The old content has been replaced with the new content.
+
+`y-push-state-animationend`
+: The animation has finished playing.
+
+`y-push-state-progress`
+: Special case when animation is finished, but no response from server has arrived yet. This is also when the spinner will appear.
+
+`y-push-state-load`
+: All embedded script tags have been inserted into the document and have finished loading.
+
 
 # Build
-Hydejack supports building locally and on GitHub pages. However, when building on GitHub Pages, providing better related posts via the LSI is not available.
-
 ## Building locally
 When building Hydejack it is important to set the environment variable `JEKYLL_ENV` to `production`.
 Otherwise the output will not be minified. Building itself happens via Jekyll's `build` command.
 
-    $ JEKYLL_ENV=production bundle exec jekyll build
+~~~bash
+$ JEKYLL_ENV=production bundle exec jekyll build
+~~~
 
-This will generate the finished static files in `_site`, which can be deployed using the methods outlined in the [Jekyll Documentation][deploy].
+This will generate the finished static files in `_site`,
+which can be deployed using the methods outlined in the [Jekyll Documentation][deploy].
 
-### With latent semantic analysis
+### GitHub Pages
+To deploy to GitHub Pages, the steps are:
+
+~~~bash
+$ JEKYLL_ENV=production bundle exec jekyll build
+$ cd _site
+$ git init # you only need to do this once
+$ git remote add origin <github_remote_url> # you only need to do this once
+$ git add .
+$ git commit -m "Build"
+$ git push origin master:<remote_branch>
+$ cd ..
+~~~
+
+`github_remote_url`
+: Find this on your repository's GitHub page.
+
+`remote_branch`
+: Either `master` for "user or organization pages", or `gh-pages` for "project pages"
+
+More on [user, organization, and project pages](https://help.github.com/articles/user-organization-and-project-pages/).
+
+## Building locally with latent semantic analysis
 By default, related posts are simply the most recent posts.
 Hydejack modifies this a bit, by showing the most recent posts of the same category or tag.
 However, the results are still pretty "unrelated".
-To provide better results, Jekyll supports [latent semantic analysis](https://en.wikipedia.org/wiki/Latent_semantic_analysis) via [`classifier-reborn`](http://www.classifier-reborn.com/)'s [Latent Semantic Indexer](http://www.classifier-reborn.com/lsi).
+To provide better results, Jekyll supports [latent semantic analysis][lsa] via [`classifier-reborn`][crb]'s
+[Latent Semantic Indexer][lsi]
 
 To use the LSI, you first have to disable Hydejack's default behaviour, by setting `use_lsi: true` in `_config.yml`
 
@@ -944,21 +1262,43 @@ To use the LSI, you first have to disable Hydejack's default behaviour, by setti
 
 Then, you have to run `jekyll build` with the `--lsi` flag:
 
-    $ JEKYLL_ENV=production bundle exec jekyll build --lsi
+~~~bash
+$ JEKYLL_ENV=production bundle exec jekyll build --lsi
+~~~
 
-This will generate the finished static files in `_site`, which can be deployed using the methods outlined in the [Jekyll Documentation][deploy].
+This will generate the finished static files in `_site`,
+which can be deployed using the methods outlined in the [Jekyll Documentation][deploy].
 
-## Building on GitHub Pages
-**NOTE**: If you are using the PRO version of Hydejack, this method is discouraged because it will publish the source code of the theme on GitHub.
-{:.message}
+### GitHub Pages
+To deploy to GitHub Pages, the steps are:
 
-GitHub Pages offers the possibility to upload your site's Jekyll source directly. Then, GitHub will run the build process in the cloud, provided your site only uses [certain plugins](https://pages.github.com/versions/). Hydejack supports building on GitHub Pages out of the box.
+~~~bash
+$ JEKYLL_ENV=production bundle exec jekyll build --lsi
+$ cd _site
+$ git init # you only need to do this once
+$ git remote add origin <github_remote_url> # you only need to do this once
+$ git add .
+$ git commit -m "Build"
+$ git push origin master:<remote_branch>
+$ cd ..
+~~~
 
-However, when using this method, the LSI is not available (see above), so make sure `use_lsi` is set to `false` in `_config.yml`.
+`github_remote_url`
+: Find this on your repository's GitHub page.
 
-    use_lsi: false
+`remote_branch`
+: Either `master` for "user or organization pages", or `gh-pages` for "project pages"
 
-Builds on GitHub run in the `production` environment, so no further steps are necessary. For the deployment process, see [Jekyll's documentation on GitHub Pages](https://jekyllrb.com/docs/github-pages/) as well as [GitHub Help](https://help.github.com/categories/github-pages-basics/).
+More on [user, organization, and project pages](https://help.github.com/articles/user-organization-and-project-pages/).
+
+
+Continue with [Advanced]({{ site.baseurl }}{% link docs/6.4.0/advanced.md %}){:.heading data-flip="title"}
+{:.read-more}
+
+[deploy]: https://jekyllrb.com/docs/deployment-methods/
+[lsa]: https://en.wikipedia.org/wiki/Latent_semantic_analysis
+[crb]: http://www.classifier-reborn.com/
+[lsi]: http://www.classifier-reborn.com/lsi
 
 
 # Advanced
@@ -1026,6 +1366,23 @@ which will build a non-minified, non-transpiled (ES2016) version of `hydejack.js
 
 
 # Versions
+## v6.4.0
+June 16 2017
+{:.heading.post-date}
+
+### Minor
+* Added "Other Projects" section to the bottom of the project layout (similar to "Related Posts")
+* Added CSS classes that make viewing larger (data-) tables possible
+* Added section on tables to [docs/writing][writing]
+* Reduced use of `<hr/>` elements, using CSS borders instead.
+* Improved semantic HTML of resume
+
+### Design
+* Reduced number of horizontal lines, making many layouts feel less "cluttered" (esp. `blog` layout)
+* Made link hover styles consistent across the board
+* Visually separate `thead` and `tbody` and `tfoot` within tables.
+* Changed RSS and email icons
+
 ## v6.3.0
 June 6 2017
 {:.heading.post-date}
@@ -1102,12 +1459,12 @@ Pages are now loaded and swapped through JavaScript. This has a number of effect
 * Added `not-found` layout.
 * Added `redirect` layout
 
-See the [the migration guide]({{ site.baseurl }}{% link docs/6.4.0/migration.md %}) for instructions on how to upgrade.
+See the [the migration guide](#migration) for instructions on how to upgrade.
 
 ### Minor
 * The "accent" font (heading font) is now used for all headings. This gives the theme a "bolder" look and was necessary for the animation: link => heading.
 * Changed default text font from "PT Serif" to "Noto Serif".
-* Added [CSS classes]({{ site.baseurl }}{% link docs/6.4.0/writing.md %}) for styling markdown content.
+* Added [CSS classes](#writing) for styling markdown content.
 * Links have a new style. They now always display an underline to make the choice of the link color less critical (darker colors were hard to distinguish from regular text).
 * Made social media icons larger and easier to tap.
 * Social media icons are now also part of the "about" sections of a post.
@@ -1241,6 +1598,9 @@ Jan 2 2014
 ## v1.0.0 (Hyde)
 Oct 15 2013
 {:.heading.post-date}
+
+[tag]: http://www.minddust.com/post/tags-and-categories-on-github-pages/
+
 
 # Licenses
 ## Attributions
@@ -1534,18 +1894,11 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-[blog]: {{ site.baseurl }}{% link blog.md %}
-[posts]: {{ site.baseurl }}{% link posts.md %}
 [about]: {{ site.baseurl }}{% link about.md %}
 [welcome]: {{ site.baseurl }}{% link index.md %}
 [resume]: {{ site.baseurl }}{% link resume.md %}
 [projects]: {{ site.baseurl }}{% link projects.md %}
 [project]: {{ site.baseurl }}{% link _projects/hydejack-v6.md %}
-[mipmap]: https://en.wikipedia.org/wiki/Mipmap
-
-[deploy]: https://jekyllrb.com/docs/deployment-methods/
-
-[tag]: http://www.minddust.com/post/tags-and-categories-on-github-pages/
 
 *[FLIP]: First Last Invert Play
 *[LSI]: Latent Semantic Indexer

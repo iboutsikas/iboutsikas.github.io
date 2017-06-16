@@ -10,6 +10,23 @@ redirect_from:
 * this unordered seed list will be replaced by toc as unordered list
 {:toc}
 
+## v6.4.0
+June 16 2017
+{:.heading.post-date}
+
+### Minor
+* Added "Other Projects" section to the bottom of the project layout (similar to "Related Posts")
+* Added CSS classes that make viewing larger (data-) tables possible
+* Added section on tables to [docs/writing][writing]
+* Reduced use of `<hr/>` elements, using CSS borders instead.
+* Improved semantic HTML of resume
+
+### Design
+* Reduced number of horizontal lines, making many layouts feel less "cluttered" (esp. `blog` layout)
+* Made link hover styles consistent across the board
+* Visually separate `thead` and `tbody` and `tfoot` within tables.
+* Changed RSS and email icons
+
 ## v6.3.0
 June 6 2017
 {:.heading.post-date}
@@ -86,12 +103,12 @@ Pages are now loaded and swapped through JavaScript. This has a number of effect
 * Added `not-found` layout.
 * Added `redirect` layout
 
-See the [the migration guide]({{ site.baseurl }}{% link docs/6.4.0/migration.md %}) for instructions on how to upgrade.
+See the [the migration guide][migration] for instructions on how to upgrade.
 
 ### Minor
 * The "accent" font (heading font) is now used for all headings. This gives the theme a "bolder" look and was necessary for the animation: link => heading.
 * Changed default text font from "PT Serif" to "Noto Serif".
-* Added [CSS classes]({{ site.baseurl }}{% link docs/6.4.0/writing.md %}) for styling markdown content.
+* Added [CSS classes][writing] for styling markdown content.
 * Links have a new style. They now always display an underline to make the choice of the link color less critical (darker colors were hard to distinguish from regular text).
 * Made social media icons larger and easier to tap.
 * Social media icons are now also part of the "about" sections of a post.
@@ -227,3 +244,5 @@ Oct 15 2013
 {:.heading.post-date}
 
 [tag]: http://www.minddust.com/post/tags-and-categories-on-github-pages/
+[migration]: {{ site.baseurl }}{% link docs/6.4.0/migration.md %}
+[writing]: {{ site.baseurl }}{% link docs/6.4.0/writing.md %}

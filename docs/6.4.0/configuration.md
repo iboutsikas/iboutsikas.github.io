@@ -49,7 +49,7 @@ It is recommended that you provide fallback values in `_config.yml`, should no o
     image: /hydejack/assets/img/nap.jpg
     color: '#A85641'
 
-**Note**: It is recommended that you use a blurred image in order for the text to remain readable. If you save a blurred image as JPG, it will also drastically reduce its file size.
+**NOTE**: It is recommended that you use a blurred image in order for the text to remain readable. If you save a blurred image as JPG, it will also drastically reduce its file size.
 {:.message}
 
 ## Changing `font` and `font_heading`
@@ -181,7 +181,7 @@ Should providing a username not produce a correct link for some reason, you can 
 {:.message}
 
 ### Adding an email or RSS icon
-If you'd like to add email <span class="icon-envelop"></span> or RSS <span class="icon-rss"></span> to the list, add the `email` and `rss` keys, e.g.:
+If you'd like to add email <span class="icon-mail"></span> or RSS <span class="icon-rss2"></span> to the list, add the `email` and `rss` keys, e.g.:
 
     social:
       email: mailto:mail@gmail.com
@@ -202,7 +202,7 @@ comments: true
 ---
 ~~~
 
-**Note**: Pasting code snippets provided by 3rd parties into the body will have undesired side effects (and may not work at all), because pages are loaded and swapped via JavaScript.
+**NOTE**: Pasting code snippets provided by 3rd parties into the body will have undesired side effects (and may not work at all), because pages are loaded and swapped via JavaScript.
 {:.message}
 
 ## Enabling Google Analytics
@@ -212,10 +212,10 @@ Enabling Google Analytics is as simple as setting the `google_analytics` key in 
 
 Conversely, if you want to disable it, you only have to remove the key and no GA code will be part of the generated pages.
 
-**Note**: Pasting code snippets provided by 3rd parties into the body will have undesired side effects (and may not work at all), because pages are loaded and swapped via JavaScript.
+**NOTE**: Pasting code snippets provided by 3rd parties into the body will have undesired side effects (and may not work at all), because pages are loaded and swapped via JavaScript.
 {:.message}
 
-Continue with [Migration]({{ site.baseurl }}{% link docs/6.4.0/migration.md %}){:.heading data-flip="title"}
+Continue with [Basics]({{ site.baseurl }}{% link docs/6.4.0/basics.md %}){:.heading data-flip="title"}
 {:.read-more}
 
 [blog]: https://qwtel.com/hydejack/blog/

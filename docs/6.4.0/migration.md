@@ -10,6 +10,33 @@ redirect_from:
 * this unordered seed list will be replaced by toc as unordered list
 {:toc}
 
+## From Hydejack v6
+Unless otherwise noted, to upgrade from an older to a newer version of Hydejack (6.0.0 and above), copy to following folders from the zip into your repository.
+
+* `_includes/`
+* `_layouts/`
+* `_sass/`
+* `assets/`
+
+**NOTE**: If you've modified any of Hydejack's files, changes will be overwritten and you have to redo those changes.
+{:.message}
+
+Buyers of the PRO version will find the files necessary for an upgrade in the `upgrade_from_existing` folder of the downloaded zip archive. Unless you've made any changes to Hydejack's own files, you can safely copy them into your blog directory.
+
+### From gem-based to zip
+When upgrading from the gem-based version to any zip version (free *or* PRO) copy to following files and folders:
+
+* `_data/`
+* `_includes/`
+* `_layouts/`
+* `_sass/`
+* `assets/`
+* `404.md`
+
+Also make sure to remove the following line from `_config.yml`, as all necessary files are now located in the directory itself:
+
+    theme: jekyll-theme-hydejack
+
 ## From Hydejack v5
 Unfortunately, upgrading form v5 is not straightforward. A lot of patterns and names have changed, motivated by a variety of reasons, including better integration with the rest of the Jekyll ecosystem and simplified workflows enabled by Jekyll Collections.
 
@@ -149,24 +176,5 @@ As mentioned above, don't forget to rename `disqus` to `disqus_shortname` in `_c
 Hydejack now has a dedicated layout for about pages.
 To use it, open `about.md` and change the `layout` in the front matter to `about` and delete `{\% include about-short.html author=site.author %\}`.
 
-## From free to PRO version*
-Upgrading form the free version to PRO is straightforward. All that is necessary to copy the following folders from PRO into your repository.
-
-* `_includes/`
-* `_layouts/`
-* `_sass/`
-* `assets/`
-* `_data/` (when upgrading from gem-based theme)
-
-Since you've probably added files to some of these folders, be sure to merge the contents.
-If you've modified any files the changes will be overwritten and you have to redo those changes.
-
-If you'd like to add examples of the new layouts, you can also copy:
-
-* `_projects/`
-* `projects.md`
-* `resume.md`
-* `index.md`
-
-Continue with [Basics]({{ site.baseurl }}{% link docs/6.4.0/basics.md %}){:.heading data-flip="title"}
+Continue with [Configuration]({{ site.baseurl }}{% link docs/6.4.0/configuration.md %}){:.heading data-flip="title"}
 {:.read-more}

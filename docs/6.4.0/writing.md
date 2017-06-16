@@ -103,7 +103,8 @@ I'm faded, faded, faded.
 Adding tables is straightforward and works just as described in the [kramdown docs][ksyntab].
 
 However, as you'll discover, this only works for small tables like the one below.
-Larger (data-) tables will be cut off on the right, especially when viewed on a mobile device.
+Larger (data-) tables will be cut off on the right.
+Typically, even smaller tables will be cut off when viewed on a mobile device.
 
 | Default aligned |Left aligned| Center aligned  | Right aligned  |
 |-----------------|:-----------|:---------------:|---------------:|
@@ -113,12 +114,9 @@ When it comes to displaying large tables on mobile, there is no one-size-fits-al
 There are however [two straight-forward, CSS-only solutions](https://dbushell.com/2016/03/04/css-only-responsive-tables/) that are included in Hydejack.
 
 ### Scroll Table
-By adding either `scroll-table` or `scroll-table-small` to the CSS classes of the table will enable horizontal scrolling.
-Setting `scroll-table-small` will only apply on "small" (< 1080px wide) screens.
-
-The reason this is not the default behavior is two-fold:
-* Smaller tables will no longer be stretched to span the full width.
-* The layout engine will not attempt to add line-breaks within cells, making columns that contain text unusually large.
+Adding either `scroll-table` or `scroll-table-small` to the CSS classes of a table will enable horizontal scrolling.
+The `-small` version will only enable scrolling on "small" screens (< 1080px wide).
+This is useful when the table displays correctly on desktop, but not mobile.
 
 Example:
 
@@ -151,11 +149,12 @@ Markdown:
 
 ### Flip Table
 Alternatively, you can "flip" (transpose) the table.
-This will keep the table head (now the first column) fixed in place for better comparision.
-You can enable this behavior by adding `flip-table` or `flip-table-small` to the CSS classes of the table.
-Again, setting `flip-table-small` will only apply on "small" (< 1080px wide) screens.
+Unlike the other approach, this will keep the table head (now the first column) fixed in place.
 
-**Note**: This approach only works on simple tables with a single `tbody` and an optional `thead`.
+You can enable this behavior by adding `flip-table` or `flip-table-small` to the CSS classes of the table.
+Again, the `-small` version will only enable scrolling on "small" screens (< 1080px wide).
+
+**NOTE**: This approach only works on simple tables that have a single `tbody` and an optional `thead`.
 {:.message}
 
 Example:
@@ -190,6 +189,10 @@ Markdown:
 | 10th line       |quux        | baz             | bar            | 10th line       |quux        | baz             | bar            | 10th line       |quux        | baz             | bar            | 10th line       |quux        | baz             | bar            |
 {:.flip-table}
 ~~~
+
+Two things to keep in mind when using `scroll-table` or `flip-table`:
+* Smaller tables will no longer be stretched to span the full width.
+* The layout engine will not attempt to add line-breaks within cells, making columns that contain text unusually large.
 
 ## Adding code blocks
 To add a code block without syntax highlighting, simply indent 4 spaces (regular markdown).

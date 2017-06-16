@@ -5,7 +5,10 @@ menu: true
 order: 7
 ---
 
-There are two versions of Hydejack: The Free Version includes basic blogging functionality, as did previous versions of the theme. The new PRO Version includes additional features for professionals: A [portfolio], a [resume] layout and a [welcome] page to feature your favorite projects and posts.
+There are two versions of Hydejack: The Free Version includes basic blogging functionality,
+as did previous versions of the theme.
+The new PRO Version includes additional features for professionals:
+A [portfolio], a [resume] layout and a [welcome] page to feature your favorite projects and posts.
 
 This table details what is and isn't included in each respective version.
 
@@ -21,7 +24,7 @@ This table details what is and isn't included in each respective version.
 | License | MIT | [PRO] |
 | Price | Free | $29 |
 |===
-| | [**Download on GitHub**][download]<br/> -- or -- <br/>[**Use the RubyGem**][gem] | [Buy Now  - $29.00][buy]{:.simple-goods-btn style="background-color:#4f86aa!important"} |
+| | [**Download on GitHub**][download]<br/> -- or -- <br/>[**Use the RubyGem**][gem] | [Buy Now - $29][buy]{:.simple-goods-btn style="background-color:#4f86aa!important"} [^3] |
 
 ## Features
 Both the PRO *and* free version includes all of the features listed below:
@@ -29,7 +32,7 @@ Both the PRO *and* free version includes all of the features listed below:
 * Full in-app page loading --- no Flash of White, no Flash of Unstyled Content[^1]
 * Advanced animations, inspired by Material Design
 * A customizable sidebar that turns into a touch-enabled app drawer on mobile
-* Near-perfect [Google PageSpeed Score](https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fqwtel.com%2Fhydejack%2F)[^2]
+* Near-perfect [Google PageSpeed Score][gpss][^2]
 * Even higher *perceived speed* thanks to pre-fetching and latency-hiding
 * Support for categories and tags --- even when hosting on GitHub Pages
 * Built-in collection of social media icons
@@ -52,11 +55,13 @@ The Free Version features the design and tech of Hydejack, but only supports bas
 **[Download on GitHub][download]** -- or -- **[Use the RubyGem][gem]**
 
 ## PRO Version
-The PRO Version aims to be the complete package for professionals on the web. It includes layouts for your [portfolio], your [resume] (with support for [JSON Resume](https://jsonresume.org/)) and a [welcome] page to introduce yourself to visitors.
+The PRO Version aims to be the complete package for professionals on the web.
+It includes layouts for your [portfolio], your [resume] (with support for [JSON Resume](https://jsonresume.org/)) and
+a [welcome] page to introduce yourself to visitors.
 
-[Buy Now  - $29.00][buy]{:.simple-goods-btn style="background-color:#4f86aa!important"}
+[Buy Now - $29][buy]{:.simple-goods-btn style="background-color:#4f86aa!important"} [^3]
 
-{% include author.html author=site.data.authors.qwtel heading="About" %}
+{% include author.html author=site.data.authors.qwtel heading="Contact" %}
 
 <script>loadJSDeferred('https://app-cdn.simplegoods.co/assets/external/embed.js',function(){SGEmbed.init()})</script>
 <style>
@@ -64,7 +69,8 @@ a.simple-goods-btn{text-decoration:none !important}.simple-goods-btn{-moz-box-si
 </style>
 
 [^1]: Applies after the initial page load.  
-[^2]: Actual page load speed depends on your hosting provider as well as discipline regarding resolution of images and usage of 3rd party plugins.
+[^2]: Actual page load speed depends on your hosting provider, resolution of embedded images and usage of 3rd party plugins.
+[^3]: Transactions secured by [Stripe](https://stripe.com). Downloads handled by [Simple Goods](https://simplegoods.co/).
 
 [blog]: {{ site.baseurl }}{% link blog.md %}
 [portfolio]: {{ site.baseurl }}{% link projects.md %}
@@ -76,3 +82,5 @@ a.simple-goods-btn{text-decoration:none !important}.simple-goods-btn{-moz-box-si
 [download]: https://github.com/qwtel/hydejack/releases/tag/v6.4.0
 [gem]: https://rubygems.org/gems/jekyll-theme-hydejack/versions/6.4.0
 [buy]: https://app.simplegoods.co/i/AQTTVBOE
+
+[gpss]: https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fqwtel.com%2Fhydejack%2F
