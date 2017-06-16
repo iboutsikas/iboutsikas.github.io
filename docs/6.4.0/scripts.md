@@ -25,7 +25,7 @@ Adding [global scripts](#global-scripts) is for scripts that should be loaded on
 ## Embedding
 Hydejack supports embedding 3rd party scripts directly inside markdown content. This will work in most cases, except when a script can not be loaded on a page more than once (this will occur when a user navigates to the same page twice).
 
-**Note**: Adding "raw" script tags will make the page slow, unless they have the `async` or `defer` attribute set. For more see [below](#async-vs-defer-vs-loadjsdeferred).
+**NOTE**: Adding "raw" script tags will make the page slow, unless they have the `async` or `defer` attribute set. For more see [below](#async-vs-defer-vs-loadjsdeferred).
 {:.message}
 
 ## Global scripts

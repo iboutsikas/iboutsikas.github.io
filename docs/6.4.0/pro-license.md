@@ -1,6 +1,9 @@
 ---
 layout: page
 title: PRO License
+redirect_from:
+  - /docs/latest/pro-license/
+  - /docs/pro-license/
 ---
 
 ## License Summary
