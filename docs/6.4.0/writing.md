@@ -111,7 +111,7 @@ Typically, even smaller tables will be cut off when viewed on a mobile device.
 | First body part |Second cell | Third cell      | fourth cell    |
 
 When it comes to displaying large tables on mobile, there is no one-size-fits-all solution.
-There are however [two straight-forward, CSS-only solutions](https://dbushell.com/2016/03/04/css-only-responsive-tables/) that are included in Hydejack.
+There are however [two straight-forward, CSS-only solutions][rtable] that are included in Hydejack.
 
 ### Scroll Table
 Adding either `scroll-table` or `scroll-table-small` to the CSS classes of a table will enable horizontal scrolling.
@@ -296,8 +296,9 @@ Continue with [Scripts]({{ site.baseurl }}{% link docs/6.4.0/scripts.md %}){:.he
 {:.read-more}
 
 
-[mm]:https://guides.github.com/features/mastering-markdown/
+[mm]: https://guides.github.com/features/mastering-markdown/
 [ksyn]: https://kramdown.gettalong.org/syntax.html
 [ksyntab]:https://kramdown.gettalong.org/syntax.html#tables
 [ksynmath]: https://kramdown.gettalong.org/syntax.html#math-blocks
-[katex]:https://khan.github.io/KaTeX/
+[katex]: https://khan.github.io/KaTeX/
+[rtable]: https://dbushell.com/2016/03/04/css-only-responsive-tables/
