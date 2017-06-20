@@ -26,8 +26,11 @@ export default class ProjectFlip extends Flip {
   start(currentTarget) {
     const img = currentTarget.querySelector('.img');
 
+    const titleNode = currentTarget.parentNode.querySelector('.name') || {};
+    const title = titleNode.textContent || '|';
+
     this.animationMain.querySelector('.page').innerHTML = `
-      <h1 class="page-title" style="opacity:0">|</h1>
+      <h1 class="page-title" style="opacity:0">${title}</h1>
       <div class="post-date heading" style="opacity:0">|</div>
     `;
 
