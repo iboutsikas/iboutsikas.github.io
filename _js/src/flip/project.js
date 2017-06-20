@@ -26,7 +26,7 @@ export default class ProjectFlip extends Flip {
   start(currentTarget) {
     const img = currentTarget.querySelector('.img');
 
-    this.shadowMain.querySelector('.page').innerHTML = `
+    this.animationMain.querySelector('.page').innerHTML = `
       <h1 class="page-title" style="opacity:0">|</h1>
       <div class="post-date heading" style="opacity:0">|</div>
     `;
@@ -38,9 +38,9 @@ export default class ProjectFlip extends Flip {
     img.classList.add('lead');
     img.style.transformOrigin = 'left top';
 
-    this.shadowMain.querySelector('.page').appendChild(img);
-    this.shadowMain.style.position = 'fixed';
-    this.shadowMain.style.opacity = 1;
+    this.animationMain.querySelector('.page').appendChild(img);
+    this.animationMain.style.position = 'fixed';
+    this.animationMain.style.opacity = 1;
 
     const first = placeholder.getBoundingClientRect();
     const last = img.getBoundingClientRect();
@@ -57,11 +57,11 @@ export default class ProjectFlip extends Flip {
       // easing: 'ease',
       easing: 'cubic-bezier(0,0,0.32,1)',
     })
-      ::effect(() => { this.shadowMain.style.position = 'absolute'; });
+      ::effect(() => { this.animationMain.style.position = 'absolute'; });
   }
 
   ready(main) {
-    this.shadowMain.style.willChange = 'opacity';
+    this.animationMain.style.willChange = 'opacity';
 
     const img = main.querySelector('.img');
 
@@ -84,8 +84,8 @@ export default class ProjectFlip extends Flip {
         }
       })
       ::cleanup(() => {
-        this.shadowMain.style.opacity = 0;
-        this.shadowMain.style.willChange = '';
+        this.animationMain.style.opacity = 0;
+        this.animationMain.style.willChange = '';
       });
   }
 }
