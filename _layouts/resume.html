@@ -129,7 +129,7 @@ layout: base
       {% if resume.work.size > 0 %}
         <h2 class="h3 faded hr">Experience <span class="symbol icon-briefcase"></span></h2>
         {% for work in resume.work %}
-          <header>
+          <header class="{% unless forloop.first %}mt3{% endunless %}">
             <p class="heading faded">
               <time datetime="{{ work.startDate }}">{{ work.startDate | date: "%b %Y"  }}</time>
               –
@@ -150,8 +150,6 @@ layout: base
               <li>{{ highlight }}</li>
             {% endfor %}
           </ul>
-
-          {% unless forloop.last %}<br/>{% endunless %}
         {% endfor %}
 
       {% endif %}
@@ -159,7 +157,7 @@ layout: base
       {% if resume.volunteer.size > 0 %}
         <h2 class="h3 faded hr">Volunteer <span class="symbol icon-earth"></span></h2>
         {% for vol in resume.volunteer %}
-          <header>
+          <header class="{% unless forloop.first %}mt3{% endunless %}">
             <p class="heading faded">
               <time datetime="{{ vol.startDate }}">{{ vol.startDate | date: "%b %Y"  }}</time>
               –
@@ -180,8 +178,6 @@ layout: base
               <li>{{ highlight }}</li>
             {% endfor %}
           </ul>
-
-          {% unless forloop.last %}<br/>{% endunless %}
         {% endfor %}
 
       {% endif %}
@@ -189,7 +185,7 @@ layout: base
       {% if resume.education.size > 0 %}
         <h2 class="h3 faded hr">Education <span class="symbol icon-library"></span></h2>
         {% for edu in resume.education %}
-          <header>
+          <header class="{% unless forloop.first %}mt3{% endunless %}">
             <p class="heading faded">
               <time datetime="{{ edu.startDate }}">{{ edu.startDate | date: "%b %Y"  }}</time>
               –
@@ -218,8 +214,6 @@ layout: base
               <li>{{ course }}</li>
             {% endfor %}
           </ul>
-
-          {% unless forloop.last %}<br/>{% endunless %}
         {% endfor %}
 
       {% endif %}
@@ -227,7 +221,7 @@ layout: base
       {% if resume.awards.size > 0 %}
         <h2 class="h3 faded hr">Awards <span class="symbol icon-trophy"></span></h2>
         {% for awa in resume.awards %}
-          <header>
+          <header class="{% unless forloop.first %}mt3{% endunless %}">
             <p class="heading faded">
               <time datetime="{{ awa.date }}">{{ awa.date | date: "%b %Y"  }}</time>
             </p>
@@ -241,8 +235,6 @@ layout: base
           </header>
 
           {% include message.html text=awa.summary %}
-
-          {% unless forloop.last %}<br/>{% endunless %}
         {% endfor %}
 
       {% endif %}
@@ -250,7 +242,7 @@ layout: base
       {% if resume.publications.size > 0 %}
         <h2 class="h3 faded hr">Publications <span class="symbol icon-book"></span></h2>
         {% for pub in resume.publications %}
-          <header>
+          <header class="{% unless forloop.first %}mt3{% endunless %}">
             <p class="heading faded">
               <time datetime="{{ pub.releaseDate }}">{{ pub.releaseDate | date: "%b %Y"  }}</time>
             </p>
@@ -264,8 +256,6 @@ layout: base
           </header>
 
           {% include message.html text=pub.summary %}
-
-          {% unless forloop.last %}<br/>{% endunless %}
         {% endfor %}
 
       {% endif %}
@@ -273,11 +263,10 @@ layout: base
       {% if resume.references.size > 0 %}
         <h2 class="h3 faded hr">References <span class="symbol icon-quotes-right"></span></h2>
         {% for ref in resume.references %}
-          <blockquote>
+          <blockquote class="ref">
             <p>{{ ref.reference }}</p>
             <footer>— <cite>{{ ref.name }}</cite></footer>
           </blockquote>
-          {% unless forloop.last %}<br/>{% endunless %}
         {% endfor %}
       {% endif %}
     </div>

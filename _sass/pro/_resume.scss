@@ -25,11 +25,6 @@ main {
   }
 }
 
-// cite
-blockquote > footer {
-  margin-bottom: 0;
-}
-
 .tags {
   list-style: none;
   padding-left: 0;
@@ -128,3 +123,16 @@ $pad: 2.5rem;
 //     text-align: left;
 //   }
 // }
+
+.mt3 {
+  margin-top: 3rem;
+}
+
+// cite
+.ref {
+  margin-bottom: 1.5rem;
+
+  > footer {
+    margin-bottom: 0;
+  }
+}
