@@ -11,7 +11,7 @@ redirect_from:
 {:toc}
 
 ## v6.4.0
-June 19 2017
+June 21 2017
 {:.heading.post-date}
 
 In this release I've added a "Other Projects" section to the bottom of each project page,
@@ -49,7 +49,7 @@ Specifically, the semantics of the resume layout have been improved.
 June 6 2017
 {:.heading.post-date}
 
-This release makes including 3rd party plugins easier.
+This release makes including third party plugins easier.
 Until now, the push state approach to loading new pages has been interfering with embedded `script` tags.
 This version changes this by simulating the sequential loading of script tags on a fresh page load.
 
@@ -61,7 +61,7 @@ If an issue can't be resolved, there's now the option to disable push state by s
 * Add `disable_push_state` option to `_config.yml`
 * Add `disable_drawer` option to `_config.yml`
 * Rename syntax highlighting file to `syntax.scss`
-* Added chapter on 3rd party scripts to documentation
+* Added [chapter on third party scripts][scripts] to documentation
 
 ### Design
 * Add subtle intro animation
@@ -263,3 +263,4 @@ Oct 15 2013
 [tag]: http://www.minddust.com/post/tags-and-categories-on-github-pages/
 [migration]: {{ site.baseurl }}{% link docs/6.4.0/migration.md %}
 [writing]: {{ site.baseurl }}{% link docs/6.4.0/writing.md %}
+[scripts]: {{ site.baseurl }}{% link docs/6.4.0/scripts.md %}

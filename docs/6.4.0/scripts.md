@@ -6,7 +6,7 @@ redirect_from:
   - /docs/scripts/
 ---
 
-There are two ways of adding 3rd party scripts.
+There are two ways of adding third party scripts.
 [Embedding](#embedding) is ideal for one-off scripts, e.g. `widgets.js` that is part of embedded tweets (see below).
 Adding [global scripts](#global-scripts) is for scripts that should be loaded on every page.
 
@@ -23,7 +23,7 @@ Adding [global scripts](#global-scripts) is for scripts that should be loaded on
 {:toc}
 
 ## Embedding
-Hydejack supports embedding 3rd party scripts directly inside markdown content. This will work in most cases, except when a script can not be loaded on a page more than once (this will occur when a user navigates to the same page twice).
+Hydejack supports embedding third party scripts directly inside markdown content. This will work in most cases, except when a script can not be loaded on a page more than once (this will occur when a user navigates to the same page twice).
 
 **NOTE**: Adding "raw" script tags will make the page slow, unless they have the `async` or `defer` attribute set. For more see [below](#async-vs-defer-vs-loadjsdeferred).
 {:.message}
