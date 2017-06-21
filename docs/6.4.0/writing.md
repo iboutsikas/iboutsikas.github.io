@@ -190,9 +190,13 @@ Markdown:
 {:.flip-table}
 ~~~
 
-Two things to keep in mind when using `scroll-table` or `flip-table`:
+Two things to keep in mind when using `scroll-table`, `flip-table`, `scroll-table-small`, or `flip-table-small`:
 * Smaller tables will no longer be stretched to span the full width.
 * The layout engine will not attempt to add line-breaks within cells, making columns that contain text unusually large.
+
+**NOTE**: When using tables in HTML format (i.e. something that looks like `<table>...</table>`),
+add the CSS class by setting the `class` attribute on `table`, e.g. `<table class="scroll-table">...</table>`.
+{:.message}
 
 ## Adding code blocks
 To add a code block without syntax highlighting, simply indent 4 spaces (regular markdown).
@@ -227,6 +231,13 @@ Markdown:
     // > 8
     ~~~
 
+**NOTE**: I advice against using Jekyll's `{ % highlight % } ... { % endhighlight % }` syntax,
+especially when using it together with the `linenos` option,
+as the generated output will break the page during minification (i.e. during a production build).
+You can read more about it [here](https://github.com/penibelst/jekyll-compress-html/issues/71) and
+[here](https://github.com/jekyll/jekyll/issues/4432).
+{:.message}
+
 ## Adding math
 Hydejack supports [math blocks][ksynmath] via [KaTeX][katex].
 
@@ -238,7 +249,6 @@ Instead, `aligned` should be used, e.g. `\begin{aligned} ... \end{aligned}`.
 {:.message}
 
 ### Inline
-
 Example:
 
 Lorem ipsum $$ f(x) = x^2 $$.
@@ -249,7 +259,6 @@ Lorem ipsum $$ f(x) = x^2 $$.
 ~~~
 
 ### Block
-
 Example:
 
 $$
