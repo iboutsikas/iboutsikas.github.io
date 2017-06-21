@@ -66,7 +66,10 @@ The `google_fonts` key is the string necessary to fetch the fonts from Google. Y
 ![Where to find the Google Fonts string]({{ site.baseurl }}/assets/img/docs/google-fonts.png)
 
 ### Using safe web fonts
-If you prefer not to use Google Fonts and use [safe web fonts](http://www.cssfontstack.com/) instead, all you have to do is remove the `google_fonts` key entirely. In this case, `font` and `font_heading` do not have to contain more than one font.
+If you prefer not to use Google Fonts and use [safe web fonts](http://www.cssfontstack.com/) instead,
+all you have to do is set `no_google_fonts` to `true`.
+In this case, `font` and `font_heading` do not have to contain more than one font.
+You may also remove the `google_fonts` key.
 
 ## Choosing a blog layout
 Hydejack features two layouts for showing your blog posts.
