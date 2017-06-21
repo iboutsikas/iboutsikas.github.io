@@ -112,28 +112,32 @@ If you bought the PRO version, you've received a zip archive with the following 
 
 ~~~
 ├── hydejack-docs-6.4.0.pdf
-├── pro_version_complete
-├── upgrade_from_existing
+├── install
+├── upgrade
+├── favicons.psd
 └── sidebar-bg.psd
 ~~~
 
 `hydejack-docs-6.4.0.pdf`
 : This documentation in PDF form.
 
-`pro_version_complete`
+`install`
 : Contains all files and folders needed to create a new blog.
 
-`upgrade_from_existing`
+`upgrade`
 : Contains only the files and folders needed for upgrading form an earlier version of Hydejack (6.0.0 or above).
   See the [migration guide][v6to6] for more.
+
+`favicon.psd`
+: A Photoshop template to help with generating the favicon, apple touch icon, etc.
 
 `sidebar-bg.psd`
 : A Photoshop template for blurred sidebar backgrounds.
 
-Unzip the archive somewhere on your machine, then `cd` *into* the `pro_version_complete` folder, e.g.
+Unzip the archive somewhere on your machine, then `cd` *into* the `install` folder, e.g.
 
 ~~~bash
-$ cd ~/Downloads/hydejack-pro-6.4.0/pro_version_complete/
+$ cd ~/Downloads/hydejack-pro-6.4.0/install/
 ~~~
 
 You can now continue with [running locally](#running-locally).

@@ -21,7 +21,7 @@ Unless otherwise noted, to upgrade from an older to a newer version of Hydejack 
 **NOTE**: If you've modified any of Hydejack's files, changes will be overwritten and you have to redo those changes.
 {:.message}
 
-Buyers of the PRO version will find the files necessary for an upgrade in the `upgrade_from_existing` folder of the downloaded zip archive. Unless you've made any changes to Hydejack's own files, you can safely copy them into your blog directory.
+Buyers of the PRO version will find the files necessary for an upgrade in the `upgrade` folder of the downloaded zip archive. Unless you've made any changes to Hydejack's own files, you can safely copy them into your blog directory.
 
 ### From gem-based to zip
 When upgrading from the gem-based version to any zip version (free *or* PRO) copy to following files and folders:
