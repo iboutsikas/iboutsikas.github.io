@@ -21,6 +21,11 @@ Should you discover a mistake in the docs (or a bug in general) feel free to [op
 * this unordered seed list will be replaced by toc as unordered list
 {:toc}
 
+
+
+
+
+
 # Installation
 There are multiple ways of installing Hydejack.
 The easiest is [via the Ruby gem](#via-gem).
@@ -124,28 +129,32 @@ If you bought the PRO version, you've received a zip archive with the following 
 
 ~~~
 ├── hydejack-docs-6.4.0.pdf
-├── pro_version_complete
-├── upgrade_from_existing
+├── install
+├── upgrade
+├── favicons.psd
 └── sidebar-bg.psd
 ~~~
 
 `hydejack-docs-6.4.0.pdf`
 : This documentation in PDF form.
 
-`pro_version_complete`
+`install`
 : Contains all files and folders needed to create a new blog.
 
-`upgrade_from_existing`
+`upgrade`
 : Contains only the files and folders needed for upgrading form an earlier version of Hydejack (6.0.0 or above).
   See the [migration guide][v6to6] for more.
+
+`favicon.psd`
+: A Photoshop template to help with generating the favicon, apple touch icon, etc.
 
 `sidebar-bg.psd`
 : A Photoshop template for blurred sidebar backgrounds.
 
-Unzip the archive somewhere on your machine, then `cd` *into* the `pro_version_complete` folder, e.g.
+Unzip the archive somewhere on your machine, then `cd` *into* the `install` folder, e.g.
 
 ~~~bash
-$ cd ~/Downloads/hydejack-pro-6.4.0/pro_version_complete/
+$ cd ~/Downloads/hydejack-pro-6.4.0/install/
 ~~~
 
 You can now continue with [running locally](#running-locally).
@@ -179,6 +188,12 @@ You can now point your browser to [http://localhost:4000](http://localhost:4000)
 [v6to6]: #from-hydejack-v6
 
 
+
+
+
+
+
+
 # Migration
 ## From Hydejack v6
 Unless otherwise noted, to upgrade from an older to a newer version of Hydejack (6.0.0 and above), copy to following folders from the zip into your repository.
@@ -191,7 +206,7 @@ Unless otherwise noted, to upgrade from an older to a newer version of Hydejack 
 **NOTE**: If you've modified any of Hydejack's files, changes will be overwritten and you have to redo those changes.
 {:.message}
 
-Buyers of the PRO version will find the files necessary for an upgrade in the `upgrade_from_existing` folder of the downloaded zip archive. Unless you've made any changes to Hydejack's own files, you can safely copy them into your blog directory.
+Buyers of the PRO version will find the files necessary for an upgrade in the `upgrade` folder of the downloaded zip archive. Unless you've made any changes to Hydejack's own files, you can safely copy them into your blog directory.
 
 ### From gem-based to zip
 When upgrading from the gem-based version to any zip version (free *or* PRO) copy to following files and folders:
@@ -347,6 +362,10 @@ Hydejack now has a dedicated layout for about pages.
 To use it, open `about.md` and change the `layout` in the front matter to `about` and delete `{\% include about-short.html author=site.author %\}`.
 
 
+
+
+
+
 # Configuration
 Once Jekyll is running, you can start with basic configuration by adding various entries to `_config.yml`.
 Besides the documentation here, the file is also extensively documented. If you're using the gem-based theme, the `_config.yml` in the root directory is provided by Jekyll and does not contain any documentation. However, you can get the example config file [here](https://github.com/qwtel/hydejack/blob/v6/_config.yml).
@@ -404,7 +423,10 @@ The `google_fonts` key is the string necessary to fetch the fonts from Google. Y
 ![Where to find the Google Fonts string]({{ site.baseurl }}/assets/img/docs/google-fonts.png)
 
 ### Using safe web fonts
-If you prefer not to use Google Fonts and use [safe web fonts](http://www.cssfontstack.com/) instead, all you have to do is remove the `google_fonts` key entirely. In this case, `font` and `font_heading` do not have to contain more than one font.
+If you prefer not to use Google Fonts and use [safe web fonts](http://www.cssfontstack.com/) instead,
+all you have to do is set `no_google_fonts` to `true`.
+In this case, `font` and `font_heading` do not have to contain more than one font.
+You may also remove the `google_fonts` key.
 
 ## Choosing a blog layout
 Hydejack features two layouts for showing your blog posts.
@@ -557,6 +579,11 @@ Conversely, if you want to disable it, you only have to remove the key and no GA
 [posts]: https://qwtel.com/hydejack/posts/
 
 
+
+
+
+
+
 # Basics
 ## Adding a category or tag
 Hydejack allows you to use the `list` layout to show all posts of a particular tag or category.
@@ -587,6 +614,7 @@ Whether you use this method or not, categories will always be part of a posts UR
 
 Categories | `/jekyll/update/2017/04/07/welcome-to-jekyll/`
 Tags       | `/2017/04/07/welcome-to-jekyll/`
+{:.scroll-table-small}
 
 As far as Jekyll is concerned, these are the only differences.
 
@@ -596,6 +624,7 @@ Categories and tags are displayed by Hydejack below the title, after the date. C
 Categories | Welcome to Jekyll¬ 07 Apr 2017 **in** Jekyll / Update
 Tags       | Welcome to Jekyll¬ 07 Apr 2017 **on** Jekyll, Update
 Both       | Welcome to Jekyll¬ 07 Apr 2017 **in** Jekyll / Update **on** Jekyll, Update
+{:.scroll-table-small}
 
 ### Adding a new category or tag
 Be default, categories and tags are rendered as plain text. Further steps are necessary if you want them to link to a page that contains a list of all posts that belong to that category or tag.
@@ -816,7 +845,18 @@ title: Resume
 **NOTE**: You can download the final [`resume.json`]({{ site.baseurl }}{% link assets/resume.json %}){:.no-push-state download="resume.json"} (minified) from the assets folder. When running locally, you can also find it at `_site/assets/resume.json`.
 {:.message}
 
+[about]: https://qwtel.com/hydejack/about/
+[welcome]: https://qwtel.com/hydejack/
+[resume]: https://qwtel.com/hydejack/resume/
+[projects]: https://qwtel.com/hydejack/projects/
+[project]: https://qwtel.com/hydejack/projects/hydejack-v6/
+
 [mipmap]: https://en.wikipedia.org/wiki/Mipmap
+
+
+
+
+
 
 
 # Writing
@@ -826,10 +866,6 @@ so that your posts remain compatible with other Jekyll themes.
 
 **NOTE**: For an introduction to markdown in general, see [Mastering Markdown][mm] and [kramdown Syntax][ksyn].
 {:.message}
-
-## Table of Contents
-* this unordered seed list will be replaced by toc as unordered list
-{:toc}
 
 ## Adding a table of contents
 You can add a generated table of contents to any page by adding `{:toc}` below a list.
@@ -925,7 +961,7 @@ Typically, even smaller tables will be cut off when viewed on a mobile device.
 | First body part |Second cell | Third cell      | fourth cell    |
 
 When it comes to displaying large tables on mobile, there is no one-size-fits-all solution.
-There are however [two straight-forward, CSS-only solutions](https://dbushell.com/2016/03/04/css-only-responsive-tables/) that are included in Hydejack.
+There are however [two straight-forward, CSS-only solutions][rtable] that are included in Hydejack.
 
 ### Scroll Table
 Adding either `scroll-table` or `scroll-table-small` to the CSS classes of a table will enable horizontal scrolling.
@@ -1004,9 +1040,13 @@ Markdown:
 {:.flip-table}
 ~~~
 
-Two things to keep in mind when using `scroll-table` or `flip-table`:
+Two things to keep in mind when using `scroll-table`, `flip-table`, `scroll-table-small`, or `flip-table-small`:
 * Smaller tables will no longer be stretched to span the full width.
 * The layout engine will not attempt to add line-breaks within cells, making columns that contain text unusually large.
+
+**NOTE**: When using tables in HTML format (i.e. something that looks like `<table>...</table>`),
+add the CSS class by setting the `class` attribute on `table`, e.g. `<table class="scroll-table">...</table>`.
+{:.message}
 
 ## Adding code blocks
 To add a code block without syntax highlighting, simply indent 4 spaces (regular markdown).
@@ -1041,6 +1081,13 @@ Markdown:
     // > 8
     ~~~
 
+**NOTE**: I advice against using Jekyll's `{ % highlight % } ... { % endhighlight % }` syntax,
+especially when using it together with the `linenos` option,
+as the generated output will break the page during minification (i.e. during a production build).
+You can read more about it [here](https://github.com/penibelst/jekyll-compress-html/issues/71) and
+[here](https://github.com/jekyll/jekyll/issues/4432).
+{:.message}
+
 ## Adding math
 Hydejack supports [math blocks][ksynmath] via [KaTeX][katex].
 
@@ -1052,7 +1099,6 @@ Instead, `aligned` should be used, e.g. `\begin{aligned} ... \end{aligned}`.
 {:.message}
 
 ### Inline
-
 Example:
 
 Lorem ipsum $$ f(x) = x^2 $$.
@@ -1063,7 +1109,6 @@ Lorem ipsum $$ f(x) = x^2 $$.
 ~~~
 
 ### Block
-
 Example:
 
 $$
@@ -1106,15 +1151,21 @@ $$
 $$
 ~~~
 
-[mm]:https://guides.github.com/features/mastering-markdown/
+[mm]: https://guides.github.com/features/mastering-markdown/
 [ksyn]: https://kramdown.gettalong.org/syntax.html
 [ksyntab]:https://kramdown.gettalong.org/syntax.html#tables
 [ksynmath]: https://kramdown.gettalong.org/syntax.html#math-blocks
-[katex]:https://khan.github.io/KaTeX/
+[katex]: https://khan.github.io/KaTeX/
+[rtable]: https://dbushell.com/2016/03/04/css-only-responsive-tables/
+
+
+
+
+
 
 
 # Scripts
-There are two ways of adding 3rd party scripts.
+There are two ways of adding third party scripts.
 [Embedding](#embedding) is ideal for one-off scripts, e.g. `widgets.js` that is part of embedded tweets (see below).
 Adding [global scripts](#global-scripts) is for scripts that should be loaded on every page.
 
@@ -1127,7 +1178,7 @@ Adding [global scripts](#global-scripts) is for scripts that should be loaded on
 <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">The next version of Hydejack (v6.4.0) will allow embedding 3rd party scripts, like the one that comes with this tweet for example.</p>&mdash; Florian Klampfer (@qwtel) <a href="https://twitter.com/qwtel/status/871098943505039362">June 3, 2017</a></blockquote>
 
 ## Embedding
-Hydejack supports embedding 3rd party scripts directly inside markdown content. This will work in most cases, except when a script can not be loaded on a page more than once (this will occur when a user navigates to the same page twice).
+Hydejack supports embedding third party scripts directly inside markdown content. This will work in most cases, except when a script can not be loaded on a page more than once (this will occur when a user navigates to the same page twice).
 
 **NOTE**: Adding "raw" script tags will make the page slow, unless they have the `async` or `defer` attribute set. For more see [below](#async-vs-defer-vs-loadjsdeferred).
 {:.message}
@@ -1218,6 +1269,11 @@ Other events you can register on `_yPushState` include
 : All embedded script tags have been inserted into the document and have finished loading.
 
 
+
+
+
+
+
 # Build
 ## Building locally
 When building Hydejack it is important to set the environment variable `JEKYLL_ENV` to `production`.
@@ -1295,13 +1351,15 @@ $ cd ..
 More on [user, organization, and project pages](https://help.github.com/articles/user-organization-and-project-pages/).
 
 
-Continue with [Advanced]({{ site.baseurl }}{% link docs/6.4.0/advanced.md %}){:.heading data-flip="title"}
-{:.read-more}
-
 [deploy]: https://jekyllrb.com/docs/deployment-methods/
 [lsa]: https://en.wikipedia.org/wiki/Latent_semantic_analysis
 [crb]: http://www.classifier-reborn.com/
 [lsi]: http://www.classifier-reborn.com/lsi
+
+
+
+
+
 
 
 # Advanced
@@ -1370,8 +1428,17 @@ which will build a non-minified, non-transpiled (ES2016) version of `hydejack.js
 
 # Versions
 ## v6.4.0
-June 16 2017
+June 21 2017
 {:.heading.post-date}
+
+In this release I've added a "Other Projects" section to the bottom of each project page,
+making it easier for users to navigate through your collection and discover other projects.
+Also, it's now possible to display larger (data-) tables that were previously cut off (especially on mobile devices).
+
+For more on how to add tables, see the new section in [docs/writing][writing].
+
+Smaller changes include a reduced usage of horizontal lines and a more "semantic" use of `hr` elements.
+Specifically, the semantics of the resume layout have been improved.
 
 ### Minor
 * Added "Other Projects" section to the bottom of the project layout (similar to "Related Posts")
@@ -1379,31 +1446,39 @@ June 16 2017
 * Added section on tables to [docs/writing][writing]
 * Reduced use of `<hr/>` elements, using CSS borders instead.
 * Improved semantic HTML of resume
+* Follow favicon best practices and include example icons
+* Added `no_google_fonts` option
 
 ### Design
 * Reduced number of horizontal lines, making many layouts feel less "cluttered" (esp. `blog` layout)
 * Made link hover styles consistent across the board
-* Visually separate `thead` and `tbody` and `tfoot` within tables.
+* Visually separated `thead` and `tbody` and `tfoot` within tables.
 * Changed RSS and email icons
+* Removed top margin for consecutive headings, e.g. when using `h3` immediately after `h2`.
+
+### Fixes
+* Fixed bug that caused inline math to be moved to the end of a paragraph when dynamically loading a page.
+* Fixed bug that caused layout to break in IE11.
+* Fixed bug that caused the project animation to "jump" when using long project titles.
+* No more empty attributes on `img` tags.
 
 ## v6.3.0
 June 6 2017
 {:.heading.post-date}
 
-This release makes including 3rd party plugins easier.
+This release makes including third party plugins easier.
 Until now, the push state approach to loading new pages has been interfering with embedded `script` tags.
 This version changes this by simulating the sequential loading of script tags on a fresh page load.
 
 This approach should work in a majority of cases, but can still cause problems with scripts that can't be added more than once per page.
-
-If an issue can't be resolved, there's now also the option to disable push state by setting `disable_push_state: true` in `config.yml`.
+If an issue can't be resolved, there's now the option to disable push state by setting `disable_push_state: true` in `config.yml`.
 
 ### Minor
 * Support embedding `script` tags in markdown content
 * Add `disable_push_state` option to `_config.yml`
 * Add `disable_drawer` option to `_config.yml`
 * Rename syntax highlighting file to `syntax.scss`
-* Added chapter on 3rd party scripts to documentation
+* Added [chapter on third party scripts][scripts] to documentation
 
 ### Design
 * Add subtle intro animation
@@ -1462,12 +1537,12 @@ Pages are now loaded and swapped through JavaScript. This has a number of effect
 * Added `not-found` layout.
 * Added `redirect` layout
 
-See the [the migration guide](#migration) for instructions on how to upgrade.
+See the [the migration guide][migration] for instructions on how to upgrade.
 
 ### Minor
 * The "accent" font (heading font) is now used for all headings. This gives the theme a "bolder" look and was necessary for the animation: link => heading.
 * Changed default text font from "PT Serif" to "Noto Serif".
-* Added [CSS classes](#writing) for styling markdown content.
+* Added [CSS classes][writing] for styling markdown content.
 * Links have a new style. They now always display an underline to make the choice of the link color less critical (darker colors were hard to distinguish from regular text).
 * Made social media icons larger and easier to tap.
 * Social media icons are now also part of the "about" sections of a post.
@@ -1603,6 +1678,13 @@ Oct 15 2013
 {:.heading.post-date}
 
 [tag]: http://www.minddust.com/post/tags-and-categories-on-github-pages/
+[migration]: #migration
+[writing]: #writing
+[scripts]: #scripts
+
+
+
+
 
 
 # Licenses
@@ -1897,11 +1979,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-[about]: {{ site.baseurl }}{% link about.md %}
-[welcome]: {{ site.baseurl }}{% link index.md %}
-[resume]: {{ site.baseurl }}{% link resume.md %}
-[projects]: {{ site.baseurl }}{% link projects.md %}
-[project]: {{ site.baseurl }}{% link _projects/hydejack-v6.md %}
 
 *[FLIP]: First Last Invert Play
 *[LSI]: Latent Semantic Indexer
