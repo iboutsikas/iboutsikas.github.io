@@ -2,6 +2,7 @@
 layout: page
 title: Documentation
 sitemap: false
+redirect_from:
   - /docs/latest/complete/
   - /docs/latest/print/
   - /docs/print/
