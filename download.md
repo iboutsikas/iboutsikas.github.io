@@ -76,11 +76,11 @@ a.simple-goods-btn{text-decoration:none !important}.simple-goods-btn{-moz-box-si
 [portfolio]: {{ site.baseurl }}{% link projects.md %}
 [resume]: {{ site.baseurl }}{% link resume.md %}
 [welcome]: {{ site.baseurl }}{% link index.md %}
-[pro]: {{ site.baseurl }}{% link docs/6.4.0/pro-license.md %}
-[docs]: {{ site.baseurl }}{% link docs/6.4.0/index.md %}
+[pro]: {{ site.baseurl }}{% link docs/6.4.1/pro-license.md %}
+[docs]: {{ site.baseurl }}{% link docs/6.4.1/index.md %}
 
-[download]: https://github.com/qwtel/hydejack/releases/tag/v6.4.0
-[gem]: https://rubygems.org/gems/jekyll-theme-hydejack/versions/6.4.0
+[download]: https://github.com/qwtel/hydejack/releases/tag/v6.4.1
+[gem]: https://rubygems.org/gems/jekyll-theme-hydejack/versions/6.4.1
 [buy]: https://app.simplegoods.co/i/AQTTVBOE
 
 [gpss]: https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fqwtel.com%2Fhydejack%2F

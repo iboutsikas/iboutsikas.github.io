@@ -14,7 +14,7 @@ Should you discover a mistake in the docs (or a bug in general) feel free to [op
 **NOTE**: While this manual tries to be beginner-friendly, as a user of Jekyll it is assumed that you are comfortable with editing multiple text files and running shell commands.
 {:.message}
 
-**NOTE**: This document was created using Hydejack's print layout. If you prefer to read it the documentation in your browser, you can find it [here]({{ site.baseurl }}{% link docs/6.4.0/index.md %}).
+**NOTE**: This document was created using Hydejack's print layout. If you prefer to read it the documentation in your browser, you can find it [here]({{ site.baseurl }}{% link docs/6.4.1/index.md %}).
 {:.message}
 
 ## Table of Contents
@@ -128,14 +128,14 @@ You can now continue with [running locally](#running-locally).
 If you bought the PRO version, you've received a zip archive with the following contents:
 
 ~~~
-├── hydejack-docs-6.4.0.pdf
+├── hydejack-docs-6.4.1.pdf
 ├── install
 ├── upgrade
 ├── favicons.psd
 └── sidebar-bg.psd
 ~~~
 
-`hydejack-docs-6.4.0.pdf`
+`hydejack-docs-6.4.1.pdf`
 : This documentation in PDF form.
 
 `install`
@@ -154,7 +154,7 @@ If you bought the PRO version, you've received a zip archive with the following 
 Unzip the archive somewhere on your machine, then `cd` *into* the `install` folder, e.g.
 
 ~~~bash
-$ cd ~/Downloads/hydejack-pro-6.4.0/install/
+$ cd ~/Downloads/hydejack-pro-6.4.1/install/
 ~~~
 
 You can now continue with [running locally](#running-locally).
@@ -1171,11 +1171,11 @@ Adding [global scripts](#global-scripts) is for scripts that should be loaded on
 
 ```html
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">The next version of Hydejack (v6.4.0) will allow embedding 3rd party scripts, like the one that comes with this tweet for example.</p>&mdash; Florian Klampfer (@qwtel) <a href="https://twitter.com/qwtel/status/871098943505039362">June 3, 2017</a></blockquote>
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">The next version of Hydejack (v6.4.1) will allow embedding 3rd party scripts, like the one that comes with this tweet for example.</p>&mdash; Florian Klampfer (@qwtel) <a href="https://twitter.com/qwtel/status/871098943505039362">June 3, 2017</a></blockquote>
 ```
 
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">The next version of Hydejack (v6.4.0) will allow embedding 3rd party scripts, like the one that comes with this tweet for example.</p>&mdash; Florian Klampfer (@qwtel) <a href="https://twitter.com/qwtel/status/871098943505039362">June 3, 2017</a></blockquote>
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">The next version of Hydejack (v6.4.1) will allow embedding 3rd party scripts, like the one that comes with this tweet for example.</p>&mdash; Florian Klampfer (@qwtel) <a href="https://twitter.com/qwtel/status/871098943505039362">June 3, 2017</a></blockquote>
 
 ## Embedding
 Hydejack supports embedding third party scripts directly inside markdown content. This will work in most cases, except when a script can not be loaded on a page more than once (this will occur when a user navigates to the same page twice).
@@ -1427,6 +1427,12 @@ which will build a non-minified, non-transpiled (ES2016) version of `hydejack.js
 
 
 # Versions
+## v6.4.1
+June 23 2017
+{:.heading.post-date}
+
+* Fix invalid color hex
+
 ## v6.4.0
 June 21 2017
 {:.heading.post-date}

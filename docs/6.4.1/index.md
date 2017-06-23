@@ -34,13 +34,13 @@ Should you discover a mistake in the docs (or a bug in general) feel free to [op
 * [Licenses]{:.heading data-flip="title"} -- Open Source license texts of libraries used by Hydejack.
 {:.related-posts.faded}
 
-[installation]: {{ site.baseurl }}{% link docs/6.4.0/installation.md %}
-[configuration]: {{ site.baseurl }}{% link docs/6.4.0/configuration.md %}
-[migration]: {{ site.baseurl }}{% link docs/6.4.0/migration.md %}
-[basics]: {{ site.baseurl }}{% link docs/6.4.0/basics.md %}
-[writing]: {{ site.baseurl }}{% link docs/6.4.0/writing.md %}
-[scripts]: {{ site.baseurl }}{% link docs/6.4.0/scripts.md %}
-[build]: {{ site.baseurl }}{% link docs/6.4.0/build.md %}
-[advanced]: {{ site.baseurl }}{% link docs/6.4.0/advanced.md %}
-[versions]: {{ site.baseurl }}{% link docs/6.4.0/versions.md %}
-[licenses]: {{ site.baseurl }}{% link docs/6.4.0/licenses.md %}
+[installation]: {{ site.baseurl }}{% link docs/6.4.1/installation.md %}
+[configuration]: {{ site.baseurl }}{% link docs/6.4.1/configuration.md %}
+[migration]: {{ site.baseurl }}{% link docs/6.4.1/migration.md %}
+[basics]: {{ site.baseurl }}{% link docs/6.4.1/basics.md %}
+[writing]: {{ site.baseurl }}{% link docs/6.4.1/writing.md %}
+[scripts]: {{ site.baseurl }}{% link docs/6.4.1/scripts.md %}
+[build]: {{ site.baseurl }}{% link docs/6.4.1/build.md %}
+[advanced]: {{ site.baseurl }}{% link docs/6.4.1/advanced.md %}
+[versions]: {{ site.baseurl }}{% link docs/6.4.1/versions.md %}
+[licenses]: {{ site.baseurl }}{% link docs/6.4.1/licenses.md %}

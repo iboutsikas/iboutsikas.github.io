@@ -111,14 +111,14 @@ You can now continue with [running locally](#running-locally).
 If you bought the PRO version, you've received a zip archive with the following contents:
 
 ~~~
-├── hydejack-docs-6.4.0.pdf
+├── hydejack-docs-6.4.1.pdf
 ├── install
 ├── upgrade
 ├── favicons.psd
 └── sidebar-bg.psd
 ~~~
 
-`hydejack-docs-6.4.0.pdf`
+`hydejack-docs-6.4.1.pdf`
 : This documentation in PDF form.
 
 `install`
@@ -137,7 +137,7 @@ If you bought the PRO version, you've received a zip archive with the following 
 Unzip the archive somewhere on your machine, then `cd` *into* the `install` folder, e.g.
 
 ~~~bash
-$ cd ~/Downloads/hydejack-pro-6.4.0/install/
+$ cd ~/Downloads/hydejack-pro-6.4.1/install/
 ~~~
 
 You can now continue with [running locally](#running-locally).
@@ -167,10 +167,10 @@ $ bundle exec jekyll serve
 You can now point your browser to [http://localhost:4000](http://localhost:4000) and see Hydejack in action.
 
 
-Continue with [Configuration]({{ site.baseurl }}{% link docs/6.4.0/configuration.md %}){:.heading data-flip="title"}
+Continue with [Configuration]({{ site.baseurl }}{% link docs/6.4.1/configuration.md %}){:.heading data-flip="title"}
 {:.read-more}
 
 
-[migration]: {{ site.baseurl }}{% link docs/6.4.0/migration.md %}
-[v5to6]: {{ site.baseurl }}{% link docs/6.4.0/migration.md %}#from-hydejack-v5
-[v6to6]: {{ site.baseurl }}{% link docs/6.4.0/migration.md %}#from-hydejack-v6
+[migration]: {{ site.baseurl }}{% link docs/6.4.1/migration.md %}
+[v5to6]: {{ site.baseurl }}{% link docs/6.4.1/migration.md %}#from-hydejack-v5
+[v6to6]: {{ site.baseurl }}{% link docs/6.4.1/migration.md %}#from-hydejack-v6

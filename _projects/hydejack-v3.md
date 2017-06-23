@@ -114,5 +114,5 @@ as each tag requires some setup work. I tend to think of it as categories that c
    ~~~
 
 
-[docs]: {{ site.baseurl }}{% link docs/6.4.0/index.md %}
+[docs]: {{ site.baseurl }}{% link docs/6.4.1/index.md %}
 [tag]: http://www.minddust.com/post/tags-and-categories-on-github-pages/

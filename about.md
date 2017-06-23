@@ -47,8 +47,8 @@ You can read it [here][docs], or in the [repository's wiki][wiki], or [download 
 [portfolio]: {{ site.baseurl }}{% link projects.md %}
 [resume]: {{ site.baseurl }}{% link resume.md %}
 [welcome]: {{ site.baseurl }}{% link index.md  %}
-[pro]: {{ site.baseurl }}{% link docs/6.4.0/pro-license.md %}
-[docs]: {{ site.baseurl }}{% link docs/6.4.0/index.md %}
+[pro]: {{ site.baseurl }}{% link docs/6.4.1/pro-license.md %}
+[docs]: {{ site.baseurl }}{% link docs/6.4.1/index.md %}
 
 [wiki]: https://github.com/qwtel/hydejack/wiki
-[download]: https://github.com/qwtel/hydejack/releases/tag/v6.4.0
+[download]: https://github.com/qwtel/hydejack/releases/tag/v6.4.1

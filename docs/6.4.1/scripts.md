@@ -12,11 +12,11 @@ Adding [global scripts](#global-scripts) is for scripts that should be loaded on
 
 ```html
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">The next version of Hydejack (v6.4.0) will allow embedding 3rd party scripts, like the one that comes with this tweet for example.</p>&mdash; Florian Klampfer (@qwtel) <a href="https://twitter.com/qwtel/status/871098943505039362">June 3, 2017</a></blockquote>
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">The next version of Hydejack (v6.4.1) will allow embedding 3rd party scripts, like the one that comes with this tweet for example.</p>&mdash; Florian Klampfer (@qwtel) <a href="https://twitter.com/qwtel/status/871098943505039362">June 3, 2017</a></blockquote>
 ```
 
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">The next version of Hydejack (v6.4.0) will allow embedding 3rd party scripts, like the one that comes with this tweet for example.</p>&mdash; Florian Klampfer (@qwtel) <a href="https://twitter.com/qwtel/status/871098943505039362">June 3, 2017</a></blockquote>
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">The next version of Hydejack (v6.4.1) will allow embedding 3rd party scripts, like the one that comes with this tweet for example.</p>&mdash; Florian Klampfer (@qwtel) <a href="https://twitter.com/qwtel/status/871098943505039362">June 3, 2017</a></blockquote>
 
 ## Table of Contents
 * this unordered seed list will be replaced by toc as unordered list
@@ -113,5 +113,5 @@ Other events you can register on `_yPushState` include
 `y-push-state-load`
 : All embedded script tags have been inserted into the document and have finished loading.
 
-Continue with [Build]({{ site.baseurl }}{% link docs/6.4.0/build.md %}){:.heading data-flip="title"}
+Continue with [Build]({{ site.baseurl }}{% link docs/6.4.1/build.md %}){:.heading data-flip="title"}
 {:.read-more}
