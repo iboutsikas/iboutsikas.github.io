@@ -8,10 +8,8 @@ qwtel:
   # Used at the bottom of each page and at the top of the `about` layout
   # Markdown enabled, can use multiple paragraphs (enabled by `|`)
   about:             |
-    Hi, I'm Florian or [`@qwtel`](https://www.twitter.com/qwtel), which isn't an acronym,
-    I just [wanted a short username](https://qwtel.com/how-to-find-a-short-username) and that one happened to be available.
-
-    I'm the the developer and designer of Hydejack, the Jekyll theme you're currently looking at.
+    Hi, I'm Florian or [`@qwtel`](https://www.twitter.com/qwtel), and
+    I'm the the developer of Hydejack, the Jekyll theme you're currently looking at.
 
     Questions? Send a mail to [mail@qwtel.com](mailto:mail@qwtel.com) or tweet [`@qwtel`](https://www.twitter.com/qwtel).
 
