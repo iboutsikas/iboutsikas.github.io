@@ -29,18 +29,20 @@ Should you discover a mistake in the docs (or a bug in general) feel free to [op
 * [Advanced]{:.heading data-flip="title"} -- Guides for more advanced tasks.
 {:.related-posts.faded}
 
-## Miscellaneous
-* [Versions]{:.heading data-flip="title"} -- Version history of Hydejack.
-* [Licenses]{:.heading data-flip="title"} -- Open Source license texts of libraries used by Hydejack.
+## Other
+* [LICENSE]{:.heading data-flip="title"} -- The license of this project.
+* [NOTICE]{:.heading data-flip="title"} -- Parts of this program are provided under separate licenses.
+* [CHANGELOG]{:.heading data-flip="title"} -- Version history of Hydejack.
 {:.related-posts.faded}
 
-[installation]: {{ site.baseurl }}{% link docs/6.4.1/installation.md %}
-[configuration]: {{ site.baseurl }}{% link docs/6.4.1/configuration.md %}
-[migration]: {{ site.baseurl }}{% link docs/6.4.1/migration.md %}
-[basics]: {{ site.baseurl }}{% link docs/6.4.1/basics.md %}
-[writing]: {{ site.baseurl }}{% link docs/6.4.1/writing.md %}
-[scripts]: {{ site.baseurl }}{% link docs/6.4.1/scripts.md %}
-[build]: {{ site.baseurl }}{% link docs/6.4.1/build.md %}
-[advanced]: {{ site.baseurl }}{% link docs/6.4.1/advanced.md %}
-[versions]: {{ site.baseurl }}{% link docs/6.4.1/versions.md %}
-[licenses]: {{ site.baseurl }}{% link docs/6.4.1/licenses.md %}
+[installation]: installation.md
+[configuration]: configuration.md
+[migration]: migration.md
+[basics]: basics.md
+[writing]: writing.md
+[scripts]: scripts.md
+[build]: build.md
+[advanced]: advanced.md
+[LICENSE]: ../../LICENSE.md
+[NOTICE]: ../../NOTICE.md
+[CHANGELOG]: ../../CHANGELOG.md

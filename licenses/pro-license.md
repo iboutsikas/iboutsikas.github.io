@@ -11,7 +11,7 @@ redirect_from:
 * Commercial use allowed
 * Can modify source code
 * Can sell license to one client
-* Parts of software are provided under [separate licenses][1]
+* Parts of software are provided under [separate licenses](../NOTICE.md)
 
 ## Terms and Conditions
 1.  **Preamble:** This Agreement governs the relationship between you (hereinafter: Licensee) and
@@ -143,5 +143,3 @@ redirect_from:
 11. **Governing Law, Jurisdiction:** Licensee hereby agrees not to initiate class-action lawsuits against Licensor in
     relation to this license and to compensate Licensor for any legal fees, cost or attorney fees should any claim
     brought by Licensee against Licensor be denied, in part or in full.
-
-[1]: {{ site.baseurl }}{% link docs/6.4.1/licenses.md %}

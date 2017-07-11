@@ -167,10 +167,10 @@ $ bundle exec jekyll serve
 You can now point your browser to [http://localhost:4000](http://localhost:4000) and see Hydejack in action.
 
 
-Continue with [Configuration]({{ site.baseurl }}{% link docs/6.4.1/configuration.md %}){:.heading data-flip="title"}
+Continue with [Configuration](configuration.md){:.heading data-flip="title"}
 {:.read-more}
 
 
-[migration]: {{ site.baseurl }}{% link docs/6.4.1/migration.md %}
-[v5to6]: {{ site.baseurl }}{% link docs/6.4.1/migration.md %}#from-hydejack-v5
-[v6to6]: {{ site.baseurl }}{% link docs/6.4.1/migration.md %}#from-hydejack-v6
+[migration]: migration.md
+[v5to6]: migration.md#from-hydejack-v5
+[v6to6]: migration.md#from-hydejack-v6

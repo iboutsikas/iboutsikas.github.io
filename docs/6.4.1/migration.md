@@ -116,7 +116,7 @@ You can take a look at the [full `authors.yml`](https://github.com/qwtel/hydejac
 
     If you have only one photo, you can just provide the URL directly, e.g. `picture: <url>`.
 
-For more information, see [Adding an author]({{ site.baseurl }}{% link docs/6.4.1/configuration.md %}#adding-an-author).
+For more information, see [Adding an author](configuration.md#adding-an-author).
 
 ### Restoring the tags
 1.  Delete the `tag` folder.
@@ -176,5 +176,5 @@ As mentioned above, don't forget to rename `disqus` to `disqus_shortname` in `_c
 Hydejack now has a dedicated layout for about pages.
 To use it, open `about.md` and change the `layout` in the front matter to `about` and delete `{\% include about-short.html author=site.author %\}`.
 
-Continue with [Configuration]({{ site.baseurl }}{% link docs/6.4.1/configuration.md %}){:.heading data-flip="title"}
+Continue with [Configuration](configuration.md){:.heading data-flip="title"}
 {:.read-more}

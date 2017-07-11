@@ -71,12 +71,14 @@ a.simple-goods-btn{text-decoration:none !important}.simple-goods-btn{-moz-box-si
 [^2]: Actual page load speed depends on your hosting provider, resolution of embedded images and usage of 3rd party plugins.
 [^3]: Transactions secured by [Stripe](https://stripe.com). Downloads handled by [Simple Goods](https://simplegoods.co/).
 
-[blog]: {{ site.baseurl }}{% link blog.md %}
-[portfolio]: {{ site.baseurl }}{% link projects.md %}
-[resume]: {{ site.baseurl }}{% link resume.md %}
-[welcome]: {{ site.baseurl }}{% link index.md %}
-[pro]: {{ site.baseurl }}{% link docs/6.4.1/pro-license.md %}
-[docs]: {{ site.baseurl }}{% link docs/6.4.1/index.md %}
+[blog]: blog.md
+[portfolio]: projects.md
+[resume]: resume.md
+[welcome]: index.md
+[gpl-3.0]: LICENSE.md
+[pro]: licenses/pro-license.md
+[dev]: licenses/pro-license.md
+[docs]: docs/6.4.1/index.md
 
 [download]: https://github.com/qwtel/hydejack/releases/tag/v6.4.1
 [gem]: https://rubygems.org/gems/jekyll-theme-hydejack/versions/6.4.1

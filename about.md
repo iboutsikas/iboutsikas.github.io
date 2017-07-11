@@ -43,12 +43,11 @@ You can read it [here][docs], or in the [repository's wiki][wiki], or [download 
 [^1]: Applies after the initial page load.  
 [^2]: Actual page load speed depends on your hosting provider as well as discipline regarding resolution of images and usage of 3rd party plugins.
 
-[blog]: {{ site.baseurl }}{% link blog.md %}
-[portfolio]: {{ site.baseurl }}{% link projects.md %}
-[resume]: {{ site.baseurl }}{% link resume.md %}
-[welcome]: {{ site.baseurl }}{% link index.md  %}
-[pro]: {{ site.baseurl }}{% link docs/6.4.1/pro-license.md %}
-[docs]: {{ site.baseurl }}{% link docs/6.4.1/index.md %}
+[blog]: blog.md
+[portfolio]: projects.md
+[resume]: resume.md
+[welcome]: index.md
+[docs]: docs/6.4.1/index.md
 
 [wiki]: https://github.com/qwtel/hydejack/wiki
 [download]: https://github.com/qwtel/hydejack/releases/tag/v6.4.1

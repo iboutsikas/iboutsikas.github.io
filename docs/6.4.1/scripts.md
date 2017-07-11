@@ -113,5 +113,5 @@ Other events you can register on `_yPushState` include
 `y-push-state-load`
 : All embedded script tags have been inserted into the document and have finished loading.
 
-Continue with [Build]({{ site.baseurl }}{% link docs/6.4.1/build.md %}){:.heading data-flip="title"}
+Continue with [Build](build.md){:.heading data-flip="title"}
 {:.read-more}
