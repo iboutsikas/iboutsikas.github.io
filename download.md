@@ -12,22 +12,43 @@ A [portfolio], a [resume] layout and a [welcome] page to feature your favorite p
 
 This table details what is and isn't included in each respective version.
 
-| | Free Version | PRO Version |
-|:-|:-:|:-:|
-| Blog | ✔️ | ✔️ |
-| Features (see below) | ✔️ | ✔️ |
-| [Portfolio] | | ✔️ |
-| [Resume] | | ✔️ |
-| [Welcome] | | ✔️ |
-| Briefcase full of $100 bills | | |
+<!--
+| Version                          | Free               | PRO                | Developer          |
+|:---------------------------------|:------------------:|:------------------:|:------------------:|
+| Blog Layout                      | &#x2714;           | &#x2714;           | &#x2714;           |
+| Features (see below)             | &#x2714;           | &#x2714;           | &#x2714;           |
+| [Portfolio] Layout               | &#x2714;           | &#x2714;           | &#x2714;           |
+| [Resume] Layout                  |                    | &#x2714;           | &#x2714;           |
+| [Welcome] Layout                 |                    | &#x2714;           | &#x2714;           |
+| [y-drawer] Developer License     |                    |                    | &#x2714;           |
+| [y-push-state] Developer License |                    |                    | &#x2714;           |
+| Beginner Course -- Japanese      |                    |                    |                    |
+|----------------------------------|--------------------|--------------------|--------------------|
+| License                          | [GPL-3.0]          | [PRO]              | [DEV]              |
+| Price                            | Free               | $34                | $99                |
+|==================================|====================|====================|====================|
+| | [**Download on GitHub**][download]<br/> -- or -- <br/>[**Use the RubyGem**][gem] | [Buy Now – $34][buy]{:.simple-goods-btn style="background-color:#4f86aa!important"} [^3] | [Buy Now – $99][buy]{:.simple-goods-btn style="background-color:#4f86aa!important"} [^3] |
+{:.scroll-table-small}
+ -->
+
+| Free Version | PRO Version | Developer Version |
+|:-:|:-:|:-:|
+| Blog Layout | Blog Layout | Blog Layout |
+| Features (see blow) | Features (see below) | Features (see below) |
+|  | Portfolio Layout | Portfolio Layout |
+|  | Resume Layout | Resume Layout |
+|  | Welcome Layout | Welcome Layout |
+|  |  | [y-drawer] Developer License |
+|  |  | [y-push-state] Developer License |
 |---
-| License | MIT | [PRO] |
-| Price | Free | $29 |
-|===
-| | [**Download on GitHub**][download]<br/> -- or -- <br/>[**Use the RubyGem**][gem] | [Buy Now - $29][buy]{:.simple-goods-btn style="background-color:#4f86aa!important"} [^3] |
+| [GPL-3.0]-licensed | [PRO License][pro] | [DEV License][dev] |
+| Free | $34 | $99 |
+|====
+| [**Download on GitHub**][download]<br/> -- or -- <br/>[**Use the RubyGem**][gem] | [Buy Now – $34][buy]{:.simple-goods-btn style="background-color:#4f86aa!important"} [^3] | [Buy Now – $99][buy]{:.simple-goods-btn style="background-color:#4f86aa!important"} [^3] |
+{:style="table-layout:fixed"}
 
 ## Features
-Both the PRO *and* free version includes all of the features listed below:
+All versions include *all* of these features:
 
 * Full in-app page loading --- no Flash of White, no Flash of Unstyled Content[^1]
 * Advanced animations, inspired by Material Design
@@ -47,8 +68,6 @@ Both the PRO *and* free version includes all of the features listed below:
 * RSS feed
 * Print layout
 
-Questions? Send a mail to [mail@qwtel.com](mailto:mail@qwtel.com), or tweet [`@qwtel`](https://www.twitter.com/qwtel).
-
 ## Free Version
 The Free Version features the design and tech of Hydejack, but only supports basic blogging.
 
@@ -59,7 +78,14 @@ The PRO Version aims to be the complete package for professionals on the web.
 It includes layouts for your [portfolio], your [resume] (with support for [JSON Resume](https://jsonresume.org/)) and
 a [welcome] page to introduce yourself to visitors.
 
-[Buy Now - $29][buy]{:.simple-goods-btn style="background-color:#4f86aa!important"} [^3]
+[Buy Now - $34][buy]{:.simple-goods-btn style="background-color:#4f86aa!important"} [^3]
+
+## DEV Version
+Buy this version if you are a developer yourself and intend to use the drawer menu and push state implementation in a different product.
+You can obtain licenses for these production independently.
+
+
+[Buy Now - $99][buy]{:.simple-goods-btn style="background-color:#4f86aa!important"} [^3]
 
 {% include author.html author=site.data.authors.qwtel heading="Contact" %}
 
@@ -79,6 +105,9 @@ a.simple-goods-btn{text-decoration:none !important}.simple-goods-btn{-moz-box-si
 [pro]: licenses/pro-license.md
 [dev]: licenses/pro-license.md
 [docs]: docs/6.4.1/index.md
+
+[y-drawer]: https://qwtel.com/y-drawer/
+[y-push-state]: https://qwtel.com/y-push-state/
 
 [download]: https://github.com/qwtel/hydejack/releases/tag/v6.4.1
 [gem]: https://rubygems.org/gems/jekyll-theme-hydejack/versions/6.4.1
