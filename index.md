@@ -29,6 +29,6 @@ Oh, and there's also the welcome layout, which features the author's *short desc
 some arbitrary *content*, as well as *selected projects* and *selected posts*.
 
 
-[blog]: {{ site.baseurl }}{% link blog.md %}
-[portfolio]: {{ site.baseurl }}{% link projects.md %}
-[resume]: {{ site.baseurl }}{% link resume.md %}
+[blog]: blog.md
+[portfolio]: projects.md
+[resume]: resume.md

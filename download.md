@@ -12,25 +12,23 @@ A [portfolio], a [resume] layout and a [welcome] page to feature your favorite p
 
 This table details what is and isn't included in each respective version.
 
-<!--
-| Version                          | Free               | PRO                | Developer          |
-|:---------------------------------|:------------------:|:------------------:|:------------------:|
-| Blog Layout                      | &#x2714;           | &#x2714;           | &#x2714;           |
-| Features (see below)             | &#x2714;           | &#x2714;           | &#x2714;           |
-| [Portfolio] Layout               | &#x2714;           | &#x2714;           | &#x2714;           |
-| [Resume] Layout                  |                    | &#x2714;           | &#x2714;           |
-| [Welcome] Layout                 |                    | &#x2714;           | &#x2714;           |
-| [y-drawer] Developer License     |                    |                    | &#x2714;           |
-| [y-push-state] Developer License |                    |                    | &#x2714;           |
-| Beginner Course -- Japanese      |                    |                    |                    |
-|----------------------------------|--------------------|--------------------|--------------------|
-| License                          | [GPL-3.0]          | [PRO]              | [DEV]              |
-| Price                            | Free               | $34                | $99                |
-|==================================|====================|====================|====================|
-| | [**Download on GitHub**][download]<br/> -- or -- <br/>[**Use the RubyGem**][gem] | [Buy Now – $34][buy]{:.simple-goods-btn style="background-color:#4f86aa!important"} [^3] | [Buy Now – $99][buy]{:.simple-goods-btn style="background-color:#4f86aa!important"} [^3] |
-{:.scroll-table-small}
- -->
 
+| Version                          | Free               | PRO                |
+|:---------------------------------|:------------------:|:------------------:|
+| Blog                             | &#x2714;           | &#x2714;           |
+| Features (see below)             | &#x2714;           | &#x2714;           |
+| [Portfolio] Layout               |                    | &#x2714;           |
+| [Resume] Layout                  |                    | &#x2714;           |
+| [Welcome] Layout                 |                    | &#x2714;           |
+|----------------------------------|--------------------|--------------------|
+| License                          | [MIT][license]     | [PRO]              |
+| Price                            | Free               | $29                |
+|==================================|====================|====================|
+| | [**Download on GitHub**][download]<br/> -- or -- <br/>[**Use the RubyGem**][gem] | [Buy Now – $29][buy]{:.simple-goods-btn style="background-color:#4f86aa!important"} [^3] |
+{:.scroll-table-small}
+
+
+{% comment %}
 | Free Version | PRO Version | Developer Version |
 |:-:|:-:|:-:|
 | Blog Layout | Blog Layout | Blog Layout |
@@ -46,6 +44,7 @@ This table details what is and isn't included in each respective version.
 |====
 | [**Download on GitHub**][download]<br/> -- or -- <br/>[**Use the RubyGem**][gem] | [Buy Now – $34][buy]{:.simple-goods-btn style="background-color:#4f86aa!important"} [^3] | [Buy Now – $99][buy]{:.simple-goods-btn style="background-color:#4f86aa!important"} [^3] |
 {:style="table-layout:fixed"}
+{% endcomment %}
 
 ## Features
 All versions include *all* of these features:
@@ -80,12 +79,14 @@ a [welcome] page to introduce yourself to visitors.
 
 [Buy Now - $34][buy]{:.simple-goods-btn style="background-color:#4f86aa!important"} [^3]
 
+{% comment %}
 ## DEV Version
 Buy this version if you are a developer yourself and intend to use the drawer menu and push state implementation in a different product.
 You can obtain licenses for these production independently.
 
 
 [Buy Now - $99][buy]{:.simple-goods-btn style="background-color:#4f86aa!important"} [^3]
+{% endcomment %}
 
 {% include author.html author=site.data.authors.qwtel heading="Contact" %}
 
@@ -101,9 +102,8 @@ a.simple-goods-btn{text-decoration:none !important}.simple-goods-btn{-moz-box-si
 [portfolio]: projects.md
 [resume]: resume.md
 [welcome]: index.md
-[gpl-3.0]: LICENSE.md
-[pro]: licenses/pro-license.md
-[dev]: licenses/pro-license.md
+[license]: LICENSE.md
+[pro]: licenses/PRO-license.md
 [docs]: docs/6.4.1/index.md
 
 [y-drawer]: https://qwtel.com/y-drawer/
