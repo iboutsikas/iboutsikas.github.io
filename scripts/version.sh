@@ -4,30 +4,16 @@ const { promisify } = require('util');
 const { resolve } = require('path');
 const fs = require('fs');
 
+const vPrev = require('../assets/version.json').version;
+const vNext = require('../package.json').version;
+
 const readdir = promisify(fs.readdir);
 const rename = promisify(fs.rename);
 const stat = promisify(fs.stat);
 const readFile = promisify(fs.readFile);
 const writeFile = promisify(fs.writeFile);
 
-// function writeFile(f) {
-//   console.log('write', f); // eslint-disable-line
-// }
-
-const vPrev = require('../assets/version.json').version;
-const vNext = require('../package.json').version;
-
 const ENC = 'utf-8';
-
-// <https://stackoverflow.com/a/45130990/870615>
-async function getFiles(dir) {
-  const subdirs = await readdir(dir);
-  const files = await Promise.all(subdirs.map(async (subdir) => {
-    const res = resolve(dir, subdir);
-    return (await stat(res)).isDirectory() ? getFiles(res) : res;
-  }));
-  return files.reduce((a, f) => a.concat(f), []);
-}
 
 const FILES = [
   resolve('./_includes/head.html'),
@@ -45,18 +31,29 @@ const FILES = [
   resolve('./thank-you.md'),
 ];
 
+// <https://stackoverflow.com/a/45130990/870615>
+async function getFiles(dir) {
+  const subdirs = await readdir(dir);
+  const files = await Promise.all(subdirs.map(async (subdir) => {
+    const res = resolve(dir, subdir);
+    return (await stat(res)).isDirectory() ? getFiles(res) : res;
+  }));
+  return files.reduce((a, f) => a.concat(f), []);
+}
+
 (async function main() {
   try {
-    const files = await Promise.all([
+    const prev = vPrev.replace(/\./g, '\\.');
+    const prevRegExp = new RegExp(prev, 'g');
+
+    const [...args] = await Promise.all([
       FILES,
       getFiles('./_posts'),
       getFiles('./_projects'),
       getFiles('./docs'),
-    ])
-      .then(([...args]) => Array.prototype.concat.call(...args));
+    ]);
 
-    const prev = vPrev.replace(/\./g, '\\.');
-    const prevRegExp = new RegExp(prev, 'g');
+    const files = Array.prototype.concat.call(...args);
 
     await Promise.all(files
       .filter(([f]) => !f.startsWith('.'))
