@@ -34,8 +34,6 @@ Hydejack's own script is loaded from `_includes/scripts.html`, but I'd recommend
 
 You can put arbitrary HTML into `my-scripts.html`, but generally you'd want to add script tags. The [same rules](#async-vs-defer-vs-loadjsdeferred) apply.
 
-Lastly, you have to open `_includes/scripts.html` and remove the lines `{\% comment %\}` and `{\% endcomment %\}` around `{\% include my-scripts.html %\}`.
-
 **NOTE**: Upgrading to a new version of Hydejack will overwrite `scripts.html`, so you have to go in and uncomment the line again. This is due to how Jekyll includes work.
 {:.message}
 
