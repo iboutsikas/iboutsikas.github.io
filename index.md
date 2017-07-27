@@ -18,16 +18,12 @@ Hydejack is a cutting-edge Jekyll theme that combines the best of static sites a
 It features a suite of JavaScript that makes the page feel like an app,
 without sacrificing backwards-compatibility, page-load speed or SEO.
 
-> The complete package for professionals: A [blog], a [portfolio] and a [resume].
+> Your presence on the web --- A [blog], a [portfolio] and a [resume].
 {:.lead}
 
 It aims to be the complete package for professionals on the web.
 It features a blog suitable for both prose and technical documentation,
 a showcase for projects and a resume that fits with the rest of the design.
-
-Oh, and there's also the welcome layout, which features the author's *short description*,
-some arbitrary *content*, as well as *selected projects* and *selected posts*.
-
 
 [blog]: blog.md
 [portfolio]: projects.md
