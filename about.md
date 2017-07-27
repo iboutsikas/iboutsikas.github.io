@@ -38,7 +38,7 @@ Both the PRO *and* free version includes all of the features listed below:
 
 ### [Documentation][docs]{:data-flip="title"}
 Hydejack is documented extensively.
-You can read it [here][docs], or in the [repository's wiki][wiki], or [download the PDF][download].
+You can read it [on this site][docs], in the [repository's wiki][wiki], or [download the PDF][download].
 
 [^1]: Applies after the initial page load.  
 [^2]: Actual page load speed depends on your hosting provider as well as discipline regarding resolution of images and usage of 3rd party plugins.
