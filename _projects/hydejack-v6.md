@@ -14,7 +14,7 @@ description: >
   This release addresses this by adding a layer of JavaScript, effectively turning the whole site into a single page app.
 links:
   - title: Download
-    url: https://github.com/qwtel/hydejack/releases/tag/v6.5.0
+    url: https://qwtel.com/hydejack/download/
   - title: Source
     url: https://github.com/qwtel/hydejack/tree/v6
 ---

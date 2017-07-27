@@ -5,6 +5,7 @@ selected_projects:
   - _projects/hydejack-v6.md
   - _projects/hyde-v2.md
 selected_posts:
+  - _posts/2017-07-27-gems.md
   - _posts/2017-06-21-related-projects-and-data-tables.md
   - _posts/2017-06-06-third-party-scripts.md
   - _posts/2017-05-03-javascripten.md
@@ -25,6 +26,10 @@ It aims to be the complete package for professionals on the web.
 It features a blog suitable for both prose and technical documentation,
 a showcase for projects and a resume that fits with the rest of the design.
 
+## [Download]{:.heading data-flip="title"}
+Go to the [Download]{:.heading data-flip="title"} page to see available options.
+
 [blog]: blog.md
 [portfolio]: projects.md
 [resume]: resume.md
+[download]: download.md
