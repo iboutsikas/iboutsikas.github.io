@@ -17,6 +17,7 @@ links:
     url: https://qwtel.com/hydejack/download/
   - title: Source
     url: https://github.com/qwtel/hydejack/tree/v6
+big_project: true
 ---
 
 Hydejack has always featured a JavaScript-heavy sidebar, but other than that, JS has been used sparingly.

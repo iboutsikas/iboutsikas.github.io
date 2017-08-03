@@ -21,7 +21,7 @@ This table details what is and isn't included in each respective version.
 | [Welcome] Layout                 |                    | &#x2714;           |
 | License                          | [MIT][license]     | [PRO]              |
 | Price                            | Free               | $34                |
-| | [**Download on GitHub**][download]<br/> -- or -- <br/>[**Use the RubyGem**][gem] | [Buy Now – $34][buy]{:.simple-goods-btn} [^3] |
+| | [**Download on GitHub**][github]<br/> -- or -- <br/>[**Use the RubyGem**][gem] | [Buy Now – $34][buy]{:.simple-goods-btn} [^3] |
 
 
 {% comment %}
@@ -38,7 +38,7 @@ This table details what is and isn't included in each respective version.
 | [GPL-3.0]-licensed | [PRO License][pro] | [DEV License][dev] |
 | Free | $34 | $99 |
 |====
-| [**Download on GitHub**][download]<br/> -- or -- <br/>[**Use the RubyGem**][gem] | [Buy Now – $34][buy]{:.simple-goods-btn} [^3] | [Buy Now – $99][buy]{:.simple-goods-btn} [^3] |
+| [**Download on GitHub**][github]<br/> -- or -- <br/>[**Use the RubyGem**][gem] | [Buy Now – $34][buy]{:.simple-goods-btn} [^3] | [Buy Now – $99][buy]{:.simple-goods-btn} [^3] |
 {:style="table-layout:fixed"}
 {% endcomment %}
 
@@ -66,7 +66,7 @@ All versions include *all* of these features:
 ## Free Version
 The Free Version features the design and tech of Hydejack, but only supports basic blogging.
 
-**[Download on GitHub][download]** -- or -- **[Use the RubyGem][gem]**
+**[Download on GitHub][github]** -- or -- **[Use the RubyGem][gem]**
 
 ## PRO Version
 The PRO Version aims to be the complete package for professionals on the web.
