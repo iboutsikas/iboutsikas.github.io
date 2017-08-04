@@ -18,6 +18,8 @@ links:
   - title: Source
     url: https://github.com/qwtel/hydejack/tree/v6
 big_project: true
+color: '#4f86aa'
+image: /hydejack/assets/img/nap.jpg
 ---
 
 Hydejack has always featured a JavaScript-heavy sidebar, but other than that, JS has been used sparingly.
