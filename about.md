@@ -47,7 +47,7 @@ You can read it [on this site][docs], in the [repository's wiki][wiki], or [down
 [portfolio]: projects.md
 [resume]: resume.md
 [welcome]: index.md
-[docs]: docs/6.5.0/index.md
+[docs]: docs/6.6.0/index.md
 
 [wiki]: https://github.com/qwtel/hydejack/wiki
-[download]: https://github.com/qwtel/hydejack/releases/tag/v6.5.0
+[download]: https://github.com/qwtel/hydejack/releases/tag/v6.6.0

@@ -17,4 +17,4 @@ It's an immensely useful tool and one we encourage you to use here with Hyde.
 
 Find out more by [visiting the project on GitHub](https://github.com/mojombo/jekyll).
 
-[docs]: {{ site.baseurl }}{% link docs/6.5.0/index.md %}
+[docs]: {{ site.baseurl }}{% link docs/6.6.0/index.md %}
