@@ -86,3 +86,13 @@ $pad: 1rem;
     }
   }
 }
+
+.col-1 > .card {
+  > .name {
+    font-size: 1.17rem;
+  }
+
+  > .caption {
+    font-size: 1rem;
+  }
+}

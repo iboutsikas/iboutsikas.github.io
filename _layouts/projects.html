@@ -30,7 +30,7 @@ layout: page
   {% else %}
     {% assign big_project = project.big_project %}
   {% endif %}
-  <div class="col{% unless big_project %} col-1-2{% endunless %}">
+  <div class="col {% if big_project %}col-1{% else %}col-1-2{% endif %}">
     {% if big_project %}
       {% assign sizes = "(min-width: 92em) 46rem, (min-width: 60em) 40rem, (min-width: 54em) 32rem, (min-width: 40em) 35.5rem, 100vw" %}
     {% else %}
