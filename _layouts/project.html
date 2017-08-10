@@ -32,16 +32,18 @@ layout: base
       </span>
     </p>
 
-    <div class="img lead sixteen-nine">
-      {% if project.screenshot %}
-        {%
-          include srcset-img.html
-          img=project.screenshot
-          alt="Screenshot"
-          sizes="(min-width: 92em) 48rem, (min-width: 54em) 42rem, (min-width: 40em) 37.5rem, 100vw"
-        %}
-      {% endif %}
-    </div>
+    {% if project.screenshot.srcset.first %}<a href="{{ project.screenshot.srcset.first.last }}" class="no-hover no-push-state no-mark-external">{% endif %}
+      <div class="img lead sixteen-nine">
+        {% if project.screenshot %}
+          {%
+            include srcset-img.html
+            img=project.screenshot
+            alt="Screenshot"
+            sizes="(min-width: 92em) 48rem, (min-width: 54em) 42rem, (min-width: 40em) 37.5rem, 100vw"
+          %}
+        {% endif %}
+      </div>
+    {% if project.screenshot.srcset.first %}</a>{% endif %}
 
     {% include message.html text=project.description %}
   </header>
