@@ -3,7 +3,11 @@ layout: about
 ---
 
 <!--[if gt IE 8]><!---->
-<style>{% capture include_to_scssify %}{% include pro/styles/projects.scss %}{% endcapture %}{{ include_to_scssify | scssify }}</style>
+{% if jekyll.environment == 'development' %}
+  <link rel="stylesheet" href="{{ '/assets/css/projects.css' | relative_url }}">
+{% else %}
+  <style>{% capture include_to_scssify %}{% include pro/styles/projects.scss %}{% endcapture %}{{ include_to_scssify | scssify }}</style>
+{% endif %}
 <!--<![endif]-->
 
 {% assign separator = page.content_separator | default:"<!-- more -->" %}
