@@ -135,4 +135,4 @@ Open sourced under the [MIT license](LICENSE.md).
 
 <3
 
-[docs]: {{ site.baseurl }}{% link docs/6.6.0/index.md %}
+[docs]: {{ site.baseurl }}{% link docs/6.6.1/index.md %}
