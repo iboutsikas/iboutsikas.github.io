@@ -212,7 +212,7 @@ layout: base
             </h3>
           </header>
 
-          <h4 class="faded" style="margin-top:0">Courses</h4>
+          <h4 class="sr-only">Courses</h4>
           <ul>
             {% for course in edu.courses %}
               <li>{{ course }}</li>
@@ -282,7 +282,7 @@ layout: base
           {% for lng in resume.languages %}
             <dt class="h4 fl">{{ lng.language }}</dt>
             <dd class="faded clearafter">
-              <div class="heading fr" style="margin-bottom:0.5rem">
+              <div class="heading fr mb05">
                 <span class="sr-only">Fluency:</span>
                 {% assign fluency = lng.fluency | slugify %}
                 {% case fluency %}
@@ -330,8 +330,8 @@ layout: base
         <dl class="skills">
           {% for skl in resume.skills %}
             <dt class="h4 fl">{{ skl.name }}</dt>
-            <dd class="faded">
-              <div class="heading fr clearafter" style="margin-bottom:0.5rem">
+            <dd class="faded clearafter">
+              <div class="heading fr mb05">
                 <span class="sr-only">Level:</span>
                 {% assign level = skl.level | slugify %}
                 {% case level %}

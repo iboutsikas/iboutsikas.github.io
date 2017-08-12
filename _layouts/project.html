@@ -23,8 +23,8 @@ layout: base
         |
       {% endif %}
       <time datetime="{{ project.date | date_to_xmlschema }}">{{ project.date | date: "%Y" }}</time>
-      <span style="float:right">
-        <span class="sr-only">Links:</span>
+      <span class="fr">
+        <span class="sr-only">| Links:</span>
         {% for link in project.links %}
           <a href="{{ link.url }}">{{ link.title }}</a>
           {% unless forloop.last %}|{% endunless %}

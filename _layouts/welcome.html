@@ -79,7 +79,7 @@ layout: about
 {% if page.more_projects %}
   {% assign more_projects = site.pages | where:"path", page.more_projects | first %}
   {% if more_projects %}
-    <p class="read-more" style="margin-top:0">See <a class="heading" href="{{ more_projects.url | relative_url }}" data-flip="title">{{ more_projects.title }}</a> for more</p>
+    <p class="read-more mt0">See <a class="heading" href="{{ more_projects.url | relative_url }}" data-flip="title">{{ more_projects.title }}</a> for more</p>
   {% else %}
     Page with path <code>{{ page.more_posts }}</code> not found.
   {% endif  %}
@@ -87,7 +87,7 @@ layout: about
 
 {% if page.selected_posts %}
   <h2 class="hr">Selected Posts</h2>
-  <ul class="related-posts" style="margin-bottom:2rem">
+  <ul class="related-posts">
     {% for post_path in page.selected_posts %}
       {% assign post = site.posts | where:"path", post_path | first %}
       {% if post %}
@@ -99,7 +99,7 @@ layout: about
   </ul>
 {% else %}
   <h2 class="hr">Recent Posts</h2>
-  <ul class="related-posts" style="margin-bottom:2rem">
+  <ul class="related-posts">
     {% for post in site.posts limit:5 %}
       {% include post-list-item.html post=post %}
     {% endfor %}
