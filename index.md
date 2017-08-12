@@ -1,9 +1,13 @@
 ---
 layout: welcome
-title: Welcome*
+title: Hydejack
 selected_projects:
-  - _projects/hydejack-v6.md
-  - _projects/hydejack-v5.md
+  - _projects/default.md
+  - _projects/pretentious.md
+  - _projects/hyde.md
+  - _projects/oldschool.md
+  - _projects/solid-red.md
+  - _projects/solid-orange.md
 selected_posts:
   - _posts/2017-07-27-gems.md
   - _posts/2017-06-21-related-projects-and-data-tables.md
@@ -12,11 +16,9 @@ selected_posts:
   - _posts/2012-02-07-example-content.md
 more_projects: projects.md
 more_posts: posts.md
-big_project: false
 content_separator: <!-- more -->
 ---
 
-## Hydejack
 Hydejack is a cutting-edge Jekyll theme that combines the best of static sites and modern web apps.
 It features a suite of JavaScript that makes the page feel like an app,
 without sacrificing backwards-compatibility, page-load speed or SEO.
@@ -28,12 +30,12 @@ It aims to be the complete package for professionals on the web.
 It features a blog suitable for both prose and technical documentation,
 a showcase for projects and a resume that fits with the rest of the design.
 
-## [Download]{:.heading data-flip="title"}
-Go to the [Download]{:.heading data-flip="title"} page to see available options.
+Hydejack is highly customizable and lets you achieve a variety of styles.
+Below you can find a selection of variations that are included.
 
 <!-- more -->
 
-## Versions
+## Download
 There are two versions of Hydejack: The Free Version includes basic blogging functionality,
 as did previous versions of the theme.
 The new PRO Version includes additional features for professionals:
@@ -41,15 +43,22 @@ A [portfolio], a [resume] layout and a [welcome] page to feature your favorite p
 
 This table details what is and isn't included in each respective version.
 
-|                                  | Free               | PRO                |
-|:---------------------------------|:------------------:|:------------------:|
-| Blog                             | &#x2714;           | &#x2714;           |
-| Features (see below)             | &#x2714;           | &#x2714;           |
-| [Portfolio] Layout               |                    | &#x2714;           |
-| [Resume] Layout                  |                    | &#x2714;           |
-| [Welcome] Layout                 |                    | &#x2714;           |
-| License                          | [MIT][license]     | [PRO]              |
-| Price                            | Free               | $34                |
+|                                     | Free               | PRO                |
+|:------------------------------------|:------------------:|:------------------:|
+| Blog                                | &#x2714;           | &#x2714;           |
+| Features (see below)                | &#x2714;           | &#x2714;           |
+| [Portfolio] Layout                  |                    | &#x2714;           |
+| [Resume] Layout                     |                    | &#x2714;           |
+| [Welcome] Layout                    |                    | &#x2714;           |
+| Newsletter Subscription Box         |                    | &#x2714;           |
+| Form Element Styles                 |                    | &#x2714;           |
+| Search Functionality                |                    | &#x2714;           |
+| Offline Support[^4]                 |                    | &#x2714;           |
+| Latest issue of "Fishing Quarterly" |                    |                    |
+| Three months supply of cat food     |                    |                    |
+| 10 free scuba diving coupons        |                    |                    |
+| License                             | [GPL-3.0][license] | [PRO]              |
+| Price                               | Free               | $34                |
 | | [**Download on GitHub**][github]<br/> -- or -- <br/>[**Use the RubyGem**][gem] | [Buy Now – $34][buy]{:.simple-goods-btn} [^3] |
 
 
@@ -122,6 +131,7 @@ a.simple-goods-btn{text-decoration:none !important}.simple-goods-btn{-moz-box-si
 [^1]: Applies after the initial page load.  
 [^2]: Actual page load speed depends on your hosting provider, resolution of embedded images and usage of 3rd party plugins.
 [^3]: Transactions secured by [Stripe](https://stripe.com). Downloads handled by [Simple Goods](https://simplegoods.co/).
+[^4]: ....
 
 
 [blog]: blog.md
