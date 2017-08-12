@@ -11,8 +11,6 @@ qwtel:
     Hi, I'm Florian or [`@qwtel`](https://www.twitter.com/qwtel), and
     I'm the the developer of Hydejack, the Jekyll theme you're currently looking at.
 
-    Questions? Send a mail to [mail@qwtel.com](mailto:mail@qwtel.com) or tweet [`@qwtel`](https://www.twitter.com/qwtel).
-
   # This photo will be used in the about section
   picture:
     src:             /hydejack/assets/img/me.jpg
@@ -62,6 +60,7 @@ qwtel:
     # paypal:          _username_
     email:           mailto:mail@qwtel.com
     # rss:             https//qwtel.com/feed.xml
+    # download:        https://github.com/qwtel/hydejack/archive/v6.6.1.zip
 
 # Another author
 mdo:
@@ -74,5 +73,5 @@ mdo:
   social:
     github:          mdo
     twitter:         mdo
-  image: 'data:image/gif;base64,R0lGODlhAQABAPAAACAgIP///yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==' # http://jsfiddle.net/LPxrT/
-  color: '#268bd2'
+  sidebar_image:     'data:image/gif;base64,R0lGODlhAQABAPAAACAgIP///yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=='
+  color:             '#268bd2'
