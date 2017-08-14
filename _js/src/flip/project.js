@@ -1,5 +1,4 @@
-// Copyright (c) 2017 Florian Klampfer
-// Licensed under MIT
+// Copyright (c) 2017 Florian Klampfer <https://qwtel.com/>
 
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
