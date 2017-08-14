@@ -4,6 +4,8 @@ const { promisify } = require('util');
 const { basename, resolve } = require('path');
 const fs = require('fs');
 
+const { re } = require('re-template-tag');
+
 const readFile = promisify(fs.readFile);
 const writeFile = promisify(fs.writeFile);
 
@@ -46,62 +48,40 @@ you can find it [here]({{ site.baseurl }}{% link docs/${version}/index.md %}).
 * this unordered seed list will be replaced by toc as unordered list
 {:toc}`;
 
-const COMMENT_REGEX = /\s*\/\/(.*)$/gm;
-const UNPRETTIFY_REGEX_REGEX = /(^\s*|\n)/gm;
+const OPTS = DOCS.map(d => basename(d, '.md')).join('|');
 
-function prettyRegex(strings, ...args) {
-  return strings
-    .reduce((a, s, i) => a + s + (i < args.length ? args[i] : ''), '')
-    .replace(COMMENT_REGEX, '')
-    .replace(UNPRETTIFY_REGEX_REGEX, '');
-}
+const RE_FM_BEGIN = /^---/; // beginning front matter at beginning of file
+const RE_FM_END = /---/;    // end of front matter
 
-const FRONT_MATTER_REGEX = new RegExp(prettyRegex`
-  ^---
-  (.|\\n)*?
-  ---
-`);
+const RE_CONTENT = /(.|\n)*?/;  // arbitrary content, nongreedy (!), captured
+const RE_IGNORE = /(?:.|\n)*?/; // arbitrary content, nongreedy (!), NOT caputred
 
-const TOC_REGEX = new RegExp(prettyRegex`
-  #+\\s.+\\n   // heading, e.g. ## Heading
-  \\*\\s.+\\n  // list, e.g. * this will be replaced
-  \\{:toc\\}   // {:toc}
-`);
+const FRONT_MATTER_REGEX = re`/${RE_FM_BEGIN}${RE_CONTENT}${RE_FM_END}/u`;
 
-// TODO: look for first # instead?
-const TITLE_IN_FRONT_MATTER_REEGEX = new RegExp(prettyRegex`
-  ^---                     // beginning front matter at beginning of file
-  (?:.|\\n)*?              // arbitrary number of other keys, nongreedy (!), no capture
-  title:\\s['"]?(.+)['"]?  // title key, capture title, ignore ' and "
-  (?:.|\\n)*?              // arbitrary number of other keys, nongreedy (!), no caputre
-  ---                      // end of front matter
-`);
+const RE_HEADING = /#+\s.+\n/; // heading, e.g. ## Heading
+const RE_LIST = /\*\s.+\n/;    // list, e.g. * this will be replaced
+const RE_TOC = /\{:toc\}/;     // {:toc}
+
+const TOC_REGEX = re`/${RE_HEADING}${RE_LIST}${RE_TOC}/u`
+
+const RE_TITLE = /title:\s['"]?(.+)['"]?/;
+const TITLE_IN_FRONT_MATTER_REEGEX =
+  re`/${RE_FM_BEGIN}${RE_IGNORE}${RE_TITLE}${RE_IGNORE}${RE_FM_END}/u`;
 
 const CONTINUE_WITH_REGEX = /Continue with .*\n{:.read-more}/g;
 
 const INC_HEADING_REGEX = /^(#+\s.*)/gm;
 
-const opt = DOCS.map(d => basename(d, '.md')).join('|');
+const RE_INLINE_LINK = /(\[.*\]\()/;  // linked text inside []
+const RE_NAMED_LINK = /(\[.*\]:\s+)/; // label like [1]:
 
-const INLINE_LINK = new RegExp(prettyRegex`
-  (\\[.*\\]\\()       // linked text in []
-  (${opt})\\.md[^#]   // link without #
-`, 'gm');
+const RE_LINK = new RegExp(`(${OPTS})\\.md[^#]`);  // link without #
+const RE_LINK_HASH = new RegExp(`(${OPTS})\\.md#(.*)`); // link with #
 
-const INLINE_LINK_HASH = new RegExp(prettyRegex`
-  (\\[.*\\]\\()       // linked text in []
-  (${opt})\\.md#(.*)  // link with #
-`, 'gm');
-
-const NAMED_LINK = new RegExp(prettyRegex`
-  (\\[.*\\]:\\s+)     // label like [1]:
-  (${opt})\\.md[^#]   // link without #
-`, 'g');
-
-const NAMED_LINK_HASH = new RegExp(prettyRegex`
-  (\\[.*\\]:\\s+)     // label like [1]:
-  (${opt})\\.md#(.*)  // link with #
-`, 'g');
+const INLINE_LINK =      re`/${RE_INLINE_LINK}${RE_LINK}/ugm`
+const INLINE_LINK_HASH = re`/${RE_INLINE_LINK}${RE_LINK_HASH}/ugm`
+const NAMED_LINK =       re`/${RE_NAMED_LINK}${RE_LINK}/ug`;
+const NAMED_LINK_HASH =  re`/${RE_NAMED_LINK}${RE_LINK_HASH}/ug`;
 
 function sep(title) {
   return `\n\n\n
