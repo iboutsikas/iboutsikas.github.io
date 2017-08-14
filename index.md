@@ -19,7 +19,7 @@ more_posts: posts.md
 content_separator: <!-- more -->
 ---
 
-Hydejack is a cutting-edge Jekyll theme that combines the best of static sites and modern web apps.
+**Hydejack** is a cutting-edge Jekyll theme that combines the best of static sites and modern web apps.
 It features a suite of JavaScript that makes the page feel like an app,
 without sacrificing backwards-compatibility, page-load speed or SEO.
 
@@ -30,13 +30,13 @@ It aims to be the complete package for professionals on the web.
 It features a blog suitable for both prose and technical documentation,
 a showcase for projects and a resume that fits with the rest of the design.
 
-Hydejack is highly customizable and lets you achieve a variety of styles.
+**Hydejack** is highly customizable and lets you achieve a variety of styles.
 Below you can find a selection of variations that are included.
 
 <!-- more -->
 
 ## Download
-There are two versions of Hydejack: The Free Version includes basic blogging functionality,
+There are two versions of **Hydejack**: The Free Version includes basic blogging functionality,
 as did previous versions of the theme.
 The new PRO Version includes additional features for professionals:
 A [portfolio], a [resume] layout and a [welcome] page to feature your favorite projects and posts.
@@ -102,7 +102,7 @@ All versions include *all* of these features:
 * Print layout
 
 ## Free Version
-The Free Version features the design and tech of Hydejack, but only supports basic blogging.
+The Free Version features the design and tech of **Hydejack**, but only supports basic blogging.
 
 **[Download on GitHub][github]** -- or -- **[Use the RubyGem][gem]**
 

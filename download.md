@@ -102,10 +102,7 @@ a.simple-goods-btn{text-decoration:none !important}.simple-goods-btn{-moz-box-si
 [pro]: licenses/PRO-license.md
 [docs]: docs/6.6.1/index.md
 
-[y-drawer]: https://qwtel.com/y-drawer/
-[y-push-state]: https://qwtel.com/y-push-state/
-
-[download]: https://github.com/qwtel/hydejack/releases/tag/v6.6.1
+[github]: https://github.com/qwtel/hydejack/releases/tag/v6.6.1
 [gem]: https://rubygems.org/gems/jekyll-theme-hydejack/versions/6.6.1
 [buy]: https://app.simplegoods.co/i/AQTTVBOE
 
