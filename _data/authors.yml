@@ -9,7 +9,7 @@ qwtel:
   # Markdown enabled, can use multiple paragraphs (enabled by `|`)
   about:             |
     Hi, I'm Florian or [`@qwtel`](https://www.twitter.com/qwtel), and
-    I'm the the developer of **Hydejack**, the Jekyll theme you're currently looking at.
+    I'm the the developer of Hydejack, the Jekyll theme you're currently looking at.
 
   # This photo will be used in the about section
   picture:
