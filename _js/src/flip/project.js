@@ -6,17 +6,18 @@ import { fromEvent } from 'rxjs/observable/fromEvent';
 import { timer } from 'rxjs/observable/timer';
 
 import { _do as effect } from 'rxjs/operator/do';
-import { _finally as cleanup } from 'rxjs/operator/finally';
+// import { _finally as cleanup } from 'rxjs/operator/finally';
 import { zipProto as zipWith } from 'rxjs/operator/zip';
 
 import { animate } from '../common';
 import Flip from './flip';
 
 export default class ProjectFlip extends Flip {
-  start(currentTarget) {
-    const img = currentTarget.querySelector('.img');
+  start() {
+    const { anchor } = this;
+    const img = anchor.querySelector('.img');
 
-    const titleNode = currentTarget.parentNode.querySelector('.name') || {};
+    const titleNode = anchor.parentNode.querySelector('.name') || {};
     const title = titleNode.textContent || '|';
 
     this.animationMain.querySelector('.page').innerHTML = `
@@ -47,7 +48,6 @@ export default class ProjectFlip extends Flip {
       { transform: 'translate3d(0, 0, 0) scale(1)' },
     ], {
       duration: this.duration,
-      // easing: 'ease',
       easing: 'cubic-bezier(0,0,0.32,1)',
     })
       ::effect(() => { this.animationMain.style.position = 'absolute'; });
@@ -57,26 +57,17 @@ export default class ProjectFlip extends Flip {
     this.animationMain.style.willChange = 'opacity';
 
     const img = main.querySelector('.img');
+    const imgImg = img.querySelector('img');
 
-    if (img != null) {
-      img.style.opacity = 0;
-      img.style.willChange = 'opacity';
-    }
+    img.style.opacity = 0;
+    img.style.willChange = 'opacity';
 
-    const realImg = img.querySelector('img');
-    return (realImg == null ?
-      Observable::of(true) :
-      Observable::fromEvent(realImg, 'load')
-    )
-      // HACK: add some extra time to prevent hiccups
+    return (imgImg == null ? Observable::of({}) : Observable::fromEvent(imgImg, 'load'))
+      /* HACK: add some extra time to prevent hiccups */
       ::zipWith(Observable::timer(this.duration + 100))
       ::effect(() => {
-        if (img != null) {
-          img.style.opacity = 1;
-          img.style.willChange = '';
-        }
-      })
-      ::cleanup(() => {
+        img.style.opacity = 1;
+        img.style.willChange = '';
         this.animationMain.style.opacity = 0;
         this.animationMain.style.willChange = '';
       });
