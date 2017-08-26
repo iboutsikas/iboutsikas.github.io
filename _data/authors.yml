@@ -24,43 +24,8 @@ qwtel:
   # Icons appear in order, can be rearranged:
   social:
     twitter:         qwtel
-    github:          qwtel
-    youtube:         UCu0PYX_kVANdmgIZ4bw6_kA
-    # facebook:        _username_
-    # google:          _number_
-    # vk:              _username_
-    # vimeo:           _username_
-    # vine:            _username_
-    # spotify:         user/_number_
-    # soundcloud:      _username_
-    # lastfm:          _username_
-    # instagram:       _username_
-    # flickr:          _string_@_string_
-    # 500px:           _username_
-    # dribbble:        _username_
-    # behance:         _username_
-    # deviantart:      _username_
-    # ello:            _username_
-    # twitch:          _username_
-    # steam:           _number_
-    # reddit:          _username_
-    # tumblr:          _username_
-    # pinterest:       _username_
-    # foursquare:      _number_
-    # yelp:            _string_
-    # stackoverflow:   _number_/_username_
-    # npm:             _username_
-    # hackernews:      _username_
-    # trello:          _firstname__lastname_
-    # linkedin:        _firstname_-_lastname_-_string_
-    # xing:            _firstname___lastname__counter_
-    # blogger:         _number_
-    # delicious:       _username_
-    # stumbleupon:     _username_
-    # paypal:          _username_
+    github:          https://github.com/qwtel/hydejack/
     email:           mailto:mail@qwtel.com
-    # rss:             https//qwtel.com/feed.xml
-    # download:        https://github.com/qwtel/hydejack/archive/v6.6.1.zip
 
 # Another author
 mdo:
