@@ -59,7 +59,7 @@ This table details what is and isn't included in each respective version.
 | 10 free scuba diving coupons        |                    |                    |
 | License                             | [GPL-3.0][license] | [PRO]              |
 | Price                               | Free               | $34                |
-| | [**Download on GitHub**][github]<br/> -- or -- <br/>[**Use the RubyGem**][gem] | [Buy Now – $34][buy]{:.simple-goods-btn} [^3] |
+|| [**Download on GitHub**][github]<br/> -- or -- <br/>[**Use the RubyGem**][gem] | [Buy Now – $34][buy]{:.simple-goods-btn} [^3] |
 
 
 {% comment %}
@@ -131,7 +131,7 @@ a.simple-goods-btn{text-decoration:none !important}.simple-goods-btn{-moz-box-si
 [^1]: Applies after the initial page load.  
 [^2]: Actual page load speed depends on your hosting provider, resolution of embedded images and usage of 3rd party plugins.
 [^3]: Transactions secured by [Stripe](https://stripe.com). Downloads handled by [Simple Goods](https://simplegoods.co/).
-[^4]: ....
+[^4]: ...
 
 
 [blog]: blog.md
