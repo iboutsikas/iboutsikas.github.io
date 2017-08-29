@@ -16,7 +16,7 @@ layout: about
 {{ content_split[0] }}
 
 {% if page.selected_projects %}
-  <h2>Selected Projects</h2>
+  <h2 id="selected-projects">Selected Projects</h2>
   {% assign is_newline = true %}
   {% for project_path in page.selected_projects %}
     {% assign project = site.projects | where:"path", project_path | first %}
@@ -54,7 +54,7 @@ layout: about
     {% endif %}
   {% endfor %}
 {% else %}
-  <h2>Recent Projects</h2>
+  <h2 id="recent-projects">Recent Projects</h2>
   {% assign ordered_projects = site.projects | sort:"date" | reverse %}
   {% assign is_newline = true %}
   {% for project in ordered_projects limit:2 %}
@@ -86,7 +86,7 @@ layout: about
 {% endif %}
 
 {% if page.selected_posts %}
-  <h2 class="hr">Selected Posts</h2>
+  <h2 id="selected-posts" class="hr">Selected Posts</h2>
   <ul class="related-posts">
     {% for post_path in page.selected_posts %}
       {% assign post = site.posts | where:"path", post_path | first %}
@@ -98,7 +98,7 @@ layout: about
     {% endfor %}
   </ul>
 {% else %}
-  <h2 class="hr">Recent Posts</h2>
+  <h2 id="recent-posts" class="hr">Recent Posts</h2>
   <ul class="related-posts">
     {% for post in site.posts limit:5 %}
       {% include post-list-item.html post=post %}

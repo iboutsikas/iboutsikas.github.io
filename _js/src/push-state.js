@@ -47,6 +47,8 @@ import Flip from './flip/flip';
 import './flip/title';
 import './flip/project';
 
+const { forEach } = Array.prototype;
+
 const REQUIREMENTS = [
   'eventlistener',
   'queryselector',
@@ -76,6 +78,21 @@ const SETTINGS = {
   duration: DURATION,
   easing: 'cubic-bezier(0,0,0.32,1)',
 };
+
+const HEADING_SELECTOR = 'h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]';
+
+function upgradeHeadings(h) {
+  const hash = `#${h.id}`;
+  const a = document.createElement('a');
+  const span = document.createElement('span');
+  span.textContent = 'Permalink';
+  span.classList.add('sr-only');
+  a.appendChild(span);
+  a.href = hash;
+  a.classList.add('permalink');
+  h.appendChild(a);
+}
+
 
 //
 // we log it to the console, but continue as if it never happend
@@ -218,7 +235,10 @@ if (!window._noPushState && hasFeatures(REQUIREMENTS)) {
 
   // Prepare showing the new content
   ready$
-    ::effect((/* { content: [main] } */) => {
+    ::effect(({ content: [main] }) => {
+      main
+        .querySelectorAll(HEADING_SELECTOR)
+        ::forEach(upgradeHeadings);
       /*
       main.style.opacity = 0;
       main.style.willChange = 'opacity';
@@ -268,6 +288,10 @@ if (!window._noPushState && hasFeatures(REQUIREMENTS)) {
     })
     ::unstoppable()
     .subscribe();
+
+  document.getElementById('_main')
+    .querySelectorAll(HEADING_SELECTOR)
+    ::forEach(upgradeHeadings);
 
   window._pushState = new PushState(pushStateEl, {
     replaceIds: ['_main'],

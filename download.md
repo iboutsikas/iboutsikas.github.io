@@ -90,7 +90,7 @@ You can obtain licenses for these production independently.
 [Buy Now - $99][buy]{:.simple-goods-btn} [^3]
 {% endcomment %}
 
-{% include author.html author=site.data.authors.qwtel heading="Contact" %}
+{% include author.html author=site.data.authors.qwtel heading="Contact" heading_id="contact" %}
 
 <style>
 a.simple-goods-btn{text-decoration:none !important}.simple-goods-btn{-moz-box-sizing:border-box !important;-moz-transition:all 0.2s ease !important;-moz-transition:all 0.2s ease !important;-ms-transition:all 0.2s ease !important;-ms-transition:all 0.2s ease !important;-o-transition:all 0.2s ease !important;-o-transition:all 0.2s ease !important;-webkit-box-sizing:border-box !important;-webkit-font-smoothing:subpixel-antialiased !important;-webkit-transition:all 0.2s ease !important;-webkit-transition:all 0.2s ease !important;background-color:#4fb1ba!important;border-radius:3px 3px 3px 3px !important;box-sizing:border-box !important;color:#fff !important;cursor:pointer !important;display:inline-block !important;font-size:16px !important;font-weight:400 !important;margin:0 !important;padding:12px 34px 12px !important;position:relative !important;text-align:center !important;top:0 !important;transition:all 0.2s ease !important;font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif !important;font-weight:bold !important}
