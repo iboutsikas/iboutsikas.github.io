@@ -12,22 +12,19 @@ layout: page
 
 {% assign show_collection = page.show_collection | default:"projects" %}
 {% assign ordered_projects = site[show_collection] | sort:"date" | reverse %}
-{% assign is_newline = true %}
 
 {% for project in ordered_projects %}
   {% assign currentdate = project.date | date: "%Y" %}
 
   {% if currentdate != date %}
     {% unless forloop.first %}
-      {% unless is_newline %}</div>{% endunless %}
-      {% assign is_newline = true %}
+      </div>
     {% endunless %}
 
     <h2 id="y{{project.date | date: "%Y"}}">{{ currentdate }}</h2>
+    <div class="grid">
     {% assign date = currentdate %}
   {% endif %}
-
-  {% if is_newline %}<div class="grid">{% endif %}
 
   {% if page.big_project != null %}
     {% assign big_project = page.big_project %}
@@ -43,16 +40,4 @@ layout: page
 
     {% include pro/project-card.html project=project sizes=sizes %}
   </div>
-
-  {% unless is_newline %}</div>{% endunless %}
-
-  {% if forloop.last %}
-    {% if is_newline %}</div>{% endif %}
-  {% endif %}
-
-  {% if is_newline %}
-    {% assign is_newline = false %}
-  {% else %}
-    {% assign is_newline = true %}
-  {% endif %}
 {% endfor %}
