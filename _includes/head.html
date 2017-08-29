@@ -98,8 +98,6 @@ We want to avoid building the URL dynamically in JS, because it depends on your 
   <script>document.getElementById('_stylePreload').onload=function(){this.rel='stylesheet'}</script>
 {% endif %}
 
-{% include page-style.html %}
-
 <noscript>
   <link rel="stylesheet" href="{{ style_url | relative_url }}">
 
@@ -116,6 +114,8 @@ We want to avoid building the URL dynamically in JS, because it depends on your 
 
   <link rel="stylesheet" href="{{ icons_url | relative_url }}">
 </noscript>
+
+{% include page-style.html %}
 <!--<![endif]-->
 
 {% comment %}---------------------------
