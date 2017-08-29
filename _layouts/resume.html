@@ -2,14 +2,6 @@
 layout: base
 ---
 
-<!--[if gt IE 8]><!---->
-{% if jekyll.environment == 'development' %}
-  <link rel="stylesheet" href="{{ '/assets/css/resume.css' | relative_url }}">
-{% else %}
-  <style>{% capture include_to_scssify %}{% include pro/styles/resume.scss %}{% endcapture %}{{ include_to_scssify | scssify }}</style>
-{% endif %}
-<!--<![endif]-->
-
 {% assign resume = site.data.resume %}
 
 <article class="page" role="article">

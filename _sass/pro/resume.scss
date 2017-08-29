@@ -1,4 +1,5 @@
-main {
+.layout-resume {
+  // main {
   h1 {
     margin-bottom: 0;
   }
@@ -23,105 +24,106 @@ main {
   header > p {
     margin-bottom: 0;
   }
-}
+  // }
 
-.tags {
-  list-style: none;
-  padding-left: 0;
-  margin: 0 -0.625rem 1.5rem;
-  clear: right;
-}
-
-.tag {
-  border: 1px solid #ddd;
-  display: inline-block;
-  margin: 0.25rem 0.125rem;
-  padding: 0.125rem 0.5rem;
-  color: $gray-text;
-  line-height: 1.4;
-}
-
-.help {
-  cursor: help;
-}
-
-.symbol {
-  float: right;
-  color: #ddd;
-  margin-top: 4px;
-  margin-left: .5rem;
-}
-
-.skills {
-  dt {
-    margin-bottom: 0;
+  .tags {
+    list-style: none;
+    padding-left: 0;
+    margin: 0 -0.625rem 1.5rem;
+    clear: right;
   }
 
-  dd {
-    margin: 0;
-  }
-}
-
-.contact {
-  margin-top: 2.5rem;
-
-  dt, dd {
-    margin-bottom: .5rem;
+  .tag {
+    border: 1px solid #ddd;
+    display: inline-block;
+    margin: 0.25rem 0.125rem;
+    padding: 0.125rem 0.5rem;
+    color: $gray-text;
+    line-height: 1.4;
   }
 
-  dt {
-    clear: both;
-    float: left;
-    width: 2rem;
-    // text-align: center;
+  .help {
+    cursor: help;
+  }
 
-    [class*="icon-"] {
-      font-size: 1.17rem;
-      position: relative;
-      top: 2px;
+  .symbol {
+    float: right;
+    color: #ddd;
+    margin-top: 4px;
+    margin-left: .5rem;
+  }
+
+  .skills {
+    dt {
+      margin-bottom: 0;
+    }
+
+    dd {
+      margin: 0;
     }
   }
 
-  dd {
+  .contact {
+    margin-top: 2.5rem;
+
+    dt, dd {
+      margin-bottom: .5rem;
+    }
+
+    dt {
+      clear: both;
+      float: left;
+      width: 2rem;
+      // text-align: center;
+
+      [class*="icon-"] {
+        font-size: 1.17rem;
+        position: relative;
+        top: 2px;
+      }
+    }
+
+    dd {
+      float: left;
+      margin-left: 0;
+      width: calc(100% - 2rem);
+      padding-left: 0.25rem;
+    }
+  }
+
+  $pad: 2.5rem;
+
+  .grid {
+    margin-left: -$pad;
+
+    &::after {
+      @include clearfix();
+    }
+  }
+
+  .col {
     float: left;
-    margin-left: 0;
-    width: calc(100% - 2rem);
-    padding-left: 0.25rem;
+    padding-left: $pad;
+    width: 100%;
   }
-}
 
-$pad: 2.5rem;
-
-.grid {
-  margin-left: -$pad;
-
-  &::after {
-    @include clearfix();
+  @media screen and (min-width: 64em) {
+    .col-3-5 { width: 60% }
+    .col-2-5 { width: 40% }
   }
-}
 
-.col {
-  float: left;
-  padding-left: $pad;
-  width: 100%;
-}
+  // @media screen and (min-width: $break-point-2) {
+  //   dt {
+  //     text-align: left;
+  //   }
+  // }
 
-@media screen and (min-width: 64em) {
-  .col-3-5 { width: 60% }
-  .col-2-5 { width: 40% }
-}
+  // cite
+  .ref {
+    margin-bottom: 1.5rem;
 
-// @media screen and (min-width: $break-point-2) {
-//   dt {
-//     text-align: left;
-//   }
-// }
-
-// cite
-.ref {
-  margin-bottom: 1.5rem;
-
-  > footer {
-    margin-bottom: 0;
+    > footer {
+      margin-bottom: 0;
+    }
   }
 }

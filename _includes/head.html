@@ -84,10 +84,15 @@ We want to avoid building the URL dynamically in JS, because it depends on your 
   <link rel="stylesheet" href="{{ style_url | relative_url }}">
 {% else %}
   <style>
-    {% capture include_to_scssify %}
-    {% include styles/inline.scss %}
-    {% endcapture %}
+    {% capture include_to_scssify %}{% include styles/inline.scss %}{% endcapture %}
     {{ include_to_scssify | scssify }}
+    {% if page.layout == "projects" or page.layout == "project" or page.layout == "welcome" %}
+      {% capture include_to_scssify %}{% include styles/pro/projects.scss %}{% endcapture %}
+      {{ include_to_scssify | scssify }}
+    {% elsif page.layout == "resume" %}
+      {% capture include_to_scssify %}{% include styles/pro/resume.scss %}{% endcapture %}
+      {{ include_to_scssify | scssify }}
+    {% endif %}
   </style>
   <link id="_stylePreload" rel="preload" as="style" href="{{ style_url | relative_url }}">
   <script>document.getElementById('_stylePreload').onload=function(){this.rel='stylesheet'}</script>

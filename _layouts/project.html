@@ -2,14 +2,6 @@
 layout: base
 ---
 
-<!--[if gt IE 8]><!---->
-{% if jekyll.environment == 'development' %}
-  <link rel="stylesheet" href="{{ '/assets/css/projects.css' | relative_url }}">
-{% else %}
-  <style>{% capture include_to_scssify %}{% include pro/styles/projects.scss %}{% endcapture %}{{ include_to_scssify | scssify }}</style>
-{% endif %}
-<!--<![endif]-->
-
 {% assign project = page %}
 
 <article class="page" role="article">
