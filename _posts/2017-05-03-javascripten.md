@@ -60,9 +60,9 @@ See the [the migration guide][migration] for instructions on how to upgrade.
 
 ***
 
-[Get *JavaScripten* on GitHub](https://github.com/qwtel/hydejack/releases/tag/v6.6.1)
+[Get *JavaScripten* on GitHub](https://github.com/qwtel/hydejack/releases/tag/v7.0.0)
 
-[migration]: {{ site.baseurl }}{% link docs/6.6.1/migration.md %}
-[writing]: {{ site.baseurl }}{% link docs/6.6.1/writing.md %}
+[migration]: {{ site.baseurl }}{% link docs/7.0.0/migration.md %}
+[writing]: {{ site.baseurl }}{% link docs/7.0.0/writing.md %}
 
 *[FOUC]: Flash of Unstyled Content

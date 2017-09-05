@@ -89,10 +89,10 @@ a.simple-goods-btn{text-decoration:none !important}.simple-goods-btn{-moz-box-si
 [welcome]: index.md
 [license]: LICENSE.md
 [pro]: licenses/PRO.md
-[docs]: docs/6.6.1/index.md
+[docs]: docs/7.0.0/index.md
 
-[github]: https://github.com/qwtel/hydejack/releases/tag/v6.6.1
-[gem]: https://rubygems.org/gems/jekyll-theme-hydejack/versions/6.6.1
+[github]: https://github.com/qwtel/hydejack/releases/tag/v7.0.0
+[gem]: https://rubygems.org/gems/jekyll-theme-hydejack/versions/7.0.0
 [buy]: https://app.simplegoods.co/i/AQTTVBOE
 
 [gpss]: https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fqwtel.com%2Fhydejack%2F
