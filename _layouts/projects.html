@@ -9,9 +9,7 @@ layout: page
   {% assign currentdate = project.date | date: "%Y" %}
 
   {% if currentdate != date %}
-    {% unless forloop.first %}
-      </div>
-    {% endunless %}
+    {% unless forloop.first %}</div>{% endunless %}
 
     <h2 id="y{{project.date | date: "%Y"}}">{{ currentdate }}</h2>
     <div class="grid">
@@ -32,4 +30,6 @@ layout: page
 
     {% include pro/project-card.html project=project sizes=sizes %}
   </div>
+
+  {% if forloop.last %}</div>{% endif %}
 {% endfor %}
