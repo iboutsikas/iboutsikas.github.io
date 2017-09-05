@@ -35,7 +35,7 @@ Below you can find a selection of variations that are included.
 
 <!-- more -->
 
-## [Download](download.md)
+## [Download](download.md){:.flip-title}
 There are two versions of **Hydejack**: The Free Version includes basic blogging functionality,
 as did previous versions of the theme.
 The new PRO Version includes additional features for professionals:
