@@ -61,25 +61,6 @@ This table details what is and isn't included in each respective version.
 | Price                               | Free               | $34                |
 || [**Download on GitHub**][github]<br/> -- or -- <br/>[**Use the RubyGem**][gem] | [Buy Now – $34][buy]{:.simple-goods-btn} [^3] |
 
-
-{% comment %}
-| Free Version | PRO Version | Developer Version |
-|:-:|:-:|:-:|
-| Blog Layout | Blog Layout | Blog Layout |
-| Features (see blow) | Features (see below) | Features (see below) |
-|  | Portfolio Layout | Portfolio Layout |
-|  | Resume Layout | Resume Layout |
-|  | Welcome Layout | Welcome Layout |
-|  |  | [y-drawer] Developer License |
-|  |  | [y-push-state] Developer License |
-|---
-| [GPL-3.0]-licensed | [PRO License][pro] | [DEV License][dev] |
-| Free | $34 | $99 |
-|====
-| [**Download on GitHub**][github]<br/> -- or -- <br/>[**Use the RubyGem**][gem] | [Buy Now – $34][buy]{:.simple-goods-btn} [^3] | [Buy Now – $99][buy]{:.simple-goods-btn} [^3] |
-{:style="table-layout:fixed"}
-{% endcomment %}
-
 ## Features
 All versions include *all* of these features:
 
@@ -140,7 +121,7 @@ a.simple-goods-btn{text-decoration:none !important}.simple-goods-btn{-moz-box-si
 [download]: download.md
 [welcome]: index.md
 [license]: LICENSE.md
-[pro]: licenses/PRO-license.md
+[pro]: licenses/PRO.md
 [docs]: docs/6.5.0/index.md
 
 [y-drawer]: https://qwtel.com/y-drawer/
