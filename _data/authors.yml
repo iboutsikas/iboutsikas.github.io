@@ -3,13 +3,13 @@
 # Change `qwtel` to your shortname (used in the front matter to set a page's author, e.g. `author: qwtel`).
 qwtel:
   name:              Florian Klampfer
-  email:             hello@qwtel.com
+  email:             mail@qwtel.com
 
   # Used at the bottom of each page and at the top of the `about` layout
   # Markdown enabled, can use multiple paragraphs (enabled by `|`)
   about:             |
-    Hi, I'm Florian or [`@qwtel`](https://www.twitter.com/qwtel), and
-    I'm the the developer of Hydejack, the Jekyll theme you're currently looking at.
+    Hi, I'm Florian or @qwtel, and I'm the the developer of Hydejack,
+    the Jekyll theme you're currently looking at.
 
   # This photo will be used in the about section
   picture:
