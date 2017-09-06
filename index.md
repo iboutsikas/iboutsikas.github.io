@@ -58,8 +58,8 @@ This table details what is and isn't included in each respective version.
 | Three months supply of cat food     |                    |                    |
 | 10 free scuba diving coupons        |                    |                    |
 | License                             | [GPL-3.0][license] | [PRO]              |
-| Price                               | Free               | $34                |
-|| [**Download on GitHub**][github]<br/> -- or -- <br/>[**Use the RubyGem**][gem] | [Buy Now – $34][buy]{:.simple-goods-btn} [^3] |
+| Price                               | Free               | $59                |
+|| [**Download on GitHub**][github]<br/> -- or -- <br/>[**Use the RubyGem**][gem] | [Buy Now – $59][buy]{:.simple-goods-btn} [^3] |
 
 ## Features
 All versions include *all* of these features:
@@ -92,16 +92,7 @@ The PRO Version aims to be the complete package for professionals on the web.
 It includes layouts for your [portfolio], your [resume] (with support for [JSON Resume](https://jsonresume.org/)) and
 a [welcome] page to introduce yourself to visitors.
 
-[Buy Now - $34][buy]{:.simple-goods-btn} [^3]
-
-{% comment %}
-## DEV Version
-Buy this version if you are a developer yourself and intend to use the drawer menu and push state implementation in a different product.
-You can obtain licenses for these production independently.
-
-
-[Buy Now - $99][buy]{:.simple-goods-btn} [^3]
-{% endcomment %}
+[Buy Now - $59][buy]{:.simple-goods-btn} [^3]
 
 {% include author.html author=site.data.authors.qwtel heading="Contact" heading_id="contact" %}
 
