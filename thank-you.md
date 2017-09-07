@@ -12,12 +12,12 @@ one that didn't look awful buy modern design standards and one that felt snappy 
 That and more is now Hydejack. I hope you enjoy it [as much as I do](https://qwtel.com/).
 
 ## First Steps
-Please start by reading the [Documentation]{:.heading data-flip="title"}.
+Please start by reading the [Documentation]{:.heading.flip-title}.
 Specifically, the chapters below should be relevant to you:
 
-* [Installation]{:.heading data-flip="title"} -- How to install and run Hydejack.
-* [Configuration]{:.heading data-flip="title"} Once Jekyll is running you can start with basic configuration.
-* [Migration]{:.heading data-flip="title"} -- You can skip this if you haven't used Hydejack before.
+* [Installation]{:.heading.flip-title} -- How to install and run Hydejack.
+* [Configuration]{:.heading.flip-title} Once Jekyll is running you can start with basic configuration.
+* [Migration]{:.heading.flip-title} -- You can skip this if you haven't used Hydejack before.
 {:.related-posts.faded}
 
 ## Support

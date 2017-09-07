@@ -11,7 +11,7 @@ layout: base
     <p class="post-date heading">
       {% assign parent = site.pages | where:"show_collection",project.collection | first %}
       {% if parent %}
-        <a href="{{ '/projects/' | relative_url }}" data-flip="title">{{ parent.title }}</a>
+        <a href="{{ '/projects/' | relative_url }}" class="flip-title">{{ parent.title }}</a>
         |
       {% endif %}
       <time datetime="{{ project.date | date_to_xmlschema }}">{{ project.date | date: "%Y" }}</time>
