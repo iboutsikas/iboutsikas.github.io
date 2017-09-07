@@ -14,22 +14,40 @@ import { switchMap } from 'rxjs/operator/switchMap';
 // import { _finally as cleanup } from 'rxjs/operator/finally';
 import { zipProto as zipWith } from 'rxjs/operator/zip';
 
-import { animate } from '../common';
+import { animate, empty } from '../common';
 
-export function flipProject(start$, ready$, fadeIn$, { animationMain, duration }) {
+export function flipProject(start$, ready$, fadeIn$, { animationMain, settings }) {
   const flip$ = start$
     ::filter(({ flipType }) => flipType === 'project')
     ::switchMap(({ anchor }) => {
-      console.log('project start');
+      // console.log('project start');
       const img = anchor.querySelector('.img');
 
       const titleNode = anchor.parentNode.querySelector('.name') || {};
       const title = titleNode.textContent || '|';
 
-      animationMain.querySelector('.page').innerHTML = `
+      const h1 = document.createElement('h1');
+      h1.classList.add('page-title');
+      h1.style.opacity = 0;
+      h1.textContent = title;
+
+      const postDate = document.createElement('div');
+      postDate.classList.add('post-date');
+      postDate.classList.add('heading');
+      postDate.style.opacity = 0;
+      postDate.textContent = '|';
+
+      const page = animationMain.querySelector('.page');
+      page::empty();
+      page.appendChild(h1);
+      page.appendChild(postDate);
+
+      /*
+      page.innerHTML = `
         <h1 class="page-title" style="opacity:0">${title}</h1>
         <div class="post-date heading" style="opacity:0">|</div>
       `;
+      */
 
       const placeholder = document.createElement('div');
       placeholder.classList.add('sixteen-nine');
@@ -38,7 +56,7 @@ export function flipProject(start$, ready$, fadeIn$, { animationMain, duration }
       img.classList.add('lead');
       img.style.transformOrigin = 'left top';
 
-      animationMain.querySelector('.page').appendChild(img);
+      page.appendChild(img);
       animationMain.style.position = 'fixed';
       animationMain.style.opacity = 1;
 
@@ -52,18 +70,14 @@ export function flipProject(start$, ready$, fadeIn$, { animationMain, duration }
       return animate(img, [
         { transform: `translate3d(${invertX}px, ${invertY}px, 0) scale(${invertScale})` },
         { transform: 'translate3d(0, 0, 0) scale(1)' },
-      ], {
-        duration,
-        easing: 'cubic-bezier(0,0,0.32,1)',
-      })
+      ], settings)
         ::effect(() => { animationMain.style.position = 'absolute'; });
     });
 
-  start$::switchMap(() =>
+  start$::switchMap(({ flipType }) =>
     ready$
-      ::filter(({ flipType }) => flipType === 'project')
+      ::filter(() => flipType === 'project')
       ::switchMap(({ content: [main] }) => {
-        console.log('project ready');
         animationMain.style.willChange = 'opacity';
 
         const img = main.querySelector('.img');
