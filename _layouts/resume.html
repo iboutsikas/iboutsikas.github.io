@@ -4,23 +4,28 @@ layout: base
 
 {% assign resume = site.data.resume %}
 
-<article class="page" role="article">
+<article class="page" role="article" vocab="http://schema.org/" typeof="Person">
+  <meta property="url" content="{{ page.url | absolute_url }}"/>
+  <meta property="mainEntityOfPage" content="{{ page.url | absolute_url }}"/>
+
   {% assign basics = resume.basics %}
 
   {% if basics.picture.size > 0 %}
-    {% include srcset-img.html class="me" img=basics.picture alt=basics.name %}
+    {% include srcset-img.html class="me" img=basics.picture alt=basics.name property="image" %}
   {% endif %}
 
   <header class="hr">
-    <h1 class="page-title">{{ basics.name }}</h1>
+    <h1 class="page-title" property="name">{{ basics.name }}</h1>
     {% if basics.label %}
-      <p class="h3 faded subline">{{ basics.label }}</p>
+      <p class="h3 faded subline" property="jobTitle">{{ basics.label }}</p>
     {% endif %}
   </header>
 
-  {% if basics.summary.size > 0 %}
-    {{ basics.summary | markdownify }}
-  {% endif %}
+  <span property="description">
+    {% if basics.summary.size > 0 %}
+      {{ basics.summary | markdownify }}
+    {% endif %}
+  </span>
 
   <dl class="grid contact">
     <div class="col col-3-5">
@@ -37,30 +42,31 @@ layout: base
           <span class="sr-only">Location:</span>
         </dt>
 
-        <dd class="h4">
+        <dd class="h4" property="address" typeof="PostalAddress">
           {% if location.address.size > 0 %}
-            {{ location.address }},
+            <span property="streetAddress">{{ location.address }}</span>,
           {% endif %}
 
           {% if location.postalCode.size > 0 %}
-            {{ location.postalCode }},
+            <span property="postalCode">{{ location.postalCode }}</span>,
           {% endif %}
 
           {% if location.city.size > 0 %}
-            {{ location.city }},
+            <span property="addressLocality">{{ location.city }}</span>,
           {% endif %}
 
           {% if location.region.size > 0 %}
-            {{ location.region }},
+            <span property="addressRegion">{{ location.region }}</span>,
           {% endif %}
 
           {% if location.countryCode.size > 0 %}
             {% assign countryCode = location.countryCode | upcase %}
             {% assign country = site.data.countries | where:"code", countryCode | first %}
             {% if country %}
-              {{ country.name }}
+              <meta property="addressCountry" content="{{ location.countryCode }}"/>
+              <span>{{ country.name }}</span>
             {% else %}
-              {{ location.countryCode }}
+              <span property="addressCountry">{{ location.countryCode }}</span>
             {% endif %}
           {% endif %}
         </dd>
@@ -72,6 +78,7 @@ layout: base
           <span class="sr-only">Email:</span>
         </dt>
         <dd class="h4">
+          <meta property="email" content="{{ basics.email }}"/>
           <a href="mailto:{{ basics.email }}" class="no-push-state">{{ basics.email }}</a>
         </dd>
       {% endif %}
@@ -82,6 +89,7 @@ layout: base
           <span class="sr-only">Phone:</span>
         </dt>
         <dd class="h4">
+          <meta property="telephone" content="{{ basics.phone }}"/>
           <a href="tel:{{ basics.phone }}" class="no-push-state">{{ basics.phone }}</a>
         </dd>
       {% endif %}
@@ -92,7 +100,7 @@ layout: base
           <span class="sr-only">Website:</span>
         </dt>
         <dd class="h4">
-          <a href="{{ basics.website }}">{{ basics.website }}</a>
+          <a href="{{ basics.website }}" property="sameAs">{{ basics.website }}</a>
         </dd>
       {% endif %}
     </div>
@@ -113,7 +121,7 @@ layout: base
             <span class="sr-only">{{ name }}:</span>
           </dt>
           <dd class="h4">
-            {% include link.html href=pro.url title=pro.username %}
+            {% include link.html href=pro.url title=pro.username property="sameAs" %}
           </dd>
         {% endfor %}
       </div>
@@ -125,16 +133,25 @@ layout: base
       {% if resume.work.size > 0 %}
         <h2 id="experience" class="h3 faded hr">Experience <span class="symbol icon-briefcase"></span></h2>
         {% for work in resume.work %}
-          <header class="{% unless forloop.first %}mt3{% endunless %}">
-            <p class="heading faded">
-              <time datetime="{{ work.startDate }}">{{ work.startDate | date: "%b %Y"  }}</time>
-              –
-              <time datetime="{{ work.endDate }}">{{ work.endDate | date: "%b %Y" }}</time>
-            </p>
+          <header
+            class="{% unless forloop.first %}mt3{% endunless %}"
+            property="{% if work.endDate %}alumniOf{% else %}worksFor{% endif %}"
+            typeof="Organization"
+            >
+            {% if work.startDate %}
+              <p class="heading faded">
+                <time datetime="{{ work.startDate }}">{{ work.startDate | date: "%b %Y"  }}</time>
+                {% if work.endDate %}
+                  –
+                  <time datetime="{{ work.endDate }}">{{ work.endDate | date: "%b %Y" }}</time>
+                {% endif %}
+              </p>
+            {% endif %}
             <h3 class="h4">
               <span>{{ work.position }}</span>
               <span class="faded"> at </span>
-              {% include link.html title=work.company href=work.website %}
+              <meta property="name" content="{{ work.company }}"/>
+              {% include link.html title=work.company href=work.website property="sameAs" %}
             </h3>
           </header>
 
@@ -187,7 +204,7 @@ layout: base
               –
               <time datetime="{{ edu.endDate }}">{{ edu.endDate | date: "%b %Y"  }}</time>
             </p>
-            <h3 class="h4">
+            <h3 class="h4" property="alumniOf" typeof="EducationalOrganization">
               <span>{{ edu.studyType }}</span>
               {% if edu.area.size > 0 %}
                 <span class="faded"> in </span>
@@ -195,7 +212,7 @@ layout: base
               {% endif %}
               {% if edu.institution.size > 0 %}
                 <span class="faded"> at </span>
-                <span>{{ edu.institution }}</span>
+                <span property="name">{{ edu.institution }}</span>
               {% endif %}
               {% if edu.gpa.size > 0 %}
                 <span class="faded"> with GPA of </span>
@@ -211,7 +228,6 @@ layout: base
             {% endfor %}
           </ul>
         {% endfor %}
-
       {% endif %}
 
       {% if resume.awards.size > 0 %}
@@ -221,7 +237,7 @@ layout: base
             <p class="heading faded">
               <time datetime="{{ awa.date }}">{{ awa.date | date: "%b %Y"  }}</time>
             </p>
-            <h3 class="h4">
+            <h3 class="h4" property="award">
               <span>{{ awa.title }}</span>
               {% if awa.awarder.size > 0 %}
                 <span class="faded"> by </span>
@@ -240,7 +256,7 @@ layout: base
         {% for pub in resume.publications %}
           <header class="{% unless forloop.first %}mt3{% endunless %}">
             <p class="heading faded">
-              <time datetime="{{ pub.releaseDate }}">{{ pub.releaseDate | date: "%b %Y"  }}</time>
+              <time datetime="{{ pub.releaseDate }}">{{ pub.releaseDate | date: "%b %Y" }}</time>
             </p>
             <h3 class="h4">
               {% include link.html title=pub.name href=pub.website %}
