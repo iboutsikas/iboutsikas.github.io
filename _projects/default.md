@@ -3,11 +3,11 @@ layout: project
 title: Default
 date: 07 Aug 2017
 screenshot:
-  src: /hydejack/assets/img/projects/default@0,25x.jpg
+  path:    /hydejack/assets/img/projects/default.jpg
   srcset:
     1920w: /hydejack/assets/img/projects/default.jpg
-    960w: /hydejack/assets/img/projects/default@0,5x.jpg
-    480w: /hydejack/assets/img/projects/default@0,25x.jpg
+    960w:  /hydejack/assets/img/projects/default@0,5x.jpg
+    480w:  /hydejack/assets/img/projects/default@0,25x.jpg
 caption: This theme is so fresh and young, it's basically overpriced apple cider for the web.
 description: >
   TODO

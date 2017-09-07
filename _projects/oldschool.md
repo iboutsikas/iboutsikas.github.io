@@ -3,11 +3,11 @@ layout: project
 title: Oldschool
 date: 04 Aug 2017
 screenshot:
-  src: /hydejack/assets/img/projects/oldschool@0,25x.jpg
+  path:    /hydejack/assets/img/projects/oldschool.jpg
   srcset:
     1920w: /hydejack/assets/img/projects/oldschool.jpg
-    960w: /hydejack/assets/img/projects/oldschool@0,5x.jpg
-    480w: /hydejack/assets/img/projects/oldschool@0,25x.jpg
+    960w:  /hydejack/assets/img/projects/oldschool@0,5x.jpg
+    480w:  /hydejack/assets/img/projects/oldschool@0,25x.jpg
 caption: How needs CSS when you got the power of HTML?
 description: >
   TODO

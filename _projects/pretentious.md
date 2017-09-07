@@ -3,11 +3,11 @@ layout: project
 title: Pretentious
 date: 06 Aug 2017
 screenshot:
-  src: /hydejack/assets/img/projects/pretentious@0,25x.jpg
+  path:    /hydejack/assets/img/projects/pretentious.jpg
   srcset:
     1920w: /hydejack/assets/img/projects/pretentious.jpg
-    960w: /hydejack/assets/img/projects/pretentious@0,5x.jpg
-    480w: /hydejack/assets/img/projects/pretentious@0,25x.jpg
+    960w:  /hydejack/assets/img/projects/pretentious@0,5x.jpg
+    480w:  /hydejack/assets/img/projects/pretentious@0,25x.jpg
 caption: This one puts the "pretentious" in "A pretentious two-column Jekyll theme".
 description: >
   TODO

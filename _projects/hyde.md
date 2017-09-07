@@ -3,11 +3,11 @@ layout: project
 title: Hyde
 date: 05 Aug 2017
 screenshot:
-  src: /hydejack/assets/img/projects/hyde@0,25x.jpg
+  path:    /hydejack/assets/img/projects/hyde.jpg
   srcset:
     1920w: /hydejack/assets/img/projects/hyde.jpg
-    960w: /hydejack/assets/img/projects/hyde@0,5x.jpg
-    480w: /hydejack/assets/img/projects/hyde@0,25x.jpg
+    960w:  /hydejack/assets/img/projects/hyde@0,5x.jpg
+    480w:  /hydejack/assets/img/projects/hyde@0,25x.jpg
 caption: This theme captures the magic of the original Hyde theme.
 description: >
   TODO
