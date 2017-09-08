@@ -136,14 +136,14 @@ layout: base
         {% for work in resume.work %}
           <header
             class="{% unless forloop.first %}mt3{% endunless %}"
-            property="{% if work.endDate %}alumniOf{% else %}worksFor{% endif %}"
+            property="{% if work.endDate.size > 0 %}alumniOf{% else %}worksFor{% endif %}"
             typeof="Organization"
             >
             {% if work.startDate %}
               <p class="heading faded">
                 <time datetime="{{ work.startDate }}">{{ work.startDate | date: "%b %Y"  }}</time>
-                {% if work.endDate %}
-                  –
+                –
+                {% if work.endDate.size > 0 %}
                   <time datetime="{{ work.endDate }}">{{ work.endDate | date: "%b %Y" }}</time>
                 {% endif %}
               </p>
@@ -152,7 +152,7 @@ layout: base
               <span>{{ work.position }}</span>
               <span class="faded"> at </span>
               <meta property="name" content="{{ work.company }}"/>
-              {% capture org %}{% if work.endDate %}{% else %}org p-org h-card{% endif %}{% endcapture %}
+              {% capture org %}{% if work.endDate.size > 0 %}{% else %}org p-org h-card{% endif %}{% endcapture %}
               {% include link.html title=work.company href=work.website class=org property="sameAs" %}
             </h3>
           </header>
@@ -176,7 +176,9 @@ layout: base
             <p class="heading faded">
               <time datetime="{{ vol.startDate }}">{{ vol.startDate | date: "%b %Y"  }}</time>
               –
-              <time datetime="{{ vol.endDate }}">{{ vol.endDate | date: "%b %Y"  }}</time>
+              {% if vol.endDate.size > 0 %}
+                <time datetime="{{ vol.endDate }}">{{ vol.endDate | date: "%b %Y"  }}</time>
+              {% endif %}
             </p>
             <h3 class="h4">
               <span>{{ vol.position }}</span>
@@ -204,9 +206,11 @@ layout: base
             <p class="heading faded">
               <time datetime="{{ edu.startDate }}">{{ edu.startDate | date: "%b %Y"  }}</time>
               –
-              <time datetime="{{ edu.endDate }}">{{ edu.endDate | date: "%b %Y"  }}</time>
+              {% if edu.endDate.size > 0 %}
+                <time datetime="{{ edu.endDate }}">{{ edu.endDate | date: "%b %Y"  }}</time>
+              {% endif %}
             </p>
-            <h3 class="h4" property="alumniOf" typeof="EducationalOrganization">
+            <h3 class="h4" {% if edu.endDate.size > 0 %}property="alumniOf" typeof="EducationalOrganization"{% endif %}>
               <span>{{ edu.studyType }}</span>
               {% if edu.area.size > 0 %}
                 <span class="faded"> in </span>
@@ -214,7 +218,7 @@ layout: base
               {% endif %}
               {% if edu.institution.size > 0 %}
                 <span class="faded"> at </span>
-                <span property="name">{{ edu.institution }}</span>
+                <span {% if edu.endDate.size > 0 %}property="name"{% endif %}>{{ edu.institution }}</span>
               {% endif %}
               {% if edu.gpa.size > 0 %}
                 <span class="faded"> with GPA of </span>
