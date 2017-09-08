@@ -15,8 +15,8 @@ image: /hydejack/assets/img/projects/base-magenta.jpg
 links:
   - title: Demo
     url: https://qwtel.com/hydejack-solid-magenta/
-color: '#aa759f'
-sidebar_image: none
+accent_color: '#aa759f'
+accent_image: none
 ---
 
 ***

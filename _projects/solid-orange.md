@@ -15,8 +15,8 @@ image: /hydejack/assets/img/projects/base-orange.jpg
 links:
   - title: Demo
     url: https://qwtel.com/hydejack-solid-orange/
-color: '#d28445'
-sidebar_image: none
+accent_color: '#d28445'
+accent_image: none
 ---
 
 ***

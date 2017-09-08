@@ -15,8 +15,8 @@ image: /hydejack/assets/img/projects/base-green.jpg
 links:
   - title: Demo
     url: https://qwtel.com/hydejack-solid-green/
-color: '#90a959'
-sidebar_image: none
+accent_color: '#90a959'
+accent_image: none
 ---
 
 ***

@@ -15,8 +15,8 @@ image: /hydejack/assets/img/projects/base-red.jpg
 links:
   - title: Demo
     url: https://qwtel.com/hydejack-solid-red/
-color: '#ac4142'
-sidebar_image: none
+accent_color: '#ac4142'
+accent_image: none
 ---
 
 ***

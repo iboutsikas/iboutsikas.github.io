@@ -13,10 +13,10 @@ description: >
   TODO
 image: /hydejack/assets/img/projects/base-yellow.jpg
 links:
-  - title: Download
+  - title: Demo
     url: https://qwtel.com/hydejack-solid-yellow/
-color: '#f4bf75'
-sidebar_image: none
+accent_color: '#f4bf75'
+accent_image: none
 ---
 
 ***

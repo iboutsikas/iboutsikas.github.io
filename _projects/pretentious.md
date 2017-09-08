@@ -16,8 +16,8 @@ links:
   - title: Demo
     url: https://qwtel.com/hydejack-pretentious/
 big_project: true
-sidebar_image: /hydejack/assets/img/pretentious-bg.jpg
-color: '#a85641'
+accent_color: '#a85641'
+accent_image: /hydejack/assets/img/pretentious-bg.jpg
 ---
 
 ![Typeface](/hydejack/assets/img/pretentious-1.jpg){:.lead}

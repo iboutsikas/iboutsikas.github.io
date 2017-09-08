@@ -15,8 +15,8 @@ image: /hydejack/assets/img/projects/base-brown.jpg
 links:
   - title: Demo
     url: https://qwtel.com/hydejack-solid-brown/
-color: '#8f5536'
-sidebar_image: none
+accent_color: '#8f5536'
+accent_image: none
 ---
 
 ***

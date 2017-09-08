@@ -15,8 +15,8 @@ image: /hydejack/assets/img/projects/base-cyan.jpg
 links:
   - title: Demo
     url: https://qwtel.com/hydejack-solid-cyan/
-color: '#75b5aa'
-sidebar_image: none
+accent_color: '#75b5aa'
+accent_image: none
 ---
 
 ***

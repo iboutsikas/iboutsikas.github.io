@@ -16,8 +16,8 @@ links:
   - title: Demo
     url: https://qwtel.com/hydejack-hyde/
 big_project: true
-sidebar_image: 'data:image/gif;base64,R0lGODlhAQABAPAAACAgIP///yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=='
-color: '#268bd2'
+accent_color: '#268bd2'
+accent_image: 'data:image/gif;base64,R0lGODlhAQABAPAAACAgIP///yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=='
 ---
 
 ![Typeface](/hydejack/assets/img/hyde-1.jpg){:.lead}

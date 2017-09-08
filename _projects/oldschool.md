@@ -16,8 +16,8 @@ links:
   - title: Demo
     url: https://qwtel.com/hydejack-oldschool/
 big_project: true
-sidebar_image: /hydejack/assets/img/oldschool-bg.jpg
-color: '#00e'
+accent_color: '#00e'
+accent_image: /hydejack/assets/img/oldschool-bg.jpg
 ---
 
 ![Typeface](/hydejack/assets/img/oldschool-1.jpg){:.lead}
