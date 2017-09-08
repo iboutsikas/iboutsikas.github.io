@@ -4,28 +4,29 @@ layout: base
 
 {% assign resume = site.data.resume %}
 
-<article class="page" role="article" vocab="http://schema.org/" typeof="Person">
+<article class="page vcard h-card" role="article" vocab="http://schema.org/" typeof="Person">
   <meta property="url" content="{{ page.url | absolute_url }}"/>
   <meta property="mainEntityOfPage" content="{{ page.url | absolute_url }}"/>
 
   {% assign basics = resume.basics %}
 
   {% if basics.picture.size > 0 %}
-    {% include srcset-img.html class="me" img=basics.picture alt=basics.name property="image" %}
+    {% include srcset-img.html class="me photo u-photo" img=basics.picture alt=basics.name property="image" %}
   {% endif %}
 
   <header class="hr">
-    <h1 class="page-title" property="name">{{ basics.name }}</h1>
+    <h1 class="page-title fn p-name" property="name">{{ basics.name }}</h1>
     {% if basics.label %}
-      <p class="h3 faded subline" property="jobTitle">{{ basics.label }}</p>
+      <p class="h3 faded subline title p-job-title" property="jobTitle">{{ basics.label }}</p>
     {% endif %}
   </header>
 
-  <span property="description">
-    {% if basics.summary.size > 0 %}
-      {{ basics.summary | markdownify }}
-    {% endif %}
-  </span>
+  {% if basics.summary.size > 0 %}
+{% capture desc %}{{ basics.summary | strip_newlines }}
+{:.note.p-note property="description"}{% endcapture %}
+
+    {{ desc | markdownify }}
+  {% endif %}
 
   <dl class="grid contact">
     <div class="col col-3-5">
@@ -42,21 +43,21 @@ layout: base
           <span class="sr-only">Location:</span>
         </dt>
 
-        <dd class="h4" property="address" typeof="PostalAddress">
+        <dd class="h4 adr p-adr h-adr" property="address" typeof="PostalAddress">
           {% if location.address.size > 0 %}
-            <span property="streetAddress">{{ location.address }}</span>,
+            <span class="street-address p-street-address" property="streetAddress">{{ location.address }}</span>,
           {% endif %}
 
           {% if location.postalCode.size > 0 %}
-            <span property="postalCode">{{ location.postalCode }}</span>,
+            <span class="postal-code p-postal-code" property="postalCode">{{ location.postalCode }}</span>,
           {% endif %}
 
           {% if location.city.size > 0 %}
-            <span property="addressLocality">{{ location.city }}</span>,
+            <span class="locality p-locality" property="addressLocality">{{ location.city }}</span>,
           {% endif %}
 
           {% if location.region.size > 0 %}
-            <span property="addressRegion">{{ location.region }}</span>,
+            <span class="region p-region" property="addressRegion">{{ location.region }}</span>,
           {% endif %}
 
           {% if location.countryCode.size > 0 %}
@@ -64,9 +65,9 @@ layout: base
             {% assign country = site.data.countries | where:"code",countryCode | first %}
             {% if country %}
               <meta property="addressCountry" content="{{ location.countryCode }}"/>
-              <span>{{ country.name }}</span>
+              <span class="country-name p-country-name">{{ country.name }}</span>
             {% else %}
-              <span property="addressCountry">{{ location.countryCode }}</span>
+              <span class="country-name p-country-name" property="addressCountry">{{ location.countryCode }}</span>
             {% endif %}
           {% endif %}
         </dd>
@@ -79,7 +80,7 @@ layout: base
         </dt>
         <dd class="h4">
           <meta property="email" content="{{ basics.email }}"/>
-          <a href="mailto:{{ basics.email }}" class="no-push-state">{{ basics.email }}</a>
+          <a href="mailto:{{ basics.email }}" class="no-push-state email u-email">{{ basics.email }}</a>
         </dd>
       {% endif %}
 
@@ -90,7 +91,7 @@ layout: base
         </dt>
         <dd class="h4">
           <meta property="telephone" content="{{ basics.phone }}"/>
-          <a href="tel:{{ basics.phone }}" class="no-push-state">{{ basics.phone }}</a>
+          <a href="tel:{{ basics.phone }}" class="no-push-state tel p-tel">{{ basics.phone }}</a>
         </dd>
       {% endif %}
 
@@ -100,7 +101,7 @@ layout: base
           <span class="sr-only">Website:</span>
         </dt>
         <dd class="h4">
-          <a href="{{ basics.website }}" property="sameAs">{{ basics.website }}</a>
+          <a href="{{ basics.website }}" class="url u-url" property="sameAs">{{ basics.website }}</a>
         </dd>
       {% endif %}
     </div>
@@ -121,7 +122,7 @@ layout: base
             <span class="sr-only">{{ name }}:</span>
           </dt>
           <dd class="h4">
-            {% include link.html href=pro.url title=pro.username property="sameAs" %}
+            {% include link.html href=pro.url class="nickname p-nickname" title=pro.username property="sameAs" %}
           </dd>
         {% endfor %}
       </div>
@@ -151,7 +152,8 @@ layout: base
               <span>{{ work.position }}</span>
               <span class="faded"> at </span>
               <meta property="name" content="{{ work.company }}"/>
-              {% include link.html title=work.company href=work.website property="sameAs" %}
+              {% capture org %}{% if work.endDate %}{% else %}org p-org h-card{% endif %}{% endcapture %}
+              {% include link.html title=work.company href=work.website class=org property="sameAs" %}
             </h3>
           </header>
 
@@ -235,7 +237,7 @@ layout: base
         {% for awa in resume.awards %}
           <header class="{% unless forloop.first %}mt3{% endunless %}">
             <p class="heading faded">
-              <time datetime="{{ awa.date }}">{{ awa.date | date: "%b %Y"  }}</time>
+              <time datetime="{{ awa.date }}">{{ awa.date | date: "%b %Y" }}</time>
             </p>
             <h3 class="h4" property="award">
               <span>{{ awa.title }}</span>
