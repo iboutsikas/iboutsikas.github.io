@@ -60,6 +60,7 @@ This table details what is and isn't included in each respective version.
 | License                             | [GPL-3.0][license] | [PRO]              |
 | Price                               | Free               | $59                |
 || [**Download on GitHub**][github]<br/> -- or -- <br/>[**Use the RubyGem**][gem] | [Buy Now – $59][buy]{:.simple-goods-btn} [^3] |
+{:.no-break-layout}
 
 ## Features
 All versions include *all* of these features:

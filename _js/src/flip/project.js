@@ -16,7 +16,7 @@ import { zipProto as zipWith } from 'rxjs/operator/zip';
 
 import { animate, empty } from '../common';
 
-export function flipProject(start$, ready$, fadeIn$, { animationMain, settings }) {
+export default function flipProject(start$, ready$, fadeIn$, { animationMain, settings }) {
   const flip$ = start$
     ::filter(({ flipType }) => flipType === 'project')
     ::switchMap(({ anchor }) => {
