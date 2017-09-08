@@ -61,7 +61,7 @@ layout: base
 
           {% if location.countryCode.size > 0 %}
             {% assign countryCode = location.countryCode | upcase %}
-            {% assign country = site.data.countries | where:"code", countryCode | first %}
+            {% assign country = site.data.countries | where:"code",countryCode | first %}
             {% if country %}
               <meta property="addressCountry" content="{{ location.countryCode }}"/>
               <span>{{ country.name }}</span>

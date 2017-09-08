@@ -4,44 +4,47 @@ layout: base
 
 {% assign project = page %}
 
-<article class="page" role="article">
+<article class="page" role="article" vocab="http://schema.org/" typeof="CreativeWork">
+  <meta property="url" content="{{ page.url | absolute_url }}"/>
+  <meta property="mainEntityOfPage" content="{{ page.url | absolute_url }}"/>
+
   <header>
-    <h1 class="page-title">{{ project.title }}</h1>
+    <h1 class="page-title" property="name">{{ project.title }}</h1>
 
     <p class="post-date heading">
       {% assign parent = site.pages | where:"show_collection",project.collection | first %}
       {% if parent %}
-        <a href="{{ '/projects/' | relative_url }}" class="flip-title">{{ parent.title }}</a>
+        <a href="{{ '/projects/' | relative_url }}" class="flip-title" property="genre">{{ parent.title }}</a>
         |
       {% endif %}
-      <time datetime="{{ project.date | date_to_xmlschema }}">{{ project.date | date: "%Y" }}</time>
+      <!-- <meta property="copyrightYear" content="{{ project.date | date: "%Y" }}"/> -->
+      <time datetime="{{ project.date | date_to_xmlschema }}" property="datePublished">{{ project.date | date: "%Y" }}</time>
       <span class="fr">
         <span class="sr-only">| Links:</span>
         {% for link in project.links %}
-          <a href="{{ link.url }}">{{ link.title }}</a>
+          <a href="{{ link.url }}" property="sameAs">{{ link.title }}</a>
           {% unless forloop.last %}|{% endunless %}
         {% endfor %}
       </span>
     </p>
 
-    {% if project.screenshot.srcset.first %}<a href="{{ project.screenshot.srcset.first.last }}" class="no-hover no-push-state no-mark-external">{% endif %}
-      <div class="img lead sixteen-nine">
-        {% if project.screenshot %}
-          {%
-            include srcset-img.html
-            img=project.screenshot
-            alt="Screenshot"
-            sizes="(min-width: 92em) 48rem, (min-width: 54em) 42rem, (min-width: 40em) 37.5rem, 100vw"
-          %}
-        {% endif %}
-      </div>
-    {% if project.screenshot.srcset.first %}</a>{% endif %}
+    {% assign screenshot = project.screenshot %}
+    <div class="img lead sixteen-nine">
+      {% if screenshot %}
+        {% include srcset-img.html
+          img=screenshot
+          alt=project.title
+          sizes="(min-width: 92em) 48rem, (min-width: 54em) 42rem, (min-width: 40em) 37.5rem, 100vw"
+          property="image"
+        %}
+      {% endif %}
+    </div>
 
-    {% include message.html text=project.description %}
+    {% include message.html text=project.description property="description "%}
+    <!-- {% if project.caption %}<meta property="disambiguatingDescription" content="{{ project.caption }}"/>{% endif %} -->
   </header>
 
   {{ content }}
-
 </article>
 
 {% unless include.link_title %}
