@@ -45,6 +45,7 @@ you can find it [here]({{ site.baseurl }}{% link docs/${version}/index.md %}).
 {:.message}
 
 ## Table of Contents
+{:.no_toc}
 * this unordered seed list will be replaced by toc as unordered list
 {:toc}`;
 
@@ -58,11 +59,12 @@ const RE_IGNORE = /(?:.|\n)*?/; // arbitrary content, nongreedy (!), NOT caputre
 
 const FRONT_MATTER_REGEX = re`/${RE_FM_BEGIN}${RE_CONTENT}${RE_FM_END}/u`;
 
-const RE_HEADING = /#+\s.+\n/; // heading, e.g. ## Heading
-const RE_LIST = /\*\s.+\n/;    // list, e.g. * this will be replaced
-const RE_TOC = /\{:toc\}/;     // {:toc}
+const RE_HEADING = /#+\s.+\n/;       // heading, e.g. ## Heading
+const RE_NO_TOC = /\{:\.no_toc\}\n/; // {:.no_toc}
+const RE_LIST = /\*\s.+\n/;          // list, e.g. * this will be replaced
+const RE_TOC = /\{:toc\}/;           // {:toc}
 
-const TOC_REGEX = re`/${RE_HEADING}${RE_LIST}${RE_TOC}/u`
+const TOC_REGEX = re`/${RE_HEADING}${RE_NO_TOC}${RE_LIST}${RE_TOC}/u`
 
 const RE_TITLE = /title:\s['"]?(.+)['"]?/;
 const TITLE_IN_FRONT_MATTER_REEGEX =
