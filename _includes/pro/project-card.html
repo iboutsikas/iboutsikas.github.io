@@ -1,7 +1,7 @@
 {% assign project = include.project %}
 {% assign sizes = include.sizes | default:"(min-width: 92em) 22.5rem, (min-width: 60em) 19.5rem, (min-width: 54em) 32rem, (min-width: 40em) 17.25rem, 100vw" %}
 
-<div class="card">
+<article class="card">
   <a href="{{ project.url | relative_url }}" class="no-hover flip-project">
     <div class="img sixteen-nine">
       {% if project.screenshot %}
@@ -15,4 +15,4 @@
   {% if project.caption %}
     <div class="caption">{{ project.caption | markdownify }}</div>
   {% endif %}
-</div>
+</article>

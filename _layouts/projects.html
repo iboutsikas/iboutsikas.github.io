@@ -16,11 +16,7 @@ layout: page
     {% assign date = currentdate %}
   {% endif %}
 
-  {% if page.big_project != null %}
-    {% assign big_project = page.big_project %}
-  {% else %}
-    {% assign big_project = project.big_project %}
-  {% endif %}
+  {% assign big_project = page.big_project | default:project.big_project %}
   <div class="col {% if big_project %}col-1{% else %}col-1-2{% endif %}">
     {% if big_project %}
       {% assign sizes = "(min-width: 92em) 46rem, (min-width: 60em) 40rem, (min-width: 54em) 32rem, (min-width: 40em) 35.5rem, 100vw" %}

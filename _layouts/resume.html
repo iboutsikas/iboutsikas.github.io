@@ -132,6 +132,7 @@ layout: base
   <div class="grid">
     <div class="col col-3-5">
       {% if resume.work.size > 0 %}
+        <section>
         <h2 id="experience" class="h3 faded hr">Experience <span class="symbol icon-briefcase"></span></h2>
         {% for work in resume.work %}
           <header
@@ -166,10 +167,11 @@ layout: base
             {% endfor %}
           </ul>
         {% endfor %}
-
+        </section>
       {% endif %}
 
       {% if resume.volunteer.size > 0 %}
+        <section>
         <h2 id="volunteer" class="h3 faded hr">Volunteer <span class="symbol icon-earth"></span></h2>
         {% for vol in resume.volunteer %}
           <header class="{% unless forloop.first %}mt3{% endunless %}">
@@ -196,10 +198,11 @@ layout: base
             {% endfor %}
           </ul>
         {% endfor %}
-
+        </section>
       {% endif %}
 
       {% if resume.education.size > 0 %}
+        <section>
         <h2 id="education" class="h3 faded hr">Education <span class="symbol icon-library"></span></h2>
         {% for edu in resume.education %}
           <header class="{% unless forloop.first %}mt3{% endunless %}">
@@ -234,9 +237,11 @@ layout: base
             {% endfor %}
           </ul>
         {% endfor %}
+        </section>
       {% endif %}
 
       {% if resume.awards.size > 0 %}
+        <section>
         <h2 id="awards" class="h3 faded hr">Awards <span class="symbol icon-trophy"></span></h2>
         {% for awa in resume.awards %}
           <header class="{% unless forloop.first %}mt3{% endunless %}">
@@ -254,10 +259,11 @@ layout: base
 
           {% include message.html text=awa.summary %}
         {% endfor %}
-
+        </section>
       {% endif %}
 
       {% if resume.publications.size > 0 %}
+        <section>
         <h2 id="publications" class="h3 faded hr">Publications <span class="symbol icon-book"></span></h2>
         {% for pub in resume.publications %}
           <header class="{% unless forloop.first %}mt3{% endunless %}">
@@ -275,10 +281,11 @@ layout: base
 
           {% include message.html text=pub.summary %}
         {% endfor %}
-
+        </section>
       {% endif %}
 
       {% if resume.references.size > 0 %}
+        <section>
         <h2 id="references" class="h3 faded hr">References <span class="symbol icon-quotes-right"></span></h2>
         {% for ref in resume.references %}
           <blockquote class="ref">
@@ -286,11 +293,13 @@ layout: base
             <footer>— <cite>{{ ref.name }}</cite></footer>
           </blockquote>
         {% endfor %}
+        </section>
       {% endif %}
     </div>
 
     <div class="col col-2-5">
       {% if resume.languages.size > 0 %}
+        <section>
         <h2 id="languages" class="h3 faded hr">Languages <span class="symbol icon-bubbles"></span></h2>
         <dl class="skills">
           {% for lng in resume.languages %}
@@ -337,9 +346,11 @@ layout: base
             </dd>
           {% endfor %}
         </dl>
+        </section>
       {% endif %}
 
       {% if resume.skills.size > 0 %}
+        <section>
         <h2 id="skills" class="h3 faded hr">Skills <span class="symbol icon-wrench"></span></h2>
         <dl class="skills">
           {% for skl in resume.skills %}
@@ -381,9 +392,11 @@ layout: base
             </dd>
           {% endfor %}
         </dl>
+        </section>
       {% endif %}
 
       {% if resume.interests.size > 0 %}
+        <section>
         <h2 id="interests" class="h3 faded hr">Interests <span class="symbol icon-heart"></span></h2>
         <dl class="skills">
           {% for int in resume.interests %}
@@ -398,6 +411,7 @@ layout: base
             </dd>
           {% endfor %}
         </dl>
+        </section>
       {% endif %}
     </div>
   </div>

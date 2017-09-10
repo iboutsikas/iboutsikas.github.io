@@ -17,7 +17,6 @@ layout: base
         <a href="{{ '/projects/' | relative_url }}" class="flip-title" property="genre">{{ parent.title }}</a>
         |
       {% endif %}
-      <!-- <meta property="copyrightYear" content="{{ project.date | date: "%Y" }}"/> -->
       <time datetime="{{ project.date | date_to_xmlschema }}" property="datePublished">{{ project.date | date: "%Y" }}</time>
       <span class="fr">
         <span class="sr-only">| Links:</span>
@@ -41,35 +40,37 @@ layout: base
     </div>
 
     {% include message.html text=project.description property="description "%}
-    <!-- {% if project.caption %}<meta property="disambiguatingDescription" content="{{ project.caption }}"/>{% endif %} -->
+    {% if project.caption %}<meta property="disambiguatingDescription" content="{{ project.caption }}"/>{% endif %}
   </header>
 
   {{ content }}
+
+  {% unless include.link_title %}
+    <hr class="dingbat" />
+  {% endunless %}
+
+  {% include about.html %}
+
+  {% assign p1 = page.previous | default:page.next.next %}
+  {% assign p2 = page.next | default:page.previous.previous %}
+  {% if p1 or p2 %}
+  <aside class="other-projects" role="complementary">
+    <h2>Other Projects</h2>
+    <div class="grid">
+      {% assign p1 = page.previous | default:page.next.next %}
+      {% if p1 %}
+        <div class="col col-1-2">
+          {% include pro/project-card.html project=p1 %}
+        </div>
+      {% endif %}
+
+      {% assign p2 = page.next | default:page.previous.previous %}
+      {% if p2 %}
+        <div class="col col-1-2">
+          {% include pro/project-card.html project=p2 %}
+        </div>
+      {% endif %}
+    </div>
+  </aside>
+  {% endif %}
 </article>
-
-{% unless include.link_title %}
-  <hr class="dingbat" />
-{% endunless %}
-
-{% include about.html %}
-
-{% assign p1 = page.previous | default:page.next.next %}
-{% assign p2 = page.next | default:page.previous.previous %}
-{% if p1 or p2 %}
-  <h2>Other Projects</h2>
-  <div class="grid">
-    {% assign p1 = page.previous | default:page.next.next %}
-    {% if p1 %}
-      <div class="col col-1-2">
-        {% include pro/project-card.html project=p1 %}
-      </div>
-    {% endif %}
-
-    {% assign p2 = page.next | default:page.previous.previous %}
-    {% if p2 %}
-      <div class="col col-1-2">
-        {% include pro/project-card.html project=p2 %}
-      </div>
-    {% endif %}
-  </div>
-{% endif %}

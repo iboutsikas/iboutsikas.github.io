@@ -7,65 +7,41 @@ layout: about
 
 {{ content_split[0] }}
 
+<section>
 {% if page.selected_projects %}
   <h2 id="selected-projects">Selected Projects</h2>
-  {% assign is_newline = true %}
+  <div class="grid">
   {% for project_path in page.selected_projects %}
-    {% assign project = site.projects | where:"path", project_path | first %}
+    {% assign project = site.projects | where:"path",project_path | first %}
+    {% assign big_project = page.big_project | default:project.big_project %}
 
-    {% if is_newline %}<div class="grid">{% endif %}
-
-    {% if page.big_project != null %}
-      {% assign big_project = page.big_project %}
-    {% else %}
-      {% assign big_project = project.big_project %}
-    {% endif %}
     <div class="col {% if big_project %}col-1{% else %}col-1-2{% endif %}">
       {% if project %}
         {% if big_project %}
           {% assign sizes = "(min-width: 92em) 46rem, (min-width: 60em) 40rem, (min-width: 54em) 32rem, (min-width: 40em) 35.5rem, 100vw" %}
-        {% else %}
-          {% assign sizes = null %}
         {% endif %}
         {% include pro/project-card.html project=project sizes=sizes %}
       {% else %}
         Project with path <code>{{ project_path }}</code> not found.
       {% endif %}
     </div>
-
-    {% unless is_newline %}</div>{% endunless %}
-
-    {% if forloop.last %}
-      {% if is_newline %}</div>{% endif %}
-    {% endif %}
-
-    {% if is_newline %}
-      {% assign is_newline = false %}
-    {% else %}
-      {% assign is_newline = true %}
-    {% endif %}
   {% endfor %}
-{% else %}
+  </div>
+{% elsif site.projects.size > 1 %}
   <h2 id="recent-projects">Recent Projects</h2>
+  <div class="grid">
   {% assign ordered_projects = site.projects | sort:"date" | reverse %}
-  {% assign is_newline = true %}
   {% for project in ordered_projects limit:2 %}
-    {% if is_newline %}<div class="grid">{% endif %}
+    {% assign big_project = page.big_project | default:project.big_project %}
 
-    <div class="col col-1-2">{% include pro/project-card.html project=project %}</div>
-
-    {% unless is_newline %}</div>{% endunless %}
-
-    {% if forloop.last %}
-      {% if is_newline %}</div>{% endif %}
-    {% endif %}
-
-    {% if is_newline %}
-      {% assign is_newline = false %}
-    {% else %}
-      {% assign is_newline = true %}
-    {% endif %}
+    <div class="col {% if big_project %}col-1{% else %}col-1-2{% endif %}">
+      {% if big_project %}
+        {% assign sizes = "(min-width: 92em) 46rem, (min-width: 60em) 40rem, (min-width: 54em) 32rem, (min-width: 40em) 35.5rem, 100vw" %}
+      {% endif %}
+      {% include pro/project-card.html project=project sizes=sizes %}
+    </div>
   {% endfor %}
+  </div>
 {% endif %}
 
 {% if page.more_projects %}
@@ -76,7 +52,9 @@ layout: about
     Page with path <code>{{ page.more_posts }}</code> not found.
   {% endif  %}
 {% endif %}
+</section>
 
+<section>
 {% if page.selected_posts %}
   <h2 id="selected-posts" class="hr">Selected Posts</h2>
   <ul class="related-posts">
@@ -89,7 +67,7 @@ layout: about
       {% endif %}
     {% endfor %}
   </ul>
-{% else %}
+{% elsif site.posts.size > 1 %}
   <h2 id="recent-posts" class="hr">Recent Posts</h2>
   <ul class="related-posts">
     {% for post in site.posts limit:5 %}
@@ -106,5 +84,6 @@ layout: about
     Page with path <code>{{ page.more_posts }}</code> not found.
   {% endif  %}
 {% endif %}
+</section>
 
 {{ content_split[1] }}
