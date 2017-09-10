@@ -1,15 +1,16 @@
 ---
 layout: about
 ---
+{% assign strings = site.data.strings %}
 
-{% assign separator = page.content_separator | default:"<!-- more -->" %}
+{% assign separator = page.content_separator | default:"<!--more-->" %}
 {% assign content_split = content | split:separator %}
 
 {{ content_split[0] }}
 
 <section>
 {% if page.selected_projects %}
-  <h2 id="selected-projects">Selected Projects</h2>
+  <h2 id="selected-projects">{{ strings.welcome.selected_projects | default:"Selected Projects" }}</h2>
   <div class="grid">
   {% for project_path in page.selected_projects %}
     {% assign project = site.projects | where:"path",project_path | first %}
@@ -28,7 +29,7 @@ layout: about
   {% endfor %}
   </div>
 {% elsif site.projects.size > 1 %}
-  <h2 id="recent-projects">Recent Projects</h2>
+  <h2 id="recent-projects">{{ strings.welcome.recent_projects | default:"Recent Projects" }}</h2>
   <div class="grid">
   {% assign ordered_projects = site.projects | sort:"date" | reverse %}
   {% for project in ordered_projects limit:2 %}
@@ -47,7 +48,9 @@ layout: about
 {% if page.more_projects %}
   {% assign more_projects = site.pages | where:"path", page.more_projects | first %}
   {% if more_projects %}
-    <p class="read-more mt0">See <a class="heading flip-title" href="{{ more_projects.url | relative_url }}">{{ more_projects.title }}</a> for more</p>
+    {% capture projects_title %}<a class="heading flip-title" href="{{ more_projects.url | relative_url }}">{{ more_projects.title }}</a>{% endcapture %}
+    {% capture text %}{{ strings.welcome.more_projects | default:"See <!--projects_title--> for more" }}{:.read-more.mt0}{% endcapture %}
+    {{ text | markdownify | replace:"<!--projects_title-->",projects_title }}
   {% else %}
     Page with path <code>{{ page.more_posts }}</code> not found.
   {% endif  %}
@@ -56,7 +59,7 @@ layout: about
 
 <section>
 {% if page.selected_posts %}
-  <h2 id="selected-posts" class="hr">Selected Posts</h2>
+  <h2 id="selected-posts" class="hr">{{ strings.welcome.selected_posts | default:"Selected Posts" }}</h2>
   <ul class="related-posts">
     {% for post_path in page.selected_posts %}
       {% assign post = site.posts | where:"path", post_path | first %}
@@ -68,7 +71,7 @@ layout: about
     {% endfor %}
   </ul>
 {% elsif site.posts.size > 1 %}
-  <h2 id="recent-posts" class="hr">Recent Posts</h2>
+  <h2 id="recent-posts" class="hr">{{ strings.welcome.recent_posts | default:"Recent Posts" }}</h2>
   <ul class="related-posts">
     {% for post in site.posts limit:5 %}
       {% include post-list-item.html post=post %}
@@ -79,7 +82,9 @@ layout: about
 {% if page.more_posts %}
   {% assign more_posts = site.pages | where:"path", page.more_posts | first %}
   {% if more_posts %}
-    <p class="read-more">See <a class="heading flip-title" href="{{ more_posts.url | relative_url }}">{{ more_posts.title }}</a> for more</p>
+    {% capture posts_title %}<a class="heading flip-title" href="{{ more_posts.url | relative_url }}">{{ more_posts.title }}</a>{% endcapture %}
+    {% capture text %}{{ strings.welcome.more_posts | default:"See <!--posts_title--> for more" }}{:.read-more}{% endcapture %}
+    {{ text | markdownify | replace:"<!--posts_title-->",posts_title }}
   {% else %}
     Page with path <code>{{ page.more_posts }}</code> not found.
   {% endif  %}

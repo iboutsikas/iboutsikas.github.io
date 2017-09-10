@@ -5,13 +5,15 @@ layout: page
 {% assign show_collection = page.show_collection | default:"projects" %}
 {% assign ordered_projects = site[show_collection] | sort:"date" | reverse %}
 
+{% assign projects_group_by = site.data.strings.date_formats.projects_group_by | default:"%Y" %}
+
 {% for project in ordered_projects %}
-  {% assign currentdate = project.date | date: "%Y" %}
+  {% assign currentdate = project.date | date:projects_group_by %}
 
   {% if currentdate != date %}
     {% unless forloop.first %}</div>{% endunless %}
 
-    <h2 id="y{{project.date | date: "%Y"}}">{{ currentdate }}</h2>
+    <h2 id="{{ projects_group_by | slugify }}-{{ currentdate | slugify }}">{{ currentdate }}</h2>
     <div class="grid">
     {% assign date = currentdate %}
   {% endif %}

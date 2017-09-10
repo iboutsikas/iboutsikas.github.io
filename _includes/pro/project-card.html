@@ -5,7 +5,7 @@
   <a href="{{ project.url | relative_url }}" class="no-hover flip-project">
     <div class="img sixteen-nine">
       {% if project.screenshot %}
-        {% include srcset-img.html img=project.screenshot alt="Thumbnail" sizes=sizes %}
+        {% include srcset-img.html img=project.screenshot alt=project.title sizes=sizes %}
       {% endif %}
     </div>
   </a>

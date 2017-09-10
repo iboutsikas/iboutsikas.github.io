@@ -16,7 +16,7 @@ selected_posts:
   - _posts/2012-02-07-example-content.md
 more_projects: projects.md
 more_posts: posts.md
-content_separator: <!-- more -->
+content_separator: <!--more-->
 ---
 
 **Hydejack** is a cutting-edge Jekyll theme that combines the best of static sites and modern web apps.
@@ -33,7 +33,7 @@ a showcase for projects and a resume that fits with the rest of the design.
 **Hydejack** is highly customizable and lets you achieve a variety of styles.
 Below you can find a selection of variations that are included.
 
-<!-- more -->
+<!--more-->
 
 ## [Download](download.md){:.flip-title}
 There are two versions of **Hydejack**: The Free Version includes basic blogging functionality,

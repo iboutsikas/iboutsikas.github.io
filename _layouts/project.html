@@ -4,6 +4,8 @@ layout: base
 
 {% assign project = page %}
 
+{% assign separator = site.data.strings.separator | default:"|" %}
+
 <article class="page" role="article" vocab="http://schema.org/" typeof="CreativeWork">
   <meta property="url" content="{{ page.url | absolute_url }}"/>
   <meta property="mainEntityOfPage" content="{{ page.url | absolute_url }}"/>
@@ -15,14 +17,15 @@ layout: base
       {% assign parent = site.pages | where:"show_collection",project.collection | first %}
       {% if parent %}
         <a href="{{ '/projects/' | relative_url }}" class="flip-title" property="genre">{{ parent.title }}</a>
-        |
+        {{ separator }}
       {% endif %}
-      <time datetime="{{ project.date | date_to_xmlschema }}" property="datePublished">{{ project.date | date: "%Y" }}</time>
+      {% assign proj_format = site.data.strings.date_formats.project | default:"%Y" %}
+      <time datetime="{{ project.date | date_to_xmlschema }}" property="datePublished">{{ project.date | date:proj_format }}</time>
       <span class="fr">
-        <span class="sr-only">| Links:</span>
+        <span class="sr-only">{{ separator }} {{ site.data.strings.links | default:"Links" }}{{ site.data.strings.colon }}</span>
         {% for link in project.links %}
           <a href="{{ link.url }}" property="sameAs">{{ link.title }}</a>
-          {% unless forloop.last %}|{% endunless %}
+          {% unless forloop.last %}{{ separator }}{% endunless %}
         {% endfor %}
       </span>
     </p>
@@ -55,7 +58,7 @@ layout: base
   {% assign p2 = page.next | default:page.previous.previous %}
   {% if p1 or p2 %}
   <aside class="other-projects" role="complementary">
-    <h2>Other Projects</h2>
+    <h2>{{ site.data.strings.other_projects | default:"Other Projects" }}</h2>
     <div class="grid">
       {% assign p1 = page.previous | default:page.next.next %}
       {% if p1 %}
