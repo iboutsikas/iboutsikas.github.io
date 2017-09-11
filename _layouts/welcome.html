@@ -49,8 +49,10 @@ layout: about
   {% assign more_projects = site.pages | where:"path", page.more_projects | first %}
   {% if more_projects %}
     {% capture projects_title %}<a class="heading flip-title" href="{{ more_projects.url | relative_url }}">{{ more_projects.title }}</a>{% endcapture %}
-    {% capture text %}{{ strings.welcome.more_projects | default:"See <!--projects_title--> for more" }}{:.read-more.mt0}{% endcapture %}
-    {{ text | markdownify | replace:"<!--projects_title-->",projects_title }}
+    {% assign text = strings.welcome.more_projects | default:"See <!--projects_title--> for more" %}
+    <p class="read-more mt0">
+      {{ text | replace:"<!--projects_title-->", projects_title }}
+    </p>
   {% else %}
     Page with path <code>{{ page.more_posts }}</code> not found.
   {% endif  %}
@@ -83,8 +85,10 @@ layout: about
   {% assign more_posts = site.pages | where:"path", page.more_posts | first %}
   {% if more_posts %}
     {% capture posts_title %}<a class="heading flip-title" href="{{ more_posts.url | relative_url }}">{{ more_posts.title }}</a>{% endcapture %}
-    {% capture text %}{{ strings.welcome.more_posts | default:"See <!--posts_title--> for more" }}{:.read-more}{% endcapture %}
-    {{ text | markdownify | replace:"<!--posts_title-->",posts_title }}
+    {% assign text = strings.welcome.more_posts | default:"See <!--posts_title--> for more" %}
+    <p class="read-more">
+      {{ text | replace:"<!--posts_title-->", posts_title }}
+    </p>
   {% else %}
     Page with path <code>{{ page.more_posts }}</code> not found.
   {% endif  %}
