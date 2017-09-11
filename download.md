@@ -72,7 +72,7 @@ a.simple-goods-btn{text-decoration:none !important}.simple-goods-btn{-moz-box-si
 [^1]: Applies after the initial page load.  
 [^2]: Actual page load speed depends on your hosting provider, resolution of embedded images and usage of 3rd party plugins.
 [^3]: Transactions secured by [Stripe](https://stripe.com). Downloads handled by [Simple Goods](https://simplegoods.co/).
-[^4]: ...
+[^4]: Only available when serving site over HTTPS, and in browsers that support Service Workers (currently Chrome and Firefox, but more to come. You can track progress [here](http://caniuse.com/#feat=serviceworkers)).
 
 [blog]: blog.md
 [portfolio]: projects.md
