@@ -16,12 +16,9 @@ layout: about
     {% assign project = site.projects | where:"path",project_path | first %}
     {% assign big_project = page.big_project | default:project.big_project %}
 
-    <div class="col {% if big_project %}col-1{% else %}col-1-2{% endif %}">
+    <div class="column {% if big_project %}column-1{% else %}column-1-2{% endif %}">
       {% if project %}
-        {% if big_project %}
-          {% assign sizes = "(min-width: 92em) 46rem, (min-width: 60em) 40rem, (min-width: 54em) 32rem, (min-width: 40em) 35.5rem, 100vw" %}
-        {% endif %}
-        {% include pro/project-card.html project=project sizes=sizes %}
+        {% include pro/project-card.html project=project big_project=big_project %}
       {% else %}
         Project with path <code>{{ project_path }}</code> not found.
       {% endif %}
@@ -35,11 +32,8 @@ layout: about
   {% for project in ordered_projects limit:2 %}
     {% assign big_project = page.big_project | default:project.big_project %}
 
-    <div class="col {% if big_project %}col-1{% else %}col-1-2{% endif %}">
-      {% if big_project %}
-        {% assign sizes = "(min-width: 92em) 46rem, (min-width: 60em) 40rem, (min-width: 54em) 32rem, (min-width: 40em) 35.5rem, 100vw" %}
-      {% endif %}
-      {% include pro/project-card.html project=project sizes=sizes %}
+    <div class="column {% if big_project %}column-1{% else %}column-1-2{% endif %}">
+      {% include pro/project-card.html project=project big_project=big_project %}
     </div>
   {% endfor %}
   </div>

@@ -102,15 +102,25 @@
     }
   }
 
-  .col {
+  .column {
     float: left;
     padding-left: $pad;
     width: 100%;
   }
 
-  @media screen and (min-width: 64em) {
-    .col-3-5 { width: 60% }
-    .col-2-5 { width: 40% }
+  @media screen and (min-width: $break-point-2) {
+    .column-3-5 { width: 60% }
+    .column-2-5 { width: 40% }
+  }
+
+  @media screen and (min-width: $break-point-3) {
+    .column-3-5 { width: 100% }
+    .column-2-5 { width: 100% }
+  }
+
+  @media screen and (min-width: 73.5em) {
+    .column-3-5 { width: 60% }
+    .column-2-5 { width: 40% }
   }
 
   // cite

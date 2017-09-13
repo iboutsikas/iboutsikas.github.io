@@ -1,3 +1,7 @@
+.sixteen-nine {
+  @include aspect-ratio(16, 9);
+}
+
 .layout-projects, .layout-project, .layout-welcome  {
   $pad: 1rem;
 
@@ -11,7 +15,7 @@
     }
   }
 
-  .col {
+  .column {
     float: left;
     padding-left: $pad;
     margin-bottom: $pad;
@@ -20,15 +24,7 @@
   }
 
   @media screen and (min-width: $break-point-1) {
-    .col-1-2 { width: 50%; }
-  }
-
-  @media screen and (min-width: $break-point-2) {
-    .col-1-2 { width: 100%; }
-  }
-
-  @media screen and (min-width: $break-point-3) {
-    .col-1-2 { width: 50%; }
+    .column-1-2 { width: 50%; }
   }
 
   @media print {
@@ -36,7 +32,7 @@
       display: block;
     }
 
-    .col {
+    .column {
       display: block;
       width: 50%;
     }
@@ -88,7 +84,7 @@
     }
   }
 
-  .col-1 > .card {
+  .column-1 > .card {
     > .name {
       font-size: 1.17rem;
     }

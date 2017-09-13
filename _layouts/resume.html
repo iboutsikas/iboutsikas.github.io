@@ -35,7 +35,7 @@ layout: base
   {% endif %}
 
   <dl class="grid contact">
-    <div class="col col-3-5">
+    <div class="column column-3-5">
       {% assign location = basics.location %}
       {% if
         location.address.size > 0 or
@@ -114,7 +114,7 @@ layout: base
     </div>
 
     {% if basics.profiles.size > 0 %}
-      <div class="col col-2-5">
+      <div class="column column-2-5">
         {% for pro in basics.profiles %}
           {% assign platform = pro.network | downcase %}
           {% assign = data_social = site.data.social[platform] %}
@@ -137,7 +137,7 @@ layout: base
   </dl>
 
   <div class="grid">
-    <div class="col col-3-5">
+    <div class="column column-3-5">
       {% if resume.work.size > 0 %}
         <section>
         <h2 id="work" class="h3 faded hr">{{ strings.resume.work | default:"Experience" }} <span class="symbol icon-briefcase"></span></h2>
@@ -328,7 +328,7 @@ layout: base
       {% endif %}
     </div>
 
-    <div class="col col-2-5">
+    <div class="column column-2-5">
       {% if resume.languages.size > 0 %}
         <section>
         <h2 id="languages" class="h3 faded hr">{{ strings.resume.languages | default:"Languages" }} <span class="symbol icon-bubbles"></span></h2>

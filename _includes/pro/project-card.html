@@ -1,8 +1,13 @@
 {% assign project = include.project %}
-{% assign sizes = include.sizes | default:"(min-width: 92em) 22.5rem, (min-width: 60em) 19.5rem, (min-width: 54em) 32rem, (min-width: 40em) 17.25rem, 100vw" %}
+
+{% if include.big_project %}
+  {% assign sizes = "(min-width: 90em) 46rem, (min-width: 54em) 40rem, (min-width: 42em) 36rem, 100vw" %}
+{% else %}
+  {% assign sizes = "(min-width: 90em) 22.5rem, (min-width: 54em) 19.5rem, (min-width: 42em) 17.5rem, 100vw" %}
+{% endif %}
 
 <article class="card">
-  <a href="{{ project.url | relative_url }}" class="no-hover flip-project">
+  <a href="{{ project.url | relative_url }}" class="no-hover flip-project" tabindex="-1">
     <div class="img sixteen-nine">
       {% if project.screenshot %}
         {% include srcset-img.html img=project.screenshot alt=project.title sizes=sizes %}

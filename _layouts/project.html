@@ -36,7 +36,6 @@ layout: base
         {% include srcset-img.html
           img=screenshot
           alt=project.title
-          sizes="(min-width: 92em) 48rem, (min-width: 54em) 42rem, (min-width: 40em) 37.5rem, 100vw"
           property="image"
         %}
       {% endif %}
@@ -62,14 +61,14 @@ layout: base
     <div class="grid">
       {% assign p1 = page.previous | default:page.next.next %}
       {% if p1 %}
-        <div class="col col-1-2">
+        <div class="column column-1-2">
           {% include pro/project-card.html project=p1 %}
         </div>
       {% endif %}
 
       {% assign p2 = page.next | default:page.previous.previous %}
       {% if p2 %}
-        <div class="col col-1-2">
+        <div class="column column-1-2">
           {% include pro/project-card.html project=p2 %}
         </div>
       {% endif %}
