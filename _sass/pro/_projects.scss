@@ -57,6 +57,12 @@
       border-top: 1px solid $border-color-light;
       position: relative;
       top: -1px;
+      > img { transition: transform 500ms; }
+    }
+
+    > a:hover > .img > img {
+      transition: transform 250ms;
+      transform: scale(1.025);
     }
 
     > .name, > .caption {
