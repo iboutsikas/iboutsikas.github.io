@@ -152,7 +152,7 @@ layout: base
             typeof="Organization"
             >
             {% if work.startDate.size > 0 %}
-              <p class="bold faded">
+              <p class="faded">
                 <time datetime="{{ work.startDate }}">{{ work.startDate | date:from_to_format }}</time>
                 {{ from_to_separator }}
                 {% if work.endDate.size > 0 %}
@@ -195,7 +195,7 @@ layout: base
         {% for vol in resume.volunteer %}
           <header class="{% unless forloop.first %}mt3{% endunless %}">
             {% if vol.startDate.size > 0 %}
-              <p class="bold faded">
+              <p class="faded">
                 <time datetime="{{ vol.startDate }}">{{ vol.startDate | date:from_to_format }}</time>
                 {{ from_to_separator }}
                 {% if vol.endDate.size > 0 %}
@@ -234,7 +234,7 @@ layout: base
         {% for edu in resume.education %}
           <header class="{% unless forloop.first %}mt3{% endunless %}">
             {% if edu.startDate.size > 0 %}
-              <p class="bold faded">
+              <p class="faded">
                 <time datetime="{{ edu.startDate }}">{{ edu.startDate | date:from_to_format }}</time>
                 {{ from_to_separator }}
                 {% if edu.endDate.size > 0 %}
@@ -275,7 +275,7 @@ layout: base
         {% for awa in resume.awards %}
           <header class="{% unless forloop.first %}mt3{% endunless %}">
             {% if awa.date.size > 0 %}
-              <p class="bold faded">
+              <p class="faded">
                 <time datetime="{{ awa.date }}">{{ awa.date | date:from_to_format }}</time>
               </p>
             {% endif %}
@@ -301,7 +301,7 @@ layout: base
         {% for pub in resume.publications %}
           <header class="{% unless forloop.first %}mt3{% endunless %}">
             {% if pub.releaseDate.size > 0 %}
-              <p class="bold faded">
+              <p class="faded">
                 <time datetime="{{ pub.releaseDate }}">{{ pub.releaseDate | date:from_to_format }}</time>
               </p>
             {% endif %}
