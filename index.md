@@ -1,6 +1,10 @@
 ---
 layout: welcome
 title: Hydejack
+description: >
+  **Hydejack** is a cutting-edge Jekyll theme that combines the best of static sites and modern web apps.
+  It features a suite of JavaScript that makes the page feel like an app, without sacrificing backwards-compatibility,
+  page-load speed or SEO.
 selected_projects:
   - _projects/default.md
   - _projects/pretentious.md
@@ -19,16 +23,12 @@ more_posts: posts.md
 content_separator: <!--more-->
 ---
 
-**Hydejack** is a cutting-edge Jekyll theme that combines the best of static sites and modern web apps.
-It features a suite of JavaScript that makes the page feel like an app,
-without sacrificing backwards-compatibility, page-load speed or SEO.
-
-> Your presence on the web --- A [blog], a [portfolio] and a [resume].
-{:.lead}
-
 **Hydejack** aims to be the complete package for professionals on the web.
 It features a blog suitable for both prose and technical documentation,
 a showcase for projects and a resume that fits with the rest of the design.
+
+> Your presence on the web --- A [blog], a [portfolio] and a [resume].
+{:.lead}
 
 **Hydejack** is highly customizable and lets you achieve a variety of styles.
 Below you can find a selection of variations that are included.

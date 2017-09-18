@@ -34,6 +34,10 @@ layout: base
     {{ desc | markdownify }}
   {% endif %}
 
+  {% unless page.no_description %}
+    {% include message.html text=page.description %}
+  {% endunless %}
+
   <dl class="grid contact">
     <div class="column column-3-5">
       {% assign location = basics.location %}
@@ -171,7 +175,9 @@ layout: base
             </h3>
           </header>
 
-          {% include message.html text=work.summary %}
+          {% if work.summary.size > 0 %}
+            {% include message.html text=work.summary %}
+          {% endif %}
 
           <h4 class="sr-only">{{ strings.resume.highlights | default:"Highlights" }}</h4>
           <ul>
