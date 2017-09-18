@@ -41,7 +41,7 @@
   .card {
     width: 100%;
     background: #fff;
-    border: 1px solid $border-color-light;
+    border: 1px solid $border-color;
     text-align: center;
     padding-bottom: 0.75rem;
     margin-bottom: 1rem;
@@ -53,9 +53,11 @@
 
     > a > .img {
       margin-bottom: 0;
-      border-bottom: 1px solid $border-color-light;
-      border-top: 1px solid $border-color-light;
+      border-bottom: 1px solid $border-color;
+      border-top: 1px solid $border-color;
       position: relative;
+      border-top-left-radius: .25rem;
+      border-top-right-radius: .25rem;
       top: -1px;
       > img { transition: transform 500ms; }
     }
@@ -82,7 +84,7 @@
       margin: 0.25rem 0;
 
       font-size: smaller;
-      color: $gray-text;
+      color: $gray;
 
       > p {
         margin-bottom: 0;
