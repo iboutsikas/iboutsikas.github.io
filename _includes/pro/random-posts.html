@@ -1,0 +1,15 @@
+{% assign post = include.post %}
+
+{% if site.hydejack.__random_posts %}
+<aside class="related" role="complementary">
+  <h2 class="hr">{{ site.data.strings.random_posts | default:"Random Posts" }}</h2>
+
+  {% assign random_posts = site.posts | where_exp:"post", "post.url != page.url" | sample:3 %}
+
+  <ul class="related-posts">
+    {% for post in random_posts limit:3 %}
+      {% include post-list-item.html post=post %}
+    {% endfor %}
+  </ul>
+</aside>
+{% endif %}
