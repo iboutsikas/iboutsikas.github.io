@@ -51,9 +51,7 @@ This table details what is and isn't included in each respective version.
 | [Resume] Layout                     |                    | &#x2714;           |
 | [Welcome] Layout                    |                    | &#x2714;           |
 | Newsletter Subscription Box         |                    | &#x2714;           |
-| Form Element Styles                 |                    | &#x2714;           |
-| Search Functionality                |                    | &#x2714;           |
-| Offline Support[^4]                 |                    | &#x2714;           |
+| Custom Forms                        |                    | &#x2714;           |
 | Latest issue of "Fishing Quarterly" |                    |                    |
 | Three months supply of cat food     |                    |                    |
 | 10 free scuba diving coupons        |                    |                    |
