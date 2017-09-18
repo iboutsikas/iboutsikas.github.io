@@ -128,7 +128,7 @@ $btn-border-radius:              $border-radius !default;
 $btn-border-radius-lg:           $border-radius-lg !default;
 $btn-border-radius-sm:           $border-radius-sm !default;
 
-$btn-transition:                 background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out !default;
+$btn-transition:                 background-color .1s ease-in-out, border-color .1s ease-in-out, box-shadow .1s ease-in-out !default;
 
 
 // Forms
@@ -163,7 +163,7 @@ $input-height-sm:               calc(#{$input-height-inner-sm} + #{$input-height
 $input-height-inner-lg:         ($font-size-lg * $input-btn-line-height-lg) + ($input-btn-padding-y-lg * 2) !default;
 $input-height-lg:               calc(#{$input-height-inner-lg} + #{$input-height-border}) !default;
 
-$input-transition:               border-color ease-in-out .15s, box-shadow ease-in-out .15s !default;
+$input-transition:               border-color ease-in-out .1s, box-shadow ease-in-out .1s !default;
 
 $form-text-margin-top:      .25rem !default;
 
