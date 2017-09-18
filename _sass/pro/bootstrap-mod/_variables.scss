@@ -62,7 +62,8 @@ $grid-breakpoints: (
   sm: $break-point-1,
   md: $break-point-2,
   lg: $break-point-3,
-  xl: $break-point-4
+  xl: $break-point-4,
+  xxl: $break-point-5
 ) !default;
 @include _assert-ascending($grid-breakpoints, "$grid-breakpoints");
 @include _assert-starts-at-zero($grid-breakpoints);

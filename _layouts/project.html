@@ -3,11 +3,9 @@ layout: base
 ---
 
 {% assign project = page %}
-
 {% assign separator = site.data.strings.separator | default:"|" %}
 
 <article class="page" role="article" vocab="http://schema.org/" typeof="CreativeWork">
-  <meta property="url" content="{{ page.url | absolute_url }}"/>
   <meta property="mainEntityOfPage" content="{{ page.url | absolute_url }}"/>
 
   <header>

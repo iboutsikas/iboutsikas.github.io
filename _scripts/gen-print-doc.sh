@@ -31,11 +31,11 @@ const DOCS = [
 const FRONT_MATTER = `---
 layout: page
 title: Documentation
-sitemap: false
 redirect_from:
   - /docs/latest/complete/
   - /docs/latest/print/
   - /docs/print/
+sitemap: false
 ---\n\n`;
 
 const INTRO_POSTFIX = `
