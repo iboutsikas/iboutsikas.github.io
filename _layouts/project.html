@@ -35,6 +35,7 @@ layout: base
       {% if screenshot %}
         {% include srcset-img.html
           img=screenshot
+          sizes="(min-width: 90em) 48rem, (min-width: 54em) 42rem, (min-width: 42em) 38rem, 100vw"
           alt=project.title
           property="image"
         %}
