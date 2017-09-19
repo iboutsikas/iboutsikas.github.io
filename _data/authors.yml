@@ -40,5 +40,7 @@ mdo:
   picture:           https://pbs.twimg.com/profile_images/630796572691804161/kYW5TxUR.jpg
   twitter:           mdo
   github:            mdo
-  accent_image:     'data:image/gif;base64,R0lGODlhAQABAPAAACAgIP///yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=='
   accent_color:     '#268bd2'
+  accent_image:
+    background:     '#202020'
+    overlay:        false
