@@ -19,7 +19,6 @@
 
   .bold {
     font-weight: bold;
-    line-height: 1.55;
   }
 
   header > p {
@@ -53,16 +52,6 @@
     margin-left: .5rem;
   }
 
-  .skills {
-    dt {
-      margin-bottom: 0;
-    }
-
-    dd {
-      margin: 0;
-    }
-  }
-
   .contact {
     margin-top: 2.5rem;
 
@@ -74,7 +63,6 @@
       clear: both;
       float: left;
       width: 2rem;
-      // text-align: center;
 
       [class*="icon-"] {
         font-size: 1.17rem;
@@ -88,6 +76,25 @@
       margin-left: 0;
       width: calc(100% - 2rem);
       padding-left: .25rem;
+    }
+  }
+
+  // cite
+  .reference {
+    margin-bottom: 1.5rem;
+
+    > footer {
+      margin-bottom: 0;
+    }
+  }
+
+  .skills {
+    dt {
+      margin-bottom: 0;
+    }
+
+    dd {
+      margin: 0;
     }
   }
 
@@ -125,14 +132,5 @@
   @media screen and (min-width: 73.5em) {
     .column-3-5 { width: 60% }
     .column-2-5 { width: 40% }
-  }
-
-  // cite
-  .ref {
-    margin-bottom: 1.5rem;
-
-    > footer {
-      margin-bottom: 0;
-    }
   }
 }
