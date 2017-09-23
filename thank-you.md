@@ -15,9 +15,9 @@ That and more is now Hydejack. I hope you enjoy it [as much as I do](https://qwt
 Please start by reading the [Documentation]{:.heading.flip-title}.
 Specifically, the chapters below should be relevant to you:
 
-* [Installation]{:.heading.flip-title} -- How to install and run Hydejack.
-* [Configuration]{:.heading.flip-title} Once Jekyll is running you can start with basic configuration.
-* [Migration]{:.heading.flip-title} -- You can skip this if you haven't used Hydejack before.
+* [Install]{:.heading.flip-title} --- How to install and run Hydejack.
+* [Upgrade]{:.heading.flip-title} --- You can skip this if you haven't used Hydejack before.
+* [Config]{:.heading.flip-title} --- Once Jekyll is running you can start with basic configuration.
 {:.related-posts.faded}
 
 ## Support
@@ -26,6 +26,6 @@ I try to answer within 1 business day.
 Sometimes I answer instantly, when a mail makes it through the priority filter 😉
 
 [documentation]: docs/7.0.0/index.md
-[installation]: docs/7.0.0/installation.md
-[configuration]: docs/7.0.0/configuration.md
-[migration]: docs/7.0.0/migration.md
+[install]: docs/7.0.0/install.md
+[upgrade]: docs/7.0.0/upgrade.md
+[config]: docs/7.0.0/config.md

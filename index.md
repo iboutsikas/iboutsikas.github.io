@@ -53,12 +53,11 @@ This table details what is and isn't included in each respective version.
 | Newsletter Subscription Box         |                    | &#x2714;           |
 | Custom Forms                        |                    | &#x2714;           |
 | Latest issue of "Fishing Quarterly" |                    |                    |
-| Three months supply of cat food     |                    |                    |
-| 10 free scuba diving coupons        |                    |                    |
+| Ten free scuba diving lessons       |                    |                    |
 | License                             | [GPL-3.0][license] | [PRO]              |
 | Price                               | Free               | $59                |
 || [**Download on GitHub**][github]<br/> -- or -- <br/>[**Use the RubyGem**][gem] | [Buy Now – $59][buy]{:.btn.btn-primary} [^3] |
-{:.small-table}
+{:.stretch-table}
 
 ## Features
 All versions include *all* of these features:

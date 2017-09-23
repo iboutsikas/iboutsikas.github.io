@@ -17,7 +17,7 @@ links:
     url: https://qwtel.com/hydejack/
 big_project: true
 accent_color: '#4fb1ba'
-accent_image: /hydejack/assets/img/default-bg.jpg
+accent_image: /hydejack/assets/img/sidebar-bg.jpg
 ---
 
 ![Typeface](/hydejack/assets/img/default-1.jpg){:.lead}

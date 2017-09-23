@@ -15,9 +15,9 @@ const ENC = 'utf-8';
 
 const DOCS = [
   resolve(`./docs/${version}/index.md`),
-  resolve(`./docs/${version}/installation.md`),
-  resolve(`./docs/${version}/migration.md`),
-  resolve(`./docs/${version}/configuration.md`),
+  resolve(`./docs/${version}/install.md`),
+  resolve(`./docs/${version}/upgrade.md`),
+  resolve(`./docs/${version}/config.md`),
   resolve(`./docs/${version}/basics.md`),
   resolve(`./docs/${version}/writing.md`),
   resolve(`./docs/${version}/scripts.md`),
