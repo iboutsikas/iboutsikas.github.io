@@ -102,7 +102,7 @@ layout: base
         </dt>
         <dd class="bold">
           <meta property="telephone" content="{{ basics.phone }}"/>
-          <a href="tel:{{ basics.phone }}" class="no-push-state tel p-tel">{{ basics.phone }}</a>
+          <a href="tel:{{ basics.phone | replace:' ','' }}" class="no-push-state tel p-tel">{{ basics.phone }}</a>
         </dd>
       {% endif %}
 
