@@ -50,8 +50,8 @@ layout: base
 
 <hr class="dingbat related" />
 
-{% assign asides = site.hydejack.__asides %}
-{% unless asides %}{% assign asides = "about,newsletter,related" | split:',' %}{% endunless %}
+{% assign asides = site.hydejack.project_aside_order %}
+{% unless asides %}{% assign asides = "about,newsletter,other" | split:',' %}{% endunless %}
 
 {% for aside in asides %}
   {% case aside %}
@@ -59,7 +59,7 @@ layout: base
      {% include about.html %}
   {% when 'newsletter' %}
     {% include pro/newsletter.html %}
-  {% when 'related' %}
+  {% when 'other' %}
     {% include pro/other-projects.html %}
   {% else %}
   {% endcase %}

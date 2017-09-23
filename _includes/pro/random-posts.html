@@ -1,6 +1,5 @@
 {% assign post = include.post %}
 
-{% if site.hydejack.__random_posts %}
 <aside class="related" role="complementary">
   <h2 class="hr">{{ site.data.strings.random_posts | default:"Random Posts" }}</h2>
 
@@ -12,4 +11,3 @@
     {% endfor %}
   </ul>
 </aside>
-{% endif %}
