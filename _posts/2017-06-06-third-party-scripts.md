@@ -70,4 +70,4 @@ Maybe you won't even notice the difference.
 ### Fixes
 * Fix default color in gem-based theme
 
-[scripts]: {{ site.baseurl }}{% link docs/7.0.0/scripts.md %}
+[scripts]: ../docs/7.0.0/scripts.md
