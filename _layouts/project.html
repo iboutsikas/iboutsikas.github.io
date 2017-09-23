@@ -4,8 +4,9 @@ layout: base
 
 {% assign project = page %}
 {% assign separator = site.data.strings.separator | default:"|" %}
+{% assign nsd = site.hydejack.no_structured_data | default:site.no_structured_data %}
 
-<article class="page" role="article" vocab="http://schema.org/" typeof="CreativeWork">
+<article class="page" role="article" {% unless nsd %}vocab="http://schema.org/" typeof="CreativeWork"{% endunless %}>
   <meta property="mainEntityOfPage" content="{{ page.url | absolute_url }}"/>
 
   <header>

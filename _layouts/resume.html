@@ -9,16 +9,16 @@ layout: base
 {% assign from_to_separator = strings.resume.from_to_separator | default:"–" %}
 {% assign from_to_format = strings.date_formats.resume | default:"%b %Y" %}
 
+{% assign nsd = site.hydejack.no_structured_data | default:site.no_structured_data %}
 {% assign resume = site.data.resume %}
 
-<article class="page vcard h-card" role="article" vocab="http://schema.org/" typeof="Person">
-  <meta property="url" content="{{ page.url | absolute_url }}"/>
+<article class="page {% unless nsd %}vcard h-card{% endunless %}" role="article" {% unless nsd %}vocab="http://schema.org/" typeof="Person"{% endunless %}>
   <meta property="mainEntityOfPage" content="{{ page.url | absolute_url }}"/>
 
   {% assign basics = resume.basics %}
 
   {% if basics.picture.size > 0 %}
-    {% include srcset-img.html class="me photo u-photo" img=basics.picture alt=basics.name property="image" %}
+    {% include srcset-img.html class="avatar photo u-photo" img=basics.picture alt=basics.name property="image" %}
   {% endif %}
 
   <header class="hr">
