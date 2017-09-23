@@ -8,16 +8,16 @@
 
 <article class="card">
   <a href="{{ project.url | relative_url }}" class="no-hover flip-project" tabindex="-1">
-    <div class="img sixteen-nine">
+    <div class="card-img img sixteen-nine">
       {% if project.screenshot %}
         {% include srcset-img.html img=project.screenshot alt=project.title sizes=sizes %}
       {% endif %}
     </div>
   </a>
-  <h3 class="name">
+  <h3 class="card-title">
     <a href="{{ project.url | relative_url }}" class="flip-title">{{ project.title }}</a>
   </h3>
   {% if project.caption %}
-    <div class="caption">{{ project.caption | markdownify }}</div>
+    <legend class="card-text fine faded">{{ project.caption | markdownify | replace:'<p>','' | replace:'</p>','' }}</legend>
   {% endif %}
 </article>

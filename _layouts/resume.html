@@ -29,10 +29,9 @@ layout: base
   </header>
 
   {% if basics.summary.size > 0 %}
-{% capture desc %}{{ basics.summary | strip_newlines }}
-{:.note.p-note property="description"}{% endcapture %}
-
-    {{ desc | markdownify }}
+    <p class="note p-note" property="description">
+      {{ basics.summary | markdownify | replace:'<p>','' | replace:'</p>','' }}
+    </p>
   {% endif %}
 
   {% unless page.no_description %}

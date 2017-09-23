@@ -40,18 +40,17 @@
 
   .card {
     width: 100%;
-    background: #fff;
+    background: $body-bg;
     border: 1px solid $border-color;
-    text-align: center;
     padding-bottom: 0.75rem;
     margin-bottom: 1rem;
-    contain: content;
     overflow: hidden;
     border-radius: .25rem;
+    contain: content;
 
     page-break-inside: avoid;
 
-    > a > .img {
+    > a > .card-img {
       margin-bottom: 0;
       border-bottom: 1px solid $border-color;
       border-top: 1px solid $border-color;
@@ -62,35 +61,35 @@
       > img { transition: transform 500ms; }
     }
 
-    > a:hover > .img > img {
+    > a:hover > .card-img > img {
       transition: transform 250ms;
       transform: scale(1.025);
     }
 
-    > .name, > .caption {
+    > .card-title, > .card-text {
+      text-align: center;
       padding: 0 1rem;
     }
 
-    > .name {
+    > .card-title {
       display: block;
-      text-align: center;
       font-size: 1rem;
       margin-top: 0.75rem;
       margin-bottom: 0.25rem;
       color: inherit;
     }
 
-    > .caption {
+    > .card-text {
       margin: 0.25rem 0;
     }
   }
 
   .column-1 > .card {
-    > .name {
+    > .card-title {
       font-size: 1.17rem;
     }
 
-    > .caption {
+    > .card-text {
       font-size: 1rem;
     }
   }
