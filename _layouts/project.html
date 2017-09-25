@@ -50,11 +50,9 @@ layout: base
 
 <hr class="dingbat related" />
 
-{% assign asides = site.hydejack.project_aside_order %}
-{% unless asides %}{% assign asides = "about,newsletter,other" | split:',' %}{% endunless %}
-
-{% for aside in asides %}
-  {% case aside %}
+{% assign addons = site.hydejack.project_addons | default:"about,newsletter,other" | split:"," %}
+{% for addon in addons %}
+  {% case addon %}
   {% when 'about' %}
      {% include about.html %}
   {% when 'newsletter' %}
