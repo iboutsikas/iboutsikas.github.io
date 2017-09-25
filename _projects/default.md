@@ -9,8 +9,6 @@ screenshot:
     960w:  /hydejack/assets/img/projects/default@0,5x.jpg
     480w:  /hydejack/assets/img/projects/default@0,25x.jpg
 caption: This theme is so fresh and young, it's basically overpriced apple cider for the web.
-description: >
-  TODO
 image: /hydejack/assets/img/projects/default.jpg
 links:
   - title: Demo
