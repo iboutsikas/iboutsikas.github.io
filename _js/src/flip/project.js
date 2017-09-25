@@ -1,17 +1,15 @@
 // Copyright (c) 2017 Florian Klampfer <https://qwtel.com/>
 
 import { Observable } from 'rxjs/Observable';
-// import { Subject } from 'rxjs/Subject';
 
-import { of } from 'rxjs/observable/of';
 import { fromEvent } from 'rxjs/observable/fromEvent';
-// import { timer } from 'rxjs/observable/timer';
+import { of } from 'rxjs/observable/of';
 
 import { _do as effect } from 'rxjs/operator/do';
+import { _finally as cleanup } from 'rxjs/operator/finally';
 import { filter } from 'rxjs/operator/filter';
-// import { mapTo } from 'rxjs/operator/mapTo';
 import { switchMap } from 'rxjs/operator/switchMap';
-// import { _finally as cleanup } from 'rxjs/operator/finally';
+import { take } from 'rxjs/operator/take';
 import { zipProto as zipWith } from 'rxjs/operator/zip';
 
 import { animate, empty } from '../common';
@@ -20,10 +18,9 @@ export default function flipProject(start$, ready$, fadeIn$, { animationMain, se
   const flip$ = start$
     ::filter(({ flipType }) => flipType === 'project')
     ::switchMap(({ anchor }) => {
-      // console.log('project start');
-      const img = anchor.querySelector('.img');
+      const img = anchor.querySelector('.card-img');
 
-      const titleNode = anchor.parentNode.querySelector('.name') || {};
+      const titleNode = anchor.parentNode.querySelector('.card-title') || {};
       const title = titleNode.textContent || '|';
 
       const h1 = document.createElement('h1');
@@ -41,13 +38,6 @@ export default function flipProject(start$, ready$, fadeIn$, { animationMain, se
       page::empty();
       page.appendChild(h1);
       page.appendChild(postDate);
-
-      /*
-      page.innerHTML = `
-        <h1 class="page-title" style="opacity:0">${title}</h1>
-        <div class="post-date heading" style="opacity:0">|</div>
-      `;
-      */
 
       const placeholder = document.createElement('div');
       placeholder.classList.add('sixteen-nine');
@@ -67,36 +57,47 @@ export default function flipProject(start$, ready$, fadeIn$, { animationMain, se
       const invertY = first.top - last.top;
       const invertScale = first.width / last.width;
 
-      return animate(img, [
+      const transform = [
         { transform: `translate3d(${invertX}px, ${invertY}px, 0) scale(${invertScale})` },
         { transform: 'translate3d(0, 0, 0) scale(1)' },
-      ], settings)
-        ::effect(() => { animationMain.style.position = 'absolute'; });
+      ];
+
+      return animate(img, transform, settings)
+        ::effect({ complete() { animationMain.style.position = 'absolute'; } });
     });
+
+  function getImage$(img) {
+    if (!img) return Observable::of({});
+
+    const imgObj = new Image();
+
+    const image$ = Observable::fromEvent(imgObj, 'load')
+      ::take(1)
+      ::cleanup(() => { imgObj.src = ''; });
+
+    imgObj.src = img.currentSrc || img.src;
+
+    return image$;
+  }
 
   start$::switchMap(({ flipType }) =>
     ready$
       ::filter(() => flipType === 'project')
       ::switchMap(({ content: [main] }) => {
-        animationMain.style.willChange = 'opacity';
+        const imgWrapper = main.querySelector('.img');
+        const img = imgWrapper.querySelector('img');
+        imgWrapper.style.opacity = 0;
 
-        const img = main.querySelector('.img');
-        const imgImg = img.querySelector('img');
-
-        img.style.opacity = 0;
-        img.style.willChange = 'opacity';
-
-        const img$ = imgImg == null ?
-          Observable::of() :
-          Observable::fromEvent(imgImg, 'load');
-
-        return img$
-          ::zipWith(fadeIn$)
+        return this::getImage$(img)::zipWith(fadeIn$)
           ::effect(() => {
-            img.style.opacity = 1;
-            img.style.willChange = '';
+            imgWrapper.style.opacity = 1;
             animationMain.style.opacity = 0;
-            animationMain.style.willChange = '';
+          })
+          ::switchMap(() => (img ?
+            animate(animationMain, [{ opacity: 1 }, { opacity: 0 }], { duration: 500 }) :
+            Observable::of({})))
+          ::cleanup(() => {
+            animationMain.style.opacity = 0;
           });
       }))
     .subscribe();
