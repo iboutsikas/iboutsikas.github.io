@@ -15,13 +15,19 @@ import { zipProto as zipWith } from 'rxjs/operator/zip';
 import { animate, empty } from '../common';
 
 export default function flipProject(start$, ready$, fadeIn$, { animationMain, settings }) {
+  if (!animationMain) return start$;
+
   const flip$ = start$
     ::filter(({ flipType }) => flipType === 'project')
     ::switchMap(({ anchor }) => {
       const img = anchor.querySelector('.project-card-img');
+      if (!anchor || !img) return Observable::of({});
 
-      const titleNode = anchor.parentNode.querySelector('.project-card-title') || {};
-      const title = titleNode.textContent || '|';
+      const page = animationMain.querySelector('.page');
+      if (!page) return Observable::of({});
+
+      const titleNode = anchor.parentNode.querySelector('.project-card-title');
+      const title = (titleNode && titleNode.textContent) || '|';
 
       const h1 = document.createElement('h1');
       h1.classList.add('page-title');
@@ -34,7 +40,6 @@ export default function flipProject(start$, ready$, fadeIn$, { animationMain, se
       postDate.style.opacity = 0;
       postDate.textContent = '|';
 
-      const page = animationMain.querySelector('.page');
       page::empty();
       page.appendChild(h1);
       page.appendChild(postDate);
@@ -85,8 +90,10 @@ export default function flipProject(start$, ready$, fadeIn$, { animationMain, se
       ::filter(() => flipType === 'project')
       ::switchMap(({ content: [main] }) => {
         const imgWrapper = main.querySelector('.img');
-        const img = imgWrapper.querySelector('img');
+        if (!imgWrapper) return Observable::of({});
         imgWrapper.style.opacity = 0;
+
+        const img = imgWrapper.querySelector('img');
 
         return this::getImage$(img)::zipWith(fadeIn$)
           ::effect(() => {
