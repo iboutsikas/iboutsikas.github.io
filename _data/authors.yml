@@ -24,7 +24,7 @@ qwtel:
   # Rearrange to change the order in which they appear
   social:
     twitter:         qwtel
-    github:          https://github.com/qwtel/hydejack/
+    github:          qwtel # https://github.com/qwtel/hydejack/
     email:           mailto:mail@qwtel.com
 
   # Used by `jekyll-seo-tag`:
