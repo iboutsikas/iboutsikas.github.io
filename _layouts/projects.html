@@ -14,7 +14,7 @@ layout: page
     {% unless forloop.first %}</div>{% endunless %}
 
     <h2 id="{{ projects_group_by | slugify }}-{{ currentdate | slugify }}">{{ currentdate }}</h2>
-    <div class="grid">
+    <div class="columns">
     {% assign date = currentdate %}
   {% endif %}
 

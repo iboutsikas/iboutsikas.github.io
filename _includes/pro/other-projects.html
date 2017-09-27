@@ -4,7 +4,7 @@
 {% if p1 or p2 %}
 <aside class="other-projects related" role="complementary">
   <h2>{{ site.data.strings.other_projects | default:"Other Projects" }}</h2>
-  <div class="grid">
+  <div class="columns">
     {% assign p1 = page.previous | default:page.next.next %}
     {% if p1 %}
       <div class="column column-1-2">

@@ -11,7 +11,7 @@ layout: about
 <section>
 {% if page.selected_projects %}
   <h2 id="selected-projects">{{ strings.welcome.selected_projects | default:"Selected Projects" }}</h2>
-  <div class="grid">
+  <div class="columns">
   {% for project_path in page.selected_projects %}
     {% assign project = site.projects | where:"path",project_path | first %}
     {% assign big_project = page.big_project | default:project.big_project %}
@@ -27,7 +27,7 @@ layout: about
   </div>
 {% elsif site.projects.size > 1 %}
   <h2 id="recent-projects">{{ strings.welcome.recent_projects | default:"Recent Projects" }}</h2>
-  <div class="grid">
+  <div class="columns">
   {% assign ordered_projects = site.projects | sort:"date" | reverse %}
   {% for project in ordered_projects limit:2 %}
     {% assign big_project = page.big_project | default:project.big_project %}

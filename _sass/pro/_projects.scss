@@ -5,7 +5,7 @@
 .layout-projects, .layout-project, .layout-welcome  {
   $pad: 1rem;
 
-  .grid {
+  .columns {
     margin-left: -$pad;
     display: flex;
     flex-wrap: wrap;
@@ -28,7 +28,7 @@
   }
 
   @media print {
-    .grid {
+    .columns {
       display: block;
     }
 
@@ -38,7 +38,7 @@
     }
   }
 
-  .card {
+  .project-card {
     width: 100%;
     background: $body-bg;
     border: 1px solid $border-color;
@@ -50,7 +50,7 @@
 
     page-break-inside: avoid;
 
-    > a > .card-img {
+    > a > .project-card-img {
       margin-bottom: 0;
       border-bottom: 1px solid $border-color;
       border-top: 1px solid $border-color;
@@ -61,17 +61,17 @@
       > img { transition: transform 500ms; }
     }
 
-    > a:hover > .card-img > img {
+    > a:hover > .project-card-img > img {
       transition: transform 250ms;
       transform: scale(1.025);
     }
 
-    > .card-title, > .card-text {
+    > .project-card-title, > .project-card-text {
       text-align: center;
       padding: 0 1rem;
     }
 
-    > .card-title {
+    > .project-card-title {
       display: block;
       font-size: 1rem;
       margin-top: 0.75rem;
@@ -79,17 +79,17 @@
       color: inherit;
     }
 
-    > .card-text {
+    > .project-card-text {
       margin: 0.25rem 0;
     }
   }
 
-  .column-1 > .card {
-    > .card-title {
+  .column-1 > .project-card {
+    > .project-card-title {
       font-size: 1.17rem;
     }
 
-    > .card-text {
+    > .project-card-text {
       font-size: 1rem;
     }
   }

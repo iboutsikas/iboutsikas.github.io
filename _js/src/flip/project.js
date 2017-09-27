@@ -18,9 +18,9 @@ export default function flipProject(start$, ready$, fadeIn$, { animationMain, se
   const flip$ = start$
     ::filter(({ flipType }) => flipType === 'project')
     ::switchMap(({ anchor }) => {
-      const img = anchor.querySelector('.card-img');
+      const img = anchor.querySelector('.project-card-img');
 
-      const titleNode = anchor.parentNode.querySelector('.card-title') || {};
+      const titleNode = anchor.parentNode.querySelector('.project-card-title') || {};
       const title = titleNode.textContent || '|';
 
       const h1 = document.createElement('h1');
