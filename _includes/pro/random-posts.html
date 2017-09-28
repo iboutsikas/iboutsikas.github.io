@@ -1,6 +1,6 @@
 {% assign post = include.post %}
 
-<aside class="related" role="complementary">
+<aside class="related mb6" role="complementary">
   <h2 class="hr">{{ site.data.strings.random_posts | default:"Random Posts" }}</h2>
 
   {% assign random_posts = site.posts | where_exp:"post", "post.url != page.url" | sample:3 %}

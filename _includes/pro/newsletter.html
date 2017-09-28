@@ -2,7 +2,7 @@
 {% assign  my_newsletter = my_newsletter | strip_newlines %}
 
 {% if my_newsletter.size > 0 %}
-  <aside class="message message-newsletter related" role="complementary">
+  <aside class="message message-newsletter related mb6" role="complementary">
     {{ my_newsletter }}
   </aside>
 {% elsif site.tinyletter %}
