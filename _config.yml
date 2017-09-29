@@ -155,7 +155,6 @@ include:
 plugins:
   - jekyll-default-layout
   - jekyll-feed
-  - jekyll-gist
   - jekyll-optional-front-matter
   - jekyll-paginate
   - jekyll-redirect-from
