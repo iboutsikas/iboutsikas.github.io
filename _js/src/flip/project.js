@@ -1,4 +1,7 @@
+// # src / flip / project.js
 // Copyright (c) 2017 Florian Klampfer <https://qwtel.com/>
+
+import 'core-js/fn/function/bind';
 
 import { Observable } from 'rxjs/Observable';
 
@@ -14,7 +17,7 @@ import { zipProto as zipWith } from 'rxjs/operator/zip';
 
 import { animate, empty } from '../common';
 
-export default function flipProject(start$, ready$, fadeIn$, { animationMain, settings }) {
+export default function setupFLIPProject(start$, ready$, fadeIn$, { animationMain, settings }) {
   if (!animationMain) return start$;
 
   const flip$ = start$
@@ -88,7 +91,7 @@ export default function flipProject(start$, ready$, fadeIn$, { animationMain, se
   start$::switchMap(({ flipType }) =>
     ready$
       ::filter(() => flipType === 'project')
-      ::switchMap(({ content: [main] }) => {
+      ::switchMap(({ replaceEls: [main] }) => {
         const imgWrapper = main.querySelector('.img');
         if (!imgWrapper) return Observable::of({});
         imgWrapper.style.opacity = 0;
