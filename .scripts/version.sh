@@ -1,17 +1,21 @@
 #!/usr/bin/env node
 
 const { promisify } = require('util');
+
 const { resolve } = require('path');
 const fs = require('fs');
 
 const vPrev = require('../assets/version.json').version;
 const vNext = require('../package.json').version;
 
+const execFile = promisify(require('child_process').execFile);
+
 const readdir = promisify(fs.readdir);
 const rename = promisify(fs.rename);
 const stat = promisify(fs.stat);
 const readFile = promisify(fs.readFile);
 const writeFile = promisify(fs.writeFile);
+
 
 const ENC = 'utf-8';
 
@@ -80,6 +84,8 @@ async function getFiles(dir) {
       resolve(`./docs/${vPrev}`),
       resolve(`./docs/${vNext}`),
     );
+
+    await execFile('git', ['add', '.']);
 
     process.exit(0);
   } catch (e) {
