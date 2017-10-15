@@ -26,7 +26,7 @@ This table details what is and isn't included in each respective version.
 | 10 free scuba diving coupons        |                    |                    |
 | License                             | [GPL-3.0][license] | [PRO]              |
 | Price                               | Free               | $59                |
-|| [**Download on GitHub**][github]<br/> -- or -- <br/>[**Use the RubyGem**][gem] | [Buy Now – $59][buy]{:.btn.btn-primary} [^3] |
+|| [Download on GitHub][github]<br/> -- or -- <br/>[Use the RubyGem][gem] | [Buy Now – $59][buy]{:.btn.btn-primary} [^3] |
 {:.stretch-table}
 
 ## Features
@@ -53,7 +53,7 @@ All versions include *all* of these features:
 ## Free Version
 The Free Version features the design and tech of Hydejack, but only supports basic blogging.
 
-**[Download on GitHub][github]** -- or -- **[Use the RubyGem][gem]**
+[Download on GitHub][github] -- or -- [Use the RubyGem][gem]
 
 ## PRO Version
 The PRO Version aims to be the complete package for professionals on the web.
