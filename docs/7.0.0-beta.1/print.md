@@ -22,7 +22,7 @@ or [upgrades for pro buyers](#pro-version).)
 
 **NOTE**: This document was created using Hydejack's print layout.
 If you prefer to read it the documentation in your browser,
-you can find it [here]({{ site.baseurl }}{% link docs/7.0.0-beta.0/index.md %}).
+you can find it [here]({{ site.baseurl }}{% link docs/7.0.0-beta.1/index.md %}).
 {:.message}
 
 ## Table of Contents
@@ -135,7 +135,7 @@ You can now continue with [running locally](#running-locally).
 If you bought the PRO version, you've received a zip archive with the following contents:
 
 ~~~
-├── hydejack-docs-7.0.0-beta.0.pdf
+├── hydejack-docs-7.0.0-beta.1.pdf
 ├── install
 ├── upgrade
 ├── favicons.psd
@@ -145,7 +145,7 @@ If you bought the PRO version, you've received a zip archive with the following 
 The following list describes what each of those are
 
 
-`hydejack-docs-7.0.0-beta.0.pdf`
+`hydejack-docs-7.0.0-beta.1.pdf`
 : This documentation in PDF form.
 
 `install`
@@ -169,7 +169,7 @@ For new installations only the `install` folder is interesting.
 Unzip the archive somewhere on your machine, then `cd` *into* the `install` folder, e.g.
 
 ~~~bash
-$ cd ~/Downloads/hydejack-pro-7.0.0-beta.0/install/
+$ cd ~/Downloads/hydejack-pro-7.0.0-beta.1/install/
 ~~~
 
 You can now continue with:
