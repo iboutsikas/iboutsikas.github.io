@@ -89,7 +89,7 @@ layout: base
         </dt>
         <dd class="bold">
           <meta property="email" content="{{ basics.email }}"/>
-          <a href="mailto:{{ basics.email }}" class="no-push-state email u-email">{{ basics.email }}</a>
+          <a href="mailto:{{ basics.email }}" class="external email u-email">{{ basics.email }}</a>
         </dd>
       {% endif %}
 
@@ -100,7 +100,7 @@ layout: base
         </dt>
         <dd class="bold">
           <meta property="telephone" content="{{ basics.phone }}"/>
-          <a href="tel:{{ basics.phone | replace:' ','' }}" class="no-push-state tel p-tel">{{ basics.phone }}</a>
+          <a href="tel:{{ basics.phone | replace:' ','' }}" class="external tel p-tel">{{ basics.phone }}</a>
         </dd>
       {% endif %}
 
