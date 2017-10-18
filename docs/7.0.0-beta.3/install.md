@@ -1,12 +1,12 @@
 ---
 layout: page
 title: Install
+description: >
 redirect_from:
   - /docs/latest/install/
   - /docs/install/
   - /docs/latest/installation/
   - /docs/installation/
-description: >
 ---
 
 There are multiple ways of installing Hydejack.
