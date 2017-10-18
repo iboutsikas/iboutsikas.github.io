@@ -62,7 +62,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  jekyll (~> 3.5)
+  jekyll (~> 3.6)
   jekyll-feed (~> 0.9)
   jekyll-paginate (~> 1.1)
   jekyll-redirect-from (~> 0.12)
