@@ -20,13 +20,10 @@ This table details what is and isn't included in each respective version.
 | [Resume] Layout                     |                    | &#x2714;           |
 | [Welcome] Layout                    |                    | &#x2714;           |
 | Newsletter Subscription Box         |                    | &#x2714;           |
-| Custom Forms                        |                    | &#x2714;           |
-| Latest issue of "Fishing Quarterly" |                    |                    |
-| Three months supply of cat food     |                    |                    |
-| 10 free scuba diving coupons        |                    |                    |
+| Form Element Styles                 |                    | &#x2714;           |
 | License                             | [GPL-3.0][license] | [PRO]              |
-| Price                               | Free               | $59                |
-|| [Download on GitHub][github]<br/> -- or -- <br/>[Use the RubyGem][gem] | [Buy Now – $59][buy]{:.btn.btn-primary} [^3] |
+| Price                               | Free               | $39                |
+|| [Download on GitHub][github]<br/> – or – <br/>[Use the RubyGem][gem] | [Buy Now – $39][buy]{:.btn.btn-primary} [^3] |
 {:.stretch-table}
 
 ## Features
@@ -53,7 +50,7 @@ All versions include *all* of these features:
 ## Free Version
 The Free Version features the design and tech of Hydejack, but only supports basic blogging.
 
-[Download on GitHub][github] -- or -- [Use the RubyGem][gem]
+[Download on GitHub][github] – or – [Use the RubyGem][gem]
 
 ## PRO Version
 The PRO Version aims to be the complete package for professionals on the web.
@@ -66,9 +63,8 @@ a [welcome] page to introduce yourself to visitors.
 
 
 [^1]: Applies after the initial page load.  
-[^2]: Actual page load speed depends on your hosting provider, resolution of embedded images and usage of 3rd party plugins.
-[^3]: Transactions secured by [Stripe](https://stripe.com). Downloads handled by [Simple Goods](https://simplegoods.co/).
-[^4]: Only available when serving site over HTTPS, and in browsers that support Service Workers (currently Chrome and Firefox, but more to come. You can track progress [here](http://caniuse.com/#feat=serviceworkers)).
+[^2]: Actual page load speed depends on your hosting provider, resolution of embedded images and usage of 3rd party plugins.  
+[^3]: Transactions secured by [Stripe](https://stripe.com). Downloads handled by [Simple Goods](https://simplegoods.co/).  
 
 [blog]: blog.md
 [portfolio]: projects.md
