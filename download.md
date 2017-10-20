@@ -73,7 +73,7 @@ a [welcome] page to introduce yourself to visitors.
 [welcome]: index.md
 [license]: LICENSE.md
 [pro]: licenses/PRO.md
-[docs]: docs/7.0.0-beta.5/index.md
+[docs]: docs/7.0.0-beta.6/index.md
 
 [github]: https://github.com/qwtel/hydejack/releases
 [gem]: https://rubygems.org/gems/jekyll-theme-hydejack

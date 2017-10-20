@@ -25,7 +25,7 @@ Should you have any trouble with the theme, you can send mail to [mail@qwtel.com
 I try to answer within 1 business day.
 Sometimes I answer instantly, when a mail makes it through the priority filter 😉
 
-[documentation]: docs/7.0.0-beta.5/index.md
-[install]: docs/7.0.0-beta.5/install.md
-[upgrade]: docs/7.0.0-beta.5/upgrade.md
-[config]: docs/7.0.0-beta.5/config.md
+[documentation]: docs/7.0.0-beta.6/index.md
+[install]: docs/7.0.0-beta.6/install.md
+[upgrade]: docs/7.0.0-beta.6/upgrade.md
+[config]: docs/7.0.0-beta.6/config.md
