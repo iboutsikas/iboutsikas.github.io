@@ -21,7 +21,7 @@ Both the PRO *and* free version includes all of the features listed below:
 * Full in-app page loading --- no Flash of White, no Flash of Unstyled Content[^1]
 * Advanced animations, inspired by Material Design
 * A customizable sidebar that turns into a touch-enabled app drawer on mobile
-* Near-perfect [Google PageSpeed Score](https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fqwtel.com%2Fhydejack%2F)[^2]
+* Near-perfect [Google PageSpeed Score][gpss][^2]
 * Even higher *perceived speed* thanks to pre-fetching and latency-hiding
 * Support for categories and tags --- even when hosting on GitHub Pages
 * Built-in collection of social media icons
@@ -38,7 +38,7 @@ Both the PRO *and* free version includes all of the features listed below:
 
 ### [Documentation][docs]{:.flip-title}
 Hydejack is documented extensively.
-You can read it [on this site][docs], in the [repository's wiki][wiki], or [download the PDF][download].
+You can read it [on this site][docs], in the [repository's wiki][wiki], or [download the PDF][github].
 
 [^1]: Applies after the initial page load.  
 [^2]: Actual page load speed depends on your hosting provider as well as discipline regarding resolution of images and usage of 3rd party plugins.
@@ -46,8 +46,15 @@ You can read it [on this site][docs], in the [repository's wiki][wiki], or [down
 [blog]: blog.md
 [portfolio]: projects.md
 [resume]: resume.md
+[download]: download.md
 [welcome]: index.md
+[license]: LICENSE.md
+[pro]: licenses/PRO.md
 [docs]: docs/7.0.0-beta.5/index.md
 
+[github]: https://github.com/qwtel/hydejack/releases
+[gem]: https://rubygems.org/gems/jekyll-theme-hydejack
+[buy]: https://app.simplegoods.co/i/AQTTVBOE
+
+[gpss]: https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fqwtel.com%2Fhydejack%2F
 [wiki]: https://github.com/qwtel/hydejack/wiki
-[download]: https://github.com/qwtel/hydejack/releases/tag/v7.0.0-beta.5

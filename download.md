@@ -69,13 +69,15 @@ a [welcome] page to introduce yourself to visitors.
 [blog]: blog.md
 [portfolio]: projects.md
 [resume]: resume.md
+[download]: download.md
 [welcome]: index.md
 [license]: LICENSE.md
 [pro]: licenses/PRO.md
 [docs]: docs/7.0.0-beta.5/index.md
 
-[github]: https://github.com/qwtel/hydejack/releases/tag/v7.0.0-beta.5
-[gem]: https://rubygems.org/gems/jekyll-theme-hydejack/versions/7.0.0-beta.5
+[github]: https://github.com/qwtel/hydejack/releases
+[gem]: https://rubygems.org/gems/jekyll-theme-hydejack
 [buy]: https://app.simplegoods.co/i/AQTTVBOE
 
 [gpss]: https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fqwtel.com%2Fhydejack%2F
+[wiki]: https://github.com/qwtel/hydejack/wiki
