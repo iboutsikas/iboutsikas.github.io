@@ -5,7 +5,7 @@ title:        Solid Orange
 # caption:      Who needs CSS when you got the power of HTML?
 description:  >
   TODO
-image:        /hydejack-pretentious/assets/img/projects/base-orange.jpg
+image:        /hydejack/assets/img/projects/base-orange.jpg
 screenshot:
   src:        /hydejack/assets/img/projects/base-orange.jpg
   srcset:

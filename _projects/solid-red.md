@@ -5,7 +5,7 @@ title:        Solid Red
 # caption:      How needs CSS when you got the power of HTML?
 description:  >
   TODO
-image:        /hydejack-pretentious/assets/img/projects/base-red.jpg
+image:        /hydejack/assets/img/projects/base-red.jpg
 screenshot:
   path:       /hydejack/assets/img/projects/base-red.jpg
   srcset:
