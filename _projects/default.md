@@ -1,24 +1,26 @@
 ---
-layout: project
-title: Default
-date: 07 Aug 2017
+layout:       project
+date:         07 Aug 2017
+title:        Default
+caption:      This theme is so fresh and young, it's basically overpriced apple cider for the web.
+description:  >
+  TODO
+image:        /hydejack/assets/img/projects/default.jpg
 screenshot:
-  path:    /hydejack/assets/img/projects/default.jpg
+  src:        /hydejack/assets/img/projects/default.jpg
   srcset:
-    1920w: /hydejack/assets/img/projects/default.jpg
-    960w:  /hydejack/assets/img/projects/default@0,5x.jpg
-    480w:  /hydejack/assets/img/projects/default@0,25x.jpg
-caption: This theme is so fresh and young, it's basically overpriced apple cider for the web.
-image: /hydejack/assets/img/projects/default.jpg
+    1920w:    /hydejack/assets/img/projects/default.jpg
+    960w:     /hydejack/assets/img/projects/default@0,5x.jpg
+    480w:     /hydejack/assets/img/projects/default@0,25x.jpg
 links:
-  - title: Demo
-    url: https://qwtel.com/hydejack/
-big_project: true
+  - title:    Demo
+    url:      https://qwtel.com/hydejack/
+big_project:  true
 accent_color: '#4fb1ba'
 accent_image: /hydejack/assets/img/sidebar-bg.jpg
 ---
 
-![Typeface](/hydejack/assets/img/default-1.jpg){:.lead}
+![Typeface](../assets/img/default-1.jpg){:.lead}
 
 It features everything that's hot right now:
 * Aerial shot of a beach that looks like a gradient when you squint your eyes (take that Apple)

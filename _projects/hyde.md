@@ -1,28 +1,28 @@
 ---
-layout: project
-title: Hyde
-date: 05 Aug 2017
-screenshot:
-  path:    /hydejack/assets/img/projects/hyde.jpg
-  srcset:
-    1920w: /hydejack/assets/img/projects/hyde.jpg
-    960w:  /hydejack/assets/img/projects/hyde@0,5x.jpg
-    480w:  /hydejack/assets/img/projects/hyde@0,25x.jpg
-caption: This theme captures the magic of the original Hyde theme.
-description: >
+layout:       project
+date:         05 Aug 2017
+title:        Hyde
+caption:      Capturing the magic of the original Hyde theme.
+description:  >
   TODO
-image: /hydejack/assets/img/projects/hyde.jpg
+image:        /hydejack/assets/img/projects/hyde.jpg
+screenshot:
+  src:        /hydejack/assets/img/projects/hyde.jpg
+  srcset:   
+    1920w:    /hydejack/assets/img/projects/hyde.jpg
+    960w:     /hydejack/assets/img/projects/hyde@0,5x.jpg
+    480w:     /hydejack/assets/img/projects/hyde@0,25x.jpg
 links:
-  - title: Demo
-    url: https://qwtel.com/hydejack-hyde/
-big_project: true
+  - title:    Demo
+    url:      https://qwtel.com/hydejack-hyde/
+big_project:  true
 accent_color: '#268bd2'
 accent_image:
   background: '#202020'
-  overlay: false
+  overlay:    false
 ---
 
-![Typeface](/hydejack/assets/img/hyde-1.jpg){:.lead}
+![Typeface](../assets/img/hyde-1.jpg){:.lead}
 
 ***
 

@@ -1,26 +1,26 @@
 ---
-layout: project
-title: Oldschool
-date: 04 Aug 2017
-screenshot:
-  path:    /hydejack/assets/img/projects/oldschool.jpg
-  srcset:
-    1920w: /hydejack/assets/img/projects/oldschool.jpg
-    960w:  /hydejack/assets/img/projects/oldschool@0,5x.jpg
-    480w:  /hydejack/assets/img/projects/oldschool@0,25x.jpg
-caption: How needs CSS when you got the power of HTML?
-description: >
+layout:       project
+date:         04 Aug 2017
+title:        Oldschool
+caption:      Who needs CSS when you got the power of *HTML*?
+description:  >
   TODO
-image: /hydejack/assets/img/projects/oldschool.jpg
+image:        /hydejack/assets/img/projects/oldschool.jpg
+screenshot:
+  src:        /hydejack/assets/img/projects/oldschool.jpg
+  srcset:
+    1920w:    /hydejack/assets/img/projects/oldschool.jpg
+    960w:     /hydejack/assets/img/projects/oldschool@0,5x.jpg
+    480w:     /hydejack/assets/img/projects/oldschool@0,25x.jpg
 links:
-  - title: Demo
-    url: https://qwtel.com/hydejack-oldschool/
-big_project: true
+  - title:    Demo
+    url:      https://qwtel.com/hydejack-oldschool/
+big_project:  true
 accent_color: '#00e'
 accent_image: /hydejack/assets/img/oldschool-bg.jpg
 ---
 
-![Typeface](/hydejack/assets/img/oldschool-1.jpg){:.lead}
+![Typeface](../assets/img/oldschool-1.jpg){:.lead}
 
 ***
 

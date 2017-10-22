@@ -1,20 +1,17 @@
 ---
-layout: project
-title: Solid Magenta
-date: 24 Jun 2017
-screenshot:
-  path:    /hydejack/assets/img/projects/base-magenta.jpg
-  srcset:
-    1920w: /hydejack/assets/img/projects/base-magenta.jpg
-    960w:  /hydejack/assets/img/projects/base-magenta@0,5x.jpg
-    480w:  /hydejack/assets/img/projects/base-magenta@0,25x.jpg
-#caption: How needs CSS when you got the power of HTML?
-description: >
+layout:       project
+date:         24 Jun 2017
+title:        Solid Magenta
+# caption:      How needs CSS when you got the power of HTML?
+description:  >
   TODO
-image: /hydejack/assets/img/projects/base-magenta.jpg
-links:
-  - title: Demo
-    url: https://qwtel.com/hydejack-solid-magenta/
+image:        /hydejack/assets/img/projects/base-magenta.jpg
+screenshot:
+  src:        /hydejack/assets/img/projects/base-magenta.jpg
+  srcset:   
+    1920w:    /hydejack/assets/img/projects/base-magenta.jpg
+    960w:     /hydejack/assets/img/projects/base-magenta@0,5x.jpg
+    480w:     /hydejack/assets/img/projects/base-magenta@0,25x.jpg
 accent_color: '#aa759f'
 accent_image: none
 ---

@@ -1,20 +1,17 @@
 ---
-layout: project
-title: Solid Blue
-date: 25 Jun 2017
-screenshot:
-  path:    /hydejack/assets/img/projects/base-blue.jpg
-  srcset:
-    1920w: /hydejack/assets/img/projects/base-blue.jpg
-    960w:  /hydejack/assets/img/projects/base-blue@0,5x.jpg
-    480w:  /hydejack/assets/img/projects/base-blue@0,25x.jpg
-#caption: How needs CSS when you got the power of HTML?
-description: >
+layout:       project
+date:         25 Jun 2017
+title:        Solid Blue
+# caption:      Who needs CSS when you got the power of HTML?
+description:  >
   TODO
-image: /hydejack/assets/img/projects/base-blue.jpg
-links:
-  - title: Demo
-    url: https://qwtel.com/hydejack-solid-blue/
+image:        /hydejack/assets/img/projects/base-blue.jpg
+screenshot:
+  src:        /hydejack/assets/img/projects/base-blue.jpg
+  srcset:   
+    1920w:    /hydejack/assets/img/projects/base-blue.jpg
+    960w:     /hydejack/assets/img/projects/base-blue@0,5x.jpg
+    480w:     /hydejack/assets/img/projects/base-blue@0,25x.jpg
 accent_color: '#6a9fb5'
 accent_image: none
 ---

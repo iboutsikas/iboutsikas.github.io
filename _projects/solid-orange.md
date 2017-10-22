@@ -1,20 +1,17 @@
 ---
-layout: project
-title: Solid Orange
-date: 29 Jun 2017
-screenshot:
-  path:    /hydejack/assets/img/projects/base-orange.jpg
-  srcset:
-    1920w: /hydejack/assets/img/projects/base-orange.jpg
-    960w:  /hydejack/assets/img/projects/base-orange@0,5x.jpg
-    480w:  /hydejack/assets/img/projects/base-orange@0,25x.jpg
-#caption: How needs CSS when you got the power of HTML?
-description: >
+layout:       project
+date:         29 Jun 2017
+title:        Solid Orange
+# caption:      Who needs CSS when you got the power of HTML?
+description:  >
   TODO
-image: /hydejack/assets/img/projects/base-orange.jpg
-links:
-  - title: Demo
-    url: https://qwtel.com/hydejack-solid-orange/
+image:        /hydejack-pretentious/assets/img/projects/base-orange.jpg
+screenshot:
+  src:        /hydejack/assets/img/projects/base-orange.jpg
+  srcset:
+    1920w:    /hydejack/assets/img/projects/base-orange.jpg
+    960w:     /hydejack/assets/img/projects/base-orange@0,5x.jpg
+    480w:     /hydejack/assets/img/projects/base-orange@0,25x.jpg
 accent_color: '#d28445'
 accent_image: none
 ---
