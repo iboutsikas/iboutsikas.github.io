@@ -2,9 +2,9 @@
 layout:       project
 date:         25 Jun 2017
 title:        Solid Blue
-# caption:      Who needs CSS when you got the power of HTML?
+caption:      A solid blue sidebar
 description:  >
-  TODO
+  This flavor of Hydejack changes the accent color and sidebar color to the same blue as the "0d"-theme of the original Hyde Jekyll theme.
 image:        /hydejack/assets/img/projects/base-blue.jpg
 screenshot:
   src:        /hydejack/assets/img/projects/base-blue.jpg
@@ -15,6 +15,13 @@ screenshot:
 accent_color: '#6a9fb5'
 accent_image: none
 ---
+
+To use this flavor, change your `_config.yml` to include:
+
+~~~yml
+accent_color: '#6a9fb5'
+accent_image: none
+~~~
 
 ***
 

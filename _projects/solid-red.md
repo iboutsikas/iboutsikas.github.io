@@ -2,9 +2,9 @@
 layout:       project
 date:         30 Jun 2017
 title:        Solid Red
-# caption:      How needs CSS when you got the power of HTML?
+caption:      A solid red sidebar
 description:  >
-  TODO
+  This flavor of Hydejack changes the accent color and sidebar color to the same red as the "08"-theme of the original Hyde Jekyll theme.
 image:        /hydejack/assets/img/projects/base-red.jpg
 screenshot:
   path:       /hydejack/assets/img/projects/base-red.jpg
@@ -15,6 +15,13 @@ screenshot:
 accent_color: '#ac4142'
 accent_image: none
 ---
+
+To use this flavor, change your `_config.yml` to include:
+
+~~~yml
+accent_color: '#ac4142'
+accent_image: none
+~~~
 
 ***
 

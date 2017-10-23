@@ -2,9 +2,9 @@
 layout:       project
 date:         24 Jun 2017
 title:        Solid Magenta
-# caption:      How needs CSS when you got the power of HTML?
+caption:      A solid magenta sidebar
 description:  >
-  TODO
+  This flavor of Hydejack changes the accent color and sidebar color to the same magenta as the "0e"-theme of the original Hyde Jekyll theme.
 image:        /hydejack/assets/img/projects/base-magenta.jpg
 screenshot:
   src:        /hydejack/assets/img/projects/base-magenta.jpg
@@ -15,6 +15,13 @@ screenshot:
 accent_color: '#aa759f'
 accent_image: none
 ---
+
+To use this flavor, change your `_config.yml` to include:
+
+~~~yml
+accent_color: '#aa759f'
+accent_image: none
+~~~
 
 ***
 

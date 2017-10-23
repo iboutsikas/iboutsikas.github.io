@@ -2,9 +2,9 @@
 layout:       project
 date:         29 Jun 2017
 title:        Solid Orange
-# caption:      Who needs CSS when you got the power of HTML?
+caption:      A solid orange sidebar
 description:  >
-  TODO
+  This flavor of Hydejack changes the accent color and sidebar color to the same orange as the "09"-theme of the original Hyde Jekyll theme.
 image:        /hydejack/assets/img/projects/base-orange.jpg
 screenshot:
   src:        /hydejack/assets/img/projects/base-orange.jpg
@@ -15,6 +15,13 @@ screenshot:
 accent_color: '#d28445'
 accent_image: none
 ---
+
+To use this flavor, change your `_config.yml` to include:
+
+~~~yml
+accent_color: '#d28445'
+accent_image: none
+~~~
 
 ***
 

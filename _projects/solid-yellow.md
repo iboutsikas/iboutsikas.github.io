@@ -2,9 +2,9 @@
 layout:       project
 date:         28 Jun 2017
 title:        Solid Yellow
-caption:      How needs CSS when you got the power of HTML?
+caption:      A solid yellow sidebar
 description:  >
-  TODO
+  This flavor of Hydejack changes the accent color and sidebar color to the same yellow as the "0a"-theme of the original Hyde Jekyll theme.
 image:        /hydejack/assets/img/projects/base-yellow.jpg
 screenshot:
   path:       /hydejack/assets/img/projects/base-yellow.jpg
@@ -15,6 +15,13 @@ screenshot:
 accent_color: '#f4bf75'
 accent_image: none
 ---
+
+To use this flavor, change your `_config.yml` to include:
+
+~~~yml
+accent_color: '#f4bf75'
+accent_image: none
+~~~
 
 ***
 
