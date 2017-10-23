@@ -21,11 +21,14 @@ baseurl:               /hydejack
 description:           >
   A Jekyll theme with JavaScript Powers. "Best Theme by a Mile". Combines the best of static sites and modern web apps.
 
+# A shorter description for the sidebar.
+tagline:               A Jekyll theme with JavaScript Powers.
+
 # A list of keywords for your blog, will be used as fallback
 # for pages that don't have `keywords` in their front matter.
 keywords:              [jekyll, theme, hyde, sidebar, resume, markdown, code, math, portfolio, personal]
 
-# TODO
+# Used by jekyll-seo-tag...
 logo:                  /hydejack/assets/icons/icon.png
 
 # This should be the same author as first entry in `_data/authors.yml`.
