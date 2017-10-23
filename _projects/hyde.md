@@ -4,7 +4,7 @@ date:         05 Aug 2017
 title:        Hyde
 caption:      Capturing the magic of the original Hyde theme.
 description:  >
-  TODO
+  Capturing the magic of the original Hyde theme, complete with Abril Fatface title font and PT Serif for regular text.
 image:        /hydejack/assets/img/projects/hyde.jpg
 screenshot:
   src:        /hydejack/assets/img/projects/hyde.jpg

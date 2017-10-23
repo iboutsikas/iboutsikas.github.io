@@ -4,7 +4,7 @@ date:         04 Aug 2017
 title:        Oldschool
 caption:      Who needs CSS when you got the power of *HTML*?
 description:  >
-  TODO
+  Who needs CSS when you got the power of *HTML*? These were the good ol' days when website were just documents.
 image:        /hydejack/assets/img/projects/oldschool.jpg
 screenshot:
   src:        /hydejack/assets/img/projects/oldschool.jpg

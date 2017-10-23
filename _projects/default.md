@@ -2,9 +2,9 @@
 layout:       project
 date:         07 Aug 2017
 title:        Default
-caption:      This theme is so fresh and young, it's basically overpriced apple cider for the web.
+caption:      So fresh and young.
 description:  >
-  TODO
+  This theme is so fresh and young, it's basically overpriced apple cider for the web.
 image:        /hydejack/assets/img/projects/default.jpg
 screenshot:
   src:        /hydejack/assets/img/projects/default.jpg
@@ -23,10 +23,10 @@ accent_image: /hydejack/assets/img/sidebar-bg.jpg
 ![Typeface](../assets/img/default-1.jpg){:.lead}
 
 It features everything that's hot right now:
-* Aerial shot of a beach that looks like a gradient when you squint your eyes (take that Apple)
-* Too bold a font for headings (take that new Twitter)
-* ...with slab serifs (take that new Mozilla)
-* An accent color that doubles as the coat of a 1957 Chevrolet (almost)
+* Aerial shot of a beach
+* A heading font that's way too bold
+* ...with slab serifs
+* A theme color that's also the coat of a 1957 Chevy (almost)
 
 ![1957 Chevy](https://upload.wikimedia.org/wikipedia/commons/b/b1/57_Chevy_210.jpg)
 
