@@ -111,7 +111,7 @@ You can now continue with [running locally](#running-locally).
 If you bought the PRO version, you've received a zip archive with the following contents:
 
 ~~~
-├── hydejack-docs-7.0.0-beta.7.pdf
+├── hydejack-docs-7.0.0.pdf
 ├── install
 ├── upgrade
 ├── favicons.psd
@@ -121,7 +121,7 @@ If you bought the PRO version, you've received a zip archive with the following 
 The following list describes what each of those are
 
 
-`hydejack-docs-7.0.0-beta.7.pdf`
+`hydejack-docs-7.0.0.pdf`
 : This documentation in PDF form.
 
 `install`
@@ -145,7 +145,7 @@ For new installations only the `install` folder is interesting.
 Unzip the archive somewhere on your machine, then `cd` *into* the `install` folder, e.g.
 
 ~~~bash
-$ cd ~/Downloads/hydejack-pro-7.0.0-beta.7/install/
+$ cd ~/Downloads/hydejack-pro-7.0.0/install/
 ~~~
 
 You can now continue with:
