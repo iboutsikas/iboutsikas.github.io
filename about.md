@@ -50,7 +50,7 @@ You can read it [on this site][docs], in the [repository's wiki][wiki], or [down
 [welcome]: index.md
 [license]: LICENSE.md
 [pro]: licenses/PRO.md
-[docs]: docs/7.0.0-beta.6/index.md
+[docs]: docs/7.0.0-beta.7/index.md
 
 [github]: https://github.com/qwtel/hydejack/releases
 [gem]: https://rubygems.org/gems/jekyll-theme-hydejack
