@@ -22,6 +22,56 @@ accent_image: /hydejack/assets/img/oldschool-bg.jpg
 
 ![Typeface](../assets/img/oldschool-1.jpg){:.lead}
 
+## Usage
+To use this flavor, make the following changes to following files:
+
+### `_config.yml`
+
+~~~yml
+google_fonts: ''
+font:         serif
+font_heading: serif
+
+accent_color: '#00e'
+accent_image: /hydejack/assets/img/oldschool-bg.jpg
+
+hydejack:
+  no_google_fonts: true
+~~~
+
+### `_sass/my-inline.scss`
+
+~~~css
+.project-card, .project-card-image, .pagination-item > * {
+  border-radius: 0!important;
+}
+
+code, pre {
+  font-family: monospace!important;
+}
+
+blockquote {
+  border-left: none!important;
+
+  &.lead {
+    padding-left: 2rem;
+  }
+}
+
+.avatar {
+  border-radius: 0;
+}
+
+a {
+  border-bottom: none!important;
+  text-decoration: underline!important;
+}
+
+.sidebar-social a, .menu {
+  text-decoration: none!important;
+}
+~~~
+
 ***
 
 ## Attributions
