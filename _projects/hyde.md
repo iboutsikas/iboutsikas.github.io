@@ -24,6 +24,30 @@ accent_image:
 
 ![Typeface](../assets/img/hyde-1.jpg){:.lead}
 
+## Usage
+To use this flavor, make the following changes to following files:
+
+### `_config.yml`
+
+~~~yml
+google_fonts: Abril+Fatface:400|PT+Sans:400,400i,700,700i
+font:         "'PT Sans', Helvetica, Arial, sans-serif"
+font_heading: "'PT Sans', Helvetica, Arial, sans-serif"
+accent_color: '#268bd2'
+accent_image:
+  background: '#202020'
+  overlay:    false
+~~~
+
+### `_sass/my-inline.scss`
+
+~~~css
+.sidebar h2 {
+  font-family: 'Abril Fatface', serif!important;
+  font-size: 3rem;
+}
+~~~
+
 ***
 
 ## Attributions
