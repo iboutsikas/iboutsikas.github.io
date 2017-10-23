@@ -25,6 +25,120 @@ accent_image: /hydejack/assets/img/pretentious-bg.jpg
 
 ![Typeface](../assets/img/pretentious-1.jpg){:.lead}
 
+## Usage
+To use this flavor, make the following changes to following files:
+
+### `_config.yml`
+
+~~~yml
+google_fonts:          Playfair+Display+SC:700|PT+Serif:400,400i,700,700i
+font:                  "'PT Serif', Georgia, serif"
+font_heading:          "'Playfair Display SC', Georgia, serif"
+
+accent_image:          /hydejack-pretentious/assets/img/sidebar-bg.jpg
+accent_color:          '#a85641'
+~~~
+
+### `my-inline.scss`
+
+~~~css
+a {
+  border-bottom: 0!important;
+}
+
+code {
+  background-color: transparent!important;
+  border: 1px solid $border-color;
+}
+
+.message, pre, .katex-display, div.MathJax_Preview {
+  border: 3px double $border-color;
+
+  code { border: none; }
+}
+
+.project-card, .pagination-item > * {
+  border: 3px double $border-color!important;
+}
+
+.project-card, .pagination-item > *, .project-card-img,  {
+  border-radius: 0!important;
+}
+
+ul {
+  list-style-type: circle;
+}
+~~~
+
+### `my-style.scss`
+
+~~~css
+@media screen {
+  a:not(.no-hover)::after, a:not(.no-hover)::before {
+    font-family: 'icomoon';
+    font-weight: normal;
+    font-style: normal;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    will-change: transform, opacity;
+    transition: transform 100ms, opacity 100ms;
+  }
+
+  .content {
+    a:not(.no-hover)::after, a:not(.no-hover)::before {
+      text-shadow: 0 0 .125em #fff, 0 0 .25em #fff, 0 0 .5em #fff;
+    }
+  }
+
+  a:not(.no-hover)::before {
+    content: "\ab";
+    transform: scale(1.33) translate(-0.4em, -0.15em);
+  }
+
+  a:not(.no-hover)::after {
+    content: "\bb";
+    transform: scale(1.33) translate(-0.05em, -0.15em);
+  }
+
+  a:not(.no-hover):hover {
+    &::before, &::after {
+      opacity: 1;
+    }
+
+    &::before {
+      transform: scale(1.33) translate(-0.65em, -0.15em);
+    }
+
+    &::after {
+      transform: scale(1.33) translate(0.2em, -0.15em);
+    }
+  }
+}
+
+a.sidebar-nav-item::before, a.sidebar-nav-item::after {
+  position: absolute;
+  right: auto;
+  top: auto;
+}
+
+.pagination-item {
+  &:first-child > * {
+    margin-bottom: -3px;
+  }
+}
+
+@media (min-width: 23.5em) {
+  .pagination-item {
+    &:last-child > * {
+      margin-left: -3px;
+    }
+  }
+}
+~~~
+
 ***
 
 ## Attributions
