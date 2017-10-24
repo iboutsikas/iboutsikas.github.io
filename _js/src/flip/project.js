@@ -8,12 +8,12 @@ import { Observable } from 'rxjs/Observable';
 import { fromEvent } from 'rxjs/observable/fromEvent';
 import { of } from 'rxjs/observable/of';
 
-import { _do as effect } from 'rxjs/operator/do';
-import { _finally as cleanup } from 'rxjs/operator/finally';
+import { _do as tap } from 'rxjs/operator/do';
+import { _finally as finalize } from 'rxjs/operator/finally';
 import { filter } from 'rxjs/operator/filter';
 import { switchMap } from 'rxjs/operator/switchMap';
 import { take } from 'rxjs/operator/take';
-import { zipProto as zipWith } from 'rxjs/operator/zip';
+import { zipProto as zip } from 'rxjs/operator/zip';
 
 import { animate, empty } from '../common';
 
@@ -71,18 +71,16 @@ export default function setupFLIPProject(start$, ready$, fadeIn$, { animationMai
       ];
 
       return animate(img, transform, settings)
-        ::effect({ complete() { animationMain.style.position = 'absolute'; } });
+        ::tap({ complete() { animationMain.style.position = 'absolute'; } });
     });
 
   function getImage$(img) {
     if (!img) return Observable::of({});
 
     const imgObj = new Image();
-
     const image$ = Observable::fromEvent(imgObj, 'load')
       ::take(1)
-      ::cleanup(() => { imgObj.src = ''; });
-
+      ::finalize(() => { imgObj.src = ''; });
     imgObj.src = img.currentSrc || img.src;
 
     return image$;
@@ -98,15 +96,16 @@ export default function setupFLIPProject(start$, ready$, fadeIn$, { animationMai
 
         const img = imgWrapper.querySelector('img');
 
-        return this::getImage$(img)::zipWith(fadeIn$)
-          ::effect(() => {
+        return this::getImage$(img)
+          ::zip(fadeIn$)
+          ::tap(() => {
             imgWrapper.style.opacity = 1;
             animationMain.style.opacity = 0;
           })
           ::switchMap(() => (img ?
             animate(animationMain, [{ opacity: 1 }, { opacity: 0 }], { duration: 500 }) :
             Observable::of({})))
-          ::cleanup(() => {
+          ::finalize(() => {
             animationMain.style.opacity = 0;
           });
       }))
