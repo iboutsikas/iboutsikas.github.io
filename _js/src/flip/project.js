@@ -17,6 +17,18 @@ import { zipProto as zip } from 'rxjs/operator/zip';
 
 import { animate, empty } from '../common';
 
+function cacheImage$(img) {
+  if (!img) return Observable::of({});
+
+  const imgObj = new Image();
+  const image$ = Observable::fromEvent(imgObj, 'load')
+    ::take(1)
+    ::finalize(() => { imgObj.src = ''; });
+  imgObj.src = img.currentSrc || img.src;
+
+  return image$;
+}
+
 export default function setupFLIPProject(start$, ready$, fadeIn$, { animationMain, settings }) {
   if (!animationMain) return start$;
 
@@ -74,18 +86,6 @@ export default function setupFLIPProject(start$, ready$, fadeIn$, { animationMai
         ::tap({ complete() { animationMain.style.position = 'absolute'; } });
     });
 
-  function getImage$(img) {
-    if (!img) return Observable::of({});
-
-    const imgObj = new Image();
-    const image$ = Observable::fromEvent(imgObj, 'load')
-      ::take(1)
-      ::finalize(() => { imgObj.src = ''; });
-    imgObj.src = img.currentSrc || img.src;
-
-    return image$;
-  }
-
   start$::switchMap(({ flipType }) =>
     ready$
       ::filter(() => flipType === 'project')
@@ -96,7 +96,7 @@ export default function setupFLIPProject(start$, ready$, fadeIn$, { animationMai
 
         const img = imgWrapper.querySelector('img');
 
-        return this::getImage$(img)
+        return this::cacheImage$(img)
           ::zip(fadeIn$)
           ::tap(() => {
             imgWrapper.style.opacity = 1;
