@@ -2,7 +2,7 @@
 layout:       project
 date:         06 Aug 2017
 title:        Pretentious
-caption:      This one puts the "pretentious" in "A pretentious two-column Jekyll theme".
+caption:      A pretentious two-column Jekyll theme.
 description:  >
   A pretentious two-column [Jekyll](http://jekyllrb.com/) theme,
   stolen by [@qwtel](https://twitter.com/qwtel)
