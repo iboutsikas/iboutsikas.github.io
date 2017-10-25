@@ -19,7 +19,8 @@ baseurl:               /hydejack
 # as fallback for the meta description tag.
 # Markdown enabled, but don't use more than one paragraph (enforced by `>`)
 description:           >
-  A Jekyll theme with JavaScript powers. "Best Theme by a Mile". Combines the best of static sites and modern web apps.
+  A Jekyll theme with JavaScript powers. "Best Theme by a Mile".
+  Combines the best of static sites and modern web apps.
 
 # A shorter description for the sidebar.
 tagline:               A Jekyll theme with JavaScript powers.
