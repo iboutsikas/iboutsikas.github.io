@@ -22,7 +22,7 @@ or [upgrades for pro buyers](#pro-version).)
 
 **NOTE**: This document was created using Hydejack's print layout.
 If you prefer to read it the documentation in your browser,
-you can find it [here]({{ site.baseurl }}{% link docs/7.0.0/index.md %}).
+you can find it [here]({{ site.baseurl }}{% link docs/7.0.1/index.md %}).
 {:.message}
 
 ## Table of Contents
@@ -135,7 +135,7 @@ You can now continue with [running locally](#running-locally).
 If you bought the PRO version, you've received a zip archive with the following contents:
 
 ~~~
-├── hydejack-docs-7.0.0.pdf
+├── hydejack-docs-7.0.1.pdf
 ├── install
 ├── upgrade
 ├── favicons.psd
@@ -145,7 +145,7 @@ If you bought the PRO version, you've received a zip archive with the following 
 The following list describes what each of those are
 
 
-`hydejack-docs-7.0.0.pdf`
+`hydejack-docs-7.0.1.pdf`
 : This documentation in PDF form.
 
 `install`
@@ -169,10 +169,51 @@ For new installations only the `install` folder is interesting.
 Unzip the archive somewhere on your machine, then `cd` *into* the `install` folder, e.g.
 
 ~~~bash
-$ cd ~/Downloads/hydejack-pro-7.0.0/install/
+$ cd ~/Downloads/hydejack-pro-7.0.1/install/
 ~~~
 
-You can now continue with:
+You can now continue with [Running locally](#running-locally).
+
+#### PRO via GitHub (advanced)
+If you know how to handle SSH keys, you can also install the PRO version via GitHub.
+The advantage of this method is that you avoid cluttering your Jekyll repository with Hydejack's source files.
+
+The downloaded zip contains a read-only key for a private GitHub repository.
+It is located at `<dowloaded zip>/.ssh/hydejack_pro_customers`.
+You have to copy the key file to `~/.ssh` (or wherever your SSH keys are located), e.g.:
+
+~~~bash
+$ cp ~/Downloads/hydejack-pro-v7.0.1/.ssh/hydejack_pro_customers ~/.ssh/
+~~~
+
+It is required that your private key files are NOT accessible by others, e.g.:
+
+~~~bash
+$ chmod 600 ~/.ssh/hydejack_pro_customers
+~~~
+
+Then add the following to `.ssh/config`:
+
+~~~
+Host hydejack
+	Hostname github.com
+	User git
+	IdentityFile ~/.ssh/hydejack_pro_customers
+~~~
+
+Next, open `Gemfile` in your Jekyll repository and add:
+
+~~~ruby
+gem "jekyll-theme-hydejack-pro", git: 'git@hydejack:qwtel/hydejack-pro.git', branch: 'gem-pro'
+~~~
+
+In your `_config.yml`, add:
+
+~~~yml
+theme: jekyll-theme-hydejack-pro
+~~~
+
+You can now continue with [Running locally](#running-locally).
 
 ### Running locally
 Make sure you've `cd`ed into the directory where `_config.yml` is located.
@@ -261,6 +302,12 @@ Make sure you've made a backup before overwriting any files.
 The archive also contains `.patch` files, that you can apply to your repository via [git-apply](https://git-scm.com/docs/git-apply).
 Using this method, git will generate merge conflicts when changes in the patch conflict with any of your changes.
 
+#### PRO via git (advanced)
+If you've followed the steps [here](#pro-via-github-advanced), all you need to upgrade is:)
+
+~~~bash
+$ bundle update jekyll-theme-hydejack-pro
+~~~
 
 ### Legacy
 Unfortunately, upgrading form v5 and earlier is not straightforward. A lot of patterns and names have changed,
