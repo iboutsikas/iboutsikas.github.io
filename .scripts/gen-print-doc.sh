@@ -6,6 +6,8 @@ const fs = require('fs');
 
 const { re } = require('re-template-tag');
 
+const execFile = promisify(require('child_process').execFile);
+
 const readFile = promisify(fs.readFile);
 const writeFile = promisify(fs.writeFile);
 
@@ -134,6 +136,8 @@ function sep(title) {
       }, FRONT_MATTER);
 
     await writeFile(resolve(`./docs/${version}/print.md`), text, ENC);
+
+    await execFile('git', ['add', '.']);
 
     process.exit(0);
   } catch (e) {
