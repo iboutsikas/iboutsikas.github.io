@@ -21,8 +21,8 @@ This table details what is and isn't included in each respective version.
 | Newsletter Subscription Box         |                    | &#x2714;           |
 | Form Element Styles                 |                    | &#x2714;           |
 | License                             | [GPL-3.0][license] | [PRO]              |
-| Price                               | Free               | $39                |
-|| [Download on GitHub][github]<br/> – or – <br/>[Use the RubyGem][gem] | [Buy Now – $39][buy]{:.btn.btn-primary} [^3] |
+| Price                               | Free               | $29                |
+|| [Download on GitHub][github]<br/> – or – <br/>[Use the RubyGem][gem] | [Buy Now – $29][buy]{:.btn.btn-primary} [^3] |
 {:.stretch-table}
 
 ## Features
@@ -58,7 +58,7 @@ The PRO Version aims to be the complete package for professionals on the web.
 It includes layouts for your [portfolio], your [resume] (with support for [JSON Resume](https://jsonresume.org/)) and
 a [welcome] page to introduce yourself to visitors.
 
-[Buy Now - $39][buy]{:.btn.btn-primary} [^3]
+[Buy Now - $29][buy]{:.btn.btn-primary} [^3]
 
 {% include author.html author=site.data.authors.qwtel heading="Contact" heading_id="contact" %}
 
