@@ -22,7 +22,7 @@ or [upgrades for pro buyers](#pro-version).)
 
 **NOTE**: This document was created using Hydejack's print layout.
 If you prefer to read it the documentation in your browser,
-you can find it [here]({{ site.baseurl }}{% link docs/7.0.1/index.md %}).
+you can find it [here]({{ site.baseurl }}{% link docs/7.1.0/index.md %}).
 {:.message}
 
 ## Table of Contents
@@ -70,7 +70,7 @@ Your site's root dir should look something like this
 ~~~
 
 **NOTE**: Hydejack works with Jekyll's default `config.yml`, but it is recommended that you replace it with
-[Hydejack's default config file](https://github.com/qwtel/hydejack/blob/master/_data/_config.yml).
+[Hydejack's default config file](https://github.com/qwtel/hydejack/blob/master/_config.yml).
 It contains the names of all config options known to Hydejack and provides sensible defaults (like minifying HTML and CSS in production builds).
 {:.message}
 
@@ -135,7 +135,7 @@ You can now continue with [running locally](#running-locally).
 If you bought the PRO version, you've received a zip archive with the following contents:
 
 ~~~
-├── hydejack-docs-7.0.1.pdf
+├── hydejack-docs-7.1.0.pdf
 ├── install
 ├── upgrade
 ├── favicons.psd
@@ -145,7 +145,7 @@ If you bought the PRO version, you've received a zip archive with the following 
 The following list describes what each of those are
 
 
-`hydejack-docs-7.0.1.pdf`
+`hydejack-docs-7.1.0.pdf`
 : This documentation in PDF form.
 
 `install`
@@ -169,7 +169,7 @@ For new installations only the `install` folder is interesting.
 Unzip the archive somewhere on your machine, then `cd` *into* the `install` folder, e.g.
 
 ~~~bash
-$ cd ~/Downloads/hydejack-pro-7.0.1/install/
+$ cd ~/Downloads/hydejack-pro-7.1.0/install/
 ~~~
 
 You can now continue with [Running locally](#running-locally).
@@ -183,7 +183,7 @@ It is located at `<dowloaded zip>/.ssh/hydejack_pro_customers`.
 You have to copy the key file to `~/.ssh` (or wherever your SSH keys are located), e.g.:
 
 ~~~bash
-$ cp ~/Downloads/hydejack-pro-v7.0.1/.ssh/hydejack_pro_customers ~/.ssh/
+$ cp ~/Downloads/hydejack-pro-v7.1.0/.ssh/hydejack_pro_customers ~/.ssh/
 ~~~
 
 It is required that your private key files are NOT accessible by others, e.g.:
@@ -454,8 +454,7 @@ and delete `{\% include about-short.html author=site.author %\}`.
 
 ## Config
 Once Jekyll is running, you can start with basic configuration by adding various entries to `_config.yml`.
-Besides the documentation here, the [default `_config.yml`](https://github.com/qwtel/hydejack/blob/master/_config.yml)
-is also documented extensively.
+Besides these descriptions, you can also read the [annotated config file](#annotated-config-file) below.
 
 **NOTE**: When making changes to `_config.yml`, it is necessary to restart the Jekyll process for the changes to take effect.
 {:.message}
@@ -512,17 +511,18 @@ If you save a blurred image as JPG, it will also drastically reduce its file siz
 {:.message}
 
 
-The `accent_image` is optional. If you leave it out, Hydejack will use the `accent_color` as background (slightly darkened).
+The `accent_image` property accepst the special value `none` which will remove the default image.
 You can also provide a single color instead of an image like this:
 
 ~~~yml
 accent_image:
   background: '#202020' # provide a valid CSS background value
+  overlay:    false     # set to true if you want a dark overlay
 ~~~
 
 ### Changing fonts
-Hydejack lets you configure the font of regular text and headlines and it has built-in support for Google Fonts.
-There are three keys in `_config.yml` associated with it: `font`, `font_heading` and `google_fonts`.
+Hydejack lets you configure the font of regular text and headlines, and it has built-in support for Google Fonts.
+There are three keys in `_config.yml` associated with this: `font`, `font_heading` and `google_fonts`.
 The defaults are:
 
 ~~~yml
@@ -679,13 +679,15 @@ Supplying your own icons is an [advanced topic](#advanced).
 {:.message}
 
 
-#### Adding an email or RSS icon
-If you'd like to add email <span class="icon-mail"></span> or RSS <span class="icon-rss2"></span> to the list, add the `email` and `rss` keys, e.g.:
+#### Adding an email, RSS icon or download icon
+If you'd like to add an email <span class="icon-mail"></span>, RSS <span class="icon-rss2"></span>, or download <span class="icon-box-add"></span> icon to the list,
+add the `email`, `rss`, or `download` key, e.g.:
 
 ~~~yml
 social:
-  email: mailto:mail@qwtel.com
-  rss:   {{ site.url }}{{ site.baseurl }}/feed.xml # make sure you provide an absolute URL
+  email:    mailto:mail@qwtel.com
+  rss:      {{ site.url }}{{ site.baseurl }}/feed.xml # make sure you provide an absolute URL
+  download: https://github.com/qwtel/hydejack/archive/v7.1.0.zip
 ~~~
 
 ### Enabling comments
@@ -694,7 +696,7 @@ Before you can add comments to a page you need to register and add your site to 
 Once you have obtained your "Disqus shortname", you include it in your config file:
 
 ~~~yml
-disqus: <Disqus shortname>
+disqus: <disqus shortname>
 ~~~
 
 Now comments can be enabled by adding `comments: true` to the front matter.
@@ -718,7 +720,6 @@ defaults:
     values:
       comments: true
 ~~~
-
 
 ### Enabling Google Analytics
 Enabling Google Analytics is as simple as setting the `google_analytics` key.
@@ -750,11 +751,280 @@ You may also change the strings used for formatting dates and times (look out fo
 but be aware that the values you provide need to be valid
 Ruby [format directives](http://ruby-doc.org/core-2.4.1/Time.html#method-i-strftime).
 
+### Enabling newsletter boxes*
+To enable showing newsletter subscription boxes below each post and project,
+provide your [Tinyletter] username to the `tinyletter` key in the config file.
+
+```yml
+tinyletter:  <tinyletter username>
+```
+
+To edit the content of the newsletter box, open `_data/strings.yml`, and change the entries under the `tinyletter` key.
+
+If want to use a different mailing provider, like MailChimp, you can build your own form,
+and inserting it into `_includes/my-newsletter.html`.
+There you will also find an example form for MailChimp, where you need to fill in `site.mailchimp.action` and `site.mailchimp.hidden_input`
+(you can get these from MailChimp).
+
+To build a completely new from, you can use [the same CSS classes as Bootstrap](https://getbootstrap.com/docs/4.0/components/forms/).
+Note that only form, grid and utility classes are available.
+Check out [Forms by Example](forms-by-example.md){:.heading.flip-title} to see what's available.
+
+### Annotated config file
+Below you find the the complete default `_config.yml` file. You may want to copy it when using the gem-based version of the theme.
+
+```yml
+## Config
+## ========================================================================================
+
+title:                 Hydejack
+
+## Language of your content in 2-letter code, eg: en, de.
+## You may also provide a location, eg: en-us, de_AT.
+lang:                  en
+
+## The unique resource location of your page.
+## Set to `https://<username>.github.io` when hosting on GitHub Pages.
+url:                   https://domain.tld
+
+## Set to '' when hosting on GitHub Pages, like `//<username>.github.io`.
+## Set to '/<reponame>' when using the `gh-pages` branch of a repository.
+baseurl:               /hydejack
+
+## A short description of the page used for the meta description tag.
+description:           >
+  A Jekyll theme with JavaScript powers. "Best Theme by a Mile".
+  Combines the best of static sites and modern web apps.
+  Open `_config.yml` to edit this text.
+
+## A shorter description for the sidebar.
+tagline:               >
+  A Jekyll theme with JavaScript powers.
+  Open `_config.yml` to edit this text.
+
+## A list of keywords for your blog, will be used as fallback
+## for pages that don't have `keywords` in their front matter.
+keywords:              []
+
+## A (optional) logo for the page. Used by jekyll-seo-tag.
+logo:                  /hydejack/assets/icons/icon.png
+
+## This should be the same author as first entry in `_data/authors.yml`.
+## Duplication is necessary due to the jekyll-feed plugin.
+author:
+  name:                <firstname> <lastname>
+  email:               <mail@domain.tld>
+  # The remainder of the author configuration is located in `_data/authors.yml`...
+
+## This text will appear in a `<small>` tag in the footer of every page.
+copyright:             © 20XX. Open _config.yml to edit this text.
+
+## Format of the permalinks
+permalink:             pretty
+
+## Pagination configuration (used by the `blog` layout)
+paginate:              5
+paginate_path:         '/blog/page-:num/'
+
+## Customizaton
+## ========================================================================================
+
+## The string encoding which fonts to fetch from Google Fonts.
+## See: <https://qwtel.com/hydejack/docs/configuration/>
+google_fonts:          Roboto+Slab:700|Noto+Sans:400,400i,700,700i
+
+## The text font. Expects a string that is a valid CSS font-family value.
+font:                  "'Noto Sans', Helvetica, Arial, sans-serif"
+
+## The font used for headings. Expects a string that is a valid CSS font-family value.
+font_heading:          "'Roboto Slab', Helvetica, Arial, sans-serif"
+
+## Fallback image and color
+accent_image:          /hydejack/assets/img/sidebar-bg.jpg
+accent_color:          '#4fb1ba'
+
+## 3rd Party Integrations
+## ----------------------------------------------------------------------------------------
+
+## Setting a disqus shortname will enable the comment section on
+## pages with `comments: true` in the front matter.
+disqus:                <disqus_shortname>
+
+## Setting a tinyletter username will enable the newsletter subscription box.
+tinyletter:            <tinyletter_username>
+
+## Set your Google Analytics id to receive `pageview` events.
+## To remove Google Anaylics from your page, remove the line below.
+google_analytics:      UA-XXXXXXXX-X
+
+
+## Hydejack Flags
+## ----------------------------------------------------------------------------------------
+
+hydejack:
+  # Configure the order of complementary content on blog posts
+  post_addons:         [about, newsletter, related, random]
+
+  # Configure the order of complementary content on project pages
+  project_addons:      [about, newsletter, other]
+
+  # If you do not use Google Fonts, set to `true`.
+  no_google_fonts:     false
+
+  # Set to `true` if you don't want to show an icon indicating external links
+  no_mark_external:    false
+
+  # Set to `true` if third party plugins fail to work with dynamically loaded pages
+  no_push_state:       false
+
+  # Set to `true` if you want to disable the drawer
+  no_drawer:           false
+
+  # Set to `true` if you do not want parts of the css inlined in <head/>
+  # This *may* be benefitial when serving the site over HTTP/2.
+  no_inline_css:       false
+
+  # Code blocks and tables "break" the layout by spanning the full available width.
+  # Set this to true if you want them to be the same width as other content.
+  no_break_layout:     false
+
+  # Set to `true` if you do not want to expose your resume and projects
+  # in machine-readable formats.
+  no_structured_data:  false
+
+  # You can set this to `true` if you don't want to set the `theme-color` meta tag,
+  # This only affects the meta tag, not the color specified in the app manifest.
+  no_theme_color:      false
+
+  # Set to `true` when building with the `--lsi` option
+  use_lsi:             false
+
+
+## Collections
+## ========================================================================================
+
+collections:
+  featured_categories:
+    permalink:         /category/:name/
+    output:            true
+
+  featured_tags:
+    permalink:         /tag/:name/
+    output:            true
+
+  projects:
+    permalink:         /projects/:path/
+    output:            true
+
+
+## File inclusion/exclusion
+## ========================================================================================
+
+exclude:
+  - README.md
+  - node_modules
+  - vendor
+  - package.json
+  - package-lock.json
+  - Gemfile
+  - Gemfile.lock
+include:
+  - LICENSE.md
+
+
+## Plugins and Plugin Configuration
+## ========================================================================================
+
+plugins:
+  # - jekyll-avatar
+  # - jekyll-default-layout
+  - jekyll-feed
+  # - jekyll-gist
+  # - jekyll-optional-front-matter
+  - jekyll-paginate
+  # - jekyll-readme-index
+  # - jekyll-redirect-from
+  - jekyll-relative-links
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  # - jekyll-titles-from-headings
+
+
+## SEO Tag
+## ---------------------------------------------------------------------------------------
+
+## Where you proof that you own this site (used by jekyll-seo-tag)
+## google_site_verification: <verification-id>
+## -- or --
+## webmaster_verifications:
+##   google:              <verification-id>
+##   bing:                <verification-id>
+##   alexa:               <verification-id>
+##   yandex:              <verification-id>
+
+## Used for Twitter cards
+## twitter:
+##   username:            <shortname>
+
+## Used for Facebook open graph
+## facebook:
+##   app_id:              <id>
+##   publisher:           <id>
+##   admins:              <id>
+
+## Used on index and about sites
+## social:
+##   name:                <firstname> <lastname>
+##   links:
+##     - https://twitter.com/<username>
+##     - https://github.com/<username>
+
+
+## Other Plugins
+## ---------------------------------------------------------------------------------------
+
+optional_front_matter:
+  remove_originals:    true
+
+readme_index:
+  remove_originals:    true
+
+relative_links:
+  collections:         true
+
+titles_from_headings:
+  strip_title:         true
+  collections:         true
+
+kramdown:
+  footnote_backlink:   '&#x21a9;&#xfe0e;'
+  math_engine:         mathjax
+  math_engine_opts:
+    preview:           true
+    preview_as_code:   true
+
+compress_html:
+  comments:            ["<!-- ", " -->"]
+  clippings:           all
+  endings:             all
+  ignore:
+    envs:              [development]
+
+sass:
+  style:               compressed
+
+## If you are upgrading form v5 (or earlier), uncomment the lines below,
+## so that the location of the feed XML stays the same.
+## feed:
+##   path:                atom.xml
+```
+
 
 
 
 [blog]: https://qwtel.com/hydejack/blog/
 [posts]: https://qwtel.com/hydejack/posts/
+[tinyletter]: https://tinyletter.com/
 
 *[FOIT]: Flash of Invisible Text
 *[GA]: Google Analytics
@@ -883,7 +1153,52 @@ Now you can add content as you would in a blog post.
 ### Adding an entry to the sidebar
 Hydejack's sidebar can add links to any page within the site. In order for a page to appear in the sidebar, it needs to have a truthy `menu` value defined in its front matter. The page also needs to have a `title`, otherwise the entry in the sidebar will be blank.
 
-If you want the link to appear at a particular position, you can set a numeric value to the `order` key. However, the page is not guaranteed to appear in the 5th position when you set a value of `5`, since it will only use that number to sort the pages, i.e. the position of a page also depends on the `order` of all other pages in the sidebar.
+If you want the link to appear at a particular position, you can set a numeric value to the `order` key.
+However, the page is not guaranteed to appear in the 5th position when you set a value of `5`,
+since it will only use that number to sort the pages.
+The position of a page also depends on the `order` of all other pages in the sidebar.
+
+If you don't want to spread the sidebar definitions across multiple markdown files,
+you can manage them centrally in your config file using front matter defaults, e.g.:
+
+```yml
+defaults:
+  - scope:
+      path: blog.md
+    values:
+      menu: true
+      order: 1
+  - scope:
+      path: projects.md
+    values:
+      menu: true
+      order: 2
+  - scope:
+      path: resume.md
+    values:
+      menu: true
+      order: 3
+  - scope:
+      path: about.md
+    values:
+      menu: true
+      order: 4
+```
+
+#### Adding a link to an external page to the sidebar
+You can add links to external pages to the sidebar by creating a new markdown file for each entry and adding to the front matter:
+
+```yml
+---
+title: External
+redirect_to: https://example.com/
+menu: true
+order: 5
+---
+```
+
+You may combine this with the [`jekyll-redirect-from`](https://github.com/jekyll/jekyll-redirect-from) plugin
+to generate a redirect page at the `permalink` of the file, but this is optional.
 
 ### Adding an about page
 About pages are a frequent use case, so Hydejack has a special layout for it, which is a slight modification of the `page` layout.
@@ -1080,11 +1395,11 @@ It generates the resume page from a valid [JSON Resume](https://jsonresume.org/)
 
 * You can use the visual [JSON Resume Editor](http://registry.jsonresume.org/).
 * If you have a LinkedIn profile, you can try [LinkedIn to Json Résumé](https://jmperezperez.com/linkedin-to-json-resume/).
-* You can edit the [example `resume.json`](https://github.com/qwtel/hydejack/blob/v6/_data/resume.json) in the `_data` directly. It contains example entries for each type of entry.
+* You can edit the [example `resume.json`](https://github.com/qwtel/hydejack/blob/master/_data/resume.json) in the `_data` directly. It contains example entries for each type of entry.
 
 Once you have a JSON Resume, place it into `_data`.
 
-If you prefer editing YAML files, there is an [example `_resume.yml`](https://github.com/qwtel/hydejack/blob/v6/_data/_resume.yml) file in `_data`.
+If you prefer editing YAML files, there is an [example `_resume.yml`](https://github.com/qwtel/hydejack/blob/master/_data/_resume.yml) file in `_data`.
 In order to use it, rename it to `resume.yml` and delete `resume.json`.
 
 To render the resume page, create a new markdown file and set the layout to `resume` in the front matter:
@@ -1264,6 +1579,9 @@ By adding the `scroll-table` class on a table, the behavior is changed to never 
 | Footer row      |            |                 |                | Footer row      |            |                 |                | Footer row      |            |                 |                | Footer row      |            |                 |                |
 {:.scroll-table}
 
+You can add the `scroll-table` class to a markdown table by putting `{:.scroll-table}` in line directly below the table.
+To add the class to a HTML table, add the it to the `class` attribute of the `table` tag, e.g. `<table class="scroll-table">`.
+
 #### Flip table
 Alternatively, you can "flip" (transpose) the table.
 Unlike the other approach, this will keep the table head (now the first column) fixed in place.
@@ -1290,6 +1608,9 @@ Example:
 | 10th line       |quux        | baz             | bar            | 10th line       |quux        | baz             | bar            | 10th line       |quux        | baz             | bar            | 10th line       |quux        | baz             | bar            |
 {:.flip-table}
 
+You can add the `flip-table` class to a markdown table by putting `{:.flip-table}` in line directly below the table.
+To add the class to a HTML table, add the it to the `class` attribute of the `table` tag, e.g. `<table class="flip-table">`.
+
 #### Small tables
 If a table is small enough to fit the screen even on small screens, you can add the `stretch-table` class
 to force a table to use the entire available content width. Note that stretched tables can no longer be scrolled.
@@ -1298,6 +1619,9 @@ to force a table to use the entire available content width. Note that stretched 
 |-----------------|:-----------|:---------------:|---------------:|
 | First body part |Second cell | Third cell      | fourth cell    |
 {:.stretch-table}
+
+You can add the `stretch-table` class to a markdown table by putting `{:.stretch-table}` in line directly below the table.
+To add the class to a HTML table, add the it to the `class` attribute of the `table` tag, e.g. `<table class="stretch-table">`.
 
 ### Adding code blocks
 To add a code block without syntax highlighting, simply indent 4 spaces (regular markdown).
