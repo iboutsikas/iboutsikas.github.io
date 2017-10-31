@@ -30,7 +30,6 @@ const FILES = [
   resolve('./_layouts/compress.html'),
   resolve('./assets/version.json'),
 
-  resolve('./about.md'),
   resolve('./CHANGELOG.md'),
   resolve('./download.md'),
   resolve('./index.md'),
