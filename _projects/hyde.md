@@ -44,6 +44,7 @@ accent_image:
 ~~~css
 .sidebar h2 {
   font-family: 'Abril Fatface', serif!important;
+  font-weight: normal;
   font-size: 3rem;
 }
 ~~~
