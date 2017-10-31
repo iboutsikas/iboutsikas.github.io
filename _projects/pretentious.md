@@ -26,7 +26,10 @@ accent_image: /assets/img/pretentious-bg.jpg
 ![Typeface](../assets/img/pretentious-1.jpg){:.lead}
 
 ## Usage
-To use this flavor, make the following changes to following files:
+First, [download the modified icon font](/hydejack/assets/icomoon-pretentious.zip){:download=''},
+unzip it, and replace the `icomoon` folder in `assets` with the new version.
+
+You also need to make the following changes to following files:
 
 ### `_config.yml`
 
@@ -35,7 +38,7 @@ google_fonts:          Playfair+Display+SC:700|PT+Serif:400,400i,700,700i
 font:                  "'PT Serif', Georgia, serif"
 font_heading:          "'Playfair Display SC', Georgia, serif"
 
-accent_image:          <baseurl>/assets/img/sidebar-bg.jpg
+accent_image:          /assets/img/sidebar-bg.jpg
 accent_color:          '#a85641'
 ~~~
 
