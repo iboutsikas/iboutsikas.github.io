@@ -44,6 +44,3 @@ vendor/bundle
 .sass-cache
 .jekyll-metadata
 *.gem
-
-# Temp
-/assets/js/hydejack.js
