@@ -321,11 +321,11 @@ layout:      project
 title:       Hyde v2*
 date:        2 Jan 2014
 screenshot:
-  src:       /hydejack/assets/img/projects/hyde-v2@0,25x.jpg
+  src:       /assets/img/projects/hyde-v2@0,25x.jpg
   srcset:
-    1920w:   /hydejack/assets/img/projects/hyde-v2.jpg
-    960w:    /hydejack/assets/img/projects/hyde-v2@0,5x.jpg
-    480w:    /hydejack/assets/img/projects/hyde-v2@0,25x.jpg
+    1920w:   /assets/img/projects/hyde-v2.jpg
+    960w:    /assets/img/projects/hyde-v2@0,5x.jpg
+    480w:    /assets/img/projects/hyde-v2@0,25x.jpg
 caption:     Hyde is a brazen two-column Jekyll theme.
 description: >
   Hyde is a brazen two-column [Jekyll](http://jekyllrb.com) theme that pairs a prominent sidebar with uncomplicated content.
@@ -360,7 +360,7 @@ For more information on `srcset`, see the [documentation at MDN](https://develop
 : A list of `title`-`url` pairs that link to external resources related to this project.
 
 `author`
-: Shown below the project, similar to posts.
+: Optional. Shown below the project, similar to posts.
 
 `big_project`
 : Optional. When `true`, the project preview will span the full content width. You can use this for projects that you want to direct additional attention to. You can set/override this for an entire page, by setting `big_project` in the front matter (applies to the `projects` and `welcome` layout).

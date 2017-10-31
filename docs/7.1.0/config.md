@@ -366,7 +366,7 @@ tagline:               >
 keywords:              []
 
 # A (optional) logo for the page. Used by jekyll-seo-tag.
-logo:                  /hydejack/assets/icons/icon.png
+logo:                  /assets/icons/icon.png
 
 # This should be the same author as first entry in `_data/authors.yml`.
 # Duplication is necessary due to the jekyll-feed plugin.
@@ -399,7 +399,7 @@ font:                  "'Noto Sans', Helvetica, Arial, sans-serif"
 font_heading:          "'Roboto Slab', Helvetica, Arial, sans-serif"
 
 # Fallback image and color
-accent_image:          /hydejack/assets/img/sidebar-bg.jpg
+accent_image:          /assets/img/sidebar-bg.jpg
 accent_color:          '#4fb1ba'
 
 # 3rd Party Integrations
