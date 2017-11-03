@@ -7,7 +7,7 @@ redirect_from:
 ---
 
 ## v7.1.1
-Nov 2 2017
+Nov 3 2017
 {:.heading.post-date}
 
 ### Fixes
