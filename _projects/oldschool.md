@@ -42,7 +42,7 @@ hydejack:
 ### `_sass/my-inline.scss`
 
 ~~~css
-.project-card, .project-card-image, .pagination-item > * {
+.project-card, .project-card-img, .pagination-item > * {
   border-radius: 0!important;
 }
 
