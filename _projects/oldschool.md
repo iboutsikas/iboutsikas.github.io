@@ -75,18 +75,21 @@ a {
 ***
 
 ## Attributions
-* [Sun SparcStation 10 with CRT.jpg](https://commons.wikimedia.org/wiki/File:Sun_SparcStation_10_with_CRT.jpg)
-  by Thomas Kaiser.
-  License: [CC-BY-SA-3.0]. Changes: Sun logos removed, perspective distortion;
-* [iPhone 6S Rose Gold.png](https://commons.wikimedia.org/wiki/File:IPhone_6S_Rose_Gold.png).
-  License: [CC-BY-SA-3.0]. Changes: Desaturated;
-* [iPad Air 2.png](https://commons.wikimedia.org/wiki/File:IPad_Air_2.png)
-  by [Justinhu12](https://commons.wikimedia.org/wiki/User:Justinhu12).
-  License: [CC-BY-SA-4.0]. Changes: Desaturated;
-* [Mandel zoom 08 satellite antenna.jpg](https://commons.wikimedia.org/wiki/File:Mandel_zoom_08_satellite_antenna.jpg).
-  License: [CC-BY-SA-3.0]. Changes: None;
+
+| Work                                                    | License        | Changes
+|:------------------------------------------------------- |:---------------|:-
+| [Sun SparcStation 10 with CRT.jpg][11] by Thomas Kaiser | [CC-BY-SA-3.0] | Sun logos removed, perspective distortion
+| [iPhone 6S Rose Gold.png][21]                           | [CC-BY-SA-3.0] | Desaturated
+| [iPad Air 2.png][31] by [Justinhu12][32]                | [CC-BY-SA-4.0] | Desaturated
+| [Mandel zoom 08 satellite antenna.jpg][41]              | [CC-BY-SA-3.0] | None
 
 Screenshots can be reused under [CC-BY-SA-4.0].
+
+[11]: https://commons.wikimedia.org/wiki/File:Sun_SparcStation_10_with_CRT.jpg
+[21]: https://commons.wikimedia.org/wiki/File:IPhone_6S_Rose_Gold.png
+[31]: https://commons.wikimedia.org/wiki/File:IPad_Air_2.png
+[32]: https://commons.wikimedia.org/wiki/User:Justinhu12
+[41]: https://commons.wikimedia.org/wiki/File:Mandel_zoom_08_satellite_antenna.jpg
 
 [CC-BY-SA-4.0]: https://creativecommons.org/licenses/by-sa/4.0/
 [CC-BY-SA-3.0]: https://creativecommons.org/licenses/by-sa/3.0/
