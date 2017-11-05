@@ -43,11 +43,10 @@
   .project-card {
     width: 100%;
     background: $body-bg;
-    border: 1px solid $border-color;
     padding-bottom: .75rem;
     margin-bottom: 1.5rem;
     overflow: hidden;
-    border-radius: .25rem;
+    box-shadow: .25rem .25rem 1rem rgba(0, 0, 0, 0.1);
     contain: content;
 
     page-break-inside: avoid;
@@ -55,11 +54,7 @@
     > a > .project-card-img {
       margin-bottom: 0;
       border-bottom: 1px solid $border-color;
-      border-top: 1px solid $border-color;
       position: relative;
-      border-top-left-radius: .25rem;
-      border-top-right-radius: .25rem;
-      top: -1px;
       > img { transition: transform 500ms; }
     }
 
