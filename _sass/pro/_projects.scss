@@ -4,7 +4,7 @@
   @include aspect-ratio(16, 9);
 }
 
-.layout-projects, .layout-project, .layout-welcome  {
+.layout-projects, .layout-project, .layout-welcome, .layout-cover  {
   $pad: 1rem;
 
   .columns {
@@ -46,7 +46,7 @@
     padding-bottom: .75rem;
     margin-bottom: 1.5rem;
     overflow: hidden;
-    box-shadow: .25rem .25rem 1rem rgba(0, 0, 0, 0.1);
+    box-shadow: .125rem .125rem .5rem rgba(0, 0, 0, 0.1);
     contain: content;
 
     page-break-inside: avoid;
@@ -71,13 +71,13 @@
     > .project-card-title {
       display: block;
       font-size: 1rem;
-      margin-top: 0.75rem;
-      margin-bottom: 0.25rem;
+      margin-top: .75rem;
+      margin-bottom: .25rem;
       color: inherit;
     }
 
     > .project-card-text {
-      margin: 0.25rem 0;
+      margin: .25rem 0;
     }
   }
 
