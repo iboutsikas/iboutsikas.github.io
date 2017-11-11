@@ -20,6 +20,10 @@ accent_color: '#268bd2'
 accent_image:
   background: '#202020'
   overlay:    false
+redirect_from:
+  - /projects/hyde/
+  - /projects/hyde-v1/
+  - /projects/hyde-v2/
 ---
 
 ![Typeface](../assets/img/hyde-1.jpg){:.lead}

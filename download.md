@@ -1,6 +1,10 @@
 ---
 layout: page
 title: Download
+description: >
+  There are two versions of Hydejack: The free version includes basic blogging functionality,
+  while the PRO version includes additional features for professionals.
+image: /assets/img/projects/default.jpg
 menu: true
 order: 7
 redirect_from: /about/

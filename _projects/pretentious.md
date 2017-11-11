@@ -21,6 +21,9 @@ links:
 big_project:  true
 accent_color: '#a85641'
 accent_image: /assets/img/pretentious-bg.jpg
+redirect_from:
+  - /projects/hyde-v4/
+  - /projects/hyde-v5/
 ---
 
 ![Typeface](../assets/img/pretentious-1.jpg){:.lead}
