@@ -55,7 +55,7 @@ This table details what is and isn't included in each respective version.
 
 [license]: LICENSE.md
 [pro]: licenses/PRO.md
-[docs]: docs/8.0.0-alpha.3/index.md
+[docs]: docs/8.0.0-alpha.4/index.md
 
 [kit]: https://github.com/qwtel/hydejack-starter-kit/archive/v7.5.0.zip
 [src]: https://github.com/qwtel/hydejack
