@@ -38,7 +38,7 @@ This table details what is and isn't included in each respective version.
 [resume]: resume.md
 [download]: download.md
 [welcome]: index.md
-[forms]: docs/7.1.1/forms-by-example.md
+[forms]: docs/7.2.0/forms-by-example.md
 
 [feat]: index.md#features
 [news]: index.md#newsletter-subscription-box
@@ -47,7 +47,7 @@ This table details what is and isn't included in each respective version.
 
 [license]: LICENSE.md
 [pro]: licenses/PRO.md
-[docs]: docs/7.1.1/index.md
+[docs]: docs/7.2.0/index.md
 
 [github]: https://github.com/qwtel/hydejack/releases
 [gem]: https://rubygems.org/gems/jekyll-theme-hydejack
