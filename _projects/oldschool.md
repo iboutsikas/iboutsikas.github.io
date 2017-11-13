@@ -15,7 +15,7 @@ screenshot:
 links:
   - title:    Demo
     url:      https://qwtel.com/hydejack-oldschool/
-big_project:  true
+featured:     true
 accent_color: '#00e'
 accent_image: /assets/img/oldschool-bg.jpg
 ---

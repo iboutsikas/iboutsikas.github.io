@@ -18,7 +18,7 @@ screenshot:
 links:
   - title:    Demo
     url:      https://qwtel.com/hydejack-pretentious/
-big_project:  true
+featured:     true
 accent_color: '#a85641'
 accent_image: /assets/img/pretentious-bg.jpg
 redirect_from:

@@ -15,7 +15,7 @@ screenshot:
 links:
   - title:    Demo
     url:      https://qwtel.com/hydejack/
-big_project:  true
+featured:     true
 accent_color: '#4fb1ba'
 accent_image: /assets/img/sidebar-bg.jpg
 redirect_from:

@@ -15,7 +15,7 @@ screenshot:
 links:
   - title:    Demo
     url:      https://qwtel.com/hydejack-hyde/
-big_project:  true
+featured:     true
 accent_color: '#268bd2'
 accent_image:
   background: '#202020'
