@@ -2,6 +2,8 @@
 layout: page
 ---
 
+{{ content }}
+
 {% assign show_collection = page.show_collection | default:"projects" %}
 {% assign ordered_projects = site[show_collection] | sort:"date" | reverse %}
 
