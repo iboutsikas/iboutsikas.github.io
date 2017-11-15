@@ -33,10 +33,13 @@ keywords:              [jekyll, theme, hyde, sidebar, resume, markdown, code, ma
 logo:                  /assets/icons/icon.png
 
 # This should be the same author as first entry in `_data/authors.yml`.
-# Duplication is necessary due to the jekyll-feed plugin.
+# Duplication is necessary due to the `jekyll-feed`, `jekyll-seo-tag` plugin.
 author:
+  # Used by `jekyll-feed`:
   name:                Florian Klampfer
   email:               mail@qwtel.com
+  # Used by `jekyll-seo-tag`:
+  twitter:             qwtel
 
 # This text will appear in a `<small>` tag in the footer of every page.
 copyright:             © 2017 Florian Klampfer
