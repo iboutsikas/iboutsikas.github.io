@@ -194,7 +194,7 @@ built-in support for [Tinyletter], and from element styles so you can build arbi
 [^3]: Transactions secured by [Stripe](https://stripe.com). Downloads handled by [Simple Goods](https://simplegoods.co/).  
 
 [blog]: blog.md
-[portfolio]: projects.md
+[portfolio]: variations.md
 [resume]: resume.md
 [download]: download.md
 [welcome]: index.md

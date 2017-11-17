@@ -34,7 +34,7 @@ This table details what is and isn't included in each respective version.
 [^3]: Transactions secured by [Stripe](https://stripe.com). Downloads handled by [Simple Goods](https://simplegoods.co/).  
 
 [blog]: blog.md
-[portfolio]: projects.md
+[portfolio]: variations.md
 [resume]: resume.md
 [download]: download.md
 [welcome]: index.md
