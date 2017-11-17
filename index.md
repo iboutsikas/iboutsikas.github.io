@@ -26,15 +26,15 @@ more_posts: posts.md
 content_separator: <!--more-->
 ---
 
-**Hydejack** aims to be the complete package for professionals on the web.
+**Hydejack** is the complete package for professionals on the web.
 It features a blog suitable for both prose and technical documentation,
-a showcase for your projects, and a resume that fits with the rest of the design.
+a showcase for your projects, and a resume that is well-integrated with the design.
 
 > Your presence on the web --- A [blog], a [portfolio] and a [resume].
 {:.lead}
 
 **Hydejack** is highly customizable and lets you achieve a variety of styles.
-Below you can find a selection of variations that are included.
+Below you can find a selection of variations.
 
 <!--more-->
 
