@@ -133,8 +133,8 @@ $input-btn-padding-x-lg:      1rem !default;
 $input-btn-line-height-lg:    $line-height-lg !default;
 
 $btn-font-weight:             bold;
-$btn-box-shadow:              .1em .1em .5rem rgba(#000,.25) !default;
-$btn-active-box-shadow:       .1em .1em 1rem rgba(#000,.25) !default;
+$btn-box-shadow:              .1em .1em .25rem rgba(#000,.25) !default;
+$btn-active-box-shadow:       .1em .1em .25rem rgba(#000,.25) !default;
 
 $btn-link-disabled-color:     $gray !default;
 
@@ -156,7 +156,7 @@ $input-disabled-bg:              $gray-bg;
 $input-color:                    #333;
 $input-border-color:             $border-color;
 $input-btn-border-width:         0px !default; // For form controls and buttons
-$input-box-shadow:               inset .1rem .1rem .5rem rgba(#000,.1);
+$input-box-shadow:               inset .1rem .1rem .25rem rgba(#000,.1);
 
 $input-border-radius:            $border-radius !default;
 $input-border-radius-lg:         $border-radius-lg !default;
