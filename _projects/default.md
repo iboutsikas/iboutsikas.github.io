@@ -33,6 +33,20 @@ It features everything that's hot right now:
 
 ![1957 Chevy](https://upload.wikimedia.org/wikipedia/commons/b/b1/57_Chevy_210.jpg)
 
+Introducing Hydejack's new default theme...
+
+* Hydejack's new default theme is so hip and young, *its relationship with flat design is "complicated"*.
+
+* Hydejack's new default theme is so hip and young, *every screenshot of it disappears after 24 hours*.
+
+* Hydejack's new default theme is so hip and young, *it's embarrassed by its font-family*.
+
+* Hydejack's new default theme is so hip and young, *it lets you swipe right without regrets*.
+
+* Hydejack's new default theme is so hip and young, *all images of animals have been replaced with images of plants*.
+
+* Hydejack's new default theme is so hip and young, *it has been accused of "white-spacing"*.
+
 ***
 
 ## Attributions
