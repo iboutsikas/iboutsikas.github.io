@@ -20,6 +20,7 @@ accent_color: '#4fb1ba'
 accent_image: /assets/img/sidebar-bg.jpg
 redirect_from:
   - /projects/hyde-v6/
+  - /projects/hydejack-v6/
 ---
 
 ![Typeface](../assets/img/default-1.jpg){:.lead}

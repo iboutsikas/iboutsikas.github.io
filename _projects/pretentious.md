@@ -24,6 +24,8 @@ accent_image: /assets/img/pretentious-bg.jpg
 redirect_from:
   - /projects/hyde-v4/
   - /projects/hyde-v5/
+  - /projects/hydejack-v4/
+  - /projects/hydejack-v5/
 ---
 
 ![Typeface](../assets/img/pretentious-1.jpg){:.lead}
