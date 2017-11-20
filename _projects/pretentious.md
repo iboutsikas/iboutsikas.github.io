@@ -22,8 +22,10 @@ featured:     true
 accent_color: '#a85641'
 accent_image: /assets/img/pretentious-bg.jpg
 redirect_from:
+  - /projects/hyde-v3/
   - /projects/hyde-v4/
   - /projects/hyde-v5/
+  - /projects/hydejack-v3/
   - /projects/hydejack-v4/
   - /projects/hydejack-v5/
 ---
