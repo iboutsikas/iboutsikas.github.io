@@ -1,6 +1,6 @@
 # The primary author of this blog.
 # Must be the same as `author` in `_config.yml`.
-# Change `qwtel` to your shortname (used in the front matter to set a page's author, e.g. `author: qwtel`).
+# Change `qwtel` to your shortname.
 qwtel:
   name:              Florian Klampfer
   email:             mail@qwtel.com
