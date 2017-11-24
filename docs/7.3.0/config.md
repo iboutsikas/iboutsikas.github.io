@@ -444,7 +444,7 @@ url:                   https://domain.tld
 
 # IMPORTANT: Set The "base URL" of your site.
 #
-# When hosting your site in a subdirectory of a server, set to /<name of the subdirectory>
+# When hosting your site in a subdirectory of a server, set to /<name of directory>
 # (with leading /, but without the < >)
 # Use the empty string '' otherwise.
 #
@@ -467,15 +467,15 @@ description:           >
   Combines the best of static sites and modern web apps.
   Open `_config.yml` to edit this text.
 
-# A shorter description for the sidebar.
+# A shorter description for the sidebar (optional).
 tagline:               >
   A Jekyll theme with JavaScript powers.
   Open `_config.yml` to edit this text.
 
-# A list of keywords for your blog
+# A list of keywords for your blog (optional).
 keywords:              []
 
-# Used by jekyll-seo-tag...
+# Used by jekyll-seo-tag (optional).
 logo:                  /assets/icons/icon.png
 
 # This should be the same author as first entry in `_data/authors.yml`.
@@ -494,10 +494,15 @@ permalink:             pretty
 
 # Pagination configuration (used by the `blog` layout)
 paginate:              5
-paginate_path:         /blog/page-:num/
+paginate_path:         /page-:num/
+
 
 # Customizaton
 # ========================================================================================
+
+# Sidebar image and theme color of the site.
+accent_image:          /assets/img/sidebar-bg.jpg
+accent_color:          '#4fb1ba'
 
 # The string encoding which fonts to fetch from Google Fonts.
 # See: <https://qwtel.com/hydejack/docs/configuration/>
@@ -509,10 +514,6 @@ font:                  Noto Sans, Helvetica, Arial, sans-serif
 # The font used for headings. Expects a string that is a valid CSS font-family value.
 font_heading:          Roboto Slab, Helvetica, Arial, sans-serif
 
-# Sidebar image and theme color of the site.
-accent_image:          /assets/img/sidebar-bg.jpg
-accent_color:          '#4fb1ba'
-
 # 3rd Party Integrations
 # ----------------------------------------------------------------------------------------
 
@@ -520,20 +521,22 @@ accent_color:          '#4fb1ba'
 # pages with `comments: true` in the front matter.
 # disqus:                <disqus_shortname>
 
-# Setting a tinyletter username will enable the newsletter subscription box.
-# tinyletter:            <tinyletter_username>
-
 # Set your Google Analytics id to receive `pageview` events.
 # To remove Google Anaylics from your page, remove the line below.
 # google_analytics:      UA-XXXXXXXX-X
 
+# Setting a tinyletter username will enable the newsletter subscription box.
+# PRO version only!
+# tinyletter:            <tinyletter_username>
 
-# Hydejack Flags
+
+# Hydejack Settings
 # ----------------------------------------------------------------------------------------
+# These settings are specific to Hydejack.
 
 hydejack:
   # Configure the order of complementary content on blog posts
-  post_addons:         [about, newsletter, related, random]
+  post_addons:         [about, newsletter, related]
 
   # Configure the order of complementary content on project pages
   project_addons:      [about, newsletter, other]
@@ -594,11 +597,6 @@ exclude:
   - vendor
   - Gemfile
   - Gemfile.lock
-  - node_modules
-  - package.json
-  - package-lock.json
-include:
-  - LICENSE.md
 
 
 # Plugins and Plugin Configuration
@@ -622,8 +620,9 @@ plugins:
 # Theme
 # ---------------------------------------------------------------------------------------
 
-# theme: jekyll-theme-hydejack
+theme: jekyll-theme-hydejack
 # remote_theme: qwtel/hydejack@gem
+
 
 # SEO Tag
 # ---------------------------------------------------------------------------------------
@@ -639,7 +638,7 @@ plugins:
 
 # Used for Twitter cards
 # twitter:
-#   username:            <shortname>
+#   username:            <twitter handle>
 
 # Used for Facebook open graph
 # facebook:
@@ -679,11 +678,9 @@ kramdown:
     preview_as_code:   true
 
 compress_html:
-  comments:            ["<!-- ", " -->"]
+  comments:            ['<!-- ', ' -->']
   clippings:           all
   endings:             all
-  ignore:
-    envs:              [development]
 
 sass:
   style:               compressed
