@@ -49,7 +49,9 @@ author:
   twitter:             qwtel
 
 # This text will appear in a `<small>` tag in the footer of every page.
-copyright:             © 2017 Florian Klampfer<br/>* Not included in free version
+copyright:             >
+  © 2017 Florian Klampfer. [Cookies Policy](/hydejack/cookies-policy/)<br/>
+  * Not included in free version
 
 # Format of the permalinks
 permalink:             pretty
@@ -132,6 +134,10 @@ hydejack:
 
   # Set to `true` when building with the `--lsi` option
   use_lsi:             false
+
+  # Set to `true` if you want to display a cookie notice banner.
+  # You can change the text of the banner in `_data/strings.yml`.
+  cookies_banner:      true
 
   # Set to `true` if you would like to add a "Powered by Hydejack" link in the footer.
   advertise:           true
