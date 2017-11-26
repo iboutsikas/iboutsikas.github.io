@@ -1,0 +1,23 @@
+<script>!function(window, document) {
+  var KIT_URL = 'https://github.com/qwtel/hydejack-starter-kit/archive/master.zip';
+  var GIT_URL = 'https://github.com/qwtel/hydejack-starter-kit';
+  var BUY_URL = 'https://app.simplegoods.co/i/AQTTVBOE';
+
+  function f(query, category, action, label) {
+    Array.from(document.querySelectorAll(query)).forEach(function(el) {
+      el.addEventListener('click', function() {
+        ga('send', 'event', category, action, label);
+      }, true);
+    });
+  }
+
+  try {
+    f('.sidebar a[href="' + KIT_URL + '"]', 'Button', 'download');
+    document.getElementsByTagName('hy-push-state')[0]
+      .addEventListener('hy-push-state-load', function() {
+        f('.content a[href="' + KIT_URL + '"]', 'Button', 'download', '7.4.1');
+        f('.content a[href="' + GIT_URL + '"]', 'Button', 'fork', '7.4.1');
+        f('.content a[href="' + BUY_URL + '"]', 'Button', 'buy', '7.4.1');
+      });
+  } catch (e) {}
+}(window, document)</script>
