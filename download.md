@@ -39,7 +39,7 @@ This table details what is and isn't included in each respective version.
 [resume]: resume.md
 [download]: download.md
 [welcome]: index.md
-[forms]: docs/7.3.0/forms-by-example.md
+[forms]: docs/7.4.0/forms-by-example.md
 
 [feat]: index.md#features
 [news]: index.md#newsletter-subscription-box
@@ -48,7 +48,7 @@ This table details what is and isn't included in each respective version.
 
 [license]: LICENSE.md
 [pro]: licenses/PRO.md
-[docs]: docs/7.3.0/index.md
+[docs]: docs/7.4.0/index.md
 
 [kit]: https://github.com/qwtel/hydejack-starter-kit/archive/master.zip
 [git]: https://github.com/qwtel/hydejack-starter-kit
