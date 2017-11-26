@@ -2,7 +2,15 @@
 
 .layout-resume {
   h1 {
+    display: inline;
+  }
+
+  header > p {
     margin-bottom: 0;
+  }
+
+  .subline {
+    margin-top: 0;
   }
 
   .h4 {
@@ -15,17 +23,8 @@
     color: $body-color;
   }
 
-  .subline {
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-
   .bold {
     font-weight: $font-weight-bold;
-  }
-
-  header > p {
-    margin-bottom: 0;
   }
 
   .tags {
@@ -82,7 +81,6 @@
     }
   }
 
-  // cite
   .reference {
     margin-bottom: 1.5rem;
 
