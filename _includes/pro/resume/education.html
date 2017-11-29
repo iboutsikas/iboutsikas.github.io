@@ -1,11 +1,12 @@
 {% if resume.education.size > 0 %}
-  <section>
+<section>
   <h2 id="education" class="h3 faded hr">
     {{ strings.resume.education | default:"Education" }}
     <span class="symbol {{ icons.education | default:'icon-library' }}"></span>
   </h2>
   {% for edu in resume.education %}
-    <header class="{% unless forloop.first %}mt3{% endunless %}">
+  <section>
+    <header class="pbia {% unless forloop.first %}mt3{% endunless %}">
       {% if edu.startDate.size > 0 %}
         <p class="faded">
           <time datetime="{{ edu.startDate }}">{{ edu.startDate | date:from_to_format }}</time>
@@ -38,6 +39,7 @@
         <li>{{ course }}</li>
       {% endfor %}
     </ul>
-  {% endfor %}
   </section>
+  {% endfor %}
+</section>
 {% endif %}

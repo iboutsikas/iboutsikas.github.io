@@ -1,11 +1,12 @@
 {% if resume.awards.size > 0 %}
-  <section>
+<section>
   <h2 id="awards" class="h3 faded hr">
     {{ strings.resume.awards | default:"Awards" }}
     <span class="symbol {{ icons.awards | default:'icon-trophy' }}"></span>
   </h2>
   {% for awa in resume.awards %}
-    <header class="{% unless forloop.first %}mt3{% endunless %}">
+  <section>
+    <header class="pbia {% unless forloop.first %}mt3{% endunless %}">
       {% if awa.date.size > 0 %}
         <p class="faded">
           <time datetime="{{ awa.date }}">{{ awa.date | date:from_to_format }}</time>
@@ -23,6 +24,7 @@
     </header>
 
     {% include message.html text=awa.summary alt="" %}
-  {% endfor %}
   </section>
+  {% endfor %}
+</section>
 {% endif %}

@@ -5,7 +5,8 @@
     <span class="symbol {{ icons.volunteer | default:'icon-earth' }}"></span>
   </h2>
   {% for vol in resume.volunteer %}
-    <header class="{% unless forloop.first %}mt3{% endunless %}">
+  <section>
+    <header class="pbia {% unless forloop.first %}mt3{% endunless %}">
       {% if vol.startDate.size > 0 %}
         <p class="faded">
           <time datetime="{{ vol.startDate }}">{{ vol.startDate | date:from_to_format }}</time>
@@ -36,6 +37,7 @@
         <li>{{ highlight }}</li>
       {% endfor %}
     </ul>
+  </section>
   {% endfor %}
 </section>
 {% endif %}

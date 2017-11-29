@@ -144,4 +144,11 @@
     .column-3-5 { width: 60% }
     .column-2-5 { width: 40% }
   }
+
+  @media print {
+    section, blockquote, dd {
+      page-break-inside: avoid;
+      break-inside: avoid-page;
+    }
+  }
 }
