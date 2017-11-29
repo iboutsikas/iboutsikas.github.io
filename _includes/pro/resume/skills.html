@@ -12,20 +12,25 @@
           <span class="sr-only">{{ strings.resume.level | default:"Level" }}{{ colon }}</span>
           {% assign level = skl.level | slugify %}
           {% case level %}
-            {% when 3 or "master" or "expert" or "senior" %}
+            {% when 3 or "3" or "master" or "expert" or "senior" %}
               <span class="help" title="{{ skl.level }}">
                 <span class="sr-only">{{ skl.level }}</span>
                 <span class="icon-star-full"></span><span class="icon-star-full"></span><span class="icon-star-full"></span>
               </span>
-            {% when 2 or "intermediate" or "amateur"  %}
+            {% when 2 or "2" or "intermediate" or "amateur"  %}
               <span class="help" title="{{ skl.level }}">
                 <span class="sr-only">{{ skl.level }}</span>
                 <span class="icon-star-full"></span><span class="icon-star-full"></span><span class="icon-star-empty"></span>
               </span>
-            {% when 1 or "beginner" or "novice" or "junior" %}
+            {% when 1 or "1" or "beginner" or "novice" or "junior" %}
               <span class="help" title="{{ skl.level }}">
                 <span class="sr-only">{{ skl.level }}</span>
                 <span class="icon-star-full"></span><span class="icon-star-empty"></span><span class="icon-star-empty"></span>
+              </span>
+            {% when 0 or "0" %}
+              <span class="help" title="{{ skl.level }}">
+                <span class="sr-only">{{ skl.level }}</span>
+                <span class="icon-star-empty"></span><span class="icon-star-empty"></span><span class="icon-star-empty"></span>
               </span>
             {% else %}
               {{ skl.level }}

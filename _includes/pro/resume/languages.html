@@ -12,7 +12,7 @@
           <span class="sr-only">{{ strings.resume.fluency | default:"Fluency" }}{{ colon }}</span>
           {% assign fluency = lng.fluency | slugify %}
           {% case fluency %}
-            {% when 5 or "native-or-bilingual-proficiency" %}
+            {% when 5 or "native-or-bilingual-proficiency" or "native-speaker" %}
               <span class="help" title="{{ lng.fluency }}">
                 <span class="sr-only">{{ lng.fluency }}</span>
                 <span class="icon-star-full"></span><span class="icon-star-full"></span><span class="icon-star-full"></span>
@@ -40,7 +40,7 @@
             {% when 0 or "no-proficiency" %}
               <span class="help" title="{{ lng.fluency }}">
                 <span class="sr-only">{{ lng.fluency }}</span>
-                <span class="icon-star-half"></span><span class="icon-star-empty"></span><span class="icon-star-empty"></span>
+                <span class="icon-star-empty"></span><span class="icon-star-empty"></span><span class="icon-star-empty"></span>
               </span>
             {% else %}
               {{ lng.fluency }}
