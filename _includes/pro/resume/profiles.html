@@ -10,7 +10,7 @@
         {% assign name = pro.network %}
       {% endif %}
       <dt class="faded">
-        <span class="{{ icon | default:icons.website | default:'icon-link' }}" title="{{ name }}"></span>
+        <span class="{{ icon | default:icons.fallback | default:'icon-link' }}" title="{{ name }}"></span>
         <span class="sr-only">{{ name }}</span>
       </dt>
       <dd class="bold">
