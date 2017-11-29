@@ -146,7 +146,7 @@
   }
 
   @media print {
-    section, blockquote, dd {
+    section, header, blockquote, dd {
       page-break-inside: avoid;
       break-inside: avoid-page;
     }

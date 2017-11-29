@@ -6,7 +6,7 @@
   </h2>
   {% for pub in resume.publications %}
   <section>
-    <header class="pbia {% unless forloop.first %}mt3{% endunless %}">
+    <header class="{% unless forloop.first %}mt3{% endunless %}">
       {% if pub.releaseDate.size > 0 %}
         <p class="faded">
           <time datetime="{{ pub.releaseDate }}">{{ pub.releaseDate | date:from_to_format }}</time>
