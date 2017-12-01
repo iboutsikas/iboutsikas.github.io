@@ -50,8 +50,13 @@ author:
 
 # This text will appear in a `<small>` tag in the footer of every page.
 copyright:             >
-  © 2017 Florian Klampfer. [Cookies Policy](/hydejack/cookies-policy/)<br/>
-  * Not included in free version
+  \* Not included in free version
+
+# Add links to the footer.
+# Typically you'll want to link to your cookie- or privacy policy (if appliable), etc..
+legal:
+  - title:             Cookies Policy
+    href:              /cookies-policy/
 
 # Format of the permalinks
 permalink:             pretty
