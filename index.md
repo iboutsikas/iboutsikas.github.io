@@ -149,7 +149,7 @@ built-in support for [Tinyletter], and from element styles so you can build arbi
 [resume]: resume.md
 [download]: download.md
 [welcome]: index.md
-[forms]: docs/7.4.1/forms-by-example.md
+[forms]: forms-by-example.md
 
 [feat]: #features
 [news]: #newsletter-subscription-box

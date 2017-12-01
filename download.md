@@ -39,7 +39,7 @@ This table details what is and isn't included in each respective version.
 [resume]: resume.md
 [download]: download.md
 [welcome]: index.md
-[forms]: docs/7.4.1/forms-by-example.md
+[forms]: forms-by-example.md
 
 [feat]: index.md#features
 [news]: index.md#newsletter-subscription-box
