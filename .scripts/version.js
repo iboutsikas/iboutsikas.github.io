@@ -34,6 +34,7 @@ const FILES = [
   resolve('./index.md'),
   resolve('./README.md'),
   resolve('./thank-you.md'),
+  resolve('./_includes/my-scripts.html'),
 ];
 
 // <https://stackoverflow.com/a/45130990/870615>
