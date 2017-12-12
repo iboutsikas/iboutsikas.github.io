@@ -120,8 +120,10 @@
     }
 
     .message {
-      width: calc(100% + 2rem);
-      padding-right: 1rem;
+      width: calc(100% + 1.5rem);
+      margin-left: -.75rem;
+      margin-right: -.75rem;
+      padding: .5rem .75rem;
     }
   }
 
