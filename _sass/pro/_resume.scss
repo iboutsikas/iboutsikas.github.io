@@ -152,4 +152,9 @@
       break-inside: avoid-page;
     }
   }
+
+  @media print and (min-width: 5.247in) {
+    .column-3-5 { width: 60% }
+    .column-2-5 { width: 40% }
+  }
 }
