@@ -50,7 +50,7 @@
     </dt>
     <dd class="bold">
       <meta property="email" content="{{ basics.email }}"/>
-      <a href="mailto:{{ basics.email }}" class="external email u-email">{{ basics.email }}</a>
+      <a href="mailto:{{ basics.email }}" class="external no-print-link email u-email">{{ basics.email }}</a>
     </dd>
   {% endif %}
 
@@ -61,7 +61,7 @@
     </dt>
     <dd class="bold">
       <meta property="telephone" content="{{ basics.phone }}"/>
-      <a href="tel:{{ basics.phone | replace:' ','' }}" class="external tel p-tel">{{ basics.phone }}</a>
+      <a href="tel:{{ basics.phone | replace:' ','' }}" class="external no-print-link tel p-tel">{{ basics.phone }}</a>
     </dd>
   {% endif %}
 
@@ -71,7 +71,7 @@
       <span class="sr-only">{{ strings.resume.website | default:"Website" }}</span>
     </dt>
     <dd class="bold">
-      <a href="{{ basics.website }}" class="url u-url" property="sameAs">{{ basics.website }}</a>
+      <a href="{{ basics.website }}" class="external no-print-link url u-url" property="sameAs">{{ basics.website }}</a>
     </dd>
   {% endif %}
 </dl>

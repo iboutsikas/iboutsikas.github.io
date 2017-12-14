@@ -8,7 +8,7 @@
   {% for work in resume.work %}
   <section>
     <header
-      class="{% unless forloop.first %}mt3{% endunless %}"
+      class="{% unless forloop.first %}mt4{% endunless %}"
       property="{% if work.endDate.size > 0 %}alumniOf{% else %}worksFor{% endif %}"
       typeof="Organization"
       >
