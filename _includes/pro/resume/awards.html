@@ -1,5 +1,6 @@
 {% if resume.awards.size > 0 %}
 <section>
+  <div class="npb">
   <h2 id="awards" class="h3 faded hr">
     {{ strings.resume.awards | default:"Awards" }}
     <span class="symbol {{ icons.awards | default:'icon-trophy' }}"></span>
@@ -25,6 +26,7 @@
 
     {% include message.html text=awa.summary alt="" %}
   </section>
+  {% if forloop.first %}</div>{% endif %}
   {% endfor %}
 </section>
 {% endif %}

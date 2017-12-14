@@ -1,5 +1,6 @@
 {% if resume.publications.size > 0 %}
 <section>
+  <div class="npb">
   <h2 id="publications" class="h3 faded hr">
     {{ strings.resume.publications | default:"Publications" }}
     <span class="symbol {{ icons.publications | default:'icon-book' }}"></span>
@@ -25,6 +26,7 @@
 
     {% include message.html text=pub.summary alt="" %}
   </section>
+  {% if forloop.first %}</div>{% endif %}
   {% endfor %}
 </section>
 {% endif %}

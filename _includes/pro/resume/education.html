@@ -1,5 +1,6 @@
 {% if resume.education.size > 0 %}
 <section>
+  <div class="npb">
   <h2 id="education" class="h3 faded hr">
     {{ strings.resume.education | default:"Education" }}
     <span class="symbol {{ icons.education | default:'icon-library' }}"></span>
@@ -40,6 +41,7 @@
       {% endfor %}
     </ul>
   </section>
+  {% if forloop.first %}</div>{% endif %}
   {% endfor %}
 </section>
 {% endif %}
