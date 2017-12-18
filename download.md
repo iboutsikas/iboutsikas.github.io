@@ -55,9 +55,9 @@ This table details what is and isn't included in each respective version.
 
 [license]: LICENSE.md
 [pro]: licenses/PRO.md
-[docs]: docs/7.4.2/index.md
+[docs]: docs/7.5.0/index.md
 
-[kit]: https://github.com/qwtel/hydejack-starter-kit/archive/v7.4.2.zip
+[kit]: https://github.com/qwtel/hydejack-starter-kit/archive/v7.5.0.zip
 [src]: https://github.com/qwtel/hydejack
 [gem]: https://rubygems.org/gems/jekyll-theme-hydejack
 [buy]: https://app.simplegoods.co/i/AQTTVBOE
