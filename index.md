@@ -58,8 +58,8 @@ This table details what is and isn't included in each respective version.
 | License                             | [GPL-3.0][license]                     | [PRO]                                        |
 | Source                              | [GitHub][src]                          | Included                                     |
 | Support[^1]                         | No                                     | No                                           |
-| Price                               | Free                                   | $29                                          |
-|                                     | [Download][kit]{:.btn.btn-primary}     | [Buy Now - $29][buy]{:.btn.btn-primary} [^2] |
+| Price                               | Free                                   | $59                                          |
+|                                     | [Download][kit]{:.btn.btn-primary}     | [Buy Now - $59][buy]{:.btn.btn-primary} [^2] |
 {:.stretch-table}
 
 [^1]: You MAY open an issue on GitHub, but no response and/or fix is guaranteed.
@@ -145,7 +145,7 @@ your [resume] (with support for [JSON Resume](https://jsonresume.org/)),
 a [welcome] page to introduce yourself to visitors,
 built-in support for [Tinyletter], and from element styles so you can build arbitrary contact forms.
 
-[Buy Now - $29][buy]{:.btn.btn-primary} [^2]
+[Buy Now - $59][buy]{:.btn.btn-primary} [^2]
 
 [^2]: Transactions secured by [Stripe](https://stripe.com). Downloads handled by [Simple Goods](https://simplegoods.co/).  
 
