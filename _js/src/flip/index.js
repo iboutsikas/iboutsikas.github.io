@@ -17,10 +17,9 @@
 import 'core-js/fn/array/includes';
 import 'core-js/fn/function/bind';
 
-import { Observable } from 'rxjs/Observable';
 import { merge } from 'rxjs/observable/merge';
 
-import { filter } from 'rxjs/operator/filter';
+import { filter } from 'rxjs/operators';
 
 import setupFLIPTitle from './title';
 import setupFLIPProject from './project';
@@ -28,9 +27,9 @@ import setupFLIPProject from './project';
 const FLIP_TYPES = ['title', 'projects'];
 
 export default function setupFLIP(start$, ready$, fadeIn$, options) {
-  const other$ = start$::filter(({ flipType }) => !FLIP_TYPES.includes(flipType));
+  const other$ = start$.pipe(filter(({ flipType }) => !FLIP_TYPES.includes(flipType)));
 
-  return Observable::merge(
+  return merge(
     setupFLIPTitle(start$, ready$, fadeIn$, options),
     setupFLIPProject(start$, ready$, fadeIn$, options),
     other$,

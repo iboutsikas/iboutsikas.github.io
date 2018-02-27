@@ -3,27 +3,28 @@
 
 import 'core-js/fn/function/bind';
 
-import { Observable } from 'rxjs/Observable';
-
 import { fromEvent } from 'rxjs/observable/fromEvent';
 import { of } from 'rxjs/observable/of';
 
-import { _do as tap } from 'rxjs/operator/do';
-import { _finally as finalize } from 'rxjs/operator/finally';
-import { filter } from 'rxjs/operator/filter';
-import { switchMap } from 'rxjs/operator/switchMap';
-import { take } from 'rxjs/operator/take';
-import { zipProto as zip } from 'rxjs/operator/zip';
+import {
+  tap,
+  finalize,
+  filter,
+  switchMap,
+  take,
+  zip,
+} from 'rxjs/operators';
 
 import { animate, empty } from '../common';
 
 function cacheImage$(img) {
-  if (!img) return Observable::of({});
+  if (!img) return of({});
 
   const imgObj = new Image();
-  const image$ = Observable::fromEvent(imgObj, 'load')
-    ::take(1)
-    ::finalize(() => { imgObj.src = ''; });
+  const image$ = fromEvent(imgObj, 'load').pipe(
+    take(1),
+    finalize(() => { imgObj.src = ''; }),
+  );
   imgObj.src = img.currentSrc || img.src;
 
   return image$;
@@ -32,14 +33,14 @@ function cacheImage$(img) {
 export default function setupFLIPProject(start$, ready$, fadeIn$, { animationMain, settings }) {
   if (!animationMain) return start$;
 
-  const flip$ = start$
-    ::filter(({ flipType }) => flipType === 'project')
-    ::switchMap(({ anchor }) => {
+  const flip$ = start$.pipe(
+    filter(({ flipType }) => flipType === 'project'),
+    switchMap(({ anchor }) => {
       const img = anchor.querySelector('.project-card-img');
-      if (!anchor || !img) return Observable::of({});
+      if (!anchor || !img) return of({});
 
       const page = animationMain.querySelector('.page');
-      if (!page) return Observable::of({});
+      if (!page) return of({});
 
       const titleNode = anchor.parentNode.querySelector('.project-card-title');
       const title = (titleNode && titleNode.textContent) || '|';
@@ -55,7 +56,7 @@ export default function setupFLIPProject(start$, ready$, fadeIn$, { animationMai
       postDate.style.opacity = 0;
       postDate.textContent = '|';
 
-      page::empty();
+      empty.call(page);
       page.appendChild(h1);
       page.appendChild(postDate);
 
@@ -83,32 +84,34 @@ export default function setupFLIPProject(start$, ready$, fadeIn$, { animationMai
       ];
 
       return animate(img, transform, settings)
-        ::tap({ complete() { animationMain.style.position = 'absolute'; } });
-    });
+        .pipe(tap({ complete() { animationMain.style.position = 'absolute'; } }));
+    }),
+  );
 
-  start$::switchMap(({ flipType }) =>
-    ready$
-      ::filter(() => flipType === 'project')
-      ::switchMap(({ replaceEls: [main] }) => {
-        const imgWrapper = main.querySelector('.img');
-        if (!imgWrapper) return Observable::of({});
-        imgWrapper.style.opacity = 0;
+  start$.pipe(switchMap(({ flipType }) => ready$.pipe(
+    filter(() => flipType === 'project'),
+    switchMap(({ replaceEls: [main] }) => {
+      const imgWrapper = main.querySelector('.img');
+      if (!imgWrapper) return of({});
+      imgWrapper.style.opacity = 0;
 
-        const img = imgWrapper.querySelector('img');
+      const img = imgWrapper.querySelector('img');
 
-        return this::cacheImage$(img)
-          ::zip(fadeIn$)
-          ::tap(() => {
-            imgWrapper.style.opacity = 1;
-            animationMain.style.opacity = 0;
-          })
-          ::switchMap(() => (img ?
-            animate(animationMain, [{ opacity: 1 }, { opacity: 0 }], { duration: 500 }) :
-            Observable::of({})))
-          ::finalize(() => {
-            animationMain.style.opacity = 0;
-          });
-      }))
+      return cacheImage$(img).pipe(
+        zip(fadeIn$),
+        tap(() => {
+          imgWrapper.style.opacity = 1;
+          animationMain.style.opacity = 0;
+        }),
+        switchMap(() => (img ?
+          animate(animationMain, [{ opacity: 1 }, { opacity: 0 }], { duration: 500 }) :
+          of({}))),
+        finalize(() => {
+          animationMain.style.opacity = 0;
+        }),
+      );
+    }),
+  )))
     .subscribe();
 
   return flip$;
