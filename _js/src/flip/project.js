@@ -6,14 +6,12 @@ import 'core-js/fn/function/bind';
 import { fromEvent } from 'rxjs/observable/fromEvent';
 import { of } from 'rxjs/observable/of';
 
-import {
-  tap,
-  finalize,
-  filter,
-  switchMap,
-  take,
-  zip,
-} from 'rxjs/operators';
+import { tap } from 'rxjs/operators/tap';
+import { finalize } from 'rxjs/operators/finalize';
+import { filter } from 'rxjs/operators/filter';
+import { switchMap } from 'rxjs/operators/switchMap';
+import { take } from 'rxjs/operators/take';
+import { zip } from 'rxjs/operators/zip';
 
 import { animate, empty } from '../common';
 
