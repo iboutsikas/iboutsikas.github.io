@@ -31,7 +31,7 @@ This table details what is and isn't included in each respective version.
 | Source                              | [GitHub][src]                          | Included                                     |
 | Support[^1]                         | No                                     | No                                           |
 | Price                               | Free                                   | $59                                          |
-|                                     | [Download][kit]{:.btn.btn-primary}     | [Buy Now - $59][buy]{:.btn.btn-primary} [^2] |
+|                                     | [Download][kit]{:.btn.btn-primary}     | [Buy Now][buy]{:.btn.btn-primary} [^2] |
 {:.stretch-table}
 
 [^1]: You MAY open an issue on GitHub, but no response and/or fix is guaranteed.
