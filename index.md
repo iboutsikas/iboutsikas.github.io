@@ -15,7 +15,7 @@ selected_projects:
   - _projects/oldschool.md
   - _projects/solid-cyan.md
   - _projects/solid-blue.md
-more_projects: variations.md
+more_projects: projects.md
 selected_posts:
   - hydejack/_posts/2017-11-23-example-content.md
   - hydejack/_posts/2017-11-17-hydejacks-new-design.md
