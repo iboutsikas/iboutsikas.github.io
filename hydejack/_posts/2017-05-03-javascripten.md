@@ -6,6 +6,7 @@ description: >
 redirect_from:
   - /2017/04/15/javascripten-beta/
   - /2017/04/15/javascripten/
+  - /2017/05/03/javascripten/
 ---
 
 Hydejack has always featured a JavaScript-heavy sidebar, but other than that, JS has been used sparingly.

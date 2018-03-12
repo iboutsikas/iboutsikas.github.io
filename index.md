@@ -17,11 +17,11 @@ selected_projects:
   - _projects/solid-blue.md
 more_projects: variations.md
 selected_posts:
-  - _posts/2017-11-23-example-content.md
-  - _posts/2017-11-17-hydejacks-new-design.md
-  - _posts/2017-07-27-better-gem-support.md
-  - _posts/2017-06-21-related-projects-and-data-tables.md
-  - _posts/2017-06-06-third-party-scripts.md
+  - hydejack/_posts/2017-11-23-example-content.md
+  - hydejack/_posts/2017-11-17-hydejacks-new-design.md
+  - hydejack/_posts/2017-07-27-better-gem-support.md
+  - hydejack/_posts/2017-06-21-related-projects-and-data-tables.md
+  - hydejack/_posts/2017-06-06-third-party-scripts.md
 more_posts: posts.md
 content_separator: <!--more-->
 ---

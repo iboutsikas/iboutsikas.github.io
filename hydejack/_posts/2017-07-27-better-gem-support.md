@@ -5,6 +5,7 @@ description: >
   Hydejack v6.5 includes various quality-of-life improvements, especially when using the gem-based version of the theme.
 redirect_from:
   - /2017/07/27/gems/
+  - /2017/07/27/better-gem-support/
 ---
 
 This maintenance release includes various quality-of-life improvements,
