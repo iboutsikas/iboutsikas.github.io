@@ -11,10 +11,6 @@ qwtel:
     Hi, I'm Florian or [@qwtel](https://twitter.com/qwtel) and I'm the the developer of Hydejack,
     the Jekyll theme you're currently looking at.
 
-    [Download][kit]{:.btn.btn-primary}
-
-    [kit]: https://github.com/qwtel/hydejack-starter-kit/archive/v7.5.0.zip
-
   # This photo will be used in the about section
   picture:
     path:            /assets/img/me.jpg

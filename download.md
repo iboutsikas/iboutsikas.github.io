@@ -31,7 +31,7 @@ This table details what is and isn't included in each respective version.
 | Source                              | [GitHub][src]                          | Included                                     |
 | Support[^1]                         | No                                     | No                                           |
 | Price                               | Free                                   | $59                                          |
-|                                     | [Download][kit]{:.btn.btn-primary}     | [Buy Now][buy]{:.btn.btn-primary} [^2] |
+| | [**Download**][kit] | [**Buy PRO**][buy]{:.gumroad-button} |
 {:.stretch-table}
 
 [^1]: You MAY open an issue on GitHub, but no response and/or fix is guaranteed.
@@ -39,10 +39,8 @@ This table details what is and isn't included in each respective version.
       Please use the free version to confirm that Hydejack works for you.
       For more, see the [PRO] license.
 
-[^2]: Transactions secured by [Stripe](https://stripe.com). Downloads handled by [Simple Goods](https://simplegoods.co/).  
-
-[blog]: blog.md
-[portfolio]: variations.md
+[blog]: !blog.md
+[portfolio]: projects.md
 [resume]: resume.md
 [download]: download.md
 [welcome]: index.md
@@ -60,6 +58,6 @@ This table details what is and isn't included in each respective version.
 [kit]: https://github.com/qwtel/hydejack-starter-kit/archive/v7.5.0.zip
 [src]: https://github.com/qwtel/hydejack
 [gem]: https://rubygems.org/gems/jekyll-theme-hydejack
-[buy]: https://app.simplegoods.co/i/AQTTVBOE
+[buy]: https://gum.co/ZCAsn
 
 *[FLIP]: First-Last-Invert-Play. A coding technique to achieve performant page transition animations.
