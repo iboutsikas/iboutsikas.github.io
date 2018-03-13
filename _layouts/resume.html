@@ -22,7 +22,7 @@ layout: base
   <meta property="mainEntityOfPage" content="{{ page.url | absolute_url }}"/>
 
   {% include pro/resume/header.html %}
-  {% include message.html text=page.description hide=page.hide_description alt="" %}
+  {% include components/message.html text=page.description hide=page.hide_description alt="" %}
 
   <div class="columns contact">
     {% include pro/resume/basics.html %}

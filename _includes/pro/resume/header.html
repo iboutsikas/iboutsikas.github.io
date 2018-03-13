@@ -2,7 +2,7 @@
   <h1 class="page-title fn p-name" property="name">{{ basics.name }}</h1>
 
   {% if basics.picture.size > 0 %}
-    {% include srcset-img.html class="avatar photo u-photo" img=basics.picture alt=basics.name property="image" %}
+    {% include components/srcset-img.html class="avatar photo u-photo" img=basics.picture alt=basics.name property="image" %}
   {% endif %}
 
   {% if basics.label %}

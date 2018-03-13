@@ -33,7 +33,7 @@ layout: base
     {% assign screenshot = project.screenshot %}
     <div class="img lead sixteen-nine">
       {% if screenshot %}
-        {% include srcset-img.html
+        {% include components/srcset-img.html
           img=screenshot
           sizes="(min-width: 90em) 48rem, (min-width: 54em) 42rem, (min-width: 42em) 38rem, 100vw"
           alt=project.title
@@ -42,7 +42,7 @@ layout: base
       {% endif %}
     </div>
 
-    {% include message.html text=project.description hide=page.hide_description property="description" alt="" %}
+    {% include components/message.html text=project.description hide=page.hide_description property="description" alt="" %}
     {% if project.caption %}<meta property="disambiguatingDescription" content="{{ project.caption }}"/>{% endif %}
   </header>
 
@@ -56,7 +56,7 @@ layout: base
 {% for addon in addons %}
   {% case addon %}
   {% when 'about' %}
-     {% include about.html %}
+     {% include components/about.html %}
   {% when 'newsletter' %}
     {% include pro/newsletter.html %}
   {% when 'other' %}

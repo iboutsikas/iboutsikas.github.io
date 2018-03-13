@@ -61,7 +61,7 @@ layout: about
     {% for post_path in page.selected_posts %}
       {% assign post = site.posts | where:"path", post_path | first %}
       {% if post %}
-        {% include post-list-item.html post=post %}
+        {% include components/post-list-item.html post=post %}
       {% else %}
         <li>Post with path <code>{{ post_path }}</code> not found.</li>
       {% endif %}
@@ -71,7 +71,7 @@ layout: about
   <h2 id="recent-posts" class="hr">{{ strings.welcome.recent_posts | default:"Recent Posts" }}</h2>
   <ul class="related-posts">
     {% for post in site.posts limit:5 %}
-      {% include post-list-item.html post=post %}
+      {% include components/post-list-item.html post=post %}
     {% endfor %}
   </ul>
 {% endif %}
