@@ -23,7 +23,6 @@ selected_posts:
   - hydejack/_posts/2017-06-21-related-projects-and-data-tables.md
   - hydejack/_posts/2017-06-06-third-party-scripts.md
 more_posts: posts.md
-content_separator: <!--more-->
 ---
 
 **Hydejack** is the complete package for professionals on the web.
@@ -33,12 +32,14 @@ a showcase for your projects, and a resume that is well-integrated with the desi
 > Your presence on the web --- A [blog], a [portfolio] and a [resume].
 {:.lead}
 
-**Hydejack** is highly customizable and lets you achieve a variety of styles.
-Below you can find a selection of variations.
+The base version is free, features that are specific to *professionals* (portfolio, resume) are a payed upgrade. You know the drill.
 
 [**Download Free**][kit] -- or -- [**Buy PRO**][buy]{:.gumroad-button}
 
-<!--more-->
+## Variations
+**Hydejack** is highly customizable and let's you achieve a variety of styles, with just a few simple tweaks.
+
+<!--projects-->
 
 ## Download
 There are two versions of **Hydejack**: The *free version* includes basic blogging functionality,
