@@ -21,7 +21,9 @@ function cacheImage$(img) {
   const imgObj = new Image();
   const image$ = fromEvent(imgObj, 'load').pipe(
     take(1),
-    finalize(() => { imgObj.src = ''; }),
+    finalize(() => {
+      imgObj.src = '';
+    }),
   );
   imgObj.src = img.currentSrc || img.src;
 
@@ -81,35 +83,41 @@ export function setupFLIPProject(start$, ready$, fadeIn$, { animationMain, setti
         { transform: 'translate3d(0, 0, 0) scale(1)' },
       ];
 
-      return animate(img, transform, settings)
-        .pipe(tap({ complete() { animationMain.style.position = 'absolute'; } }));
+      return animate(img, transform, settings).pipe(tap({
+        complete() {
+          animationMain.style.position = 'absolute';
+        },
+      }));
     }),
   );
 
-  start$.pipe(switchMap(({ flipType }) => ready$.pipe(
-    filter(() => flipType === 'project'),
-    switchMap(({ replaceEls: [main] }) => {
-      const imgWrapper = main.querySelector('.img');
-      if (!imgWrapper) return of({});
-      imgWrapper.style.opacity = 0;
+  start$
+    .pipe(switchMap(({ flipType }) =>
+      ready$.pipe(
+        filter(() => flipType === 'project'),
+        switchMap(({ replaceEls: [main] }) => {
+          const imgWrapper = main.querySelector('.img');
+          if (!imgWrapper) return of({});
+          imgWrapper.style.opacity = 0;
 
-      const img = imgWrapper.querySelector('img');
+          const img = imgWrapper.querySelector('img');
 
-      return cacheImage$(img).pipe(
-        zip(fadeIn$),
-        tap(() => {
-          imgWrapper.style.opacity = 1;
-          animationMain.style.opacity = 0;
+          return cacheImage$(img).pipe(
+            zip(fadeIn$),
+            tap(() => {
+              imgWrapper.style.opacity = 1;
+              animationMain.style.opacity = 0;
+            }),
+            switchMap(() =>
+              (img
+                ? animate(animationMain, [{ opacity: 1 }, { opacity: 0 }], { duration: 500 })
+                : of({}))),
+            finalize(() => {
+              animationMain.style.opacity = 0;
+            }),
+          );
         }),
-        switchMap(() => (img ?
-          animate(animationMain, [{ opacity: 1 }, { opacity: 0 }], { duration: 500 }) :
-          of({}))),
-        finalize(() => {
-          animationMain.style.opacity = 0;
-        }),
-      );
-    }),
-  )))
+      )))
     .subscribe();
 
   return flip$;
