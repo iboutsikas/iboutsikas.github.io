@@ -15,19 +15,18 @@ const stat = promisify(fs.stat);
 const readFile = promisify(fs.readFile);
 const writeFile = promisify(fs.writeFile);
 
-
 const ENC = 'utf-8';
 
 const FILES = [
   resolve('./_data/authors.yml'),
-  resolve('./_includes/scripts.html'),
-  resolve('./_includes/footer.html'),
   resolve('./_includes/head/meta.html'),
   resolve('./_includes/head/links.html'),
   resolve('./_includes/head/styles.html'),
   resolve('./_includes/header.txt'),
-  resolve('./_js/lib/version.js'),
+  resolve('./_includes/body/scripts.html'),
+  resolve('./_includes/body/footer.html'),
   resolve('./_layouts/compress.html'),
+  resolve('./_js/lib/version.js'),
   resolve('./assets/version.json'),
 
   resolve('./CHANGELOG.md'),
@@ -41,10 +40,12 @@ const FILES = [
 // <https://stackoverflow.com/a/45130990/870615>
 async function getFiles(dir) {
   const subdirs = await readdir(dir);
-  const files = await Promise.all(subdirs.map(async (subdir) => {
-    const res = resolve(dir, subdir);
-    return (await stat(res)).isDirectory() ? getFiles(res) : res;
-  }));
+  const files = await Promise.all(
+    subdirs.map(async subdir => {
+      const res = resolve(dir, subdir);
+      return (await stat(res)).isDirectory() ? getFiles(res) : res;
+    }),
+  );
   return files.reduce((a, f) => a.concat(f), []);
 }
 
@@ -63,28 +64,28 @@ async function getFiles(dir) {
 
     const files = Array.prototype.concat.call(...args);
 
-    const pFiles = Promise.all(files
-      .filter(([f]) => !f.startsWith('.'))
-      .map(f => [f, readFile(f, ENC)])
-      .map(async ([f, p]) => {
-        const content = await p;
+    const pFiles = Promise.all(
+      files
+        .filter(([f]) => !f.startsWith('.'))
+        .map(f => [f, readFile(f, ENC)])
+        .map(async ([f, p]) => {
+          const content = await p;
 
-        if (f.includes('CHANGELOG')) {
-          const pattern = new RegExp(`([^v])${prev}`, 'g');
-          return [f, content.replace(pattern, `$1${vNext}`)];
-        }
+          if (f.includes('CHANGELOG')) {
+            const pattern = new RegExp(`([^v])${prev}`, 'g');
+            return [f, content.replace(pattern, `$1${vNext}`)];
+          }
 
-        return [f, content.replace(prevRegExp, vNext)];
-      })
-      .map(async (p) => {
-        const [f, content] = await p;
-        return writeFile(f, content, ENC);
-      }));
+          return [f, content.replace(prevRegExp, vNext)];
+        })
+        .map(async p => {
+          const [f, content] = await p;
+          return writeFile(f, content, ENC);
+        }),
+    );
 
     const pJSCSS = Promise.all([
-      unlink(
-        resolve(`./assets/js/hydejack-${vPrev}.js`),
-      ),
+      unlink(resolve(`./assets/js/hydejack-${vPrev}.js`)),
       rename(
         resolve(`./assets/css/hydejack-${vPrev}.css`),
         resolve(`./assets/css/hydejack-${vNext}.css`),
@@ -93,16 +94,11 @@ async function getFiles(dir) {
 
     await Promise.all([pFiles, pJSCSS]);
 
-    await Promise.all([
-      rename(
-        resolve(`./docs/${vPrev}`),
-        resolve(`./docs/${vNext}`),
-      ),
-    ]);
+    await Promise.all([rename(resolve(`./docs/${vPrev}`), resolve(`./docs/${vNext}`))]);
 
     process.exit(0);
   } catch (e) {
     console.error(e); // eslint-disable-line
     process.exit(1);
   }
-}());
+})();
