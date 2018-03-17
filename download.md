@@ -49,7 +49,7 @@ This table details what is and isn't included in each respective version.
 [feat]: index.md#features
 [news]: index.md#newsletter-subscription-box
 [syntax]: index.md#syntax-highlighting
-[latex]: index.md#latex-math-blocks
+[latex]: hydejack/_posts/2017-11-23-example-content.md#math
 
 [license]: LICENSE.md
 [pro]: licenses/PRO.md
