@@ -86,6 +86,7 @@ async function getFiles(dir) {
 
     const pJSCSS = Promise.all([
       unlink(resolve(`./assets/js/hydejack-${vPrev}.js`)),
+      unlink(resolve(`./assets/js/hydejack-${vPrev}.js.map`)),
       rename(
         resolve(`./assets/css/hydejack-${vPrev}.css`),
         resolve(`./assets/css/hydejack-${vNext}.css`),
