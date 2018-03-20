@@ -14,23 +14,25 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'core-js/fn/array/includes';
-import 'core-js/fn/function/bind';
+import "core-js/fn/array/includes";
+import "core-js/fn/function/bind";
 
-import { merge } from 'rxjs/observable/merge';
-import { filter } from 'rxjs/operators/filter';
+import { merge } from "rxjs/observable/merge";
+import { filter } from "rxjs/operators/filter";
 
-import { setupFLIPTitle } from './title';
-import { setupFLIPProject } from './project';
+import { setupFLIPTitle } from "./title";
+import { setupFLIPProject } from "./project";
 
-const FLIP_TYPES = ['title', 'projects'];
+const FLIP_TYPES = ["title", "projects"];
 
 export function setupFLIP(start$, ready$, fadeIn$, options) {
-  const other$ = start$.pipe(filter(({ flipType }) => !FLIP_TYPES.includes(flipType)));
+  const other$ = start$.pipe(
+    filter(({ flipType }) => !FLIP_TYPES.includes(flipType))
+  );
 
   return merge(
     setupFLIPTitle(start$, ready$, fadeIn$, options),
     setupFLIPProject(start$, ready$, fadeIn$, options),
-    other$,
+    other$
   );
 }
