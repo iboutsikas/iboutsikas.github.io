@@ -30,12 +30,7 @@ function cacheImage$(img) {
   return image$;
 }
 
-export function setupFLIPProject(
-  start$,
-  ready$,
-  fadeIn$,
-  { animationMain, settings }
-) {
+export function setupFLIPProject(start$, ready$, fadeIn$, { animationMain, settings }) {
   if (!animationMain) return start$;
 
   const flip$ = start$.pipe(
