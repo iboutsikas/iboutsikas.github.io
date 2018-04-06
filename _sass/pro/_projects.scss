@@ -59,16 +59,20 @@
 
     page-break-inside: avoid;
 
-    > a > .project-card-img {
-      margin-bottom: 0;
-      border-bottom: 1px solid $border-color;
-      position: relative;
-      > img { transition: transform 500ms; }
-    }
+    > a {
+      .project-card-img {
+        margin-bottom: 0;
+        border-bottom: 1px solid $border-color;
+        position: relative;
+        img { transition: transform 500ms; }
+      }
 
-    > a:hover > .project-card-img > img {
-      transition: transform 250ms;
-      transform: scale(1.025);
+      &:hover, &:focus {
+        .project-card-img img {
+          transition: transform 250ms;
+          transform: scale(1.025);
+        }
+      }
     }
 
     > .project-card-title, > .project-card-text {
