@@ -18,7 +18,7 @@
     "resume": "json2yaml _data/resume.json > _data/resume.yml",
     "preversion": "sed -i '' 's:/assets/js/hydejack-\\*:#<removed>:' .gitignore",
     "version": ".scripts/version.js && .scripts/gen-print-doc.js && npm run format && npm run build && git add .",
-    "postversion": "sed -i '' 's:#<removed>:/assets/js/hydejack-*:' .gitignore && git rm --cached assets/js && git add . && git ci -m 'restore pre-version .gitignore'"
+    "postversion": "sed -i '' 's:#<removed>:/assets/js/hydejack-*:' .gitignore && git rm --cached assets/js/hydejack-* && git add . && git ci -m 'restore pre-version .gitignore'"
   },
   "config": {
     "port": 4000
