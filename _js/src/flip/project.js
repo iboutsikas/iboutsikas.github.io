@@ -19,12 +19,7 @@ function cacheImage$(img) {
   if (!img) return of({});
 
   const imgObj = new Image();
-  const image$ = fromEvent(imgObj, "load").pipe(
-    take(1),
-    finalize(() => {
-      imgObj.src = "";
-    })
-  );
+  const image$ = fromEvent(imgObj, "load").pipe(take(1), finalize(() => (imgObj.src = "")));
   imgObj.src = img.currentSrc || img.src;
 
   return image$;
@@ -103,9 +98,10 @@ export function setupFLIPProject(start$, ready$, fadeIn$, { animationMain, setti
           switchMap(({ replaceEls: [main] }) => {
             const imgWrapper = main.querySelector(".img");
             if (!imgWrapper) return of({});
-            imgWrapper.style.opacity = 0;
 
             const img = imgWrapper.querySelector("img");
+
+            imgWrapper.style.opacity = 0;
 
             return cacheImage$(img).pipe(
               zip(fadeIn$),
@@ -115,15 +111,11 @@ export function setupFLIPProject(start$, ready$, fadeIn$, { animationMain, setti
               }),
               switchMap(
                 () =>
-                  img
-                    ? animate(animationMain, [{ opacity: 1 }, { opacity: 0 }], {
-                        duration: 500
-                      })
-                    : of({})
+                  !img
+                    ? of({})
+                    : animate(animationMain, [{ opacity: 1 }, { opacity: 0 }], { duration: 500 })
               ),
-              finalize(() => {
-                animationMain.style.opacity = 0;
-              })
+              finalize(() => (animationMain.style.opacity = 0))
             );
           })
         )
