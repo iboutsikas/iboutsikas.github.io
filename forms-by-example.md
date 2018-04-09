@@ -589,7 +589,7 @@ description: >
     <div class="col-auto">
       <label class="sr-only" for="inlineFormInputGroup">Username</label>
       <div class="input-group mb-2 mb-sm-0">
-        <div class="input-group-addon">@</div>
+        <div class="input-group-prepend"><div class="input-group-text">@</div></div>
         <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Username">
       </div>
     </div>
@@ -616,7 +616,7 @@ description: >
     <div class="col-auto">
       <label class="sr-only" for="inlineFormInputGroup">Username</label>
       <div class="input-group mb-2 mb-sm-0">
-        <div class="input-group-addon">@</div>
+        <div class="input-group-prepend"><div class="input-group-text">@</div></div>
         <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Username">
       </div>
     </div>
@@ -644,7 +644,7 @@ description: >
     <div class="col-sm-3">
       <label class="sr-only" for="inlineFormInputGroupUsername">Username</label>
       <div class="input-group mb-2 mb-sm-0">
-        <div class="input-group-addon">@</div>
+        <div class="input-group-prepend"><div class="input-group-text">@</div></div>
         <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Username">
       </div>
     </div>
@@ -671,7 +671,7 @@ description: >
     <div class="col-sm-3">
       <label class="sr-only" for="inlineFormInputGroupUsername">Username</label>
       <div class="input-group mb-2 mb-sm-0">
-        <div class="input-group-addon">@</div>
+        <div class="input-group-prepend"><div class="input-group-text">@</div></div>
         <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Username">
       </div>
     </div>
@@ -696,7 +696,7 @@ description: >
 
   <label class="sr-only" for="inlineFormInputGroupUsername2">Username</label>
   <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-    <div class="input-group-addon">@</div>
+    <div class="input-group-prepend"><div class="input-group-text">@</div></div>
     <input type="text" class="form-control" id="inlineFormInputGroupUsername2" placeholder="Username">
   </div>
 
@@ -716,7 +716,7 @@ description: >
 
   <label class="sr-only" for="inlineFormInputGroupUsername2">Username</label>
   <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-    <div class="input-group-addon">@</div>
+    <div class="input-group-prepend"><div class="input-group-text">@</div></div>
     <input type="text" class="form-control" id="inlineFormInputGroupUsername2" placeholder="Username">
   </div>
 

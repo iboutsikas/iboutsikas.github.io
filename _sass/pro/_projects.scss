@@ -55,6 +55,7 @@
     margin-bottom: 1.5rem;
     overflow: hidden;
     box-shadow: .125rem .125rem .5rem rgba(0, 0, 0, 0.1);
+    border: 1px solid $border-color;
     contain: content;
 
     page-break-inside: avoid;
