@@ -70,7 +70,8 @@
     ]
   },
   "prettier": {
-    "printWidth": 100
+    "printWidth": 100,
+    "trailingComma": "es5"
   },
   "eslintConfig": {
     "env": {

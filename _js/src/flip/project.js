@@ -75,16 +75,16 @@ export function setupFLIPProject(start$, ready$, fadeIn$, { animationMain, setti
 
       const transform = [
         {
-          transform: `translate3d(${invertX}px, ${invertY}px, 0) scale(${invertScale})`
+          transform: `translate3d(${invertX}px, ${invertY}px, 0) scale(${invertScale})`,
         },
-        { transform: "translate3d(0, 0, 0) scale(1)" }
+        { transform: "translate3d(0, 0, 0) scale(1)" },
       ];
 
       return animate(img, transform, settings).pipe(
         tap({
           complete() {
             animationMain.style.position = "absolute";
-          }
+          },
         })
       );
     })
