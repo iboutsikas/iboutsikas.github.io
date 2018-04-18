@@ -25,7 +25,7 @@ redirect_from:
   - /projects/hyde-v2/
 ---
 
-![Typeface](../assets/img/hyde-1.jpg){:.lead}
+![Typeface](../assets/img/hyde-1.jpg){:.lead width="1051" height="446"}
 
 ## Usage
 To use this flavor, make the following changes to following files:

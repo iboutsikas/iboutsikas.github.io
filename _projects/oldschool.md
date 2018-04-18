@@ -20,7 +20,7 @@ accent_color: '#00e'
 accent_image: /assets/img/oldschool-bg.jpg
 ---
 
-![Typeface](../assets/img/oldschool-1.jpg){:.lead}
+![Typeface](../assets/img/oldschool-1.jpg){:.lead width="1051" height="446"}
 
 ## Usage
 To use this flavor, make the following changes to following files:

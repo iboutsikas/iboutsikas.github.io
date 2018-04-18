@@ -30,7 +30,7 @@ redirect_from:
   - /projects/hydejack-v5/
 ---
 
-![Typeface](../assets/img/pretentious-1.jpg){:.lead}
+![Typeface](../assets/img/pretentious-1.jpg){:.lead width="1051" height="446"}
 
 ## Usage
 First, [download the modified icon font](/hydejack/assets/icomoon-pretentious.zip){:download=''},
