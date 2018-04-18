@@ -20,7 +20,7 @@ Specifically, the chapters below should be relevant now:
 * [Config]{:.heading.flip-title} --- Once Jekyll is running you can start with basic configuration.
 {:.related-posts.faded}
 
-[documentation]: docs/8.0.0-alpha.20/index.md
-[install]: docs/8.0.0-alpha.20/install.md
-[upgrade]: docs/8.0.0-alpha.20/upgrade.md
-[config]: docs/8.0.0-alpha.20/config.md
+[documentation]: docs/8.0.0-alpha.21/index.md
+[install]: docs/8.0.0-alpha.21/install.md
+[upgrade]: docs/8.0.0-alpha.21/upgrade.md
+[config]: docs/8.0.0-alpha.21/config.md
