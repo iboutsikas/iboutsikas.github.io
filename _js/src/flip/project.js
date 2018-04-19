@@ -101,15 +101,11 @@ export function setupFLIPProject(start$, ready$, fadeIn$, { animationMain, setti
             if (!imgWrapper) return of({});
 
             const img = imgWrapper.querySelector("hy-img") || imgWrapper.querySelector("img");
-
             imgWrapper.style.opacity = 0;
 
-            return cacheImage$(img).pipe(
+            return fromEvent(img, img.tagName === "HY-IMG" ? "hy-img-load" : "load").pipe(
               zip(fadeIn$),
-              tap(() => {
-                imgWrapper.style.opacity = 1;
-                animationMain.style.opacity = 0;
-              }),
+              tap(() => ((imgWrapper.style.opacity = 1), (animationMain.style.opacity = 0))),
               switchMap(
                 () =>
                   !img
