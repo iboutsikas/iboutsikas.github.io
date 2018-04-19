@@ -10,7 +10,7 @@
   <a href="{{ project.url | relative_url }}" class="no-hover no-print-link flip-project" tabindex="-1">
     <div class="project-card-img img sixteen-nine">
       {% if project.screenshot %}
-        {% include components/srcset-img.html img=project.screenshot alt=project.title sizes=sizes %}
+        {% include components/hy-img.html img=project.screenshot alt=project.title sizes=sizes %}
       {% endif %}
     </div>
   </a>
