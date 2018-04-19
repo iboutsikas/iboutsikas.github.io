@@ -15,17 +15,6 @@ import { zip } from "rxjs/operators/zip";
 
 import { animate, empty } from "../common";
 
-function cacheImage$(img) {
-  if (!img) return of({});
-
-  // TODO: adopt for hy-img
-  const imgObj = new Image();
-  const image$ = fromEvent(imgObj, "load").pipe(take(1), finalize(() => (imgObj.src = "")));
-  imgObj.src = img.currentSrc || img.getAttribute("src");
-
-  return image$;
-}
-
 export function setupFLIPProject(start$, ready$, fadeIn$, { animationMain, settings }) {
   if (!animationMain) return start$;
 
