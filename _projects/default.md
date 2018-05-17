@@ -31,7 +31,7 @@ It features everything that's hot right now:
 * ...with slab serifs
 * A theme color that's also the coat of a 1957 Chevy (almost)
 
-![1957 Chevy](https://upload.wikimedia.org/wikipedia/commons/b/b1/57_Chevy_210.jpg){:width="383" height="230"}
+![1957 Chevy](https://upload.wikimedia.org/wikipedia/commons/b/b1/57_Chevy_210.jpg?sw-cache){:width="383" height="230"}
 
 Introducing Hydejack's new default theme...
 
