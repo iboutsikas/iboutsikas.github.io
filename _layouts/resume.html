@@ -15,11 +15,12 @@ layout: base
 {% assign basics = resume.basics %}
 
 <article
+  id="resume"
   class="page {% unless nsd %}vcard h-card{% endunless %}"
   role="article"
-  {% unless nsd %}vocab="http://schema.org/" typeof="Person"{% endunless %}
+  {% unless nsd %}vocab="http://schema.org/" typeof="Person" resource="#resume"{% endunless %}
   >
-  <meta property="mainEntityOfPage" content="{{ page.url | absolute_url }}"/>
+  <a hidden property="mainEntityOfPage" href="{{ page.url | absolute_url }}"></a>
 
   {% include pro/resume/header.html %}
   {% include components/message.html text=page.description hide=page.hide_description alt="" %}

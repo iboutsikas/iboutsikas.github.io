@@ -7,8 +7,13 @@ layout: base
 {% assign separator = site.data.strings.separator | default:"|" %}
 {% assign nsd = site.hydejack.no_structured_data | default:site.no_structured_data %}
 
-<article class="page" role="article" {% unless nsd %}vocab="http://schema.org/" typeof="CreativeWork"{% endunless %}>
-  <meta property="mainEntityOfPage" content="{{ page.url | absolute_url }}"/>
+<article
+  id="project"
+  class="page"
+  role="article"
+  {% unless nsd %}vocab="http://schema.org/" typeof="CreativeWork" resource="#project"{% endunless %}
+  >
+  <a hidden property="mainEntityOfPage" href="{{ page.url | absolute_url }}"></a>
 
   <header>
     <h1 class="page-title" property="name">{{ project.title }}</h1>
