@@ -21,7 +21,7 @@
     </div>
   </a>
   <h3 class="project-card-title">
-    <a href="{{ project.url | relative_url }}" class="flip-title" property="url">{{ project.title }}</a>
+    <a href="{{ project.url | relative_url }}" class="flip-title" property="mainEntityOfPage">{{ project.title }}</a>
   </h3>
   {% if project.caption %}
     <legend class="project-card-text fine faded" property="disambiguatingDescription">
