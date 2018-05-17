@@ -18,6 +18,7 @@ const writeFile = promisify(fs.writeFile);
 const ENC = "utf-8";
 
 const FILES = [
+  resolve("./sw.js"),
   resolve("./_data/authors.yml"),
   resolve("./_includes/head/meta.html"),
   resolve("./_includes/head/links.html"),
@@ -34,7 +35,7 @@ const FILES = [
   resolve("./index.md"),
   resolve("./README.md"),
   resolve("./thank-you.md"),
-  resolve("./_includes/my-scripts.html")
+  resolve("./_includes/my-scripts.html"),
 ];
 
 // <https://stackoverflow.com/a/45130990/870615>
@@ -59,7 +60,7 @@ async function getFiles(dir) {
       getFiles("./hyde/_posts"),
       getFiles("./hydejack/_posts"),
       getFiles("./_projects"),
-      getFiles("./docs")
+      getFiles("./docs"),
     ]);
 
     const files = Array.prototype.concat.call(...args);
@@ -86,7 +87,7 @@ async function getFiles(dir) {
 
     const pUnlink = Promise.all([
       unlink(resolve(`./assets/js/hydejack-${vPrev}.js`)),
-      unlink(resolve(`./assets/js/hydejack-${vPrev}.js.map`))
+      unlink(resolve(`./assets/js/hydejack-${vPrev}.js.map`)),
     ]).catch(() => {});
 
     const pJSCSS = rename(
