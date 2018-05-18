@@ -18,7 +18,6 @@ const writeFile = promisify(fs.writeFile);
 const ENC = "utf-8";
 
 const FILES = [
-  resolve("./sw.js"),
   resolve("./_data/authors.yml"),
   resolve("./_includes/head/meta.html"),
   resolve("./_includes/head/links.html"),
@@ -29,6 +28,7 @@ const FILES = [
   resolve("./_layouts/compress.html"),
   resolve("./_js/lib/version.js"),
   resolve("./assets/version.json"),
+  resolve("./assets/js/sw.js"),
 
   resolve("./CHANGELOG.md"),
   resolve("./download.md"),
