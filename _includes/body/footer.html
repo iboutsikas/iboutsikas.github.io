@@ -1,3 +1,4 @@
+{% if site.copyright.size > 0 or site.legal.size > 0 or site.hydejack.advertise %}
 <footer role="contentinfo">
   <hr/>
   {% if site.copyright.size > 0 %}
@@ -16,3 +17,4 @@
   {% endif %}
   <hr class="sr-only"/>
 </footer>
+{% endif %}
