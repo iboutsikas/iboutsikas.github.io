@@ -11,7 +11,7 @@ layout: base
 {% assign from_to_format = strings.date_formats.resume | default:"%b %Y" %}
 
 {% assign nsd = site.hydejack.no_structured_data | default:site.no_structured_data %}
-{% assign resume = site.data.resume %}
+{% assign resume = page.resume | default:site.data.resume %}
 {% assign basics = resume.basics %}
 
 <article
