@@ -43,17 +43,17 @@ This table details what is and isn't included in each respective version.
 [portfolio]: projects.md
 [resume]: resume.md
 [download]: download.md
-[welcome]: index.md
+[welcome]: README.md
 [forms]: forms-by-example.md
 
-[feat]: index.md#features
-[news]: index.md#newsletter-subscription-box
-[syntax]: index.md#syntax-highlighting
-[latex]: hydejack/_posts/2017-11-23-example-content.md#math
+[feat]: README.md#features
+[news]: README.md#newsletter-subscription-box
+[syntax]: README.md#syntax-highlighting
+[latex]: hydejack/_posts/2017-11-23-example-content-ii.md#math
 
 [license]: LICENSE.md
 [pro]: licenses/PRO.md
-[docs]: docs/8.0.0-beta.0/index.md
+[docs]: docs/8.0.0-beta.0/README.md
 
 [kit]: https://github.com/qwtel/hydejack-starter-kit/archive/v7.5.0.zip
 [src]: https://github.com/qwtel/hydejack
