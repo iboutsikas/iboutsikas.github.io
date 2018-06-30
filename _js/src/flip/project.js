@@ -3,8 +3,8 @@
 
 import "core-js/fn/function/bind";
 
-import { fromEvent, of } from "rxjs";
-import { tap, finalize, filter, switchMap, take, zip } from "rxjs/operators";
+import { fromEvent, of, zip } from "rxjs";
+import { tap, finalize, filter, switchMap, take } from "rxjs/operators";
 
 import { animate, empty } from "../common";
 
@@ -85,8 +85,10 @@ export function setupFLIPProject(start$, ready$, fadeIn$, { animationMain, setti
             const img = imgWrapper.querySelector("hy-img") || imgWrapper.querySelector("img");
             imgWrapper.style.opacity = 0;
 
-            return fromEvent(img, img.tagName === "HY-IMG" ? "hy-img-load" : "load").pipe(
-              zip(fadeIn$),
+            return zip(
+              fromEvent(img, img.tagName === "HY-IMG" ? "hy-img-load" : "load"),
+              fadeIn$
+            ).pipe(
               tap(() => ((imgWrapper.style.opacity = 1), (animationMain.style.opacity = 0))),
               switchMap(
                 () =>
