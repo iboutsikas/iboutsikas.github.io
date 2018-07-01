@@ -1,11 +1,11 @@
 ---
-layout: page
-title: PRO License
 redirect_from:
   - /docs/latest/pro-license/
   - /docs/pro-license/
   - /licenses/PRO-license/
 ---
+
+# PRO License
 
 ## License Summary
 * License concerns use of [Hydejack PRO][1]

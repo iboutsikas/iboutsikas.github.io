@@ -1,10 +1,10 @@
 ---
-layout: page
-title: CHANGELOG
 redirect_from:
   - /docs/latest/versions/
   - /docs/versions/
 ---
+
+# CHANGELOG
 
 ## v8.0.0
 Jun 27 2018

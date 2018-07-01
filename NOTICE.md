@@ -1,10 +1,10 @@
 ---
-layout: page
-title: NOTICE
 redirect_from:
   - /docs/latest/versions/
   - /docs/versions/
 ---
+
+# NOTICE
 
 Copyright (c) 2018 Florian Klampfer <https://qwtel.com/>
 
