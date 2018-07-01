@@ -4,7 +4,7 @@ title: Impress
 ---
 
 Name
-: Florian Klampfer qwtel.com
+: Florian Klampfer
 
 Address
 : Weiherweg 2A, 5164 Seeham, Austria
