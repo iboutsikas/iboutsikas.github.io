@@ -29,11 +29,9 @@ const FILES = [
   resolve("./_js/lib/version.js"),
   resolve("./assets/version.json"),
   resolve("./assets/js/sw.js"),
-  resolve("./.scripts/release.sh"),
 
   resolve("./CHANGELOG.md"),
   resolve("./download.md"),
-  resolve("./index.md"),
   resolve("./README.md"),
   resolve("./thank-you.md"),
   resolve("./_includes/my-scripts.html"),
