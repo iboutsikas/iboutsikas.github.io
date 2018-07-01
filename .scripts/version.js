@@ -29,7 +29,7 @@ const FILES = [
   resolve("./_js/lib/version.js"),
   resolve("./assets/version.json"),
   resolve("./assets/js/sw.js"),
-
+  resolve(`./docs/${vPrev}/README.md`),
   resolve("./CHANGELOG.md"),
   resolve("./download.md"),
   resolve("./README.md"),
