@@ -33,7 +33,7 @@ redirect_from:
 ![Typeface](../assets/img/pretentious-1.jpg){:.lead width="1051" height="446"}
 
 ## Usage
-First, [download the modified icon font](/hydejack/assets/icomoon-pretentious.zip){:download=''},
+First, [download the modified icon font]({{site.baseurl}}{% link assets/icomoon-pretentious.zip %}){:download=''},
 unzip it, and replace the `icomoon` folder in `assets` with the new version.
 
 You also need to make the following changes to following files:
