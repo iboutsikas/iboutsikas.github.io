@@ -31,7 +31,7 @@ This table below shows what's included in each version:
 | Source                 | [GitHub][src]  | Included |
 | Support[^1]            | No             | No       |
 | Price                  | Free           | $59      |
-| | [**Download**][kit] | [**Buy PRO**][buy]{:.gumroad-button} |
+| | [**Download**][kit] | [**Buy PRO**][buy]{:.btn.btn-primary} |
 {:.stretch-table}
 
 [^1]: You MAY open an issue on GitHub, but no response and/or fix is guaranteed.
@@ -54,7 +54,7 @@ This table below shows what's included in each version:
 [pro]: licenses/PRO.md
 [docs]: docs/8.0.0-beta.5/README.md
 
-[kit]: https://github.com/qwtel/hydejack-starter-kit/archive/v7.5.0.zip
+[kit]: https://github.com/qwtel/hydejack-starter-kit/archive/v8.0.0-beta.5.zip
 [src]: https://github.com/qwtel/hydejack
 [gem]: https://rubygems.org/gems/jekyll-theme-hydejack
-[buy]: https://gumroad.com/l/hydejack-pro
+[buy]: https://app.simplegoods.co/i/NATYVLYT

@@ -32,7 +32,7 @@ There are two versions of **Hydejack**: The base version is free, while features
 
 [**Download Free**][kit]
 -- or --
-[**Buy PRO**][buy]{:.gumroad-button}
+[**Buy PRO**][buy]{:.btn.btn-primary}
 
 
 ## The Basics of Blogging
@@ -166,7 +166,7 @@ This table below shows what's included in each version:
 | Source                 | [GitHub][src]  | Included |
 | Support[^1]            | No             | No       |
 | Price                  | Free           | $59      |
-| | [**Download**][kit] | [**Buy PRO**][buy]{:.gumroad-button} |
+| | [**Download**][kit] | [**Buy PRO**][buy]{:.btn.btn-primary} |
 {:.stretch-table}
 
 [^1]: You MAY open an issue on GitHub, but no response and/or fix is guaranteed.
@@ -193,7 +193,7 @@ This table below shows what's included in each version:
 [kit]: https://github.com/qwtel/hydejack-starter-kit/archive/v8.0.0-beta.5.zip
 [src]: https://github.com/qwtel/hydejack
 [gem]: https://rubygems.org/gems/jekyll-theme-hydejack
-[buy]: https://gumroad.com/l/hydejack-pro
+[buy]: https://app.simplegoods.co/i/NATYVLYT
 
 [gpss]: https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fhydejack.com%2F
 [hy-push-state]: https://qwtel.com/hy-push-state/
