@@ -11,10 +11,12 @@ qwtel:
     Hi, I'm Florian or [@qwtel](https://twitter.com/qwtel) and I'm the the developer of Hydejack,
     the Jekyll theme you're currently looking at.
 
-    [**Download Free**][kit] -- or -- [**Buy PRO**][buy]{:.gumroad-button}
+    [**Download Free**][kit]
+    -- or --
+    [**Buy PRO**][buy]{:.gumroad-button}
 
     [kit]: https://github.com/qwtel/hydejack-starter-kit/archive/v7.5.0.zip
-    [buy]: https://gum.co/ZCAsn
+    [buy]: https://gumroad.com/l/hydejack-pro
 
   # This photo will be used in the about section
   picture:

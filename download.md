@@ -58,6 +58,6 @@ This table details what is and isn't included in each respective version.
 [kit]: https://github.com/qwtel/hydejack-starter-kit/archive/v7.5.0.zip
 [src]: https://github.com/qwtel/hydejack
 [gem]: https://rubygems.org/gems/jekyll-theme-hydejack
-[buy]: https://gum.co/ZCAsn
+[buy]: https://gumroad.com/l/hydejack-pro
 
 *[FLIP]: First-Last-Invert-Play. A coding technique to achieve performant page transition animations.

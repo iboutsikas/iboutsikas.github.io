@@ -31,7 +31,9 @@ a showcase for your projects, and a resume that is well-integrated with the desi
 
 The base version is free, features that are specific to *professionals* (portfolio, resume) are a payed upgrade. You know the drill.
 
-[**Download Free**][kit] -- or -- [**Buy PRO**][buy]{:.gumroad-button}
+[**Download Free**][kit]
+-- or --
+[**Buy PRO**][buy]{:.gumroad-button}
 
 ## Variations
 **Hydejack** is highly customizable and let's you achieve a variety of styles, with just a few simple tweaks.
@@ -125,7 +127,7 @@ your [resume] (with support for [JSON Resume](https://jsonresume.org/)),
 a [welcome] page to introduce yourself to visitors,
 built-in support for [Tinyletter], and from element styles so you can build arbitrary contact forms.
 
-[**Buy PRO - $59**][buy]{:.gumroad-button}
+[**Buy PRO**][buy]{:.gumroad-button}
 
 [blog]: !blog.md
 [portfolio]: projects.md
@@ -146,7 +148,7 @@ built-in support for [Tinyletter], and from element styles so you can build arbi
 [kit]: https://github.com/qwtel/hydejack-starter-kit/archive/v7.5.0.zip
 [src]: https://github.com/qwtel/hydejack
 [gem]: https://rubygems.org/gems/jekyll-theme-hydejack
-[buy]: https://gum.co/ZCAsn
+[buy]: https://gumroad.com/l/hydejack-pro
 
 [gpss]: https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fqwtel.com%2Fhydejack%2F
 [wiki]: https://github.com/qwtel/hydejack/blob/master/docs/8.0.0-beta.3/index.md
