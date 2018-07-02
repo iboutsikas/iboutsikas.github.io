@@ -63,7 +63,7 @@ $green:   #28a745 !default;
 // ), $colors);
 
 $primary:       #4fb1ba;
-// $secondary:     $gray-600 !default;
+// $secondary:     $gray-600;
 $success:       $green !default;
 // $info:          $cyan !default;
 // $warning:       $yellow !default;
@@ -358,7 +358,7 @@ $btn-padding-y-lg:            $input-btn-padding-y-lg !default;
 $btn-padding-x-lg:            $input-btn-padding-x-lg !default;
 $btn-line-height-lg:          $input-btn-line-height-lg !default;
 
-$btn-border-width:            0rem;
+$btn-border-width:            1px;
 
 $btn-font-weight:             $font-weight-normal !default;
 $btn-box-shadow:              .1em .1em .25rem rgba(#000,.25) !default;
