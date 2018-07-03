@@ -1,21 +1,16 @@
 ---
 cover: true
-image: /assets/img/projects/default.jpg
+image: /assets/img/projects/hydejack-8.jpg
 hide_description: true
 selected_projects:
-  - _projects/default.md
-  - _projects/pretentious.md
-  - _projects/hyde.md
-  - _projects/oldschool.md
-  - _projects/solid-cyan.md
-  - _projects/solid-blue.md
+  - _projects/hy-drawer.md
+  - _projects/hy-push-state.md
+  - _projects/hy-img.md
 more_projects: projects.md
 selected_posts:
-  - hydejack/_posts/2017-11-23-example-content.md
+  - hydejack/_posts/2017-11-23-example-content-ii.md
   - hydejack/_posts/2017-11-17-hydejacks-new-design.md
-  - hydejack/_posts/2017-07-27-better-gem-support.md
-  - hydejack/_posts/2017-06-21-related-projects-and-data-tables.md
-  - hydejack/_posts/2017-06-06-third-party-scripts.md
+  - hyde/_posts/2012-02-07-example-content.md
 more_posts: posts.md
 permalink: /
 ---
