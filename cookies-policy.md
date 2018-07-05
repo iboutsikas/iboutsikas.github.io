@@ -2,14 +2,14 @@
 layout: page
 title: Cookies Policy
 description: >
-  Florian Klampfer qwtel.com ("us", "we", or "our") uses cookies on this website (the "Service").
+  Florian Klampfer / hydejack.com ("us", "we", or "our") uses cookies on this website (the "Service").
   By using the Service, you consent to the use of cookies.
 hide_description: true
 ---
 
 Last updated: November 25, 2017
 
-Florian Klampfer qwtel.com ("us", "we", or "our") uses cookies on the <https://qwtel.com/> website (the "Service"). By using the Service, you consent to the use of cookies.
+Florian Klampfer / hydejack.com ("us", "we", or "our") uses cookies on the <https://hydejack.com/> website (the "Service"). By using the Service, you consent to the use of cookies.
 
 Our Cookies Policy explains what cookies are, how we use cookies, how third-parties we may partner with may use cookies on the Service, your choices regarding cookies and further information about cookies.
 
@@ -19,7 +19,7 @@ Cookies are small pieces of text sent to your web browser by a website you visit
 
 Cookies can be "persistent" or "session" cookies. Persistent cookies remain on your personal computer or mobile device when you go offline, while session cookies are deleted as soon as you close your web browser.
 
-## How Florian Klampfer qwtel.com uses cookies
+## How we use cookies
 
 When you use and access the Service, we may place a number of cookies files in your web browser.
 
