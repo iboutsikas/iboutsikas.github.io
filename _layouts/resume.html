@@ -20,8 +20,6 @@ layout: base
   role="article"
   {% unless nsd %}vocab="http://schema.org/" typeof="Person" resource="#resume"{% endunless %}
   >
-  <meta property="mainEntityOfPage" content="{{ page.url | relative_url }}"/>
-
   {% include pro/resume/header.html %}
   {% include components/message.html text=page.description hide=page.hide_description alt="" %}
 
