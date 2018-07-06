@@ -8,7 +8,7 @@ layout: about
 {% if content contains "<!--projects-->" %}
 {% capture projets_x %}
 {% if page.selected_projects %}
-  <div class="columns">
+  <div class="columns mt2">
   {% for project_path in page.selected_projects %}
     {% assign project = site.projects | where:"path",project_path | first %}
     {% assign featured = page.featured | default:project.featured | default:page.big_project | default:project.big_project %}
@@ -23,7 +23,7 @@ layout: about
   {% endfor %}
   </div>
 {% elsif site.projects.size > 1 %}
-  <div class="columns">
+  <div class="columns mt2">
   {% assign ordered_projects = site.projects | sort:"date" | reverse %}
   {% for project in ordered_projects limit:2 %}
     {% assign featured = page.featured | default:project.featured | default:page.big_project | default:project.big_project %}
@@ -54,7 +54,7 @@ layout: about
 {% if content contains "<!--posts-->" %}
 {% capture posts_x %}
 {% if page.selected_posts %}
-  <ul class="related-posts">
+  <ul class="related-posts mt2">
     {% for post_path in page.selected_posts %}
       {% assign post = site.posts | where:"path", post_path | first %}
       {% if post %}
@@ -65,7 +65,7 @@ layout: about
     {% endfor %}
   </ul>
 {% elsif site.posts.size > 1 %}
-  <ul class="related-posts">
+  <ul class="related-posts mt2">
     {% for post in site.posts limit:5 %}
       {% include components/post-list-item.html post=post %}
     {% endfor %}
