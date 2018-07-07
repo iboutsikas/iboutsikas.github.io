@@ -1,42 +1,41 @@
 ---
-layout: page
-title: Download
 description: >
   There are two versions of Hydejack: The free version includes basic blogging functionality,
   while the PRO version includes additional features for professionals.
-image: /assets/img/projects/default.jpg
+hide_description: true
+image: /assets/img/hydejack-8.jpg
 menu: true
 order: 7
 redirect_from: /about/
 ---
 
-There are two versions of **Hydejack**: The *free version* includes basic blogging functionality,
-as did previous versions of the theme.
+# Download
+
+There are two versions of **Hydejack**: The *free version* includes basic blogging functionality, as did previous versions of the theme.
 The *PRO version* includes additional features for professionals:
-A [portfolio], a [resume] layout and a [welcome] page to feature your favorite projects and posts.
+A [portfolio], a [resume] layout, and a [welcome] page to highlight your favorite projects and posts.
 
-This table details what is and isn't included in each respective version.
+This table below shows what's included in each version:
 
-|| Free | PRO |
-|:-|:-:|:-:|
-| Blog | &#x2714; | &#x2714; |
-| [Features][feat] | &#x2714; | &#x2714; |
-| [Portfolio] || &#x2714; |
-| [Resume] || &#x2714; |
-| [Welcome] || &#x2714; |
-| [Newsletter Box][news] ||  &#x2714; |
-| [Custom Forms][forms] || &#x2714; |
-| No Hydejack Branding || &#x2714; |
-| License | [GPL-3.0][license] | [PRO] |
-| Source | [GitHub][src] | Included |
-| Support[^1] | No | No |
-| Price | Free | $59 |
-|| [**Download**][kit] | [**Buy PRO**][buy]{:.gumroad-button} |
+|                        | Free           | PRO      |
+|:-----------------------|:--------------:|:--------:|
+| Blog                   | &#x2714;       | &#x2714; |
+| [Features]             | &#x2714;       | &#x2714; |
+| [Portfolio]            |                | &#x2714; |
+| [Resume]               |                | &#x2714; |
+| [Welcome]              |                | &#x2714; |
+| [Newsletter Box][news] |                | &#x2714; |
+| [Custom Forms][forms]  |                | &#x2714; |
+| No Hydejack Branding   |                | &#x2714; |
+| License                | [GPL-3.0][lic] | [PRO]    |
+| Source                 | [GitHub][src]  | Included |
+| Support[^1]            | No             | No       |
+| Price                  | Free           | $59      |
+| | [**Download**][kit] | [**Buy PRO**][buy]{:.gumroad-button} |
 {:.stretch-table}
 
 [^1]: You MAY open an issue on GitHub, but no response and/or fix is guaranteed.
-      You understand that using Jekyll requires technical know-how, and is NOT comparable to Wordpress in terms of usability.
-      Please use the free version to confirm that Hydejack works for you.
+      You understand that using Jekyll requires technical know-how, and is NOT comparable to Wordpress in terms of usability. Please use the free version to confirm that Hydejack works for you.
       For more, see the [PRO] license.
 
 [blog]: !blog.md
@@ -46,12 +45,12 @@ This table details what is and isn't included in each respective version.
 [welcome]: README.md
 [forms]: forms-by-example.md
 
-[feat]: README.md#features
+[features]: README.md#features
 [news]: README.md#newsletter-subscription-box
 [syntax]: README.md#syntax-highlighting
 [latex]: hydejack/_posts/2017-11-23-example-content-ii.md#math
 
-[license]: LICENSE.md
+[lic]: LICENSE.md
 [pro]: licenses/PRO.md
 [docs]: docs/8.0.0-beta.4/README.md
 
@@ -59,5 +58,3 @@ This table details what is and isn't included in each respective version.
 [src]: https://github.com/qwtel/hydejack
 [gem]: https://rubygems.org/gems/jekyll-theme-hydejack
 [buy]: https://gumroad.com/l/hydejack-pro
-
-*[FLIP]: First-Last-Invert-Play. A coding technique to achieve performant page transition animations.
