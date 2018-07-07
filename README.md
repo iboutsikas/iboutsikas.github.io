@@ -143,6 +143,7 @@ An incomplete list of features included in all versions of **Hydejack**:
 * Author section below each article and support for multiple authors
 * Google Analytics and Google Fonts support
 * Disqus comments
+* Optional cookies banner
 
 
 ## Download
