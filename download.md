@@ -52,7 +52,7 @@ This table below shows what's included in each version:
 
 [lic]: LICENSE.md
 [pro]: licenses/PRO.md
-[docs]: docs/8.0.0-beta.4/README.md
+[docs]: docs/8.0.0-beta.5/README.md
 
 [kit]: https://github.com/qwtel/hydejack-starter-kit/archive/v7.5.0.zip
 [src]: https://github.com/qwtel/hydejack

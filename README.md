@@ -188,9 +188,9 @@ This table below shows what's included in each version:
 
 [lic]: LICENSE.md
 [pro]: licenses/PRO.md
-[docs]: docs/8.0.0-beta.4/README.md
+[docs]: docs/8.0.0-beta.5/README.md
 
-[kit]: https://github.com/qwtel/hydejack-starter-kit/archive/v8.0.0-beta.4.zip
+[kit]: https://github.com/qwtel/hydejack-starter-kit/archive/v8.0.0-beta.5.zip
 [src]: https://github.com/qwtel/hydejack
 [gem]: https://rubygems.org/gems/jekyll-theme-hydejack
 [buy]: https://gumroad.com/l/hydejack-pro
