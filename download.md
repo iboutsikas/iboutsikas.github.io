@@ -48,7 +48,7 @@ This table below shows what's included in each version:
 [features]: README.md#features
 [news]: README.md#newsletter-subscription-box
 [syntax]: README.md#syntax-highlighting
-[latex]: hydejack/_posts/2017-11-23-example-content-ii.md#math
+[latex]: hydejack/_posts/2018-06-01-example-content-iii.md#math
 
 [lic]: LICENSE.md
 [pro]: licenses/PRO.md
