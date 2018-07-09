@@ -21,7 +21,7 @@ or [upgrades for pro buyers](#pro-version).)
 
 **NOTE**: This document was created using Hydejack's print layout.
 If you prefer to read it the documentation in your browser,
-you can find it [here]({{ site.baseurl }}{% link docs/8.0.0-beta.5/README.md %}).
+you can find it [here]({{ site.baseurl }}{% link docs/8.0.0-beta.6/README.md %}).
 {:.message}
 
 ## Table of Contents
@@ -157,7 +157,7 @@ If you bought the PRO version, you've received a zip archive with the following 
 ├── PRO–hy-drawer License _ Hydejack.pdf
 ├── PRO–hy-push-state License _ Hydejack.pdf
 ├── PRO–hy-img License _ Hydejack.pdf
-├── *-to-v8.0.0-beta.5.diff
+├── *-to-v8.0.0-beta.6.diff
 └── .ssh
 ~~~
 
@@ -168,7 +168,7 @@ If you bought the PRO version, you've received a zip archive with the following 
 : Contains only the files and folders needed for upgrading form an earlier version of Hydejack (6.0.0 or above).
   See the [Upgrade]{:.heading.flip-title} for more.
 
-`*-to-v8.0.0-beta.5.diff`
+`*-to-v8.0.0-beta.6.diff`
 : There will be multiple fo these files, where `*` is a previous version.
   They are git patches that you can apply to your repository via [git-apply](https://git-scm.com/docs/git-apply).
   Use these if you are using git and you are worried about accidentally overwriting changes you've made to Hydejack PRO.
@@ -184,7 +184,7 @@ For new installations only the `install` folder is interesting.
 Unzip the archive somewhere on your machine, then `cd` *into* the `install` folder, e.g.
 
 ~~~bash
-$ cd ~/Downloads/hydejack-pro-8.0.0-beta.5/install/
+$ cd ~/Downloads/hydejack-pro-8.0.0-beta.6/install/
 ~~~
 
 You can now continue with [Running locally](#running-locally).
@@ -198,7 +198,7 @@ It is located at `<dowloaded zip>/.ssh/hydejack_pro_customers`.
 You have to copy the key file to `~/.ssh` (or wherever your SSH keys are located), e.g.:
 
 ~~~bash
-$ cp ~/Downloads/hydejack-pro-v8.0.0-beta.5/.ssh/hydejack_pro_customers ~/.ssh/
+$ cp ~/Downloads/hydejack-pro-v8.0.0-beta.6/.ssh/hydejack_pro_customers ~/.ssh/
 ~~~
 
 It is required that your private key files are NOT accessible by others, e.g.:
@@ -612,10 +612,7 @@ The keys of the `srcset` hash will be used as image descriptors. For more inform
 #### Adding social media icons
 Hydejack supports a variety of social media icons out of the box. These are defined on a per-author basis, so make sure you've followed the steps in [Adding an author](#adding-an-author).
 
-**NOTE**: If you are using the gem-based version of Hydejack,
-download [`social.yml`](https://github.com/qwtel/hydejack/blob/v8/_data/social.yml)
-and put it into `_data` in the root directory.
-This is necessary because gem-based themes do not support including `_data`.
+**NOTE**: If you are using the gem-based version of Hydejack, download [`social.yml`](https://github.com/qwtel/hydejack/blob/v8/_data/social.yml) and put it into `_data` in the root directory. This is necessary because gem-based themes do not support including `_data`.
 {:.message}
 
 You can add a link to a social network by adding an entry to the `social` key in to an author.
@@ -654,15 +651,12 @@ author:
     youtube: https://www.youtube.com/channel/UCu0PYX_kVANdmgIZ4bw6_kA
 ~~~
 
-**NOTE**: You can add any platform, even if it's not defined in [`social.yml`](https://github.com/qwtel/hydejack/blob/v8/_data/social.yml),
-by providing a complete URL. However, a fallback icon <span class="icon-link"></span> will be used when no icon is available.
-Supplying your own icons is an [advanced topic](#advanced).
+**NOTE**: You can add any platform, even if it's not defined in [`social.yml`](https://github.com/qwtel/hydejack/blob/v8/_data/social.yml), by providing a complete URL. However, a fallback icon <span class="icon-link"></span> will be used when no icon is available. Supplying your own icons is an [advanced topic](#advanced).
 {:.message}
 
 
 #### Adding an email, RSS icon or download icon
-If you'd like to add an email <span class="icon-mail"></span>, RSS <span class="icon-rss2"></span>, or download <span class="icon-box-add"></span> icon to the list,
-add the `email`, `rss`, or `download` key, e.g.:
+If you'd like to add an email <span class="icon-mail"></span>, RSS <span class="icon-rss2"></span>, or download <span class="icon-box-add"></span> icon to the list, add the `email`, `rss`, or `download` key, e.g.:
 
 ~~~yml
 ## file: _config.yml
@@ -670,7 +664,7 @@ author:
   social:
     email:    mail@qwtel.com
     rss:      {{ site.url }}{{ site.baseurl }}/feed.xml # make sure you provide an absolute URL
-    download: https://github.com/qwtel/hydejack/archive/v8.0.0-beta.5.zip
+    download: https://github.com/qwtel/hydejack/archive/v8.0.0-beta.6.zip
 ~~~
 
 
@@ -825,8 +819,11 @@ To build a completely new from, you can use [the same CSS classes as Bootstrap](
 ## Basics
 This chapter covers the basics of content creation with Hydejack.
 
+### Table of Contents
+{:.no_toc}
 
-
+0. this unordered seed list will be replaced by toc as unordered list
+{:toc}
 
 
 ### Adding a page
@@ -848,10 +845,7 @@ Now you can add content as you would in a blog post.
 ### Adding an entry to the sidebar
 Hydejack's sidebar can add links to any page within the site. In order for a page to appear in the sidebar, it needs to have a truthy `menu` value defined in its front matter. The page also needs to have a `title`, otherwise the entry in the sidebar will be blank.
 
-If you want the link to appear at a particular position, you can set a numeric value to the `order` key.
-However, the page is not guaranteed to appear in the 5th position when you set a value of `5`,
-since it will only use that number to sort the pages.
-The position of a page also depends on the `order` of all other pages in the sidebar.
+If you want the link to appear at a particular position, you can set a numeric value to the `order` key. However, the page is not guaranteed to appear in a specific position when you set a certain number, as it will only be used to sort the pages. The position of a page also depends on the `order` of all other pages in the sidebar.
 
 If you don't want to spread the sidebar definitions across multiple markdown files,
 you can manage them centrally in your config file using front matter defaults, e.g.:
@@ -893,27 +887,26 @@ order: 5
 ---
 ```
 
-You may combine this with the [`jekyll-redirect-from`](https://github.com/jekyll/jekyll-redirect-from) plugin
-to generate a redirect page at the `permalink` of the file, but this is optional.
+You may combine this with the [`jekyll-redirect-from`](https://github.com/jekyll/jekyll-redirect-from) plugin to generate a redirect page at the location of the file, but this is optional.
 
 
 ### Adding a category or tag
-Hydejack allows you to use the `list` layout to show all posts of a particular tag or category.
+Hydejack allows you to use the `list` layout to show all posts of a particular category or tag.
 
-Before you start, make sure your config files contains the `featured_tags` and `features_categories` collections:
+Before you start, make sure your config files contains the `features_categories` and `featured_tags` collections:
 
 ~~~yml
 ## file: _config.yml
 collections:
   featured_categories:
-    permalink:         /category/:name/
+    permalink:         /:name/
     output:            true
   featured_tags:
-    permalink:         /tag/:name/
+    permalink:         /tag-:name/
     output:            true
 ~~~
 
-#### Recap: Tags and categories in Jekyll
+#### Recap: Categories and tags in Jekyll
 Posts in Jekyll can belong to one or more categories, as well as one or more tags. They are defined in a post's front matter:
 
 ~~~yml
@@ -934,18 +927,22 @@ Posts can also be assigned to a category based on their position within the fold
 │           └── 2017-04-07-welcome-to-jekyll.markdown
 ~~~
 
-would place "Welcome to Jekyll" in the categories `jekyll` and `update`.
+This will place "Welcome to Jekyll" in the categories `jekyll` and `update`.
+
+**NOTE**: This is now the preferred way of assigning categories in Hydejack, as it makes URLs correspond more naturally to the underlying folder structure.
+{:.message}
+
 Whether you use this method or not, categories will always be part of a posts URL, while tags will not.
 
 Type       | URL
 -----------|----
-Categories | `/jekyll/update/2017/04/07/welcome-to-jekyll/`
-Tags       | `/2017/04/07/welcome-to-jekyll/`
+Categories | `/jekyll/update/2017-04-07-welcome-to-jekyll/`
+Tags       | `/2017-04-07-welcome-to-jekyll/`
 {:.scroll-table-small}
 
-As far as Jekyll is concerned, these are the only differences.
+As far as Jekyll is concerned, this is the only difference.
 
-#### Tags and categories in Hydejack
+#### Categories and tags in Hydejack
 Categories and tags are displayed by Hydejack below the title, after the date. Categories are displayed with the preposition "in", while tags are displayed with the preposition "on", e.g.
 
 Type       | Title
@@ -955,17 +952,18 @@ Tags       | Welcome to Jekyll¬ 07 Apr 2017 **on** Jekyll, Update
 Both       | Welcome to Jekyll¬ 07 Apr 2017 **in** Jekyll / Update **on** Jekyll, Update
 {:.scroll-table-small}
 
+You can adjust these in [`_data/string.yml`](https://github.com/qwtel/hydejack/blob/v8/_data/strings.yml).
+
 #### Creating a new category or tag
 Be default, categories and tags are rendered as plain text. Further steps are necessary if you want them to link to a page that contains a list of all posts that belong to that category or tag.
 
-For each "featured" category or tag, a file called `<categoryname>.md` or `<tagname>.md` has to be created in `_featured_tags` or `_featured_categories`, respectively.
-Each file in these folders is part of a [Jekyll Collection](https://jekyllrb.com/docs/collections/).
+For each featured category or tag, a file called `<category-name>.md` or `<tag-name>.md` has to be created inside the `_featured_tags` and `_featured_categories` folders, respectively. Each file in these folders is part of a [Jekyll Collection](https://jekyllrb.com/docs/collections/).
 
-The the data of a category or tag is set in the files front matter, e.g.
+The meta data of a category or tag is set in the files front matter, e.g.
 
 ~~~yml
-## file: _featured_tags/hyde.md
 ---
+## file: _featured_categories/hyde.md
 layout: list
 title:  Hyde
 slug:   hyde
@@ -980,25 +978,16 @@ description: >
 : Must be `list`
 
 `title`
-: Used as title of the page, as well as name of the category or tag as part of the line below a blog post's title.
-  Can be different from the name of the tag or category, as long as `slug` is identical to the name.
+: Used as title of the page, as well as name of the category or tag as part of the line below a blog post's title. Can be different from the name of the tag or category, as long as `slug` is identical to the name.
 
 `slug`
-: Must be identical to the key used in the blog's front matter, i.e. if you use `categories: [jekyll]` or `tags: [jekyll]`
-  the `slug` must be `jekyll`. Normally the slug is derived from the title, but it is recommended that you set it explicitly.
+: Must be identical to the key used in the blog's front matter, i.e. if you use `categories: [jekyll]` the `slug` must be `jekyll`. By default, the slug is derived from the title, but here it is recommended that you set it explicitly.
 
 `description`
-: A medium-length description, used on the tag or category's detail page as meta description and shown in a message box below the title.
-
-`accent_image`
-: URL. Will be used as fallback for all pages that belong to that category or tag.
-
-`accent_color`
-: Color code. Will be used as fallback for all pages that belong to that category or tag.
+: A medium-length description, used on the tag or category's detail page and shown in a message box below the title.
 
 `menu`
-: Set to to `true` if you want the category or tag to appear in the sidebar. For more information, see
-  [Adding an entry to the sidebar](#adding-an-entry-to-the-sidebar).
+: Set to to `true` if you want the category or tag to appear in the sidebar. For more information, see [Adding an entry to the sidebar](#adding-an-entry-to-the-sidebar).
 
 Once the file is created, the page can be found at `/category/<categoryname>/` or `/tag/<tagname>/`.
 
@@ -1006,7 +995,8 @@ Once the file is created, the page can be found at `/category/<categoryname>/` o
 ### Adding an about page
 About pages are a frequent use case, so Hydejack has a special layout for it. It is a slight modification of the `page` layout that allows showing the author information by adding the `<!--author-->` marker somewhere on the page.
 
-To create an about page, make sure `layout` is set to `about`. For more on authors, see [Adding an author](#adding-an-author).)
+To create an about page, make sure `layout` is set to `about`.
+For more on authors, see [Adding an author](#adding-an-author).)
 
 ~~~yml
 ---
@@ -1018,22 +1008,24 @@ title:  About
 
 
 ### Adding a cover page
-Hydejack 8 introduces cover pages, i.e. pages where the side initially spans the entire screen.
-This feature is intended for landing pages. To enable this feature on a page, simply add `cover: true` to the page's front matter.
+Hydejack 8 introduces cover pages, i.e. pages witht he sidebar opened, so that it spans the entire screen. This feature is intended for landing pages. To enable it on a page, simply add `cover: true` to the front matter.
+
+![Cover page example](../../assets/img/hydejack-8@0,5x.jpg){:width="960" height="540"}
 
 
-### Adding custom CSS
+### Customization
+#### Adding custom CSS
 The quickest and safest way to add custom CSS to Hydejack is via the `_sass/my-inline.scss` and `_sass/my-style.scss` files (create the folder/the files if they don't exist).
 
 To add CSS that gets inlined into the page, i.e. is loaded with the first request, put the CSS rules into `my-inline.scss`. This is intended for above-the-fold content. Otherwise put the CSS rules into `my-style.scss`.
 Note that this distinction has no effect when `no_inline_css` is enabled.
 
 
-### Adding custom HTML to the head
+#### Adding custom HTML to the head
 To add custom HTML elements to the `<head>` of the document, open `_includes/my-head.html` (create the folder/the files if they don't exist) and add your elements there.
 
 
-### Adding custom HTML to the body
+#### Adding custom HTML to the body
 To add custom HTML elements to the `<body>` of the document, open `_includes/my-body.html` (create the folder/the files if they don't exist) and add your elements there.
 
 What's the difference with `my-scripts.html`?
@@ -1184,14 +1176,20 @@ featured:    false
 : Providing a year is the minimum requirement. Used to sort the projects.
 
 `screenshot`
-: A 16:9 screenshot of the project. You can pass a URL to an image, but it is recommended that you provide an entire `srcset` (see above). Hydejack will show the screenshot in various sizes, depending on the screen width, so that no specific size will fit all. Instead it is recommended that you use a [mipmap]-like approach, providing the image in multiple sizes, each image half the width of the previous one. The `src` key is a fallback image for browsers that don't support the `srcset` attribute. The keys of the `srcset` hash will be used as descriptors.
-For more information on `srcset`, see the [documentation at MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-srcset), or [this article from CSS-Tricks](https://css-tricks.com/responsive-images-youre-just-changing-resolutions-use-srcset/).
+: A 16:9 screenshot of the project.
+
+  You can pass an URL to an image, but it is recommended that you provide a `src`-`srcset` pair (see example above).
+
+  Hydejack will show the screenshot in various sizes, depending on the screen width, so that no specific size will fit all. Instead, it is recommended that you use a [mipmap]-like approach, providing the image in multiple sizes, each image half the width of the previous one.
+  The `src` key is a fallback image for browsers that don't support the `srcset` attribute. The keys of the `srcset` hash will be used as descriptors.
+
+  For more information on `srcset`, see the [documentation at MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-srcset), or [this article from CSS-Tricks](https://css-tricks.com/responsive-images-youre-just-changing-resolutions-use-srcset/).
 
 `caption`
 : A short description, shown as part of each "project card" in the `projects` layout.
 
 `description`
-: A medium-length description, used on the project's detail page as meta description and shown as message box below he screenshot.
+: A medium-length description, used on the project's detail page as meta description and shown as message box below the screenshot.
 
 `links`
 : A list of `title`-`url` pairs that link to external resources related to this project.
@@ -1209,9 +1207,9 @@ Hydejack's PRO version features a generalized resume layout.
 
 It generates the resume page from a valid [JSON Resume](https://jsonresume.org/), which is good news if you already have a JSON resume. Otherwise, there are various ways of obtaining one:
 
+* You can edit the [example `resume.yml`](https://github.com/qwtel/hydejack/blob/v8/_data/resume.yml) in `_data` directly. It contains example entries for each type of entry.
 * You can use the visual [JSON Resume Editor](http://registry.jsonresume.org/).
 * If you have a LinkedIn profile, you can try [LinkedIn to Json Résumé](https://jmperezperez.com/linkedin-to-json-resume/).
-* You can edit the [example `resume.yml`](https://github.com/qwtel/hydejack/blob/v8/_data/resume.yml) in `_data` directly. It contains example entries for each type of entry.
 
 Once you have a JSON Resume, place it into `_data`.
 
@@ -1268,7 +1266,7 @@ resume:
 ----------------------------------------------------------------{% endcomment %}
 
 ## Writing
-Hydejack offers a few additional features to markup your markdown.
+Hydejack offers a few additional features to markup your content.
 Don't worry, these are merely CSS classes added with kramdown's `{:...}` syntax,
 so that your content remains compatible with other Jekyll themes.
 
@@ -1343,17 +1341,17 @@ Markdown:
 ![Full-width image](https://placehold.it/800x100){:.lead width="800" height="100"}
 ~~~
 
-### Adding captions to images
+### Adding image captions
 You can add captions to images by adding the `figure` class to the paragraph containing the image and a caption.
 
 ![Full-width image](https://placehold.it/800x100){:.lead width="800" height="100"}
-A caption to an image.
+A caption for an image.
 {:.figure}
 
 Markdown:
 ~~~md
 ![Full-width image](https://placehold.it/800x100){:.lead width="800" height="100"}
-A caption to an image.
+A caption for an image.
 {:.figure}
 ~~~
 
@@ -1381,10 +1379,7 @@ Markdown:
 ~~~
 
 ### Adding faded text
-You can gray out text by adding the `faded` class.
-
-Use this sparingly and for information that is not essential
---- or you don't want viewers to read at all, like when you pull a line form a dirty rap song..
+You can gray out text by adding the `faded` class. Use this sparingly and for information that is not essential, as it is more difficult to read.
 
 Example:
 
@@ -1703,6 +1698,11 @@ hydejack:
 ----------------------------------------------------------------{% endcomment %}
 
 ## Build
+This chapters shows how to prepare your Hydejack site for a production build and deployment on 3rd party hosting providers.
+
+
+
+
 ### Starter Kit
 If you're using the [starter kit](#via-starter-kit), all you have to do is push your repository:)
 
