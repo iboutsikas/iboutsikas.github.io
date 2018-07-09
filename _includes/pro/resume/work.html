@@ -14,13 +14,7 @@
       >
       {% if work.startDate.size > 0 %}
         <p class="faded">
-          <time datetime="{{ work.startDate }}">{{ work.startDate | date:from_to_format }}</time>
-          {{ from_to_separator }}
-          {% if work.endDate.size > 0 %}
-            <time datetime="{{ work.endDate }}">{{ work.endDate | date:from_to_format }}</time>
-          {% else %}
-            <em>{{ present }}</em>
-          {% endif %}
+          {% include components/from-to.html from=work.startDate to=work.endDate format=from_to_format %}
         </p>
       {% endif %}
       <h3 class="h4 faded">

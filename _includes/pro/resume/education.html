@@ -10,13 +10,7 @@
     <header class="{% unless forloop.first %}mt4{% endunless %}">
       {% if edu.startDate.size > 0 %}
         <p class="faded">
-          <time datetime="{{ edu.startDate }}">{{ edu.startDate | date:from_to_format }}</time>
-          {{ from_to_separator }}
-          {% if edu.endDate.size > 0 %}
-            <time datetime="{{ edu.endDate }}">{{ edu.endDate | date:from_to_format }}</time>
-          {% else %}
-            <em>{{ present }}</em>
-          {% endif %}
+          {% include components/from-to.html start=edu.startDate end=edu.endDate format=from_to_format %}
         </p>
       {% endif %}
       <h3 class="h4 faded" {% if edu.endDate.size > 0 %}property="alumniOf" typeof="EducationalOrganization"{% endif %}>

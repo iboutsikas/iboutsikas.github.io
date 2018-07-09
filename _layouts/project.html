@@ -6,6 +6,8 @@ layout: base
 {% assign project = page %}
 {% assign separator = site.data.strings.separator | default:"|" %}
 {% assign nsd = site.hydejack.no_structured_data | default:site.no_structured_data %}
+{% assign proj_format = site.data.strings.date_formats.project | default:"%Y" %}
+{% assign from_to_separator = strings.from_to_separator | default:strings.resume.from_to_separator | default:"–" %}
 
 <article
   id="project"
@@ -22,8 +24,14 @@ layout: base
         <a href="{{ parent.url | relative_url }}" class="flip-title" property="genre">{{ parent.title }}</a>
         {{ separator }}
       {% endif %}
-      {% assign proj_format = site.data.strings.date_formats.project | default:"%Y" %}
-      <time datetime="{{ project.date | date_to_xmlschema }}" property="datePublished">{{ project.date | date:proj_format }}</time>
+
+
+      <time datetime="{{ project.date | date_to_xmlschema }}">{{ project.date | date:proj_format }}</time>
+      {% if project.end_date.size > 0 %}
+        {{from_to_separator}}
+        <time datetime="{{ project.end_date | date_to_xmlschema }}">{{ project.end_date | date:proj_format }}</time>
+      {% endif %}
+
       <span class="fr">
         <span class="sr-only">{{ separator }} {{ site.data.strings.links | default:"Links" }}{{ site.data.strings.colon }}</span>
         {% for link in project.links %}

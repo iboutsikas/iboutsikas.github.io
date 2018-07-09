@@ -10,7 +10,7 @@
     <header class="{% unless forloop.first %}mt4{% endunless %}">
       {% if pub.releaseDate.size > 0 %}
         <p class="faded">
-          <time datetime="{{ pub.releaseDate }}">{{ pub.releaseDate | date:from_to_format }}</time>
+          <time datetime="{{ pub.releaseDate | date_to_xmlschema }}">{{ pub.releaseDate | date:from_to_format }}</time>
         </p>
       {% endif %}
       <h3 class="h4 faded">

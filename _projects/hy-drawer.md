@@ -1,7 +1,7 @@
 ---
 layout: project
 title: 'hy-drawer'
-date: 26 Sep 2017
+date: 4 Sep 2016
 image: /assets/img/projects/hy-drawer.svg
 screenshot: /assets/img/projects/hy-drawer.svg
 links:

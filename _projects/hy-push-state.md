@@ -1,7 +1,7 @@
 ---
 layout: project
 title: 'hy-push-state'
-date: 25 Sep 2017
+date: 5 Oct 2016
 image: /assets/img/projects/hy-push-state.svg
 screenshot: /assets/img/projects/hy-push-state.svg
 links:

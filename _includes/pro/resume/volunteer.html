@@ -10,13 +10,7 @@
     <header class="{% unless forloop.first %}mt4{% endunless %}">
       {% if vol.startDate.size > 0 %}
         <p class="faded">
-          <time datetime="{{ vol.startDate }}">{{ vol.startDate | date:from_to_format }}</time>
-          {{ from_to_separator }}
-          {% if vol.endDate.size > 0 %}
-            <time datetime="{{ vol.endDate }}">{{ vol.endDate | date:from_to_format }}</time>
-          {% else %}
-            <em>{{ present }}</em>
-          {% endif %}
+          {% include components/from-to.html from=vol.startDate to=vol.endDate format=from_to_format %}
         </p>
       {% endif %}
       <h3 class="h4 faded">
