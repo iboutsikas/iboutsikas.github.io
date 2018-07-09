@@ -8,8 +8,6 @@ hide_description: true
 redirect_from:
   - /docs/latest/install/
   - /docs/install/
-  - /docs/latest/installation/
-  - /docs/installation/
 ---
 
 There are multiple ways of installing Hydejack.
