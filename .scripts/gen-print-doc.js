@@ -34,7 +34,6 @@ const FRONT_MATTER = `---
 layout: page
 title: Documentation
 redirect_from:
-  - /docs/latest/complete/
   - /docs/latest/print/
   - /docs/print/
 sitemap: false

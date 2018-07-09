@@ -287,10 +287,7 @@ The keys of the `srcset` hash will be used as image descriptors. For more inform
 ### Adding social media icons
 Hydejack supports a variety of social media icons out of the box. These are defined on a per-author basis, so make sure you've followed the steps in [Adding an author](#adding-an-author).
 
-**NOTE**: If you are using the gem-based version of Hydejack,
-download [`social.yml`](https://github.com/qwtel/hydejack/blob/v8/_data/social.yml)
-and put it into `_data` in the root directory.
-This is necessary because gem-based themes do not support including `_data`.
+**NOTE**: If you are using the gem-based version of Hydejack, download [`social.yml`](https://github.com/qwtel/hydejack/blob/v8/_data/social.yml) and put it into `_data` in the root directory. This is necessary because gem-based themes do not support including `_data`.
 {:.message}
 
 You can add a link to a social network by adding an entry to the `social` key in to an author.
@@ -329,15 +326,12 @@ author:
     youtube: https://www.youtube.com/channel/UCu0PYX_kVANdmgIZ4bw6_kA
 ~~~
 
-**NOTE**: You can add any platform, even if it's not defined in [`social.yml`](https://github.com/qwtel/hydejack/blob/v8/_data/social.yml),
-by providing a complete URL. However, a fallback icon <span class="icon-link"></span> will be used when no icon is available.
-Supplying your own icons is an [advanced topic](advanced.md).
+**NOTE**: You can add any platform, even if it's not defined in [`social.yml`](https://github.com/qwtel/hydejack/blob/v8/_data/social.yml), by providing a complete URL. However, a fallback icon <span class="icon-link"></span> will be used when no icon is available. Supplying your own icons is an [advanced topic](advanced.md).
 {:.message}
 
 
 ### Adding an email, RSS icon or download icon
-If you'd like to add an email <span class="icon-mail"></span>, RSS <span class="icon-rss2"></span>, or download <span class="icon-box-add"></span> icon to the list,
-add the `email`, `rss`, or `download` key, e.g.:
+If you'd like to add an email <span class="icon-mail"></span>, RSS <span class="icon-rss2"></span>, or download <span class="icon-box-add"></span> icon to the list, add the `email`, `rss`, or `download` key, e.g.:
 
 ~~~yml
 # file: _config.yml

@@ -1056,8 +1056,8 @@ cover:  true
 ---
 ~~~
 
-Without further configuration, the welcome page will just look like a regular page. 
-To show the two most recent projects, add the `<!--projects-->` marker to the content. 
+Without further configuration, the welcome page will just look like a regular page.
+To show the two most recent projects, add the `<!--projects-->` marker to the content.
 To show the five most recent blog posts, add the `<!--posts-->` marker to the content.
 
 The welcome layout also supports selecting specific projects and posts, by adding to the front matter, e.g.:
@@ -1197,7 +1197,7 @@ For more information on `srcset`, see the [documentation at MDN](https://develop
 : A list of `title`-`url` pairs that link to external resources related to this project.
 
 `author`
-: Optional. The author shown below the project, similar to posts. 
+: Optional. The author shown below the project, similar to posts.
 
 `featured`
 : Optional. When `true`, the project preview will span the full content width. You can use this for projects that should receive more attention. You can set/override this for an entire page, by setting `featured` in the front matter (applies to the `projects` and `welcome` layout).

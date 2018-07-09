@@ -34,9 +34,9 @@ tagline:               '"Best Jekyll Theme by a Mile"'
 # A list of keywords for your blog
 keywords:              [jekyll, theme, hyde, sidebar, resume, markdown, code, math, portfolio, personal]
 
-# Provide a (square) logo for you site.
+# A (square) logo for your site.
 # If provided, it will be shown at the top of the sidebar.
-# This key is also used by the `jekyll-seo-tag` plugin.
+# It also used by the `jekyll-seo-tag` plugin.
 logo:                  /assets/icons/icon.png
 
 # This should be the same author as first entry in `_data/authors.yml`.
@@ -124,11 +124,11 @@ defaults:
 
 # Set your Google Analytics id to receive `pageview` events.
 # To remove Google Anaylics from your page, remove the line below.
-google_analytics:      UA-XXXXXXXX-X
+google_analytics:      UA-84025722-5
 
 # Setting a disqus shortname will enable the comment section on
 # pages with `comments: true` in the front matter.
-disqus:                qwtel
+# disqus:                qwtel
 
 # Setting a tinyletter username will enable the newsletter subscription box.
 # PRO version only!
@@ -230,7 +230,7 @@ include:
   - LICENSE.md
 
 
-# Plugins and Plugin Configuration
+# Plugins
 # ========================================================================================
 
 plugins:
@@ -255,7 +255,7 @@ plugins:
 # ---------------------------------------------------------------------------------------
 
 # Where you proof that you own this site (used by jekyll-seo-tag)
-google_site_verification: xlwWRCmc8tMoEuhrBFFj3r-r75zd0zVlHvQYBwGcCQU
+google_site_verification: kRoh_csFULhK6lxBJwZOxiWYQpvttOkFj0a3lWwQADc
 # -- or --
 # webmaster_verifications:
 #   google:              xlwWRCmc8tMoEuhrBFFj3r-r75zd0zVlHvQYBwGcCQU
@@ -314,8 +314,3 @@ compress_html:
 
 sass:
   style:               compressed
-
-# If you are upgrading form v5 (or earlier), uncomment the two lines below,
-# so that the location of the feed XML stays the same.
-# feed:
-#   path:                atom.xml
