@@ -4,7 +4,7 @@
 import "core-js/fn/function/bind";
 
 import { fromEvent, of, zip } from "rxjs";
-import { tap, finalize, filter, switchMap, take } from "rxjs/operators";
+import { tap, finalize, filter, switchMap } from "rxjs/operators";
 
 import { animate, empty } from "../common";
 
