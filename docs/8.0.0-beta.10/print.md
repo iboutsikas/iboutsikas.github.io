@@ -21,7 +21,7 @@ or [upgrades for pro buyers](#pro-version).)
 
 **NOTE**: This document was created using Hydejack's print layout.
 If you prefer to read it the documentation in your browser,
-you can find it [here]({{ site.baseurl }}{% link docs/8.0.0-beta.9/README.md %}).
+you can find it [here]({{ site.baseurl }}{% link docs/8.0.0-beta.10/README.md %}).
 {:.message}
 
 ## Table of Contents
@@ -157,7 +157,7 @@ If you bought the PRO version, you've received a zip archive with the following 
 ├── PRO–hy-drawer License _ Hydejack.pdf
 ├── PRO–hy-push-state License _ Hydejack.pdf
 ├── PRO–hy-img License _ Hydejack.pdf
-├── *-to-v8.0.0-beta.9.diff
+├── *-to-v8.0.0-beta.10.diff
 └── .ssh
 ~~~
 
@@ -168,7 +168,7 @@ If you bought the PRO version, you've received a zip archive with the following 
 : Contains only the files and folders needed for upgrading form an earlier version of Hydejack (6.0.0 or above).
   See the [Upgrade]{:.heading.flip-title} for more.
 
-`*-to-v8.0.0-beta.9.diff`
+`*-to-v8.0.0-beta.10.diff`
 : There will be multiple fo these files, where `*` is a previous version.
   They are git patches that you can apply to your repository via [git-apply](https://git-scm.com/docs/git-apply).
   Use these if you are using git and you are worried about accidentally overwriting changes you've made to Hydejack PRO.
@@ -184,7 +184,7 @@ For new installations only the `install` folder is interesting.
 Unzip the archive somewhere on your machine, then `cd` *into* the `install` folder, e.g.
 
 ~~~bash
-$ cd ~/Downloads/hydejack-pro-8.0.0-beta.9/install/
+$ cd ~/Downloads/hydejack-pro-8.0.0-beta.10/install/
 ~~~
 
 You can now continue with [Running locally](#running-locally).
@@ -198,7 +198,7 @@ It is located at `<dowloaded zip>/.ssh/hydejack_pro_customers`.
 You have to copy the key file to `~/.ssh` (or wherever your SSH keys are located), e.g.:
 
 ~~~bash
-$ cp ~/Downloads/hydejack-pro-v8.0.0-beta.9/.ssh/hydejack_pro_customers ~/.ssh/
+$ cp ~/Downloads/hydejack-pro-v8.0.0-beta.10/.ssh/hydejack_pro_customers ~/.ssh/
 ~~~
 
 It is required that your private key files are NOT accessible by others, e.g.:
@@ -426,7 +426,7 @@ google_fonts: "Roboto+Slab:700|Noto+Sans:400,400i,700,700i"
 The `google_fonts` key is the string necessary to fetch the fonts from Google.
 You can get it from the download page at [Google Fonts](https://fonts.google.com) after you've selected one or more fonts:
 
-![Where to get the google_fonts string](../../assets/img/docs/google-fonts.png){:width="600" height="398"}
+![Where to get the google_fonts string](../../assets/img/docs/google-fonts.png){:data-width="600" data-height="398"}
 
 
 #### Using safe web fonts
@@ -664,7 +664,7 @@ author:
   social:
     email:    mail@qwtel.com
     rss:      {{ site.url }}{{ site.baseurl }}/feed.xml # make sure you provide an absolute URL
-    download: https://github.com/qwtel/hydejack/archive/v8.0.0-beta.9.zip
+    download: https://github.com/qwtel/hydejack/archive/v8.0.0-beta.10.zip
 ~~~
 
 
@@ -1010,7 +1010,7 @@ title:  About
 ### Adding a cover page
 Hydejack 8 introduces cover pages, i.e. pages witht he sidebar opened, so that it spans the entire screen. This feature is intended for landing pages. To enable it on a page, simply add `cover: true` to the front matter.
 
-![Cover page example](../../assets/img/hydejack-8@0,5x.jpg){:width="960" height="540"}
+![Cover page example](../../assets/img/hydejack-8@0,5x.jpg){:data-width="960" data-height="540"}
 
 
 ### Customization
@@ -1334,23 +1334,23 @@ You can make an image span the full width by adding the `lead` class.
 
 Example:
 
-![Full-width image](https://placehold.it/800x100){:.lead width="800" height="100"}
+![Full-width image](https://placehold.it/800x100){:.lead data-width="800" data-height="100"}
 
 Markdown:
 ~~~markdown
-![Full-width image](https://placehold.it/800x100){:.lead width="800" height="100"}
+![Full-width image](https://placehold.it/800x100){:.lead data-width="800" data-height="100"}
 ~~~
 
 ### Adding image captions
 You can add captions to images by adding the `figure` class to the paragraph containing the image and a caption.
 
-![Full-width image](https://placehold.it/800x100){:.lead width="800" height="100"}
+![Full-width image](https://placehold.it/800x100){:.lead data-width="800" data-height="100"}
 A caption for an image.
 {:.figure}
 
 Markdown:
 ~~~md
-![Full-width image](https://placehold.it/800x100){:.lead width="800" height="100"}
+![Full-width image](https://placehold.it/800x100){:.lead data-width="800" data-height="100"}
 A caption for an image.
 {:.figure}
 ~~~
@@ -1359,7 +1359,7 @@ For better semantics, you can also use the `figure`/`figcaption` HTML5 tags:
 
 ```html
 <figure>
-  <img alt="An image with a caption" src="https://placehold.it/800x50" class="lead" width="800" height="50" />
+  <img alt="An image with a caption" src="https://placehold.it/800x100" class="lead" data-width="800" data-height="100" />
   <figcaption>A caption to an image.</figcaption>
 </figure>
 ```
@@ -1815,30 +1815,16 @@ This chapter covers advanced topics, such as offline support and custom JS build
 
 
 ### Enabling offline support
-Hydejack v8 introduces "cache as you go" offline support. This is implemented via the Service Worker API, a new browser standard that is now supported in the latest versions of all major browsers! However, it is a very powerful feature and should be used with a lot of care.
+Hydejack v8 introduces experimental "cache as you go" offline support. This is implemented via the [Service Worker API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API), a new browser standard that is now supported in the latest versions of all major browsers. However, it is a very powerful feature and should be used with a lot of care.
 
-Hydejack's custom service worker implementation stores files for offline use on three different levels:
+Enabling this feature requires that your content meets the following criteria:
 
-Shell
-: The shell files are the core Hydejack files (CSS, JS) that only change between version updates.
-  If you made changes to these after enabling offline support you can force an update by bumping the `cache_version`.
+* Content doesn't change between between deploys (e.g. manually adding things to `_site` etc.)
+* All assets in `assets` are immutable, i.e. they never change (when changing a file in assets, it needs to have a new name and links need to point to the new file).
+* The site is mostly self-contained, i.e. assets are served from the same domain (offline support will not download assets form external sites by default)
+* The site is served via HTTPS (this is a Service Worker requirement)
 
-Assets
-: **These are presumed to be immutable!** In other words, every file is cached indefinitely. If you want to update an image after enabling offline support, add the image to `assets` with a different name and change the link in the content! Alternatively, you can bump the `cache_version`, but this will remove all the other cached files from the asset cache.
-
-Content
-: The content cache exploits the fact that content can't change between builds, so that it can be stored for offline use until you upload a new build. For now, the entire content cache is discarded every time you publish a new post (future versions could cache them based on last modified dates, but that has)
-
-Other things to note are that the implementation will always cache the pages listed under `legal`, as well as the `404.html` page, which will be shown when the user is offline. TODO: Use dedicated offline page.
-
-***
-
-To enable offline support in Hydejack do the following stepts:
-
-Because Service Workers are so powerful, they are only enabled on sites that are served over HTTPS.
-Unless your site is already served this way, enabling HTTPS is the first step.
-
-Create a `sw.js` file in the root of your project and add the following content:
+To enable this feature, create the [`sw.js`][sw] file in the root of your project and add the following content:
 
 ```js
 ---
@@ -1846,26 +1832,51 @@ Create a `sw.js` file in the root of your project and add the following content:
 importScripts("{\{ '/assets/js/sw.js' | relative_url }\}?t={\{ site.time | date_to_xmlschema }\}");
 ```
 
-**NOTE**: You have to remove the `\` after each `{` and before each `}`!
-This is to prevent Jekyll from processing the line!
+**NOTE**: You have to remove the `\` after each `{` and before each `}`! Alternatively, you can just copy the file from [here][sw].
 {:.message}
 
-This will load the main service worker code from your assets folder. The `site.time` part is necessary to make the service worker "byte different" to trigger a reload every time you make a new build of your site.
+[sw]: https://github.com/qwtel/hydejack/blob/v8/sw.js
+
+This will load the main service worker script from Hydejack's assets. The `site.time` part is necessary to make the service worker "byte different" every time you create a new build of your site, which triggers an update.
 
 In your `config.yml` under the `hydejack` key, add the following:
 
 ```yml
-hydejack:
-  offline:
-    enabled: true
-    cache_version: 1
+offline:
+  enabled: true
+  cache_version: 1
 ```
 
-***
+The current implementation does not cache resources from external domains. There is now way of knowing if external sites conform to the conditions mentioned above, hence caching can be problematic and result in unexpected behavior.
 
-Just to be save, the current implementation will not cache resources from other domains. If you link to an image that is hosted on another domain and you would like it to be available offline, add the `sw-cache` query parameter to the URL, e.g. `https://upload.wikimedia.org/wikipedia/commons/b/b1/57_Chevy_210.jpg?sw-cache`.
+For example, Google Analytics uses GET requests to send page views, each of which would be cached by the service worker without this policy. Frequently updating images, such as badges would never change.
 
-Note that images stored in this way will not be updated, even if the version on the remote server changes!
+![Gem Version][gemv]
+
+However, if you include resources that are hosted on another domain and don't change, you can add the `sw-cache` query parameter to the URL, e.g.
+
+    https://upload.wikimedia.org/wikipedia/commons/b/b1/57_Chevy_210.jpg?sw-cache
+
+This will cause them to be cached like resources from the assets folder.
+
+[gemv]: https://badge.fury.io/rb/jekyll-theme-hydejack.svg
+
+
+#### How offline storage works
+
+Hydejack's custom service worker implementation stores files for offline use on three different levels:
+
+Shell
+: The shell files are the core Hydejack files (CSS, JS) that only change between version updates.
+  If you made changes to any of these after enabling offline support, you must force an update by bumping the `cache_version` number in the config file.
+
+Assets
+: *These are presumed to be immutable.* In other words, every file is cached indefinitely. E.g.: If you want to update an image after enabling offline support, add the image under a different name and change the link in the content. Alternatively, you can bump the `cache_version`, but this will remove all other cached files from the asset cache.
+
+Content
+: The content cache exploits the fact that your content can't change between builds, so that it can be stored for offline use until you upload a new build. For now, the entire content cache is discarded every time you publish new content (future versions could cache them based on last modified dates).
+
+Other things to note are that the implementation will always cache the pages listed under `legal`, as well as the `404.html` page, which will be shown when the user is offline.
 
 
 ### Adding a custom social media icon
@@ -1904,6 +1915,77 @@ deviantart:
 
 `append`
 : Optional. A string that is appended to the username to form the link to the profile. If the final URL should be `https://<username>.deviantart.com`, this would be `.deviantart.com`.
+
+
+### How CSS is organized in Hydejack
+Hydejack takes a quite unique approach to CSS, which is motivated by the ability to
+inline essential CSS rules in a `style` tag in the `<head/>` of a page (to increase the loading speed),
+while serving the rest in a separate file.
+
+The styles are written in SCSS and are located in the `_sass` folder, which looks like
+
+~~~
+├── hydejack
+│   ├── __inline
+│   ├── __link
+│   ├── _base.pre.scss
+│   ├── ...
+│   └── _social.pre.scss
+├── pooleparty
+│   ├── __inline
+│   ├── __link
+│   ├── _base.pre.scss
+│   ├── ...
+│   └── _type.pre.scss
+├── mixins.scss
+├── my-inline.scss
+├── my-style.scss
+├── syntax.scss
+└── variables.scss
+~~~
+
+The style rules are organized alongside components (or rather, topics) like "sidebar" and "footer".
+Further, there are two separate frameworks, "pooleparty" and "hydejack",
+which grew out of the original [Poole](http://getpoole.com/) and [Hyde](http://hyde.getpoole.com/) projects.
+Poole/party contains more general style rules, while Hyde/jack contains those that more are specific to the theme.
+However, this separation has blurred over time.
+
+Inside those folders, you will notice the `__inline` and `__link` folders.
+The unfriendly names are intentional, because their contents are generated by a script and shouldn't be modified directly.
+The source files are located in the same folder and end with `.pre.scss`.
+They are fully valid SCSS files, but contain comments that mark which lines should be inlined and which should be fetched asynchronously.
+
+The rules are as follows:
+* Every line between `// <<< inline ` and `// >>>` will be inlined
+* Every line between `// <<< link ` and `// >>>` will be linked
+* Every line that isn't contained in a block and ends with `// inline` will be inlined
+* Every line that isn't contained in a block and ends with `// link` will be linked
+* Every line for which none of the above applies will be included in both.
+
+The actual splitting happen with the `_scripts/build-css.sh` script (requires node.js 8+).
+You can run the script once by using
+
+~~~bash
+$ npm run build:css
+~~~
+
+or rebuild the CSS on every file change
+
+~~~bash
+$ npm run watch:css
+~~~
+
+Note that `my-inline.scss` and `my-style.scss` are not affected by this.
+Also, since all files are valid SCSS, the splitting part is entirely optional.
+If you would like to build just one regular CSS file, add
+
+```yml
+hydejack:
+  no_inline_css: true
+```
+
+to your config file.
+
 
 ### Building the JavaScript
 In order to build the JavaScript you need to have [node.js](https://nodejs.org/en/) installed. Specifically, the `npm` command needs to be available, which is part of node.js.
