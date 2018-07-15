@@ -10,7 +10,7 @@ selected_posts:
   - hydejack/_posts/2017-11-23-example-content-ii.md
   - hydejack/_posts/2017-11-17-hydejacks-new-design.md
   - hyde/_posts/2012-02-07-example-content.md
-more_posts: blog.md
+more_posts: posts.md
 permalink: /
 ---
 
@@ -179,7 +179,7 @@ This table below shows what's included in each version:
 [portfolio]: projects.md
 [resume]: resume.md
 [download]: download.md
-[welcome]: #
+[welcome]: README.md
 [forms]: forms-by-example.md
 
 [features]: #features
