@@ -21,7 +21,7 @@ or [upgrades for pro buyers](#pro-version).)
 
 **NOTE**: This document was created using Hydejack's print layout.
 If you prefer to read it the documentation in your browser,
-you can find it [here]({{ site.baseurl }}{% link docs/8.0.0-beta.10/README.md %}).
+you can find it [here]({{ site.baseurl }}{% link docs/8.0.0/README.md %}).
 {:.message}
 
 ## Table of Contents
@@ -150,14 +150,13 @@ If you bought the PRO version, you've received a zip archive with the following 
 ~~~
 ├── install
 ├── upgrade
-├── CHANGELOG _ Hydejack.pdf
-├── Documentation _ Hydejack.pdf
-├── NOTICE _ Hydejack.pdf
-├── PRO License _ Hydejack.pdf
-├── PRO–hy-drawer License _ Hydejack.pdf
-├── PRO–hy-push-state License _ Hydejack.pdf
-├── PRO–hy-img License _ Hydejack.pdf
-├── *-to-v8.0.0-beta.10.diff
+├── CHANGELOG.pdf
+├── Documentation.pdf
+├── NOTICE.pdf
+├── PRO License.pdf
+├── PRO–hy-drawer License.pdf
+├── PRO–hy-img License.pdf
+├── PRO–hy-push-state License.pdf
 └── .ssh
 ~~~
 
@@ -165,14 +164,7 @@ If you bought the PRO version, you've received a zip archive with the following 
 : Contains all files and folders needed to create a new blog.
 
 `upgrade`
-: Contains only the files and folders needed for upgrading form an earlier version of Hydejack (6.0.0 or above).
-  See the [Upgrade]{:.heading.flip-title} for more.
-
-`*-to-v8.0.0-beta.10.diff`
-: There will be multiple fo these files, where `*` is a previous version.
-  They are git patches that you can apply to your repository via [git-apply](https://git-scm.com/docs/git-apply).
-  Use these if you are using git and you are worried about accidentally overwriting changes you've made to Hydejack PRO.
-  This is for advanced users.
+: Contains only the files and folders needed for upgrading form an earlier version of Hydejack (6.0.0 or above). See [Upgrade]{:.heading.flip-title} for more.
 
 `.ssh`
 : A hidden folder containing a SSH key for read-only access to the Hydejack PRO GitHub repository.
@@ -180,11 +172,11 @@ If you bought the PRO version, you've received a zip archive with the following 
   See the [installation instructions](#pro-via-github-advanced) below.
   This is for advanced users.
 
-For new installations only the `install` folder is interesting.
+For new installations only the `install` folder is relevant.
 Unzip the archive somewhere on your machine, then `cd` *into* the `install` folder, e.g.
 
 ~~~bash
-$ cd ~/Downloads/hydejack-pro-8.0.0-beta.10/install/
+$ cd ~/Downloads/hydejack-pro-8.0.0/install/
 ~~~
 
 You can now continue with [Running locally](#running-locally).
@@ -194,17 +186,17 @@ If you know how to handle SSH keys, you can also install the PRO version as a ge
 The advantage of this method is that you avoid cluttering your Jekyll repository with Hydejack's source files.
 
 The downloaded zip contains a read-only key for a private GitHub repository.
-It is located at `<dowloaded zip>/.ssh/hydejack_pro_customers`.
+It is located at `<dowloaded zip>/.ssh/hydejack_8_pro`.
 You have to copy the key file to `~/.ssh` (or wherever your SSH keys are located), e.g.:
 
 ~~~bash
-$ cp ~/Downloads/hydejack-pro-v8.0.0-beta.10/.ssh/hydejack_pro_customers ~/.ssh/
+$ cp ~/Downloads/hydejack-pro-v8.0.0/.ssh/hydejack_8_pro ~/.ssh/
 ~~~
 
 It is required that your private key files are NOT accessible by others, e.g.:
 
 ~~~bash
-$ chmod 600 ~/.ssh/hydejack_pro_customers
+$ chmod 600 ~/.ssh/hydejack_8_pro
 ~~~
 
 Then add the following to `.ssh/config`:
@@ -213,13 +205,13 @@ Then add the following to `.ssh/config`:
 Host hydejack
 	HostName github.com
 	IdentitiesOnly yes
-	IdentityFile ~/.ssh/hydejack_pro_customers
+	IdentityFile ~/.ssh/hydejack_8_pro
 ~~~
 
 Next, open `Gemfile` in your Jekyll repository and add:
 
 ~~~ruby
-gem "jekyll-theme-hydejack-pro", git: 'git@hydejack:qwtel/hydejack-pro.git', branch: 'gem-pro'
+gem "jekyll-theme-hydejack-pro", git: 'git@hydejack:qwtel/hydejack-8-pro.git'
 ~~~
 
 In your `_config.yml`, add:
@@ -255,8 +247,6 @@ and point your browser to <http://localhost:4000> to see Hydejack in action.
 
 
 [upgrade]: #upgrade
-[v5to6]: #from-hydejack-v5
-[v6to6]: #from-hydejack-v6
 
 
 
@@ -664,7 +654,7 @@ author:
   social:
     email:    mail@qwtel.com
     rss:      {{ site.url }}{{ site.baseurl }}/feed.xml # make sure you provide an absolute URL
-    download: https://github.com/qwtel/hydejack/archive/v8.0.0-beta.10.zip
+    download: https://github.com/qwtel/hydejack/archive/v8.0.0.zip
 ~~~
 
 
