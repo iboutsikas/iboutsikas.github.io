@@ -5,8 +5,20 @@ description: >
   This chapter covers advanced topics, such as offline support and custom JS builds. Codings skills are recommended.
 hide_description: true
 redirect_from:
-  - /docs/latest/advanced/
   - /docs/advanced/
+  - /docs/latest/advanced/
+  - /docs/7.0.0/advanced/
+  - /docs/7.0.1/advanced/
+  - /docs/7.1.0/advanced/
+  - /docs/7.1.1/advanced/
+  - /docs/7.2.0/advanced/
+  - /docs/7.3.0/advanced/
+  - /docs/7.4.0/advanced/
+  - /docs/7.4.1/advanced/
+  - /docs/7.4.2/advanced/
+  - /docs/7.5.0/advanced/
+  - /docs/7.5.1/advanced/
+  - /docs/7.5.2/advanced/
 ---
 
 This chapter covers advanced topics, such as offline support and custom JS builds. Codings skills are recommended.

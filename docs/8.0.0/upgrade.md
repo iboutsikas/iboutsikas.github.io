@@ -5,8 +5,20 @@ description: >
   This chapter shows how to upgrade Hydejack to a newer version. The method depends on how you've installed Hydejack.
 hide_description: true
 redirect_from:
-  - /docs/latest/upgrade/
   - /docs/upgrade/
+  - /docs/latest/upgrade/
+  - /docs/7.0.0/upgrade/
+  - /docs/7.0.1/upgrade/
+  - /docs/7.1.0/upgrade/
+  - /docs/7.1.1/upgrade/
+  - /docs/7.2.0/upgrade/
+  - /docs/7.3.0/upgrade/
+  - /docs/7.4.0/upgrade/
+  - /docs/7.4.1/upgrade/
+  - /docs/7.4.2/upgrade/
+  - /docs/7.5.0/upgrade/
+  - /docs/7.5.1/upgrade/
+  - /docs/7.5.2/upgrade/
 ---
 
 This chapter shows how to upgrade Hydejack to a newer version. The method depends on how you've installed Hydejack.

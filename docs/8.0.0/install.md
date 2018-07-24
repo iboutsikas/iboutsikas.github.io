@@ -7,8 +7,20 @@ description: >
   Alternatively, you can use the Ruby gem.
 hide_description: true
 redirect_from:
-  - /docs/latest/install/
   - /docs/install/
+  - /docs/latest/install/
+  - /docs/7.0.0/install/
+  - /docs/7.0.1/install/
+  - /docs/7.1.0/install/
+  - /docs/7.1.1/install/
+  - /docs/7.2.0/install/
+  - /docs/7.3.0/install/
+  - /docs/7.4.0/install/
+  - /docs/7.4.1/install/
+  - /docs/7.4.2/install/
+  - /docs/7.5.0/install/
+  - /docs/7.5.1/install/
+  - /docs/7.5.2/install/
 ---
 
 There are multiple ways of installing Hydejack.

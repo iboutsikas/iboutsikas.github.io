@@ -5,8 +5,20 @@ description: >
   This chapter covers the basics of content creation with Hydejack.
 hide_description: true
 redirect_from:
-  - /docs/latest/basics/
   - /docs/basics/
+  - /docs/latest/basics/
+  - /docs/7.0.0/basics/
+  - /docs/7.0.1/basics/
+  - /docs/7.1.0/basics/
+  - /docs/7.1.1/basics/
+  - /docs/7.2.0/basics/
+  - /docs/7.3.0/basics/
+  - /docs/7.4.0/basics/
+  - /docs/7.4.1/basics/
+  - /docs/7.4.2/basics/
+  - /docs/7.5.0/basics/
+  - /docs/7.5.1/basics/
+  - /docs/7.5.2/basics/
 ---
 
 This chapter covers the basics of content creation with Hydejack.

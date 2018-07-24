@@ -2,8 +2,20 @@
 layout: page
 title: Documentation
 redirect_from:
-  - /docs/latest/print/
   - /docs/print/
+  - /docs/latest/print/
+  - /docs/7.0.0/print/
+  - /docs/7.0.1/print/
+  - /docs/7.1.0/print/
+  - /docs/7.1.1/print/
+  - /docs/7.2.0/print/
+  - /docs/7.3.0/print/
+  - /docs/7.4.0/print/
+  - /docs/7.4.1/print/
+  - /docs/7.4.2/print/
+  - /docs/7.5.0/print/
+  - /docs/7.5.1/print/
+  - /docs/7.5.2/print/
 sitemap: false
 ---
 

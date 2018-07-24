@@ -5,8 +5,20 @@ description: >
   This chapters shows how to prepare your Hydejack site for a production build and deployment on 3rd party hosting providers.
 hide_description: true
 redirect_from:
-  - /docs/latest/build/
   - /docs/build/
+  - /docs/latest/build/
+  - /docs/7.0.0/build/
+  - /docs/7.0.1/build/
+  - /docs/7.1.0/build/
+  - /docs/7.1.1/build/
+  - /docs/7.2.0/build/
+  - /docs/7.3.0/build/
+  - /docs/7.4.0/build/
+  - /docs/7.4.1/build/
+  - /docs/7.4.2/build/
+  - /docs/7.5.0/build/
+  - /docs/7.5.1/build/
+  - /docs/7.5.2/build/
 ---
 
 This chapters shows how to prepare your Hydejack site for a production build and deployment on 3rd party hosting providers.

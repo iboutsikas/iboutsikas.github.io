@@ -7,8 +7,20 @@ description: >
   so that your content remains compatible with other Jekyll themes.
 hide_description: true
 redirect_from:
-  - /docs/latest/writing/
   - /docs/writing/
+  - /docs/latest/writing/
+  - /docs/7.0.0/writing/
+  - /docs/7.0.1/writing/
+  - /docs/7.1.0/writing/
+  - /docs/7.1.1/writing/
+  - /docs/7.2.0/writing/
+  - /docs/7.3.0/writing/
+  - /docs/7.4.0/writing/
+  - /docs/7.4.1/writing/
+  - /docs/7.4.2/writing/
+  - /docs/7.5.0/writing/
+  - /docs/7.5.1/writing/
+  - /docs/7.5.2/writing/
 ---
 
 Hydejack offers a few additional features to markup your content.

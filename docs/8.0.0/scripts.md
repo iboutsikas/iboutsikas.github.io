@@ -6,8 +6,20 @@ description: >
   Embedding is ideal for one-off scripts, while global scripts are loaded on every page.
 hide_description: true
 redirect_from:
-  - /docs/latest/scripts/
   - /docs/scripts/
+  - /docs/latest/scripts/
+  - /docs/7.0.0/scripts/
+  - /docs/7.0.1/scripts/
+  - /docs/7.1.0/scripts/
+  - /docs/7.1.1/scripts/
+  - /docs/7.2.0/scripts/
+  - /docs/7.3.0/scripts/
+  - /docs/7.4.0/scripts/
+  - /docs/7.4.1/scripts/
+  - /docs/7.4.2/scripts/
+  - /docs/7.5.0/scripts/
+  - /docs/7.5.1/scripts/
+  - /docs/7.5.2/scripts/
 ---
 
 There are two ways of adding third party scripts.

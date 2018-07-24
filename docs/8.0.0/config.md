@@ -5,8 +5,20 @@ description: >
   This chapter covers the many configuration options of Hydejack, allowing you to tailor it to your needs.
 hide_description: true
 redirect_from:
-  - /docs/latest/config/
   - /docs/config/
+  - /docs/latest/config/
+  - /docs/7.0.0/config/
+  - /docs/7.0.1/config/
+  - /docs/7.1.0/config/
+  - /docs/7.1.1/config/
+  - /docs/7.2.0/config/
+  - /docs/7.3.0/config/
+  - /docs/7.4.0/config/
+  - /docs/7.4.1/config/
+  - /docs/7.4.2/config/
+  - /docs/7.5.0/config/
+  - /docs/7.5.1/config/
+  - /docs/7.5.2/config/
 ---
 
 Once Jekyll is running, you can start with basic configuration by adding various entries to `_config.yml`. Besides these descriptions, you can also read the [annotated config file](https://github.com/qwtel/hydejack/blob/v8/_config.yml).
