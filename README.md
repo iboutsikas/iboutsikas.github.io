@@ -168,7 +168,7 @@ This table below shows what's included in each version:
 | Support[^1]            | No             | No       |
 | Price                  | Free           | $59      |
 | | [**Download**][kit] | [**Buy PRO**][buy]{:.btn.btn-primary} |
-{:.stretch-table}
+{:.stretch-table.dl-table}
 
 [^1]: You MAY open an issue on GitHub, but no response and/or fix is guaranteed.
       You understand that using Jekyll requires technical know-how and is not comparable to Wordpress in terms of ease of use. Please use the free version to confirm that Hydejack works for you. For details, see the [PRO] license.
