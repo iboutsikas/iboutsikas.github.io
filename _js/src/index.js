@@ -30,3 +30,18 @@ import "./katex";
 import "./cookies-banner";
 
 smoothscroll.polyfill();
+
+document.getElementById("_dark").addEventListener("click", () => {
+  if (document.body.classList.contains("dark-mode")) {
+    document.body.classList.remove("dark-mode");
+  } else {
+    document.body.classList.add("dark-mode");
+  }
+});
+
+// function setupLoading(navbarEl) {
+//   const template = document.getElementById("_darkmode-template");
+//   const darkmode = document.importNode(template.content, true);
+//   navbarEl.appendChild(darkmode);
+//   return navbarEl.lastElementChild;
+// }

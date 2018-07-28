@@ -3,7 +3,7 @@ description: >
   There are two versions of Hydejack: The free version includes basic blogging functionality,
   while the PRO version includes additional features for professionals.
 hide_description: true
-image: /assets/img/hydejack-8.jpg
+image: /assets/img/hydejack-8.png
 menu: true
 order: 7
 redirect_from: /about/
@@ -26,6 +26,7 @@ This table below shows what's included in each version:
 | [Welcome]              |                | &#x2714; |
 | [Newsletter Box][news] |                | &#x2714; |
 | [Custom Forms][forms]  |                | &#x2714; |
+| Dark Mode              |                | &#x2714; |
 | No Hydejack Branding   |                | &#x2714; |
 | License                | [GPL-3.0][lic] | [PRO]    |
 | Source                 | [GitHub][src]  | Included |
@@ -46,7 +47,7 @@ This table below shows what's included in each version:
 [forms]: forms-by-example.md
 
 [features]: README.md#features
-[news]: README.md#newsletter-subscription-box
+[news]: README.md#build-an-audience
 [syntax]: README.md#syntax-highlighting
 [latex]: hydejack/_posts/2018-06-01-example-content-iii.md#math
 

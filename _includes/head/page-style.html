@@ -44,6 +44,11 @@
     border-color: darken({{ color }}, 7.5%);
   }
 
+  body.dark-mode {
+    --body-bg: #{hsl(hue({{ theme_color }}), 12.5%, 20%)};
+    --border-color: #{hsl(hue({{ theme_color }}), 12.5%, 25%)};
+  }
+
   ::selection {
     color: #fff;
     background: {{ color }};
@@ -53,6 +58,18 @@
     color: #fff;
     background: {{ color }};
   }
-{% endcapture %}
-{{ page_style | scssify }}
+{% endcapture %}{{ page_style | scssify }}
 </style>
+
+{% if site.hydejack.dark_mode %}
+<script>
+(function(w, d) {
+  var h = new Date().getHours();
+  if (h <= {{ site.hydejack.dark_mode.sunrise | default:"6" }} || h >= {{ site.hydejack.dark_mode.sunset | default:"18" }}) {
+    document.addEventListener('DOMContentLoaded', function () {
+      d.body.className += ' dark-mode';
+    });
+  }
+})(window, document);
+</script>
+{% endif %}

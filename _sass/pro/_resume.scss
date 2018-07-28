@@ -26,7 +26,7 @@
   }
 
   .bc {
-    color: $body-color;
+    color: var(--body-color);
   }
 
   .bold {
@@ -41,11 +41,11 @@
   }
 
   .tag {
-    border: 1px solid $border-color;
+    border: 1px solid var(--border-color);
     display: inline-block;
     margin: .25rem .125rem;
     padding: .125rem .25rem;
-    color: $gray;
+    color: var(--gray);
     line-height: 1.4;
   }
 
@@ -55,7 +55,7 @@
 
   .symbol {
     float: right;
-    color: #ddd;
+    color: #ddd; // TODO
     margin-top: 4px;
     margin-left: .5rem;
   }
