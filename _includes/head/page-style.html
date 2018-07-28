@@ -60,16 +60,3 @@
   }
 {% endcapture %}{{ page_style | scssify }}
 </style>
-
-{% if site.hydejack.dark_mode %}
-<script>
-(function(w, d) {
-  var h = new Date().getHours();
-  if (h <= {{ site.hydejack.dark_mode.sunrise | default:"6" }} || h >= {{ site.hydejack.dark_mode.sunset | default:"18" }}) {
-    document.addEventListener('DOMContentLoaded', function () {
-      d.body.className += ' dark-mode';
-    });
-  }
-})(window, document);
-</script>
-{% endif %}

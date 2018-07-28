@@ -9,7 +9,7 @@
     flex-wrap: wrap;
 
     &::after {
-      @include clearfix();
+      @extend .clearfix;
     }
   }
 
@@ -37,6 +37,7 @@
   }
 
   .project-card {
+    @extend .color-transition;
     width: 100%;
     color: var(--gray-text);
     background-color: var(--gray-bg);

@@ -1,4 +1,4 @@
-// # src / index.js
+// # src / dark-mode.js
 // Copyright (c) 2018 Florian Klampfer <https://qwtel.com/>
 //
 // This program is free software: you can redistribute it and/or modify
@@ -14,27 +14,20 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import "@webcomponents/webcomponentsjs";
-import "intersection-observer";
-import "web-animations-js";
-import smoothscroll from "smoothscroll-polyfill";
-import "../lib/request-idle-callback";
+import { importTemplate } from "./common";
 
-import "../lib/modernizr-custom";
-import "../lib/version";
+requestIdleCallback(() => {
+  const darkMode = importTemplate("_dark-mode-template");
+  if (darkMode) {
+    const navbarEl = document.querySelector("#_navbar > .content > .nav-btn-bar");
+    navbarEl.appendChild(darkMode);
 
-import "./images";
-import "./drawer";
-import "./push-state";
-import "./katex";
-import "./dark-mode";
-import "./cookies-banner";
-
-smoothscroll.polyfill();
-
-// function setupLoading(navbarEl) {
-//   const template = document.getElementById("_darkmode-template");
-//   const darkmode = document.importNode(template.content, true);
-//   navbarEl.appendChild(darkmode);
-//   return navbarEl.lastElementChild;
-// }
+    document.getElementById("_dark-mode").addEventListener("click", () => {
+      if (document.body.classList.contains("dark-mode")) {
+        document.body.classList.remove("dark-mode");
+      } else {
+        document.body.classList.add("dark-mode");
+      }
+    });
+  }
+});
