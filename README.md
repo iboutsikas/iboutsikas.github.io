@@ -6,6 +6,7 @@ selected_projects:
   - _projects/hy-push-state.md
 more_projects: projects.md
 selected_posts:
+  - hydejack/_posts/2018-06-30-introducing-hydejack-8.md
   - hydejack/_posts/2018-06-01-example-content-iii.md
   - hydejack/_posts/2017-11-23-example-content-ii.md
   - hydejack/_posts/2017-11-17-hydejacks-new-design.md
@@ -16,7 +17,7 @@ permalink: /
 
 # Hydejack
 
-> "Best Jekyll Theme by a Mile"
+The "Best Jekyll Theme by a Mile".
 {:.lead}
 
 ![Screenshot](assets/img/hydejack-8.png){:.lead srcset="/assets/img/hydejack-8.png 1920w, /assets/img/hydejack-8@0,5x.png 960w, /assets/img/hydejack-8@0,25x.png 480w" data-width="1920" data-height="1080"}
@@ -35,7 +36,7 @@ There are two versions of **Hydejack**: The base version is free, while features
 [**Buy PRO**][buy]{:.btn.btn-primary}
 
 
-## The Basics of Blogging
+## A Free Blogging Theme
 **Hydejack** started out as a free blogging theme for Jekyll — and continues to be so.
 
 <!--posts-->
@@ -162,7 +163,7 @@ This table below shows what's included in each version:
 | [Welcome]              |                | &#x2714; |
 | [Newsletter Box][news] |                | &#x2714; |
 | [Custom Forms][forms]  |                | &#x2714; |
-| Dark Mode              |                | &#x2714; |
+| Dark Mode (coming soon)|                | &#x2714; |
 | No Hydejack Branding   |                | &#x2714; |
 | License                | [GPL-3.0][lic] | [PRO]    |
 | Source                 | [GitHub][src]  | Included |
