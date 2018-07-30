@@ -13,12 +13,5 @@
         ]).then(function f() { d.body.classList.add('font-active'); }, function() {});
       });
     {% endunless %}
-    {% if site.hydejack.dark_mode.dynamic %}
-      d.addEventListener('DOMContentLoaded', function () {
-        var h = new Date().getHours();
-        var m = h <= {{ site.hydejack.dark_mode.sunrise | default:"6" }} || h >= {{ site.hydejack.dark_mode.sunset | default:"18" }} ? 'add' : 'remove';
-        d.body.classList[m]('dark-mode');
-      });
-    {% endif %}
   }(window, document);
 </script>

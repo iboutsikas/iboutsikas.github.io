@@ -22,6 +22,8 @@ requestIdleCallback(() => {
     const navbarEl = document.querySelector("#_navbar > .content > .nav-btn-bar");
     navbarEl.appendChild(darkMode);
 
+    document.body.classList.remove("no-color-transition");
+
     document.getElementById("_dark-mode").addEventListener("click", () => {
       if (document.body.classList.contains("dark-mode")) {
         document.body.classList.remove("dark-mode");
