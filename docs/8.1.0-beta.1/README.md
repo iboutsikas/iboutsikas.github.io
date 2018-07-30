@@ -5,7 +5,7 @@ description: >
 hide_description: true
 menu: true
 order: 5
-permalink: /docs/8.1.0-beta.0/
+permalink: /docs/8.1.0-beta.1/
 redirect_from:
   - /docs/
   - /docs/latest/
