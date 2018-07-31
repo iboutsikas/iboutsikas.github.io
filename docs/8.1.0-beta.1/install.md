@@ -21,6 +21,7 @@ redirect_from:
   - /docs/7.5.0/install/
   - /docs/7.5.1/install/
   - /docs/7.5.2/install/
+  - /docs/8.0.0/install/
 ---
 
 There are multiple ways of installing Hydejack.

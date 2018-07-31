@@ -21,6 +21,7 @@ redirect_from:
   - /docs/7.5.0/writing/
   - /docs/7.5.1/writing/
   - /docs/7.5.2/writing/
+  - /docs/8.0.0/writing/
 ---
 
 Hydejack offers a few additional features to markup your content.

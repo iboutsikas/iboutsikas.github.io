@@ -19,6 +19,7 @@ redirect_from:
   - /docs/7.5.0/build/
   - /docs/7.5.1/build/
   - /docs/7.5.2/build/
+  - /docs/8.0.0/build/
 ---
 
 This chapters shows how to prepare your Hydejack site for a production build and deployment on 3rd party hosting providers.

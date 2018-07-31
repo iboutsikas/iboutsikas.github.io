@@ -19,6 +19,7 @@ redirect_from:
   - /docs/7.5.0/upgrade/
   - /docs/7.5.1/upgrade/
   - /docs/7.5.2/upgrade/
+  - /docs/8.0.0/upgrade/
 ---
 
 This chapter shows how to upgrade Hydejack to a newer version. The method depends on how you've installed Hydejack.

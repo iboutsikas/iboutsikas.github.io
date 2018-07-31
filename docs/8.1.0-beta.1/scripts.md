@@ -20,6 +20,7 @@ redirect_from:
   - /docs/7.5.0/scripts/
   - /docs/7.5.1/scripts/
   - /docs/7.5.2/scripts/
+  - /docs/8.0.0/scripts/
 ---
 
 There are two ways of adding third party scripts.

@@ -19,6 +19,7 @@ redirect_from:
   - /docs/7.5.0/advanced/
   - /docs/7.5.1/advanced/
   - /docs/7.5.2/advanced/
+  - /docs/8.0.0/advanced/
 ---
 
 This chapter covers advanced topics, such as offline support and custom JS builds. Codings skills are recommended.

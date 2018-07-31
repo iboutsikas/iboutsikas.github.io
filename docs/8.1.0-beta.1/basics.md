@@ -19,6 +19,7 @@ redirect_from:
   - /docs/7.5.0/basics/
   - /docs/7.5.1/basics/
   - /docs/7.5.2/basics/
+  - /docs/8.0.0/basics/
 ---
 
 This chapter covers the basics of content creation with Hydejack.

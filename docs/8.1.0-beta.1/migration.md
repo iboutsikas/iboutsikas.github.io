@@ -19,6 +19,7 @@ redirect_from:
   - /docs/7.5.0/migration/
   - /docs/7.5.1/migration/
   - /docs/7.5.2/migration/
+  - /docs/8.0.0/migration/
 ---
 
 This documents shows how to upgrade Hydejack from previous versions (v5) in a step-by-step manner.
