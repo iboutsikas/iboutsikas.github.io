@@ -272,7 +272,7 @@ $line-height-base:            $root-line-height !default;
 
 $small-font-size:             80% !default;
 
-$text-muted:                  var(--gray);
+$text-muted:                  var(--text-muted);
 
 // $blockquote-small-color:      $gray-600 !default;
 // $blockquote-font-size:        ($font-size-base * 1.25) !default;
@@ -367,7 +367,7 @@ $btn-focus-box-shadow:        $input-btn-focus-box-shadow !default;
 $btn-disabled-opacity:        .65 !default;
 $btn-active-box-shadow:       .1em .1em .25rem rgba(#000,.25) !default;
 
-$btn-link-disabled-color:     var(--gray);
+$btn-link-disabled-color:     var(--text-muted);
 
 $btn-block-spacing-y:         .5rem !default;
 
@@ -411,7 +411,7 @@ $input-focus-color:                     $input-color !default;
 $input-focus-width:                     $input-btn-focus-width !default;
 $input-focus-box-shadow:                $input-btn-focus-box-shadow !default;
 
-$input-placeholder-color:               var(--gray);
+$input-placeholder-color:               var(--text-muted);
 
 $input-height-border:                   $input-border-width * 2 !default;
 
