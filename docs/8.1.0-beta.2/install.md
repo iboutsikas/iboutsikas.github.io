@@ -6,33 +6,6 @@ description: >
   The easiest and cleanest way is via the Starter Kit.
   Alternatively, you can use the Ruby gem.
 hide_description: true
-redirect_from:
-  - /docs/install/
-  - /docs/installation/
-  - /docs/latest/install/
-  - /docs/6.0.0/installation/
-  - /docs/6.1.0/installation/
-  - /docs/6.1.1/installation/
-  - /docs/6.2.0/installation/
-  - /docs/6.3.0/installation/
-  - /docs/6.4.0/installation/
-  - /docs/6.4.1/installation/
-  - /docs/6.5.0/installation/
-  - /docs/6.6.0/installation/
-  - /docs/7.0.0/install/
-  - /docs/7.0.1/install/
-  - /docs/7.1.0/install/
-  - /docs/7.1.1/install/
-  - /docs/7.2.0/install/
-  - /docs/7.3.0/install/
-  - /docs/7.4.0/install/
-  - /docs/7.4.1/install/
-  - /docs/7.4.2/install/
-  - /docs/7.5.0/install/
-  - /docs/7.5.1/install/
-  - /docs/7.5.2/install/
-  - /docs/8.0.0/install/
-  - /docs/8.0.0-beta.7/install/
 ---
 
 There are multiple ways of installing Hydejack.

@@ -6,32 +6,6 @@ description: >
   Don't worry, these are merely CSS classes added with kramdown's `{:...}` syntax,
   so that your content remains compatible with other Jekyll themes.
 hide_description: true
-redirect_from:
-  - /docs/writing/
-  - /docs/latest/writing/
-  - /docs/6.0.0/writing/
-  - /docs/6.1.0/writing/
-  - /docs/6.1.1/writing/
-  - /docs/6.2.0/writing/
-  - /docs/6.3.0/writing/
-  - /docs/6.4.0/writing/
-  - /docs/6.4.1/writing/
-  - /docs/6.5.0/writing/
-  - /docs/6.6.0/writing/
-  - /docs/7.0.0/writing/
-  - /docs/7.0.1/writing/
-  - /docs/7.1.0/writing/
-  - /docs/7.1.1/writing/
-  - /docs/7.2.0/writing/
-  - /docs/7.3.0/writing/
-  - /docs/7.4.0/writing/
-  - /docs/7.4.1/writing/
-  - /docs/7.4.2/writing/
-  - /docs/7.5.0/writing/
-  - /docs/7.5.1/writing/
-  - /docs/7.5.2/writing/
-  - /docs/8.0.0/writing/
-  - /docs/8.0.0-beta.7/writing/
 ---
 
 Hydejack offers a few additional features to markup your content.

@@ -6,7 +6,6 @@ hide_description: true
 image: /assets/img/hydejack-8.png
 menu: true
 order: 7
-redirect_from: /about/
 ---
 
 # Download

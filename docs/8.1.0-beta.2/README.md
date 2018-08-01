@@ -6,21 +6,6 @@ hide_description: true
 menu: true
 order: 5
 permalink: /docs/8.1.0-beta.2/
-redirect_from:
-  - /docs/
-  - /docs/latest/
-  - /docs/7.0.0/
-  - /docs/7.0.1/
-  - /docs/7.1.0/
-  - /docs/7.1.1/
-  - /docs/7.2.0/
-  - /docs/7.3.0/
-  - /docs/7.4.0/
-  - /docs/7.4.1/
-  - /docs/7.4.2/
-  - /docs/7.5.0/
-  - /docs/7.5.1/
-  - /docs/7.5.2/
 ---
 
 Here you should be able to find everything you need to know to accomplish the most common tasks when blogging with Hydejack.
