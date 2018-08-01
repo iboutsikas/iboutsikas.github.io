@@ -6,7 +6,17 @@ description: >
 hide_description: true
 redirect_from:
   - /docs/config/
+  - /docs/configuration/
   - /docs/latest/config/
+  - /docs/6.0.0/configuration/
+  - /docs/6.1.0/configuration/
+  - /docs/6.1.1/configuration/
+  - /docs/6.2.0/configuration/
+  - /docs/6.3.0/configuration/
+  - /docs/6.4.0/configuration/
+  - /docs/6.4.1/configuration/
+  - /docs/6.5.0/configuration/
+  - /docs/6.6.0/configuration/
   - /docs/7.0.0/config/
   - /docs/7.0.1/config/
   - /docs/7.1.0/config/
@@ -20,6 +30,7 @@ redirect_from:
   - /docs/7.5.1/config/
   - /docs/7.5.2/config/
   - /docs/8.0.0/config/
+  - /docs/8.0.0-beta.7/config/
 ---
 
 Once Jekyll is running, you can start with basic configuration by adding various entries to `_config.yml`. Besides these descriptions, you can also read the [annotated config file](https://github.com/qwtel/hydejack/blob/v8/_config.yml).

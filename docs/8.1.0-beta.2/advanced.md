@@ -7,6 +7,15 @@ hide_description: true
 redirect_from:
   - /docs/advanced/
   - /docs/latest/advanced/
+  - /docs/6.0.0/advanced/
+  - /docs/6.1.0/advanced/
+  - /docs/6.1.1/advanced/
+  - /docs/6.2.0/advanced/
+  - /docs/6.3.0/advanced/
+  - /docs/6.4.0/advanced/
+  - /docs/6.4.1/advanced/
+  - /docs/6.5.0/advanced/
+  - /docs/6.6.0/advanced/
   - /docs/7.0.0/advanced/
   - /docs/7.0.1/advanced/
   - /docs/7.1.0/advanced/
@@ -20,6 +29,7 @@ redirect_from:
   - /docs/7.5.1/advanced/
   - /docs/7.5.2/advanced/
   - /docs/8.0.0/advanced/
+  - /docs/8.0.0-beta.7/advanced/
 ---
 
 This chapter covers advanced topics, such as offline support and custom JS builds. Codings skills are recommended.

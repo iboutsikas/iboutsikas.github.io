@@ -7,6 +7,15 @@ hide_description: true
 redirect_from:
   - /docs/basics/
   - /docs/latest/basics/
+  - /docs/6.0.0/basics/
+  - /docs/6.1.0/basics/
+  - /docs/6.1.1/basics/
+  - /docs/6.2.0/basics/
+  - /docs/6.3.0/basics/
+  - /docs/6.4.0/basics/
+  - /docs/6.4.1/basics/
+  - /docs/6.5.0/basics/
+  - /docs/6.6.0/basics/
   - /docs/7.0.0/basics/
   - /docs/7.0.1/basics/
   - /docs/7.1.0/basics/
@@ -20,6 +29,7 @@ redirect_from:
   - /docs/7.5.1/basics/
   - /docs/7.5.2/basics/
   - /docs/8.0.0/basics/
+  - /docs/8.0.0-beta.7/basics/
 ---
 
 This chapter covers the basics of content creation with Hydejack.

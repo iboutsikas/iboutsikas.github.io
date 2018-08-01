@@ -7,6 +7,15 @@ hide_description: true
 redirect_from:
   - /docs/migration/
   - /docs/latest/migration/
+  - /docs/6.0.0/migration/
+  - /docs/6.1.0/migration/
+  - /docs/6.1.1/migration/
+  - /docs/6.2.0/migration/
+  - /docs/6.3.0/migration/
+  - /docs/6.4.0/migration/
+  - /docs/6.4.1/migration/
+  - /docs/6.5.0/migration/
+  - /docs/6.6.0/migration/
   - /docs/7.0.0/migration/
   - /docs/7.0.1/migration/
   - /docs/7.1.0/migration/
@@ -20,6 +29,7 @@ redirect_from:
   - /docs/7.5.1/migration/
   - /docs/7.5.2/migration/
   - /docs/8.0.0/migration/
+  - /docs/8.0.0-beta.7/migration/
 ---
 
 This documents shows how to upgrade Hydejack from previous versions (v5) in a step-by-step manner.
