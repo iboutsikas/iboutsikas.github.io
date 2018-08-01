@@ -27,6 +27,8 @@ This table below shows what's included in each version:
 | [Newsletter Box][news] |                | &#x2714; |
 | [Custom Forms][forms]  |                | &#x2714; |
 | Dark Mode (coming soon)|                | &#x2714; |
+| Cookie Banner          |                | &#x2714; |
+| Offline Support        |                | &#x2714; |
 | No Hydejack Branding   |                | &#x2714; |
 | License                | [GPL-3.0][lic] | [PRO]    |
 | Source                 | [GitHub][src]  | Included |
