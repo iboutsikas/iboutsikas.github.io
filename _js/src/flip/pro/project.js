@@ -6,7 +6,7 @@ import "core-js/fn/function/bind";
 import { fromEvent, of, zip } from "rxjs";
 import { tap, finalize, filter, switchMap } from "rxjs/operators";
 
-import { animate, empty } from "../common";
+import { animate, empty } from "../../common";
 
 export function setupFLIPProject(start$, ready$, fadeIn$, { animationMain, settings }) {
   if (!animationMain) return start$;

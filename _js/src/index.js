@@ -27,8 +27,8 @@ import "./images";
 import "./drawer";
 import "./push-state";
 import "./katex";
-import "./dark-mode";
-import "./cookies-banner";
+import "./pro/dark-mode";
+import "./pro/cookies-banner";
 
 smoothscroll.polyfill();
 
