@@ -11,20 +11,18 @@ const execFile = promisify(require("child_process").execFile);
 const readFile = promisify(fs.readFile);
 const writeFile = promisify(fs.writeFile);
 
-const version = require("../package.json").version;
-
 const ENC = "utf-8";
 
 const DOCS = [
-  resolve(`./docs/${version}/README.md`),
-  resolve(`./docs/${version}/install.md`),
-  resolve(`./docs/${version}/upgrade.md`),
-  resolve(`./docs/${version}/config.md`),
-  resolve(`./docs/${version}/basics.md`),
-  resolve(`./docs/${version}/writing.md`),
-  resolve(`./docs/${version}/scripts.md`),
-  resolve(`./docs/${version}/build.md`),
-  resolve(`./docs/${version}/advanced.md`),
+  resolve(`./docs/README.md`),
+  resolve(`./docs/install.md`),
+  resolve(`./docs/upgrade.md`),
+  resolve(`./docs/config.md`),
+  resolve(`./docs/basics.md`),
+  resolve(`./docs/writing.md`),
+  resolve(`./docs/scripts.md`),
+  resolve(`./docs/build.md`),
+  resolve(`./docs/advanced.md`),
   // resolve('./LICENSE.md'),
   // resolve('./NOTICE.md'),
   // resolve('./CHANGELOG.md'),
@@ -42,7 +40,7 @@ sitemap: false
 const INTRO_POSTFIX = `
 **NOTE**: This document was created using Hydejack's print layout.
 If you prefer to read it the documentation in your browser,
-you can find it [here]({{ site.baseurl }}{% link docs/${version}/README.md %}).
+you can find it [here]({{ site.baseurl }}{% link docs/README.md %}).
 {:.message}
 
 ## Table of Contents
@@ -132,7 +130,7 @@ function sep(title) {
         return txt + content;
       }, FRONT_MATTER);
 
-    await writeFile(resolve(`./docs/${version}/print.md`), text, ENC);
+    await writeFile(resolve(`./docs/print.md`), text, ENC);
 
     process.exit(0);
   } catch (e) {

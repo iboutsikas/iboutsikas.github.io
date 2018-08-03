@@ -21,7 +21,7 @@ or [upgrades for pro buyers](#pro-version).)
 
 **NOTE**: This document was created using Hydejack's print layout.
 If you prefer to read it the documentation in your browser,
-you can find it [here]({{ site.baseurl }}{% link docs/8.1.0-beta.2/README.md %}).
+you can find it [here]({{ site.baseurl }}{% link docs/README.md %}).
 {:.message}
 
 ## Table of Contents
@@ -1000,7 +1000,7 @@ title:  About
 ### Adding a cover page
 Hydejack 8 introduces cover pages, i.e. pages witht he sidebar opened, so that it spans the entire screen. This feature is intended for landing pages. To enable it on a page, simply add `cover: true` to the front matter.
 
-![Cover page example](../../assets/img/hydejack-8@0,5x.jpg){:data-width="960" data-height="540"}
+![Cover page example](../../assets/img/blog/hydejack-8@0,5x.png){:data-width="960" data-height="540"}
 
 
 ### Customization

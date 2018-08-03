@@ -5,7 +5,7 @@ description: >
 hide_description: true
 menu: true
 order: 5
-permalink: /docs/8.1.0-beta.2/
+permalink: /docs/
 ---
 
 Here you should be able to find everything you need to know to accomplish the most common tasks when blogging with Hydejack.
@@ -46,6 +46,6 @@ or [upgrades for pro buyers](upgrade.md#pro-version).
 [scripts]: scripts.md
 [build]: build.md
 [advanced]: advanced.md
-[LICENSE]: ../../LICENSE.md
-[NOTICE]: ../../NOTICE.md
-[CHANGELOG]: ../../CHANGELOG.md
+[LICENSE]: ../LICENSE.md
+[NOTICE]: ../NOTICE.md
+[CHANGELOG]: ../CHANGELOG.md

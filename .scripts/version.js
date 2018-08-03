@@ -29,12 +29,10 @@ const FILES = [
   resolve("./_js/lib/version.js"),
   resolve("./assets/version.json"),
   resolve("./assets/js/sw.js"),
-  resolve(`./docs/${vPrev}/README.md`),
   resolve("./CHANGELOG.md"),
   resolve("./download.md"),
   resolve("./README.md"),
   resolve("./thank-you.md"),
-  resolve("./_includes/my-scripts.html"),
 ];
 
 // <https://stackoverflow.com/a/45130990/870615>
