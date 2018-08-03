@@ -94,8 +94,6 @@ async function getFiles(dir) {
 
     await Promise.all([pUnlink, pFiles, pJSCSS]);
 
-    await Promise.all([rename(resolve(`./docs/${vPrev}`), resolve(`./docs/${vNext}`))]);
-
     process.exit(0);
   } catch (e) {
     console.error(e); // eslint-disable-line
