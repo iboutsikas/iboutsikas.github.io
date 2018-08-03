@@ -52,7 +52,7 @@ Using the Starter Kit has the advantage of not cluttering your blog repository.
 Additionally, it allows you to publish your site on GitHub Pages with a single `push`.
 
 If you have a GitHub account, fork the [hy-starter-kit](https://github.com/qwtel/hy-starter-kit) repository.
-Otherwise [download the source files](https://github.com/qwtel/hy-starter-kit/archive/v8.1.0-beta.2.zip)
+Otherwise [download the source files](https://github.com/qwtel/hy-starter-kit/archive/v8.1.0-beta.3.zip)
 and unzip them somewhere on your machine.
 
 **NOTE**: In addition to the docs here, you can follow the quick start guide in the starter kit.
@@ -176,7 +176,7 @@ For new installations only the `install` folder is relevant.
 Unzip the archive somewhere on your machine, then `cd` *into* the `install` folder, e.g.
 
 ~~~bash
-$ cd ~/Downloads/hydejack-pro-8.1.0-beta.2/install/
+$ cd ~/Downloads/hydejack-pro-8.1.0-beta.3/install/
 ~~~
 
 You can now continue with [Running locally](#running-locally).
@@ -190,7 +190,7 @@ It is located at `<dowloaded zip>/.ssh/hydejack_8_pro`.
 You have to copy the key file to `~/.ssh` (or wherever your SSH keys are located), e.g.:
 
 ~~~bash
-$ cp ~/Downloads/hydejack-pro-8.1.0-beta.2/.ssh/hydejack_8_pro ~/.ssh/
+$ cp ~/Downloads/hydejack-pro-8.1.0-beta.3/.ssh/hydejack_8_pro ~/.ssh/
 ~~~
 
 It is required that your private key files are NOT accessible by others, e.g.:
@@ -260,8 +260,8 @@ This chapter shows how to upgrade Hydejack to a newer version. The method depend
 
 
 
-**NOTE**: Before upgrading to v7+, make sure you've read the [CHANGELOG](../../CHANGELOG.md){:.heading.flip-title},
-especially the part about the [license change](../../CHANGELOG.md#license-change)!
+**NOTE**: Before upgrading to v7+, make sure you've read the [CHANGELOG](../CHANGELOG.md){:.heading.flip-title},
+especially the part about the [license change](../CHANGELOG.md#license-change)!
 {:.message}
 
 ### Via gem
@@ -285,7 +285,7 @@ Generally, you'll want to copy these files and folders:
 * `Gemfile.lock`
 
 and merge them with your existing folder. However, you'll also want to check out `_data` and `_config.yml` for any changes
-and read latest entries to the [CHANGELOG](../../CHANGELOG.md){:.heading.flip-title}.
+and read latest entries to the [CHANGELOG](../CHANGELOG.md){:.heading.flip-title}.
 
 **NOTE**: If you've modified any of Hydejack's internal files, your changes will most likely be overwritten
 and you have to apply them again.
@@ -416,7 +416,7 @@ google_fonts: "Roboto+Slab:700|Noto+Sans:400,400i,700,700i"
 The `google_fonts` key is the string necessary to fetch the fonts from Google.
 You can get it from the download page at [Google Fonts](https://fonts.google.com) after you've selected one or more fonts:
 
-![Where to get the google_fonts string](../../assets/img/docs/google-fonts.png){:data-width="600" data-height="398"}
+![Where to get the google_fonts string](../assets/img/docs/google-fonts.png){:data-width="600" data-height="398"}
 
 
 #### Using safe web fonts
@@ -654,7 +654,7 @@ author:
   social:
     email:    mail@qwtel.com
     rss:      {{ site.url }}{{ site.baseurl }}/feed.xml # make sure you provide an absolute URL
-    download: https://github.com/qwtel/hydejack/archive/v8.1.0-beta.2.zip
+    download: https://github.com/qwtel/hydejack/archive/v8.1.0-beta.3.zip
 ~~~
 
 
@@ -1000,7 +1000,7 @@ title:  About
 ### Adding a cover page
 Hydejack 8 introduces cover pages, i.e. pages witht he sidebar opened, so that it spans the entire screen. This feature is intended for landing pages. To enable it on a page, simply add `cover: true` to the front matter.
 
-![Cover page example](../../assets/img/blog/hydejack-8@0,5x.png){:data-width="960" data-height="540"}
+![Cover page example](../assets/img/blog/hydejack-8@0,5x.png){:data-width="960" data-height="540"}
 
 
 ### Customization
