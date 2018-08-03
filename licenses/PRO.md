@@ -1,10 +1,3 @@
----
-redirect_from:
-  - /docs/latest/pro-license/
-  - /docs/pro-license/
-  - /licenses/PRO-license/
----
-
 # PRO License
 
 ## License Summary
