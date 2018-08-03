@@ -4,6 +4,7 @@ title: Basics
 description: >
   This chapter covers the basics of content creation with Hydejack.
 hide_description: true
+last_modified_at: 2018-08-03
 ---
 
 This chapter covers the basics of content creation with Hydejack.

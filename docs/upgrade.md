@@ -4,6 +4,7 @@ title: Upgrade
 description: >
   This chapter shows how to upgrade Hydejack to a newer version. The method depends on how you've installed Hydejack.
 hide_description: true
+last_modified_at: 2018-08-03
 ---
 
 This chapter shows how to upgrade Hydejack to a newer version. The method depends on how you've installed Hydejack.

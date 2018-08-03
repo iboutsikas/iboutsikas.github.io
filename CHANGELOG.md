@@ -1,3 +1,7 @@
+---
+last_modified_at: 2018-08-03
+---
+
 # CHANGELOG
 
 ## v8.1.0-beta.2

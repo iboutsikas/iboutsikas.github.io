@@ -4,6 +4,7 @@ title: Advanced
 description: >
   This chapter covers advanced topics, such as offline support and custom JS builds. Codings skills are recommended.
 hide_description: true
+last_modified_at: 2018-08-03
 ---
 
 This chapter covers advanced topics, such as offline support and custom JS builds. Codings skills are recommended.
