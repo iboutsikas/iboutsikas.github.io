@@ -62,7 +62,7 @@ $green:   #28a745 !default;
 //   "gray-dark":  $gray-800
 // ), $colors);
 
-$primary:       #4fb1ba;
+$primary:       rgb(79,177,186);
 // $secondary:     $gray-600;
 $success:       $green !default;
 // $info:          $cyan !default;
@@ -399,14 +399,14 @@ $input-disabled-bg:                     var(--gray-bg);
 $input-color:                           $body-color;
 $input-border-color:                    $border-color;
 $input-border-width:                    $input-btn-border-width !default;
-$input-box-shadow:                      inset .1rem .1rem .25rem rgba(#000,.1);
+$input-box-shadow:                      inset .1rem .1rem .3rem rgba(#000,.15);
 
 $input-border-radius:                   0rem; // $border-radius !default;
 $input-border-radius-lg:                0rem; // $border-radius-lg !default;
 $input-border-radius-sm:                0rem; // $border-radius-sm !default;
 
 $input-focus-bg:                        $input-bg !default;
-$input-focus-border-color:              lighten($component-active-bg, 25%) !default;
+$input-focus-border-color:              $border-color;
 $input-focus-color:                     $input-color !default;
 $input-focus-width:                     $input-btn-focus-width !default;
 $input-focus-box-shadow:                $input-btn-focus-box-shadow !default;
