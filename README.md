@@ -13,7 +13,7 @@ selected_posts:
   - hyde/_posts/2012-02-07-example-content.md
 more_posts: posts.md
 permalink: /
-last_modified_at: 2018-08-03
+last_modified_at: 2018-08-18
 ---
 
 # Hydejack
