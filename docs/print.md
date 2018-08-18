@@ -52,7 +52,7 @@ Using the Starter Kit has the advantage of not cluttering your blog repository.
 Additionally, it allows you to publish your site on GitHub Pages with a single `push`.
 
 If you have a GitHub account, fork the [hy-starter-kit](https://github.com/qwtel/hy-starter-kit) repository.
-Otherwise [download the source files](https://github.com/qwtel/hy-starter-kit/archive/v8.1.0-beta.3.zip)
+Otherwise [download the source files](https://github.com/qwtel/hy-starter-kit/archive/v8.1.0.zip)
 and unzip them somewhere on your machine.
 
 **NOTE**: In addition to the docs here, you can follow the quick start guide in the starter kit.
@@ -176,7 +176,7 @@ For new installations only the `install` folder is relevant.
 Unzip the archive somewhere on your machine, then `cd` *into* the `install` folder, e.g.
 
 ~~~bash
-$ cd ~/Downloads/hydejack-pro-8.1.0-beta.3/install/
+$ cd ~/Downloads/hydejack-pro-8.1.0/install/
 ~~~
 
 You can now continue with [Running locally](#running-locally).
@@ -190,7 +190,7 @@ It is located at `<dowloaded zip>/.ssh/hydejack_8_pro`.
 You have to copy the key file to `~/.ssh` (or wherever your SSH keys are located), e.g.:
 
 ~~~bash
-$ cp ~/Downloads/hydejack-pro-8.1.0-beta.3/.ssh/hydejack_8_pro ~/.ssh/
+$ cp ~/Downloads/hydejack-pro-8.1.0/.ssh/hydejack_8_pro ~/.ssh/
 ~~~
 
 It is required that your private key files are NOT accessible by others, e.g.:
@@ -378,24 +378,17 @@ Set the fallback values in `_config.yml`, which are used should no other rule (p
 ~~~yml
 ## file: _config.yml
 accent_image: /assets/img/sidebar-bg.jpg
-accent_color: '#A85641'
+accent_color: rgb(79,177,186)
 ~~~
 
 **NOTE**: I recommend using a blurred image in order for the text to remain readable.
 If you save a blurred image as JPG, it will also drastically reduce its file size.
 {:.message}
 
-
 The `accent_image` property also accepts the special value `none` which will remove the default image.
 
-You can also provide a single color instead of an image like this:
-
-~~~yml
-## file: _config.yml
-accent_image:
-  background: '#202020' # provide a valid CSS background value
-  overlay:    false     # set to true if you want a dark overlay
-~~~
+Hydejack also has a `theme_color` property. When set, it will change the background color of the sidebar, as well as set the `theme_color` property in the Web App Manifest. In some browsers, such as Chrome on Android, this will change the color of the browser's UI components.
+The property can be overridden on a per-page basis, by setting it in the front matter.
 
 
 ### Changing fonts
@@ -405,9 +398,9 @@ The defaults are:
 
 ~~~yml
 ## file: _config.yml
-font:         "'Noto Sans', Helvetica, Arial, sans-serif"
-font_heading: "'Roboto Slab', Helvetica, Arial, sans-serif"
-google_fonts: "Roboto+Slab:700|Noto+Sans:400,400i,700,700i"
+font:         Noto Sans, Helvetica, Arial, sans-serif
+font_heading: Roboto Slab, Helvetica, Arial, sans-serif
+google_fonts: Roboto+Slab:700|Noto+Sans:400,400i,700,700i
 ~~~
 
 `font` and `font_heading` must be valid CSS `font-family` values. When using Google Fonts make sure they consist of at least two fonts
@@ -654,7 +647,7 @@ author:
   social:
     email:    mail@qwtel.com
     rss:      {{ site.url }}{{ site.baseurl }}/feed.xml # make sure you provide an absolute URL
-    download: https://github.com/qwtel/hydejack/archive/v8.1.0-beta.3.zip
+    download: https://github.com/qwtel/hydejack/archive/v8.1.0.zip
 ~~~
 
 
@@ -790,6 +783,27 @@ To build a completely new from, you can use [the same CSS classes as Bootstrap](
 
 [tinyletter]: https://tinyletter.com/
 
+
+### Enabling Dark Mode*
+Buyers of the PRO version have access to a dark-themed version of Hydejack.
+
+Dark mode can be enabled in `config.yml` under the `hydejack` key and has three settings and two adjustments:
+
+```yml
+hydejack:
+  dark_mode:
+    dynamic: true
+    sunrise: 6
+    sunset:  18
+    icon:    true
+    always:  false
+```
+
+Setting `dynamic`, will enable dark mode based on the client's local time (unlike location-based sunset calculations, this approach does not require a permission form the user). You can adjust `sunrise` and `sunset` to change when to show the light/dark theme.
+
+Setting `icon` will show a switch to alternate between the light and dark mode at the top of the page.
+
+Finally, setting `always` will cause dark mode to become the default theme at all times (combine with `dynamic: false`).
 
 
 
@@ -958,8 +972,7 @@ layout: list
 title:  Hyde
 slug:   hyde
 description: >
-  Hyde is a brazen two-column Jekyll](http://jekyllrb.com) theme
-  that pairs a prominent sidebar with uncomplicated content.
+  Hyde is a brazen two-column [Jekyll](http://jekyllrb.com) theme.
   It's based on [Poole](http://getpoole.com), the Jekyll butler.
 ---
 ~~~
@@ -1148,7 +1161,7 @@ screenshot:
     480w:    /assets/img/projects/hyde-v2@0,25x.jpg
 caption:     Hyde is a brazen two-column Jekyll theme.
 description: >
-  Hyde is a brazen two-column [Jekyll](http://jekyllrb.com) theme that pairs a prominent sidebar with uncomplicated content.
+  Hyde is a brazen two-column [Jekyll](http://jekyllrb.com) theme.
   It's based on [Poole](http://getpoole.com), the Jekyll butler.
 links:
   - title:   Demo
