@@ -31,10 +31,3 @@ import "./pro/dark-mode";
 import "./pro/cookies-banner";
 
 smoothscroll.polyfill();
-
-// function setupLoading(navbarEl) {
-//   const template = document.getElementById("_darkmode-template");
-//   const darkmode = document.importNode(template.content, true);
-//   navbarEl.appendChild(darkmode);
-//   return navbarEl.lastElementChild;
-// }
