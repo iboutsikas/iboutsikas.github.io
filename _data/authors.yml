@@ -13,10 +13,14 @@ qwtel:
 
     [**Download Free**][kit]
     -- or --
+    [![Deploy to Netlify][dtn]{:data-ignore=""}][nfy]{:.no-hover.no-mark}
+    -- or --
     [**Buy PRO**][buy]{:.btn.btn-primary}
 
-    [kit]: https://github.com/qwtel/hy-starter-kit/archive/v8.1.0-beta.3.zip
+    [kit]: https://github.com/qwtel/hy-starter-kit/archive/v8.1.0.zip
     [buy]: https://app.simplegoods.co/i/NATYVLYT
+    [nfy]: https://app.netlify.com/start/deploy?repository=https://github.com/qwtel/hydejack-starter-kit
+    [dtn]: https://www.netlify.com/img/deploy/button.svg
 
   # This photo will be used in the about section
   picture:
@@ -31,8 +35,8 @@ qwtel:
   # Rearrange to change the order in which they appear
   social:
     twitter:         qwtel
-    email:           mailto:mail@qwtel.com
-    github:          https://github.com/qwtel/hydejack/tree/v8
+    github:          https://github.com/qwtel/hydejack
+    email:           mail@qwtel.com
     download:        https://github.com/qwtel/hy-starter-kit/archive/v8.1.0.zip
 
 # Another author

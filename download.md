@@ -34,7 +34,7 @@ This table below shows what's included in each version:
 | Source                 | [GitHub][src]  | Included |
 | Support[^1]            | No             | No       |
 | Price                  | Free           | $59      |
-| | [**Download**][kit] | [**Buy PRO**][buy]{:.btn.btn-primary} |
+| | [**Download**][kit] <br/>-- or --<br/> [![Deploy to Netlify][dtn]{:data-ignore=""}][nfy]{:.no-hover.no-mark} | [**Buy PRO**][buy]{:.btn.btn-primary.btn-lg} |
 {:.stretch-table.dl-table}
 
 [^1]: You MAY open an issue on GitHub, but no response and/or fix is guaranteed.
@@ -61,3 +61,5 @@ This table below shows what's included in each version:
 [src]: https://github.com/qwtel/hydejack
 [gem]: https://rubygems.org/gems/jekyll-theme-hydejack
 [buy]: https://app.simplegoods.co/i/NATYVLYT
+[nfy]: https://app.netlify.com/start/deploy?repository=https://github.com/qwtel/hydejack-starter-kit
+[dtn]: https://www.netlify.com/img/deploy/button.svg

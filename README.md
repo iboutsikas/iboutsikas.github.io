@@ -34,6 +34,8 @@ There are two versions of **Hydejack**: The base version is free, while features
 
 [**Download Free**][kit]
 -- or --
+[![Deploy to Netlify][dtn]{:data-ignore=""}][nfy]{:.no-hover.no-mark}
+-- or --
 [**Buy PRO**][buy]{:.btn.btn-primary}
 
 
@@ -157,8 +159,10 @@ This table below shows what's included in each version:
 | Source                 | [GitHub][src]  | Included |
 | Support[^1]            | No             | No       |
 | Price                  | Free           | $59      |
-| | [**Download**][kit] | [**Buy PRO**][buy]{:.btn.btn-primary} |
+| | [**Download**][kit] <br/>-- or --<br/> [![Deploy to Netlify][dtn]{:data-ignore=""}][nfy]{:.no-hover.no-mark} | [**Buy PRO**][buy]{:.btn.btn-primary.btn-lg} |
 {:.stretch-table.dl-table}
+
+
 
 [^1]: You MAY open an issue on GitHub, but no response and/or fix is guaranteed.
       You understand that using Jekyll requires technical know-how and is not comparable to Wordpress in terms of ease of use. Please use the free version to confirm that Hydejack works for you. For details, see the [PRO] license.
@@ -181,10 +185,12 @@ This table below shows what's included in each version:
 [pro]: licenses/PRO.md
 [docs]: docs/README.md
 
-[kit]: https://github.com/qwtel/hy-starter-kit/archive/v8.1.0.zip
+[kit]: https://github.com/qwtel/hydejack-starter-kit/archive/v8.1.0.zip
 [src]: https://github.com/qwtel/hydejack
 [gem]: https://rubygems.org/gems/jekyll-theme-hydejack
 [buy]: https://app.simplegoods.co/i/NATYVLYT
+[nfy]: https://app.netlify.com/start/deploy?repository=https://github.com/qwtel/hydejack-starter-kit
+[dtn]: https://www.netlify.com/img/deploy/button.svg
 
 [gpss]: https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fhydejack.com%2F
 [hy-push-state]: https://qwtel.com/hy-push-state/
