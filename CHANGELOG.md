@@ -5,7 +5,7 @@ last_modified_at: 2018-08-31
 # CHANGELOG
 
 ## v8.1.1
-Aug 31 2018
+Sep 1 2018
 {:.heading.post-date}
 
 ### Fixes
