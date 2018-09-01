@@ -51,14 +51,18 @@ Buyers of the PRO version should [follow these steps](#pro-version).
 Using the Starter Kit has the advantage of not cluttering your blog repository.
 Additionally, it allows you to publish your site on GitHub Pages with a single `push`.
 
-If you have a GitHub account, fork the [hy-starter-kit](https://github.com/qwtel/hy-starter-kit) repository.
-Otherwise [download the source files](https://github.com/qwtel/hy-starter-kit/archive/v8.1.0.zip)
-and unzip them somewhere on your machine.
+If you have a GitHub account, fork the [hy-starter-kit](https://github.com/qwtel/hy-starter-kit) repository. Otherwise [download the source files][src] and unzip them somewhere on your machine.
 
-**NOTE**: In addition to the docs here, you can follow the quick start guide in the starter kit.
+**NOTE**: In addition to the docs here, you can follow the quick start guide in the Starter Kit.
 {:.message}
 
 `cd` into the directory where `_config.yml` is located and follow the steps in [Running locally](#running-locally).
+
+Alternatively, you can just [![Deploy to Netlify][dtn]{:data-ignore=""}][nfy]{:.no-hover.no-mark}.
+
+[src]: https://github.com/qwtel/hy-starter-kit/archive/v8.1.1.zip
+[nfy]: https://app.netlify.com/start/deploy?repository=https://github.com/qwtel/hydejack-starter-kit
+[dtn]: https://www.netlify.com/img/deploy/button.svg
 
 ### Via gem
 Jekyll has [built-in support](https://jekyllrb.com/docs/themes/) for using themes that are hosted on RubyGems.  
@@ -176,7 +180,7 @@ For new installations only the `install` folder is relevant.
 Unzip the archive somewhere on your machine, then `cd` *into* the `install` folder, e.g.
 
 ~~~bash
-$ cd ~/Downloads/hydejack-pro-8.1.0/install/
+$ cd ~/Downloads/hydejack-pro-8.1.1/install/
 ~~~
 
 You can now continue with [Running locally](#running-locally).
@@ -190,7 +194,7 @@ It is located at `<dowloaded zip>/.ssh/hydejack_8_pro`.
 You have to copy the key file to `~/.ssh` (or wherever your SSH keys are located), e.g.:
 
 ~~~bash
-$ cp ~/Downloads/hydejack-pro-8.1.0/.ssh/hydejack_8_pro ~/.ssh/
+$ cp ~/Downloads/hydejack-pro-8.1.1/.ssh/hydejack_8_pro ~/.ssh/
 ~~~
 
 It is required that your private key files are NOT accessible by others, e.g.:
@@ -264,6 +268,16 @@ This chapter shows how to upgrade Hydejack to a newer version. The method depend
 especially the part about the [license change](../CHANGELOG.md#license-change)!
 {:.message}
 
+### Via Starter Kit
+When using the Starter Kit, upgrading Hydejack is as simple as setting the `remote_theme` key in `config.yml` to the desired version.
+
+```yml
+remote_theme: qwtel/hydejack@v8.1.1
+```
+
+To use the latest version on the `v8` branch on each build, you can use  `qwtel/hydejack@v8`.
+
+
 ### Via gem
 Upgrading the the gem-based theme is as easy as running
 
@@ -292,6 +306,7 @@ and you have to apply them again.
 Make sure you've made a backup before overwriting any files.
 {:.message}
 
+
 ### Via git
 The latest version sits on the `master` branch of [qwtel/hydejack](https://github.com/qwtel/hydejack).
 To apply them to your repository run
@@ -300,6 +315,7 @@ To apply them to your repository run
 $ git remote add hydejack git@github.com:qwtel/hydejack.git
 $ git pull hydejack master
 ~~~
+
 
 ### PRO Version
 Buyers of the PRO version will find the files necessary for an upgrade in the `upgrade` folder of the downloaded zip archive.
@@ -311,6 +327,7 @@ Make sure you've made a backup before overwriting any files.
 
 The archive also contains `.patch` files, that you can apply to your repository via [git-apply](https://git-scm.com/docs/git-apply).
 Using this method, git will generate merge conflicts when changes in the patch conflict with any of your changes.
+
 
 #### PRO via GitHub (advanced)
 If you've followed the steps [here](#pro-via-github-advanced), all you need to upgrade is:)
@@ -647,7 +664,7 @@ author:
   social:
     email:    mail@qwtel.com
     rss:      {{ site.url }}{{ site.baseurl }}/feed.xml # make sure you provide an absolute URL
-    download: https://github.com/qwtel/hydejack/archive/v8.1.0.zip
+    download: https://github.com/qwtel/hydejack/archive/v8.1.1.zip
 ~~~
 
 
@@ -1031,7 +1048,7 @@ To add custom HTML elements to the `<head>` of the document, open `_includes/my-
 #### Adding custom HTML to the body
 To add custom HTML elements to the `<body>` of the document, open `_includes/my-body.html` (create the folder/the files if they don't exist) and add your elements there.
 
-What's the difference with `my-scripts.html`?
+What's the difference to `my-scripts.html`?
 : This file was used in earlier versions of Hydejack to accomplish the same goal. However, there are still instances were you might want to prefer `my-scripts.html` over `my-body.html`, as it won't load scrips on redirect pages and will be ignored by browsers < IE10.
 
 
