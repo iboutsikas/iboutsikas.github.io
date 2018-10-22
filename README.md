@@ -123,7 +123,7 @@ An incomplete list of features included in all versions of **Hydejack**:
 * Lazy image loading with cancellation and placeholder, powered by [hy-img]{:.external}
 * Advanced FLIP animations, inspired by Material Design
 * 99/100 [Google PageSpeed Score][gpss][^2]
-* [Syntax highlighting](#syntax-highlighting), powered by [Rouge]
+* [Syntax highlighting][syntax], powered by [Rouge]
 * [LaTeX math blocks][latex], powered by [KaTeX]
 * Change the wording of built-in strings and possibly translate in other languages
 * Support for categories and tags
