@@ -17,7 +17,7 @@ A [portfolio], a [resume] layout, and a [welcome] page to highlight your favorit
 
 This table below shows what's included in each version:
 
-|                        | Free 🆓 | PRO 👨‍💼 |
+|                        | Free           | PRO      |
 |:-----------------------|:--------------:|:--------:|
 | Blog                   | &#x2714;       | &#x2714; |
 | [Features]             | &#x2714;       | &#x2714; |
@@ -34,7 +34,7 @@ This table below shows what's included in each version:
 | Source                 | [GitHub][src]  | Included |
 | Support[^1]            | No             | No       |
 | Price                  | Free           | $59      |
-| | [**Download 🆓**][kit] <br/>-- or --<br/> [![Deploy to Netlify][dtn]{:data-ignore=""}][nfy]{:.no-hover.no-mark} | [**Buy PRO 👨‍💼**][buy]{:.btn.btn-primary.btn-lg} |
+| | [**Download**][kit] <br/>-- or --<br/> [![Deploy to Netlify][dtn]{:data-ignore=""}][nfy]{:.no-hover.no-mark} | [**Buy PRO**][buy]{:.btn.btn-primary.btn-lg} |
 {:.stretch-table.dl-table}
 
 [^1]: You MAY open an issue on GitHub, but no response and/or fix is guaranteed.
@@ -48,9 +48,9 @@ This table below shows what's included in each version:
 [welcome]: README.md
 [forms]: forms-by-example.md
 
-[features]: README.md#features-
-[news]: README.md#build-an-audience-
-[syntax]: README.md#syntax-highlighting-
+[features]: README.md#features
+[news]: README.md#build-an-audience
+[syntax]: README.md#syntax-highlighting
 [latex]: hydejack/_posts/2018-06-01-example-content-iii.md#math
 
 [lic]: LICENSE.md
