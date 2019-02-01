@@ -14,8 +14,8 @@ Should you discover a mistake in the docs (or a bug in general) feel free to [op
 **NOTE**: While this manual tries to be beginner-friendly, as a user of Jekyll it is assumed that you are comfortable running shell commands and editing text files.
 {:.message}
 
-Buyers of the PRO version can jump straight to [installation for pro buyers](#pro-version),)
-or [upgrades for pro buyers](#pro-version).)
+Buyers of the PRO version can jump straight to [installation for PRO buyers](#pro-version),)
+or [upgrades for PRO buyers](#pro-version).)
 
 
 
@@ -60,7 +60,7 @@ If you have a GitHub account, fork the [hy-starter-kit](https://github.com/qwtel
 
 Alternatively, you can just [![Deploy to Netlify][dtn]{:data-ignore=""}][nfy]{:.no-hover.no-mark}.
 
-[src]: https://github.com/qwtel/hy-starter-kit/archive/v8.1.1.zip
+[src]: https://github.com/qwtel/hy-starter-kit/archive/v8.2.0.zip
 [nfy]: https://app.netlify.com/start/deploy?repository=https://github.com/qwtel/hydejack-starter-kit
 [dtn]: https://www.netlify.com/img/deploy/button.svg
 
@@ -180,7 +180,7 @@ For new installations only the `install` folder is relevant.
 Unzip the archive somewhere on your machine, then `cd` *into* the `install` folder, e.g.
 
 ~~~bash
-$ cd ~/Downloads/hydejack-pro-8.1.1/install/
+$ cd ~/Downloads/hydejack-pro-8.2.0/install/
 ~~~
 
 You can now continue with [Running locally](#running-locally).
@@ -194,7 +194,7 @@ It is located at `<dowloaded zip>/.ssh/hydejack_8_pro`.
 You have to copy the key file to `~/.ssh` (or wherever your SSH keys are located), e.g.:
 
 ~~~bash
-$ cp ~/Downloads/hydejack-pro-8.1.1/.ssh/hydejack_8_pro ~/.ssh/
+$ cp ~/Downloads/hydejack-pro-8.2.0/.ssh/hydejack_8_pro ~/.ssh/
 ~~~
 
 It is required that your private key files are NOT accessible by others, e.g.:
@@ -272,7 +272,7 @@ especially the part about the [license change](../CHANGELOG.md#license-change)!
 When using the Starter Kit, upgrading Hydejack is as simple as setting the `remote_theme` key in `config.yml` to the desired version.
 
 ```yml
-remote_theme: qwtel/hydejack@v8.1.1
+remote_theme: qwtel/hydejack@v8.2.0
 ```
 
 To use the latest version on the `v8` branch on each build, you can use  `qwtel/hydejack@v8`.
@@ -324,9 +324,6 @@ Buyers of the PRO version will find the files necessary for an upgrade in the `u
 and you have to apply them again.
 Make sure you've made a backup before overwriting any files.
 {:.message}
-
-The archive also contains `.patch` files, that you can apply to your repository via [git-apply](https://git-scm.com/docs/git-apply).
-Using this method, git will generate merge conflicts when changes in the patch conflict with any of your changes.
 
 
 #### PRO via GitHub (advanced)
@@ -664,7 +661,7 @@ author:
   social:
     email:    mail@qwtel.com
     rss:      {{ site.url }}{{ site.baseurl }}/feed.xml # make sure you provide an absolute URL
-    download: https://github.com/qwtel/hydejack/archive/v8.1.1.zip
+    download: https://github.com/qwtel/hydejack/archive/v8.2.0.zip
 ~~~
 
 
@@ -976,7 +973,7 @@ Both       | Welcome to Jekyll¬ 07 Apr 2017 **in** Jekyll / Update **on** Jekyl
 You can adjust these in [`_data/string.yml`](https://github.com/qwtel/hydejack/blob/v8/_data/strings.yml).
 
 #### Creating a new category or tag
-Be default, categories and tags are rendered as plain text. Further steps are necessary if you want them to link to a page that contains a list of all posts that belong to that category or tag.
+By default, categories and tags are rendered as plain text. Further steps are necessary if you want them to link to a page that contains a list of all posts that belong to that category or tag.
 
 For each featured category or tag, a file called `<category-name>.md` or `<tag-name>.md` has to be created inside the `_featured_tags` and `_featured_categories` folders, respectively. Each file in these folders is part of a [Jekyll Collection](https://jekyllrb.com/docs/collections/).
 
