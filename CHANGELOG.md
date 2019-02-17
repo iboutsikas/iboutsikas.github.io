@@ -4,6 +4,14 @@ last_modified_at: 2018-08-31
 
 # CHANGELOG
 
+## v8.3.0
+Feb XX 2019
+{:.heading.post-date}
+
+### Added
+* Added `no_page_style` config option to increase site build speed.
+* Added `menu` config option to increase site build speed.
+
 ## v8.2.0
 Feb 1 2019
 {:.heading.post-date}
