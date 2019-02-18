@@ -60,7 +60,7 @@ If you have a GitHub account, fork the [hy-starter-kit](https://github.com/qwtel
 
 Alternatively, you can just [![Deploy to Netlify][dtn]{:data-ignore=""}][nfy]{:.no-hover.no-mark}.
 
-[src]: https://github.com/qwtel/hy-starter-kit/archive/v8.2.0.zip
+[src]: https://github.com/qwtel/hy-starter-kit/archive/v8.3.0.zip
 [nfy]: https://app.netlify.com/start/deploy?repository=https://github.com/qwtel/hydejack-starter-kit
 [dtn]: https://www.netlify.com/img/deploy/button.svg
 
@@ -180,7 +180,7 @@ For new installations only the `install` folder is relevant.
 Unzip the archive somewhere on your machine, then `cd` *into* the `install` folder, e.g.
 
 ~~~bash
-$ cd ~/Downloads/hydejack-pro-8.2.0/install/
+$ cd ~/Downloads/hydejack-pro-8.3.0/install/
 ~~~
 
 You can now continue with [Running locally](#running-locally).
@@ -194,7 +194,7 @@ It is located at `<dowloaded zip>/.ssh/hydejack_8_pro`.
 You have to copy the key file to `~/.ssh` (or wherever your SSH keys are located), e.g.:
 
 ~~~bash
-$ cp ~/Downloads/hydejack-pro-8.2.0/.ssh/hydejack_8_pro ~/.ssh/
+$ cp ~/Downloads/hydejack-pro-8.3.0/.ssh/hydejack_8_pro ~/.ssh/
 ~~~
 
 It is required that your private key files are NOT accessible by others, e.g.:
@@ -272,14 +272,14 @@ especially the part about the [license change](../CHANGELOG.md#license-change)!
 When using the Starter Kit, upgrading Hydejack is as simple as setting the `remote_theme` key in `config.yml` to the desired version.
 
 ```yml
-remote_theme: qwtel/hydejack@v8.2.0
+remote_theme: qwtel/hydejack@v8.3.0
 ```
 
 To use the latest version on the `v8` branch on each build, you can use  `qwtel/hydejack@v8`.
 
 
 ### Via gem
-Upgrading the the gem-based theme is as easy as running
+Upgrading the gem-based theme is as easy as running
 
 ```bash
 bundle update jekyll-theme-hydejack
@@ -558,7 +558,7 @@ author:
 
 
 #### Adding an author's picture
-If you'd like for the author's picture to appear in addition the the about text (see above), you can either use the [`jekyll-avatar`](https://github.com/benbalter/jekyll-avatar) plugin or provide URLs to images manually.
+If you'd like for the author's picture to appear in addition the about text (see above), you can either use the [`jekyll-avatar`](https://github.com/benbalter/jekyll-avatar) plugin or provide URLs to images manually.
 
 To use the plugin, add it to your `Gemfile` and the list of `plugins` in your config file:
 
@@ -661,7 +661,7 @@ author:
   social:
     email:    mail@qwtel.com
     rss:      {{ site.url }}{{ site.baseurl }}/feed.xml # make sure you provide an absolute URL
-    download: https://github.com/qwtel/hydejack/archive/v8.2.0.zip
+    download: https://github.com/qwtel/hydejack/archive/v8.3.0.zip
 ~~~
 
 
@@ -741,9 +741,9 @@ If you have pages for contact data, privacy policy, cookie policy, etc. you can 
 ```yml
 legal:
   - title: Impress
-    href:  /impress/
+    url:  /impress/
   - title: Cookies Policy
-    href:  /cookies-policy/
+    url:  /cookies-policy/
 ```
 
 When using Hydejack's offline feature, the pages listed here will be downloaded and cached when loading the page for the first time.
@@ -861,52 +861,29 @@ Now you can add content as you would in a blog post.
 
 
 ### Adding an entry to the sidebar
-Hydejack's sidebar can add links to any page within the site. In order for a page to appear in the sidebar, it needs to have a truthy `menu` value defined in its front matter. The page also needs to have a `title`, otherwise the entry in the sidebar will be blank.
-
-If you want the link to appear at a particular position, you can set a numeric value to the `order` key. However, the page is not guaranteed to appear in a specific position when you set a certain number, as it will only be used to sort the pages. The position of a page also depends on the `order` of all other pages in the sidebar.
-
-If you don't want to spread the sidebar definitions across multiple markdown files,
-you can manage them centrally in your config file using front matter defaults, e.g.:
+To add links to the sidebar, populate the `menu` entry in `_config.yml` with a list of `title`-`url` pairs, e.g.:
 
 ```yml
 ## file: _config.yml
-defaults:
-  - scope:
-      path: blog.md
-    values:
-      menu: true
-      order: 1
-  - scope:
-      path: projects.md
-    values:
-      menu: true
-      order: 2
-  - scope:
-      path: resume.md
-    values:
-      menu: true
-      order: 3
-  - scope:
-      path: about.md
-    values:
-      menu: true
-      order: 4
+menu:
+  - title: Blog
+    url:   /blog/
+  - title: Projects
+    url:   /projects/
+  - title: Resume
+    url:   /resume/
+  - title: About
+    url:   /about/
 ```
 
 #### Adding a link to an external page to the sidebar
-You can add links to external pages to the sidebar by creating a new markdown file for each entry and adding to the front matter:
+To add links to external sites, simply provide a fully qualified URL, e.g.
 
 ```yml
----
-title: External
-redirect_to: https://example.com/
-menu: true
-order: 5
----
-```
-
-You may combine this with the [`jekyll-redirect-from`](https://github.com/jekyll/jekyll-redirect-from) plugin to generate a redirect page at the location of the file, but this is optional.
-
+menu:
+  - title: "@qwtel"
+    url:   https://qwtel.com/
+``` 
 
 ### Adding a category or tag
 Hydejack allows you to use the `list` layout to show all posts of a particular category or tag.
@@ -1122,7 +1099,7 @@ collections:
     output:    true
 ~~~
 
-Next, add a `projects.md` to in the root (you can adjust the name/location to match the the `permalink` of the
+Next, add a `projects.md` to in the root (you can adjust the name/location to match the `permalink` of the
 collection).
 This file has the `projects` layout (mind the "s" at the end) and should have a `show_collection` key,
 with the name of the collection as a value, e.g.:
