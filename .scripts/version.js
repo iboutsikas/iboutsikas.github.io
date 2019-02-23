@@ -1,39 +1,31 @@
 #!/usr/bin/env node
 
-const { promisify } = require("util");
-
 const { resolve } = require("path");
-const fs = require("fs");
+const { readdir, rename, unlink, stat, readFile, writeFile } = require("fs").promises;
 
 const vPrev = require("../assets/version.json").version;
 const vNext = require("../package.json").version;
 
-const readdir = promisify(fs.readdir);
-const rename = promisify(fs.rename);
-const unlink = promisify(fs.unlink);
-const stat = promisify(fs.stat);
-const readFile = promisify(fs.readFile);
-const writeFile = promisify(fs.writeFile);
-
 const ENC = "utf-8";
 
 const FILES = [
-  resolve("./_data/authors.yml"),
-  resolve("./_includes/head/meta.html"),
-  resolve("./_includes/head/links.html"),
-  resolve("./_includes/head/styles.html"),
-  resolve("./_includes/header.txt"),
-  resolve("./_includes/body/scripts.html"),
-  resolve("./_includes/body/footer.html"),
-  resolve("./_layouts/compress.html"),
-  resolve("./_js/lib/version.js"),
-  resolve("./assets/version.json"),
-  resolve("./assets/js/sw.js"),
-  resolve("./CHANGELOG.md"),
-  resolve("./download.md"),
-  resolve("./README.md"),
-  resolve("./thank-you.md"),
-];
+  "./jekyll-theme-hydejack-pro.gemspec",
+  "./_data/authors.yml",
+  "./_includes/head/meta.html",
+  "./_includes/head/links.html",
+  "./_includes/head/styles.html",
+  "./_includes/header.txt",
+  "./_includes/body/scripts.html",
+  "./_includes/body/footer.html",
+  "./_layouts/compress.html",
+  "./_js/lib/version.js",
+  "./assets/version.json",
+  "./assets/js/sw.js",
+  "./CHANGELOG.md",
+  "./download.md",
+  "./README.md",
+  "./thank-you.md",
+].map(f => resolve(f));
 
 // <https://stackoverflow.com/a/45130990/870615>
 async function getFiles(dir) {
@@ -52,15 +44,14 @@ async function getFiles(dir) {
     const prev = vPrev.replace(/\./g, "\\.");
     const prevRegExp = new RegExp(prev, "g");
 
-    const [...args] = await Promise.all([
-      FILES,
+    const args = await Promise.all([
       getFiles("./hyde/_posts"),
       getFiles("./hydejack/_posts"),
       getFiles("./_projects"),
       getFiles("./docs"),
     ]);
-
-    const files = Array.prototype.concat.call(...args);
+      
+    const files = Array.prototype.concat.call(FILES, ...args);
 
     const pFiles = Promise.all(
       files
