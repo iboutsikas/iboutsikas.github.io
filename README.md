@@ -32,11 +32,25 @@ Hydejack's cover page on a variety of screens.
 
 There are two versions of **Hydejack**: The base version is free, while features that are specific to *professionals* are a payed upgrade.
 
-[**Download Free**][kit]
--- or --
-[![Deploy to Netlify][dtn]{:data-ignore=""}][nfy]{:.no-hover.no-mark}
--- or --
-[**Buy PRO**][buy]{:.btn.btn-primary}
+|                        | Free           | PRO      |
+|:-----------------------|:--------------:|:--------:|
+| Blog                   | &#x2714;       | &#x2714; |
+| [Features]             | &#x2714;       | &#x2714; |
+| [Portfolio]            |                | &#x2714; |
+| [Resume]               |                | &#x2714; |
+| [Welcome]              |                | &#x2714; |
+| [Newsletter Box][news] |                | &#x2714; |
+| [Custom Forms][forms]  |                | &#x2714; |
+| Dark Mode              |                | &#x2714; |
+| Cookie Banner          |                | &#x2714; |
+| Offline Support        |                | &#x2714; |
+| No Hydejack Branding   |                | &#x2714; |
+| License                | [GPL-3.0][lic] | [PRO]    |
+| Source                 | [GitHub][src]  | Included |
+| Support[^1]            | No             | No       |
+| Price                  | Free           | $59      |
+| | [**Download**][kit] <br/>-- or --<br/> [![Deploy to Netlify][dtn]{:data-ignore=""}][nfy]{:.no-hover.no-mark} | [**Buy PRO**][buy]{:.btn.btn-primary.btn-lg} |
+{:.stretch-table.dl-table}
 
 
 ## A Free Blogging Theme
