@@ -15,7 +15,7 @@ qwtel:
     -- or --
     [![Deploy to Netlify][dtn]{:data-ignore=""}][nfy]{:.no-hover.no-mark}
     -- or --
-    [**Buy PRO**][buy]{:.btn.btn-primary}
+    [**Buy PRO** --- $59][buy]{:.btn.btn-primary.btn-lg.heading}
 
     [kit]: https://github.com/qwtel/hy-starter-kit/archive/v8.4.0.zip
     [buy]: https://app.simplegoods.co/i/NATYVLYT
