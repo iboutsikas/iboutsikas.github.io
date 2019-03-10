@@ -41,9 +41,9 @@ There are two versions of **Hydejack**: The base version is free, while features
 | [Welcome]              |                | &#x2714; |
 | [Newsletter Box][news] |                | &#x2714; |
 | [Custom Forms][forms]  |                | &#x2714; |
-| Dark Mode              |                | &#x2714; |
+| [Dark Mode][darkm]     |                | &#x2714; |
+| [Offline Support][ofln]|                | &#x2714; |
 | Cookie Banner          |                | &#x2714; |
-| Offline Support        |                | &#x2714; |
 | No Hydejack Branding   |                | &#x2714; |
 | License                | [GPL-3.0][lic] | [PRO]    |
 | Source                 | [GitHub][src]  | Included |
@@ -164,9 +164,9 @@ This table below shows what's included in each version:
 | [Welcome]              |                | &#x2714; |
 | [Newsletter Box][news] |                | &#x2714; |
 | [Custom Forms][forms]  |                | &#x2714; |
-| Dark Mode              |                | &#x2714; |
+| [Dark Mode][darkm]     |                | &#x2714; |
+| [Offline Support][ofln]|                | &#x2714; |
 | Cookie Banner          |                | &#x2714; |
-| Offline Support        |                | &#x2714; |
 | No Hydejack Branding   |                | &#x2714; |
 | License                | [GPL-3.0][lic] | [PRO]    |
 | Source                 | [GitHub][src]  | Included |
@@ -175,7 +175,19 @@ This table below shows what's included in each version:
 | | [**Download**][kit] <br/>-- or --<br/> [![Deploy to Netlify][dtn]{:data-ignore=""}][nfy]{:.no-hover.no-mark} | [**Buy PRO** --- $59][buy]{:.btn.btn-primary.btn-lg.heading} |
 {:.stretch-table.dl-table}
 
-
+<script>
+Array.from(document.querySelectorAll('a[href="/blog/hydejack/2018-09-01-introducing-dark-mode/"]'))
+  .forEach(a => {
+    a.addEventListener('click', (e) => { 
+      if (!document.body.classList.contains("dark-mode")) {
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+        document.body.classList.add("dark-mode");
+      }
+    });
+  });
+</script>
 
 [^1]: You MAY open an issue on GitHub, but no response and/or fix is guaranteed.
       You understand that using Jekyll requires technical know-how and is not comparable to Wordpress in terms of ease of use. Please use the free version to confirm that Hydejack works for you. For details, see the [PRO] license.
@@ -193,10 +205,12 @@ This table below shows what's included in each version:
 [news]: #build-an-audience
 [syntax]: #syntax-highlighting
 [latex]: hydejack/_posts/2018-06-01-example-content-iii.md#math
+[darkm]: hydejack/_posts/2018-09-01-introducing-dark-mode.md
 
 [lic]: LICENSE.md
 [pro]: licenses/PRO.md
 [docs]: docs/README.md
+[ofln]: docs/advanced.md#enabling-offline-support
 
 [kit]: https://github.com/qwtel/hydejack-starter-kit/archive/v8.4.0.zip
 [src]: https://github.com/qwtel/hydejack
