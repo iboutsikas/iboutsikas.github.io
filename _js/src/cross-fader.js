@@ -147,13 +147,13 @@ export class CrossFader {
         this.rules[7].style.borderColor = active;
 
         // body.dark-mode
-        this.rules[8].style.setProperty("--body-bg", Color.hsl(tc.hue(), 12.5, 20));
-        this.rules[8].style.setProperty("--border-color", Color.hsl(tc.hue(), 12.5, 25));
+        this.rules[8].cssRules[0].style.setProperty("--body-bg", Color.hsl(tc.hue(), 12.5, 20));
+        this.rules[8].cssRules[0].style.setProperty("--border-color", Color.hsl(tc.hue(), 12.5, 25));
 
         // ::selection or ::-moz-selection (assuming it is last in the list)
         this.rules[this.rules.length - 1].style.backgroundColor = color;
       } catch (e) {
-        console.error(e);
+        if (process.env.DEBUG) console.error(e);
       }
     }
   }
