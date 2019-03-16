@@ -6,7 +6,6 @@ description: >
   The easiest and cleanest way is via the Starter Kit.
   Alternatively, you can use the Ruby gem.
 hide_description: true
-last_modified_at: 2018-08-03
 ---
 
 There are multiple ways of installing Hydejack.

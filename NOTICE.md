@@ -1,7 +1,3 @@
----
-last_modified_at: 2018-08-03
----
-
 # NOTICE
 
 Copyright (c) 2018 Florian Klampfer <https://qwtel.com/>

@@ -1,7 +1,3 @@
----
-last_modified_at: 2019-03-09
----
-
 # CHANGELOG
 
 ## v8.4.0

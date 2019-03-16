@@ -4,7 +4,6 @@ description: >
   while the PRO version includes additional features for professionals.
 hide_description: true
 image: /assets/img/hydejack-8.png
-last_modified_at: 2019-02-18
 ---
 
 # Download

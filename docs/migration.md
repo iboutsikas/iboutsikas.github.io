@@ -4,7 +4,6 @@ title: Migration
 description: >
   This documents shows how to upgrade Hydejack from previous versions (v5) in a step-by-step manner.
 hide_description: true
-last_modified_at: 2018-08-03
 ---
 
 This documents shows how to upgrade Hydejack from previous versions (v5) in a step-by-step manner.
