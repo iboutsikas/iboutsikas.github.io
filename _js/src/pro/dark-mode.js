@@ -13,10 +13,13 @@ requestIdleCallback(() => {
 
     document.getElementById("_dark-mode").addEventListener("click", e => {
       e.preventDefault();
-      if (document.body.classList.contains("dark-mode")) {
-        document.body.classList.remove("dark-mode");
+      const cl = document.body.classList;
+      if (cl.contains("dark-mode") || (!cl.contains("light-mode") && matchMedia('(prefers-color-scheme: dark)').matches)) {
+        cl.remove("dark-mode");
+        cl.add("light-mode");
       } else {
-        document.body.classList.add("dark-mode");
+        cl.remove("light-mode");
+        cl.add("dark-mode");
       }
     });
   }

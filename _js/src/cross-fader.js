@@ -116,6 +116,8 @@ export class CrossFader {
         const c = Color(color);
         const tc = Color(themeColor);
         const active = c.darken(0.1);
+        const bodyBg =  Color.hsl(tc.hue(), 12.5, 20);
+        const borderColor =  Color.hsl(tc.hue(), 12.5, 27.5);
 
         // .content a
         this.rules[0].style.color = color;
@@ -147,8 +149,12 @@ export class CrossFader {
         this.rules[7].style.borderColor = active;
 
         // body.dark-mode
-        this.rules[8].cssRules[0].style.setProperty("--body-bg", Color.hsl(tc.hue(), 12.5, 20));
-        this.rules[8].cssRules[0].style.setProperty("--border-color", Color.hsl(tc.hue(), 12.5, 25));
+        this.rules[8].cssRules[0].style.setProperty("--body-bg", bodyBg);
+        this.rules[8].cssRules[0].style.setProperty("--border-color", borderColor);
+
+        // (prefers-color-scheme: dark)
+        this.rules[9].cssRules[0].style.setProperty("--body-bg", bodyBg);
+        this.rules[9].cssRules[0].style.setProperty("--border-color", borderColor);
 
         // ::selection or ::-moz-selection (assuming it is last in the list)
         this.rules[this.rules.length - 1].style.backgroundColor = color;
