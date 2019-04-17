@@ -8,17 +8,28 @@ qwtel:
   # Used at the bottom of each page and at the top of the `about` layout
   # Markdown enabled, can use multiple paragraphs (enabled by `|`)
   about:             |
-    Hi, I'm Florian or [@qwtel](https://twitter.com/qwtel) and I'm the the developer of Hydejack,
+    Hi, I'm Florian or [**@qwtel**](https://twitter.com/qwtel) and I'm the the developer of **Hydejack**,
     the Jekyll theme you're currently looking at.
 
-    [**Download Free**][kit]
-    -- or --
-    [![Deploy to Netlify][dtn]{:data-ignore=""}][nfy]{:.no-hover.no-mark}
-    -- or --
-    [**Buy PRO** --- $69][buy]{:.btn.btn-primary.btn-lg.heading}
+    There are multiple versions of **Hydejack**.
+    The table below shows what's included in each version:
+
+    |                        | Free           | PRO       | PRO+      |
+    |:-----------------------|:--------------:|:---------:|:---------:|
+    | [Features]             | &#x2714;       | &#x2714;  | &#x2714;  |
+    | [PRO Features][pro]    |                | &#x2714;  | &#x2714;  |
+    | [Troubleshooting]      |                |           | 1 hour    |
+    | **Price**              | **Free**       | **$69**   | **$169**  |
+    || [**Download**][kit] <br/>-- or --<br/> [![Deploy to Netlify][dtn]][nfy] | [**Buy PRO**][buy]{:.btn.btn-primary.btn-lg.heading} | [**Buy PRO+**][buyp]{:.btn.btn-primary.btn-lg.heading} |
+    {:.scroll-table.dl-table}
+
+    [features]:        /#features
+    [pro]:             /download/
+    [troubleshooting]: /download/#troubleshooting
 
     [kit]: https://github.com/hydecorp/hydejack-starter-kit/archive/v8.6.0.zip
     [buy]: https://app.simplegoods.co/i/NATYVLYT
+    [buyp]: https://app.simplegoods.co/i/XWYOSSME
     [nfy]: https://app.netlify.com/start/deploy?repository=https://github.com/hydecorp/hydejack-starter-kit
     [dtn]: https://www.netlify.com/img/deploy/button.svg
 

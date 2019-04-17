@@ -17,39 +17,47 @@ more_posts: posts.md
 
 # Hydejack
 
-The "Best Jekyll Theme by a Mile".
+A boutique Jekyll theme for hackers, nerds, and academics.  
 {:.lead}
 
 ![Screenshot](assets/img/blog/hydejack-8.png){:.lead srcset="/assets/img/blog/hydejack-8.png 1920w, /assets/img/blog/hydejack-8@0,5x.png 960w, /assets/img/blog/hydejack-8@0,25x.png 480w" width="1920" height="1080"}
 Hydejack's cover page on a variety of screens.
 {:.figure}
 
-**Hydejack** is your presence on the web. It gives you a *blog* that is suitable for both prose and technical documentation, a *portfolio* to showcase your projects, and a beautiful *resume* template that looks amazing on the web and in print.
+**Hydejack** is a boutique Jekyll theme for hackers, nerds, and academics, with a focus on personal sites that are meant to impress. 
+
+It includes a blog that is suitable for both prose and technical documentation, a portfolio to showcase your projects, and a resume template that looks amazing on the web and in print.
 
 > Your presence on the web — A [blog], a [portfolio], and a [resume].
 {:.lead}
 
-There are two versions of **Hydejack**: The base version is free, while features that are specific to *professionals* are a payed upgrade.
+Hydejack isn't some a one-off creation with minimal thought put into it. It has been hand-crafted and polished for years with a lot of attention to detail. 
 
-|                        | Free           | PRO      |
-|:-----------------------|:--------------:|:--------:|
-| Blog                   | &#x2714;       | &#x2714; |
-| [Features]             | &#x2714;       | &#x2714; |
-| [Portfolio]            |                | &#x2714; |
-| [Resume]               |                | &#x2714; |
-| [Welcome]              |                | &#x2714; |
-| [Newsletter Box][news] |                | &#x2714; |
-| [Custom Forms][forms]  |                | &#x2714; |
-| [Dark Mode][darkm]     |                | &#x2714; |
-| [Offline Support][ofln]|                | &#x2714; |
-| Cookie Banner          |                | &#x2714; |
-| No Hydejack Branding   |                | &#x2714; |
-| License                | [GPL-3.0][lic] | [PRO]    |
-| Source                 | [GitHub][src]  | Included |
-| Support[^1]            | No             | No       |
-| Price                  | Free           | $69      |
-| | [**Download**][kit] <br/>-- or --<br/> [![Deploy to Netlify][dtn]{:data-ignore=""}][nfy]{:.no-hover.no-mark} | [**Buy PRO** --- $69][buy]{:.btn.btn-primary.btn-lg.heading} |
-{:.stretch-table.dl-table}
+## Download
+There are two versions of **Hydejack**: The *Free version* includes basic blogging functionality and most of Hydejack's [Features], such as dynamic page loading and advanced animations.
+
+The *PRO version* includes additional features for professionals, such as a [portfolio], [resume], [Dark Mode][darkm], and customizeable cookie banners.
+
+The table below shows what's included in each version:
+
+|                        | Free           | PRO       | PRO+      |
+|:-----------------------|:--------------:|:---------:|:---------:|
+| Blog                   | &#x2714;       | &#x2714;  | &#x2714;  |
+| [Features]             | &#x2714;       | &#x2714;  | &#x2714;  |
+| [Portfolio]            |                | &#x2714;  | &#x2714;  |
+| Printable [Resume]     |                | &#x2714;  | &#x2714;  |
+| [Newsletter Box][news] |                | &#x2714;  | &#x2714;  |
+| [Custom Forms][forms]  |                | &#x2714;  | &#x2714;  |
+| [Dark Mode][darkm]     |                | &#x2714;  | &#x2714;  |
+| [Offline Support][ofln]|                | &#x2714;  | &#x2714;  |
+| Cookie Banner          |                | &#x2714;  | &#x2714;  |
+| No Hydejack Branding   |                | &#x2714;  | &#x2714;  |
+| [Troubleshooting]      |                |           | 1 hour    |
+| License                | [GPL-3.0][lic] | [PRO]     | [PRO]     |
+| Source                 | [GitHub][src]  | Included  | Included  |
+| **Price**              | **Free**       | **$69**   | **$169**  |
+| | [**Download**][kit] <br/>-- or --<br/> [**Deploy to Netlify**][nfy] | [**Buy PRO**][buy]{:.btn.btn-primary.btn-lg.heading} | [**Buy PRO+**][buy]{:.btn.btn-primary.btn-lg.heading} |
+{:.scroll-table.dl-table}
 
 
 ## A Free Blogging Theme
@@ -124,7 +132,7 @@ If you are using a different service like MailChimp, you can build a custom news
 {% include pro/newsletter.html %}
 
 
-## A Personal Site That Belongs to You
+## A Personal Site That Won't Disappear
 **Hydejack** is 100% built on Open Source software, and is Open Source itself, save for parts of the PRO version. The PRO version is a one-time payment that gives you the right to use it forever.
 
 
@@ -133,7 +141,6 @@ An incomplete list of features included in all versions of **Hydejack**:
 
 * Full in-app page loading, powered by [hy-push-state]{:.external}
 * Customizable sidebar and touch-enabled drawer menu, powered by [hy-drawer]{:.external}
-* Lazy image loading with cancellation and placeholder, powered by [hy-img]{:.external}
 * Advanced FLIP animations, inspired by Material Design
 * 99/100 [Google PageSpeed Score][gpss][^2]
 * [Syntax highlighting][syntax], powered by [Rouge]
@@ -147,32 +154,31 @@ An incomplete list of features included in all versions of **Hydejack**:
 * Google Analytics and Google Fonts support
 
 
-## Download
-There are two versions of **Hydejack**: The *free version* includes basic blogging functionality, as did previous versions of the theme.
-The *PRO version* includes additional features for professionals:
-A [portfolio], a [resume] layout, and a [welcome] page to highlight your favorite projects and posts.
+## Get It Now
+There are two versions of **Hydejack**: The *Free version* includes basic blogging functionality and most of Hydejack's [Features], such as dynamic page loading and advanced animations.
 
-This table below shows what's included in each version:
+The *PRO version* includes additional features for professionals, such as a [portfolio], [resume], [Dark Mode][darkm], and customizeable cookie banners.
 
-|                        | Free           | PRO      |
-|:-----------------------|:--------------:|:--------:|
-| Blog                   | &#x2714;       | &#x2714; |
-| [Features]             | &#x2714;       | &#x2714; |
-| [Portfolio]            |                | &#x2714; |
-| [Resume]               |                | &#x2714; |
-| [Welcome]              |                | &#x2714; |
-| [Newsletter Box][news] |                | &#x2714; |
-| [Custom Forms][forms]  |                | &#x2714; |
-| [Dark Mode][darkm]     |                | &#x2714; |
-| [Offline Support][ofln]|                | &#x2714; |
-| Cookie Banner          |                | &#x2714; |
-| No Hydejack Branding   |                | &#x2714; |
-| License                | [GPL-3.0][lic] | [PRO]    |
-| Source                 | [GitHub][src]  | Included |
-| Support[^1]            | No             | No       |
-| Price                  | Free           | $69[^3]  |
-| | [**Download**][kit] <br/>-- or --<br/> [![Deploy to Netlify][dtn]{:data-ignore=""}][nfy]{:.no-hover.no-mark} | [**Buy PRO** --- $69][buy]{:.btn.btn-primary.btn-lg.heading} |
-{:.stretch-table.dl-table}
+The table below shows what's included in each version:
+
+|                        | Free           | PRO       | PRO+      |
+|:-----------------------|:--------------:|:---------:|:---------:|
+| Blog                   | &#x2714;       | &#x2714;  | &#x2714;  |
+| [Features]             | &#x2714;       | &#x2714;  | &#x2714;  |
+| [Portfolio]            |                | &#x2714;  | &#x2714;  |
+| Printable [Resume]     |                | &#x2714;  | &#x2714;  |
+| [Newsletter Box][news] |                | &#x2714;  | &#x2714;  |
+| [Custom Forms][forms]  |                | &#x2714;  | &#x2714;  |
+| [Dark Mode][darkm]     |                | &#x2714;  | &#x2714;  |
+| [Offline Support][ofln]|                | &#x2714;  | &#x2714;  |
+| Cookie Banner          |                | &#x2714;  | &#x2714;  |
+| No Hydejack Branding   |                | &#x2714;  | &#x2714;  |
+| [Troubleshooting]      |                |           | 1 hour    |
+| License                | [GPL-3.0][lic] | [PRO]     | [PRO]     |
+| Source                 | [GitHub][src]  | Included  | Included  |
+| **Price**              | **Free**       | **$69**   | **$169**  |
+| | [**Download**][kit] <br/>-- or --<br/> [**Deploy to Netlify**][nfy] | [**Buy PRO**][buy]{:.btn.btn-primary.btn-lg.heading} | [**Buy PRO+**][buy]{:.btn.btn-primary.btn-lg.heading} |
+{:.scroll-table.dl-table}
 
 <script>
 Array.from(document.querySelectorAll('a[href="/blog/hydejack/2018-09-01-introducing-dark-mode/"]'))
@@ -193,7 +199,8 @@ Array.from(document.querySelectorAll('a[href="/blog/hydejack/2018-09-01-introduc
 
 [^2]: Actual page load speed depends on your hosting provider, resolution of embedded images and usage of 3rd party plugins.
 
-[^3]: Use the *promo code* **TIMEWARP** to get a $10 discount.
+[^3]: Rates are subject to change depending on demand, but buyers of PRO+ will always get a 20% discount relative to regular customers.
+
 
 [blog]: !blog.md
 [portfolio]: projects.md
@@ -207,6 +214,7 @@ Array.from(document.querySelectorAll('a[href="/blog/hydejack/2018-09-01-introduc
 [syntax]: #syntax-highlighting
 [latex]: hydejack/_posts/2018-06-01-example-content-iii.md#math
 [darkm]: hydejack/_posts/2018-09-01-introducing-dark-mode.md
+[troubleshooting]: download.md#troubleshooting
 
 [lic]: LICENSE.md
 [pro]: licenses/PRO.md
@@ -223,7 +231,6 @@ Array.from(document.querySelectorAll('a[href="/blog/hydejack/2018-09-01-introduc
 [gpss]: https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fhydejack.com%2F
 [hy-push-state]: https://hydecorp.github.io/hy-push-state/
 [hy-drawer]: https://hydecorp.github.io/hy-drawer/
-[hy-img]: https://hydecorp.github.io/hy-img/
 [rouge]: http://rouge.jneen.net
 [katex]: https://khan.github.io/KaTeX/
 [tinyletter]: https://tinyletter.com/
