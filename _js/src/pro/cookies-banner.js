@@ -4,7 +4,10 @@
 import { importTemplate, webComponentsReady } from "../common";
 
 webComponentsReady.then(() => {
-  if (!navigator.CookiesOK && document.cookie.indexOf("hy--cookies-ok") === -1) {
+  if (
+    !navigator.CookiesOK &&
+    document.cookie.indexOf("hy--cookies-ok") === -1
+  ) {
     const cookiesBanner = importTemplate("_cookies-banner-template");
     if (cookiesBanner) {
       const parent = document.getElementsByTagName("hy-push-state")[0];

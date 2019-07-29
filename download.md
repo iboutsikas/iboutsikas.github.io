@@ -70,7 +70,7 @@ Array.from(document.querySelectorAll('a[href="/blog/hydejack/2018-09-01-introduc
 [docs]: docs/README.md
 [ofln]: docs/advanced.md#enabling-offline-support
 
-[kit]: https://github.com/qwtel/hy-starter-kit/archive/v8.4.0.zip
+[kit]: https://github.com/qwtel/hy-starter-kit/archive/v8.5.0-beta.0.zip
 [src]: https://github.com/qwtel/hydejack
 [gem]: https://rubygems.org/gems/jekyll-theme-hydejack
 [buy]: https://app.simplegoods.co/i/NATYVLYT

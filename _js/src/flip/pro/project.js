@@ -6,7 +6,12 @@ import { tap, finalize, filter, switchMap } from "rxjs/operators";
 
 import { animate, empty } from "../../common";
 
-export function setupFLIPProject(start$, ready$, fadeIn$, { animationMain, settings }) {
+export function setupFLIPProject(
+  start$,
+  ready$,
+  fadeIn$,
+  { animationMain, settings }
+) {
   if (!animationMain) return start$;
 
   const flip$ = start$.pipe(
@@ -56,16 +61,16 @@ export function setupFLIPProject(start$, ready$, fadeIn$, { animationMain, setti
 
       const transform = [
         {
-          transform: `translate3d(${invertX}px, ${invertY}px, 0) scale(${invertScale})`,
+          transform: `translate3d(${invertX}px, ${invertY}px, 0) scale(${invertScale})`
         },
-        { transform: "translate3d(0, 0, 0) scale(1)" },
+        { transform: "translate3d(0, 0, 0) scale(1)" }
       ];
 
       return animate(img, transform, settings).pipe(
         tap({
           complete() {
             animationMain.style.position = "absolute";
-          },
+          }
         })
       );
     })
@@ -80,18 +85,27 @@ export function setupFLIPProject(start$, ready$, fadeIn$, { animationMain, setti
             const imgWrapper = main.querySelector(".img");
             if (!imgWrapper) return of({});
 
-            const img = imgWrapper.querySelector("hy-img") || imgWrapper.querySelector("img");
+            const img =
+              imgWrapper.querySelector("hy-img") ||
+              imgWrapper.querySelector("img");
             imgWrapper.style.opacity = 0;
 
             return zip(
               fromEvent(img, img.tagName === "HY-IMG" ? "hy-img-load" : "load"),
               fadeIn$
             ).pipe(
-              tap(() => ((imgWrapper.style.opacity = 1), (animationMain.style.opacity = 0))),
+              tap(
+                () => (
+                  (imgWrapper.style.opacity = 1),
+                  (animationMain.style.opacity = 0)
+                )
+              ),
               switchMap(() =>
                 !img
                   ? of({})
-                  : animate(animationMain, [{ opacity: 1 }, { opacity: 0 }], { duration: 500 })
+                  : animate(animationMain, [{ opacity: 1 }, { opacity: 0 }], {
+                      duration: 500
+                    })
               ),
               finalize(() => (animationMain.style.opacity = 0))
             );

@@ -60,7 +60,7 @@ If you have a GitHub account, fork the [hy-starter-kit](https://github.com/qwtel
 
 Alternatively, you can just [![Deploy to Netlify][dtn]{:data-ignore=""}][nfy]{:.no-hover.no-mark}.
 
-[src]: https://github.com/qwtel/hy-starter-kit/archive/v8.4.0.zip
+[src]: https://github.com/qwtel/hy-starter-kit/archive/v8.5.0-beta.0.zip
 [nfy]: https://app.netlify.com/start/deploy?repository=https://github.com/qwtel/hydejack-starter-kit
 [dtn]: https://www.netlify.com/img/deploy/button.svg
 
@@ -180,7 +180,7 @@ For new installations only the `install` folder is relevant.
 Unzip the archive somewhere on your machine, then `cd` *into* the `install` folder, e.g.
 
 ~~~bash
-$ cd ~/Downloads/hydejack-pro-8.4.0/install/
+$ cd ~/Downloads/hydejack-pro-8.5.0-beta.0/install/
 ~~~
 
 You can now continue with [Running locally](#running-locally).
@@ -194,7 +194,7 @@ It is located at `<dowloaded zip>/.ssh/hydejack_8_pro`.
 You have to copy the key file to `~/.ssh` (or wherever your SSH keys are located), e.g.:
 
 ~~~bash
-$ cp ~/Downloads/hydejack-pro-8.4.0/.ssh/hydejack_8_pro ~/.ssh/
+$ cp ~/Downloads/hydejack-pro-8.5.0-beta.0/.ssh/hydejack_8_pro ~/.ssh/
 ~~~
 
 It is required that your private key files are NOT accessible by others, e.g.:
@@ -272,7 +272,7 @@ especially the part about the [license change](../CHANGELOG.md#license-change)!
 When using the Starter Kit, upgrading Hydejack is as simple as setting the `remote_theme` key in `config.yml` to the desired version.
 
 ```yml
-remote_theme: qwtel/hydejack@v8.4.0
+remote_theme: qwtel/hydejack@v8.5.0-beta.0
 ```
 
 To use the latest version on the `v8` branch on each build, you can use  `qwtel/hydejack@v8`.
@@ -661,7 +661,7 @@ author:
   social:
     email:    mail@qwtel.com
     rss:      {{ site.url }}{{ site.baseurl }}/feed.xml # make sure you provide an absolute URL
-    download: https://github.com/qwtel/hydejack/archive/v8.4.0.zip
+    download: https://github.com/qwtel/hydejack/archive/v8.5.0-beta.0.zip
 ~~~
 
 
@@ -1845,13 +1845,15 @@ The current implementation does not cache resources from external domains. There
 
 For example, Google Analytics uses GET requests to send page views, each of which would be cached by the service worker without this policy. Frequently updating images, such as badges would never change.
 
-![Gem Version][gemv]
+![Gem Version][gemv]{:data-ignore=""}
 
 However, if you include resources that are hosted on another domain and don't change, you can add the `sw-cache` query parameter to the URL, e.g.
 
     https://upload.wikimedia.org/wikipedia/commons/b/b1/57_Chevy_210.jpg?sw-cache
 
 This will cause them to be cached like resources from the assets folder.
+
+![57 Chevy](https://upload.wikimedia.org/wikipedia/commons/b/b1/57_Chevy_210.jpg?sw-cache)
 
 [gemv]: https://badge.fury.io/rb/jekyll-theme-hydejack.svg
 
