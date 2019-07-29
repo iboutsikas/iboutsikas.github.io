@@ -41,7 +41,6 @@ Array.from(document.querySelectorAll('a[href="/blog/hydejack/2018-09-01-introduc
       if (!document.body.classList.contains("dark-mode")) {
         e.preventDefault();
         e.stopPropagation();
-        e.stopImmediatePropagation();
         document.body.classList.add("dark-mode");
       }
     });
