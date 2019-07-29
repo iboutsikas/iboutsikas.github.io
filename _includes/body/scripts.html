@@ -1,3 +1,4 @@
+<!--[if gt IE 10]><!---->
 {% if site.hydejack.dark_mode.dynamic %}
   <script>!function(w, d) {
     if ('matchMedia' in w && w.matchMedia('(prefers-color-scheme: light)').matches) return
@@ -8,24 +9,25 @@
 {% endif %}
 
 {% unless page.redirect %}
-  <!--[if !IE]><!---->
-  <script>loadJSDeferred(document.getElementById('_hrefJS').href);</script>
+  <script type="module">window.__ESM__=!0; import '{{ "/assets/js/hydejack-8.4.0.js" | relative_url }}';</script>
+  <script nomodule>if (!window.__ESM__) loadJSDeferred(document.getElementById('_hrefJS').href);</script>
   {% include my-scripts.html %}
-  <!--<![endif]-->
 
   {% include body/analytics.html %}
 
   <script>!function(w, d) {
     if ('serviceWorker' in w.navigator) {
+      function noop() {}
       /*{% if site.hydejack.offline.enabled %}*/
       w.navigator.serviceWorker.register(d.getElementById('_hrefSW').href)
-        .then(r => r.update())
-        .catch(() => {});
+        .then(function(r) { r.update() })
+        .catch(noop);
       /*{% else %}*/
       w.navigator.serviceWorker.getRegistration()
-        .then(r => r.unregister())
-        .catch(() => {});
+        .then(function(r) { r.unregister() })
+        .catch(noop);
       /*{% endif %}*/
     }
   }(window, document);</script>
 {% endunless %}
+<!--<![endif]-->

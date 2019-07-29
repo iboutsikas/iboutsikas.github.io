@@ -1,9 +1,9 @@
 // # src / dark-mode.js
 // Copyright (c) 2018 Florian Klampfer <https://qwtel.com/>
 
-import { importTemplate } from "../common";
+import { importTemplate, webComponentsReady } from "../common";
 
-requestIdleCallback(() => {
+webComponentsReady.then(() => {
   const darkMode = importTemplate("_dark-mode-template");
   if (darkMode) {
     const navbarEl = document.querySelector("#_navbar > .content > .nav-btn-bar");

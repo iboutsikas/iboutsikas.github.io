@@ -1,9 +1,9 @@
 // # src / cookies-banner.js
 // Copyright (c) 2018 Florian Klampfer <https://qwtel.com/>
 
-import { importTemplate } from "../common";
+import { importTemplate, webComponentsReady } from "../common";
 
-requestIdleCallback(() => {
+webComponentsReady.then(() => {
   if (!navigator.CookiesOK && document.cookie.indexOf("hy--cookies-ok") === -1) {
     const cookiesBanner = importTemplate("_cookies-banner-template");
     if (cookiesBanner) {
