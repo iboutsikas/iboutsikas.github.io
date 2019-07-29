@@ -6,19 +6,18 @@
 
   {% include body/analytics.html %}
 
-  <script>!function(w, d) {
-    if ('serviceWorker' in w.navigator) {
-      function noop() {}
+  <script type="module">
+    if ('serviceWorker' in navigator) {
       /*{% if site.hydejack.offline.enabled %}*/
-      w.navigator.serviceWorker.register(d.getElementById('_hrefSW').href)
-        .then(function(r) { r.update() })
-        .catch(noop);
+      navigator.serviceWorker.register(document.getElementById('_hrefSW').href)
+        .then(r => r.update())
+        .catch(() => {});
       /*{% else %}*/
-      w.navigator.serviceWorker.getRegistration()
-        .then(function(r) { r.unregister() })
-        .catch(noop);
+      navigator.serviceWorker.getRegistration()
+        .then(r => r.unregister())
+        .catch(() => {});
       /*{% endif %}*/
     }
-  }(window, document);</script>
+  </script>
 {% endunless %}
 <!--<![endif]-->
