@@ -27,6 +27,9 @@ $theme-color:         {{ site.theme_color  | default:'#193747' }};
 @import "mixins";
 
 @import "pro/dark-mode";
+{% if site.hydejack.dark_mode.dynamic %}
+  @import "pro/dark-mode-dynamic";
+{% endif %}
 
 @import "pooleparty/__inline__/base";
 @import "pooleparty/__inline__/type";

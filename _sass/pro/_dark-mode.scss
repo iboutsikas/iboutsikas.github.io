@@ -18,12 +18,6 @@
   --border-color: #{hsl(hue($theme-color), 12.5%, 27.5%)};
 }
 
-@media screen and (prefers-color-scheme: dark) {
-  body {
-    @include darkmode();
-  }
-}
-
 @media screen {
   body.light-mode {
     @include lightmode();
