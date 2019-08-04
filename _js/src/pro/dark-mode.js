@@ -4,8 +4,10 @@ import { importTemplate, webComponentsReady } from '../common';
 
 const SEL_NAVBAR_BTN_BAR = '#_navbar > .content > .nav-btn-bar';
 
-webComponentsReady.then(() => {
-  const darkMode = importTemplate('_dark-mode-template');
+(async () => {
+  await webComponentsReady;
+
+  const darkMode = importTemplate("_dark-mode-template");
   if (darkMode) {
     const navbarEl = document.querySelector(SEL_NAVBAR_BTN_BAR);
     navbarEl.appendChild(darkMode);
@@ -27,4 +29,4 @@ webComponentsReady.then(() => {
       }
     });
   }
-});
+})();

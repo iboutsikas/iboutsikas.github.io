@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const { resolve } = require("path");
-const { readdir, rename, unlink, stat, readFile, writeFile } = require("fs").promises;
+const { readdir, rename, unlink, readFile, writeFile } = require("fs").promises;
 
 const vPrev = require("../assets/version.json").version;
 const vNext = require("../package.json").version;
@@ -29,14 +29,12 @@ const FILES = [
 
 // <https://stackoverflow.com/a/45130990/870615>
 async function getFiles(dir) {
-  const subdirs = await readdir(dir);
-  const files = await Promise.all(
-    subdirs.map(async subdir => {
-      const res = resolve(dir, subdir);
-      return (await stat(res)).isDirectory() ? getFiles(res) : res;
-    })
-  );
-  return files.reduce((a, f) => a.concat(f), []);
+  const dirents = await readdir(dir, { withFileTypes: true });
+  const files = dirents.map((dirent) => {
+    const res = resolve(dir, dirent.name);
+    return dirent.isDirectory() ? getFiles(res) : res;
+  });
+  return Array.prototype.concat(...files);
 }
 
 (async function main() {
@@ -73,10 +71,11 @@ async function getFiles(dir) {
         })
     );
 
-    const pUnlink = Promise.all([
-      unlink(resolve(`./assets/js/hydejack-${vPrev}.js`)),
-      unlink(resolve(`./assets/js/hydejack-${vPrev}.js.map`)),
-    ]).catch(() => {});
+    const pUnlink = Promise.all(
+      (await getFiles('./assets/js'))
+        .filter(f => f.includes(vPrev))
+        .map(unlink)
+    );
 
     const pJSCSS = rename(
       resolve(`./assets/css/hydejack-${vPrev}.css`),
