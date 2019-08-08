@@ -258,6 +258,7 @@ exclude:
   - .sass-cache
 include:
   - LICENSE.md
+  - .well-known
 
 
 # Plugins
