@@ -17,9 +17,9 @@ qwtel:
     -- or --
     [**Buy PRO** --- $59][buy]{:.btn.btn-primary.btn-lg.heading}
 
-    [kit]: https://github.com/qwtel/hy-starter-kit/archive/v8.5.1.zip
+    [kit]: https://github.com/hydecorp/hydejack-starter-kit/archive/v8.5.1.zip
     [buy]: https://app.simplegoods.co/i/NATYVLYT
-    [nfy]: https://app.netlify.com/start/deploy?repository=https://github.com/qwtel/hydejack-starter-kit
+    [nfy]: https://app.netlify.com/start/deploy?repository=https://github.com/hydecorp/hydejack-starter-kit
     [dtn]: https://www.netlify.com/img/deploy/button.svg
 
   # This photo will be used in the about section
@@ -34,10 +34,10 @@ qwtel:
   # Comment/uncommet to show/hide
   # Rearrange to change the order in which they appear
   social:
-    twitter:         qwtel
-    github:          https://github.com/qwtel/hydejack
+    twitter:         hydecorp
+    github:          https://github.com/hydecorp/hydejack
     email:           mail@qwtel.com
-    download:        https://github.com/qwtel/hy-starter-kit/archive/v8.5.1.zip
+    download:        https://github.com/hydecorp/hydejack-starter-kit/archive/v8.5.1.zip
 
 # Another author
 mdo:

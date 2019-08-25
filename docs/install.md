@@ -25,7 +25,7 @@ Buyers of the PRO version should [follow these steps](#pro-version).
 Using the Starter Kit has the advantage of not cluttering your blog repository.
 Additionally, it allows you to publish your site on GitHub Pages with a single `push`.
 
-If you have a GitHub account, fork the [hy-starter-kit](https://github.com/qwtel/hy-starter-kit) repository. Otherwise [download the source files][src] and unzip them somewhere on your machine.
+If you have a GitHub account, fork the [hy-starter-kit](https://github.com/hydecorp/hy-starter-kit) repository. Otherwise [download the source files][src] and unzip them somewhere on your machine.
 
 **NOTE**: In addition to the docs here, you can follow the quick start guide in the Starter Kit.
 {:.message}
@@ -34,8 +34,8 @@ If you have a GitHub account, fork the [hy-starter-kit](https://github.com/qwtel
 
 Alternatively, you can just [![Deploy to Netlify][dtn]{:data-ignore=""}][nfy]{:.no-hover.no-mark}.
 
-[src]: https://github.com/qwtel/hy-starter-kit/archive/v8.5.1.zip
-[nfy]: https://app.netlify.com/start/deploy?repository=https://github.com/qwtel/hydejack-starter-kit
+[src]: https://github.com/hydecorp/hy-starter-kit/archive/v8.5.1.zip
+[nfy]: https://app.netlify.com/start/deploy?repository=https://github.com/hydecorp/hydejack-starter-kit
 [dtn]: https://www.netlify.com/img/deploy/button.svg
 
 ## Via gem
@@ -60,7 +60,7 @@ Your site's root dir should look something like this
 ~~~
 
 **NOTE**: Hydejack works with Jekyll's default `config.yml`, but it is recommended that you replace it with
-[Hydejack's default config file](https://github.com/qwtel/hydejack/blob/v8/_config.yml).
+[Hydejack's default config file](https://github.com/hydecorp/hydejack/blob/v8/_config.yml).
 It contains the names of all config options known to Hydejack and provides sensible defaults (like minifying HTML and CSS in production builds).
 {:.message}
 
@@ -84,7 +84,7 @@ For more information on gem-based themes, see the [Jekyll Documentation](http://
 You can now continue with [running locally](#running-locally).
 
 ## Via zip
-If you downloaded the [extended zip](https://github.com/qwtel/hydejack/releases),
+If you downloaded the [extended zip](https://github.com/hydecorp/hydejack/releases),
 extract the contents somewhere on your machine.
 The high-level folder structure will look something like.
 
@@ -108,11 +108,11 @@ The high-level folder structure will look something like.
 `cd` into the directory where `_config.yml` is located and follow the steps in [Running locally](#running-locally).
 
 ## Via git
-If you are familiar with using git, you can add the [Hydejack repository](https://github.com/qwtel/hydejack)
+If you are familiar with using git, you can add the [Hydejack repository](https://github.com/hydecorp/hydejack)
 as a remote, and merge its master branch into your working branch.
 
 ~~~bash
-$ git remote add hydejack git@github.com:qwtel/hydejack.git
+$ git remote add hydejack git@github.com:hydecorp/hydejack.git
 $ git pull hydejack master
 ~~~
 
@@ -189,7 +189,7 @@ Host hydejack
 Next, open `Gemfile` in your Jekyll repository and add:
 
 ~~~ruby
-gem "jekyll-theme-hydejack-pro", git: 'git@hydejack:qwtel/hydejack-8-pro.git'
+gem "jekyll-theme-hydejack-pro", git: 'git@hydejack:hydecorp/hydejack-8-pro.git'
 ~~~
 
 In your `_config.yml`, add:

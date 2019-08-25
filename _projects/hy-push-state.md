@@ -6,9 +6,9 @@ image: /assets/img/projects/hy-push-state.svg
 screenshot: /assets/img/projects/hy-push-state.svg
 links:
   - title: Website
-    url: https://qwtel.com/hy-push-state/
+    url: https://hydecorp.github.io/hy-push-state/
   - title: Source
-    url: https://github.com/qwtel/hy-push-state
+    url: https://github.com/hydecorp/hy-push-state
 caption: Turns web pages into web apps.
 description: >
   hy-push-state is a web component that lets you turn web pages into web apps.
@@ -27,8 +27,8 @@ accent_image:
 
 **hy-push-state** is already used by hundreds of sites as part of the [Hydejack] Jekyll theme.
 
-[pref]: https://qwtel.com/hy-push-state/#page-prefetching
-[anim]: https://qwtel.com/hy-push-state/#advanced-animations
+[pref]: https://hydecorp.github.io/hy-push-state/#page-prefetching
+[anim]: https://hydecorp.github.io/hy-push-state/#advanced-animations
 
 [pjax]: https://github.com/defunkt/jquery-pjax
 [smoothstate]: https://github.com/miguel-perez/smoothState.js

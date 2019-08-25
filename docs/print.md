@@ -9,7 +9,7 @@ sitemap: false
 
 Here you should be able to find everything you need to know to accomplish the most common tasks when blogging with Hydejack.
 Should you think something is missing, [please let me know](mailto:mail@qwtel.com).
-Should you discover a mistake in the docs (or a bug in general) feel free to [open an issue](https://github.com/qwtel/hydejack/issues) on GitHub.
+Should you discover a mistake in the docs (or a bug in general) feel free to [open an issue](https://github.com/hydecorp/hydejack/issues) on GitHub.
 
 **NOTE**: While this manual tries to be beginner-friendly, as a user of Jekyll it is assumed that you are comfortable running shell commands and editing text files.
 {:.message}
@@ -51,7 +51,7 @@ Buyers of the PRO version should [follow these steps](#pro-version).
 Using the Starter Kit has the advantage of not cluttering your blog repository.
 Additionally, it allows you to publish your site on GitHub Pages with a single `push`.
 
-If you have a GitHub account, fork the [hy-starter-kit](https://github.com/qwtel/hy-starter-kit) repository. Otherwise [download the source files][src] and unzip them somewhere on your machine.
+If you have a GitHub account, fork the [hy-starter-kit](https://github.com/hydecorp/hy-starter-kit) repository. Otherwise [download the source files][src] and unzip them somewhere on your machine.
 
 **NOTE**: In addition to the docs here, you can follow the quick start guide in the Starter Kit.
 {:.message}
@@ -60,8 +60,8 @@ If you have a GitHub account, fork the [hy-starter-kit](https://github.com/qwtel
 
 Alternatively, you can just [![Deploy to Netlify][dtn]{:data-ignore=""}][nfy]{:.no-hover.no-mark}.
 
-[src]: https://github.com/qwtel/hy-starter-kit/archive/v8.5.1.zip
-[nfy]: https://app.netlify.com/start/deploy?repository=https://github.com/qwtel/hydejack-starter-kit
+[src]: https://github.com/hydecorp/hy-starter-kit/archive/v8.5.1.zip
+[nfy]: https://app.netlify.com/start/deploy?repository=https://github.com/hydecorp/hydejack-starter-kit
 [dtn]: https://www.netlify.com/img/deploy/button.svg
 
 ### Via gem
@@ -86,7 +86,7 @@ Your site's root dir should look something like this
 ~~~
 
 **NOTE**: Hydejack works with Jekyll's default `config.yml`, but it is recommended that you replace it with
-[Hydejack's default config file](https://github.com/qwtel/hydejack/blob/v8/_config.yml).
+[Hydejack's default config file](https://github.com/hydecorp/hydejack/blob/v8/_config.yml).
 It contains the names of all config options known to Hydejack and provides sensible defaults (like minifying HTML and CSS in production builds).
 {:.message}
 
@@ -110,7 +110,7 @@ For more information on gem-based themes, see the [Jekyll Documentation](http://
 You can now continue with [running locally](#running-locally).
 
 ### Via zip
-If you downloaded the [extended zip](https://github.com/qwtel/hydejack/releases),
+If you downloaded the [extended zip](https://github.com/hydecorp/hydejack/releases),
 extract the contents somewhere on your machine.
 The high-level folder structure will look something like.
 
@@ -134,11 +134,11 @@ The high-level folder structure will look something like.
 `cd` into the directory where `_config.yml` is located and follow the steps in [Running locally](#running-locally).
 
 ### Via git
-If you are familiar with using git, you can add the [Hydejack repository](https://github.com/qwtel/hydejack)
+If you are familiar with using git, you can add the [Hydejack repository](https://github.com/hydecorp/hydejack)
 as a remote, and merge its master branch into your working branch.
 
 ~~~bash
-$ git remote add hydejack git@github.com:qwtel/hydejack.git
+$ git remote add hydejack git@github.com:hydecorp/hydejack.git
 $ git pull hydejack master
 ~~~
 
@@ -215,7 +215,7 @@ Host hydejack
 Next, open `Gemfile` in your Jekyll repository and add:
 
 ~~~ruby
-gem "jekyll-theme-hydejack-pro", git: 'git@hydejack:qwtel/hydejack-8-pro.git'
+gem "jekyll-theme-hydejack-pro", git: 'git@hydejack:hydecorp/hydejack-8-pro.git'
 ~~~
 
 In your `_config.yml`, add:
@@ -272,10 +272,10 @@ especially the part about the [license change](../CHANGELOG.md#license-change)!
 When using the Starter Kit, upgrading Hydejack is as simple as setting the `remote_theme` key in `config.yml` to the desired version.
 
 ```yml
-remote_theme: qwtel/hydejack@v8.5.1
+remote_theme: hydecorp/hydejack@v8.5.1
 ```
 
-To use the latest version on the `v8` branch on each build, you can use  `qwtel/hydejack@v8`.
+To use the latest version on the `v8` branch on each build, you can use  `hydecorp/hydejack@v8`.
 
 
 ### Via gem
@@ -308,11 +308,11 @@ Make sure you've made a backup before overwriting any files.
 
 
 ### Via git
-The latest version sits on the `master` branch of [qwtel/hydejack](https://github.com/qwtel/hydejack).
+The latest version sits on the `master` branch of [hydecorp/hydejack](https://github.com/hydecorp/hydejack).
 To apply them to your repository run
 
 ~~~bash
-$ git remote add hydejack git@github.com:qwtel/hydejack.git
+$ git remote add hydejack git@github.com:hydecorp/hydejack.git
 $ git pull hydejack master
 ~~~
 
@@ -340,7 +340,7 @@ $ bundle update jekyll-theme-hydejack-pro
 ----------------------------------------------------------------{% endcomment %}
 
 ## Config
-Once Jekyll is running, you can start with basic configuration by adding various entries to `_config.yml`. Besides these descriptions, you can also read the [annotated config file](https://github.com/qwtel/hydejack/blob/v8/_config.yml).
+Once Jekyll is running, you can start with basic configuration by adding various entries to `_config.yml`. Besides these descriptions, you can also read the [annotated config file](https://github.com/hydecorp/hydejack/blob/v8/_config.yml).
 
 **NOTE**: When making changes to `_config.yml`, it is necessary to restart the Jekyll process for changes to take effect.
 {:.message}
@@ -609,7 +609,7 @@ The keys of the `srcset` hash will be used as image descriptors. For more inform
 #### Adding social media icons
 Hydejack supports a variety of social media icons out of the box. These are defined on a per-author basis, so make sure you've followed the steps in [Adding an author](#adding-an-author).
 
-**NOTE**: If you are using the gem-based version of Hydejack, download [`social.yml`](https://github.com/qwtel/hydejack/blob/v8/_data/social.yml) and put it into `_data` in the root directory. This is necessary because gem-based themes do not support including `_data`.
+**NOTE**: If you are using the gem-based version of Hydejack, download [`social.yml`](https://github.com/hydecorp/hydejack/blob/v8/_data/social.yml) and put it into `_data` in the root directory. This is necessary because gem-based themes do not support including `_data`.
 {:.message}
 
 You can add a link to a social network by adding an entry to the `social` key in to an author.
@@ -623,7 +623,7 @@ author:
     github:  qwtel
 ~~~
 
-Check out [`authors.yml`](https://github.com/qwtel/hydejack/blob/v8/_data/authors.yml) to see which networks are available.
+Check out [`authors.yml`](https://github.com/hydecorp/hydejack/blob/v8/_data/authors.yml) to see which networks are available.
 You can also follow the steps [here](#advanced) to add your own social media icons.
 
 You can change the order in which the icons appear by moving lines up or down, e.g.
@@ -637,7 +637,7 @@ author:
 ~~~
 
 To get an overview of which networks are available and how a typical username in that network looks like,
-see the included [`authors.yml`](https://github.com/qwtel/hydejack/blob/v8/_data/authors.yml).
+see the included [`authors.yml`](https://github.com/hydecorp/hydejack/blob/v8/_data/authors.yml).
 
 Should providing a username not produce a correct link for some reason, you can provide a complete URL instead, e.g.
 
@@ -648,7 +648,7 @@ author:
     youtube: https://www.youtube.com/channel/UCu0PYX_kVANdmgIZ4bw6_kA
 ~~~
 
-**NOTE**: You can add any platform, even if it's not defined in [`social.yml`](https://github.com/qwtel/hydejack/blob/v8/_data/social.yml), by providing a complete URL. However, a fallback icon <span class="icon-link"></span> will be used when no icon is available. Supplying your own icons is an [advanced topic](#advanced).
+**NOTE**: You can add any platform, even if it's not defined in [`social.yml`](https://github.com/hydecorp/hydejack/blob/v8/_data/social.yml), by providing a complete URL. However, a fallback icon <span class="icon-link"></span> will be used when no icon is available. Supplying your own icons is an [advanced topic](#advanced).
 {:.message}
 
 
@@ -661,7 +661,7 @@ author:
   social:
     email:    mail@qwtel.com
     rss:      {{ site.url }}{{ site.baseurl }}/feed.xml # make sure you provide an absolute URL
-    download: https://github.com/qwtel/hydejack/archive/v8.5.1.zip
+    download: https://github.com/hydecorp/hydejack/archive/v8.5.1.zip
 ~~~
 
 
@@ -711,13 +711,13 @@ Conversely, if you want to disable it, you only have to remove the `google_analy
 
 #### Using a custom analytics provider
 If you want to use a different analytics provider, e.g. [Matomo](https://matomo.org/), you can add its code snippet to `_includes/my-body.html` (create if it doesn't exist).
-The [default file](https://github.com/qwtel/hydejack/blob/v8/_includes/my-body.html) contains example code for using Matomo.
+The [default file](https://github.com/hydecorp/hydejack/blob/v8/_includes/my-body.html) contains example code for using Matomo.
 
 
 ### Changing built-in strings
 You can change the wording of built-in strings like "Related Posts" or "Read more" in `_data/strings.yml`.
 
-If you are using the gem-based version the file doesn't exist, but you can get the default file [here](https://github.com/qwtel/hydejack/blob/v8/_data/strings.yml).
+If you are using the gem-based version the file doesn't exist, but you can get the default file [here](https://github.com/hydecorp/hydejack/blob/v8/_data/strings.yml).
 
 You will frequently find markers like `<!--post_title-->`.
 You can place them freely within your string and they will be replaced with the content they refer to.
@@ -947,7 +947,7 @@ Tags       | Welcome to Jekyll¬ 07 Apr 2017 **on** Jekyll, Update
 Both       | Welcome to Jekyll¬ 07 Apr 2017 **in** Jekyll / Update **on** Jekyll, Update
 {:.scroll-table-small}
 
-You can adjust these in [`_data/string.yml`](https://github.com/qwtel/hydejack/blob/v8/_data/strings.yml).
+You can adjust these in [`_data/string.yml`](https://github.com/hydecorp/hydejack/blob/v8/_data/strings.yml).
 
 #### Creating a new category or tag
 By default, categories and tags are rendered as plain text. Further steps are necessary if you want them to link to a page that contains a list of all posts that belong to that category or tag.
@@ -1201,7 +1201,7 @@ Hydejack's PRO version features a generalized resume layout.
 
 It generates the resume page from a valid [JSON Resume](https://jsonresume.org/), which is good news if you already have a JSON resume. Otherwise, there are various ways of obtaining one:
 
-* You can edit the [example `resume.yml`](https://github.com/qwtel/hydejack/blob/v8/_data/resume.yml) in `_data` directly. It contains example entries for each type of entry.
+* You can edit the [example `resume.yml`](https://github.com/hydecorp/hydejack/blob/v8/_data/resume.yml) in `_data` directly. It contains example entries for each type of entry.
 * You can use the visual [JSON Resume Editor](http://registry.jsonresume.org/).
 * If you have a LinkedIn profile, you can try [LinkedIn to Json Résumé](https://jmperezperez.com/linkedin-to-json-resume/).
 
@@ -1829,7 +1829,7 @@ importScripts("{\{ '/assets/js/sw.js' | relative_url }\}?t={\{ site.time | date_
 **NOTE**: You have to remove the `\` after each `{` and before each `}`! Alternatively, you can just copy the file from [here][sw].
 {:.message}
 
-[sw]: https://github.com/qwtel/hydejack/blob/v8/sw.js
+[sw]: https://github.com/hydecorp/hydejack/blob/v8/sw.js
 
 This will load the main service worker script from Hydejack's assets. The `site.time` part is necessary to make the service worker "byte different" every time you create a new build of your site, which triggers an update.
 
@@ -1882,7 +1882,7 @@ Hydejack includes a number of social media icons by default (in fact, everything
 {:.message}
 
 #### Creating the icon font
-In order to add a custom social media icon you have to use the [IcoMoon App](https://icomoon.io/app/) (free) to create a custom icon webfont. However, it is important that the generated font include all icons already in use by Hydejack. For this purpose, find the `selection.json` in [`assets/icomoon/selection.json`](https://github.com/qwtel/hydejack/blob/v6/assets/icomoon/selection.json) and upload it to the app via "Import Icons".
+In order to add a custom social media icon you have to use the [IcoMoon App](https://icomoon.io/app/) (free) to create a custom icon webfont. However, it is important that the generated font include all icons already in use by Hydejack. For this purpose, find the `selection.json` in [`assets/icomoon/selection.json`](https://github.com/hydecorp/hydejack/blob/v6/assets/icomoon/selection.json) and upload it to the app via "Import Icons".
 Then, use the app to add your icon(s).
 Consult the [IcoMoon docs](https://icomoon.io/#docs) for additional help.
 

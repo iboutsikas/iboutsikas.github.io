@@ -6,9 +6,9 @@ image: /assets/img/projects/hy-img.svg
 screenshot: /assets/img/projects/hy-img.svg
 links:
   - title: Website
-    url: https://qwtel.com/hy-img/
+    url: https://hydecorp.github.io/hy-img/
   - title: Source
-    url: https://github.com/qwtel/hy-img
+    url: https://github.com/hydecorp/hy-img
 caption: Lazy-loading images with cancellation
 description: >
   hy-img is a web component for lazy-loading images with in-flight request cancellation for images that are scrolled out of view.
