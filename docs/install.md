@@ -189,7 +189,7 @@ Host hydejack
 Next, open `Gemfile` in your Jekyll repository and add:
 
 ~~~ruby
-gem "jekyll-theme-hydejack-pro", git: 'git@hydejack:hydecorp/hydejack-8-pro.git'
+gem "jekyll-theme-hydejack-pro", git: 'git@github.com:qwtel/hydejack-pro-8.git'
 ~~~
 
 In your `_config.yml`, add:
