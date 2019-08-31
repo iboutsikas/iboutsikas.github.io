@@ -2,7 +2,7 @@
 
 import { importTemplate, webComponentsReady } from "../common";
 
-const SEL_NAVBAR_BTN_BAR = "#_navbar > .content > .nav-btn-bar"
+const SEL_NAVBAR_BTN_BAR = "#_navbar > .content > .nav-btn-bar";
 
 webComponentsReady.then(() => {
   const darkMode = importTemplate("_dark-mode-template");
@@ -17,7 +17,9 @@ webComponentsReady.then(() => {
       const list = document.body.classList;
       if (
         list.contains("dark-mode") ||
-        ('_sunset' in window && !list.contains("light-mode") && matchMedia("(prefers-color-scheme: dark)").matches)
+        ("_sunset" in window &&
+          !list.contains("light-mode") &&
+          matchMedia("(prefers-color-scheme: dark)").matches)
       ) {
         list.remove("dark-mode");
         list.add("light-mode");
