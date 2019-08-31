@@ -1,5 +1,4 @@
-// # src / flip / project.js
-// Copyright (c) 2018 Florian Klampfer <https://qwtel.com/>
+// Copyright (c) 2019 Florian Klampfer <https://qwtel.com/>
 
 import { fromEvent, of, zip } from "rxjs";
 import { tap, finalize, filter, switchMap } from "rxjs/operators";

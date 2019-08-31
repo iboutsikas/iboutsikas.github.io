@@ -1,5 +1,4 @@
-// # src / cookies-banner.js
-// Copyright (c) 2018 Florian Klampfer <https://qwtel.com/>
+// Copyright (c) 2019 Florian Klampfer <https://qwtel.com/>
 
 import { importTemplate, webComponentsReady } from "../common";
 
