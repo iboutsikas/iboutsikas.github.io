@@ -2,29 +2,28 @@
 
 import { importTemplate, webComponentsReady } from "../common";
 
+const SEL_NAVBAR_BTN_BAR = "#_navbar > .content > .nav-btn-bar"
+
 webComponentsReady.then(() => {
   const darkMode = importTemplate("_dark-mode-template");
   if (darkMode) {
-    const navbarEl = document.querySelector(
-      "#_navbar > .content > .nav-btn-bar"
-    );
+    const navbarEl = document.querySelector(SEL_NAVBAR_BTN_BAR);
     navbarEl.appendChild(darkMode);
 
     document.body.classList.remove("no-color-transition");
 
     document.getElementById("_dark-mode").addEventListener("click", e => {
       e.preventDefault();
-      const cl = document.body.classList;
+      const list = document.body.classList;
       if (
-        cl.contains("dark-mode") ||
-        (!cl.contains("light-mode") &&
-          matchMedia("(prefers-color-scheme: dark)").matches)
+        list.contains("dark-mode") ||
+        ('_sunset' in window && !list.contains("light-mode") && matchMedia("(prefers-color-scheme: dark)").matches)
       ) {
-        cl.remove("dark-mode");
-        cl.add("light-mode");
+        list.remove("dark-mode");
+        list.add("light-mode");
       } else {
-        cl.remove("light-mode");
-        cl.add("dark-mode");
+        list.remove("light-mode");
+        list.add("dark-mode");
       }
     });
   }
