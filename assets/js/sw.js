@@ -1,6 +1,6 @@
 ---
 ---
-// Copyright (c) 2018 Florian Klampfer <https://qwtel.com/>
+// Copyright (c) 2019 Florian Klampfer <https://qwtel.com/>
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -51,7 +51,6 @@ const GOOGLE_FONTS = "https://fonts.googleapis.com/css?family={{ google_fonts | 
 // {% endunless %}
 
 const SHELL_FILES = [
-  "{{ '/assets/bower_components/fontfaceobserver/fontfaceobserver.standalone.js' | relative_url }}",
   "{{ '/assets/js/hydejack-8.5.2.js' | relative_url }}",
   "{{ '/assets/css/hydejack-8.5.2.css' | relative_url }}",
   "{{ '/assets/img/swipe.svg' | relative_url }}",
