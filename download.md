@@ -30,8 +30,8 @@ This table below shows what's included in each version:
 | License                | [GPL-3.0][lic] | [PRO]    |
 | Source                 | [GitHub][src]  | Included |
 | Support[^1]            | No             | No       |
-| Price                  | Free           | $59      |
-| | [**Download**][kit] <br/>-- or --<br/> [![Deploy to Netlify][dtn]{:data-ignore=""}][nfy]{:.no-hover.no-mark} | [**Buy PRO** --- $59][buy]{:.btn.btn-primary.btn-lg.heading} |
+| Price                  | Free           | $69      |
+| | [**Download**][kit] <br/>-- or --<br/> [![Deploy to Netlify][dtn]{:data-ignore=""}][nfy]{:.no-hover.no-mark} | [**Buy PRO** --- $69][buy]{:.btn.btn-primary.btn-lg.heading} |
 {:.stretch-table.dl-table}
 
 <script>
