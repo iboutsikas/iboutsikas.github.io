@@ -199,6 +199,10 @@ function isSameSite({ origin, pathname }) {
   return origin.startsWith("{{ site.url }}") && pathname.startsWith("{{ site.baseurl }}");
 }
 
+function hasSWParam({ searchParams }) {
+  return searchParams.has(CACHE_SEARCH_PARAM);
+}
+
 async function cacheResponse(cacheName, req, res) {
   const cache = await caches.open(cacheName);
   return cache.put(req, res);
@@ -214,7 +218,7 @@ async function fromNetwork(e, request) {
   const url = new URL(request.url);
 
   // TODO: always cache GET requests from other domains!? Only images?
-  const hasSWParam = url.searchParams.has(CACHE_SEARCH_PARAM);
+  const hasSWParam = hasSWParam(url)
   if (isSameSite(url) || hasSWParam) {
     const isAsset = url.pathname.startsWith("{{ 'assets' | relative_url }}");
     const cacheName = isAsset || hasSWParam ? ASSETS_CACHE : CONTENT_CACHE;
@@ -242,14 +246,13 @@ async function onActivate(e) {
 
 async function onFetch(e) {
   const { request } = e;
+  const url = new URL(request.url);
 
   // Bypass
   // ------
   // Go to network for non-GET request and Google Analytics right away.
-  if (
-    request.method !== "GET" /*{% if site.google_analytics %}*/ ||
-    request.url.startsWith("https://www.google-analytics.com/collect") /*{% endif %}*/
-  ) {
+  const shouldCache = isSameSite(url) || hasSWParam(url);
+  if (request.method !== "GET" || !shouldCache) {
     return fetch(request);
   }
 
