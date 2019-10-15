@@ -170,7 +170,7 @@ This table below shows what's included in each version:
 | License                | [GPL-3.0][lic] | [PRO]    |
 | Source                 | [GitHub][src]  | Included |
 | Support[^1]            | No             | No       |
-| Price                  | Free           | $69      |
+| Price                  | Free           | $69[^3]  |
 | | [**Download**][kit] <br/>-- or --<br/> [![Deploy to Netlify][dtn]{:data-ignore=""}][nfy]{:.no-hover.no-mark} | [**Buy PRO** --- $69][buy]{:.btn.btn-primary.btn-lg.heading} |
 {:.stretch-table.dl-table}
 
@@ -192,6 +192,8 @@ Array.from(document.querySelectorAll('a[href="/blog/hydejack/2018-09-01-introduc
       You understand that using Jekyll requires technical know-how and is not comparable to Wordpress in terms of ease of use. Please use the free version to confirm that Hydejack works for you. For details, see the [PRO] license.
 
 [^2]: Actual page load speed depends on your hosting provider, resolution of embedded images and usage of 3rd party plugins.
+
+[^3]: Use the *promo code* **TIMEWARP** to get a $10 discount.
 
 [blog]: !blog.md
 [portfolio]: projects.md
