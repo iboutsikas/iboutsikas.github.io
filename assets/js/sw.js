@@ -40,14 +40,14 @@ const CACHE_SEARCH_PARAM = "sw-cache";
 const RAND_SEARCH_PARAM = "rand";
 
 // The regular expression used to find URLs in webfont style sheets.
-const RE = /url\(['"]?(.*?)['"]?\)/gi;
+const RE_CSS_URL = /url\(['"]?(.*?)['"]?\)/gi;
 
 const ICON_FONT = "{{ '/assets/icomoon/style.css' | relative_url }}";
 
 // {% assign google_fonts = site.google_fonts | default:"Roboto+Slab:700|Noto+Sans:400,400i,700,700i" %}
 // {% unless site.hydejack.no_google_fonts or site.no_google_fonts %}
 // {% assign gf = true %}
-const GOOGLE_FONTS = "https://fonts.googleapis.com/css?family={{ google_fonts | uri_escape }}";
+const GOOGLE_FONTS = "https://fonts.googleapis.com/css?family={{ google_fonts | uri_escape }}&display=swap";
 // {% endunless %}
 
 const SHELL_FILES = [
@@ -68,85 +68,89 @@ const ASSET_FILES = [
 // Files we add on every service worker installation.
 const CONTENT_FILES = [
   "{{ '/' | relative_url }}",
-  "{{ '/?utm_source=homescreen' | relative_url }}",
+  "{{ '/?source=pwa' | relative_url }}",
   "{{ '/assets/manifest.json' | relative_url }}",
+  "{{ '/offline.html' | relative_url }}",
   /*{% for legal in site.legal %}*/ "{% include smart-url.txt url=legal.href %}",
   /*{% endfor %}*/
 ];
 
-const NOT_FOUND_PAGE = "{{ '/404.html' | relative_url }}";
+const SITE_URL = new URL("{{ '/' | relative_url }}", self.location);
+const OFFLINE_PAGE_URL = new URL("{{ '/offline.html' | relative_url }}", self.location);
 
 self.addEventListener("install", e => e.waitUntil(onInstall(e)));
 self.addEventListener("activate", e => e.waitUntil(onActivate(e)));
 self.addEventListener("fetch", e => e.respondWith(onFetch(e)));
 
-function dirname(path) {
-  return path.replace(/[^/]*$/, "");
+// Takes a URL with pathname like `/foo/bar/file.txt` and returns just the dirname like `/foo/bar/`.
+const dirname = ({ pathname }) => pathname.replace(/[^/]*$/, "");
+
+function matchAll(text, regExp) {
+  const globalRegExp = new RegExp(regExp, 'g'); // force global regexp to prevent infinite loop
+  const matches = [];
+  let lastMatch;
+  while (lastMatch = globalRegExp.exec(text)) matches.push(lastMatch);
+  return matches;
 }
 
-function getMatches(text, re, i = 0) {
-  const res = [];
-  let match;
-  while ((match = re.exec(text))) {
-    res.push(match[i]);
-  }
-  return res;
-}
+// Returns the second element of an iterable (first match in RegExp match array)
+const second = ([, _]) => _;
 
+const toAbsoluteURL = url => new URL(url, self.location);
+
+// Creates a URL that bypasses the browser's HTTP cache by appending a random search parameter.
 function noCache(url) {
-  const url2 = new URL(url);
-  url2.searchParams.append(
-    RAND_SEARCH_PARAM,
-    Math.random()
-      .toString(36)
-      .substr(2)
-  );
+  const url2 = new URL(url, self.location);
+  const rand = Math.random().toString(36).substr(2);
+  url2.searchParams.append(RAND_SEARCH_PARAM, rand);
   return url2;
+  // return new Request(url, { cache: 'no-store' });
 }
 
+// Removes the sw search paramter, if present.
 function noSWParam(url) {
   const url2 = new URL(url);
   url2.searchParams.delete(CACHE_SEARCH_PARAM);
   return url2;
 }
 
+const warn = (e) => {
+  console.warn(e);
+  return new Response(e.message, { status: 500 });
+}
+
 // TODO: transpile to ES5, or translate by hand.
 async function getIconFontFiles() {
   const iconFontURL = new URL(ICON_FONT, self.location);
-  const iconFontRes = await fetch(iconFontURL);
-  const text = await iconFontRes.text();
+  const iconFontRes = await fetch(iconFontURL).catch(warn);
+  if (iconFontRes.ok) {
+    const text = await iconFontRes.text();
 
-  const dirPath = dirname(iconFontURL.pathname);
+    const dirPath = dirname(iconFontURL);
+    const fixURL = ([, match]) => new URL(`${dirPath}${match}`, iconFontURL)
 
-  return getMatches(text, RE, 1)
-    .map(match => new URL(`${dirPath}${match}`, iconFontURL.origin))
-    .concat(ICON_FONT);
+    return [ICON_FONT, ...matchAll(text, RE_CSS_URL).map(fixURL)];
+  }
+  return []
 }
 
 async function getGoogleFontsFiles() {
-  const googleFontRes = await fetch(GOOGLE_FONTS);
-  const text = await googleFontRes.text();
-  return getMatches(text, RE, 1).concat(GOOGLE_FONTS);
+  const googleFontRes = await fetch(noCache(GOOGLE_FONTS)).catch(warn);
+  if (googleFontRes.ok) {
+    const text = await googleFontRes.text();
+    return [GOOGLE_FONTS, ...matchAll(text, RE_CSS_URL).map(second)];
+  }
+  return [];
 }
-
-const toLocalURL = url => new URL(url, self.location);
 
 function addAll(cache, urls) {
   return Promise.all(
-    urls.map(url => fetch(noCache(toLocalURL(url))).then(res => cache.put(url, res)))
-  );
-}
-
-async function cache404(cache) {
-  const url = new URL(NOT_FOUND_PAGE, self.location);
-  const response = await fetch(noCache(url));
-  return cache.put(
-    url,
-    new Response(response.body, {
-      status: 598,
-      statusText: "Offline",
-      headers: response.headers,
-    })
+    urls.map(url => (
+      fetch(noCache(toAbsoluteURL(url)))
+        .then(res => cache.put(url, res))
+        .catch(warn)
+      )
+    )
   );
 }
 
@@ -167,10 +171,10 @@ async function cacheAssets(cache) {
 
 async function cacheContent(cache) {
   const urls = CONTENT_FILES.filter(x => !!x);
-  return Promise.all([addAll(cache, urls), cache404(cache)]);
+  return addAll(cache, urls);
 }
 
-async function precache() {
+async function preCache() {
   const keys = await caches.keys();
 
   if (keys.includes(SHELL_CACHE) && keys.includes(ASSETS_CACHE)) {
@@ -190,46 +194,27 @@ async function precache() {
   }
 }
 
-async function onInstall(e) {
-  await precache();
+async function onInstall() {
+  await preCache();
   return self.skipWaiting();
 }
 
-function isSameSite({ origin, pathname }) {
-  return origin.startsWith("{{ site.url }}") && pathname.startsWith("{{ site.baseurl }}");
-}
-
-function hasSWParam({ searchParams }) {
-  return searchParams.has(CACHE_SEARCH_PARAM);
-}
+const isSameSite = ({ origin, pathname }) => origin === SITE_URL.origin && pathname.startsWith(SITE_URL.pathname);
+const isAsset = ({ pathname }) => pathname.startsWith("{{ 'assets' | relative_url }}");
+const hasSWParam = ({ searchParams }) => searchParams.has(CACHE_SEARCH_PARAM);
 
 async function cacheResponse(cacheName, req, res) {
   const cache = await caches.open(cacheName);
   return cache.put(req, res);
 }
 
-async function fetchAndCache(e, request, cacheName) {
-  const response = await fetch(noCache(noSWParam(request.url)));
+async function fetchAndCache(cacheName, url, request, e) {
+  const response = await fetch(noCache(noSWParam(url)));
   if (response.ok) e.waitUntil(cacheResponse(cacheName, request, response.clone()));
   return response;
 }
 
-async function fromNetwork(e, request) {
-  const url = new URL(request.url);
-
-  // TODO: always cache GET requests from other domains!? Only images?
-  const hasSWParam = hasSWParam(url)
-  if (isSameSite(url) || hasSWParam) {
-    const isAsset = url.pathname.startsWith("{{ 'assets' | relative_url }}");
-    const cacheName = isAsset || hasSWParam ? ASSETS_CACHE : CONTENT_CACHE;
-    return fetchAndCache(e, request, cacheName);
-  }
-
-  // If the requested file isn't whitelisted we just send a regular request
-  return fetch(request);
-}
-
-async function onActivate(e) {
+async function onActivate() {
   await self.clients.claim();
 
   const keys = await caches.keys();
@@ -244,6 +229,28 @@ async function onActivate(e) {
   );
 }
 
+const NEVER = new Promise(() => {});
+
+// Returns the first promise that resolves with non-nullish value,
+// or `undefined` if all promises resolve with a nullish value.
+// Note that this inherits the behavior of `Promise.race`,
+// where the returned promise rejects as soon as one input promise rejects.
+async function raceTruthy(iterable) {
+  const ps = [...iterable].map(_ => Promise.resolve(_));
+  let { length } = ps;
+  const continueWhenNullish = value => value != null
+    ? value
+    : --length > 0
+      ? NEVER
+      : undefined;
+  return Promise.race(ps.map(p => p.then(continueWhenNullish)));
+}
+
+async function fromNetwork(url, ...args) {
+  const cacheName = isAsset(url) || hasSWParam(url) ? ASSETS_CACHE : CONTENT_CACHE;
+  return fetchAndCache(cacheName, url, ...args);
+}
+
 async function onFetch(e) {
   const { request } = e;
   const url = new URL(request.url);
@@ -253,32 +260,29 @@ async function onFetch(e) {
   // Go to network for non-GET request and Google Analytics right away.
   const shouldCache = isSameSite(url) || hasSWParam(url);
   if (request.method !== "GET" || !shouldCache) {
-    return fetch(request);
+    return fetch(request).catch(e => Promise.reject(e));
   }
 
-  // Caches
-  // ------
-  // NOTE: `encodeURI` wtf?
-  const url = encodeURI(request.url);
-
-  // FIXME: don't wait for all promises to complete...
-  const [matching1, matching2, matching3] = await Promise.all([
-    caches.open(SHELL_CACHE).then(c => c.match(url)),
-    caches.open(ASSETS_CACHE).then(c => c.match(url)),
-    caches.open(CONTENT_CACHE).then(c => c.match(url)),
-  ]);
-
-  if (matching1 || matching2 || matching3) return matching1 || matching2 || matching3;
-
-  // Network
-  // -------
-  // Got to network otherwise. Show 404 when there's a network error.
-  // TODO: Use separate offline site instead of 404!?
   try {
-    return await fromNetwork(e, request);
+    // Caches
+    // ------
+    const matching = await raceTruthy([
+      caches.open(SHELL_CACHE).then(c => c.match(url)),
+      caches.open(ASSETS_CACHE).then(c => c.match(url)),
+      caches.open(CONTENT_CACHE).then(c => c.match(url)),
+    ]);
+
+    if (matching) return matching;
+
+    // Network
+    // -------
+    // Got to network otherwise. Show 404 when there's a network error.
+    // TODO: Use separate offline site instead of 404!?
+    return await fromNetwork(url, request, e);
   } catch (err) {
+    // console.error(err)
     const cache = await caches.open(CONTENT_CACHE);
-    return cache.match(NOT_FOUND_PAGE);
+    return cache.match(OFFLINE_PAGE_URL);
   }
 }
 
