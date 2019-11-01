@@ -61,9 +61,11 @@
       }
 
       &:hover, &:focus {
-        .project-card-img img {
-          transition: transform 250ms;
-          transform: scale(1.025);
+        .project-card-img { 
+          img {
+            transition: transform 250ms;
+            transform: scale(1.025);
+          }
         }
       }
     }
