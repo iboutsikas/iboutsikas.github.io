@@ -1,9 +1,9 @@
 // Copyright (c) 2019 Florian Klampfer <https://qwtel.com/>
 
-@import "pro/dark-mode";
+@import "pro/syntax-dark";
 
 @media screen and (prefers-color-scheme: dark) {
   body {
-    @include darkmode();
+    @include darkmode-syntax();
   }
 }
