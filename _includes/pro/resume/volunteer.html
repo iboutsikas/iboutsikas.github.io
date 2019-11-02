@@ -7,7 +7,7 @@
   </h2>
   {% for vol in resume.volunteer %}
   <section class="no-page-break">
-    <header class="{% unless forloop.first %}mt4{% endunless %}">
+    <header class="{% unless forloop.first %}mt2{% endunless %}">
       {% if vol.startDate.size > 0 %}
         <p class="faded">
           {% include components/from-to.html from=vol.startDate to=vol.endDate format=from_to_format %}

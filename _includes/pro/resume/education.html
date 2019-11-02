@@ -7,7 +7,7 @@
   </h2>
   {% for edu in resume.education %}
   <section>
-    <header class="{% unless forloop.first %}mt4{% endunless %}">
+    <header class="{% unless forloop.first %}mt2{% endunless %}">
       {% if edu.startDate.size > 0 %}
         <p class="faded">
           {% include components/from-to.html from=edu.startDate to=edu.endDate format=from_to_format %}
