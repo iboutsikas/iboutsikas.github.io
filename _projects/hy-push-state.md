@@ -6,9 +6,9 @@ image: /assets/img/projects/hy-push-state.svg
 screenshot: /assets/img/projects/hy-push-state.svg
 links:
   - title: Website
-    url: https://hydecorp.github.io/hy-push-state/
+    url: https://hydecorp.github.io/push-state/
   - title: Source
-    url: https://github.com/hydecorp/hy-push-state
+    url: https://github.com/hydecorp/push-state
 caption: Turns web pages into web apps.
 description: >
   hy-push-state is a web component that lets you turn web pages into web apps.
