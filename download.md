@@ -1,4 +1,5 @@
 ---
+layout: page
 description: >
   There are two versions of Hydejack: The free version includes basic blogging functionality,
   while the PRO version includes additional features for professionals.

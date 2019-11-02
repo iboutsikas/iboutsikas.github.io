@@ -1,4 +1,5 @@
 ---
+layout: home
 cover: true
 image: /assets/img/blog/hydejack-8.png
 selected_projects:
@@ -12,7 +13,6 @@ selected_posts:
   - hydejack/_posts/2018-06-01-example-content-iii.md
   - hydejack/_posts/2017-11-23-example-content-ii.md
 more_posts: posts.md
-permalink: /
 ---
 
 # Hydejack
