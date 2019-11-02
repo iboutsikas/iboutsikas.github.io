@@ -8,6 +8,11 @@
   --body-color: #{$body-color};
   --body-bg: #{$body-bg};
   --border-color: #{$border-color};
+
+  .content {
+    -webkit-font-smoothing: initial;
+    -moz-osx-font-smoothing: initial;
+  }
 }
 
 @mixin darkmode() {
@@ -18,6 +23,11 @@
   --body-color: #ccc;
   --body-bg: #{hsl(hue($theme-color), 12.5%, 20%)};
   --border-color: #{hsl(hue($theme-color), 12.5%, 27.5%)};
+
+  .content {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 }
 
 @media screen {
