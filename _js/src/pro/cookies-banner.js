@@ -5,11 +5,8 @@ import { importTemplate, webComponentsReady } from '../common';
 (async () => {
   await webComponentsReady;
 
-  if (
-    !navigator.CookiesOK &&
-    document.cookie.indexOf("hy--cookies-ok") === -1
-  ) {
-    const cookiesBanner = importTemplate("_cookies-banner-template");
+  if (!navigator.CookiesOK && document.cookie.indexOf('hy--cookies-ok') === -1) {
+    const cookiesBanner = importTemplate('_cookies-banner-template');
     if (cookiesBanner) {
       const parent = document.getElementsByTagName('hy-push-state')[0];
       parent.insertBefore(cookiesBanner, parent.firstChild);

@@ -76,26 +76,17 @@ export function setupFLIPProject(start$, ready$, fadeIn$, { animationMain, setti
         ready$.pipe(
           filter(() => flipType === 'project'),
           switchMap(({ replaceEls: [main] }) => {
-            const imgWrapper = main.querySelector(".aspect-ratio");
+            const imgWrapper = main.querySelector('.aspect-ratio');
             imgWrapper && (imgWrapper.style.opacity = 0);
 
-            const img = imgWrapper && imgWrapper.querySelector("img");
+            const img = imgWrapper && imgWrapper.querySelector('img');
 
-            return zip(
-              img ? fromEvent(img, "load") : of({}),
-              fadeIn$
-            ).pipe(
-              tap(
-                () => (
-                  imgWrapper && (imgWrapper.style.opacity = 1),
-                  (animationMain.style.opacity = 0)
-                )
+            return zip(img ? fromEvent(img, 'load') : of({}), fadeIn$).pipe(
+              tap(() => (imgWrapper && (imgWrapper.style.opacity = 1), (animationMain.style.opacity = 0))),
+              switchMap(() =>
+                img != null ? animate(animationMain, [{ opacity: 1 }, { opacity: 0 }], { duration: 500 }) : of({}),
               ),
-              switchMap(() => (img != null
-                ? animate(animationMain, [{ opacity: 1 }, { opacity: 0 }], { duration: 500 })
-                : of({})
-              )),
-              finalize(() => (animationMain.style.opacity = 0))
+              finalize(() => (animationMain.style.opacity = 0)),
             );
           }),
         ),
