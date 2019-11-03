@@ -6,11 +6,11 @@ selected_projects:
   - _projects/hy-push-state.md
 more_projects: projects.md
 selected_posts:
+  - hydejack/_posts/2019-07-31-8.5.0.md
   - hydejack/_posts/2018-09-01-introducing-dark-mode.md
   - hydejack/_posts/2018-06-30-introducing-hydejack-8.md
   - hydejack/_posts/2018-06-01-example-content-iii.md
   - hydejack/_posts/2017-11-23-example-content-ii.md
-  - hydejack/_posts/2017-11-17-hydejacks-new-design.md
 more_posts: posts.md
 permalink: /
 ---
