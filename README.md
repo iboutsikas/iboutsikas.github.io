@@ -57,7 +57,7 @@ The table below shows what's included in each version:
 | Source                 | [GitHub][src]  | Included  | Included  |
 | **Price**              | **Free**       | **$69**   | **$169**  |
 | | [**Download**][kit] <br/>-- or --<br/> [**Deploy to Netlify**][nfy] | [**Buy PRO**][buy]{:.btn.btn-primary.btn-lg.heading} | [**Buy PRO+**][buy]{:.btn.btn-primary.btn-lg.heading} |
-{:.scroll-table.dl-table}
+{:.stretch-table.dl-table}
 
 
 ## A Free Blogging Theme
@@ -178,7 +178,7 @@ The table below shows what's included in each version:
 | Source                 | [GitHub][src]  | Included  | Included  |
 | **Price**              | **Free**       | **$69**   | **$169**  |
 | | [**Download**][kit] <br/>-- or --<br/> [**Deploy to Netlify**][nfy] | [**Buy PRO**][buy]{:.btn.btn-primary.btn-lg.heading} | [**Buy PRO+**][buy]{:.btn.btn-primary.btn-lg.heading} |
-{:.scroll-table.dl-table}
+{:.stretch-table.dl-table}
 
 <script>
 Array.from(document.querySelectorAll('a[href="/blog/hydejack/2018-09-01-introducing-dark-mode/"]'))

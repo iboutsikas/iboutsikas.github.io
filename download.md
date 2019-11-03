@@ -31,7 +31,7 @@ The table below shows what's included in each version:
 | Source                 | [GitHub][src]  | Included  | Included  |
 | **Price**              | **Free**       | **$69**   | **$169**  |
 | | [**Download**][kit] <br/>-- or --<br/> [**Deploy to Netlify**][nfy] | [**Buy PRO**][buy]{:.btn.btn-primary.btn-lg.heading} | [**Buy PRO+**][buy]{:.btn.btn-primary.btn-lg.heading} |
-{:.scroll-table.dl-table}
+{:.stretch-table.dl-table}
 
 ## Troubleshooting
 I can help you set up the theme and answer any questions you might have, billed hourly at [**$125/h**](https://app.simplegoods.co/i/UDMGHRSG). Buyers of the *PRO+ version* get an hour of free support and pay **$100/h** afterwards. Rates are subject to change depending on demand, but buyers of PRO+ will always get a 20% discount.

@@ -21,7 +21,7 @@ qwtel:
     | [Troubleshooting]      |                |           | 1 hour    |
     | **Price**              | **Free**       | **$69**   | **$169**  |
     || [**Download**][kit] <br/>-- or --<br/> [![Deploy to Netlify][dtn]][nfy] | [**Buy PRO**][buy]{:.btn.btn-primary.btn-lg.heading} | [**Buy PRO+**][buyp]{:.btn.btn-primary.btn-lg.heading} |
-    {:.scroll-table.dl-table}
+    {:.stretch-table.dl-table}
 
     [features]:        /#features
     [pro]:             /download/
