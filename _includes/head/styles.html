@@ -14,7 +14,7 @@
 {% else %}
   <style>
     {% capture to_scssify %}{% include styles/inline.scss %}{% endcapture %}{{ to_scssify | scssify }}
-    {% if layout == "projects" or layout == "project" or layout == "home" or layout == "welcome" %}
+    {% if layout == "projects" or layout == "project" or layout == "home" or layout == "welcome" or layout == "grid" %}
       {% capture to_scssify %}{% include styles/pro/projects.scss %}{% endcapture %}{{ to_scssify | scssify }}
     {% elsif layout == "resume" %}
       {% capture to_scssify %}{% include styles/pro/resume.scss %}{% endcapture %}{{ to_scssify | scssify }}

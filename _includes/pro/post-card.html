@@ -1,0 +1,25 @@
+{% assign post = include.post %}
+
+{% if include.featured %}
+  {% assign sizes = "(min-width: 90em) 46rem, (min-width: 54em) 40rem, (min-width: 42em) 36rem, 100vw" %}
+{% else %}
+  {% assign sizes = "(min-width: 90em) 22.5rem, (min-width: 54em) 19.5rem, (min-width: 42em) 17.5rem, 100vw" %}
+{% endif %}
+
+<article class="project-card">
+  <a href="{{ post.url | relative_url }}" class="no-hover no-print-link {% unless post.hide_image %}flip-project{% endunless %}" tabindex="-1">
+    <div class="project-card-img aspect-ratio sixteen-nine">
+      {% if post.image %}
+        {% include components/hy-img.html img=post.image alt=project.title sizes=sizes width=864 height=486 %}
+      {% endif %}
+    </div>
+  </a>
+  <h3 class="project-card-title">
+    <a href="{{ post.url | relative_url }}" class="flip-title">{{ post.title }}</a>
+  </h3>
+  {% if post.description %}
+    <p class="project-card-text fine">
+      {{ post.description | markdownify | replace:'<p>','' | replace:'</p>','' }}
+    </p>
+  {% endif %}
+</article>
