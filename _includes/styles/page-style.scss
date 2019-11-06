@@ -58,15 +58,15 @@
 {% if site.hydejack.dark_mode.dynamic %}
 @media screen {
   body.dark-mode {
-    --body-bg: #{hsl(hue({{ theme_color }}), 12.5%, 20%)};
-    --border-color: #{hsl(hue({{ theme_color }}), 12.5%, 27.5%)};
+    --body-bg: #{hsl(hue({{ theme_color }}), 10%, 20%)};
+    --border-color: #{hsl(hue({{ theme_color }}), 10%, 25%)};
   }
 }
 
 // 9
 @media screen and (prefers-color-scheme: dark) {
   body {
-    --body-bg: #{hsl(hue({{ theme_color }}), 12.5%, 20%)};
+    --body-bg: #{hsl(hue({{ theme_color }}), 10%, 20%)};
     --border-color: #{hsl(hue({{ theme_color }}), 10%, 25%)};
   }
 }

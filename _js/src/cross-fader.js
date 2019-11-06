@@ -108,8 +108,8 @@ export class CrossFader {
         const c = Color(color);
         const tc = Color(themeColor);
         const active = c.darken(0.1);
-        const bodyBg = Color.hsl(tc.hue(), 12.5, 20);
-        const borderColor = Color.hsl(tc.hue(), 12.5, 27.5);
+        const bodyBg = Color.hsl(tc.hue(), 10, 20);
+        const borderColor = Color.hsl(tc.hue(), 10, 25);
         const underlineColor = c.fade(0.5);
 
         // .content a
