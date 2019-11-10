@@ -13,22 +13,20 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import { merge } from "rxjs";
-import { filter } from "rxjs/operators";
+import { merge } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
-import { setupFLIPTitle } from "./title";
-import { setupFLIPProject } from "./pro/project";
+import { setupFLIPTitle } from './title';
+import { setupFLIPProject } from './pro/project';
 
-const FLIP_TYPES = ["title", "projects"];
+const FLIP_TYPES = ['title', 'projects'];
 
 export function setupFLIP(start$, ready$, fadeIn$, options) {
-  const other$ = start$.pipe(
-    filter(({ flipType }) => !FLIP_TYPES.includes(flipType))
-  );
+  const other$ = start$.pipe(filter(({ flipType }) => !FLIP_TYPES.includes(flipType)));
 
   return merge(
     setupFLIPTitle(start$, ready$, fadeIn$, options),
     setupFLIPProject(start$, ready$, fadeIn$, options),
-    other$
+    other$,
   );
 }
