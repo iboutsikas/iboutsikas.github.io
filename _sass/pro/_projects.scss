@@ -1,6 +1,6 @@
 // Copyright (c) 2019 Florian Klampfer <https://qwtel.com/>
 
-.layout-projects, .layout-project, .layout-home, .layout-welcome, .layout-grid {
+main:not(.layout-resume) {
   $pad: 1rem;
 
   .columns {

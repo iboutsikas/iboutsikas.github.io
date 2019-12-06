@@ -71,9 +71,9 @@ layout: base
   {% when 'about' %}
      {% include components/about.html %}
   {% when 'newsletter' %}
-    {% include pro/newsletter.html %}
+    {% include if-non-null try="pro/newsletter.html" %}
   {% when 'other' %}
-    {% include pro/other-projects.html %}
+    {% include if-non-null try="pro/other-projects.html" %}
   {% else %}
   {% endcase %}
 {% endfor %}

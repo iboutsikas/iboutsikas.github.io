@@ -1,4 +1,4 @@
-{% assign post = include.post %}
+{% assign post = page %}
 
 {% assign random_posts = site.posts | where_exp:"post", "post.url != page.url" | sample:3 %}
 

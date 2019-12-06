@@ -28,11 +28,11 @@ layout: base
   {% when 'about' %}
      {% include components/about.html %}
   {% when 'newsletter' %}
-    {% include pro/newsletter.html %}
+    {% include if-non-null try="pro/newsletter.html" %}
   {% when 'related' %}
-    {% include components/related-posts.html post=post %}
+    {% include if-non-null try="pro/related-posts.html" fallback="components/related-posts.html" %}
   {% when 'random' %}
-    {% include pro/random-posts.html post=post %}
+    {% include if-non-null try="pro/random-posts.html" %}
   {% else %}
   {% endcase %}
 {% endfor %}
