@@ -72,8 +72,8 @@ const SHELL_FILES = [
 
 const ASSET_FILES = [
   /*{% if site.accent_image %}{% unless site.accent_image.background %}*/ "{% include smart-url.txt url=site.accent_image %}" /*{% endunless %}{% endif %}*/,
-  /*{% if site.logo %}*/ "{% include smart-url.txt url=site.logo %}" /*{% endif %}*/,
-  /*{% for file in site.hydejack.offline.precache_assets %}*/ "{% include smart-url.txt url=file %}",
+  /*{% if site.logo %}*/ "{% include smart-url url=site.logo %}" /*{% endif %}*/,
+  /*{% for file in site.hydejack.offline.precache_assets %}*/ "{% include smart-url url=file %}",
   /*{% endfor %}*/
 ];
 
@@ -83,7 +83,7 @@ const CONTENT_FILES = [
   "{{ '/?source=pwa' | relative_url }}",
   "{{ '/assets/manifest.json' | relative_url }}",
   "{{ '/offline.html' | relative_url }}",
-  /*{% for legal in site.legal %}*/ "{% include smart-url.txt url=legal.href %}",
+  /*{% for legal in site.legal %}*/ "{% include smart-url url=legal.href %}",
   /*{% endfor %}*/
 ];
 
