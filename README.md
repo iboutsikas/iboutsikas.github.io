@@ -11,7 +11,6 @@ selected_posts:
   - hydejack/_posts/2018-09-01-introducing-dark-mode.md
   - hydejack/_posts/2018-06-30-introducing-hydejack-8.md
   - hydejack/_posts/2018-06-01-example-content-iii.md
-  - hydejack/_posts/2017-11-23-example-content-ii.md
 more_posts: posts.md
 ---
 
