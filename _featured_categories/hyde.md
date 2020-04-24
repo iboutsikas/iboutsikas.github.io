@@ -1,5 +1,5 @@
 ---
-layout: grid
+layout: list
 title: Hyde
 slug: hyde
 description: >
