@@ -8,13 +8,13 @@
 
 <article class="project-card">
   <a href="{{ post.url | relative_url }}" class="no-hover no-print-link {% unless post.hide_image %}flip-project{% endunless %}" tabindex="-1">
-    <div class="project-card-img aspect-ratio sixteen-nine">
+    <div class="project-card-img aspect-ratio sixteen-nine flip-project-img">
       {% if post.image %}
         {% include components/hy-img.html img=post.image alt=project.title sizes=sizes width=864 height=486 %}
       {% endif %}
     </div>
   </a>
-  <h3 class="project-card-title">
+  <h3 class="project-card-title flip-project-title">
     <a href="{{ post.url | relative_url }}" class="flip-title">{{ post.title }}</a>
   </h3>
   {% if post.description %}

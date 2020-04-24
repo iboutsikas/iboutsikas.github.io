@@ -11,13 +11,13 @@ export function setupFLIPProject(start$, ready$, fadeIn$, { animationMain, setti
   const flip$ = start$.pipe(
     filter(({ flipType }) => flipType === 'project'),
     switchMap(({ anchor }) => {
-      const img = anchor.querySelector('.project-card-img');
+      const img = anchor.querySelector('.flip-project-img');
       if (!anchor || !img) return of({});
 
       const page = animationMain.querySelector('.page');
       if (!page) return of({});
 
-      const titleNode = anchor.parentNode.querySelector('.project-card-title');
+      const titleNode = anchor.parentNode.querySelector('.flip-project-title');
       const title = (titleNode && titleNode.textContent) || '|';
 
       const h1 = document.createElement('h1');
@@ -36,7 +36,8 @@ export function setupFLIPProject(start$, ready$, fadeIn$, { animationMain, setti
       page.appendChild(postDate);
 
       const placeholder = document.createElement('div');
-      placeholder.classList.add('sixteen-nine');
+      placeholder.classList = img.classList;
+      placeholder.classList.remove('project-card-img')
 
       img.parentNode.insertBefore(placeholder, img);
       img.classList.add('lead');
