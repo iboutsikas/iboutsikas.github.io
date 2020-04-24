@@ -155,7 +155,7 @@ defaults:
 
 # Setting a tinyletter username will enable the newsletter subscription box.
 # PRO version only!
-tinyletter:            qwtel
+# tinyletter:            qwtel
 
 # Hydejack Settings
 # ----------------------------------------------------------------------------------------
