@@ -42,11 +42,10 @@ const RE_CSS_URL = /url\(['"]?(.*?)['"]?\)/gi;
 
 const ICON_FONT = "{{ '/assets/icomoon/style.css' | relative_url }}";
 
-// {% assign google_fonts = site.google_fonts | default:"Roboto+Slab:700|Noto+Sans:400,400i,700,700i" %}
-// {% unless site.hydejack.no_google_fonts or site.no_google_fonts %}
-// {% assign gf = true %}
+// {% assign google_fonts = site.google_fonts %}
+// {% if google_fonts %}
 const GOOGLE_FONTS = "https://fonts.googleapis.com/css?family={{ google_fonts | uri_escape }}&display=swap";
-// {% endunless %}
+// {% endif %}
 
 const SHELL_FILES = [
   "{{ '/assets/js/dom4-hydejack-9.0.0-alpha.2.js' | relative_url }}",
@@ -67,7 +66,7 @@ const SHELL_FILES = [
   "{{ '/assets/css/hydejack-9.0.0-alpha.2.css' | relative_url }}",
   "{{ '/assets/img/swipe.svg' | relative_url }}",
   ICON_FONT,
-  /*{% if gf %}*/ GOOGLE_FONTS /*{% endif %}*/,
+  /*{% if google_fonts %}*/ GOOGLE_FONTS /*{% endif %}*/,
 ];
 
 const ASSET_FILES = [
@@ -169,7 +168,7 @@ function addAll(cache, urls) {
 async function cacheShell(cache) {
   const [iconFontFiles, googleFontsFiles] = await Promise.all([
     getIconFontFiles(),
-    /*{% if gf %}*/ getGoogleFontsFiles() /*{% endif %}*/,
+    /*{% if google_fonts %}*/ getGoogleFontsFiles() /*{% endif %}*/,
   ]);
 
   const urls = SHELL_FILES.concat(iconFontFiles, googleFontsFiles).filter(x => !!x);
