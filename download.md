@@ -40,19 +40,6 @@ Since I've built Hydejack, it's fair to say that I'm the world's expert on troub
 
 [Get Support](https://app.simplegoods.co/i/UDMGHRSG){:.btn.btn-primary.btn-lg.heading}
 
-<script>
-Array.from(document.querySelectorAll('a[href="/blog/hydejack/2018-09-01-introducing-dark-mode/"]'))
-  .forEach(a => {
-    a.addEventListener('click', (e) => { 
-      if (!document.body.classList.contains("dark-mode")) {
-        e.preventDefault();
-        e.stopPropagation();
-        document.body.classList.add("dark-mode");
-      }
-    });
-  });
-</script>
-
 [^3]: Rates are subject to change, depending on demand, but buyers of PRO+ will always get a 20% discount relative to regular customers.
 
 [blog]: !blog.md
