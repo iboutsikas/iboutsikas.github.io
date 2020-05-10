@@ -37,7 +37,7 @@ export function setupFLIPProject(start$, ready$, fadeIn$, { animationMain, setti
 
       const placeholder = document.createElement('div');
       placeholder.classList = img.classList;
-      placeholder.classList.remove('project-card-img')
+      placeholder.classList.remove('project-card-img');
 
       img.parentNode.insertBefore(placeholder, img);
       img.classList.add('lead');
