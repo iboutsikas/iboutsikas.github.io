@@ -31,68 +31,73 @@ import { BREAK_POINT_DYNAMIC, getScrollTop, rem, createIntersectionObservable, s
     share(),
   );
 
-  combineLatest(toc$, isLarge$).pipe(
-    switchMap(([toc, isLarge]) => {
-      if (!toc || !isLarge) return NEVER;
+  combineLatest(toc$, isLarge$)
+    .pipe(
+      switchMap(([toc, isLarge]) => {
+        if (!toc || !isLarge) return NEVER;
 
-      const offsetTop = toc.offsetTop - rem(1);
+        const offsetTop = toc.offsetTop - rem(1);
 
-      return fromEvent(document, 'scroll', { passive: true }).pipe(
-        map(getScrollTop),
-        startWith(getScrollTop()),
-        map(x => x >= offsetTop),
-        distinctUntilChanged(),
-        tap(affix => {
-          if (affix) {
-            toc.style.position = 'fixed';
-            toc.style.top = '1rem';
-          } else {
+        return fromEvent(document, 'scroll', { passive: true }).pipe(
+          map(getScrollTop),
+          startWith(getScrollTop()),
+          map(x => x >= offsetTop),
+          distinctUntilChanged(),
+          tap(affix => {
+            if (affix) {
+              toc.style.position = 'fixed';
+              toc.style.top = '1rem';
+            } else {
+              toc.style.position = '';
+              toc.style.top = '';
+            }
+          }),
+          finalize(() => {
             toc.style.position = '';
             toc.style.top = '';
-          }
-        }),
-        finalize(() => {
-          toc.style.position = '';
-          toc.style.top = '';
-        }),
-      );
-    }),
-  ).subscribe();
+          }),
+        );
+      }),
+    )
+    .subscribe();
 
-  combineLatest(toc$, isLarge$).pipe(
-    switchMap(([toc, isLarge]) => {
-      if (!toc || !isLarge) return NEVER;
+  combineLatest(toc$, isLarge$)
+    .pipe(
+      switchMap(([toc, isLarge]) => {
+        if (!toc || !isLarge) return NEVER;
 
-      const intersecting = new Set();
-      const top  = new WeakMap();
+        const intersecting = new Set();
+        const top = new WeakMap();
 
-      const toObserve = Array.from(toc.querySelectorAll('li'))
-        .map(el => el.children[0].hash)
-        .map(hash => document.getElementById(hash.substr(1)));
+        const toObserve = Array.from(toc.querySelectorAll('li'))
+          .map(el => el.children[0].hash)
+          .map(hash => document.getElementById(hash.substr(1)));
 
-      let init = true;
-      return createIntersectionObservable(toObserve).pipe(
-        tap((entries) => {
-          if (init) {
-            entries.forEach(({ target, boundingClientRect }) => top.set(target, getScrollTop() + boundingClientRect.top))
-            init = false;
-          }
+        let init = true;
+        return createIntersectionObservable(toObserve).pipe(
+          tap(entries => {
+            if (init) {
+              entries.forEach(({ target, boundingClientRect }) =>
+                top.set(target, getScrollTop() + boundingClientRect.top),
+              );
+              init = false;
+            }
 
-          entries.forEach(({ isIntersecting, target }) => {
-            isIntersecting ? intersecting.add(target) : intersecting.delete(target);
-          });
+            entries.forEach(({ isIntersecting, target }) => {
+              isIntersecting ? intersecting.add(target) : intersecting.delete(target);
+            });
 
-          const curr = Array.from(intersecting).reduce((min, el) => top.get(el) >= top.get(min) ? min : el, null)
-          if (curr) {
-            toc.querySelectorAll('a').forEach(el => el.style.fontWeight = '');
-            toc.querySelector(`a[href="#${curr.id}"]`).style.fontWeight = 'bold';
-          }
-        }),
-        finalize(() => {
-          toc.querySelectorAll('a').forEach(el => el.style.fontWeight = '');
-        }),
-      );
-    }),
-  ).subscribe()
-
+            const curr = Array.from(intersecting).reduce((min, el) => (top.get(el) >= top.get(min) ? min : el), null);
+            if (curr) {
+              toc.querySelectorAll('a').forEach(el => (el.style.fontWeight = ''));
+              toc.querySelector(`a[href="#${curr.id}"]`).style.fontWeight = 'bold';
+            }
+          }),
+          finalize(() => {
+            toc.querySelectorAll('a').forEach(el => (el.style.fontWeight = ''));
+          }),
+        );
+      }),
+    )
+    .subscribe();
 })();
