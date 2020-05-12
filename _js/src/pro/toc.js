@@ -16,9 +16,11 @@
 import { fromEvent, NEVER, combineLatest } from 'rxjs';
 import { map, tap, switchMap, distinctUntilChanged, startWith, share, finalize } from 'rxjs/operators';
 
-import { BREAK_POINT_DYNAMIC, getScrollTop, rem, createIntersectionObservable, subscribeWhen } from '../common';
+import { BREAK_POINT_DYNAMIC, getScrollTop, rem, createIntersectionObservable, webComponentsReady } from '../common';
 
 (async () => {
+  await webComponentsReady;
+
   const isLarge$ = fromEvent(window, 'resize', { passive: true }).pipe(
     startWith({}),
     map(() => window.matchMedia(BREAK_POINT_DYNAMIC).matches),
@@ -45,16 +47,22 @@ import { BREAK_POINT_DYNAMIC, getScrollTop, rem, createIntersectionObservable, s
           distinctUntilChanged(),
           tap(affix => {
             if (affix) {
-              toc.style.position = 'fixed';
-              toc.style.top = '1rem';
+              toc.classList.add('affix');
+              // toc.style.position = 'fixed';
+              // toc.style.top = '1rem';
+              // toc.style.maxHeight = 'calc(100vh - 1rem)';
             } else {
-              toc.style.position = '';
-              toc.style.top = '';
+              toc.classList.remove('affix');
+              // toc.style.position = '';
+              // toc.style.top = '';
+              // toc.style.maxHeight = '';
             }
           }),
           finalize(() => {
-            toc.style.position = '';
-            toc.style.top = '';
+            toc.classList.remove('affix');
+            // toc.style.position = '';
+            // toc.style.top = '';
+            // toc.style.maxHeight = '';
           }),
         );
       }),
