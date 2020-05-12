@@ -70,8 +70,9 @@ import { BREAK_POINT_DYNAMIC, getScrollTop, rem, createIntersectionObservable, s
         const top = new WeakMap();
 
         const toObserve = Array.from(toc.querySelectorAll('li'))
-          .map(el => el.children[0].hash)
-          .map(hash => document.getElementById(hash.substr(1)));
+          .map(el => el.children[0].getAttribute('href') || '')
+          .map(hash => document.getElementById(hash.substr(1)))
+          .filter(el => !!el);
 
         let init = true;
         return createIntersectionObservable(toObserve).pipe(
