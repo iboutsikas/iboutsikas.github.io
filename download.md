@@ -4,7 +4,7 @@ description: >
   There are two versions of Hydejack: The free version includes basic blogging functionality,
   while the PRO version includes additional features for professionals.
 hide_description: true
-image: /assets/img/hydejack-8.png
+image: /assets/img/blog/hydejack-8.png
 ---
 
 # Download

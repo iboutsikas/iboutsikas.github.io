@@ -1,0 +1,21 @@
+<template id="_search-template">
+  <button id="_search" class="nav-btn no-hover">
+    <span class="sr-only">{{ site.data.strings.search | default:"Search" }}</span>
+    <span class="icon-search"></span>
+  </button>
+  <div id="_search-box">
+    <div class="nav-btn">
+      <span class="icon-search"></span>
+    </div>
+    <input 
+      type="search"
+      class="form-control form-control-lg"
+      placeholder="{{ site.data.strings.search_placeholder | default:"Type something..."}}"
+    />
+    <button type="reset" class="nav-btn no-hover">
+      <span class="sr-only">{{ site.data.strings.close | default:"Close" }}</span>
+      <span class="icon-cross"></span>
+    </button>
+  </div>
+  <div id="hits"></div>
+</template>

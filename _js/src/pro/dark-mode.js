@@ -10,7 +10,7 @@ const SEL_NAVBAR_BTN_BAR = '#_navbar > .content > .nav-btn-bar';
   const darkMode = importTemplate('_dark-mode-template');
   if (darkMode) {
     const navbarEl = document.querySelector(SEL_NAVBAR_BTN_BAR);
-    navbarEl.appendChild(darkMode);
+    navbarEl.insertBefore(darkMode, navbarEl.querySelector('.nav-span'));
 
     document.body.classList.remove('no-color-transition');
 

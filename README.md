@@ -2,6 +2,10 @@
 layout: home
 cover: true
 image: /assets/img/blog/hydejack-8.png
+description: >
+  "Best Jekyll Theme by a Mile".
+  **Hydejack** is your presence on the web, featuring a blog, portfolio, and resume.
+hide_description: true
 selected_projects:
   - _projects/hy-drawer.md
   - _projects/hy-push-state.md
