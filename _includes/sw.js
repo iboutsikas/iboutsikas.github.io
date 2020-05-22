@@ -21,7 +21,7 @@
 // which won't change between content updates.
 // {% capture cache_version %}v{{ site.hydejack.offline.cache_version | default:"1" }}{% endcapture %}
 // {% capture site_key %}sw{{ '/' | relative_url }}{% endcapture %}
-const SHELL_CACHE = "shell-9.0.0-alpha.5--{{ cache_version }}--{{ site_key }}";
+const SHELL_CACHE = "shell-9.0.0-alpha.6--{{ cache_version }}--{{ site_key }}";
 
 // A separate assets cache that won't be invalidated when there's a newer version of Hydejack.
 // NOTE: Whenever you make changes to any of the files in yor `assets` folder,
@@ -49,22 +49,22 @@ const GOOGLE_FONTS = "https://fonts.googleapis.com/css?family={{ google_fonts | 
 // {% endif %}
 
 const SHELL_FILES = [
-  "{{ '/assets/js/dom4-hydejack-9.0.0-alpha.5.js'                      | relative_url }}",
-  "{{ '/assets/js/drawer-hydejack-9.0.0-alpha.5.js'                    | relative_url }}",
-  "{{ '/assets/js/fetch-hydejack-9.0.0-alpha.5.js'                     | relative_url }}",
-  "{{ '/assets/js/hydejack-9.0.0-alpha.5.js'                           | relative_url }}",
-  "{{ '/assets/js/intersection-observer-hydejack-9.0.0-alpha.5.js'     | relative_url }}",
-  "{{ '/assets/js/push-state-hydejack-9.0.0-alpha.5.js'                | relative_url }}",
-  "{{ '/assets/js/resize-observer-hydejack-9.0.0-alpha.5.js'           | relative_url }}",
-  "{{ '/assets/js/shadydom-hydejack-9.0.0-alpha.5.js'                  | relative_url }}",
-  "{{ '/assets/js/smoothscroll-hydejack-9.0.0-alpha.5.js'              | relative_url }}",
-  "{{ '/assets/js/vendors~drawer~push-state-hydejack-9.0.0-alpha.5.js' | relative_url }}",
-  "{{ '/assets/js/vendors~push-state-hydejack-9.0.0-alpha.5.js'        | relative_url }}",
-  "{{ '/assets/js/vendors~shadydom-hydejack-9.0.0-alpha.5.js'          | relative_url }}",
-  "{{ '/assets/js/vendors~webanimations-hydejack-9.0.0-alpha.5.js'     | relative_url }}",
-  "{{ '/assets/js/webanimations-hydejack-9.0.0-alpha.5.js'             | relative_url }}",
-  "{{ '/assets/js/webcomponents-hydejack-9.0.0-alpha.5.js'             | relative_url }}",
-  "{{ '/assets/css/hydejack-9.0.0-alpha.5.css'                         | relative_url }}",
+  "{{ '/assets/js/dom4-hydejack-9.0.0-alpha.6.js'                      | relative_url }}",
+  "{{ '/assets/js/drawer-hydejack-9.0.0-alpha.6.js'                    | relative_url }}",
+  "{{ '/assets/js/fetch-hydejack-9.0.0-alpha.6.js'                     | relative_url }}",
+  "{{ '/assets/js/hydejack-9.0.0-alpha.6.js'                           | relative_url }}",
+  "{{ '/assets/js/intersection-observer-hydejack-9.0.0-alpha.6.js'     | relative_url }}",
+  "{{ '/assets/js/push-state-hydejack-9.0.0-alpha.6.js'                | relative_url }}",
+  "{{ '/assets/js/resize-observer-hydejack-9.0.0-alpha.6.js'           | relative_url }}",
+  "{{ '/assets/js/shadydom-hydejack-9.0.0-alpha.6.js'                  | relative_url }}",
+  "{{ '/assets/js/smoothscroll-hydejack-9.0.0-alpha.6.js'              | relative_url }}",
+  "{{ '/assets/js/vendors~drawer~push-state-hydejack-9.0.0-alpha.6.js' | relative_url }}",
+  "{{ '/assets/js/vendors~push-state-hydejack-9.0.0-alpha.6.js'        | relative_url }}",
+  "{{ '/assets/js/vendors~shadydom-hydejack-9.0.0-alpha.6.js'          | relative_url }}",
+  "{{ '/assets/js/vendors~webanimations-hydejack-9.0.0-alpha.6.js'     | relative_url }}",
+  "{{ '/assets/js/webanimations-hydejack-9.0.0-alpha.6.js'             | relative_url }}",
+  "{{ '/assets/js/webcomponents-hydejack-9.0.0-alpha.6.js'             | relative_url }}",
+  "{{ '/assets/css/hydejack-9.0.0-alpha.6.css'                         | relative_url }}",
   "{{ '/assets/img/swipe.svg'                                          | relative_url }}",
   ICON_FONT,
   /*{% if google_fonts %}*/ GOOGLE_FONTS /*{% endif %}*/,

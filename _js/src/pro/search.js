@@ -21,7 +21,7 @@ import { repeat } from 'lit-html/directives/repeat';
 import { webComponentsReady, importTemplate, postMessage } from '../common';
 
 const SEL_NAVBAR_BTN_BAR = '#_navbar > .content > .nav-btn-bar';
- 
+
 (async () => {
   await webComponentsReady;
 
@@ -39,11 +39,11 @@ const SEL_NAVBAR_BTN_BAR = '#_navbar > .content > .nav-btn-bar';
     const searchInputEl = searchBoxEl.querySelector('input[type=search]');
     const searchCloseEl = searchBoxEl.querySelector('button[type=reset]');
 
-    searchBtnEl.addEventListener('click', () => { 
-      searchBoxEl.style.display = 'flex'; 
+    searchBtnEl.addEventListener('click', () => {
+      searchBoxEl.style.display = 'flex';
       searchInputEl.focus();
       searchInputEl.select();
-      if (searchInputEl.value !== '') hitsEl.style.display = ''
+      if (searchInputEl.value !== '') hitsEl.style.display = '';
     });
 
     const closeHandler = () => {
@@ -58,42 +58,58 @@ const SEL_NAVBAR_BTN_BAR = '#_navbar > .content > .nav-btn-bar';
     const worker = new Worker(hrefSearch);
 
     hitsEl.style.display = 'none';
-    let prevVal = ''
-    fromEvent(searchInputEl, 'keyup').pipe(
-      tap((e) => { 
-        if (e.target.value === '' && prevVal === '' && e.keyCode === 27) {
-          e.preventDefault();
-          closeHandler();
-        }
-        prevVal = e.target.value;
-      }),
-      switchMap(e => postMessage(worker, e.target.value)),
-      tap(items => { 
-        if (items.length) {
-          render(html`
-            <ul>
-              ${repeat(items, item => item.url, (item, i) => html`
-                <li class="search-item" @click=${() => _pushState.assign(item.url)}>
-                  <div class="search-img aspect-ratio sixteen-ten">
-                    ${item.image
-                      ? html`<img src="${item.image}"/>`
-                      : ''}
-                  </div>
-                  <div class="search-text">
-                    <p><a class="heading" href=${item.url}>${item.title}</a> <small style="color:var(--text-muted)">${item.url}</small></p>
-                    ${item.description
-                      ? html`<p>${item.description}</p>`
-                      : ''}
-                  </div>
-                </li>
-              `)}
-            </ul>
-          `, hitsEl)
-          hitsEl.style.display = '';
-        } else {
-          hitsEl.style.display = 'none';
-        }
-      }),
-    ).subscribe();
+    let prevVal = '';
+    fromEvent(searchInputEl, 'keyup')
+      .pipe(
+        tap(e => {
+          if (e.target.value === '' && prevVal === '' && e.keyCode === 27) {
+            e.preventDefault();
+            closeHandler();
+          }
+          prevVal = e.target.value;
+        }),
+        switchMap(e => postMessage(worker, e.target.value)),
+        tap(items => {
+          if (items.length) {
+            render(
+              html`
+                <ul>
+                  ${repeat(
+                    items,
+                    item => item.url,
+                    (item, i) => html`
+                      <li class="search-item" @click=${() => _pushState.assign(item.url)}>
+                        <div class="search-img aspect-ratio sixteen-ten">
+                          ${item.image
+                            ? html`
+                                <img src="${item.image}" />
+                              `
+                            : ''}
+                        </div>
+                        <div class="search-text">
+                          <p>
+                            <a class="heading" href=${item.url}>${item.title}</a>
+                            <small style="color:var(--text-muted)">${item.url}</small>
+                          </p>
+                          ${item.description
+                            ? html`
+                                <p>${item.description}</p>
+                              `
+                            : ''}
+                        </div>
+                      </li>
+                    `,
+                  )}
+                </ul>
+              `,
+              hitsEl,
+            );
+            hitsEl.style.display = '';
+          } else {
+            hitsEl.style.display = 'none';
+          }
+        }),
+      )
+      .subscribe();
   }
 })();
