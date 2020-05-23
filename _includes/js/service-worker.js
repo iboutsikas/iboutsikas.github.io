@@ -1,4 +1,4 @@
-// Copyright (c) 2019 Florian Klampfer <https://qwtel.com/>
+// Copyright (c) 2020 Florian Klampfer <https://qwtel.com/>
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -49,31 +49,16 @@ const GOOGLE_FONTS = "https://fonts.googleapis.com/css?family={{ google_fonts | 
 // {% endif %}
 
 const SHELL_FILES = [
-  "{{ '/assets/js/dom4-hydejack-9.0.0-alpha.6.js'                      | relative_url }}",
-  "{{ '/assets/js/drawer-hydejack-9.0.0-alpha.6.js'                    | relative_url }}",
-  "{{ '/assets/js/fetch-hydejack-9.0.0-alpha.6.js'                     | relative_url }}",
-  "{{ '/assets/js/hydejack-9.0.0-alpha.6.js'                           | relative_url }}",
-  "{{ '/assets/js/intersection-observer-hydejack-9.0.0-alpha.6.js'     | relative_url }}",
-  "{{ '/assets/js/push-state-hydejack-9.0.0-alpha.6.js'                | relative_url }}",
-  "{{ '/assets/js/resize-observer-hydejack-9.0.0-alpha.6.js'           | relative_url }}",
-  "{{ '/assets/js/shadydom-hydejack-9.0.0-alpha.6.js'                  | relative_url }}",
-  "{{ '/assets/js/smoothscroll-hydejack-9.0.0-alpha.6.js'              | relative_url }}",
-  "{{ '/assets/js/vendors~drawer~push-state-hydejack-9.0.0-alpha.6.js' | relative_url }}",
-  "{{ '/assets/js/vendors~push-state-hydejack-9.0.0-alpha.6.js'        | relative_url }}",
-  "{{ '/assets/js/vendors~shadydom-hydejack-9.0.0-alpha.6.js'          | relative_url }}",
-  "{{ '/assets/js/vendors~webanimations-hydejack-9.0.0-alpha.6.js'     | relative_url }}",
-  "{{ '/assets/js/webanimations-hydejack-9.0.0-alpha.6.js'             | relative_url }}",
-  "{{ '/assets/js/webcomponents-hydejack-9.0.0-alpha.6.js'             | relative_url }}",
-  "{{ '/assets/css/hydejack-9.0.0-alpha.6.css'                         | relative_url }}",
-  "{{ '/assets/img/swipe.svg'                                          | relative_url }}",
-  ICON_FONT,
-  /*{% if google_fonts %}*/ GOOGLE_FONTS /*{% endif %}*/,
+  "{{ '/assets/img/swipe.svg'                  | relative_url }}",
+  "{{ '/assets/css/hydejack-9.0.0-alpha.6.css' | relative_url }}",
+  "{{ '/assets/js/service-worker.js'           | relative_url }}",
+  "{{ '/assets/js/search-worker.js'            | relative_url }}",
 ];
 
 const ASSET_FILES = [
-  /*{% if site.accent_image %}{% unless site.accent_image.background %}*/ "{% include smart-url.txt url=site.accent_image %}" /*{% endunless %}{% endif %}*/,
-  /*{% if site.logo %}*/ "{% include smart-url url=site.logo %}" /*{% endif %}*/,
-  /*{% for file in site.hydejack.offline.precache_assets %}*/ "{% include smart-url url=file %}",
+  /*{% if site.accent_image %}{% unless site.accent_image.background %}*/"{% include smart-url url=site.accent_image %}",/*{% endunless %}{% endif %}*/
+  /*{% if site.logo %}*/"{% include smart-url url=site.logo %}",/*{% endif %}*/
+  /*{% for file in site.hydejack.offline.precache_assets %}*/"{% include smart-url url=file %}",
   /*{% endfor %}*/
 ];
 
@@ -172,7 +157,15 @@ async function cacheShell(cache) {
     /*{% if google_fonts %}*/ getGoogleFontsFiles() /*{% endif %}*/,
   ]);
 
-  const urls = SHELL_FILES.concat(iconFontFiles, googleFontsFiles).filter(x => !!x);
+  const { staticFiles } = await fetch('{{ "/assets/data.json" | relative_url }}').then(x => x.json());
+  const jsFiles = staticFiles.map(x => x.path).filter(url => (
+    url.startsWith('{{ "/assets/js"  | relative_url }}') &&
+    url.endsWith('.js') &&
+    !url.includes('LEGACY')
+  ));
+  console.log(jsFiles);
+
+  const urls = SHELL_FILES.concat(jsFiles, iconFontFiles, googleFontsFiles).filter(x => !!x);
   return addAll(cache, urls);
 }
 
@@ -298,24 +291,6 @@ async function onFetch(e) {
     return cache.match(OFFLINE_PAGE_URL);
   }
 }
-
-// {% comment %}
-// TODO: We could add support for downloading the entire page.
-const ALL_ASSETS = [
-  /*{% for file in site.static_files %}*/ "{{ file.path | relative_url }}",
-  /*{% endfor %}*/
-];
-
-const ALL_DOCUMENTS = [
-  /*{% for doc in site.documents %}*/ "{{ doc.url | relative_url }}",
-  /*{% endfor %}*/
-];
-
-const ALL_PAGES = [
-  /*{% for doc in site.pages %}*/ "{{ doc.url | relative_url }}",
-  /*{% endfor %}*/
-];
-// {% endcomment %}
 
 // {% else %}
 
