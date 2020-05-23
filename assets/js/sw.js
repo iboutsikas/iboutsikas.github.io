@@ -1,3 +1,3 @@
 ---
 ---
-{% include sw.js %}
+{% include service-worker.js %}
