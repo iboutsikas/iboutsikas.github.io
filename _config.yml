@@ -171,9 +171,6 @@ defaults:
 # PRO version only!
 # tinyletter:            qwtel
 
-algolia:
-  application_id:      I2WGHWU2G4
-  index_name:          hydejack-test-1
 
 # Hydejack Settings
 # ----------------------------------------------------------------------------------------
