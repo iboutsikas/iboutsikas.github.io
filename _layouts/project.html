@@ -28,7 +28,7 @@ layout: base
 
       <time datetime="{{ project.date | date_to_xmlschema }}">{{ project.date | date:proj_format }}</time>
       {% if project.end_date.size > 0 %}
-        {{from_to_separator}}
+        {{ from_to_separator }}
         <time datetime="{{ project.end_date | date_to_xmlschema }}">{{ project.end_date | date:proj_format }}</time>
       {% endif %}
 
@@ -44,7 +44,7 @@ layout: base
     {% assign screenshot = project.screenshot %}
     <div class="lead aspect-ratio sixteen-nine">
       {% if screenshot %}
-        {% include components/hy-img.html
+        {% include_cached components/hy-img.html
           img=screenshot
           sizes="(min-width: 90em) 48rem, (min-width: 54em) 42rem, (min-width: 42em) 38rem, 100vw"
           alt=project.title
@@ -71,9 +71,9 @@ layout: base
   {% when 'about' %}
      {% include_cached components/about.html author=page.author %}
   {% when 'newsletter' %}
-    {% include if-non-null try="pro/newsletter.html" %}
+    {% include_cached if-non-null try="pro/newsletter.html" %}
   {% when 'other' %}
-    {% include if-non-null try="pro/other-projects.html" %}
+    {% include_cached if-non-null try="pro/other-projects.html" %}
   {% when 'comments' %}
     {% include body/comments.html %}
   {% else %}
