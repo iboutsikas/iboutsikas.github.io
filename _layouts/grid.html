@@ -11,7 +11,7 @@ layout: page
 {% assign list_group_by = date_formats.list_group_by | default:"%Y"    %}
 
 {% assign prev_date = 0 %}
-{% unless page.grouped %}<div class="columns">{% endunless %}
+{% unless page.grouped %}<div class="columns {% unless page.no_break_columns %}columns-break{% endunless %}">{% endunless %}
 {% for post in posts %}
   {% assign current_date = post.date | date:list_group_by %}
 
@@ -19,7 +19,7 @@ layout: page
     {% unless forloop.first %}</div>{% endunless %}
 
     <h2 id="{{ list_group_by | slugify }}-{{ current_date | slugify }}">{{ current_date }}</h2>
-    <div class="columns">
+    <div class="columns columns-break">
     {% assign prev_date = current_date %}
   {% endif %}
 

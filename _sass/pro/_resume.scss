@@ -142,19 +142,22 @@
     width: 100%;
   }
 
-  @media screen and (min-width: $break-point-2) {
+  @media screen and (min-width: $break-point-5) {
     .column-3-5 { width: 60% }
     .column-2-5 { width: 40% }
   }
 
-  @media screen and (min-width: $break-point-3) {
-    .column-3-5 { width: 100% }
-    .column-2-5 { width: 100% }
-  }
-
-  @media screen and (min-width: 73.5em) {
-    .column-3-5 { width: 60% }
-    .column-2-5 { width: 40% }
+  @media screen and (min-width: $break-point-dynamic) {
+    .columns.columns-break { 
+      width: calc(#{$content-width-5 + ($content-width-5 / 2)} - 1.5rem); 
+      .message {
+        width: calc(100% + 1.5rem);
+        padding: 1rem;
+        margin: 1rem -1rem;
+      }
+    }
+    .columns-break > .column-3-5 { width: $content-width-5 + 1rem }
+    .columns-break > .column-2-5 { width: $content-width-5  / 2 - 2.5rem }
   }
 
   @media print {

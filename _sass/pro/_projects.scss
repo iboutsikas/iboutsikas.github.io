@@ -1,7 +1,7 @@
 // Copyright (c) 2019 Florian Klampfer <https://qwtel.com/>
 
 main:not(.layout-resume) {
-  $pad: 1rem;
+  $pad: 1.5rem;
 
   .columns {
     margin-left: -$pad;
@@ -23,6 +23,13 @@ main:not(.layout-resume) {
 
   @media screen and (min-width: $break-point-1) {
     .column-1-2 { width: 50%; }
+  }
+
+  @media screen and (min-width: $break-point-dynamic) {
+    .columns.columns-break { width: calc(#{$content-width-5 + ($content-width-5 / 2)} - 1.5rem) }
+    .columns-break > .column-1-2 { width: 33.333% }
+    .columns-break > .column-1 { width: 66.667% }
+    .columns-break > .align-self { align-self: start }
   }
 
   @media print {

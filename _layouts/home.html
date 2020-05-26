@@ -8,7 +8,7 @@ layout: about
 {% if content contains "<!--projects-->" %}
 {% capture projets_x %}
 {% if page.selected_projects %}
-  <div class="columns mt2">
+  <div class="columns mt2 {% unless page.no_break_columns %}columns-break{% endunless %}">
     {% for project_path in page.selected_projects %}
       {% assign project = site.projects | where:"path",project_path | first %}
       {% assign featured = page.featured | default:project.featured | default:page.big_project | default:project.big_project %}
@@ -22,7 +22,7 @@ layout: about
     {% endfor %}
   </div>
 {% elsif site.projects.size > 1 %}
-  <div class="columns mt2">
+  <div class="columns mt2 {% unless page.no_break_columns %}columns-break{% endunless %}">
     {% assign ordered_projects = site.projects | sort:"date" | reverse %}
     {% for project in ordered_projects limit:2 %}
       {% assign featured = page.featured | default:project.featured | default:page.big_project | default:project.big_project %}
@@ -52,7 +52,7 @@ layout: about
 {% if content contains "<!--posts-->" %}
 {% capture posts_x %}
 {% if page.selected_posts %}
-  <div class="columns mt2">
+  <div class="columns mt2 {% unless page.no_break_columns %}columns-break{% endunless %}">
     {% for post_path in page.selected_posts %}
       {% assign post = site.posts | where:"path", post_path | first %}
       <div class="column {% if featured %}column-1{% else %}column-1-2{% endif %}">
@@ -65,7 +65,7 @@ layout: about
     {% endfor %}
   </div>
 {% elsif site.posts.size > 1 %}
-  <div class="columns mt2">
+  <div class="columns mt2 {% unless page.no_break_columns %}columns-break{% endunless %}">
     {% for post in site.posts limit:4 %}
       <div class="column {% if featured %}column-1{% else %}column-1-2{% endif %}">
         {% include_cached pro/post-card.html post=post featured=featured %}
