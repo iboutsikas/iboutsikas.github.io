@@ -30,7 +30,7 @@ function forAwait(asyncIter, f) {
 }
 
 async function getDocuments() {
-  const { pages, documents } = await fetch(DATA_URL).then(x => x.json());
+  const { pages = [], documents = [] } = await fetch(DATA_URL).then(x => x.json());
   const siteData = [
     ...pages,
     ...documents.map((doc) => {

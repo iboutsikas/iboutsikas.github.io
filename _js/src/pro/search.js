@@ -20,6 +20,9 @@ import { repeat } from 'lit-html/directives/repeat';
 
 import { webComponentsReady, importTemplate, postMessage } from '../common';
 
+// const timeout = t => new Promise(res => setTimeout(res, t));
+const once = (el, eventName) => el.addEventListener(eventName, { once: true });
+
 const SEL_NAVBAR_BTN_BAR = '#_navbar > .content > .nav-btn-bar';
 
 (async () => {
@@ -51,13 +54,14 @@ const SEL_NAVBAR_BTN_BAR = '#_navbar > .content > .nav-btn-bar';
       hitsEl.style.display = 'none';
     };
 
+    hitsEl.style.display = 'none';
+
     searchCloseEl.addEventListener('click', closeHandler);
     pushStateEl.addEventListener('hy-push-state-start', closeHandler);
 
-    const hrefSearch = document.getElementById('_hrefSearch').href;
-    const worker = new Worker(hrefSearch);
-
-    hitsEl.style.display = 'none';
+    // Load search worker after user interaction
+    await once(document, 'click', { once: true });
+    const worker = new Worker(document.getElementById('_hrefSearch').href);
     let prevVal = '';
     fromEvent(searchInputEl, 'keyup')
       .pipe(
