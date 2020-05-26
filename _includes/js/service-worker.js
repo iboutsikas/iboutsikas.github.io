@@ -49,13 +49,18 @@ const GOOGLE_FONTS = "https://fonts.googleapis.com/css?family={{ google_fonts | 
 // {% endif %}
 
 const SHELL_FILES = [
-  "{{ '/assets/img/swipe.svg'                  | relative_url }}",
   "{{ '/assets/css/hydejack-9.0.0-alpha.6.css' | relative_url }}",
   "{{ '/assets/js/service-worker.js'           | relative_url }}",
   "{{ '/assets/js/search-worker.js'            | relative_url }}",
 ];
 
-const ASSET_FILES = [
+const STATIC_FILES = [
+  /*{% for file in site.static_files %}*/"{{ file.path | relative_url }}",
+  /*{% endfor %}*/
+];
+
+const PRE_CACHED_ASSETS = [
+  "{{ '/assets/img/swipe.svg' | relative_url }}",
   /*{% if site.accent_image %}{% unless site.accent_image.background %}*/"{% include_cached smart-url url=site.accent_image %}",/*{% endunless %}{% endif %}*/
   /*{% if site.logo %}*/"{% include_cached smart-url url=site.logo %}",/*{% endif %}*/
   /*{% for file in site.hydejack.offline.precache_assets %}*/"{% include_cached smart-url url=file %}",
@@ -68,7 +73,7 @@ const CONTENT_FILES = [
   "{{ '/?source=pwa' | relative_url }}",
   "{{ '/assets/manifest.json' | relative_url }}",
   "{{ '/offline.html' | relative_url }}",
-  /*{% for legal in site.legal %}*/ "{% include_cached smart-url url=legal.href %}",
+  /*{% for legal in site.legal %}*/"{% include_cached smart-url url=legal.href %}",
   /*{% endfor %}*/
 ];
 
@@ -157,20 +162,17 @@ async function cacheShell(cache) {
     /*{% if google_fonts %}*/ getGoogleFontsFiles() /*{% endif %}*/,
   ]);
 
-  const { staticFiles } = await fetch('{{ "/assets/data.json" | relative_url }}').then(x => x.json());
-  const jsFiles = staticFiles.map(x => x.path).filter(url => (
-    url.startsWith('{{ "/assets/js"  | relative_url }}') &&
-    url.endsWith('.js') &&
-    !url.includes('LEGACY')
+  const jsFiles = STATIC_FILES.filter(url => (
+    url.startsWith('{{ "/assets/js/" | relative_url }}') &&
+    url.endsWith('.js') && !url.includes('LEGACY')
   ));
-  console.log(jsFiles);
 
   const urls = SHELL_FILES.concat(jsFiles, iconFontFiles, googleFontsFiles).filter(x => !!x);
   return addAll(cache, urls);
 }
 
 async function cacheAssets(cache) {
-  const urls = ASSET_FILES.filter(x => !!x);
+  const urls = PRE_CACHED_ASSETS.filter(x => !!x);
   return addAll(cache, urls);
 }
 
@@ -293,7 +295,6 @@ async function onFetch(e) {
 }
 
 // {% else %}
-
 self.addEventListener("activate", e => e.waitUntil(onDeactivate(e)));
 
 async function onDeactivate() {
