@@ -42,6 +42,7 @@ const RAND_SEARCH_PARAM = "rand";
 const RE_CSS_URL = /url\(['"]?(.*?)['"]?\)/gi;
 
 const ICON_FONT = "{{ '/assets/icomoon/style.css' | relative_url }}";
+const KATEX_FONT = "{{ '/assets/icomoon/style.css' | relative_url }}";
 
 // {% assign google_fonts = site.google_fonts %}
 // {% if google_fonts %}
@@ -60,7 +61,6 @@ const STATIC_FILES = [
 ];
 
 const PRE_CACHED_ASSETS = [
-  "{{ '/assets/img/swipe.svg' | relative_url }}",
   /*{% if site.accent_image %}{% unless site.accent_image.background %}*/"{% include_cached smart-url url=site.accent_image %}",/*{% endunless %}{% endif %}*/
   /*{% if site.logo %}*/"{% include_cached smart-url url=site.logo %}",/*{% endif %}*/
   /*{% for file in site.hydejack.offline.precache_assets %}*/"{% include_cached smart-url url=file %}",
@@ -121,19 +121,20 @@ const warn = (e) => {
   return new Response(e.message, { status: 500 });
 }
 
-// TODO: transpile to ES5, or translate by hand.
 async function getIconFontFiles() {
-  const iconFontURL = new URL(ICON_FONT, self.location);
-  const iconFontRes = await fetch(iconFontURL).catch(warn);
-  if (iconFontRes.ok) {
-    const text = await iconFontRes.text();
-
-    const dirPath = dirname(iconFontURL);
-    const fixURL = ([, match]) => new URL(`${dirPath}${match}`, iconFontURL)
-
-    return [ICON_FONT, ...matchAll(text, RE_CSS_URL).map(fixURL)];
-  }
-  return []
+  const fontURLs = STATIC_FILES.filter(x => (
+    x.startsWith('{{ "/assets/icomoon/fonts/" | relative_url }}') &&
+    x.endsWith('.woff2')
+  ));
+  return [ICON_FONT, ...fontURLs];
+}
+ 
+async function getKaTeXFontFiles() {
+  const fontURLs = STATIC_FILES.filter(x => (
+    x.startsWith('{{ "/assets/bower_components/katex/dist/fonts/" | relative_url }}') &&
+    x.endsWith('.woff2')
+  ));
+  return [KATEX_FONT, ...fontURLs];
 }
 
 async function getGoogleFontsFiles() {
@@ -159,7 +160,8 @@ function addAll(cache, urls) {
 async function cacheShell(cache) {
   const [iconFontFiles, googleFontsFiles] = await Promise.all([
     getIconFontFiles(),
-    /*{% if google_fonts %}*/ getGoogleFontsFiles() /*{% endif %}*/,
+    /*{% if google_fonts %}*/getGoogleFontsFiles(),/*{% endif %}*/
+    /*{% if site.kramdown.math_engine == 'katex' %}*/getKaTeXFontFiles(),/*{% endif %}*/
   ]);
 
   const jsFiles = STATIC_FILES.filter(url => (
