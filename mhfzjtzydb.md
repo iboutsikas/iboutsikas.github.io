@@ -9,4 +9,8 @@ You probably found this super secret page because you've searched for one of the
 
 > Rickroll, Easter egg, Foobar, Test123, Password, Promotion, Hidden, Secret
 
-Thanks for trying out the search functionality. As a reward for being nifty, you shall have the *promotion* **EASTEREGG** to get 5% off.
+Thanks for trying out the search functionality. As a reward, have the promotion **EASTEREGG** to get 10% off:
+
+[**Buy PRO**][buy]{:.btn.btn-primary.btn-lg.heading}
+
+[buy]: https://app.simplegoods.co/i/NATYVLYT
