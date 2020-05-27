@@ -1,10 +1,10 @@
 // Copyright (c) 2019 Florian Klampfer <https://qwtel.com/>
 
 main:not(.layout-resume) {
-  $pad: 1.5rem;
+  $gutter: 1rem;
 
   .columns {
-    margin-left: -$pad;
+    margin-left: -$gutter;
     display: flex;
     flex-wrap: wrap;
 
@@ -15,8 +15,8 @@ main:not(.layout-resume) {
 
   .column {
     float: left;
-    padding-left: $pad;
-    margin-bottom: $pad;
+    padding-left: $gutter;
+    margin-bottom: 2rem;
     width: 100%;
     display: flex;
   }
@@ -26,10 +26,12 @@ main:not(.layout-resume) {
   }
 
   @media screen and (min-width: $break-point-dynamic) {
-    .columns.columns-break { width: calc(#{$content-width-5 + ($content-width-5 / 2)} - 1.5rem) }
-    .columns-break > .column-1-2 { width: 33.333% }
-    .columns-break > .column-1 { width: 66.667% }
-    .columns-break > .align-self { align-self: start }
+    .columns-break { 
+      width: calc(50vw + #{$r28} - 6rem);
+      > .column-1-2, > .column-1 {
+        width: ($content-width-5 / 2) - ($gutter / 2);
+      }
+    }
   }
 
   @media print {
@@ -96,6 +98,8 @@ main:not(.layout-resume) {
   }
 
   .column-1 > .project-card {
+    box-shadow: .25rem .25rem 2rem rgba(0, 0, 0, 0.4);
+
     > .project-card-title {
       font-size: 1.2rem;
     }

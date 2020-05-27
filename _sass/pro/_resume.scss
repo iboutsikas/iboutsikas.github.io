@@ -149,7 +149,7 @@
 
   @media screen and (min-width: $break-point-dynamic) {
     .columns.columns-break { 
-      width: calc(#{$content-width-5 + ($content-width-5 / 2)} - 1.5rem); 
+      width: calc(50vw + #{$r28} - 6rem);
       .message {
         width: calc(100% + 1.5rem);
         padding: 1rem;
