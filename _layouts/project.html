@@ -71,9 +71,9 @@ layout: base
   {% when 'about' %}
      {% include_cached components/about.html author=page.author %}
   {% when 'newsletter' %}
-    {% include_cached if-non-null try="pro/newsletter.html" %}
+    {% include if-non-null try="pro/newsletter.html" %}
   {% when 'other' %}
-    {% include_cached if-non-null try="pro/other-projects.html" %}
+    {% include if-non-null try="pro/other-projects.html" %}
   {% when 'comments' %}
     {% include body/comments.html %}
   {% else %}
