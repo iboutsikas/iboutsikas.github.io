@@ -34,15 +34,11 @@ const CONTENT_CACHE = "content--{{ site.time | date_to_xmlschema }}--{{ site_key
 // A URL search parameter you can add to external assets to cache them in the service worker.
 const CACHE_SEARCH_PARAM = "sw-cache";
 
-// The search parameter used to bypass the disk cache.
-// https://jakearchibald.com/2016/caching-best-practices/#a-service-worker-can-extend-the-life-of-these-bugs
-const RAND_SEARCH_PARAM = "rand";
-
 // The regular expression used to find URLs in webfont style sheets.
 const RE_CSS_URL = /url\(['"]?(.*?)['"]?\)/gi;
 
-const ICON_FONT = "{{ '/assets/icomoon/style.css' | relative_url }}";
-const KATEX_FONT = "{{ '/assets/icomoon/style.css' | relative_url }}";
+const ICON_FONT = "{% link assets/icomoon/style.css %}";
+const KATEX_FONT = "{% link assets/bower_components/katex/dist/katex.min.css %}";
 
 // {% assign google_fonts = site.google_fonts %}
 // {% if google_fonts %}
@@ -61,6 +57,7 @@ const STATIC_FILES = [
 ];
 
 const PRE_CACHED_ASSETS = [
+  '{{ "/assets/icons/favicon.ico" | relative_url }}',
   /*{% if site.accent_image %}{% unless site.accent_image.background %}*/"{% include_cached smart-url url=site.accent_image %}",/*{% endunless %}{% endif %}*/
   /*{% if site.logo %}*/"{% include_cached smart-url url=site.logo %}",/*{% endif %}*/
   /*{% for file in site.hydejack.offline.precache_assets %}*/"{% include_cached smart-url url=file %}",
@@ -102,18 +99,17 @@ const toAbsoluteURL = url => new URL(url, self.location);
 
 // Creates a URL that bypasses the browser's HTTP cache by appending a random search parameter.
 function noCache(url) {
-  const url2 = new URL(url, self.location);
-  const rand = Math.random().toString(36).substr(2);
-  url2.searchParams.append(RAND_SEARCH_PARAM, rand);
-  return url2;
-  // return new Request(url, { cache: 'no-store' });
+  return new Request(url, { cache: 'no-store' });
 }
 
 // Removes the sw search paramter, if present.
 function noSWParam(url) {
   const url2 = new URL(url);
-  url2.searchParams.delete(CACHE_SEARCH_PARAM);
-  return url2;
+  if (url2.searchParams.has(CACHE_SEARCH_PARAM)) {
+    url2.searchParams.delete(CACHE_SEARCH_PARAM);
+    return url2.href;
+  }
+  return url;
 }
 
 const warn = (e) => {
@@ -124,7 +120,7 @@ const warn = (e) => {
 async function getIconFontFiles() {
   const fontURLs = STATIC_FILES.filter(x => (
     x.startsWith('{{ "/assets/icomoon/fonts/" | relative_url }}') &&
-    x.endsWith('.woff2')
+    x.endsWith('.woff') 
   ));
   return [ICON_FONT, ...fontURLs];
 }
@@ -158,7 +154,7 @@ function addAll(cache, urls) {
 }
 
 async function cacheShell(cache) {
-  const [iconFontFiles, googleFontsFiles] = await Promise.all([
+  const fontFiles = await Promise.all([
     getIconFontFiles(),
     /*{% if google_fonts %}*/getGoogleFontsFiles(),/*{% endif %}*/
     /*{% if site.kramdown.math_engine == 'katex' %}*/getKaTeXFontFiles(),/*{% endif %}*/
@@ -169,7 +165,7 @@ async function cacheShell(cache) {
     url.endsWith('.js') && !url.includes('LEGACY')
   ));
 
-  const urls = SHELL_FILES.concat(jsFiles, iconFontFiles, googleFontsFiles).filter(x => !!x);
+  const urls = SHELL_FILES.concat(jsFiles, ...fontFiles).filter(x => !!x);
   return addAll(cache, urls);
 }
 
@@ -277,9 +273,9 @@ async function onFetch(e) {
     // Caches
     // ------
     const matching = await raceTruthy([
-      caches.open(SHELL_CACHE).then(c => c.match(url.href)),
-      caches.open(ASSETS_CACHE).then(c => c.match(url.href)),
-      caches.open(CONTENT_CACHE).then(c => c.match(url.href)),
+      caches.open(SHELL_CACHE).then(c => c.match(url.href, { ignoreSearch: true })),
+      caches.open(ASSETS_CACHE).then(c => c.match(url.href, { ignoreSearch: true })),
+      caches.open(CONTENT_CACHE).then(c => c.match(url.href, { ignoreSearch: true })),
     ]);
 
     if (matching) return matching;
