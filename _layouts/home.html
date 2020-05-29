@@ -10,7 +10,7 @@ layout: about
 {% if page.selected_projects %}
   <div class="columns mt2 {% unless page.no_break_columns %}columns-break{% endunless %}">
     {% for project_path in page.selected_projects %}
-      {% assign project = site.projects | where:"path",project_path | first %}
+      {% assign project = site.projects | find:"path",project_path %}
       {% assign featured = page.featured | default:project.featured | default:page.big_project | default:project.big_project %}
       <div class="column {% if featured %}column-1{% else %}column-1-2{% endif %}">
         {% if project %}
@@ -34,7 +34,7 @@ layout: about
 {% endif %}
 
 {% if page.more_projects %}
-  {% assign more_projects = site.pages | where:"path", page.more_projects | first %}
+  {% assign more_projects = site.pages | find:"path", page.more_projects %}
   {% if more_projects %}
     {% capture projects_title %}<a class="heading flip-title" href="{{ more_projects.url | relative_url }}">{{ more_projects.title }}</a>{% endcapture %}
     {% assign text = strings.welcome.more_projects | default:"See <!--projects_title--> for more" %}
@@ -54,7 +54,7 @@ layout: about
 {% if page.selected_posts %}
   <div class="columns mt2 {% unless page.no_break_columns %}columns-break{% endunless %}">
     {% for post_path in page.selected_posts %}
-      {% assign post = site.posts | where:"path", post_path | first %}
+      {% assign post = site.posts | find:"path", post_path %}
       <div class="column {% if featured %}column-1{% else %}column-1-2{% endif %}">
         {% if post %}
           {% include_cached pro/post-card.html post=post featured=featured %}
@@ -75,7 +75,7 @@ layout: about
 {% endif %}
 
 {% if page.more_posts %}
-  {% assign more_posts = site.pages | where:"path", page.more_posts | first %}
+  {% assign more_posts = site.pages | find:"path", page.more_posts %}
   {% if more_posts %}
     {% capture posts_title %}<a class="heading flip-title" href="{{ more_posts.url | relative_url }}">{{ more_posts.title }}</a>{% endcapture %}
     {% assign text = strings.welcome.more_posts | default:"See <!--posts_title--> for more" %}
@@ -95,7 +95,7 @@ layout: about
 {% if page.selected_posts %}
   <ul class="related-posts mt2">
     {% for post_path in page.selected_posts %}
-      {% assign post = site.posts | where:"path", post_path | first %}
+      {% assign post = site.posts | find:"path", post_path %}
       {% if post %}
         {% include_cached components/post-list-item.html post=post %}
       {% else %}
@@ -112,7 +112,7 @@ layout: about
 {% endif %}
 
 {% if page.more_posts %}
-  {% assign more_posts = site.pages | where:"path", page.more_posts | first %}
+  {% assign more_posts = site.pages | find:"path", page.more_posts %}
   {% if more_posts %}
     {% capture posts_title %}<a class="heading flip-title" href="{{ more_posts.url | relative_url }}">{{ more_posts.title }}</a>{% endcapture %}
     {% assign text = strings.welcome.more_posts | default:"See <!--posts_title--> for more" %}

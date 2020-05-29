@@ -32,7 +32,7 @@
 
       {% if location.countryCode.size > 0 %}
         {% assign countryCode = location.countryCode | upcase %}
-        {% assign country = site.data.countries | where:"code",countryCode | first %}
+        {% assign country = site.data.countries | find:"code",countryCode %}
         {% if country %}
           <meta property="addressCountry" content="{{ location.countryCode }}"/>
           <span class="country-name p-country-name">{{ country.name }}</span>
