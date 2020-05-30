@@ -8,7 +8,7 @@ import { importTemplate, webComponentsReady } from '../common';
   if (!navigator.CookiesOK && document.cookie.indexOf('hy--cookies-ok') === -1) {
     const cookiesBanner = importTemplate('_cookies-banner-template');
     if (cookiesBanner) {
-      const parent = document.getElementsByTagName('hy-push-state')[0];
+      const parent = document.querySelector('hy-push-state');
       parent.insertBefore(cookiesBanner, parent.firstChild);
 
       document.getElementById('_cookies-ok').addEventListener(
