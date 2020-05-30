@@ -1,7 +1,7 @@
 ---
 ---
 {% unless site.hydejack.no_search or jekyll.environment == 'development' %}
-{% assign pages = site.pages | where_exp:"page","page.title != null" | where_exp:"page","page.sitemap != false" %}
+{% assign pages = site.html_pages | where:"layout","page" | where_exp:"page","page.sitemap != false" %}
 {
   "pages": [
     {% for page in pages %}{
