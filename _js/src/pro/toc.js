@@ -48,21 +48,12 @@ import { BREAK_POINT_DYNAMIC, getScrollTop, rem, createIntersectionObservable, w
           tap(affix => {
             if (affix) {
               toc.classList.add('affix');
-              // toc.style.position = 'fixed';
-              // toc.style.top = '1rem';
-              // toc.style.maxHeight = 'calc(100vh - 1rem)';
             } else {
               toc.classList.remove('affix');
-              // toc.style.position = '';
-              // toc.style.top = '';
-              // toc.style.maxHeight = '';
             }
           }),
           finalize(() => {
             toc.classList.remove('affix');
-            // toc.style.position = '';
-            // toc.style.top = '';
-            // toc.style.maxHeight = '';
           }),
         );
       }),
