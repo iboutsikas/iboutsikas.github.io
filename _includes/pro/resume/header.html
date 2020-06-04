@@ -1,4 +1,4 @@
-<header class="hr-after">
+<header>
   <h1 class="page-title fn p-name" property="name">{{ basics.name }}</h1>
 
   {% if basics.picture.size > 0 %}
@@ -8,6 +8,8 @@
   {% if basics.label %}
     <p class="h3 faded subline title p-job-title" property="jobTitle">{{ basics.label }}</p>
   {% endif %}
+
+  {% include components/message.html text=page.description hide=page.hide_description alt="" %}
 </header>
 
 {% if basics.summary.size > 0 %}
