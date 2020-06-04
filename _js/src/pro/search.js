@@ -81,7 +81,7 @@ const SEL_NAVBAR_BTN_BAR = '#_navbar > .content > .nav-btn-bar';
                   ${repeat(
                     items,
                     item => item.url,
-                    (item) => html`
+                    item => html`
                       <li class="search-item" @click=${() => _pushState.assign(item.url)}>
                         <div class="search-img aspect-ratio sixteen-ten">
                           ${item.image
