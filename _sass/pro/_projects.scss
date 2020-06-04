@@ -65,14 +65,14 @@ main:not(.layout-resume) {
 
         img {
           display: block;
-          transition: transform 500ms;
+          transition: transform 500ms ease-out, opacity 500ms ease;
         }
       }
 
       &:hover, &:focus {
         .project-card-img { 
           img {
-            transition: transform 250ms;
+            transition: transform 250ms ease;
             transform: scale(1.05);
           }
         }
