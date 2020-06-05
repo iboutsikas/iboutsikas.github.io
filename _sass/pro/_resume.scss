@@ -11,13 +11,15 @@
   }
 
   .avatar {
-    margin-top: .5rem;
-    margin-bottom: .5rem;
+    margin-top: -1rem;
   }
 
-  header > p {
-    margin-bottom: 0;
+  header {
+    > p { margin-bottom: 0 }
+    > .hr { margin: 1rem 0 }
   }
+
+  .page > header { margin-bottom: 1.5rem }
 
   .subline {
     margin-top: 0;
@@ -142,18 +144,13 @@
     width: 100%;
   }
 
-  @media screen and (min-width: $break-point-5) {
-    .column-3-5 { width: 60% }
-    .column-2-5 { width: 40% }
-  }
-
   @media screen and (min-width: $break-point-dynamic) {
     .columns.columns-break { 
       width: calc(50vw + #{$r28} - 6rem);
       .message {
         width: calc(100% + 1.5rem);
         padding: 1rem;
-        margin: 1rem -1rem;
+        margin: .5rem -1rem;
       }
     }
     .columns-break > .column-3-5 { width: $content-width-5 + 1rem }
@@ -170,13 +167,13 @@
       break-inside: avoid-page;
     }
     .avatar {
-      width: 8.5rem;
-      height: 8.5rem;
+      width: 9rem;
+      height: 9rem;
     }
   }
 
   @media print and (min-width: 5.247in) {
-    .column-3-5 { width: 60% }
-    .column-2-5 { width: 40% }
+    .column-3-5 { width: 66.67% }
+    .column-2-5 { width: 33.33% }
   }
 }

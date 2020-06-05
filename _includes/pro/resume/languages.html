@@ -6,45 +6,49 @@
   </h2>
   <dl class="skills">
     {% for lng in resume.languages %}
-      <dt class="h4 fl">{{ lng.language }}</dt>
+      <dt class="fl">{{ lng.language }}</dt>
       <dd class="faded clearafter">
         <div class="fr">
           <span class="sr-only">{{ strings.resume.fluency | default:"Fluency" }}{{ colon }}</span>
           {% assign fluency = lng.fluency | slugify %}
-          {% case fluency %}
-            {% when 5 or "native-or-bilingual-proficiency" or "native-speaker" %}
-              <span class="help" title="{{ lng.fluency }}">
-                <span class="sr-only">{{ lng.fluency }}</span>
-                <span class="icon-star-full"></span><span class="icon-star-full"></span><span class="icon-star-full"></span>
-              </span>
-            {% when 4 or "full-professional-proficiency" %}
-              <span class="help" title="{{ lng.fluency }}">
-                <span class="sr-only">{{ lng.fluency }}</span>
-                <span class="icon-star-full"></span><span class="icon-star-full"></span><span class="icon-star-half"></span>
-              </span>
-            {% when 3 or "professional-working-proficiency" %}
-              <span class="help" title="{{ lng.fluency }}">
-                <span class="sr-only">{{ lng.fluency }}</span>
-                <span class="icon-star-full"></span><span class="icon-star-full"></span><span class="icon-star-empty"></span>
-              </span>
-            {% when 2 or "limited-working-proficiency" %}
-              <span class="help" title="{{ lng.fluency }}">
-                <span class="sr-only">{{ lng.fluency }}</span>
-                <span class="icon-star-full"></span><span class="icon-star-half"></span><span class="icon-star-empty"></span>
-              </span>
-            {% when 1 or "elementary-proficiency" %}
-              <span class="help" title="{{ lng.fluency }}">
-                <span class="sr-only">{{ lng.fluency }}</span>
-                <span class="icon-star-full"></span><span class="icon-star-empty"></span><span class="icon-star-empty"></span>
-              </span>
-            {% when 0 or "no-proficiency" %}
-              <span class="help" title="{{ lng.fluency }}">
-                <span class="sr-only">{{ lng.fluency }}</span>
-                <span class="icon-star-empty"></span><span class="icon-star-empty"></span><span class="icon-star-empty"></span>
-              </span>
-            {% else %}
-              {{ lng.fluency }}
-          {% endcase %}
+          {% if page.language_icons %}
+            {% case fluency %}
+              {% when 5 or "native-or-bilingual-proficiency" or "native-speaker" %}
+                <span class="help" title="{{ lng.fluency }}">
+                  <span class="sr-only">{{ lng.fluency }}</span>
+                  <span class="icon-star-full"></span><span class="icon-star-full"></span><span class="icon-star-full"></span>
+                </span>
+              {% when 4 or "full-professional-proficiency" %}
+                <span class="help" title="{{ lng.fluency }}">
+                  <span class="sr-only">{{ lng.fluency }}</span>
+                  <span class="icon-star-full"></span><span class="icon-star-full"></span><span class="icon-star-half"></span>
+                </span>
+              {% when 3 or "professional-working-proficiency" %}
+                <span class="help" title="{{ lng.fluency }}">
+                  <span class="sr-only">{{ lng.fluency }}</span>
+                  <span class="icon-star-full"></span><span class="icon-star-full"></span><span class="icon-star-empty"></span>
+                </span>
+              {% when 2 or "limited-working-proficiency" %}
+                <span class="help" title="{{ lng.fluency }}">
+                  <span class="sr-only">{{ lng.fluency }}</span>
+                  <span class="icon-star-full"></span><span class="icon-star-half"></span><span class="icon-star-empty"></span>
+                </span>
+              {% when 1 or "elementary-proficiency" %}
+                <span class="help" title="{{ lng.fluency }}">
+                  <span class="sr-only">{{ lng.fluency }}</span>
+                  <span class="icon-star-full"></span><span class="icon-star-empty"></span><span class="icon-star-empty"></span>
+                </span>
+              {% when 0 or "no-proficiency" %}
+                <span class="help" title="{{ lng.fluency }}">
+                  <span class="sr-only">{{ lng.fluency }}</span>
+                  <span class="icon-star-empty"></span><span class="icon-star-empty"></span><span class="icon-star-empty"></span>
+                </span>
+              {% else %}
+                {{ lng.fluency }}
+            {% endcase %}
+          {% else %}
+            {{ lng.fluency }}
+          {% endif %}
         </div>
       </dd>
     {% endfor %}
