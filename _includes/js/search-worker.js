@@ -51,7 +51,7 @@ async function getDocuments() {
 // Mini Search 
 ///////////////////////////////////////////////////////////////////////////////
 
-importScripts('{{ "/assets/js/minisearch/dist/umd/index.js" | relative_url }}');
+importScripts('{{ "/assets/js/minisearch/dist/umd/index.min.js" | relative_url }}');
 const INDEX_KEY = 'index--{{ site.time | date_to_xmlschema }}';
 const storage = new StorageArea('mini-search{{ "/" | relative_url }}');
 
