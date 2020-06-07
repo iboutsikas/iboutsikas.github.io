@@ -18,10 +18,7 @@ import { tap, switchMap } from 'rxjs/operators';
 import { render, html } from 'lit-html';
 import { repeat } from 'lit-html/directives/repeat';
 
-import { webComponentsReady, importTemplate, postMessage } from '../common';
-
-// const timeout = t => new Promise(res => setTimeout(res, t));
-const once = (el, eventName) => el.addEventListener(eventName, { once: true });
+import { webComponentsReady, importTemplate, postMessage, once } from '../common';
 
 const SEL_NAVBAR_BTN_BAR = '#_navbar > .content > .nav-btn-bar';
 
@@ -60,7 +57,7 @@ const SEL_NAVBAR_BTN_BAR = '#_navbar > .content > .nav-btn-bar';
     pushStateEl.addEventListener('hy-push-state-start', closeHandler);
 
     // Load search worker after user interaction
-    await once(document, 'click', { once: true });
+    await once(document, 'click');
     const worker = new Worker(document.getElementById('_hrefSearch').href);
     let prevVal = '';
     fromEvent(searchInputEl, 'keyup')
