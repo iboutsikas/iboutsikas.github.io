@@ -38,10 +38,10 @@ sitemap: false
 ---\n\n`;
 
 const INTRO_POSTFIX = `
-**NOTE**: This document was created using Hydejack's print layout.
+This document was created using Hydejack's print layout.
 If you prefer to read it the documentation in your browser,
 you can find it [here]({{ site.baseurl }}{% link docs/README.md %}).
-{:.message}
+{:.note}
 
 ## Table of Contents
 {:.no_toc}
