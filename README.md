@@ -16,7 +16,7 @@ selected_posts:
   - hydejack/_posts/2018-06-30-introducing-hydejack-8.md
   - hydejack/_posts/2018-06-01-example-content-iii.md
 more_posts: posts.md
-no_break_columns: true
+no_third_column: true
 ---
 
 # Hydejack

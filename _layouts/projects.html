@@ -10,9 +10,10 @@ layout: page
 {% assign nsd = site.hydejack.no_structured_data | default:site.no_structured_data %}
 
 {% assign projects_group_by = site.data.strings.date_formats.projects_group_by | default:"%Y" %}
+{% assign no_third_column = page.no_third_column | default:site.hydejack.no_third_column | default:false %}
 
 {% assign prev_date = 0 %}
-{% unless page.grouped %}<div class="columns {% unless page.no_break_columns %}columns-break{% endunless %}">{% endunless %}
+{% unless page.grouped %}<div class="columns {% unless no_third_column %}columns-break{% endunless %}">{% endunless %}
 {% for project in ordered_projects %}
   {% assign current_date = project.date | date:projects_group_by %}
 
@@ -20,7 +21,7 @@ layout: page
     {% unless forloop.first %}</div>{% endunless %}
 
     <h2 id="{{ projects_group_by | slugify }}-{{ current_date | slugify }}">{{ current_date }}</h2>
-    <div class="columns {% unless page.no_break_columns %}columns-break{% endunless %}">
+    <div class="columns {% unless no_third_column %}columns-break{% endunless %}">
     {% assign prev_date = current_date %}
   {% endif %}
 

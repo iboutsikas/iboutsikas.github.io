@@ -9,9 +9,10 @@ layout: page
 
 {% assign date_formats  = site.data.strings.date_formats               %}
 {% assign list_group_by = date_formats.list_group_by | default:"%Y"    %}
+{% assign no_third_column = page.no_third_column | default:site.hydejack.no_third_column | default:false %}
 
 {% assign prev_date = 0 %}
-{% unless page.grouped %}<div class="columns {% unless page.no_break_columns %}columns-break{% endunless %}">{% endunless %}
+{% unless page.grouped %}<div class="columns {% unless no_third_column %}columns-break{% endunless %}">{% endunless %}
 {% for post in posts %}
   {% assign current_date = post.date | date:list_group_by %}
 

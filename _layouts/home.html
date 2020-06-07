@@ -4,11 +4,12 @@ layout: about
 ---
 
 {% assign strings = site.data.strings %}
+{% assign no_third_column = page.no_third_column | default:site.hydejack.no_third_column | default:false %}
 
 {% if content contains "<!--projects-->" %}
 {% capture projets_x %}
 {% if page.selected_projects %}
-  <div class="columns mt2 {% unless page.no_break_columns %}columns-break{% endunless %}">
+  <div class="columns mt2 {% unless no_third_column %}columns-break{% endunless %}">
     {% for project_path in page.selected_projects %}
       {% assign project = site.projects | find:"path",project_path %}
       {% assign featured = page.featured | default:project.featured | default:page.big_project | default:project.big_project %}
@@ -22,7 +23,7 @@ layout: about
     {% endfor %}
   </div>
 {% elsif site.projects.size > 1 %}
-  <div class="columns mt2 {% unless page.no_break_columns %}columns-break{% endunless %}">
+  <div class="columns mt2 {% unless no_third_column %}columns-break{% endunless %}">
     {% assign ordered_projects = site.projects | sort:"date" | reverse %}
     {% for project in ordered_projects limit:2 %}
       {% assign featured = page.featured | default:project.featured | default:page.big_project | default:project.big_project %}
@@ -52,7 +53,7 @@ layout: about
 {% if content contains "<!--posts-->" %}
 {% capture posts_x %}
 {% if page.selected_posts %}
-  <div class="columns mt2 {% unless page.no_break_columns %}columns-break{% endunless %}">
+  <div class="columns mt2 {% unless no_third_column %}columns-break{% endunless %}">
     {% for post_path in page.selected_posts %}
       {% assign post = site.posts | find:"path", post_path %}
       <div class="column {% if featured %}column-1{% else %}column-1-2{% endif %}">
@@ -65,7 +66,7 @@ layout: about
     {% endfor %}
   </div>
 {% elsif site.posts.size > 1 %}
-  <div class="columns mt2 {% unless page.no_break_columns %}columns-break{% endunless %}">
+  <div class="columns mt2 {% unless no_third_column %}columns-break{% endunless %}">
     {% for post in site.posts limit:4 %}
       <div class="column {% if featured %}column-1{% else %}column-1-2{% endif %}">
         {% include_cached pro/post-card.html post=post featured=featured %}
