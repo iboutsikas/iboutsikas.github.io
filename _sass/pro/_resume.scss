@@ -137,9 +137,16 @@
     width: 100%;
   }
 
+  .fr { 
+    float: none;
+    display: inline-block;
+    margin-left: .25rem;
+  }
+
   @media screen and (min-width: $break-point-5) {
     .column-3-5 { width: 66.67% }
     .column-2-5 { width: 33.33% }
+    .fr { float: right }
   }
 
   @media screen and (min-width: $break-point-dynamic) {
