@@ -16,10 +16,10 @@
 import { fromEvent, NEVER, combineLatest } from 'rxjs';
 import { map, tap, switchMap, distinctUntilChanged, startWith, share, finalize } from 'rxjs/operators';
 
-import { BREAK_POINT_DYNAMIC, getScrollTop, rem, createIntersectionObservable, webComponentsReady } from '../common';
+import { BREAK_POINT_DYNAMIC, getScrollTop, rem, createIntersectionObservable, stylesheetReady } from '../common';
 
 (async () => {
-  await webComponentsReady;
+  await stylesheetReady;
 
   const isLarge$ = fromEvent(window, 'resize', { passive: true }).pipe(
     startWith({}),

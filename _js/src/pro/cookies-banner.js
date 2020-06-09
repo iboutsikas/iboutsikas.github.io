@@ -1,9 +1,9 @@
 // Copyright (c) 2019 Florian Klampfer <https://qwtel.com/>
 
-import { importTemplate, webComponentsReady } from '../common';
+import { importTemplate, stylesheetReady } from '../common';
 
 (async () => {
-  await webComponentsReady;
+  await stylesheetReady;
 
   if (!navigator.CookiesOK && document.cookie.indexOf('hy--cookies-ok') === -1) {
     const cookiesBanner = importTemplate('_cookies-banner-template');

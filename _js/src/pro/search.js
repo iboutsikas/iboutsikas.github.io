@@ -18,12 +18,12 @@ import { tap, switchMap } from 'rxjs/operators';
 import { render, html } from 'lit-html';
 import { repeat } from 'lit-html/directives/repeat';
 
-import { webComponentsReady, importTemplate, postMessage, once } from '../common';
+import { importTemplate, postMessage, once, stylesheetReady } from '../common';
 
 const SEL_NAVBAR_BTN_BAR = '#_navbar > .content > .nav-btn-bar';
 
 (async () => {
-  await webComponentsReady;
+  await stylesheetReady;
 
   const pushStateEl = document.getElementById('_pushState');
 

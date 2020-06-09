@@ -1,11 +1,11 @@
 // Copyright (c) 2019 Florian Klampfer <https://qwtel.com/>
 
-import { importTemplate, webComponentsReady } from '../common';
+import { importTemplate, stylesheetReady } from '../common';
 
 const SEL_NAVBAR_BTN_BAR = '#_navbar > .content > .nav-btn-bar';
 
 (async () => {
-  await webComponentsReady;
+  await stylesheetReady;
 
   const darkMode = importTemplate('_dark-mode-template');
   if (darkMode) {
