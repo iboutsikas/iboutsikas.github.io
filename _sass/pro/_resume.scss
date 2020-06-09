@@ -158,9 +158,9 @@
   }
 
   @media screen and (min-width: $break-point-5) {
+    .fr { float: right }
     .column-3-5 { width: 66.67% }
     .column-2-5 { width: 33.33% }
-    .fr { float: right }
   }
 
   @media screen and (min-width: $break-point-dynamic) {
@@ -185,6 +185,7 @@
   }
 
   @media print and (min-width: 5.247in) {
+    .fr { float: right }
     .column-3-5 { width: 66.67% }
     .column-2-5 { width: 33.33% }
   }
