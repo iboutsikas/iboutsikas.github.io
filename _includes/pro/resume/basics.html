@@ -43,6 +43,30 @@
     </dd>
   {% endif %}
 
+  {% if basics.born.size > 0 %}
+    <dt class="faded">
+      <span class="{{ icons.born | default:'icon-pen' }}" title="{{ strings.resume.born | default:'Born' }}"></span>
+      <span class="sr-only">{{ strings.resume.born | default:"Born" }}</span>
+    </dt>
+    <dd class="bold">{{ basics.born }}</dd>
+  {% endif %}
+
+  {% if basics.citizenship.size > 0 %}
+    <dt class="faded">
+      <span class="{{ icons.citizenship | default:'icon-flag' }}" title="{{ strings.resume.citizenship | default:'Citizenship' }}"></span>
+      <span class="sr-only">{{ strings.resume.citizenship | default:"Citizenship" }}</span>
+    </dt>
+    <dd class="bold">{{ basics.citizenship }}</dd>
+  {% endif %}
+
+  {% if basics.maritalStatus.size > 0 %}
+    <dt class="faded">
+      <span class="{{ icons.maritalStatus | default:'icon-man-woman' }}" title="{{ strings.resume.maritalStatus | default:'Marital status' }}"></span>
+      <span class="sr-only">{{ strings.resume.maritalStatus | default:"Marital status" }}</span>
+    </dt>
+    <dd class="bold">{{ basics.maritalStatus }}</dd>
+  {% endif %}
+
   {% if basics.email.size > 0 %}
     <dt class="faded">
       <span class="{{ icons.email | default:'icon-mail2' }}" title="{{ strings.resume.email | default:'Email' }}"></span>
