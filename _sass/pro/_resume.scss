@@ -18,10 +18,24 @@
     > p { margin-bottom: 0 }
   }
 
-  .page > header { margin-bottom: 1.5rem }
+  .page > header { 
+    margin-bottom: 1.5rem
+  }
 
   .subline {
     margin-top: 0;
+  }
+
+  .note {
+    font-size: 1rem;
+  }
+
+  .mt2 { 
+    margin-top: 1rem;
+  }
+
+  ul {
+    margin-bottom: 1.5rem;
   }
 
   .h3 {
