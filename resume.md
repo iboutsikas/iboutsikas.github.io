@@ -16,8 +16,6 @@ right_column:
   - languages
   - skills
   - interests
-# Replace certain key words (e.g. master, intermediate) with star icons for skill levels
-skill_icons: true
-# Replace certain key words with star icons for language levels
-language_icons: true
+no_language_icons: false
+no_skill_icons: false
 ---
