@@ -7,15 +7,15 @@ description: >
   **Hydejack** is your presence on the web, featuring a blog, portfolio, and resume.
 hide_description: true
 selected_projects:
-  - _projects/hy-drawer.md
-  - _projects/hy-push-state.md
-more_projects: projects.md
+  - _projects/hy-drawer.md # Use path to the project
+  - /projects/hy-push-state/ # or the URL
+projects_page: projects.md
 selected_posts:
   - hydejack/_posts/2019-07-31-8.5.0.md
-  - hydejack/_posts/2018-09-01-introducing-dark-mode.md
+  - /blog/hydejack/2018-09-01-introducing-dark-mode/
   - hydejack/_posts/2018-06-30-introducing-hydejack-8.md
   - hydejack/_posts/2018-06-01-example-content-iii.md
-more_posts: posts.md
+posts_page: /posts/
 no_third_column: true
 ---
 
