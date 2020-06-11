@@ -62,41 +62,33 @@ const SEL_NAVBAR_BTN_BAR = '#_navbar > .content > .nav-btn-bar';
     let prevVal = '';
     fromEvent(searchInputEl, 'keyup')
       .pipe(
-        tap(e => {
+        tap((e) => {
           if (e.target.value === '' && prevVal === '' && e.keyCode === 27) {
             e.preventDefault();
             closeHandler();
           }
           prevVal = e.target.value;
         }),
-        switchMap(e => postMessage(worker, e.target.value)),
-        tap(items => {
+        switchMap((e) => postMessage(worker, e.target.value)),
+        tap((items) => {
           if (items.length) {
             render(
               html`
                 <ul>
                   ${repeat(
                     items,
-                    item => item.url,
-                    item => html`
+                    (item) => item.url,
+                    (item) => html`
                       <li class="search-item" @click=${() => _pushState.assign(item.url)}>
                         <div class="search-img aspect-ratio sixteen-ten">
-                          ${item.image
-                            ? html`
-                                <img src="${item.image}" />
-                              `
-                            : ''}
+                          ${item.image ? html` <img src="${item.image}" /> ` : ''}
                         </div>
                         <div class="search-text">
                           <p>
                             <a class="heading" href=${item.url}>${item.title}</a>
                             <small style="color:var(--text-muted)">${item.url}</small>
                           </p>
-                          ${item.description
-                            ? html`
-                                <p>${item.description}</p>
-                              `
-                            : ''}
+                          ${item.description ? html` <p>${item.description}</p> ` : ''}
                         </div>
                       </li>
                     `,

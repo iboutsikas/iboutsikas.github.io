@@ -12,7 +12,7 @@ const SEL_NAVBAR_BTN_BAR = '#_navbar > .content > .nav-btn-bar';
     const navbarEl = document.querySelector(SEL_NAVBAR_BTN_BAR);
     navbarEl.insertBefore(darkMode, navbarEl.querySelector('.nav-span'));
 
-    document.getElementById('_dark-mode').addEventListener('click', e => {
+    document.getElementById('_dark-mode').addEventListener('click', (e) => {
       e.preventDefault();
       const list = document.body.classList;
       if (
@@ -30,11 +30,11 @@ const SEL_NAVBAR_BTN_BAR = '#_navbar > .content > .nav-btn-bar';
     await once(document, 'click');
 
     const styleSheets = Array.from(document.styleSheets);
-    const inlineSheet = styleSheets.find(s => s.ownerNode && s.ownerNode.id === '_styleInline');
-    const linkSheet = styleSheets.find(s => s.ownerNode && s.ownerNode.id === '_stylePreload');
+    const inlineSheet = styleSheets.find((s) => s.ownerNode && s.ownerNode.id === '_styleInline');
+    const linkSheet = styleSheets.find((s) => s.ownerNode && s.ownerNode.id === '_stylePreload');
     const setRule = (sheet) => {
       if (!sheet) return;
-      const rule = Array.from(sheet.rules).find(rule => rule.selectorText.startsWith('.color-transition'));
+      const rule = Array.from(sheet.rules).find((rule) => rule.selectorText.startsWith('.color-transition'));
       if (rule) rule.style.transition = 'background-color 1s ease, border-color 1s ease';
     };
     setRule(inlineSheet);

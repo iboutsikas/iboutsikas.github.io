@@ -43,9 +43,9 @@ import { BREAK_POINT_DYNAMIC, getScrollTop, rem, createIntersectionObservable, s
         return fromEvent(document, 'scroll', { passive: true }).pipe(
           map(getScrollTop),
           startWith(getScrollTop()),
-          map(x => x >= offsetTop),
+          map((x) => x >= offsetTop),
           distinctUntilChanged(),
-          tap(affix => {
+          tap((affix) => {
             if (affix) {
               toc.classList.add('affix');
             } else {
@@ -69,13 +69,13 @@ import { BREAK_POINT_DYNAMIC, getScrollTop, rem, createIntersectionObservable, s
         const top = new WeakMap();
 
         const toObserve = Array.from(toc.querySelectorAll('li'))
-          .map(el => el.children[0].getAttribute('href') || '')
-          .map(hash => document.getElementById(hash.substr(1)))
-          .filter(el => !!el);
+          .map((el) => el.children[0].getAttribute('href') || '')
+          .map((hash) => document.getElementById(hash.substr(1)))
+          .filter((el) => !!el);
 
         let init = true;
         return createIntersectionObservable(toObserve).pipe(
-          tap(entries => {
+          tap((entries) => {
             if (init) {
               entries.forEach(({ target, boundingClientRect }) =>
                 top.set(target, getScrollTop() + boundingClientRect.top),
@@ -89,12 +89,12 @@ import { BREAK_POINT_DYNAMIC, getScrollTop, rem, createIntersectionObservable, s
 
             const curr = Array.from(intersecting).reduce((min, el) => (top.get(el) >= top.get(min) ? min : el), null);
             if (curr) {
-              toc.querySelectorAll('a').forEach(el => (el.style.fontWeight = ''));
+              toc.querySelectorAll('a').forEach((el) => (el.style.fontWeight = ''));
               toc.querySelector(`a[href="#${curr.id}"]`).style.fontWeight = 'bold';
             }
           }),
           finalize(() => {
-            toc.querySelectorAll('a').forEach(el => (el.style.fontWeight = ''));
+            toc.querySelectorAll('a').forEach((el) => (el.style.fontWeight = ''));
           }),
         );
       }),
