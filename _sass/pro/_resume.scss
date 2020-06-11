@@ -8,6 +8,10 @@
   h1 {
     display: inline-block;
     margin-bottom: .25rem;
+
+    // Fix avatar border overlapping name on small screens: 
+    position: relative;
+    z-index: 2;
   }
 
   .avatar {
