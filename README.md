@@ -104,7 +104,7 @@ The PRO version has built-in support for customizable [Tinyletter] newsletter su
 
 If you are using a different service like MailChimp, you can build a custom newsletter subscription box using [Custom Forms][forms].
 
-{% include pro/newsletter.html %}
+
 
 
 ## A Personal Site That Won't Disappear
