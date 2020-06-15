@@ -26,12 +26,12 @@ const SEL_NAVBAR_BTN_BAR = '#_navbar > .content > .nav-btn-bar';
   await stylesheetReady;
 
   const pushStateEl = document.getElementById('_pushState');
-
   const searchFrag = importTemplate('_search-template');
-  if (searchFrag) {
+  const workerHref = document.getElementById('_hrefSearch')?.href;
+  const navbarEl = document.querySelector(SEL_NAVBAR_BTN_BAR);
+  if (searchFrag && workerHref && navbarEl) {
     const [searchBtnEl, searchBoxEl, hitsEl] = searchFrag.children;
 
-    const navbarEl = document.querySelector(SEL_NAVBAR_BTN_BAR);
     navbarEl.insertBefore(searchBtnEl, navbarEl.querySelector('.nav-span'));
     navbarEl.insertBefore(searchBoxEl, navbarEl.querySelector('.nav-span'));
     navbarEl.insertBefore(hitsEl, navbarEl.querySelector('.nav-span'));
@@ -40,25 +40,29 @@ const SEL_NAVBAR_BTN_BAR = '#_navbar > .content > .nav-btn-bar';
     const searchCloseEl = searchBoxEl.querySelector('button[type=reset]');
 
     searchBtnEl.addEventListener('click', () => {
-      searchBoxEl.style.display = 'flex';
       searchInputEl.focus();
+    });
+
+    searchInputEl.addEventListener('focus', () => {
       searchInputEl.select();
+      searchBoxEl.classList.add('show');
       if (searchInputEl.value !== '') hitsEl.style.display = '';
     });
 
     const closeHandler = () => {
-      searchBoxEl.style.display = '';
+      document.activeElement?.blur();
+      searchBoxEl.classList.remove('show');
       hitsEl.style.display = 'none';
     };
 
     hitsEl.style.display = 'none';
 
     searchCloseEl.addEventListener('click', closeHandler);
-    pushStateEl.addEventListener('hy-push-state-start', closeHandler);
+    pushStateEl?.addEventListener('hy-push-state-start', closeHandler);
 
     // Load search worker after user interaction
     await once(document, 'click');
-    const worker = new Worker(document.getElementById('_hrefSearch').href);
+    const worker = new Worker(workerHref);
     let prevVal = '';
     fromEvent(searchInputEl, 'keyup')
       .pipe(
@@ -79,7 +83,7 @@ const SEL_NAVBAR_BTN_BAR = '#_navbar > .content > .nav-btn-bar';
                     items,
                     (item) => item.url,
                     (item) => html`
-                      <li class="search-item" @click=${() => _pushState.assign(item.url)}>
+                      <li class="search-item" @click=${() => pushStateEl?.assign?.(item.url)}>
                         <div class="search-img aspect-ratio sixteen-ten">
                           ${item.image ? html` <img src="${item.image}" /> ` : ''}
                         </div>

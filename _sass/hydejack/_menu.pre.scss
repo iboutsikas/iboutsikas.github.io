@@ -137,7 +137,11 @@ a.nav-btn, button.nav-btn {
   left: 0;
   right: 0;
   bottom: 0;
-  display: none;
+  transform: translateY(-9999px);
+
+  &.show {
+    transform: none;
+  }
 
   > input[type=search] {
     height: 100%;
