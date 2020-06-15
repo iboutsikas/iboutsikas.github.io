@@ -21,22 +21,22 @@ export function setupFLIPProject(start$, ready$, fadeIn$, { animationMain, setti
       const title = (titleNode && titleNode.textContent) || '|';
 
       const h1 = document.createElement('h1');
-      h1.classList.add('page-title');
-      h1.style.opacity = 0;
-      h1.textContent = title;
+      h1?.classList.add('page-title');
+      if (h1) h1.style.opacity = '0';
+      if (h1) h1.textContent = title;
 
       const postDate = document.createElement('div');
-      postDate.classList.add('post-date');
-      postDate.classList.add('heading');
-      postDate.style.opacity = 0;
-      postDate.textContent = '|';
+      postDate?.classList.add('post-date');
+      postDate?.classList.add('heading');
+      if (postDate) postDate.style.opacity = '0';
+      if (postDate) postDate.textContent = '|';
 
       empty.call(page);
       page.appendChild(h1);
       page.appendChild(postDate);
 
       const placeholder = document.createElement('div');
-      placeholder.classList = img.classList;
+      placeholder.setAttribute('class', img.classList);
       placeholder.classList.remove('project-card-img');
 
       img.parentNode.insertBefore(placeholder, img);
@@ -45,7 +45,7 @@ export function setupFLIPProject(start$, ready$, fadeIn$, { animationMain, setti
 
       page.appendChild(img);
       animationMain.style.position = 'fixed';
-      animationMain.style.opacity = 1;
+      animationMain.style.opacity = '1';
 
       const first = placeholder.getBoundingClientRect();
       const last = img.getBoundingClientRect();

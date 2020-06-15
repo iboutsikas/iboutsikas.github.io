@@ -26,11 +26,13 @@ const SEL_NAVBAR_BTN_BAR = '#_navbar > .content > .nav-btn-bar';
   await stylesheetReady;
 
   const pushStateEl = document.getElementById('_pushState');
+
   const searchFrag = importTemplate('_search-template');
   const workerHref = document.getElementById('_hrefSearch')?.href;
-  const navbarEl = document.querySelector(SEL_NAVBAR_BTN_BAR);
-  if (searchFrag && workerHref && navbarEl) {
+  if (searchFrag && workerHref) {
+    const navbarEl = document.querySelector(SEL_NAVBAR_BTN_BAR);
     const [searchBtnEl, searchBoxEl, hitsEl] = searchFrag.children;
+    if (!searchBtnEl || !searchBoxEl || !hitsEl || !navbarEl) return
 
     navbarEl.insertBefore(searchBtnEl, navbarEl.querySelector('.nav-span'));
     navbarEl.insertBefore(searchBoxEl, navbarEl.querySelector('.nav-span'));
@@ -38,6 +40,7 @@ const SEL_NAVBAR_BTN_BAR = '#_navbar > .content > .nav-btn-bar';
 
     const searchInputEl = searchBoxEl.querySelector('input[type=search]');
     const searchCloseEl = searchBoxEl.querySelector('button[type=reset]');
+    if (!searchInputEl || !searchCloseEl) return;
 
     searchBtnEl.addEventListener('click', () => {
       searchInputEl.focus();
