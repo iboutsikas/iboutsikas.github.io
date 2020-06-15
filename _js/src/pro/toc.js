@@ -16,15 +16,14 @@
 import { fromEvent, NEVER, combineLatest } from 'rxjs';
 import { map, tap, switchMap, distinctUntilChanged, startWith, share, finalize } from 'rxjs/operators';
 
-import { BREAK_POINT_DYNAMIC, getScrollTop, rem, createIntersectionObservable, stylesheetReady } from '../common';
+import { BREAK_POINT_DYNAMIC, getScrollTop, rem, createIntersectionObservable, stylesheetReady, fromMediaQuery } from '../common';
 
 (async () => {
   await stylesheetReady;
 
-  const isLarge$ = fromEvent(window, 'resize', { passive: true }).pipe(
-    startWith({}),
-    map(() => window.matchMedia(BREAK_POINT_DYNAMIC).matches),
-    distinctUntilChanged(),
+  const isLarge$ = fromMediaQuery(window.matchMedia(BREAK_POINT_DYNAMIC)).pipe(
+    startWith(window.matchMedia(BREAK_POINT_DYNAMIC)),
+    map(m => m.matches),
   );
 
   const pushState = document.getElementById('_pushState');
