@@ -86,7 +86,7 @@ const SEL_NAVBAR_BTN_BAR = '#_navbar > .content > .nav-btn-bar';
                         <div class="search-text">
                           <p>
                             <a class="heading" href=${item.url}>${item.title}</a>
-                            <small style="color:var(--text-muted)">${item.url}</small>
+                            <small>${item.url}</small>
                           </p>
                           ${item.description ? html` <p>${item.description}</p> ` : ''}
                         </div>
