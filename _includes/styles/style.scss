@@ -57,6 +57,10 @@
   @import "pro/bootstrap-mod/bootstrap";
   @import "pro/message-newsletter";
 
+  {% unless site.hydejack.no_search %}
+    @import "pro/search";
+  {% endunless %}
+
   {% unless site.hydejack.no_mark_external or site.no_mark_external %}
     @import "hydejack/__link__/mark-external";
   {% endunless %}
