@@ -16,14 +16,21 @@
 import { fromEvent, NEVER, combineLatest } from 'rxjs';
 import { map, tap, switchMap, distinctUntilChanged, startWith, share, finalize } from 'rxjs/operators';
 
-import { BREAK_POINT_DYNAMIC, getScrollTop, rem, createIntersectionObservable, stylesheetReady, fromMediaQuery } from '../common';
+import {
+  BREAK_POINT_DYNAMIC,
+  getScrollTop,
+  rem,
+  createIntersectionObservable,
+  stylesheetReady,
+  fromMediaQuery,
+} from '../common';
 
 (async () => {
   await stylesheetReady;
 
   const isLarge$ = fromMediaQuery(window.matchMedia(BREAK_POINT_DYNAMIC)).pipe(
     startWith(window.matchMedia(BREAK_POINT_DYNAMIC)),
-    map(m => m.matches),
+    map((m) => m.matches),
   );
 
   const pushState = document.getElementById('_pushState');
@@ -34,68 +41,76 @@ import { BREAK_POINT_DYNAMIC, getScrollTop, rem, createIntersectionObservable, s
     share(),
   );
 
-  combineLatest(toc$, isLarge$).pipe(
-    switchMap(([toc, isLarge]) => {
-      if (!toc || !isLarge) return NEVER;
+  combineLatest(toc$, isLarge$)
+    .pipe(
+      switchMap(([toc, isLarge]) => {
+        if (!toc || !isLarge) return NEVER;
 
-      const offsetTop = toc.offsetTop - rem(1);
+        const offsetTop = toc.offsetTop - rem(1);
 
-      return fromEvent(document, 'scroll', { passive: true }).pipe(
-        map(getScrollTop),
-        startWith(getScrollTop()),
-        map((x) => x >= offsetTop),
-        distinctUntilChanged(),
-        tap((affix) => {
-          if (affix) {
-            toc.classList.add('affix');
-          } else {
+        return fromEvent(document, 'scroll', { passive: true }).pipe(
+          map(getScrollTop),
+          startWith(getScrollTop()),
+          map((x) => x >= offsetTop),
+          distinctUntilChanged(),
+          tap((affix) => {
+            if (affix) {
+              toc.classList.add('affix');
+            } else {
+              toc.classList.remove('affix');
+            }
+          }),
+          finalize(() => {
             toc.classList.remove('affix');
-          }
-        }),
-        finalize(() => {
-          toc.classList.remove('affix');
-        }),
-      );
-    }),
-  ).subscribe();
+          }),
+        );
+      }),
+    )
+    .subscribe();
 
-  combineLatest(toc$, isLarge$).pipe(
-    switchMap(([toc, isLarge]) => {
-      if (!toc || !isLarge) return NEVER;
+  combineLatest(toc$, isLarge$)
+    .pipe(
+      switchMap(([toc, isLarge]) => {
+        if (!toc || !isLarge) return NEVER;
 
-      const intersecting = new Set();
-      const top = new WeakMap();
+        const intersecting = new Set();
+        const top = new WeakMap();
 
-      const toObserve = Array.from(toc.querySelectorAll('li'))
-        .map((el) => el.children[0].getAttribute('href') || '')
-        .map((hash) => document.getElementById(hash.substr(1)))
-        .filter((el) => !!el);
+        const toObserve = Array.from(toc.querySelectorAll('li'))
+          .map((el) => el.children[0].getAttribute('href') || '')
+          .map((hash) => document.getElementById(hash.substr(1)))
+          .filter((el) => !!el);
 
-      let init = true;
-      return createIntersectionObservable(toObserve).pipe(
-        tap((entries) => {
-          if (init) {
-            entries.forEach(({ target, boundingClientRect }) =>
-              top.set(target, getScrollTop() + boundingClientRect.top),
-            );
-            init = false;
-          }
+        let init = true;
+        return createIntersectionObservable(toObserve).pipe(
+          tap((entries) => {
+            if (init) {
+              entries.forEach(({ target, boundingClientRect }) =>
+                top.set(target, getScrollTop() + boundingClientRect.top),
+              );
+              init = false;
+            }
 
-          entries.forEach(({ isIntersecting, target }) => {
-            isIntersecting ? intersecting.add(target) : intersecting.delete(target);
-          });
+            entries.forEach(({ isIntersecting, target }) => {
+              isIntersecting ? intersecting.add(target) : intersecting.delete(target);
+            });
 
-          const curr = Array.from(intersecting).reduce((min, el) => (top.get(el) >= top.get(min) ? min : el), null);
-          if (curr) {
-            toc.querySelectorAll('a').forEach((el) => { el.style.fontWeight = '' });
-            const el = toc.querySelector(`a[href="#${curr.id}"]`);
-            if (el) el.style.fontWeight = 'bold';
-          }
-        }),
-        finalize(() => {
-          toc.querySelectorAll('a').forEach((el) => { el.style.fontWeight = '' });
-        }),
-      );
-    }),
-  ).subscribe();
+            const curr = Array.from(intersecting).reduce((min, el) => (top.get(el) >= top.get(min) ? min : el), null);
+            if (curr) {
+              toc.querySelectorAll('a').forEach((el) => {
+                el.style.fontWeight = '';
+              });
+              const el = toc.querySelector(`a[href="#${curr.id}"]`);
+              if (el) el.style.fontWeight = 'bold';
+            }
+          }),
+          finalize(() => {
+            toc.querySelectorAll('a').forEach((el) => {
+              el.style.fontWeight = '';
+            });
+          }),
+        );
+      }),
+    )
+    .subscribe();
 })();

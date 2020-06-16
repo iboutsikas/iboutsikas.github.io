@@ -32,7 +32,7 @@ const SEL_NAVBAR_BTN_BAR = '#_navbar > .content > .nav-btn-bar';
   if (searchFrag && workerHref) {
     const navbarEl = document.querySelector(SEL_NAVBAR_BTN_BAR);
     const [searchBtnEl, searchBoxEl, hitsEl] = searchFrag.children;
-    if (!searchBtnEl || !searchBoxEl || !hitsEl || !navbarEl) return
+    if (!searchBtnEl || !searchBoxEl || !hitsEl || !navbarEl) return;
 
     navbarEl.insertBefore(searchBtnEl, navbarEl.querySelector('.nav-span'));
     navbarEl.insertBefore(searchBoxEl, navbarEl.querySelector('.nav-span'));
