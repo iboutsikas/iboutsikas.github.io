@@ -101,6 +101,10 @@
   @import "pro/bootstrap-mod/bootstrap";
   @import "pro/message-newsletter";
 
+  {% unless site.hydejack.no_search %}
+    @import "pro/_search.scss";
+  {% endunless %}
+
   {% unless site.hydejack.no_mark_external or site.no_mark_external %}
     @import "hydejack/_mark-external.pre.scss";
   {% endunless %}
