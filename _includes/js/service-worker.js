@@ -67,7 +67,6 @@ const PRE_CACHED_ASSETS = [
 // Files we add on every service worker installation.
 const CONTENT_FILES = [
   "{{ '/' | relative_url }}",
-  "{{ '/?source=pwa' | relative_url }}",
   "{{ '/assets/manifest.json' | relative_url }}",
   "{{ '/offline.html' | relative_url }}",
   /*{% for legal in site.legal %}*/"{% include_cached smart-url url=legal.href %}",
@@ -133,6 +132,22 @@ async function getKaTeXFontFiles() {
   return [KATEX_FONT, ...fontURLs];
 }
 
+async function getMathJaxFiles() {
+  // NOTE: Removed due to MathJax' enormous size. 
+  // Uncomment if you're using MathJax and don't mind forcing a 50 MB download on every visitor...
+  /*
+  const mathJaxFiles = STATIC_FILES.filter(x => (
+    x.startsWith('{{ "/assets/bower_components/MathJax/es5/" | relative_url }}') &&
+    x.endsWith('.js')
+  ));
+  const fontURLs = STATIC_FILES.filter(x => (
+    x.startsWith('{{ "/assets/bower_components/MathJax/es5/output/chtml/fonts/woff-v2" | relative_url }}') &&
+    x.endsWith('.woff')
+  ));
+  return [...mathJaxFiles, ...fontURLs];
+  */
+}
+
 async function getGoogleFontsFiles() {
   const googleFontRes = await fetch(noCache(GOOGLE_FONTS)).catch(warn);
   if (googleFontRes.ok) {
@@ -158,6 +173,7 @@ async function cacheShell(cache) {
     getIconFontFiles(),
     /*{% if google_fonts %}*/getGoogleFontsFiles(),/*{% endif %}*/
     /*{% if site.kramdown.math_engine == 'katex' %}*/getKaTeXFontFiles(),/*{% endif %}*/
+    /*{% if site.kramdown.math_engine == 'mathjax' %}*/getMathJaxFiles(),/*{% endif %}*/
   ]);
 
   const jsFiles = STATIC_FILES.filter(url => (
@@ -214,12 +230,6 @@ async function cacheResponse(cacheName, req, res) {
   return cache.put(req, res);
 }
 
-async function fetchAndCache(cacheName, url, request, e) {
-  const response = await fetch(noCache(noSWParam(url)));
-  if (response.ok) e.waitUntil(cacheResponse(cacheName, request, response.clone()));
-  return response;
-}
-
 async function onActivate() {
   await self.clients.claim();
 
@@ -255,6 +265,12 @@ async function raceTruthy(iterable) {
 async function fromNetwork(url, ...args) {
   const cacheName = isAsset(url) || hasSWParam(url) ? ASSETS_CACHE : CONTENT_CACHE;
   return fetchAndCache(cacheName, url, ...args);
+}
+
+async function fetchAndCache(cacheName, url, request, e) {
+  const response = await fetch(noCache(noSWParam(url)));
+  if (response.ok) e.waitUntil(cacheResponse(cacheName, request, response.clone()));
+  return response;
 }
 
 async function onFetch(e) {
