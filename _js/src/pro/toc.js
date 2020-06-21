@@ -13,7 +13,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import { fromEvent, NEVER, combineLatest } from 'rxjs';
+import { fromEvent, NEVER, combineLatest, of } from 'rxjs';
 import { map, tap, switchMap, distinctUntilChanged, startWith, share, finalize } from 'rxjs/operators';
 
 import {
@@ -23,6 +23,7 @@ import {
   createIntersectionObservable,
   stylesheetReady,
   fromMediaQuery,
+  once,
 } from '../common';
 
 (async () => {
@@ -34,9 +35,17 @@ import {
   );
 
   const pushState = document.getElementById('_pushState');
+  const drawerEl = document.getElementById('_drawer');
   if (!pushState) return;
 
-  const toc$ = fromEvent(pushState, 'load').pipe(
+  if (drawerEl && !window._noDrawer) await drawerEl.initialized;
+  await pushState.initialized;
+
+  const load$ = !window._noPushState
+    ? fromEvent(pushState, 'load').pipe(startWith({}))
+    : of({});
+
+  const toc$ = load$.pipe(
     map(() => document.querySelector('.no-break-layout #markdown-toc')),
     share(),
   );
