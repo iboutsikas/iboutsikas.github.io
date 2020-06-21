@@ -64,6 +64,7 @@ const SEL_NAVBAR_BTN_BAR = '#_navbar > .content > .nav-btn-bar';
     pushStateEl?.addEventListener('hy-push-state-start', closeHandler);
 
     // Load search worker after user interaction
+    await once(document, 'click');
     const worker = new Worker(workerHref);
     let prevVal = '';
     fromEvent(searchInputEl, 'keyup')
