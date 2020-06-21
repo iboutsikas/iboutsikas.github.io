@@ -41,9 +41,7 @@ import {
   if (drawerEl && !window._noDrawer) await drawerEl.initialized;
   await pushState.initialized;
 
-  const load$ = !window._noPushState
-    ? fromEvent(pushState, 'load').pipe(startWith({}))
-    : of({});
+  const load$ = !window._noPushState ? fromEvent(pushState, 'load').pipe(startWith({})) : of({});
 
   const toc$ = load$.pipe(
     map(() => document.querySelector('.no-break-layout #markdown-toc')),
