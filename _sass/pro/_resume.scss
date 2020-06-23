@@ -164,7 +164,7 @@
   }
 
   @media screen and (min-width: $break-point-dynamic) {
-    .columns.columns-break { width: calc(50vw + #{$r28} - 6rem) }
+    .columns.columns-break { width: calc(50vw + #{$half-content} - 6rem) }
     .columns-break > .column-3-5 { width: $content-width-5 + 1rem }
     .columns-break > .column-2-5 { width: $content-width-5  / 2 - 4rem }
   }

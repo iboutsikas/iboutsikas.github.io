@@ -55,6 +55,7 @@ import {
 
         const offsetTop = toc.offsetTop - rem(1);
 
+        // TODO: Build version that doesn't require `scroll` event listener
         return fromEvent(document, 'scroll', { passive: true }).pipe(
           map(getScrollTop),
           startWith(getScrollTop()),
