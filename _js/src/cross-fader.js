@@ -105,53 +105,21 @@ export class CrossFader {
 
     if (this.rules) {
       try {
-        const c = Color(color);
+        const { style } = document.documentElement;
+
+        const accentColor = Color(color);
         const tc = Color(themeColor);
-        const active = c.darken(0.1);
+        const accentColorFaded = accentColor.fade(0.5);
+        const accentColorDarkened = accentColor.darken(0.075);
         const bodyBg = Color.hsl(tc.hue(), 10, 20);
         const borderColor = Color.hsl(tc.hue(), 10, 25);
-        const underlineColor = c.fade(0.5);
 
-        // .content a
-        this.rules[0].style.textDecorationColor = underlineColor;
-        this.rules[0].style.borderColor = underlineColor;
-
-        // .content a:hover
-        this.rules[1].style.textDecorationColor = color;
-        this.rules[1].style.borderColor = color;
-
-        // :focus
-        this.rules[2].style.outlineColor = color;
-
-        // .btn-primary
-        this.rules[3].style.backgroundColor = color;
-        this.rules[3].style.borderColor = color;
-
-        // .btn-primary:focus
-        this.rules[4].style.boxShadow = `0 0 0 3px ${c.fade(0.5)}`;
-
-        // .btn-primary:hover
-        this.rules[5].style.backgroundColor = active;
-        this.rules[5].style.borderColor = active;
-
-        // .btn-primary:disabled
-        this.rules[6].style.backgroundColor = color;
-        this.rules[6].style.borderColor = color;
-
-        // .btn-primary:active
-        this.rules[7].style.backgroundColor = active;
-        this.rules[7].style.borderColor = active;
-
-        // body.dark-mode
-        this.rules[8].cssRules[0].style.setProperty('--body-bg', bodyBg);
-        this.rules[8].cssRules[0].style.setProperty('--border-color', borderColor);
-
-        // (prefers-color-scheme: dark)
-        this.rules[9].cssRules[0].style.setProperty('--body-bg', bodyBg);
-        this.rules[9].cssRules[0].style.setProperty('--border-color', borderColor);
-
-        // ::selection or ::-moz-selection (assuming it is last in the list)
-        this.rules[this.rules.length - 1].style.backgroundColor = color;
+        style.setProperty("--accent-color", color);
+        style.setProperty('--accent-color-faded', accentColorFaded.toString());
+        style.setProperty('--accent-color-darkened', accentColorDarkened.toString());
+        style.setProperty('--dark-mode-body-bg', bodyBg.toString());
+        style.setProperty('--dark-mode-border-color', borderColor.toString());
+        style.setProperty("--theme-color", themeColor);
       } catch (e) {
         if (process.env.DEBUG) console.error(e);
       }
