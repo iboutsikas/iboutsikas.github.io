@@ -39,7 +39,7 @@ layout: base
           {{ site.data.strings.resume.download_pdf | default: "PDF" }}
         </a>
       {% endif %}
-      <a type="text/directory" href="http://h2vx.com/vcf/{{ page.url | absolute_url }}" class="btn btn-sm btn-primary">
+      <a type="text/directory" href="http://h2vx.com/vcf/{{ page.url | absolute_url }}" class="btn btn-sm btn-primary no-mark-external">
         <small class="icon-user-plus"></small>
         {{ site.data.strings.resume.download_vcf | default: "vCard" }}
       </a>
