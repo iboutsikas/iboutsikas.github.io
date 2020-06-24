@@ -14,7 +14,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import { fromEvent, NEVER, combineLatest, of } from 'rxjs';
-import { map, tap, switchMap, distinctUntilChanged, startWith, share, finalize } from 'rxjs/operators';
+import { map, tap, switchMap, distinctUntilChanged, startWith, share, finalize, mergeMap, mergeAll } from 'rxjs/operators';
 
 import {
   BREAK_POINT_DYNAMIC,
@@ -41,7 +41,9 @@ import {
   if (drawerEl && !window._noDrawer) await drawerEl.initialized;
   await pushState.initialized;
 
-  const load$ = !window._noPushState ? fromEvent(pushState, 'load').pipe(startWith({})) : of({});
+  const load$ = !window._noPushState 
+    ? fromEvent(pushState, 'load').pipe(startWith({})) 
+    : of({});
 
   const toc$ = load$.pipe(
     map(() => document.querySelector('#markdown-toc')),
@@ -53,14 +55,12 @@ import {
       switchMap(([toc, isLarge]) => {
         if (!toc || !isLarge) return NEVER;
 
-        const offsetTop = toc.offsetTop - rem(1);
+        const scrollspy = document.createElement('div');
+        toc.parentNode.insertBefore(scrollspy, toc);
 
-        // TODO: Build version that doesn't require `scroll` event listener
-        return fromEvent(document, 'scroll', { passive: true }).pipe(
-          map(getScrollTop),
-          startWith(getScrollTop()),
-          map((x) => x >= offsetTop),
-          distinctUntilChanged(),
+        return createIntersectionObservable(scrollspy).pipe(
+          mergeAll(),
+          map(x => !x.intersectionRatio),
           tap((affix) => {
             if (affix) {
               toc.classList.add('affix');
