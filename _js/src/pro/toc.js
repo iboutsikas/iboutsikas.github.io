@@ -44,7 +44,7 @@ import {
   const load$ = !window._noPushState ? fromEvent(pushState, 'load').pipe(startWith({})) : of({});
 
   const toc$ = load$.pipe(
-    map(() => document.querySelector('.no-break-layout #markdown-toc')),
+    map(() => document.querySelector('#markdown-toc')),
     share(),
   );
 

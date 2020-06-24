@@ -21,8 +21,8 @@
 
 @mixin darkmode() {
   --body-color: #ccc;
-  --body-bg: #{hsl(hue($theme-color), 10%, 20%)};
-  --border-color: #{hsl(hue($theme-color), 10%, 15%)};
+  --body-bg: var(--dark-mode-body-bg);
+  --border-color: var(--dark-mode-border-color);
   --gray: rgba(255,255,255,.5);
   --gray-bg: rgba(255,255,255,.033);
   --gray-text: rgba(255,255,255,.625);
