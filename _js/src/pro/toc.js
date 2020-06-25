@@ -14,7 +14,17 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import { fromEvent, NEVER, combineLatest, of } from 'rxjs';
-import { map, tap, switchMap, distinctUntilChanged, startWith, share, finalize, mergeMap, mergeAll } from 'rxjs/operators';
+import {
+  map,
+  tap,
+  switchMap,
+  distinctUntilChanged,
+  startWith,
+  share,
+  finalize,
+  mergeMap,
+  mergeAll,
+} from 'rxjs/operators';
 
 import {
   BREAK_POINT_DYNAMIC,
@@ -41,9 +51,7 @@ import {
   if (drawerEl && !window._noDrawer) await drawerEl.initialized;
   await pushState.initialized;
 
-  const load$ = !window._noPushState 
-    ? fromEvent(pushState, 'load').pipe(startWith({})) 
-    : of({});
+  const load$ = !window._noPushState ? fromEvent(pushState, 'load').pipe(startWith({})) : of({});
 
   const toc$ = load$.pipe(
     map(() => document.querySelector('#markdown-toc')),
@@ -60,7 +68,7 @@ import {
 
         return createIntersectionObservable(scrollspy).pipe(
           mergeAll(),
-          map(x => !x.intersectionRatio),
+          map((x) => !x.intersectionRatio),
           tap((affix) => {
             if (affix) {
               toc.classList.add('affix');
