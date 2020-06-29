@@ -46,9 +46,9 @@ const GOOGLE_FONTS = "https://fonts.googleapis.com/css?family={{ google_fonts | 
 // {% endif %}
 
 const SHELL_FILES = [
-  "{{ '/assets/css/hydejack-9.0.0-rc.0.css' | relative_url }}",
-  "{{ '/assets/js/service-worker.js' | relative_url }}",
-  "{{ '/assets/js/search-worker.js' | relative_url }}",
+  "{% link assets/css/hydejack-9.0.0-rc.0.css %}",
+  "{% link assets/js/service-worker.js %}",
+  "{% link assets/js/search-worker.js %}",
 ];
 
 const STATIC_FILES = [
@@ -57,7 +57,7 @@ const STATIC_FILES = [
 ];
 
 const PRE_CACHED_ASSETS = [
-  '{{ "/assets/icons/favicon.ico" | relative_url }}',
+  '{% link assets/icons/favicon.ico %}',
   /*{% if site.accent_image %}{% unless site.accent_image.background %}*/"{% include_cached smart-url url=site.accent_image %}",/*{% endunless %}{% endif %}*/
   /*{% if site.logo %}*/"{% include_cached smart-url url=site.logo %}",/*{% endif %}*/
   /*{% for file in site.hydejack.offline.precache_assets %}*/"{% include_cached smart-url url=file %}",
@@ -66,14 +66,13 @@ const PRE_CACHED_ASSETS = [
 
 // Files we add on every service worker installation.
 const CONTENT_FILES = [
-  "{{ '/' | relative_url }}",
-  "{{ '/assets/manifest.json' | relative_url }}",
+  "{{ '/'             | relative_url }}",
   "{{ '/offline.html' | relative_url }}",
   /*{% for legal in site.legal %}*/"{% include_cached smart-url url=legal.href %}",
   /*{% endfor %}*/
 ];
 
-const SITE_URL = new URL("{{ '/' | relative_url }}", self.location);
+const SITE_URL         = new URL("{{ '/'             | relative_url }}", self.location);
 const OFFLINE_PAGE_URL = new URL("{{ '/offline.html' | relative_url }}", self.location);
 
 self.addEventListener("install", e => e.waitUntil(onInstall(e)));
