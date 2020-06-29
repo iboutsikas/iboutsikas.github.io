@@ -14,15 +14,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import { fromEvent, NEVER, combineLatest, of } from 'rxjs';
-import {
-  map,
-  tap,
-  switchMap,
-  startWith,
-  share,
-  finalize,
-  mergeAll,
-} from 'rxjs/operators';
+import { map, tap, switchMap, startWith, share, finalize, mergeAll } from 'rxjs/operators';
 
 import {
   BREAK_POINT_DYNAMIC,
