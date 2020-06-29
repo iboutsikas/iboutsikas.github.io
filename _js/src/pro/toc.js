@@ -18,22 +18,18 @@ import {
   map,
   tap,
   switchMap,
-  distinctUntilChanged,
   startWith,
   share,
   finalize,
-  mergeMap,
   mergeAll,
 } from 'rxjs/operators';
 
 import {
   BREAK_POINT_DYNAMIC,
   getScrollTop,
-  rem,
   createIntersectionObservable,
   stylesheetReady,
   fromMediaQuery,
-  once,
 } from '../common';
 
 (async () => {
@@ -68,7 +64,7 @@ import {
 
         return createIntersectionObservable(scrollspy).pipe(
           mergeAll(),
-          map((x) => !x.intersectionRatio),
+          map((x) => !x.isIntersecting && x.boundingClientRect.top < 0),
           tap((affix) => {
             if (affix) {
               toc.classList.add('affix');
