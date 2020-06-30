@@ -13,14 +13,29 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import { join } from 'path';
+
 import { fromEvent } from 'rxjs';
 import { tap, switchMap } from 'rxjs/operators';
 import { render, html } from 'lit-html';
 import { repeat } from 'lit-html/directives/repeat';
+import { ifDefined } from 'lit-html/directives/if-defined';
 
 import { importTemplate, postMessage, once, stylesheetReady } from '../common';
 
 const SEL_NAVBAR_BTN_BAR = '#_navbar > .content > .nav-btn-bar';
+
+const relativeUrl = url => url.startsWith(window._baseURL)
+  ? url 
+  : join(window._baseURL, url);
+
+const smartUrl = url => url.includes('://')
+  ? url 
+  : relativeUrl(url);
+
+const calcSrcSet = srcset => !srcset 
+  ? undefined 
+  : Object.entries(srcset).map(([desc, url]) => `${smartUrl(url)} ${desc}`).join(',');
 
 (async () => {
   await stylesheetReady;
@@ -88,11 +103,15 @@ const SEL_NAVBAR_BTN_BAR = '#_navbar > .content > .nav-btn-bar';
                     (item) => html`
                       <li class="search-item" @click=${() => pushStateEl?.assign?.(item.url)}>
                         <div class="search-img aspect-ratio sixteen-ten">
-                          ${item.image ? html` <img src="${item.image}" /> ` : ''}
+                          ${!item.image ? null : html`<img
+                            src="${smartUrl(item.image.src || item.image.path || item.image)}"
+                            srcset="${ifDefined(calcSrcSet(item.image.srcset))}"
+                            sizes="4.67rem"
+                          />`}
                         </div>
                         <div class="search-text">
                           <p>
-                            <a class="heading" href=${item.url}>${item.title}</a>
+                            <a class="heading" href=${relativeUrl(item.url)}>${item.title}</a>
                             <small>${item.url}</small>
                           </p>
                           ${item.description ? html` <p>${item.description}</p> ` : ''}
