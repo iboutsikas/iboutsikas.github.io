@@ -51,32 +51,42 @@ main:not(.layout-resume) {
     color: var(--gray-text);
     background-color: var(--gray-bg);
     padding-bottom: .75rem;
+    position: relative;
     overflow: hidden;
     box-shadow: .125rem .125rem 1rem rgba(0, 0, 0, 0.2);
     contain: content;
 
     page-break-inside: avoid;
 
-    > a {
+    // transition: transform 500ms ease-out, box-shadow 500ms ease-out;
+    transition: transform 300ms ease-out, box-shadow 300ms ease-out;
+    &:hover {
+      box-shadow: .125rem .375rem 1.15rem rgba(0, 0, 0, 0.25);
+      transform: translateY(-0.25rem);
+      transition: transform 150ms ease-out, box-shadow 150ms ease-out;
+    }
+
+    a {
+      position: relative;
+      z-index: 1;
+    }
+
+    > a.flip-project {
+      display: block;
       .project-card-img {
         margin-bottom: 0;
-        position: relative;
         @include fallback-image();
-
-        img {
-          display: block;
-          transition: transform 500ms ease-out, opacity 500ms ease;
-        }
+        img { display: block; }
       }
+    }
 
-      &:hover, &:focus {
-        .project-card-img { 
-          img {
-            transition: transform 250ms ease;
-            transform: scale(1.05);
-          }
-        }
-      }
+    > a.foobar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0; 
+      bottom: 0;
+      z-index: 0;
     }
 
     > .project-card-title, > .project-card-text {
@@ -98,8 +108,6 @@ main:not(.layout-resume) {
   }
 
   .column-1 > .project-card {
-    box-shadow: .25rem .25rem 2rem rgba(0, 0, 0, 0.4);
-
     > .project-card-title {
       font-size: 1.2rem;
     }
