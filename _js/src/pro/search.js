@@ -25,17 +25,16 @@ import { importTemplate, postMessage, once, stylesheetReady } from '../common';
 
 const SEL_NAVBAR_BTN_BAR = '#_navbar > .content > .nav-btn-bar';
 
-const relativeUrl = url => url.startsWith(window._baseURL)
-  ? url 
-  : join(window._baseURL, url);
+const relativeUrl = (url) => (url.startsWith(window._baseURL) ? url : join(window._baseURL, url));
 
-const smartUrl = url => url.includes('://')
-  ? url 
-  : relativeUrl(url);
+const smartUrl = (url) => (url.includes('://') ? url : relativeUrl(url));
 
-const calcSrcSet = srcset => !srcset 
-  ? undefined 
-  : Object.entries(srcset).map(([desc, url]) => `${smartUrl(url)} ${desc}`).join(',');
+const calcSrcSet = (srcset) =>
+  !srcset
+    ? undefined
+    : Object.entries(srcset)
+        .map(([desc, url]) => `${smartUrl(url)} ${desc}`)
+        .join(',');
 
 (async () => {
   await stylesheetReady;
@@ -103,11 +102,13 @@ const calcSrcSet = srcset => !srcset
                     (item) => html`
                       <li class="search-item" @click=${() => pushStateEl?.assign?.(item.url)}>
                         <div class="search-img aspect-ratio sixteen-ten">
-                          ${!item.image ? null : html`<img
-                            src="${smartUrl(item.image.src || item.image.path || item.image)}"
-                            srcset="${ifDefined(calcSrcSet(item.image.srcset))}"
-                            sizes="4.67rem"
-                          />`}
+                          ${!item.image
+                            ? null
+                            : html`<img
+                                src="${smartUrl(item.image.src || item.image.path || item.image)}"
+                                srcset="${ifDefined(calcSrcSet(item.image.srcset))}"
+                                sizes="4.67rem"
+                              />`}
                         </div>
                         <div class="search-text">
                           <p>
