@@ -30,7 +30,7 @@
       </h3>
     </header>
 
-    {% include components/message.html text=work.summary alt="" %}
+    {% include components/message.html class="note" text=work.summary alt="" %}
 
     {% if work.highlights.size > 0 %}
     <h4 class="sr-only">{{ strings.resume.highlights | default:"Highlights" }}</h4>
