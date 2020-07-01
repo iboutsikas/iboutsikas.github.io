@@ -13,11 +13,11 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-importScripts('{% link assets/js/kv-storage-polyfill/dist/kv-storage-polyfill.umd.js %}');
+importScripts('{{ "/assets/js/kv-storage-polyfill/dist/kv-storage-polyfill.umd.js" | relative_url }}');
 self.storage = kvStoragePolyfill.default;
 self.StorageArea = kvStoragePolyfill.StorageArea;
 
-const DATA_URL = '{% link assets/sitedata.json %}';
+const DATA_URL = '{{ "/assets/sitedata.json" | relative_url }}';
 
 const uniqBy = (xs, k) => [...new Map(xs.map(x => [x[k], x])).values()];
 
@@ -51,7 +51,7 @@ async function getDocuments() {
 // Mini Search 
 ///////////////////////////////////////////////////////////////////////////////
 
-importScripts('{% link assets/js/minisearch/dist/umd/index.min.js %}');
+importScripts('{{ "/assets/js/minisearch/dist/umd/index.min.js" | relative_url }}');
 const INDEX_KEY = 'index--{{ site.time | date_to_xmlschema }}';
 const storage = new StorageArea('mini-search{{ "/" | relative_url }}');
 
