@@ -37,8 +37,8 @@ const CACHE_SEARCH_PARAM = "sw-cache";
 // The regular expression used to find URLs in webfont style sheets.
 const RE_CSS_URL = /url\s*\(['"]?(([^'"\\]|\\.)*)['"]?\)/u;
 
-const ICON_FONT = "{% link assets/icomoon/style.css %}";
-const KATEX_FONT = "{% link assets/bower_components/katex/dist/katex.min.css %}";
+const ICON_FONT = "{{ 'assets/icomoon/style.css' | relative_url }}";
+const KATEX_FONT = "{{ 'assets/bower_components/katex/dist/katex.min.css' | relative_url }}";
 
 // {% assign google_fonts = site.google_fonts %}
 // {% if google_fonts %}
