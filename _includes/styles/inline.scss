@@ -14,14 +14,14 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 {% include styles/variables.scss %}
-
 @import "variables";
 @import "my-variables";
 @import "mixins";
 
-@import "pro/dark-mode";
 {% if site.hydejack.dark_mode.dynamic %}
   @import "pro/dark-mode-dynamic";
+{% else %}
+  @import "pro/dark-mode";
 {% endif %}
 
 @import "html";
