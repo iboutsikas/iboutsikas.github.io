@@ -24,6 +24,8 @@
   @import "pro/dark-mode-dynamic";
 {% endif %}
 
+@import "html";
+
 @import "pooleparty/__inline__/base";
 @import "pooleparty/__inline__/type";
 @import "pooleparty/__inline__/table";
