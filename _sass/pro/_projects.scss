@@ -66,13 +66,9 @@ main:not(.layout-resume) {
       transition: transform 150ms ease-out, box-shadow 150ms ease-out;
     }
 
-    a {
-      position: relative;
-      z-index: 1;
-    }
-
     > a.flip-project {
       display: block;
+
       .project-card-img {
         margin-bottom: 0;
         @include fallback-image();
@@ -80,13 +76,18 @@ main:not(.layout-resume) {
       }
     }
 
-    > a.foobar {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0; 
-      bottom: 0;
-      z-index: 0;
+    a {
+      position: relative;
+      z-index: 1;
+
+      &.fill-card {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0; 
+        bottom: 0;
+        z-index: 0;
+      }
     }
 
     > .project-card-title, > .project-card-text {
