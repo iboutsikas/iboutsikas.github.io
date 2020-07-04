@@ -25,9 +25,9 @@
   <h3 class="project-card-title flip-project-title">
     <a href="{{ post.url | relative_url }}" class="flip-title">{{ post.title }}</a>
   </h3>
-  {% if post.description %}
-    <p class="project-card-text fine">
-      {{ post.description | markdownify | replace:'<p>','' | replace:'</p>','' }}
+  {% if post.description or post.tagline or post.caption %}
+    <p class="project-card-text fine" property="disambiguatingDescription">
+      {{ post.tagline | default:post.caption | default:post.description | markdownify | replace:'<p>','' | replace:'</p>','' }}
     </p>
   {% endif %}
   {% assign text = site.data.strings.continue_reading | default:"Continue reading <!--post_title-->" %}
