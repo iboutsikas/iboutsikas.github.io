@@ -32,7 +32,8 @@ const ASSETS_CACHE = "assets--{{ cache_version }}--{{ site_key }}";
 const CONTENT_CACHE = "content--{{ site.time | date_to_xmlschema }}--{{ site_key }}";
 
 // A URL search parameter you can add to external assets to cache them in the service worker.
-const CACHE_SEARCH_PARAM = "sw-cache";
+const SW_CACHE_SEARCH_PARAM = "sw-cache";
+const NO_CACHE_SEARCH_PARAM = "no-cache";
 
 // The regular expression used to find URLs in webfont style sheets.
 const RE_CSS_URL = /url\s*\(['"]?(([^'"\\]|\\.)*)['"]?\)/u;
@@ -103,8 +104,8 @@ function noCache(url) {
 // Removes the sw search paramter, if present.
 function noSWParam(url) {
   const url2 = new URL(url);
-  if (url2.searchParams.has(CACHE_SEARCH_PARAM)) {
-    url2.searchParams.delete(CACHE_SEARCH_PARAM);
+  if (url2.searchParams.has(SW_CACHE_SEARCH_PARAM)) {
+    url2.searchParams.delete(SW_CACHE_SEARCH_PARAM);
     return url2.href;
   }
   return url;
@@ -221,7 +222,8 @@ async function onInstall() {
 
 const isSameSite = ({ origin, pathname }) => origin === SITE_URL.origin && pathname.startsWith(SITE_URL.pathname);
 const isAsset = ({ pathname }) => pathname.startsWith("{{ 'assets' | relative_url }}");
-const hasSWParam = ({ searchParams }) => searchParams.has(CACHE_SEARCH_PARAM);
+const hasSWParam = ({ searchParams }) => searchParams.has(SW_CACHE_SEARCH_PARAM);
+const hasNoCacheParam = ({ searchParams }) => searchParams.has(NO_CACHE_SEARCH_PARAM);
 const isGoogleFonts = ({ hostname }) => hostname === 'fonts.googleapis.com' || hostname === 'fonts.gstatic.com'
 
 async function cacheResponse(cacheName, req, res) {
@@ -280,7 +282,7 @@ async function onFetch(e) {
   // ------
   // Go to network for non-GET request and Google Analytics right away.
   const shouldCache = isSameSite(url) || hasSWParam(url) || isGoogleFonts(url);
-  if (request.method !== "GET" || !shouldCache) {
+  if (request.method !== "GET" || !shouldCache || hasNoCacheParam(url)) {
     return fetch(request).catch(e => Promise.reject(e));
   }
 
