@@ -69,7 +69,7 @@ const PRE_CACHED_ASSETS = [
 const CONTENT_FILES = [
   "{{ '/'             | relative_url }}",
   "{{ '/offline.html' | relative_url }}",
-  /*{% for legal in site.legal %}*/"{% include_cached smart-url url=legal.href %}",
+  /*{% for node in site.legal %}*/"{% assign url = node.url | default: node.href %}{% include_cached smart-url url=url %}",
   /*{% endfor %}*/
 ];
 
