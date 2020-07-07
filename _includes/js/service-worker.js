@@ -48,8 +48,8 @@ const GOOGLE_FONTS = "https://fonts.googleapis.com/css?family={{ google_fonts | 
 
 const SHELL_FILES = [
   "{{ '/assets/css/hydejack-9.0.1.css' | relative_url }}",
+  "{{ '/assets/js/search-worker-9.0.1.js' | relative_url }}",
   "{{ '/assets/js/service-worker.js' | relative_url }}",
-  "{{ '/assets/js/search-worker.js' | relative_url }}",
 ];
 
 const STATIC_FILES = [

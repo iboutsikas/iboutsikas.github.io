@@ -39,11 +39,6 @@ async function getDocuments() {
     }),
   ];
   const docs = uniqBy(siteData, 'url');
-  // const documentMap = new Map(siteData.map(({ url, content, description, ...document }) => [url, {
-  //   ...document,
-  //   url, 
-  //   description: description || content.substr(0, 160),
-  // }]));
   return docs;
 }
 
@@ -65,16 +60,38 @@ const OPTIONS = {
   }
 };
 
+const SEARCH_OPTIONS = {
+  boost: { title: 5, description: 2, categories: 2, tags: 2, keywords: 2 },
+  prefix: true,
+  fuzzy: 0.25,
+  combineWith: "AND",
+};
+
+let miniSearch;
+
+let lastEvent;
+const storeEvent = (e) => { lastEvent = e; }
+
+function search({ data: term, ports: [port] }) {
+  const results = miniSearch.search(term, SEARCH_OPTIONS);
+  port.postMessage(results.slice(0, 20));
+}
+
 (async () => {
   const indexData = await storage.get(INDEX_KEY);
-  let miniSearch;
-
   if (indexData) {
     miniSearch = MiniSearch.loadJS(indexData, OPTIONS);
+    self.addEventListener('message', search);
   } else {
-    miniSearch = new MiniSearch(OPTIONS);
+    self.addEventListener('message', storeEvent);
 
+    miniSearch = new MiniSearch(OPTIONS);
     miniSearch.addAll(await getDocuments());
+
+    if (lastEvent) search(lastEvent);
+
+    self.removeEventListener('message', storeEvent);
+    self.addEventListener('message', search);
 
     (async () => {
       // Delete old indices
@@ -86,16 +103,6 @@ const OPTIONS = {
       await storage.set(INDEX_KEY, miniSearch.toJSON());
     })();
   }
-
-  addEventListener('message', ({ data, ports: [port] }) => {
-    const results = miniSearch.search(data, {
-      boost: { title: 5, description: 2, categories: 2, tags: 2, keywords: 2 },
-      prefix: true,
-      fuzzy: 0.25,
-      combineWith: "AND",
-    });
-    port.postMessage(results.slice(0, 20));
-  });
 })();
 
 /*{% comment %}*/
