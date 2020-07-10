@@ -114,10 +114,12 @@
   }
 
   .reference {
+    margin-top: 1.5rem;
     margin-left: -1rem;
 
     > footer {
       margin-bottom: 0;
+      font-weight: bold;
     }
   }
 
@@ -182,7 +184,7 @@
   }
 
   @media print and (min-width: 5.247in) {
-    article > .note { padding-right: 10rem }
+    article > .note { padding-right: 11rem }
     .fr { float: right }
     .column-3-5 { width: 70% }
     .column-2-5 { width: 30% }
