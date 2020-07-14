@@ -22,6 +22,10 @@ main:not(.layout-resume) {
   }
 
   @media screen and (min-width: $break-point-1) {
+    .columns {
+      margin-left: -1rem - $gutter;
+      margin-right: -1rem;
+    }
     .column-1-2 { width: 50%; }
   }
 
