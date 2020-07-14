@@ -52,6 +52,8 @@ import {
         if (!toc || !isLarge) return NEVER;
 
         const scrollspy = document.createElement('div');
+        scrollspy.style.position = 'relative';
+        scrollspy.style.top = '-1rem';
         toc.parentNode.insertBefore(scrollspy, toc);
 
         return createIntersectionObservable(scrollspy).pipe(
