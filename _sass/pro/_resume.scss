@@ -162,9 +162,17 @@
   }
 
   @media screen and (min-width: $break-point-dynamic) {
-    .columns.columns-break { width: calc(50vw + #{$half-content} - 6rem) }
-    .columns-break > .column-3-5 { width: $content-width-5 + 1rem }
-    .columns-break > .column-2-5 { width: $content-width-5  / 2 - 5rem }
+    .columns-break { 
+      $helper: $content-width-5 / 2 - $content-margin-5 - 1rem;
+      width: calc(50vw + #{$helper});
+      > .column-3-5 { 
+        width: $content-width-5;
+      }
+      > .column-2-5 { 
+        width: calc(50vw + #{$helper} - #{$content-width-5}); 
+        max-width: $content-width-5 / 2 - $pad;
+      }
+    }
   }
 
   @media print {
