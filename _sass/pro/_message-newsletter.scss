@@ -2,6 +2,7 @@
 
 // <<<<< LINK
 .message-newsletter {
+  border-radius: $border-radius;
   > *:first-child { margin-top: 3rem; }
   > *:last-child { margin-bottom: 3rem; }
 
