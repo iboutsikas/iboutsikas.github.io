@@ -11,7 +11,7 @@ layout: base
 
 <article
   id="project"
-  class="page"
+  class="page mb6"
   role="article"
   {% unless nsd %}vocab="http://schema.org/" typeof="CreativeWork" resource="#project"{% endunless %}
   >
@@ -69,7 +69,7 @@ layout: base
   {{ content }}
 </article>
 
-<hr class="dingbat related" />
+{% include components/dingbat.html %}
 
 {% assign addons = page.addons | default:site.hydejack.project_addons %}
 {% unless addons %}{% assign addons = "about,newsletter,other" | split:"," %}{% endunless %}
