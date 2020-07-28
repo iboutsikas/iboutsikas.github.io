@@ -7,6 +7,9 @@ main:not(.layout-resume) {
     margin-left: -$gutter;
     display: flex;
     flex-wrap: wrap;
+    contain: content;
+    padding-top: 1rem;
+    margin-top: -1rem;
 
     &::after {
       @extend .clearfix;
