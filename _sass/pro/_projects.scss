@@ -9,7 +9,9 @@ main:not(.layout-resume) {
     flex-wrap: wrap;
     contain: content;
     padding-top: 1rem;
-    margin-top: -1rem;
+    margin-top: 1rem;
+    padding-right: 1rem;
+    margin-right: -1rem;
 
     &::after {
       @extend .clearfix;
@@ -27,7 +29,7 @@ main:not(.layout-resume) {
   @media screen and (min-width: $break-point-1) {
     .columns {
       margin-left: -1rem - $gutter;
-      margin-right: -1rem;
+      margin-right: -2rem;
     }
     .column-1-2 { width: 50%; }
   }
