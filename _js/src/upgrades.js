@@ -83,19 +83,20 @@ const toggleClass = (element, ...cls) => {
     if (toc) toc.classList.add('toc-hide');
 
     if ('clipboard' in navigator) {
-      Array.from(main.querySelectorAll(CODE_BLOCK_SEL))
-        .forEach((el) => {
-          const container = el?.parentNode?.parentNode;
-          const writeText = async () => {
-            await navigator.clipboard.writeText(el.innerText);
-            toggleClass(copyBtn, 'copy-success');
-          };
-          const copyBtn = createElement('button', { onClick: writeText },
-            createElement('small', { class: 'icon-copy', title: 'Copy' }),
-            createElement('small', { class: 'icon-checkmark', title: 'Done' }),
-          );
-          container?.appendChild(copyBtn);
-        });
+      Array.from(main.querySelectorAll(CODE_BLOCK_SEL)).forEach((el) => {
+        const container = el?.parentNode?.parentNode;
+        const writeText = async () => {
+          await navigator.clipboard.writeText(el.innerText);
+          toggleClass(copyBtn, 'copy-success');
+        };
+        const copyBtn = createElement(
+          'button',
+          { onClick: writeText },
+          createElement('small', { class: 'icon-copy', title: 'Copy' }),
+          createElement('small', { class: 'icon-checkmark', title: 'Done' }),
+        );
+        container?.appendChild(copyBtn);
+      });
     }
 
     Array.from(main.querySelectorAll(CODE_BLOCK_SEL))

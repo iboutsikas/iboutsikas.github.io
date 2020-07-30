@@ -19,10 +19,10 @@ import MiniSearch from 'minisearch';
 
 const once = (el, eventName) => new Promise((res) => el.addEventListener(eventName, res, { once: true }));
 
-const uniqBy = (xs, k) => [...new Map(xs.map(x => [x[k], x])).values()];
+const uniqBy = (xs, k) => [...new Map(xs.map((x) => [x[k], x])).values()];
 
 async function getDocuments(dataURL) {
-  const { pages = [], documents = [] } = await fetch(dataURL).then(x => x.json());
+  const { pages = [], documents = [] } = await fetch(dataURL).then((x) => x.json());
   const siteData = [
     ...pages,
     ...documents.map((doc) => {
@@ -35,7 +35,7 @@ async function getDocuments(dataURL) {
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// Mini Search 
+// Mini Search
 ///////////////////////////////////////////////////////////////////////////////
 
 const OPTIONS = {
@@ -45,20 +45,22 @@ const OPTIONS = {
   extractField: (document, fieldName) => {
     const value = document[fieldName];
     return Array.isArray(value) ? value.join(' ') : value;
-  }
+  },
 };
 
 const SEARCH_OPTIONS = {
   boost: { title: 5, description: 2, categories: 2, tags: 2, keywords: 2 },
   prefix: true,
   fuzzy: 0.25,
-  combineWith: "AND",
+  combineWith: 'AND',
 };
 
 let miniSearch;
 
 let lastEvent;
-const storeEvent = (e) => { lastEvent = e; }
+const storeEvent = (e) => {
+  lastEvent = e;
+};
 
 function search({ data: term, ports: [port] }) {
   const results = miniSearch.search(term, SEARCH_OPTIONS);
@@ -66,7 +68,9 @@ function search({ data: term, ports: [port] }) {
 }
 
 (async () => {
-  const { data: { DATA_URL, STORAGE_KEY, INDEX_KEY } } = await once(self, 'message');
+  const {
+    data: { DATA_URL, STORAGE_KEY, INDEX_KEY },
+  } = await once(self, 'message');
 
   const storage = new StorageArea(STORAGE_KEY);
   const indexData = await storage.get(INDEX_KEY);
@@ -87,8 +91,10 @@ function search({ data: term, ports: [port] }) {
     (async () => {
       // Delete old indices
       const oldKeys = [];
-      for await (const key of storage.keys()) { if (key !== INDEX_KEY) oldKeys.push(key); }
-      await Promise.all(oldKeys.map(oldKey => storage.delete(oldKey)));
+      for await (const key of storage.keys()) {
+        if (key !== INDEX_KEY) oldKeys.push(key);
+      }
+      await Promise.all(oldKeys.map((oldKey) => storage.delete(oldKey)));
 
       // Store new index
       await storage.set(INDEX_KEY, miniSearch.toJSON());
@@ -103,8 +109,8 @@ function search({ data: term, ports: [port] }) {
 
 // // TODO: Multi language
 // importScripts(
-//   '{{ "/assets/bower_components/lunr/lunr.js"                           | relative_url }}', 
-//   '{{ "/assets/bower_components/lunr-languages/lunr.stemmer.support.js" | relative_url }}', 
+//   '{{ "/assets/bower_components/lunr/lunr.js"                           | relative_url }}',
+//   '{{ "/assets/bower_components/lunr-languages/lunr.stemmer.support.js" | relative_url }}',
 //   '{{ "/assets/bower_components/lunr-languages/lunr.de.js"              | relative_url }}',
 // );
 
@@ -154,9 +160,8 @@ function search({ data: term, ports: [port] }) {
 //   });
 // })();
 
-
 ///////////////////////////////////////////////////////////////////////////////
-// js-search 
+// js-search
 ///////////////////////////////////////////////////////////////////////////////
 
 // importScripts('{{ "/assets/bower_components/js-search/dist/umd/js-search.js" | relative_url }}');
