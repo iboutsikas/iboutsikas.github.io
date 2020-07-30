@@ -79,7 +79,10 @@ const calcSrcSet = (srcset) =>
 
     // Load search worker after user interaction
     await once(document, 'click');
-    const worker = new Worker(workerHref);
+
+    const worker = new Worker('./search.worker.js', { type: 'module' });
+    postMessage(worker, window._search);
+
     let prevVal = '';
     fromEvent(searchInputEl, 'keyup')
       .pipe(

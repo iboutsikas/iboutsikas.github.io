@@ -13,24 +13,16 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-importScripts('{{ "/assets/js/kv-storage-polyfill/dist/kv-storage-polyfill.umd.js" | relative_url }}');
-self.storage = kvStoragePolyfill.default;
-self.StorageArea = kvStoragePolyfill.StorageArea;
+import { StorageArea } from 'kv-storage-polyfill';
 
-const DATA_URL = '{{ "/assets/sitedata.json?no-cache" | relative_url }}';
+import MiniSearch from 'minisearch';
+
+const once = (el, eventName) => new Promise((res) => el.addEventListener(eventName, res, { once: true }));
 
 const uniqBy = (xs, k) => [...new Map(xs.map(x => [x[k], x])).values()];
 
-function forAwait(asyncIter, f) {
-  return asyncIter.next().then(({ done, value }) => {
-    if (done) return;
-    f(value);
-    return forAwait(asyncIter, f);
-  });
-}
-
-async function getDocuments() {
-  const { pages = [], documents = [] } = await fetch(DATA_URL).then(x => x.json());
+async function getDocuments(dataURL) {
+  const { pages = [], documents = [] } = await fetch(dataURL).then(x => x.json());
   const siteData = [
     ...pages,
     ...documents.map((doc) => {
@@ -45,10 +37,6 @@ async function getDocuments() {
 ///////////////////////////////////////////////////////////////////////////////
 // Mini Search 
 ///////////////////////////////////////////////////////////////////////////////
-
-importScripts('{{ "/assets/js/minisearch/dist/umd/index.min.js" | relative_url }}');
-const INDEX_KEY = 'index--{{ site.time | date_to_xmlschema }}';
-const storage = new StorageArea('mini-search{{ "/" | relative_url }}');
 
 const OPTIONS = {
   idField: 'url',
@@ -78,6 +66,9 @@ function search({ data: term, ports: [port] }) {
 }
 
 (async () => {
+  const { data: { DATA_URL, STORAGE_KEY, INDEX_KEY } } = await once(self, 'message');
+
+  const storage = new StorageArea(STORAGE_KEY);
   const indexData = await storage.get(INDEX_KEY);
   if (indexData) {
     miniSearch = MiniSearch.loadJS(indexData, OPTIONS);
@@ -86,7 +77,7 @@ function search({ data: term, ports: [port] }) {
     self.addEventListener('message', storeEvent);
 
     miniSearch = new MiniSearch(OPTIONS);
-    miniSearch.addAll(await getDocuments());
+    miniSearch.addAll(await getDocuments(DATA_URL));
 
     if (lastEvent) search(lastEvent);
 
@@ -96,7 +87,7 @@ function search({ data: term, ports: [port] }) {
     (async () => {
       // Delete old indices
       const oldKeys = [];
-      await forAwait(storage.keys(), (key) => { if (key !== INDEX_KEY) oldKeys.push(key); });
+      for await (const key of storage.keys()) { if (key !== INDEX_KEY) oldKeys.push(key); }
       await Promise.all(oldKeys.map(oldKey => storage.delete(oldKey)));
 
       // Store new index
