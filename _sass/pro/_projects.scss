@@ -82,7 +82,6 @@ main:not(.layout-resume) {
 
       .project-card-img {
         margin-bottom: 0;
-        @include fallback-image();
         img { 
           display: block; 
           border-top-left-radius: $border-radius;
