@@ -91,7 +91,12 @@ export function setupFLIPProject(start$, ready$, fadeIn$, { animationMain, setti
               switchMap(() =>
                 img != null ? animate(animationMain, [{ opacity: 1 }, { opacity: 0 }], { duration: 500 }) : of({}),
               ),
-              finalize(() => (animationMain.style.opacity = 0)),
+              finalize(() => {
+                animationMain.style.opacity = 0;
+
+                const page = animationMain.querySelector('.page');
+                empty.call(page);
+              }),
             );
           }),
         ),
