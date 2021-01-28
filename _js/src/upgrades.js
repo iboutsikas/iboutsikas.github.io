@@ -213,7 +213,11 @@ const toggleClass = (element, ...cls) => {
 
   const mathJaxEl = document.getElementById('_MathJax');
   if (pushStateEl && mathJaxEl) {
-    const mathJax2To3 = ({ detail: { replaceEls: [mainEl] } }) => {
+    const mathJax2To3 = ({
+      detail: {
+        replaceEls: [mainEl],
+      },
+    }) => {
       mainEl.querySelectorAll('script[type="math/tex; mode=display"]').forEach((el) => {
         el.outerHTML = el.innerText.replace('% <![CDATA[', '\\[').replace('%]]>', '\\]');
       });

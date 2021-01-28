@@ -6,10 +6,10 @@ import { tap, finalize, filter, switchMap } from 'rxjs/operators';
 import { animate, empty } from '../../common';
 
 /**
- * @param {Observable<any>} start$ 
- * @param {Observable<any>} ready$ 
- * @param {Observable<any>} fadeIn$ 
- * @param {any} opts 
+ * @param {Observable<any>} start$
+ * @param {Observable<any>} ready$
+ * @param {Observable<any>} fadeIn$
+ * @param {any} opts
  */
 export function setupFLIPProject(start$, ready$, fadeIn$, { animationMain, settings }) {
   if (!animationMain) return start$;
