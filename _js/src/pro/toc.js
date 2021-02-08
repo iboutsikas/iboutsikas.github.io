@@ -110,7 +110,7 @@ import {
               });
               const el = toc.querySelector(`a[href="#${curr.id}"]`);
               if (el) {
-                el.style.fontWeight = 'bold'; 
+                el.style.fontWeight = 'bold';
                 clearTimeout(timer);
                 timer = setTimeout(() => scrollIntoView(el, { scrollMode: 'if-needed' }), 100);
               }
