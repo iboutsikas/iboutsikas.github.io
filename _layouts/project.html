@@ -40,7 +40,7 @@ layout: base
         {% endunless %}
       </span>
 
-      <span class="ellipsis ml1">
+      <span class="ellipsis ml1" data-tippy-content="{{ site.data.strings.links | default:'Links' }}">
         <span class="sr-only">{{ separator }} {{ site.data.strings.links | default:"Links" }}{{ site.data.strings.colon }}</span>
         <span class="{{ site.data.strings.links_icon | default:'icon-link' }}" title="{{ site.data.strings.links | default:'Links' }}"></span>
         {% for link in project.links %}
