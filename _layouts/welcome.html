@@ -3,6 +3,11 @@
 layout: about
 ---
 
+{% assign version = jekyll.version | split:'.' %}
+{% assign major = version[0] | plus:0 %}
+{% assign minor = version[1] | plus:0 %}
+{% assign patch = version[2] | plus:0 %}
+
 {% assign strings = site.data.strings %}
 {% assign no_third_column = page.no_third_column | default:site.hydejack.no_third_column | default:false %}
 
@@ -56,7 +61,7 @@ layout: about
       {{ text | replace:"<!--projects_title-->", projects_title }}
     </p>
   {% else %}
-    Page with path <code>{{ page.more_posts }}</code> not found.
+    Page with path <code>{{ projects_page }}</code> not found.
   {% endif  %}
 {% endif %}
 {% endcapture %}
@@ -108,7 +113,7 @@ layout: about
       {{ text | replace:"<!--posts_title-->", posts_title }}
     </p>
   {% else %}
-    Page with path <code>{{ page.more_posts }}</code> not found.
+    Page with path <code>{{ posts_page }}</code> not found.
   {% endif  %}
 {% endif %}
 {% endcapture %}
