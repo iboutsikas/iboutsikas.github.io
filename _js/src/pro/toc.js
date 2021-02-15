@@ -83,6 +83,8 @@ import {
         const intersecting = new Set();
         const top = new WeakMap();
 
+        const hasGuardRail = getComputedStyle(toc).overscrollBehaviorY === 'contain';
+
         const toObserve = Array.from(toc.querySelectorAll('li'))
           .map((el) => el.children[0].getAttribute('href') || '')
           .map((hash) => document.getElementById(hash.substr(1)))
@@ -111,9 +113,13 @@ import {
               const el = toc.querySelector(`a[href="#${curr.id}"]`);
               if (el) {
                 el.style.fontWeight = 'bold';
-                if (toc.classList.contains('affix')) {
+                if (hasGuardRail) {
                   clearTimeout(timer);
-                  timer = setTimeout(() => scrollIntoView(el, { scrollMode: 'if-needed' }), 100);
+                  timer = setTimeout(() => {
+                    if (toc.classList.contains('affix')) {
+                      scrollIntoView(el, { scrollMode: 'if-needed' });
+                    }
+                  }, 100);
                 }
               }
             }
