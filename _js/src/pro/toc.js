@@ -68,7 +68,7 @@ import {
             }
           }),
           finalize(() => {
-            toc.classList.remove('affix');
+            scrollspy.parentNode.removeChild(scrollspy);
           }),
         );
       }),
