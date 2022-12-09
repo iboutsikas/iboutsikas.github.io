@@ -3,6 +3,7 @@ layout: page
 title: MonteMutacon
 description: >
     A machine learning library, using Monte Carlo tree search to generate adverserial samples used in training of machine learning-based anti-viruses.
+date: 13 Jul 2021
 image: 
   path: /assets/img/publications/montemutacon-poster.png
 links:

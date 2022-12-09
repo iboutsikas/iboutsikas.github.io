@@ -5,6 +5,7 @@ caption: A rendering engine running on DirectX 12.
 description: >
     Titanium Rose is a rendering engine that I have been developing
     in the scope of my research endeavors.
+date: 1 Dec 2022
 image: 
   path: /assets/img/projects/titanium-rose.png
 links:
