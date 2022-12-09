@@ -10,7 +10,9 @@ always been games and graphics so I now have the chance to work on and research
 that!
 
 Please take a look at my [Projects](/projects) or maybe
-[Publications](/publications) to see what I've been up to.
+[Publications](/publications) to see what I've been up to, or better yet read
+about my [rendering engine](/projects/titanium-rose/).
+
 
 In my down time I do tinker a lot with my homelab among other things. For my
 fellow homelabers, you can take a quick look at my [homelab](/homelab).
