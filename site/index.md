@@ -1,47 +1,16 @@
 ---
 layout: page
-title: Thank You!
+title: Welcome!
 sitemap: false
 ---
+Welcome to my personal page. I am Ioannis Boutsikas, you can also call me John
+(it is the same name, I promise!). I am a Software Engineer with plenty of
+experience in web development and web related stuff. My passion however has
+always been games and graphics so I now have the chance to work on and research
+that!
 
-Thank you for buying the PRO version of Hydejack! 🎉
+Please take a look at my [Projects](/projects) or maybe
+[Publications](/publications) to see what I've been up to.
 
-More than one year ago I was looking for a blogging platform but couldn't find it:
-One that would let me write posts in markdown with my own editor,
-one that didn't look awful buy modern design standards, and one that felt snappy on a mobile phone.
-That and more is now Hydejack. I hope you enjoy it [as much as I do](https://qwtel.com/).
-
-## First Steps
-Start by reading the [Documentation]{:.heading.flip-title}.
-Specifically, the chapters below should be relevant now:
-
-* [Install]{:.heading.flip-title} --- How to install and run Hydejack.
-* [Config]{:.heading.flip-title} --- Once Jekyll is running you can start with basic configuration.
-{:.related-posts.faded}
-
-After you've familiarized yourself with Hydejack, you can delete the following folders and files
-containing example content:
-
-~~~
-├── _featured_categories
-│   └── example.md
-├── _projects
-│   └── *
-├── docs
-├── example
-├── licenses
-├── assets
-│   └── img
-│       ├── blog
-│       ├── docs
-│       └── projects
-├── CHANGELOG.md
-├── forms-by-example.md
-├── LICENSE.md
-└── NOTICE.md
-~~~
-
-[documentation]: docs/README.md
-[install]: docs/install.md
-[upgrade]: docs/upgrade.md
-[config]: docs/config.md
+In my down time I do tinker a lot with my homelab among other things. For my
+fellow homelabers, you can take a quick look at my [homelab](/homelab).
