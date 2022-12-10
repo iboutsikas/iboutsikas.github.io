@@ -315,6 +315,7 @@ exclude:
   - .jekyll-cache
   - .sass-cache
   - '*.toml'
+  - docker-compose.yml
   - vendor
   - Gemfile
   - Gemfile.lock
