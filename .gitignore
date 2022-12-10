@@ -1,1 +1,7 @@
-*:Zone.Identifier
+_site
+raw-assets
+.sass-cache
+.jekyll-cache
+.jekyll-metadata
+vendor
+*Zone.Identifier

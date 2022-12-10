@@ -6,7 +6,7 @@ description: >
     “Under the Bay” tells the story of a world beneath the surface of the Chesapeake Bay.
 date: 1 Aug 2022
 image: 
-  path: /assets/img/projects/titanium-rose.png
+  path: /assets/img/projects/utb/preview.png
 links:
     - title: Project Page
       url: https://www.lisamoren.com/underthebay

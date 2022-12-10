@@ -1,0 +1,168 @@
+# If you have a `resume.json` file, copy it into `_data` and delete this file.
+# If you don't have a JSON Resume you can just edit this YAML file instead.
+# See also: <https://jsonresume.org/>.
+basics:
+  name: "Ioannis Boutsikas"
+  label: "Graphics Engineer"
+  picture: "http://127.0.0.1:4000/assets/img/resume-photo-sm.png"
+  email: "mgioanni@outlook.com"
+  phone: "+1 (240) 584-0020"
+  website: "https://iboutsikas.me"
+  summary: >
+    Avid, detail driven Software Engineer, with experience in Graphics
+    Programming, Game Development, Software Engineering, modern low-level
+    graphics APIs like DirectX 12 as well as older APIs like OpenGL, and game
+    engines like Unity and Unreal Engine. Team builder and player, competent in
+    an intercultural environment. Capable of interfacing and communicating
+    effectively across disciplines to realize project goals.
+  # location:
+  #   address: "2712 Broadway St"
+  #   postalCode: "CA 94115"
+  #   city: "San Francisco"
+  #   countryCode: "US"
+  #   region: "California"
+  profiles:
+    - network: "GitHub"
+      username: "iboutsikas"
+      url: "https://github.com/iboutsikas"
+    - network: "LinkedIn"
+      username: "Ioannis Boutsikas"
+      url: "https://linkedin.com/in/ioannis-boutsikas"
+work:
+  - company: "University of Maryland, Baltimore County"
+    position: "Graphics and OS Teaching Assistant"
+    # website: "https://piedpiper.com"
+    startDate: "2018-08-01"
+    endDate: ""
+    summary: >
+      Assist in teaching and class activities.
+    highlights:
+      - "Graphics: Developed projects in C++ and in Unreal Engine. Held 
+        hardware related lectures. Hosted tutoring sections to introduce modern
+        OpenGL to students."
+      - "Operating Systems: Created and implemented projects in C for
+          the Linux Kernel. Held lectures teaching robust C and low-level
+          programming. Designed and implemented tools to help students with
+          kernel development. Created and maintained interactive, responsive
+          websites for course content."
+      - "Encouraged and supported students in working in and navigating large
+      code bases." 
+      - "Lead a team of 5 assistants and spearheaded efforts to
+      collaborate between students and TAs of different cultural backgrounds."
+
+  - company: "Lisa Moren, LLC"
+    position: "Unity Software Engineer"
+    website: "https://www.lisamoren.com/underthebay"
+    startDate: "2020-06-01"
+    endDate: "2022-08-01"
+    summary: >
+      Under the Bay is a mobile, educational, AR experience about the Chesapeake
+      Bay. The projects allows the user to interact with and learn about the
+      various microorganisms living in the Bay, with real-time data guiding the
+      experience. Published on iOS and Android.
+    highlights:
+      - "Developed the entire application in Unity with AR Foundation."
+      - "Implemented intuitive, touch first controls to interact with the application."
+      - "Optimized application performance and assets for phone environments."
+      - "Created shaders and post processing effects."
+      - "Designed, implemented, and deployed a REST API."
+      - "Collaborated with artists and marine biologists to gather requirements"
+  
+  - company: "AgroQ O.E."
+    position: "Systems and Cloud Engineer"
+    website: "https://agroq.gr"
+    startDate: "2015-02-01"
+    endDate: "2022-08-01"
+    summary: >
+      Handle many of the company's cloud and IT needs. Planned, setup, and
+      managed private cloud infrastructure. Deployed and maintained scalable,
+      containerized, cloud applications. Gathered user requirements to engineer
+      and develop internal software, satisfying business needs.
+    highlights:
+      - "Managed a 3-node Proxmox cluster"
+
+# volunteer:
+#   - organization: "CoderDojo"
+#     position: "Teacher"
+#     website: "https://coderdojo.com/"
+#     startDate: "2012-01-01"
+#     endDate: "2013-01-01"
+#     summary: "Global movement of free coding clubs for young people."
+#     highlights:
+#       - "Awarded 'Teacher of the Month'"
+education:
+  - institution: "University of Maryland, Baltimore County"
+    area: "Computer Science"
+    studyType: "PhD"
+    startDate: "2018-08-01"
+    endDate: ""
+    gpa: "3.233"
+  - institution: "The University of Sheffield"
+    area: "Computer Science"
+    studyType: "Bachelor"
+    startDate: "2014-10-01"
+    endDate: "2017-01-01"
+    gpa: "4.0"
+    # courses:
+    #   - "DB1101 - Basic SQL"
+    #   - "CS2011 - Java Introduction"
+# awards:
+#   - title: "Digital Compression Pioneer Award"
+#     date: "2014-11-01"
+#     awarder: "Techcrunch"
+#     summary: "There is no spoon."
+publications:
+  - name: "MonteMutacon"
+    publisher: "John Boutsikas and M. E. Eren and Charles K. Varga and Edward Raff and Cynthia Matuszek and Charles Nicholas"
+    releaseDate: "2021-07-13"
+    website: "https://github.com/UMBC-DREAM-Lab/montemutacon"
+    summary: "Machine learning library used to generate adverserial malware
+    samples for training in machine learning based anti-viruses."
+skills:
+  - name: "Graphics APIs"
+    level: "Master"
+    keywords:
+      - "DirectX 12"
+      - "OpenGL"
+  - name: "Game Engines"
+    level: "Master"
+    keywords:
+      - "Unity"
+      - "Unreal Engine"
+  - name: "Programing Languages"
+    level: "Master"
+    keywords:
+      - "C"
+      - "C++"
+      - "C#"
+      - "JavaScript"
+      - "Python"
+  - name: "Cloud/Virtualization"
+    level: "Master"
+    keywords:
+      - "Proxmox"
+      - "docker"
+      - "kubernetes"
+  - name: "Web Development"
+    level: "Master"
+    keywords:
+      - "HTML"
+      - "CSS"
+      - "Angular"
+      - "React"
+      - "Electron.js"
+languages:
+  - language: "English"
+    fluency: "Native speaker"
+  - language: "Greek"
+    fluency: "Native speaker"
+# interests:
+#   - name: "Wildlife"
+#     keywords:
+#       - "Ferrets"
+#       - "Unicorns"
+# references:
+#   - name: "Erlich Bachman"
+#     reference: >
+#       It is my pleasure to recommend Richard, his performance working as a consultant for Main St.
+#       Company proved that he will be a valuable addition to any company.

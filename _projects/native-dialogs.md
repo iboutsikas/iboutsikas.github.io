@@ -6,7 +6,7 @@ description: >
     A Unity plugin for native widgets on mobile
 date: 17 Feb 2022
 image: 
-  path: /assets/img/projects/titanium-rose.png
+  path: /assets/img/projects/native-dialogs/preview.jpg
 links:
     - title: Repository
       url: https://github.com/iboutsikas/native-dialogs
@@ -31,5 +31,5 @@ but I am planning to extend it soon.
 
 ## Installing
 All you have to do is clone the repository in your project's `Plugins` folder
-(i.e. `Plugins/native-dialogs`) and use the NativeDialogs namespace and API from
+(i.e. `Assets/Plugins/native-dialogs`) and use the NativeDialogs namespace and API from
 then on. I will be making more documentation soon.
