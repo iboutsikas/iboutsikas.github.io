@@ -7,7 +7,11 @@ description: >
     in the scope of my research endeavors.
 date: 1 Dec 2022
 image: 
-  path: /assets/img/projects/titanium-rose.png
+  path: /assets/img/projects/titanium-rose/preview.png
+  srcset:
+    1920w: /assets/img/projects/titanium-rose/preview.png
+    960w:  /assets/img/projects/titanium-rose/preview@0,5x.png
+    480w:  /assets/img/projects/titanium-rose/preview@0,25x.png
 links:
     - title: Repository
       url: https://github.com/iboutsikas/titanium-rose
@@ -34,7 +38,7 @@ the engine can maintain close to 60 FPS average, while a forward renderer could
 do 40 FPS at most on the same hardware. You can see a visualization of all the
 point lights below:
 
-![](/assets/img/projects/lights_galore.png)
+![](/assets/img/projects/titanium-rose/lights_galore.png)
 All the 2000 real-time point lights visualized.
 {:.figcaption}
 

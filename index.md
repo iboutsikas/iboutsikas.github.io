@@ -1,7 +1,8 @@
 ---
-layout: page
+layout: welcome
 title: Welcome!
 sitemap: false
+cover: true
 ---
 Welcome to my personal page. I am Ioannis Boutsikas, you can also call me John
 (it is the same name, I promise!). I am a Software Engineer with plenty of
