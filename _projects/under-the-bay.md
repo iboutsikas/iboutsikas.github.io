@@ -46,6 +46,26 @@ worked in tandem with Unity's ["new input
 system"](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.4/manual/QuickStartGuide.html)
 (which was also having some teething issues at that time).
 
+Our input system will intercept mouse and touch input and attempt to convert it
+to a gesture (swipe in this example). If the conversion is successful it stops
+propagation of the input and notifies the rest of the application about the
+gesture progress. Otherwise the input is handled as normally by Unity's system.
+Converting the input to a gesture also prevents gestures from starting on top of
+other interactable elements, such as UI or draggable scene models.
 
-Talk about the scene transitions. Maybe put a webm of the effect.
+Once a swipe has been detected, the application overlays two images
+side-by-side. One image is the loading screen for the next scene, and the other
+is a screenshot of the application at the point the swipe started. As the user
+swipes left or right, those images are translated accordingly to communicate the
+transition. The user can also undo the swipe to not trigger a transition. The
+video below showcases this interaction in Unity. I chose to recod it in the
+Editor so you can see the Scene view (left) in addition to the in-game view (right).
 
+<video controls loop>
+  <source src="/assets/img/projects/utb/swipe.webm" type="video/webm">
+  Your browser does not support the video tag or webm video.
+</video>
+
+We also experimented with continuing to render the scene on one of the sliding
+images. However, early user testing showed a lot of confusion about what was
+happening and we abbandoned the approach.
