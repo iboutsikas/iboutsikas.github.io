@@ -3,7 +3,7 @@ layout: project
 title: Under the Bay
 caption: An interactive, AR experience telling a story about the Chesapeake Bay.
 description: >
-    “Under the Bay” tells the story of a world beneath the surface of the Chesapeake Bay.
+    “Under the Bay” tells the story of a world beneath the surface of the Chesapeake Bay
 date: 1 Aug 2022
 image: 
   path: /assets/img/projects/utb/preview.png
@@ -22,7 +22,7 @@ experience.
     &emsp;
     <a href="https://apps.apple.com/app/id1641553491" target="_blank">Apple Store</a>
     &emsp;
-    <a href="https://arxiv.org/abs/2106.07860" target="_blank">Play Store</a>
+    <a href="" target="_blank">Play Store</a>
 </div>
 
 Since I was the primary developer of this app, this post will discuss some of
