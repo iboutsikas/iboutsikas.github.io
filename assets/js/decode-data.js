@@ -1,3 +1,7 @@
+const decodeEmail = (el) => {
+
+}
+
 document.getElementById('_pushState').addEventListener('hy-push-state-load', function() {
     const encodedElements = document.querySelectorAll('.encrypted');
 
@@ -7,8 +11,18 @@ document.getElementById('_pushState').addEventListener('hy-push-state-load', fun
     const observer = new IntersectionObserver((entries) => {
         entries.map(entry => {
             if (entry.isIntersecting) {
-                let text = atob(entry.target.dataset.encrypted);
-                entry.target.innerHTML = text;
+                const el = entry.target;
+                
+                const text = atob(el.dataset.encrypted);
+
+                if (el.classList.contains('email')) {
+                    el.href = `mailto:${text}`;
+                }
+                else if (el.classList.contains('tel')) {
+                    el.href = `tel:${text}`;
+                }
+
+                el.innerHTML = text;
             }
         })
     });

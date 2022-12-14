@@ -78,7 +78,7 @@
     </dt>
     <dd class="bold">
       <meta property="email" content="{{ basics.email }}"/>
-      <a href="mailto:{{ basics.email }}" class="encrypted external no-print-link email u-email" data-encrypted="{{ basics.email }}">{{ basics.email }}</a>
+      <a href="mailto:{{ basics.email }}" class="encrypted external no-print-link email u-email" data-encrypted="{{ basics.email }}">Obfuscated</a>
     </dd>
   {% endif %}
 
@@ -89,7 +89,7 @@
     </dt>
     <dd class="bold">
       <meta property="telephone" content="{{ basics.phone }}"/>
-      <a href="tel:{{ basics.phone | replace:' ','' }}" class="encrypted external no-print-link tel p-tel" data-encrypted="{{ basics.phone }}">{{ basics.phone }}</a>
+      <a href="tel:{{ basics.phone | replace:' ','' }}" class="encrypted external no-print-link tel p-tel" data-encrypted="{{ basics.phone }}">Obfuscated</a>
     </dd>
   {% endif %}
 
