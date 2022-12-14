@@ -4,9 +4,9 @@
 basics:
   name: "Ioannis Boutsikas"
   label: "Graphics Engineer"
-  picture: "http://127.0.0.1:4000/assets/img/resume-photo-sm.png"
-  email: "mgioanni@outlook.com"
-  # phone: "+1 (240) 584-0020"
+  picture: "https://iboutsikas.me/assets/img/resume-photo-sm.png"
+  email: "bWdpb2FubmlAb3V0bG9vay5jb20="
+  phone: "KzEgKDI0MCkgNTg0LTAwMjA="
   website: "https://iboutsikas.me"
   summary: >
     Avid, detail driven Software Engineer, with experience in Graphics
