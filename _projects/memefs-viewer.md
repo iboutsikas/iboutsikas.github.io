@@ -11,7 +11,7 @@ image:
 
 One of the assignments for the Fall 2018 and 2020 semesters was to implement a
 [FUSE](https://en.wikipedia.org/wiki/Filesystem_in_Userspace) module to allow
-mounting [VMU](https://en.wikipedia.org/wiki/Filesystem_in_Userspace) images on
+mounting [VMU](https://en.wikipedia.org/wiki/VMU) images on
 Linux. In order to aid students while developing their modules I made this tool
 that will read the image and allow inspection of various aspects. These aspects
 are focused towards developing the filesystem module, so for example it will
