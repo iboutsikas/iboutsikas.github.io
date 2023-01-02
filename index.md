@@ -2,7 +2,7 @@
 layout: welcome
 title: Welcome!
 sitemap: false
-cover: true
+cover: false
 ---
 Welcome to my personal page. I am Ioannis Boutsikas, you can also call me John
 (it is the same name, I promise!). I am a Software Engineer with plenty of
@@ -16,5 +16,5 @@ Please take a look at my [Projects](/projects) or maybe
 about my [rendering engine](/projects/titanium-rose/).
 
 
-In my down time I do tinker a lot with my homelab among other things. For my
-fellow homelabers, you can take a quick look at my [homelab](/homelab).
+<!-- In my down time I do tinker a lot with my homelab among other things. For my
+fellow homelabers, you can take a quick look at my [homelab](/homelab). -->
