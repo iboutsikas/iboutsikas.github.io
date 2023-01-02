@@ -19,7 +19,7 @@ the existing WPF version is too foreign to maintain. As such I decided to go
 with a web-based stack, namely Electron and Angular. I know a lot of people
 might dislike that, and I don't fault them. Electron can often be too much. 
 
-The application is using Angular material for the basic stylying with a lot of
+The application is using Angular material for the basic styling with a lot of
 customizations to get it a bit GW2-like. It fixes some bugs that plagued the old
 version (namely uninstalling addons and enabling/disabling them).
 
@@ -32,7 +32,7 @@ version (namely uninstalling addons and enabling/disabling them).
 ## Planned features
 
 * Self-update
-* Dependancy resolution
+* Dependency resolution
 * Poll the already installed addons to build our state (via native NodeJS
   addon). This might be Windows only.
 * Back-up addon settings or alternatively use symlinks so they persist unless
