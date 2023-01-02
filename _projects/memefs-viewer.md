@@ -9,7 +9,7 @@ image:
   path: /assets/img/projects/memefs/preview.jpg
 ---
 
-One of the assignments for the Fall 2018 semester was to implement a
+One of the assignments for the Fall 2018 and 2020 semesters was to implement a
 [FUSE](https://en.wikipedia.org/wiki/Filesystem_in_Userspace) module to allow
 mounting [VMU](https://en.wikipedia.org/wiki/Filesystem_in_Userspace) images on
 Linux. In order to aid students while developing their modules I made this tool
