@@ -22,7 +22,7 @@ experience.
     &emsp;
     <a href="https://apps.apple.com/app/id1641553491" target="_blank">Apple Store</a>
     &emsp;
-    <a href="" target="_blank">Play Store</a>
+    <a href="https://play.google.com/store/apps/details?id=com.lisamoren.underthebay" target="_blank">Play Store</a>
 </div>
 
 Since I was the primary developer of this app, this post will discuss some of

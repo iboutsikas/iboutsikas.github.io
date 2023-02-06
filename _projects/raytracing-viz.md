@@ -50,9 +50,9 @@ The reason we need an editor is to provide any custom interface we want our
 importer to have. If you notice the image above, there is the capability to
 overide "materials" in the nff file, with custom ones. That does not come out of
 the box. For more information I will direct you to
-[NffImporter.cs](https://github.com/iboutsikas/raytracing-viz/blob/master/Assets/Scripts/Editor/NffImporter.cs)
+[NffImporter.cs](https://github.com/iboutsikas/raytracing-viz/blob/63f7ff82430b5b267613c31ca4cc1284e6d0f627/Assets/Scripts/CustomImporters/Editor/Nff/NffImporter.cs)
 and
-[NffImporterEditor.cs](https://github.com/iboutsikas/raytracing-viz/blob/master/Assets/Scripts/Editor/NffImporterEditor.cs).
+[NffImporterEditor.cs](https://github.com/iboutsikas/raytracing-viz/blob/63f7ff82430b5b267613c31ca4cc1284e6d0f627/Assets/Scripts/CustomImporters/Editor/Nff/NffImporterEditor.cs).
 
 ## Camera Rig
 
@@ -61,11 +61,11 @@ and
 This is one of the elements the user can directly interact with. It modifies the
 gizmos shown in the very first image of this page. You can find the code in
 [Camera
-Visualizer](https://github.com/iboutsikas/raytracing-viz/blob/master/Assets/Scripts/CameraVisualizer.cs).
+Visualizer](https://github.com/iboutsikas/raytracing-viz/blob/63f7ff82430b5b267613c31ca4cc1284e6d0f627/Assets/Scripts/CameraVisualizer.cs).
 
 ## Camera settings
 This is a simple scriptable object that directly matches the "camera
 description" found in an nff file. It is the socond element users can interact
 with to change how the camera rig looks like and help explain the math behind
 setting up a camera for raytracing. You can find the code at
-[CameraSettings.cs](https://github.com/iboutsikas/raytracing-viz/blob/master/Assets/Scripts/CameraSettings.cs).
+[CameraSettings.cs](https://github.com/iboutsikas/raytracing-viz/blob/63f7ff82430b5b267613c31ca4cc1284e6d0f627/Assets/Scripts/CustomImporters/CameraSettings.cs).
