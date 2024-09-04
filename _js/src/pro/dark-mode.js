@@ -28,7 +28,7 @@ const SEL_NAVBAR_BTN_BAR = '#_navbar > .content > .nav-btn-bar';
         list.add('light-mode');
         tId = setTimeout(() => {
           if (metaEl) metaEl.content = 'light';
-          document.documentElement.style.colorScheme = 'light'; 
+          document.documentElement.style.colorScheme = 'light';
         }, 250);
         navbarBtn.dispatchEvent(new CustomEvent('hydejack-dark-mode-toggle', { detail: false, bubbles: true }));
       } else {
@@ -36,7 +36,7 @@ const SEL_NAVBAR_BTN_BAR = '#_navbar > .content > .nav-btn-bar';
         list.add('dark-mode');
         tId = setTimeout(() => {
           if (metaEl) metaEl.content = 'dark';
-          document.documentElement.style.colorScheme = 'dark'; 
+          document.documentElement.style.colorScheme = 'dark';
         }, 250);
         navbarBtn.dispatchEvent(new CustomEvent('hydejack-dark-mode-toggle', { detail: true, bubbles: true }));
       }
