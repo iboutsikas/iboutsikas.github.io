@@ -127,7 +127,7 @@ div.highlight {
     overflow: hidden;
     cursor: pointer;
     opacity: 0;
-    transition: opacity 300ms;
+    transition: opacity 300ms, border-color 1s;
 
     &:hover {
       background: var(--gray-bg);
@@ -162,7 +162,7 @@ div.highlight {
 
   &:hover > button {
     opacity: 1;
-    transition: opacity 100ms;
+    transition: opacity 100ms, border-color 1s;
   }
 
   > .pre-header ~ pre.highlight {
