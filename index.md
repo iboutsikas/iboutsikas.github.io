@@ -4,17 +4,22 @@ title: Welcome!
 sitemap: false
 cover: false
 ---
-Welcome to my personal page. I am Ioannis Boutsikas, you can also call me John
-(it is the same name, I promise!). I am a Software Engineer with plenty of
-experience in web development and web related stuff. My passion however has
-always been games and graphics so I now have the chance to work on and research
-that! In fact, I am currently working on my own rendering engine that implements
-decoupled, asynchronous shading!
+Welcome to my personal page. I am a Software Engineer with a focus on graphics
+and game development, as well as plent of web and web related experience. My
+ primary interest is game engines themselves, and specifically their graphics
+ and graphics adjacent systems. For the past 1.5-2 years I have been working on
+ [Ara: History Untold](https://www.arahistoryuntold.com/){:target="_blank"
+ rel="noopener"} with the talented folks at [Oxide
+ Games](https://www.oxidegames.com/){:target="_blank" rel="noopener"}. Most of
+ my work has been in the space between UI and graphics merging my two
+ backgrounds well.
 
-Please take a look at my [Projects](/projects) or maybe
-[Publications](/publications) to see what I've been up to, or better yet read
-about my [rendering engine](/projects/titanium-rose/).
+![](/assets/img/ara.jpg)
+Image from https://www.arahistoryuntold.com/
+{:.figcaption}
 
 
-<!-- In my down time I do tinker a lot with my homelab among other things. For my
-fellow homelabers, you can take a quick look at my [homelab](/homelab). -->
+You can read about my personal [Projects](/projects) or
+[Publications](/publications) or better yet my [rendering
+engine](/projects/titanium-rose/), which focuses on decoupled, asynchronous
+shading.

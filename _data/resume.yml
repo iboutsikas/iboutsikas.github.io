@@ -6,7 +6,6 @@ basics:
   label: "Graphics Engineer"
   picture: "https://www.iboutsikas.me/assets/img/resume-photo-sm.png"
   email: "bWdpb2FubmlAb3V0bG9vay5jb20="
-  phone: "KzEgKDI0MCkgNTg0LTAwMjA="
   website: "https://iboutsikas.me"
   summary: >
     Avid, detail driven Software Engineer, with experience in Graphics
@@ -29,11 +28,25 @@ basics:
       username: "Ioannis Boutsikas"
       url: "https://linkedin.com/in/ioannis-boutsikas"
 work:
+  - company: "Oxide Games"
+    position: "Software Engineer"
+    startDate: "2203-05-31"
+    website: https://www.oxidegames.com/
+    endDate: ""
+    summary: >
+      Maintain and extend various tech stacks of the in-house game engine
+    highlights:
+      - 'Contributed to the launch of <a href="https://www.arahistoryuntold.com">Ara: History Untold</a> through the UI, Graphics 
+      and GameCore teams.'
+      - 'UI: Implemented features and screens at the game level, including the re-imagining of our entire UI style.
+       Designed and implemented features at the framework and engine level such as gradient rendering and various rendering features'
+      - 'Graphics: Added technical support for various living world related features and effects, including the nuke system.'
+      - 'GameCore: Improvements to various existing systems, as well as online service interactions.'
   - company: "University of Maryland, Baltimore County"
     position: "Graphics and OS Teaching Assistant"
     # website: "https://piedpiper.com"
     startDate: "2018-08-01"
-    endDate: ""
+    endDate: "2023-05-15"
     summary: >
       Assist in teaching and class activities.
     highlights:
@@ -93,9 +106,9 @@ work:
 education:
   - institution: "University of Maryland, Baltimore County"
     area: "Computer Science"
-    studyType: "PhD"
+    studyType: "MSc"
     startDate: "2018-08-01"
-    endDate: ""
+    endDate: "2023-05-15"
     gpa: "3.233"
   - institution: "The University of Sheffield"
     area: "Computer Science"

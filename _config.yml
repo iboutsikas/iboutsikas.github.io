@@ -1,6 +1,34 @@
 lang:                  en
-title:                 Hydejack
+title:                 Ioannis Boutsikas
 copyright:             © 2024. All rights reserved.
+logo:                  /assets/img/logo.jpg
+
+description:           >
+  Welcome to my personal website. You can find my projects and publications here.
+tagline:   Software engineer with focus on real-time graphics.
+
+author:
+  name:                Ioannis Boutsikas
+  email:               mgioanni@outlook.com
+
+menu:
+  - title:             Projects
+    url:               /projects/
+  - title:             Publications
+    url:               /publications/
+  - title:             Résumé*
+    url:               /resume/
+
+# Collections
+# ----------------------------------------------------------------------------------------
+collections:
+  publications:
+    permalink:         /publications/:path
+    output:            true
+
+  projects:
+    permalink:         /projects/:path/
+    output:            true
 
 accent_image:          /assets/img/sidebar-bg.jpg
 accent_color:          rgb(79,177,186)
@@ -29,7 +57,7 @@ hydejack:
 
   use_lsi:             true
   cookies_banner:      true
-  advertise:           true
+  advertise:           false
   hide_dates:          false
   hide_last_modified:  false
 
