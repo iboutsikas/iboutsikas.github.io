@@ -1,7 +1,12 @@
-_site
-raw-assets
-.sass-cache
-.jekyll-cache
-.jekyll-metadata
+node_modules
 vendor
+.bundle
+.sass-cache
+.jekyll-metadata
+.jekyll-cache
+.ruby-lsp
+*.gem
 *Zone.Identifier
+
+#<removed/js>
+#<removed/css>
