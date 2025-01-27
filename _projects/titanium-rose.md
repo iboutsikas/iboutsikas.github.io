@@ -52,6 +52,3 @@ materials and surface types behave in a decoupled, asynchronous environments.
 Some of them are realy resiliant to decoupled artifacts so they can be updated
 once every half a second, while others can skip a couple of frames at most
 before becoming noticeable.
-
-Stay tuned for the results! My hope is that this technique will be yet another
-great tool in the toolbox of game developers.
