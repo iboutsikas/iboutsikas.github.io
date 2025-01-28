@@ -30,7 +30,7 @@ basics:
 work:
   - company: "Oxide Games"
     position: "Software Engineer"
-    startDate: "2203-05-31"
+    startDate: "2023-05-31"
     website: https://www.oxidegames.com/
     endDate: ""
     summary: >
@@ -133,17 +133,14 @@ publications:
     samples for training in machine learning based anti-viruses."
 skills:
   - name: "Graphics APIs"
-    level: "Master"
     keywords:
       - "DirectX 12"
       - "OpenGL"
   - name: "Game Engines"
-    level: "Master"
     keywords:
       - "Unity"
       - "Unreal Engine"
   - name: "Programing Languages"
-    level: "Master"
     keywords:
       - "C"
       - "C++"
@@ -151,13 +148,11 @@ skills:
       - "JavaScript"
       - "Python"
   - name: "Cloud/Virtualization"
-    level: "Master"
     keywords:
       - "Proxmox"
       - "docker"
       - "kubernetes"
   - name: "Web Development"
-    level: "Master"
     keywords:
       - "HTML"
       - "CSS"
