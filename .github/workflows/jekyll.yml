@@ -29,6 +29,7 @@ concurrency:
 jobs:
   debug:
     name: Debug
+    environment: 'github-pages'
     runs-on: ubuntu-latest
     steps:
       - name: Print out the thing
@@ -39,13 +40,13 @@ jobs:
   # Build job
   build:
     runs-on: ubuntu-latest
+    environment: 'github-pages'
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0  # Fetch whole history for jekyll-last-modified-at plugin
       - name: Setup Ruby
-        environment: 'github-pages'
         # https://github.com/ruby/setup-ruby/releases/tag/v1.207.0
         uses: ruby/setup-ruby@4a9ddd6f338a97768b8006bf671dfbad383215f4
         with:
