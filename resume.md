@@ -1,6 +1,6 @@
 ---
 layout: resume
-title: Résumé*
+title: Résumé
 permalink: /resume/
 description: >
   Ioannis Boutsikas is a software engineer with experience in real-time computer graphics, game engines, as well as web development and cloud environments.

@@ -52,11 +52,9 @@ menu:
     url:               /games/
   - title:             Projects
     url:               /projects/
-  - title:             Blog
-    url:               /blog/
   - title:             Publications
     url:               /publications/
-  - title:             Résumé*
+  - title:             Résumé
     url:               /resume/
 
 # Add links to the footer.
