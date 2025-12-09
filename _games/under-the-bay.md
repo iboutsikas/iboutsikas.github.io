@@ -8,6 +8,10 @@ description: >
 date: 1 Aug 2022
 image: 
   path: /assets/img/games/utb/preview.png
+  srcset:
+      1920w: /assets/img/games/utb/preview.png
+      960w: /assets/img/games/utb/preview@0,5x.png
+      480w: /assets/img/games/utb/preview@0,25x.png
 links:
     - title: Project Page
       url: https://www.lisamoren.com/underthebay
@@ -44,7 +48,7 @@ relied on swipe gestures.
 
 We ended up implementing a gesture-centric system that directly integrates with Unity's ["New Input
 System"](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.4/manual/QuickStartGuide.html)(which
-itself was still stabilising at the time). The system works in the following way:
+itself was still stabilizing at the time). The system works in the following way:
 
 * Intercept mouse and touch input and attempt to convert it into our gestures.
   If successful we stop propagation to Unity's input system and we process it through our own.

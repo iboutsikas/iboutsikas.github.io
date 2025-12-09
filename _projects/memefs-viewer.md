@@ -7,6 +7,10 @@ description: >
 date: 27 Oct 2018
 image: 
   path: /assets/img/projects/memefs/preview.jpg
+  srcset:
+      1920w: /assets/img/projects/memefs/preview.jpg
+      960w: /assets/img/projects/memefs/preview@0,5x.jpg
+      480w: /assets/img/projects/memefs/preview@0,25x.jpg
 ---
 
 One of the assignments for the Fall 2018 and 2020 semesters was to implement a

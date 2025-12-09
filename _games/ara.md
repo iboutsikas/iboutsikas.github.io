@@ -7,6 +7,10 @@ description: >
 role: 'Software Engineer (UI & Graphics)'
 image:
     path: '/assets/img/games/ara/preview.png'
+    srcset:
+      1920w: /assets/img/games/ara/preview.png
+      960w: /assets/img/games/ara/preview@0,5x.png
+      480w: /assets/img/games/ara/preview@0,25x.png
     credit: https://www.oxidegames.com/products/ara-history-untold/
 date: 31 Jan 2025
 links:
