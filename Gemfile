@@ -41,6 +41,8 @@ gem "webrick"
 # Uncomment when using the `--lsi` option for `jekyll build`
 # gem "classifier-reborn"
 
+gem 'sass-embedded', '1.78'
+
 group :jekyll_plugins do
   gem "jekyll-default-layout"
   gem "jekyll-feed"
@@ -52,6 +54,7 @@ group :jekyll_plugins do
   gem "jekyll-seo-tag"
   gem "jekyll-sitemap"
   gem "jekyll-titles-from-headings"
+  #gem 'jekyll-sass-converter', '~> 2.2'
   #gem "jekyll-include-cache"
 
   # Non-Github Pages plugins:

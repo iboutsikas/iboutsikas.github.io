@@ -404,7 +404,7 @@ sass:
   style:               compressed
   # The theme has a bunch of deprecated warnings. Turn them off so we can read the
   # actual logs
-  quiet_deps:          true 
+  quiet_deps: true 
   quietDeps:           true
 
 # Jekyll Compose Defaults
