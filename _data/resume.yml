@@ -1,0 +1,165 @@
+# If you have a `resume.json` file, copy it into `_data` and delete this file.
+# If you don't have a JSON Resume you can just edit this YAML file instead.
+# See also: <https://jsonresume.org/>.
+basics:
+  name: "Ioannis Boutsikas"
+  label: "Software Engineer"
+  picture: "https://www.iboutsikas.me/assets/img/resume-photo-sm.png"
+  email: "bWdpb2FubmlAb3V0bG9vay5jb20="
+  website: "https://iboutsikas.me"
+  summary: >
+    Software engineer with experience on across multiple tech stacks. Passionate
+    about game and game engine development. Knowledgeable in DirectX 12 and game
+    engines like Unity and Unreal. Previous work on web development. Competent
+    in intercultural and cross-discipline environments.
+  # location:
+  #   address: "2712 Broadway St"
+  #   postalCode: "CA 94115"
+  #   city: "San Francisco"
+  #   countryCode: "US"
+  #   region: "California"
+  profiles:
+    - network: "GitHub"
+      username: "iboutsikas"
+      url: "https://github.com/iboutsikas"
+    - network: "LinkedIn"
+      username: "Ioannis Boutsikas"
+      url: "https://linkedin.com/in/ioannis-boutsikas"
+work:
+  - company: "Oxide Games"
+    position: "Software Engineer"
+    startDate: "2023-05-31"
+    website: https://www.oxidegames.com/
+    endDate: "31-1-2025"
+    summary: >
+      Software engineer on the UI and Graphics teams for <a
+      href="https://www.arahistoryuntold.com">Ara: History Untold</a>; a
+      historical grand strategy game, published by Microsoft and XBOX.
+    highlights:
+      - Part of a cross-disciplinary team to audit and standardize the game’s UI. 
+      - Designed and implemented a library of custom UI components and features, in proprietary framework, to enforce standardization. 
+      - Created data-driven tools and features for the UI framework allowing artists to create dynamic assets, eliminating the need to hand-author trivial assets. 
+      - Added in-engine tools to provide artists debugging information (i.e., UI Inspector, in-game decoration asset picker), giving them more control over their creations.
+      - Designed and implemented graphics tech required for nuclear weapons feature (shaders + system logic). 
+      - Maintained the multi-threaded city renderer and the procedural decoration system, through visual improvements and bug fixes. 
+  - company: "Lisa Moren, LLC"
+    position: "Unity Software Engineer"
+    website: "https://www.lisamoren.com/underthebay"
+    startDate: "2020-06-01"
+    endDate: "2022-08-01"
+    summary: >
+      Under the Bay is a mobile, educational, AR experience about the Chesapeake
+      Bay. The projects allows the user to interact with and learn about the
+      various microorganisms living in the Bay, with real-time data guiding the
+      experience. Published on iOS and Android.
+    highlights:
+      - Integrated biologist expertise with visual artist vision to develop a 3D augmented reality experience. 
+      - Developed an Android and iOS application in Unity (C#), providing an immersive, under-water experience. 
+      - Created native plugins to expose Android/iOS controls directly in Unity, allowing users to interact with through a familiar interface. 
+      - Optimized application performance, shaders and assets for phone environments (i.e., 3GB ram). 
+      - Developed and deployed an ASP.NET REST API on GCP to provide real-time water quality data from 10 different stations.
+
+  - company: "University of Maryland, Baltimore County"
+    position: "Graphics and OS Teaching Assistant"
+    # website: "https://piedpiper.com"
+    startDate: "2018-08-01"
+    endDate: "2023-05-15"
+    summary: >
+      Graduate assistant for multiple classes including: Operating Systems, Graphics for Games and Computer Graphics
+    highlights:
+      - Developed projects in C++ and in Unreal Engine. Held lectures on GPU hardware and architecture. 
+      - Hosted tutoring sections to introduce modern OpenGL to students. 
+      - Developed projects in user and kernel space. Held lectures on robust C and Kernel programming. 
+      - Created GUI tools in Angular + Electron and responsive web content, to introduce students to Linux and Kernel development. 
+      - Designed and implemented interactive, responsive websites with course content, to facilitate mobile device usage for students.
+      - Led a team of 5 assistants, driving collaboration initiatives among students and teaching assistants from diverse cultural backgrounds. 
+  
+  - company: "AgroQ O.E."
+    position: "Systems and Cloud Engineer"
+    website: "https://agroq.gr"
+    startDate: "2015-02-01"
+    endDate: "2022-08-01"
+    summary: >
+      Software engineer and IT
+    highlights:
+      - Planned, deployed and managed small scale, on-premises infrastructure based on Proxmox.
+      - Deployed and containerized existing applications to said private infrastructure.
+      - Developed internal websites, tools and knowledge bases, using .NET framework and later dotnet and Angular.
+
+# volunteer:
+#   - organization: "CoderDojo"
+#     position: "Teacher"
+#     website: "https://coderdojo.com/"
+#     startDate: "2012-01-01"
+#     endDate: "2013-01-01"
+#     summary: "Global movement of free coding clubs for young people."
+#     highlights:
+#       - "Awarded 'Teacher of the Month'"
+education:
+  - institution: "University of Maryland, Baltimore County"
+    area: "Computer Science"
+    studyType: "MSc"
+    startDate: "2018-08-01"
+    endDate: "2023-05-15"
+  - institution: "The University of Sheffield"
+    area: "Computer Science"
+    studyType: "Bachelor"
+    startDate: "2014-10-01"
+    endDate: "2017-01-01"
+    # courses:
+    #   - "DB1101 - Basic SQL"
+    #   - "CS2011 - Java Introduction"
+# awards:
+#   - title: "Digital Compression Pioneer Award"
+#     date: "2014-11-01"
+#     awarder: "Techcrunch"
+#     summary: "There is no spoon."
+publications:
+  - name: "MonteMutacon"
+    publisher: "John Boutsikas and M. E. Eren and Charles K. Varga and Edward Raff and Cynthia Matuszek and Charles Nicholas"
+    releaseDate: "2021-07-13"
+    website: "https://github.com/UMBC-DREAM-Lab/montemutacon"
+    summary: "Machine learning library used to generate adverserial malware samples for training in machine learning based anti-viruses."
+skills:
+  - name: "Graphics APIs"
+    keywords:
+      - "DirectX 12"
+      - "OpenGL"
+  - name: "Game Engines"
+    keywords:
+      - "Unity"
+      - "Unreal Engine"
+      - "Proprietary Engines (Nitrous)"
+  - name: "Programming Languages"
+    keywords:
+      - "C"
+      - "C++"
+      - "C#"
+      - "JavaScript"
+      - "Python"
+  - name: "Cloud/Virtualization"
+    keywords:
+      - "Proxmox"
+      - "docker"
+      - "kubernetes"
+  - name: "Web Development"
+    keywords:
+      - "HTML"
+      - "CSS"
+      - "Angular"
+      - "Electron.js"
+languages:
+  - language: "English"
+    fluency: "Native speaker"
+  - language: "Greek"
+    fluency: "Native speaker"
+# interests:
+#   - name: "Wildlife"
+#     keywords:
+#       - "Ferrets"
+#       - "Unicorns"
+# references:
+#   - name: "Erlich Bachman"
+#     reference: >
+#       It is my pleasure to recommend Richard, his performance working as a consultant for Main St.
+#       Company proved that he will be a valuable addition to any company.
