@@ -15,6 +15,7 @@ image:
 links:
     - title: Project Page
       url: https://www.lisamoren.com/underthebay
+tags: [frontpage]
 ---
 
 "Under the Bay" is an interactive, AR experience, telling the story of a world

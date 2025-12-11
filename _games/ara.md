@@ -16,6 +16,7 @@ date: 31 Jan 2025
 links:
     - title: Homepage
       url: https://www.arahistoryuntold.com
+tags: [frontpage]
 ---
 {:toc}
 
@@ -101,7 +102,8 @@ is undefined behavior](https://learn.microsoft.com/en-us/windows/win32/direct3d1
 
 The reason I am proud of this solution is how quickly it came together and how
 good of a result it gave us, but some time you've gotta do what you've gotta do.
-Admittedly if I had the opportunity and time to do it again, I would either try
-to remove the single blend state restriction in the first place or try to come
-up with a formula that does not require dual source blending to make multiple
-render targets available.
+Admittedly if I had the opportunity and time to do it again, I would spend the
+time to remove the reason I had to use `Dual Source Blending` to allow for
+multiple render targets and to maintain the benefits of rendering the entire UI
+with a single PSO.
+
