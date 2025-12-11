@@ -148,6 +148,8 @@ skills:
       - "CSS"
       - "Angular"
       - "Electron.js"
+      - "dotnet"
+      - "ASP.NET core"
 languages:
   - language: "English"
     fluency: "Native speaker"

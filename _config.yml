@@ -25,7 +25,8 @@ title:                 Ioannis Boutsikas
 # A short description (~150 chars) of the page used for the meta description tag.
 # Can use markdown, but no more than one paragraph (enforced by `>`)
 description:           >
-  Welcome to my personal website. You can find my projects and publications here.
+  Ioannis Boutsikas | Software Engineering portfolio - Showcasing my work in
+  game and web development as well as encounters with Unreal Engine.
 
 # A shorter description for the sidebar.
 tagline:               Software engineer with focus on game engine development and real-time graphics.
@@ -406,8 +407,7 @@ sass:
   style:               compressed
   # The theme has a bunch of deprecated warnings. Turn them off so we can read the
   # actual logs
-  quiet_deps: true 
-  quietDeps:           true
+  quiet_deps: true
 
 # Jekyll Compose Defaults
 # ---------------------------------------------------------------------------------------
