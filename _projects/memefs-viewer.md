@@ -1,7 +1,7 @@
 ---
 layout: project
 title: MEMEfs Viewer
-caption: A filesystem browser for Dreamcast's VMU
+caption: A filesystem browser for Dreamcast's VMU, written in Angular + Electron
 description: >
     This is a tool developed for UMBC's CMSC421 - Operating Systems. It allows students to get information about a VMU image.
 date: 27 Oct 2018
@@ -11,6 +11,7 @@ image:
       1920w: /assets/img/projects/memefs/preview.jpg
       960w: /assets/img/projects/memefs/preview@0,5x.jpg
       480w: /assets/img/projects/memefs/preview@0,25x.jpg
+tags: ['frontpage']
 ---
 
 One of the assignments for the Fall 2018 and 2020 semesters was to implement a

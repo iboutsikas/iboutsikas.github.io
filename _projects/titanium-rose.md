@@ -1,7 +1,7 @@
 ---
 layout: project
 title: Titanium Rose
-caption: A rendering engine running on DirectX 12.
+caption: A decoupled rendering engine written in C++ and using DirectX 12.
 description: >
     Titanium Rose is a rendering engine that I have been developing
     in the scope of my research endeavors
@@ -15,6 +15,7 @@ image:
 links:
     - title: Repository
       url: https://github.com/iboutsikas/titanium-rose
+tags: ['frontpage']
 ---
 
 Titanium Rose is a rendering engine that I started developing for my graduate
