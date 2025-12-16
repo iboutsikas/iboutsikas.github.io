@@ -3,7 +3,7 @@ layout: page
 title: CapstoneED
 description: >
     A gamified peer-assessment platform designed to make continuous feedback simpler and fiction free, while providing early warnings for lecturers.
-date: 13 Jul 2021
+date: 2 Aug 2017
 image: 
   path: /assets/img/publications/capstoneed/preview.png
 links:
