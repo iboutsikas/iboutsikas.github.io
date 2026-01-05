@@ -54,6 +54,7 @@ work:
       experience. Published on iOS and Android.
     highlights:
       - Integrated biologist expertise with visual artist vision to develop a 3D augmented reality experience. 
+      - Architected system to allow artists to orchestrate 100s of micro-organisms and bind individual behaviors to water quality metrics.
       - Developed an Android and iOS application in Unity (C#), providing an immersive, under-water experience. 
       - Created native plugins to expose Android/iOS controls directly in Unity, allowing users to interact with through a familiar interface. 
       - Optimized application performance, shaders and assets for phone environments (i.e., 3GB ram). 
@@ -75,10 +76,10 @@ work:
       - Led a team of 5 assistants, driving collaboration initiatives among students and teaching assistants from diverse cultural backgrounds. 
   
   - company: "AgroQ O.E."
-    position: "Systems and Cloud Engineer"
+    position: "Software Engineer and IT"
     website: "https://agroq.gr"
-    startDate: "2015-02-01"
-    endDate: "2022-08-01"
+    startDate: "2015-06-01"
+    endDate: "2018-04-01"
     summary: >
       Software engineer and IT
     highlights:
