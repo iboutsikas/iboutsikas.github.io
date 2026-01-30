@@ -53,6 +53,8 @@ menu:
     url:               /games/
   - title:             Projects
     url:               /projects/
+  - title:             CapstoneED Posts
+    url:               /capstoneed/
   - title:             Publications
     url:               /publications/
   - title:             Résumé
@@ -186,7 +188,7 @@ kramdown:
 
 hydejack:
   # Configure the order of complementary content on blog posts
-  post_addons:         [about, newsletter, related, random, comments]
+  post_addons:         [about, newsletter, related, comments]
 
   # Configure the order of complementary content on project pages
   project_addons:      [about, newsletter, other, comments]

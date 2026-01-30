@@ -1,8 +1,10 @@
 ---
 layout: post
-title: "Containerizing the API"
+title: "Putting the Rails on Docker: Containerizing a Rails API"
 image:
   path: /assets/img/capstoneed/rails_on_docker.png
+related_posts:
+    - "capstoneed/_posts/2026-1-30-Containerizing-Angular.md"
 ---
 
 * toc goes here
