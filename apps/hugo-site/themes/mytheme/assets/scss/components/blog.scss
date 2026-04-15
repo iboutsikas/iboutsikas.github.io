@@ -1,0 +1,303 @@
+// ── Post single page ──────────────────────────────────────────────────────────
+
+.post-single {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+}
+
+.post-single__header {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.post-single__title {
+  font-size: 1.9rem;
+  line-height: 1.25;
+  margin: 0 0 0.75rem;
+  color: var(--heading-color);
+}
+
+.post-single__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+}
+
+.post-single__date {
+  font-size: 0.85rem;
+  color: var(--muted-color);
+}
+
+.post-single__terms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+// ── Taxonomy term badges ──────────────────────────────────────────────────────
+
+.post-term {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.55rem;
+  border-radius: 3px;
+  text-decoration: none;
+  transition: background var(--transition-speed), color var(--transition-speed);
+
+  &--category {
+    background: color-mix(in srgb, var(--accent-color) 12%, transparent);
+    color: var(--accent-color);
+    border: 1px solid color-mix(in srgb, var(--accent-color) 30%, transparent);
+
+    &:hover {
+      background: color-mix(in srgb, var(--accent-color) 22%, transparent);
+      text-decoration: none;
+    }
+  }
+
+  &--tag {
+    background: var(--card-bg);
+    color: var(--muted-color);
+    border: 1px solid var(--card-border);
+
+    &:hover {
+      color: var(--accent-color);
+      border-color: var(--accent-color);
+      text-decoration: none;
+    }
+  }
+}
+
+// ── Table of contents ─────────────────────────────────────────────────────────
+
+.post-toc {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-left: 3px solid var(--accent-color);
+  border-radius: 4px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+}
+
+.post-toc__label {
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted-color);
+  margin: 0 0 0.6rem;
+}
+
+.post-toc {
+  nav {
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      ul {
+        padding-left: 1rem;
+        margin-top: 0.2rem;
+      }
+    }
+
+    li {
+      margin: 0.25rem 0;
+    }
+
+    a {
+      color: var(--body-color);
+      text-decoration: none;
+      font-size: 0.88rem;
+      line-height: 1.5;
+
+      &:hover {
+        color: var(--accent-color);
+      }
+    }
+  }
+}
+
+// ── Post body prose ───────────────────────────────────────────────────────────
+
+.post-single__body {
+  line-height: 1.8;
+
+  h1, h2, h3, h4 {
+    color: var(--heading-color);
+  }
+
+  h2 {
+    margin-top: 2.5rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    display: block;
+    margin: 1.5rem auto;
+  }
+
+  video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1.5rem auto;
+    border-radius: 4px;
+  }
+
+  code {
+    font-family: var(--font-family-mono);
+    font-size: 0.875em;
+    background: var(--code-bg);
+    padding: 0.15em 0.35em;
+    border-radius: 3px;
+  }
+
+  pre {
+    background: var(--code-bg);
+    padding: 1rem 1.25rem;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+
+    code {
+      background: none;
+      padding: 0;
+      font-size: 0.875rem;
+    }
+  }
+
+  blockquote {
+    border-left: 3px solid var(--accent-color);
+    margin: 1.5rem 0;
+    padding: 0.5rem 1rem;
+    color: var(--muted-color);
+
+    p { margin: 0; }
+  }
+
+  ul, ol {
+    padding-left: 1.5rem;
+    margin: 0.75rem 0;
+
+    li {
+      margin: 0.3rem 0;
+    }
+  }
+}
+
+// ── Note callout ──────────────────────────────────────────────────────────────
+
+.callout {
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  margin: 1.25rem 0;
+  font-size: 0.92rem;
+
+  p {
+    margin: 0;
+  }
+
+  &--note {
+    background: color-mix(in srgb, var(--accent-color) 8%, var(--card-bg));
+    border: 1px solid color-mix(in srgb, var(--accent-color) 25%, transparent);
+    border-left: 3px solid var(--accent-color);
+    color: var(--body-color);
+
+    &::before {
+      content: "Note";
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-color);
+      margin-bottom: 0.3rem;
+    }
+  }
+}
+
+// ── Figure caption ────────────────────────────────────────────────────────────
+
+.figcaption {
+  font-size: 0.82rem;
+  color: var(--muted-color);
+  text-align: center;
+  margin-top: -0.75rem;
+  margin-bottom: 1.5rem;
+  font-style: italic;
+
+  p {
+    margin: 0;
+  }
+}
+
+// ── Post card tags row ────────────────────────────────────────────────────────
+
+.post-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-bottom: 0.4rem;
+}
+
+// ── Taxonomy grid (list of all categories/tags) ───────────────────────────────
+
+.taxonomy-grid {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.taxonomy-card {
+  &__link {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 1.25rem;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 6px;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color var(--transition-speed);
+
+    &:hover {
+      border-color: var(--accent-color);
+      text-decoration: none;
+    }
+  }
+
+  &__name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--heading-color);
+  }
+
+  &__count {
+    font-size: 0.78rem;
+    color: var(--accent-color);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+
+  &__desc {
+    font-size: 0.85rem;
+    color: var(--muted-color);
+    line-height: 1.5;
+    margin-top: 0.25rem;
+  }
+}

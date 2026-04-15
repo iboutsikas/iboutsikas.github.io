@@ -1,0 +1,44 @@
+{{ define "main" }}
+<article class="post-single">
+
+  <header class="post-single__header">
+    <h1 class="post-single__title">{{ .Title }}</h1>
+
+    <div class="post-single__meta">
+      {{ if not .Date.IsZero }}
+      <time class="post-single__date" datetime="{{ .Date | time.Format `2006-01-02T15:04:05-07:00` }}">
+        {{ .Date | time.Format ":date_long" }}
+      </time>
+      {{ end }}
+
+      {{ with .GetTerms "categories" }}
+      <nav class="post-single__terms" aria-label="Categories">
+        {{ range . }}
+        <a class="post-term post-term--category" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+        {{ end }}
+      </nav>
+      {{ end }}
+
+      {{ with .GetTerms "tags" }}
+      <nav class="post-single__terms" aria-label="Tags">
+        {{ range . }}
+        <a class="post-term post-term--tag" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+        {{ end }}
+      </nav>
+      {{ end }}
+    </div>
+  </header>
+
+  {{ with .TableOfContents }}
+  <nav class="post-toc" aria-label="Table of contents">
+    <p class="post-toc__label">Contents</p>
+    {{ . }}
+  </nav>
+  {{ end }}
+
+  <div class="post-single__body">
+    {{ .Content }}
+  </div>
+
+</article>
+{{ end }}

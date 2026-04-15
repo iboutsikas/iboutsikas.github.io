@@ -1,0 +1,23 @@
+{{ define "main" }}
+<div class="page-content">
+  <header class="page-header">
+    <h1 class="page-title">{{ .Title }}</h1>
+    {{ with .Content }}<div class="page-intro">{{ . }}</div>{{ end }}
+  </header>
+
+  <ul class="taxonomy-grid" aria-label="{{ .Title }}">
+    {{ range .Data.Terms.Alphabetical }}
+    {{ $term := .Page }}
+    <li class="taxonomy-card">
+      <a class="taxonomy-card__link" href="{{ $term.RelPermalink }}">
+        <span class="taxonomy-card__name">{{ $term.LinkTitle }}</span>
+        <span class="taxonomy-card__count">{{ .Count }} {{ if eq .Count 1 }}post{{ else }}posts{{ end }}</span>
+        {{ with $term.Params.description }}
+        <span class="taxonomy-card__desc">{{ . }}</span>
+        {{ end }}
+      </a>
+    </li>
+    {{ end }}
+  </ul>
+</div>
+{{ end }}

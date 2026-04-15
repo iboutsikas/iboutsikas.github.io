@@ -3,6 +3,18 @@ locale = 'en-us'
 title = 'My New Hugo Project'
 theme = 'mytheme'
 
+[taxonomies]
+  category = "categories"
+  tag      = "tags"
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[markup.tableOfContents]
+  startLevel = 2
+  endLevel   = 4
+  ordered    = false
+
 [module]
   # Keep default mounts so theme/content/static still resolve normally
   [[module.mounts]]
