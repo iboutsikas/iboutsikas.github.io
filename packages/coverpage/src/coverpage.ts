@@ -331,8 +331,6 @@ export class IbCoverpage extends LitElement {
     }
 
     .cover {
-      background-color: white;
-      box-shadow: 0 0 10px rgba(0,0,0,0.5);
       pointer-events: auto;
       overflow: hidden;
       touch-action: none;
