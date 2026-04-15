@@ -1,4 +1,21 @@
+// ── Breakpoints ──────────────────────────────────────────
+$breakpoint-1: 42em;
+$breakpoint-2: 54em;
+$breakpoint-3: 64em;
+$breakpoint-4: 72em;
+$breakpoint-5: 86em;
+$bp-dynamic:    104rem;
+$bp-font-large: 124em;
+
+
 :root {
+  // Breakpoints
+  --breakpoint-1: #{$breakpoint-1};
+  --breakpoint-2: #{$breakpoint-2};
+  --breakpoint-3: #{$breakpoint-3};
+  --breakpoint-4: #{$breakpoint-4};
+  --breakpoint-5: #{$breakpoint-5};
+
   // Brand colors
   --accent-color: rgb(215, 109, 255);
   --theme-color: rgb(25, 55, 71);
@@ -25,9 +42,17 @@
 
   // Typography
   --font-family-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-family-heading: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-family-mono: "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", monospace;
   --font-size-base: 1rem;
-  --line-height-base: 1.7;
+  --line-height-base: 1.75;
+  --font-weight: 400;
+  --font-weight-bold: 700;
+  --font-weight-heading: 900;
+
+  // UI chrome colors (used by typography)
+  --gray: #777;
+  --menu-text: #bbb;
 
   // Layout
   --content-max-width: 800px;
