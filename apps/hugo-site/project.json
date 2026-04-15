@@ -1,0 +1,23 @@
+{
+  "name": "hugo-site",
+  "implicitDependencies": ["@iboutsikas/coverpage"],
+  "targets": {
+    "serve": {
+      "executor": "nx:run-commands",
+      "dependsOn": [{ "projects": "@iboutsikas/coverpage", "target": "build" }],
+      "options": {
+        "command": "hugo server",
+        "cwd": "{projectRoot}"
+      }
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "dependsOn": [{ "projects": "@iboutsikas/coverpage", "target": "build" }],
+      "options": {
+        "command": "hugo",
+        "cwd": "{projectRoot}"
+      },
+      "outputs": ["{projectRoot}/public"]
+    }
+  }
+}
