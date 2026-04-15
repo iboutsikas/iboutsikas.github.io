@@ -1,0 +1,335 @@
+// ── Resume page ───────────────────────────────────────────────────────────────
+
+.resume {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding-bottom: 3rem;
+}
+
+// ── Header ────────────────────────────────────────────────────────────────────
+
+.resume-header {
+  padding-bottom: 1.5rem;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.resume-identity {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.resume-photo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.resume-identity-text {
+  flex: 1;
+}
+
+.resume-name {
+  font-size: 1.75rem;
+  font-weight: var(--font-weight-heading);
+  color: var(--heading-color);
+  margin: 0 0 0.2rem;
+  line-height: 1.2;
+}
+
+.resume-label {
+  font-size: 1rem;
+  color: var(--muted-color);
+  margin: 0;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+.resume-summary {
+  color: var(--body-color);
+  font-size: 0.975rem;
+  line-height: 1.7;
+  margin: 0 0 1.25rem;
+}
+
+.resume-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.resume-profiles {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.resume-profile-link {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted-color);
+  border: 1px solid var(--border-color);
+  padding: 0.25rem 0.65rem;
+  border-radius: 3px;
+  transition: color var(--transition-speed), border-color var(--transition-speed);
+
+  &:hover {
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+    text-decoration: none;
+  }
+}
+
+.resume-print-btn {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--body-bg);
+  background: var(--accent-color);
+  border: none;
+  padding: 0.3rem 0.8rem;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: opacity var(--transition-speed);
+
+  &:hover {
+    opacity: 0.85;
+  }
+
+  @media print {
+    display: none;
+  }
+}
+
+// ── Two-column body ───────────────────────────────────────────────────────────
+
+.resume-body {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+
+  @media (min-width: 54em) {
+    grid-template-columns: 1fr 260px;
+    gap: 2.5rem;
+    align-items: start;
+  }
+}
+
+// ── Sections ──────────────────────────────────────────────────────────────────
+
+.resume-section {
+  margin-bottom: 2.5rem;
+}
+
+.resume-section-title {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-color);
+  margin: 0 0 1rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+// ── Entries (work, education, publications) ───────────────────────────────────
+
+.resume-entry {
+  margin-bottom: 1.75rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &--compact {
+    margin-bottom: 1.1rem;
+  }
+}
+
+.resume-entry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.resume-entry-title-group {
+  flex: 1;
+  min-width: 0;
+}
+
+.resume-entry-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--heading-color);
+  margin: 0 0 0.15rem;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover {
+      color: var(--accent-color);
+    }
+  }
+}
+
+.resume-entry-org {
+  font-size: 0.9rem;
+  color: var(--muted-color);
+  margin: 0;
+
+  a {
+    color: var(--muted-color);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--accent-color);
+    }
+  }
+
+  &--small {
+    font-size: 0.82rem;
+  }
+}
+
+.resume-entry-dates {
+  font-size: 0.8rem;
+  color: var(--muted-color);
+  white-space: nowrap;
+  margin: 0;
+  flex-shrink: 0;
+  padding-top: 0.1rem;
+}
+
+.resume-entry-summary {
+  font-size: 0.9rem;
+  color: var(--body-color);
+  margin: 0 0 0.6rem;
+  line-height: 1.65;
+}
+
+.resume-highlights {
+  margin: 0;
+  padding-left: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+
+  li {
+    font-size: 0.88rem;
+    color: var(--body-color);
+    line-height: 1.6;
+  }
+}
+
+// ── Languages ─────────────────────────────────────────────────────────────────
+
+.resume-languages {
+  margin: 0;
+}
+
+.resume-language-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.3rem 0;
+  border-bottom: 1px solid var(--border-color);
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.resume-language-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--heading-color);
+  margin: 0;
+
+  &::after {
+    content: none;
+  }
+}
+
+.resume-language-fluency {
+  font-size: 0.8rem;
+  color: var(--muted-color);
+  margin: 0;
+}
+
+// ── Skills ────────────────────────────────────────────────────────────────────
+
+.resume-skill-group {
+  margin-bottom: 1.1rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.resume-skill-name {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--heading-color);
+  margin: 0 0 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.resume-skill-tags {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+
+  li {
+    font-size: 0.78rem;
+    padding: 0.2rem 0.55rem;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 3px;
+    color: var(--body-color);
+  }
+}
+
+// ── Print styles ──────────────────────────────────────────────────────────────
+
+@media print {
+  .resume-header {
+    margin-bottom: 1.25rem;
+    padding-bottom: 1rem;
+  }
+
+  .resume-body {
+    grid-template-columns: 1fr 220px;
+    gap: 1.5rem;
+  }
+
+  .resume-section {
+    margin-bottom: 1.5rem;
+  }
+
+  .resume-entry {
+    margin-bottom: 1.25rem;
+  }
+
+  .resume-highlights li {
+    font-size: 0.82rem;
+  }
+}

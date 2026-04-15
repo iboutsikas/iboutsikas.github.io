@@ -1,0 +1,136 @@
+basics:
+  name: "Ioannis Boutsikas"
+  label: "Software Engineer"
+  picture: "https://www.iboutsikas.me/assets/img/resume-photo-sm.png"
+  website: "https://iboutsikas.me"
+  summary: >
+    Software engineer with experience across multiple tech stacks. Passionate about game
+    and game engine development. Knowledgeable in DirectX 12 and game engines like Unity
+    and Unreal. Previous work on web development. Competent in intercultural and
+    cross-discipline environments.
+  profiles:
+    - network: "GitHub"
+      username: "iboutsikas"
+      url: "https://github.com/iboutsikas"
+    - network: "LinkedIn"
+      username: "Ioannis Boutsikas"
+      url: "https://linkedin.com/in/ioannis-boutsikas"
+
+work:
+  - company: "Oxide Games"
+    position: "Software Engineer"
+    website: "https://www.oxidegames.com/"
+    startDate: "2023-05-31"
+    endDate: "2025-01-31"
+    summary: >
+      Software engineer on the UI and Graphics teams for
+      <a href="https://www.arahistoryuntold.com">Ara: History Untold</a>, a
+      historical grand strategy game published by Microsoft and XBOX.
+    highlights:
+      - Part of a cross-disciplinary team to audit and standardize the game's UI.
+      - Designed and implemented a library of custom UI components in a proprietary framework to enforce standardization.
+      - Created data-driven tools for the UI framework allowing artists to create dynamic assets, eliminating hand-authored trivial work.
+      - Added in-engine tools (UI Inspector, in-game decoration asset picker) giving artists more control and debugging information.
+      - Designed and implemented graphics tech for the nuclear weapons feature (shaders + system logic).
+      - Maintained the multi-threaded city renderer and procedural decoration system through visual improvements and bug fixes.
+
+  - company: "Lisa Moren, LLC"
+    position: "Unity Software Engineer"
+    website: "https://www.lisamoren.com/underthebay"
+    startDate: "2020-06-01"
+    endDate: "2022-08-01"
+    summary: >
+      Under the Bay is a mobile, educational AR experience about the Chesapeake Bay.
+      Users interact with and learn about microorganisms living in the Bay, with
+      real-time water quality data guiding the experience. Published on iOS and Android.
+    highlights:
+      - Integrated biologist expertise with visual artist vision to develop a 3D augmented reality experience.
+      - Architected a system allowing artists to orchestrate hundreds of micro-organisms and bind behaviors to water quality metrics.
+      - Developed an Android and iOS application in Unity (C#) providing an immersive under-water experience.
+      - Created native plugins to expose Android/iOS controls directly in Unity through a familiar interface.
+      - Optimized application performance, shaders, and assets for phone environments (3 GB RAM).
+      - Deployed an ASP.NET REST API on GCP to provide real-time water quality data from 10 stations.
+
+  - company: "University of Maryland, Baltimore County"
+    position: "Graphics and OS Teaching Assistant"
+    startDate: "2018-08-01"
+    endDate: "2023-05-15"
+    summary: >
+      Graduate assistant for Operating Systems, Graphics for Games, and Computer Graphics.
+    highlights:
+      - Developed projects in C++ and Unreal Engine; held lectures on GPU hardware and architecture.
+      - Hosted tutoring sections introducing modern OpenGL to students.
+      - Developed kernel and user-space projects; held lectures on robust C and kernel programming.
+      - Created GUI tools in Angular + Electron to introduce students to Linux and kernel development.
+      - Designed interactive, responsive websites with course content to facilitate mobile device usage.
+      - Led a team of 5 assistants, driving collaboration across diverse cultural backgrounds.
+
+  - company: "AgroQ O.E."
+    position: "Software Engineer and IT"
+    website: "https://agroq.gr"
+    startDate: "2015-06-01"
+    endDate: "2018-04-01"
+    summary: >
+      Software engineer and IT for an agricultural company.
+    highlights:
+      - Planned, deployed, and managed small-scale on-premises infrastructure based on Proxmox.
+      - Containerized and deployed existing applications to private infrastructure.
+      - Developed internal websites, tools, and knowledge bases using .NET and Angular.
+
+education:
+  - institution: "University of Maryland, Baltimore County"
+    area: "Computer Science"
+    studyType: "MSc"
+    startDate: "2018-08-01"
+    endDate: "2023-05-15"
+  - institution: "The University of Sheffield"
+    area: "Computer Science"
+    studyType: "Bachelor"
+    startDate: "2014-10-01"
+    endDate: "2017-01-01"
+
+publications:
+  - name: "MonteMutacon"
+    authors: "Boutsikas, J., Eren, M. E., Varga, C. K., Raff, E., Matuszek, C., & Nicholas, C."
+    releaseDate: "2021-07-13"
+    url: "https://github.com/UMBC-DREAM-Lab/montemutacon"
+    summary: >
+      Machine learning library for generating adversarial malware samples used to train
+      machine-learning-based anti-virus systems.
+
+skills:
+  - name: "Graphics APIs"
+    keywords:
+      - "DirectX 12"
+      - "OpenGL"
+  - name: "Game Engines"
+    keywords:
+      - "Unity"
+      - "Unreal Engine"
+      - "Proprietary Engines (Nitrous)"
+  - name: "Programming Languages"
+    keywords:
+      - "C"
+      - "C++"
+      - "C#"
+      - "JavaScript"
+      - "Python"
+  - name: "Cloud / Virtualization"
+    keywords:
+      - "Proxmox"
+      - "Docker"
+      - "Kubernetes"
+  - name: "Web Development"
+    keywords:
+      - "HTML"
+      - "CSS"
+      - "Angular"
+      - "Electron.js"
+      - "dotnet"
+      - "ASP.NET Core"
+
+languages:
+  - language: "English"
+    fluency: "Native speaker"
+  - language: "Greek"
+    fluency: "Native speaker"

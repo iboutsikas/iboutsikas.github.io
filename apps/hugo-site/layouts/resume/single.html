@@ -1,0 +1,184 @@
+{{ define "main" }}
+{{ $r := site.Data.resume }}
+<article class="resume" aria-label="Résumé">
+
+  {{/* ── Header ─────────────────────────────────────────────────────── */}}
+  <header class="resume-header">
+    <div class="resume-identity">
+      {{ with $r.basics.picture }}
+      <img class="resume-photo" src="{{ . }}" alt="Photo of {{ $r.basics.name }}" width="96" height="96" loading="lazy">
+      {{ end }}
+      <div class="resume-identity-text">
+        <h1 class="resume-name">{{ $r.basics.name }}</h1>
+        <p class="resume-label">{{ $r.basics.label }}</p>
+      </div>
+    </div>
+
+    {{ with $r.basics.summary }}
+    <p class="resume-summary">{{ . }}</p>
+    {{ end }}
+
+    <div class="resume-header-actions">
+      {{ with $r.basics.profiles }}
+      <nav class="resume-profiles" aria-label="Online profiles">
+        {{ range . }}
+        <a class="resume-profile-link" href="{{ .url }}" target="_blank" rel="noopener noreferrer">{{ .network }}</a>
+        {{ end }}
+      </nav>
+      {{ end }}
+      <button class="resume-print-btn" onclick="window.print()" aria-label="Print résumé">
+        Print
+      </button>
+    </div>
+  </header>
+
+  {{/* ── Body: two columns ──────────────────────────────────────────── */}}
+  <div class="resume-body">
+
+    {{/* ── Left column ─────────────────────────────────────────── */}}
+    <div class="resume-col resume-col--main">
+
+      {{/* Work */}}
+      {{ with $r.work }}
+      <section class="resume-section" aria-labelledby="resume-work-heading">
+        <h2 id="resume-work-heading" class="resume-section-title">Experience</h2>
+        {{ range . }}
+        <div class="resume-entry">
+          <div class="resume-entry-header">
+            <div class="resume-entry-title-group">
+              <h3 class="resume-entry-title">{{ .position }}</h3>
+              <p class="resume-entry-org">
+                {{ if .website }}
+                <a href="{{ .website }}" target="_blank" rel="noopener noreferrer">{{ .company }}</a>
+                {{ else }}
+                {{ .company }}
+                {{ end }}
+              </p>
+            </div>
+            <p class="resume-entry-dates">
+              <time datetime="{{ .startDate }}">{{ dateFormat "Jan 2006" .startDate }}</time>
+              &ndash;
+              {{ if .endDate }}
+              <time datetime="{{ .endDate }}">{{ dateFormat "Jan 2006" .endDate }}</time>
+              {{ else }}
+              <span>Present</span>
+              {{ end }}
+            </p>
+          </div>
+          {{ with .summary }}
+          <p class="resume-entry-summary">{{ . | safeHTML }}</p>
+          {{ end }}
+          {{ with .highlights }}
+          <ul class="resume-highlights">
+            {{ range . }}
+            <li>{{ . }}</li>
+            {{ end }}
+          </ul>
+          {{ end }}
+        </div>
+        {{ end }}
+      </section>
+      {{ end }}
+
+      {{/* Education */}}
+      {{ with $r.education }}
+      <section class="resume-section" aria-labelledby="resume-education-heading">
+        <h2 id="resume-education-heading" class="resume-section-title">Education</h2>
+        {{ range . }}
+        <div class="resume-entry resume-entry--compact">
+          <div class="resume-entry-header">
+            <div class="resume-entry-title-group">
+              <h3 class="resume-entry-title">{{ .studyType }} in {{ .area }}</h3>
+              <p class="resume-entry-org">{{ .institution }}</p>
+            </div>
+            <p class="resume-entry-dates">
+              <time datetime="{{ .startDate }}">{{ dateFormat "2006" .startDate }}</time>
+              &ndash;
+              {{ if .endDate }}
+              <time datetime="{{ .endDate }}">{{ dateFormat "2006" .endDate }}</time>
+              {{ else }}
+              <span>Present</span>
+              {{ end }}
+            </p>
+          </div>
+        </div>
+        {{ end }}
+      </section>
+      {{ end }}
+
+      {{/* Publications */}}
+      {{ with $r.publications }}
+      <section class="resume-section" aria-labelledby="resume-publications-heading">
+        <h2 id="resume-publications-heading" class="resume-section-title">Publications</h2>
+        {{ range . }}
+        <div class="resume-entry resume-entry--compact">
+          <div class="resume-entry-header">
+            <div class="resume-entry-title-group">
+              <h3 class="resume-entry-title">
+                {{ if .url }}
+                <a href="{{ .url }}" target="_blank" rel="noopener noreferrer">{{ .name }}</a>
+                {{ else }}
+                {{ .name }}
+                {{ end }}
+              </h3>
+              {{ with .authors }}
+              <p class="resume-entry-org resume-entry-org--small">{{ . }}</p>
+              {{ end }}
+            </div>
+            {{ with .releaseDate }}
+            <p class="resume-entry-dates">
+              <time datetime="{{ . }}">{{ dateFormat "Jan 2006" . }}</time>
+            </p>
+            {{ end }}
+          </div>
+          {{ with .summary }}
+          <p class="resume-entry-summary">{{ . }}</p>
+          {{ end }}
+        </div>
+        {{ end }}
+      </section>
+      {{ end }}
+
+    </div>{{/* /resume-col--main */}}
+
+    {{/* ── Right column ─────────────────────────────────────────── */}}
+    <div class="resume-col resume-col--side">
+
+      {{/* Languages */}}
+      {{ with $r.languages }}
+      <section class="resume-section" aria-labelledby="resume-languages-heading">
+        <h2 id="resume-languages-heading" class="resume-section-title">Languages</h2>
+        <dl class="resume-languages">
+          {{ range . }}
+          <div class="resume-language-row">
+            <dt class="resume-language-name">{{ .language }}</dt>
+            <dd class="resume-language-fluency">{{ .fluency }}</dd>
+          </div>
+          {{ end }}
+        </dl>
+      </section>
+      {{ end }}
+
+      {{/* Skills */}}
+      {{ with $r.skills }}
+      <section class="resume-section" aria-labelledby="resume-skills-heading">
+        <h2 id="resume-skills-heading" class="resume-section-title">Skills</h2>
+        {{ range . }}
+        <div class="resume-skill-group">
+          <h3 class="resume-skill-name">{{ .name }}</h3>
+          <ul class="resume-skill-tags">
+            {{ range .keywords }}
+            <li>{{ . }}</li>
+            {{ end }}
+          </ul>
+        </div>
+        {{ end }}
+      </section>
+      {{ end }}
+
+    </div>{{/* /resume-col--side */}}
+
+  </div>{{/* /resume-body */}}
+
+</article>
+{{ end }}
