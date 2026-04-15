@@ -1,5 +1,5 @@
-@import "components/header.css";
-@import "components/footer.css";
+@use "components/header";
+@use "components/footer";
 
 body {
   color: #222;
@@ -31,8 +31,8 @@ a {
 
 @media (min-width: 768px) {
   #_coverpage {
-      --cover-peek-size: 250px;
-      --cover-width: 250px;
+    --cover-peek-size: 250px;
+    --cover-width: 250px;
   }
 
   #_content {

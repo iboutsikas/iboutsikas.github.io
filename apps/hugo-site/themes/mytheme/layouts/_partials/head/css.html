@@ -1,9 +1,9 @@
-{{- with resources.Get "css/main.css" }}
+{{- with resources.Get "css/main.scss" }}
   {{- $opts := dict
-    "minify" (cond hugo.IsDevelopment false true)
-    "sourceMap" (cond hugo.IsDevelopment "linked" "none")
+    "outputStyle" (cond hugo.IsDevelopment "expanded" "compressed")
+    "enableSourceMap" hugo.IsDevelopment
   }}
-  {{- with . | css.Build $opts }}
+  {{- with . | css.Sass $opts }}
     {{- if hugo.IsDevelopment }}
       <link rel="stylesheet" href="{{ .RelPermalink }}">
     {{- else }}
