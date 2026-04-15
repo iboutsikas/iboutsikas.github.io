@@ -16,31 +16,18 @@ $bp-font-large: 124em;
   --breakpoint-4: #{$breakpoint-4};
   --breakpoint-5: #{$breakpoint-5};
 
-  // Brand colors
-  --accent-color: rgb(215, 109, 255);
+  // Brand colors — theme-invariant
+  --accent-color: rgb(177, 61, 219);
   --theme-color: rgb(25, 55, 71);
 
-  // Text colors
-  --body-color: #333;
-  --muted-color: #666;
-  --heading-color: #111;
-  --link-color: var(--accent-color);
-
-  // Background
-  --body-bg: #fff;
-  --code-bg: #f5f5f5;
-  --card-bg: #f9f9f9;
-  --card-border: #e8e8e8;
-  --border-color: #e0e0e0;
-
-  // Sidebar — px so the coverpage component can read it
+  // Sidebar — always dark, looks good in both themes
   --sidebar-bg: var(--theme-color);
   --sidebar-text: rgba(255, 255, 255, 1.0);
   --sidebar-link: #fff;
   --sidebar-link-hover: var(--accent-color);
   --sidebar-width: 280px;
 
-  // Typography
+  // Typography — theme-invariant
   --font-family-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-family-heading: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-family-mono: "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", monospace;
@@ -50,14 +37,51 @@ $bp-font-large: 124em;
   --font-weight-bold: 700;
   --font-weight-heading: 900;
 
-  // UI chrome colors (used by typography)
-  --gray: #777;
-  --menu-text: #bbb;
-
-  // Layout
-  --content-max-width: 800px;
+  // Layout — theme-invariant
+  --content-max-width: 950px;
   --content-padding: 2rem 1.5rem;
 
   // Transitions
   --transition-speed: 0.2s;
+
+  // ── Light theme tokens (default) ────────────────────────
+  --link-color: var(--accent-color);
+  --body-color: #333;
+  --muted-color: #666;
+  --heading-color: #111;
+  --body-bg: #fff;
+  --code-bg: #f5f5f5;
+  --card-bg: #f9f9f9;
+  --card-border: #e8e8e8;
+  --border-color: #e0e0e0;
+  --gray: #777;
+  --menu-text: #bbb;
+}
+
+// ── Dark theme token overrides ────────────────────────────
+// Applied when: OS prefers dark (and no explicit override) OR data-theme="dark"
+@mixin dark-theme-tokens {
+  --link-color: var(--accent-color);
+  --body-color: #c8d6e4;
+  --muted-color: #95b2d2;
+  --heading-color: #edf2f7;
+  --body-bg: #2a2d2f;
+  --code-bg: #182435;
+  --card-bg: #162030;
+  --card-border: #253a50;
+  --border-color: #8c1b9b;
+  --gray: #8899aa;
+  --menu-text: #6a808f;
+}
+
+// Respect OS preference when user hasn't chosen explicitly
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    @include dark-theme-tokens;
+  }
+}
+
+// Explicit manual override wins regardless of OS preference
+[data-theme="dark"] {
+  @include dark-theme-tokens;
 }

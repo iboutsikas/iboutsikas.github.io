@@ -3,5 +3,17 @@
 <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}</title>
 <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Summary }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}{{ end }}">
 <meta name="theme-color" content="{{ site.Params.theme_color | default `#193747` }}">
+{{/* Inline script: apply stored/OS theme before first paint to prevent flash */}}
+<script>
+(function () {
+  var stored = null;
+  try { stored = localStorage.getItem('theme'); } catch (_) {}
+  var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  var theme = stored === 'dark' || stored === 'light'
+    ? stored
+    : (prefersDark ? 'dark' : 'light');
+  document.documentElement.setAttribute('data-theme', theme);
+})();
+</script>
 {{ partialCached "head/css.html" . }}
 {{ partialCached "head/js.html" . }}

@@ -166,3 +166,49 @@
     text-decoration-color: var(--sidebar-link-hover);
   }
 }
+
+// ── Theme toggle ──────────────────────────────────────────────────────────────
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  margin-top: 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: color var(--transition-speed), border-color var(--transition-speed), background var(--transition-speed);
+  flex-shrink: 0;
+
+  &:hover {
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+  }
+
+  // Only one icon visible at a time
+  .theme-toggle__icon {
+    display: flex;
+    font-size: 1.1rem;
+    line-height: 1;
+  }
+
+  .theme-toggle__icon--dark  { display: flex; }  // shown in light mode (click → go dark)
+  .theme-toggle__icon--light { display: none; }  // shown in dark mode (click → go light)
+}
+
+// In dark mode, swap which icon is visible
+[data-theme="dark"] .theme-toggle {
+  .theme-toggle__icon--dark  { display: none; }
+  .theme-toggle__icon--light { display: flex; }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-toggle {
+    .theme-toggle__icon--dark  { display: none; }
+    .theme-toggle__icon--light { display: flex; }
+  }
+}
