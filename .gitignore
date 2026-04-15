@@ -1,0 +1,10 @@
+node_modules
+
+
+
+.nx/cache
+.nx/workspace-data
+vite.config.*.timestamp*
+.nx/polygraph
+.claude/worktrees
+.claude/settings.local.json
