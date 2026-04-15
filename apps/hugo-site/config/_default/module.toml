@@ -1,0 +1,26 @@
+# Keep default mounts so theme/content/static still resolve normally
+[[module.mounts]]
+  source = "archetypes"
+  target = "archetypes"
+[[module.mounts]]
+  source = "assets"
+  target = "assets"
+[[module.mounts]]
+  source = "content"
+  target = "content"
+[[module.mounts]]
+  source = "data"
+  target = "data"
+[[module.mounts]]
+  source = "i18n"
+  target = "i18n"
+[[module.mounts]]
+  source = "layouts"
+  target = "layouts"
+[[module.mounts]]
+  source = "static"
+  target = "static"
+# Mount coverpage build output — always reads latest dist
+[[module.mounts]]
+  source = "../../packages/coverpage/dist"
+  target = "static/coverpage"

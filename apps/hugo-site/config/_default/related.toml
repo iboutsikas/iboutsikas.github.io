@@ -1,0 +1,19 @@
+threshold    = 80
+includeNewer = true
+toLower      = false
+
+# Weight categories heavily — they define topic clusters
+[[indices]]
+  name   = "categories"
+  weight = 100
+
+# Tags provide secondary grouping (e.g., game-specific tags)
+[[indices]]
+  name   = "tags"
+  weight = 80
+
+# Temporal proximity as a tiebreaker
+[[indices]]
+  name    = "date"
+  weight  = 10
+  pattern = "2006"

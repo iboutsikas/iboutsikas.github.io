@@ -1,0 +1,26 @@
+[goldmark]
+  [goldmark.renderer]
+    # Allow raw HTML in Markdown (needed for HTML blocks in posts)
+    unsafe = true
+
+  [goldmark.extensions]
+    # Passthrough extension: preserves $...$ and $$...$$ blocks for KaTeX
+    [goldmark.extensions.passthrough]
+      enable = true
+      [goldmark.extensions.passthrough.delimiters]
+        block  = [["$$", "$$"]]
+        inline = [["$", "$"]]
+
+  [goldmark.parser]
+    [goldmark.parser.attribute]
+      # Enables {.class} syntax for adding classes to elements
+      block = true
+
+[highlight]
+  # Class-based highlighting (required for dark mode CSS)
+  noClasses   = false
+  style       = "github"
+  codeFences  = true
+  lineNos     = false
+  guessSyntax = true
+  tabWidth    = 2

@@ -1,0 +1,29 @@
+[[main]]
+  name   = "Games"
+  url    = "/games/"
+  weight = 10
+
+[[main]]
+  name   = "Projects"
+  url    = "/projects/"
+  weight = 20
+
+[[main]]
+  name   = "Blog"
+  url    = "/posts/"
+  weight = 30
+
+[[main]]
+  name   = "CapstoneED"
+  url    = "/categories/capstoneed/"
+  weight = 40
+
+[[main]]
+  name   = "Publications"
+  url    = "/publications/"
+  weight = 50
+
+[[main]]
+  name   = "Résumé"
+  url    = "/resume/"
+  weight = 60

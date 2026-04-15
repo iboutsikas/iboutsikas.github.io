@@ -1,0 +1,33 @@
+sidebar_bg   = "/img/sidebar-bg.png"
+logo         = "/img/logo.png"
+accent_color = "rgb(215,109,255)"
+theme_color  = "rgb(25,55,71)"
+tagline      = "Software engineer with focus on game engine development and real-time graphics."
+# Description (used as default OG description)
+description = "Ioannis Boutsikas | Software Engineering portfolio - Showcasing my work in game and web development as well as encounters with Unreal Engine."
+
+# Copyright
+copyright = "© 2025. All rights reserved."
+
+# Author / identity
+[author]
+  name   = "Ioannis Boutsikas"
+  email  = "mgioanni@outlook.com"
+  avatar = "/img/logo.png"
+  about  = "Ioannis is a software engineer with focus in real-time rendering. He has also done a lot of work in web development and cloud platforms. Currently working on his own rendering engine."
+
+# Social links (rendered in sidebar)
+[[social]]
+  title = "GitHub"
+  url   = "https://github.com/iboutsikas"
+  icon  = "github"
+
+[[social]]
+  title = "LinkedIn"
+  url   = "https://linkedin.com/in/ioannis-boutsikas"
+  icon  = "linkedin"
+
+[[social]]
+  title = "Email"
+  url   = "mailto:mgioanni@outlook.com"
+  icon  = "email"

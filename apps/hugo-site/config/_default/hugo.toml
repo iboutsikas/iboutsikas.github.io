@@ -1,0 +1,64 @@
+baseURL = "https://www.iboutsikas.me"
+languageCode = "en"
+title = "Ioannis Boutsikas"
+defaultContentLanguage = "en"
+
+# Enables .Lastmod from git history
+enableGitInfo = true
+
+# Hugo generates these automatically
+enableRobotsTXT = true
+
+# Timezone for date rendering
+timeZone = "America/New_York"
+
+# Pagination
+[pagination]
+  pagerSize = 10
+  path = "page"
+
+# Taxonomies (categories from posts, tags from games/posts)
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+
+# Output formats
+[outputs]
+  home     = ["HTML", "RSS"]
+  section  = ["HTML", "RSS"]
+  taxonomy = ["HTML"]
+  term     = ["HTML"]
+  page     = ["HTML"]
+
+# Permalinks — preserve existing URL structure
+[permalinks.page]
+  posts        = "/posts/:slug/"
+  projects     = "/projects/:slug/"
+  games        = "/games/:slug/"
+  publications = "/publications/:slug/"
+
+# Front matter date handling
+[frontmatter]
+  date    = ["date", "publishDate", "lastmod"]
+  lastmod = [":git", "lastmod", "date"]
+
+# Sitemap
+[sitemap]
+  changefreq = "weekly"
+  priority   = 0.5
+  filename   = "sitemap.xml"
+
+# Content defaults via cascade
+[[cascade]]
+  [cascade.params]
+    show_author  = true
+    show_related = true
+  [cascade.target]
+    path = "/posts/**"
+
+[[cascade]]
+  [cascade.params]
+    show_related = true
+  [cascade.target]
+    path = "/projects/**"
+    kind = "page"

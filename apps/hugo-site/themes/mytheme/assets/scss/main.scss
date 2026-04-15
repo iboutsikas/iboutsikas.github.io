@@ -1,5 +1,7 @@
-@use "components/header";
-@use "components/footer";
+@import "variables";
+@import "components/header";
+@import "components/footer";
+@import "components/sidebar";
 
 body {
   color: #222;
@@ -23,19 +25,18 @@ a {
 
   --cover-peek-size: 25px;
   --cover-width: 25px;
+
+  @media (min-width: 768px) {
+    --cover-peek-size: 250px;
+    --cover-width: 250px;
+  }
 }
 
 #_content {
   margin-left: 25px;
-}
 
-@media (min-width: 768px) {
-  #_coverpage {
-    --cover-peek-size: 250px;
-    --cover-width: 250px;
-  }
-
-  #_content {
+  @media (min-width: 768px) {
     margin-left: 250px;
   }
 }
+
