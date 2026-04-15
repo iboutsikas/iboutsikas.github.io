@@ -1,29 +1,35 @@
 <ib-coverpage id="_coverpage" side="left">
 
-    <div class="sidebar-container">
-        {{ with .Site.Params.sidebar_bg }}
-        <div class="sidebar-bg" style="background-image: url({{ . | relURL }})"></div>
+  <div class="sidebar-container">
+    {{ with .Site.Params.sidebar_bg }}
+    <div class="sidebar-bg" style="--sidebar-bg-image: url({{ . | relURL }})"></div>
+    {{ end }}
+
+    <div class="sidebar-sticky">
+      <div class="sidebar-about">
+        <a href="{{ .Site.BaseURL }}">
+          {{ with .Site.Params.logo }}
+          <img src="{{ . | relURL }}" class="avatar" alt="{{ $.Site.Title }}">
+          {{ end }}
+          <h1 class="site-title">{{ .Site.Title }}</h1>
+          {{ with .Site.Params.tagline }}
+          <p class="site-tagline">{{ . }}</p>
+          {{ end }}
+        </a>
+      </div>
+
+      <nav class="sidebar-nav" aria-label="Main navigation">
+        {{ partial "menu.html" . }}
+      </nav>
+
+      {{ with .Site.Params.social }}
+      <div class="sidebar-social">
+        {{ range . }}
+        <a href="{{ .url }}" class="social-link" aria-label="{{ .title }}"{{ if not (hasPrefix .url "/") }} rel="noopener noreferrer" target="_blank"{{ end }}>{{ .title }}</a>
         {{ end }}
-
-        <div class="sidebar-sticky">
-            <div class="sidebar-about">
-                <a href="{{ .Site.BaseURL }}">
-                    {{ with .Site.Params.logo }}
-                    <img src="{{ . | relURL }}" class="avatar" alt="{{ $.Site.Title }}">
-                    {{ end }}
-                    <h1 class="site-title">{{ .Site.Title }}</h1>
-                    {{ with .Site.Params.tagline }}
-                    <p class="site-tagline">{{ . }}</p>
-                    {{ end }}
-                </a>
-            </div>
-        </div>
-
-        <div class="sidebar-social">
-            
-        </div>
-
-        {{/* {{ partial "menu.html" (dict "menuID" "main" "page" .) }} */}}
-
+      </div>
+      {{ end }}
     </div>
+  </div>
+
 </ib-coverpage>

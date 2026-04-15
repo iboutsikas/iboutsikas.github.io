@@ -1,66 +1,165 @@
+// Outer container — fills the coverpage slot
+// Use min-height: 100vh since percentage heights through slot boundaries are unreliable
 .sidebar-container {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
-    height: 100%;
-    width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  width: 100%;
+  min-height: 100vh;
+  // Fallback background if image hasn't loaded
+  background-color: var(--theme-color);
 
-    &>* {
-        // Both children share the same grid cell
-        grid-area: 1 / 1;
-    }
+  // Both children overlap in the same cell
+  >* {
+    grid-area: 1 / 1;
+  }
 }
 
+// Background image + dark overlay layer
 .sidebar-bg {
-    width: 100%;
-    height: 100%;
-    background-position: center;
-    pointer-events: none;
-    z-index: 1;
+  width: 100%;
+  min-height: 100%;
+  // CSS custom property set inline by the template so SCSS can add a gradient on top
+  background-image:
+    linear-gradient(to bottom,
+      rgba(10, 30, 40, 0.0) 0%,
+      rgba(10, 30, 40, 0.3) 100%),
+    var(--sidebar-bg-image, none);
+  background-color: var(--theme-color);
+  background-position: center;
+  background-size: cover;
+  pointer-events: none;
+  z-index: 1;
 }
 
+// Scrollable content layer on top of the background
 .sidebar-sticky {
-    display: flex;
-    align-self: center;
-    text-align: center;
-    z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2.5rem 1.5rem 2rem;
+  z-index: 2;
+  // Use min-height so social links are pushed to bottom even if content is short
+  min-height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
+
+// ── About block ───────────────────────────────────────────────────────────────
 
 .sidebar-about {
-  margin-bottom: 1.5rem;
+  width: 100%;
+  margin-bottom: 2rem;
 
   a {
+    display: block;
     color: var(--sidebar-link);
     text-decoration: none;
+    transition: color var(--transition-speed);
 
     &:hover {
-      text-decoration: none;
       color: var(--sidebar-link-hover);
+      text-decoration: none;
     }
   }
 }
 
 .avatar {
   display: block;
-  width: 120px;
-  height: 120px;
+  width: 110px;
+  height: 110px;
   border-radius: 50%;
-  margin-bottom: 0.75rem;
-  border: 3px solid rgba(255, 255, 255, 0.2);
+  margin: 0 auto 1rem;
+  border: 3px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
   object-fit: cover;
-  margin: 0 auto; 
 }
 
 .site-title {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   font-weight: 700;
-  color: var(--sidebar-link);
-  margin-bottom: 0.25rem;
+  color: #fff;
+  margin: 0 0 0.4rem;
+  letter-spacing: 0.01em;
 }
 
 .site-tagline {
-  font-size: 0.85rem;
-  color: var(--sidebar-text);
-  margin-bottom: 0;
-  line-height: 1.4;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0;
+  line-height: 1.5;
+  padding: 0 0.25rem;
+}
+
+// ── Navigation ────────────────────────────────────────────────────────────────
+
+.sidebar-nav {
+  width: 100%;
+  margin-bottom: auto;
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  a {
+    display: block;
+    padding: 0.65rem 0.25rem;
+    color: rgba(255, 255, 255, 1.0);
+    text-decoration: none;
+    font-family: var(--font-family-heading);
+    font-weight: var(--font-weight-heading);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color var(--transition-speed), padding-left var(--transition-speed);
+
+    text-decoration-style: solid;
+    text-underline-offset: 0.8rem;
+    text-decoration-thickness: 3px;
+    text-decoration-line: underline;
+    text-decoration-color: rgba(255, 255, 255, 0.25);
+
+    &:hover {
+      color: var(--sidebar-link-hover);
+      text-decoration-color: var(--accent-color);
+      padding-left: 0.5rem;
+    }
+
+    &[aria-current="page"],
+    &.active {
+      color: var(--sidebar-link-hover);
+      font-weight: 600;
+    }
+  }
+}
+
+// ── Social links ──────────────────────────────────────────────────────────────
+
+.sidebar-social {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1.25rem;
+  padding-top: 1.5rem;
+  margin-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.social-link {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.72rem;
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: color var(--transition-speed);
+
+  &:hover {
+    color: var(--sidebar-link-hover);
+    text-decoration: none;
+  }
 }

@@ -1,10 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{{ .Title }} - {{ .Site.Title }}</title>
-</head>
-<body>
-    <h1>{{ .Title }}</h1>
+{{ define "main" }}
+<article class="page-content">
+  <header class="page-header">
+    <h1 class="page-title">{{ .Title }}</h1>
+    {{ if not .Date.IsZero }}
+    <time class="page-date" datetime="{{ .Date | time.Format `2006-01-02T15:04:05-07:00` }}">
+      {{ .Date | time.Format ":date_long" }}
+    </time>
+    {{ end }}
+  </header>
+  <div class="page-body">
     {{ .Content }}
-</body>
-</html>
+  </div>
+  {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
+</article>
+{{ end }}

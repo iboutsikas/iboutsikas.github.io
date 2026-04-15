@@ -4,15 +4,19 @@
   {{ partial "head.html" . }}
 </head>
 <body>
-  
-  {{ partial "sidebar.html" .}}
-
-  <main id="_content">
-    <h1>{{ site.Title }}</h1>
-    {{ block "main" . }}{{ end }}
-  </main>
-  <footer>
-    {{ partial "footer.html" . }}
-  </footer>
+  {{ partial "sidebar.html" . }}
+  <div id="_layout">
+    <button id="_nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="_coverpage">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <main id="_content">
+      {{ block "main" . }}{{ end }}
+    </main>
+    <footer id="_footer">
+      {{ partial "footer.html" . }}
+    </footer>
+  </div>
 </body>
 </html>
