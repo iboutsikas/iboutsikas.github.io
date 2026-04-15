@@ -20,14 +20,14 @@ copyright = "© 2025. All rights reserved."
 [[social]]
   title = "GitHub"
   url   = "https://github.com/iboutsikas"
-  icon  = "github"
+  icon  = "ph ph-github-logo"
 
 [[social]]
   title = "LinkedIn"
   url   = "https://linkedin.com/in/ioannis-boutsikas"
-  icon  = "linkedin"
+  icon  = "ph ph-linkedin-logo"
 
 [[social]]
   title = "Email"
   url   = "mailto:mgioanni@outlook.com"
-  icon  = "email"
+  icon  = "ph ph-envelope"

@@ -25,7 +25,10 @@
       {{ with .Site.Params.social }}
       <div class="sidebar-social">
         {{ range . }}
-        <a href="{{ .url }}" class="social-link" aria-label="{{ .title }}"{{ if not (hasPrefix .url "/") }} rel="noopener noreferrer" target="_blank"{{ end }}>{{ .title }}</a>
+        <a href="{{ .url }}" class="social-link" aria-label="{{ .title }}"{{ if not (hasPrefix .url "/") }} rel="noopener noreferrer" target="_blank"{{ end }}>
+          <span class="{{.icon}}"></span>
+          <span class="sr-only">{{ .title }}</span>
+        </a>
         {{ end }}
       </div>
       {{ end }}

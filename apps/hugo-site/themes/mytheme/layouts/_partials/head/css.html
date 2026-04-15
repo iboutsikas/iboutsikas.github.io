@@ -1,15 +1,20 @@
 {{- with resources.Get "scss/main.scss" }}
-  {{- $opts := dict
-    "outputStyle" (cond hugo.IsDevelopment "expanded" "compressed")
-    "enableSourceMap" hugo.IsDevelopment
-  }}
-  {{- with . | css.Sass $opts }}
-    {{- if hugo.IsDevelopment }}
-      <link rel="stylesheet" href="{{ .RelPermalink }}">
-    {{- else }}
-      {{- with . | fingerprint }}
-        <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
-      {{- end }}
-    {{- end }}
-  {{- end }}
+{{- $opts := dict
+"outputStyle" (cond hugo.IsDevelopment "expanded" "compressed")
+"enableSourceMap" hugo.IsDevelopment
+}}
+{{- with . | css.Sass $opts }}
+{{- if hugo.IsDevelopment }}
+<link rel="stylesheet" href="{{ .RelPermalink }}">
+{{- else }}
+{{- with . | fingerprint }}
+<link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
 {{- end }}
+{{- end }}
+{{- end }}
+{{- end }}
+
+<link rel="stylesheet" type="text/css"
+  href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css" />
+<link rel="stylesheet" type="text/css"
+  href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css" />

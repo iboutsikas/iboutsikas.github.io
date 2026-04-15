@@ -71,7 +71,6 @@
   height: 110px;
   border-radius: 50%;
   margin: 0 auto 1rem;
-  border: 3px solid rgba(255, 255, 255, 0.25);
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
   object-fit: cover;
 }
@@ -147,19 +146,23 @@
   gap: 0.5rem 1.25rem;
   padding-top: 1.5rem;
   margin-top: 1.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .social-link {
-  color: rgba(255, 255, 255, 0.55);
-  font-size: 0.72rem;
-  text-decoration: none;
+  color: white;
+  font-size: 2rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   transition: color var(--transition-speed);
 
+  text-decoration-style: solid;
+  text-underline-offset: 0.8rem;
+  text-decoration-thickness: 3px;
+  text-decoration-line: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.25);
+
   &:hover {
     color: var(--sidebar-link-hover);
-    text-decoration: none;
+    text-decoration-color: var(--sidebar-link-hover);
   }
 }
