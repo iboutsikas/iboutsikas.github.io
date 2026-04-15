@@ -13,3 +13,29 @@ a {
   color: #00e;
   text-decoration: none;
 }
+
+#_coverpage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  height: 100vh;
+
+  --cover-peek-size: 25px;
+  --cover-width: 25px;
+}
+
+#_content {
+  margin-left: 25px;
+}
+
+@media (min-width: 768px) {
+  #_coverpage {
+      --cover-peek-size: 250px;
+      --cover-width: 250px;
+  }
+
+  #_content {
+    margin-left: 250px;
+  }
+}

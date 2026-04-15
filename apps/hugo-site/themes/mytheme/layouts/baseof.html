@@ -4,10 +4,12 @@
   {{ partial "head.html" . }}
 </head>
 <body>
-  <header>
-    {{ partial "header.html" . }}
-  </header>
-  <main>
+  <ib-coverpage id="_coverpage" side="left">
+    {{ partial "sidebar.html" .}}
+  </ib-coverpage>
+
+  <main id="_content">
+    <h1>{{ site.Title }}</h1>
     {{ block "main" . }}{{ end }}
   </main>
   <footer>

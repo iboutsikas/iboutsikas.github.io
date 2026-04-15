@@ -336,8 +336,8 @@ export class IbCoverpage extends LitElement {
       pointer-events: auto;
       overflow: hidden;
       touch-action: none;
-      width: var(--cover-width);
-      height: var(--cover-height, auto);
+      width: var(--cover-width, 100%);
+      height: var(--cover-height, 100%);
     }
 
     .cover.left { top:0; left: calc(-1 * var(--cover-width) + var(--cover-peek-width)); bottom: 0; will-change: width;}

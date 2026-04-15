@@ -1,13 +1,17 @@
 {
-  "name": "hugo-site",
+  "name": "@iboutsikas/site",
   "implicitDependencies": ["@iboutsikas/coverpage"],
   "targets": {
     "serve": {
       "executor": "nx:run-commands",
       "dependsOn": [{ "projects": "@iboutsikas/coverpage", "target": "build" }],
       "options": {
-        "command": "hugo server",
-        "cwd": "{projectRoot}"
+        "parallel": true,
+        "commands": [
+          "cd packages/coverpage && vite build --watch --config vite.lib.config.ts",
+          "cd apps/hugo-site && hugo server"
+        ],
+        "cwd": "{workspaceRoot}"
       }
     },
     "build": {
