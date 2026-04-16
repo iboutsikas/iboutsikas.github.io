@@ -98,7 +98,7 @@ export class GestureController {
             this.gestureSubject.next(eventToEmit);
           }),
           // Complete after the end event is processed (inclusive so tap runs first)
-          takeWhile(event => event.type !== 'end', true)
+          takeWhile(event => event.type !== 'end' && event.type !== 'flick', true)
         );
       })
     ).subscribe();
