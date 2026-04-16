@@ -331,6 +331,32 @@
   }
 }
 
+// Extra TOC entries (related posts link) appended below heading list
+
+.post-toc__extra {
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px dashed var(--card-border);
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li { margin: 0.3rem 0; }
+
+  a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-size: 0.87rem;
+    font-weight: 600;
+    line-height: 1.5;
+
+    &:hover { text-decoration: underline; }
+  }
+}
+
 // ── Post body prose ───────────────────────────────────────────────────────────
 
 .post-single__body {

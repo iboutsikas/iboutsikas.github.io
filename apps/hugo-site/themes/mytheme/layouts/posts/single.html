@@ -32,12 +32,7 @@
   </header>
 
   {{/* ── Table of contents ───────────────────────────────────────────────── */}}
-  {{ with .TableOfContents }}
-  <details class="post-toc" open>
-    <summary class="post-toc__toggle">Contents</summary>
-    <div class="post-toc__body">{{ . }}</div>
-  </details>
-  {{ end }}
+  {{ partial "toc.html" (dict "page" .) }}
 
   {{/* ── Body ───────────────────────────────────────────────────────────── */}}
   <div class="post-single__body">

@@ -1,0 +1,25 @@
+{{- /*
+  Table of contents partial.
+  Context: dict with keys:
+    "page"    — the current page (.TableOfContents, etc.)
+    "related" — (optional) pre-computed related Pages slice
+  Shows nothing when both TOC headings and related are absent.
+*/ -}}
+{{- $page    := .page -}}
+{{- $related := .related -}}
+{{- $hasToc  := and $page.TableOfContents (strings.Contains $page.TableOfContents "<li>") -}}
+{{ if or $hasToc $related }}
+<details class="post-toc" open>
+  <summary class="post-toc__toggle">Contents</summary>
+  <div class="post-toc__body">
+    {{ if $hasToc }}{{ $page.TableOfContents }}{{ end }}
+    {{ with $related }}
+    <div class="post-toc__extra">
+      <ul>
+        <li><a href="#related-posts">Related Posts</a></li>
+      </ul>
+    </div>
+    {{ end }}
+  </div>
+</details>
+{{ end }}

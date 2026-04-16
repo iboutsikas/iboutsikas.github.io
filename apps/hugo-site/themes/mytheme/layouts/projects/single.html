@@ -1,4 +1,5 @@
 {{ define "main" }}
+{{ $related := where (site.RegularPages.Related .) "Section" "posts" }}
 <article class="project-single">
 
   {{/* ── Cover hero ─────────────────────────────────────────────────────── */}}
@@ -26,12 +27,7 @@
   </header>
 
   {{/* ── Table of contents ───────────────────────────────────────────────── */}}
-  {{ with .TableOfContents }}
-  <details class="post-toc" open>
-    <summary class="post-toc__toggle">Contents</summary>
-    <div class="post-toc__body">{{ . }}</div>
-  </details>
-  {{ end }}
+  {{ partial "toc.html" (dict "page" . "related" $related) }}
 
   {{/* ── Body ───────────────────────────────────────────────────────────── */}}
   <div class="post-single__body">
@@ -39,7 +35,7 @@
   </div>
 
   {{/* ── Related posts ───────────────────────────────────────────────────── */}}
-  {{ partial "related-posts.html" . }}
+  {{ partial "related-posts.html" $related }}
 
 </article>
 {{ end }}
