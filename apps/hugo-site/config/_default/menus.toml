@@ -14,16 +14,11 @@
   weight = 30
 
 [[main]]
-  name   = "CapstoneED"
-  url    = "/categories/capstoneed/"
-  weight = 40
-
-[[main]]
   name   = "Publications"
   url    = "/publications/"
-  weight = 50
+  weight = 40
 
 [[main]]
   name   = "Résumé"
   url    = "/resume/"
-  weight = 60
+  weight = 50

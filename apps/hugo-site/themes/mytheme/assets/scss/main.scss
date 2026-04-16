@@ -55,7 +55,7 @@ img {
 
 #_coverpage {
   // Mobile: tiny sliver so swipe-from-edge gesture works
-  --cover-peek-size: 4px;
+  --cover-peek-size: 15px;
   --cover-width: 85vw;
 
   // Desktop: sidebar always fully visible at fixed width
@@ -72,7 +72,7 @@ img {
   flex-direction: column;
   min-height: 100vh;
   // Offset content past the peeking edge on mobile
-  padding-left: 4px;
+  padding-left: 15px;
 
   @media (min-width: 64em) {
     padding-left: var(--sidebar-width);

@@ -3,6 +3,7 @@ title: "CapstoneED v2"
 caption: "Bringing a 2017 Angular project into the modern web"
 description: "I am rebuilding the frontend for CapstoneED in Angular v21 following modern practices and patterns"
 date: 2025-12-01
+frontpage: true
 categories: [capstoneed]
 ---
 

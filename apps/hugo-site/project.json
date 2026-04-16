@@ -9,7 +9,7 @@
         "parallel": true,
         "commands": [
           "cd packages/coverpage && vite build --watch --config vite.lib.config.ts",
-          "cd apps/hugo-site && hugo server"
+          "cd apps/hugo-site && hugo server --bind 0.0.0.0"
         ],
         "cwd": "{workspaceRoot}"
       }
