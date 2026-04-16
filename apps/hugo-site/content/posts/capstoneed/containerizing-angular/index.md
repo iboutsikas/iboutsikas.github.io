@@ -2,8 +2,8 @@
 title: "The Saga Continues: Hosting Angular Apps in Docker"
 date: 2026-01-30
 categories: ["capstoneed"]
-cover: "/assets/img/capstoneed/angular-on-docker.png"
-
+description: >
+    Leveraging the power of Nx monorepos to simplify deployment: how I use multi-stage Docker builds and NGINX to host Angular applications.
 ---
 
 In my [previous post]({{< relref "/posts/capstoneed/containerizing-the-api" >}})

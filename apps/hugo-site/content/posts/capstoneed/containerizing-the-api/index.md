@@ -2,6 +2,8 @@
 title: "Putting the Rails on Docker: Containerizing a Rails API"
 date: 2026-01-29
 categories: ["capstoneed"]
+description: > 
+  Making the CapstoneED API self-contained and easy to spin up: a deep dive into dockerizing a Rails API with multi-stage builds and Docker Compose profiles.
 ---
 
 One of my primary goals with CapstoneED v2 was to have the repo be

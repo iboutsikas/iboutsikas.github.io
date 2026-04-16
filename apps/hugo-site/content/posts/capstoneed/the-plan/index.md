@@ -1,7 +1,9 @@
 ---
-title: "Planning the Re-Write"
+title: "CapstoneED: Planning the Re-Write"
 date: 2025-12-01
 categories: ["capstoneed"]
+description: >
+  Bringing CapstoneED into the modern era: re-writing the front-end with Angular, Nx, and Material Design to simplify deployment and improve UX.
 ---
 
 ## The story
