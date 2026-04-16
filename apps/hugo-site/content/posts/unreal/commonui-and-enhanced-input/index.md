@@ -30,7 +30,7 @@ have found out that doing that can be problematic when Enhanced Input support is
 enabled. So instead I opted to leave those empty and set up only the EI ones.
 You can see that in the image below:
 
-![](/assets/img/games/quickdraw/CommonUIInputData.png)
+![](CommonUIInputData.png)
 
 If you do not have the Enhanced Input options, then you need to enable the
 support from `Project Settings > Game > Common Input Settings` then check
@@ -48,7 +48,7 @@ For example, it will be used to do the below mapping between your
 way it can display the icon(s) you have set up in your Controller Data for the
 Action defined in your Context.
 
-![](/assets/img/games/quickdraw/Controller_to_Metadata.png)
+![](Controller_to_Metadata.png)
 
 {{< figcaption >}}Example of what Common Mapping Context Metadata is used for{{< /figcaption >}}
 
