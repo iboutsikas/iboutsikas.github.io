@@ -1,0 +1,72 @@
+{{ define "main" }}
+{{ $cover := .Resources.GetMatch "cover.*" }}
+<article class="game-single">
+
+  {{/* ── Full-bleed hero ──────────────────────────────────────────────────── */}}
+  <div class="game-hero{{ if not $cover }} game-hero--no-cover{{ end }}">
+    {{ with $cover }}
+    <img class="game-hero__img" src="{{ .RelPermalink }}" alt="{{ $.Title }}" loading="eager" decoding="async">
+    {{ end }}
+    <div class="game-hero__overlay" aria-hidden="true"></div>
+    <div class="game-hero__content">
+      {{ with .Params.role }}
+      <span class="game-hero__role">{{ . }}</span>
+      {{ end }}
+      <h1 class="game-hero__title">{{ .Title }}</h1>
+      {{ with .Params.caption }}
+      <p class="game-hero__caption">{{ . }}</p>
+      {{ end }}
+      <div class="game-hero__meta">
+        {{ if not .Date.IsZero }}
+        <time datetime="{{ .Date | time.Format `2006-01-02` }}">{{ .Date | time.Format "2006" }}</time>
+        {{ end }}
+        {{ with .Params.links }}
+        {{ range . }}
+        <a href="{{ .url }}" class="game-hero__link" rel="noopener noreferrer" target="_blank">{{ .title }}</a>
+        {{ end }}
+        {{ end }}
+      </div>
+    </div>
+  </div>
+
+  {{/* ── Description lead ───────────────────────────────────────────────── */}}
+  {{ with .Description }}
+  <p class="game-lead">{{ . }}</p>
+  {{ end }}
+
+  {{/* ── Table of contents ──────────────────────────────────────────────── */}}
+  {{ with .TableOfContents }}
+  <details class="post-toc" open>
+    <summary class="post-toc__toggle">Contents</summary>
+    <div class="post-toc__body">{{ . }}</div>
+  </details>
+  {{ end }}
+
+  {{/* ── Body ──────────────────────────────────────────────────────────── */}}
+  <div class="post-single__body">
+    {{ .Content }}
+  </div>
+
+  {{/* ── Related posts (by tag) ─────────────────────────────────────────── */}}
+  {{ $relatedPosts := slice }}
+  {{ range .GetTerms "tags" }}
+    {{ range where .Pages "Section" "posts" }}
+      {{ $relatedPosts = $relatedPosts | append . }}
+    {{ end }}
+  {{ end }}
+  {{ with $relatedPosts }}
+  <section class="game-related">
+    <h2 class="game-related__title">Posts about this game</h2>
+    <ul class="game-related__list">
+      {{ range . }}
+      <li>
+        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        <small>{{ .Date | time.Format "January 2, 2006" }}</small>
+      </li>
+      {{ end }}
+    </ul>
+  </section>
+  {{ end }}
+
+</article>
+{{ end }}

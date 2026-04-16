@@ -1,0 +1,14 @@
+{{ define "main" }}
+<div class="games-listing">
+  <header class="page-header">
+    <h1 class="page-title">{{ .Title }}</h1>
+    {{ with .Content }}<div class="page-intro">{{ . }}</div>{{ end }}
+  </header>
+
+  <div class="games-grid">
+    {{ range .Pages.ByDate.Reverse }}
+    {{ partial "game-card.html" . }}
+    {{ end }}
+  </div>
+</div>
+{{ end }}

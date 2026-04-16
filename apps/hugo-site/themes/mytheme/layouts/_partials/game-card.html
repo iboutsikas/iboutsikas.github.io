@@ -1,0 +1,32 @@
+{{- /*
+  Cinematic game card used by the games list page.
+  Expects a page context.
+*/ -}}
+{{ $cover := .Resources.GetMatch "cover.*" }}
+<article class="game-card">
+  <a href="{{ .RelPermalink }}" class="game-card__link">
+
+    {{/* ── Background image ── */}}
+    <div class="game-card__bg">
+      {{ with $cover }}
+      <img src="{{ .RelPermalink }}" alt="" loading="lazy" decoding="async">
+      {{ end }}
+    </div>
+
+    {{/* ── Gradient overlay ── */}}
+    <div class="game-card__overlay" aria-hidden="true"></div>
+
+    {{/* ── Content ── */}}
+    <div class="game-card__content">
+      {{ with .Params.role }}
+      <span class="game-card__role">{{ . }}</span>
+      {{ end }}
+      <h2 class="game-card__title">{{ .Title }}</h2>
+      <p class="game-card__caption">{{ .Params.caption }}</p>
+      <span class="game-card__cta" aria-hidden="true">
+        Explore <span>&#8594;</span>
+      </span>
+    </div>
+
+  </a>
+</article>

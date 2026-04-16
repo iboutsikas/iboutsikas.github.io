@@ -1,0 +1,429 @@
+// ── Games listing page ─────────────────────────────────────────────────────────
+
+.games-listing {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+}
+
+// ── Games grid ────────────────────────────────────────────────────────────────
+//
+// 1 column mobile → 2 columns desktop.
+// First card spans both columns (featured slot).
+
+.games-grid {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+
+  @media (min-width: 42em) {
+    grid-template-columns: repeat(2, 1fr);
+
+    // First card always spans full width — works as a natural hero
+    .game-card:first-child {
+      grid-column: 1 / -1;
+
+      .game-card__title { font-size: 2rem; }
+    }
+  }
+}
+
+// ── Game card ─────────────────────────────────────────────────────────────────
+
+.game-card {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  background: var(--card-bg);
+  isolation: isolate; // keep stacking context clean
+
+  // Subtle glow on hover via box-shadow
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+
+  &:hover {
+    transform: translateY(-3px) scale(1.01);
+    box-shadow:
+      0 20px 60px rgba(0, 0, 0, 0.5),
+      0 0 0 1px color-mix(in srgb, var(--accent-color) 35%, transparent);
+  }
+}
+
+.game-card__link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+
+  &:hover { text-decoration: none; }
+}
+
+// Background image layer
+
+.game-card__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.55s ease;
+  }
+}
+
+.game-card:hover .game-card__bg img {
+  transform: scale(1.06);
+}
+
+// Gradient overlay — darkens bottom, lightens slightly on hover
+
+.game-card__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.05) 0%,
+    rgba(0, 0, 0, 0.25) 35%,
+    rgba(0, 0, 0, 0.7) 65%,
+    rgba(0, 0, 0, 0.9) 100%
+  );
+  transition: opacity 0.35s ease;
+}
+
+// Chromatic accent line at the bottom edge — pure CSS flair
+
+.game-card::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 3;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--accent-color),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.game-card:hover::after {
+  opacity: 1;
+}
+
+// Content stack pinned to bottom
+
+.game-card__content {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.4rem 1.6rem;
+  gap: 0.3rem;
+}
+
+// Role badge
+
+.game-card__role {
+  align-self: flex-start;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-color);
+  background: color-mix(in srgb, var(--accent-color) 15%, rgba(0, 0, 0, 0.5));
+  border: 1px solid color-mix(in srgb, var(--accent-color) 45%, transparent);
+  border-radius: 4px;
+  padding: 0.2em 0.6em;
+  backdrop-filter: blur(6px);
+  margin-bottom: 0.2rem;
+}
+
+// Title
+
+.game-card__title {
+  font-size: 1.35rem;
+  font-weight: var(--font-weight-heading);
+  color: #fff;
+  margin: 0;
+  line-height: 1.15;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+  transition: color 0.25s ease;
+}
+
+.game-card:hover .game-card__title {
+  color: #fff; // stays white, glow effect via text-shadow
+  text-shadow: 0 0 20px color-mix(in srgb, var(--accent-color) 50%, transparent),
+               0 1px 6px rgba(0, 0, 0, 0.6);
+}
+
+// Caption — hidden until hover
+
+.game-card__caption {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.72);
+  margin: 0;
+  line-height: 1.5;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.4s ease, opacity 0.3s ease 0.05s;
+}
+
+.game-card:hover .game-card__caption {
+  max-height: 5rem;
+  opacity: 1;
+}
+
+// CTA — slides up on hover
+
+.game-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-color);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.3s ease 0.1s, transform 0.3s ease 0.1s;
+  margin-top: 0.3rem;
+}
+
+.game-card:hover .game-card__cta {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+// ── Game single page ──────────────────────────────────────────────────────────
+
+.game-single {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+}
+
+// ── Hero ──────────────────────────────────────────────────────────────────────
+
+.game-hero {
+  position: relative;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 2.5rem;
+  min-height: 320px;
+  background: var(--card-bg);
+  isolation: isolate;
+
+  @media (min-width: 42em) {
+    min-height: 420px;
+  }
+
+  // Fallback gradient when no cover
+  &--no-cover {
+    background: linear-gradient(
+      135deg,
+      var(--theme-color) 0%,
+      color-mix(in srgb, var(--theme-color) 50%, var(--accent-color)) 100%
+    );
+  }
+}
+
+.game-hero__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  z-index: 0;
+}
+
+.game-hero__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    160deg,
+    rgba(0, 0, 0, 0.08) 0%,
+    rgba(0, 0, 0, 0.3)  30%,
+    rgba(0, 0, 0, 0.88) 100%
+  );
+}
+
+// Chromatic line accent at bottom of hero
+
+.game-hero::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 3;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    var(--accent-color) 30%,
+    color-mix(in srgb, var(--accent-color) 60%, #fff) 50%,
+    var(--accent-color) 70%,
+    transparent 100%
+  );
+}
+
+.game-hero__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 320px;
+  padding: 2rem 2rem 2.25rem;
+  gap: 0.5rem;
+
+  @media (min-width: 42em) {
+    min-height: 420px;
+    padding: 2.5rem 2.5rem 2.75rem;
+  }
+}
+
+// Role badge
+
+.game-hero__role {
+  align-self: flex-start;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-color);
+  background: color-mix(in srgb, var(--accent-color) 15%, rgba(0, 0, 0, 0.5));
+  border: 1px solid color-mix(in srgb, var(--accent-color) 45%, transparent);
+  border-radius: 4px;
+  padding: 0.2em 0.65em;
+  backdrop-filter: blur(6px);
+  margin-bottom: 0.25rem;
+}
+
+.game-hero__title {
+  font-size: clamp(1.75rem, 4.5vw, 3rem);
+  font-weight: var(--font-weight-heading);
+  color: #fff;
+  margin: 0;
+  line-height: 1.1;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+}
+
+.game-hero__caption {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.78);
+  margin: 0;
+  max-width: 60ch;
+  line-height: 1.5;
+}
+
+.game-hero__meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.4rem;
+
+  time {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.55);
+    font-weight: 600;
+  }
+}
+
+.game-hero__link {
+  display: inline-block;
+  padding: 0.3rem 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 4px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  backdrop-filter: blur(4px);
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+
+  &:hover {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+    background: color-mix(in srgb, var(--accent-color) 12%, transparent);
+    text-decoration: none;
+  }
+}
+
+// ── Lead description ──────────────────────────────────────────────────────────
+
+.game-lead {
+  font-size: 1.05rem;
+  color: var(--muted-color);
+  line-height: 1.8;
+  margin: 0 0 2rem;
+  padding-bottom: 1.75rem;
+  border-bottom: 1px solid var(--border-color);
+  max-width: 72ch;
+}
+
+// ── Related posts ─────────────────────────────────────────────────────────────
+
+.game-related {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.game-related__title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted-color);
+  margin: 0 0 1rem;
+}
+
+.game-related__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+
+  li {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  a {
+    color: var(--body-color);
+    text-decoration: none;
+    font-weight: 500;
+
+    &:hover {
+      color: var(--accent-color);
+      text-decoration: underline;
+    }
+  }
+
+  small {
+    color: var(--muted-color);
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+}
