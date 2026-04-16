@@ -93,12 +93,7 @@ attributes are in order). Additionally, with the [Material Design
 much easier to implement features such as dark and light themes. In fact, here
 it is already in action:
 
-<video controls>
-  <source src="/assets/img/capstoneed/cap_v2_theme.webm" type="video/webm">
-  Your browser does not support the video tag or webm video.
-</video>
-
-{{< figcaption >}}Switching between dark and light themes.{{< /figcaption >}}
+{{< video src="cap_v2_theme_switching.webm" caption="Switching between dark and light themes" />}}
 
 ### Containers, containers, containers
 

@@ -1,0 +1,39 @@
+{{- $src      := .Get "src" -}}
+{{- $caption  := .Get "caption" | default (.Inner | markdownify) -}}
+{{- $controls := .Get "controls" | default "true" -}}
+{{- $autoplay := .Get "autoplay" | default "false" -}}
+{{- $muted    := .Get "muted"    | default "false" -}}
+{{- $loop     := .Get "loop"     | default "false" -}}
+
+{{/* Resolve URL: page bundle resource first, fall back to literal src */}}
+{{- $url  := $src -}}
+{{- $mime := "" -}}
+{{- with .Page.Resources.GetMatch $src -}}
+  {{- $url  = .RelPermalink -}}
+  {{- $mime = .MediaType.Type -}}
+{{- end -}}
+
+{{/* Auto-detect MIME type from extension when not from bundle */}}
+{{- if not $mime -}}
+  {{- $ext := lower (path.Ext $src) -}}
+  {{- if eq $ext ".webm" -}}{{- $mime = "video/webm" -}}
+  {{- else if eq $ext ".mp4"  -}}{{- $mime = "video/mp4"  -}}
+  {{- else if eq $ext ".ogg"  -}}{{- $mime = "video/ogg"  -}}
+  {{- else if eq $ext ".mov"  -}}{{- $mime = "video/quicktime" -}}
+  {{- end -}}
+{{- end -}}
+
+<figure class="video-figure">
+  <video
+    {{- if ne $controls "false" }} controls{{- end -}}
+    {{- if eq $autoplay "true" }} autoplay{{- end -}}
+    {{- if eq $muted    "true" }} muted{{- end -}}
+    {{- if eq $loop     "true" }} loop{{- end -}}
+  >
+    <source src="{{ $url }}"{{ with $mime }} type="{{ . }}"{{ end }}>
+    Your browser does not support the video tag.
+  </video>
+  {{- with $caption }}
+  <figcaption class="figcaption">{{ . }}</figcaption>
+  {{- end }}
+</figure>
