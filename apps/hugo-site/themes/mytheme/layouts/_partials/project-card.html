@@ -1,0 +1,34 @@
+{{- /*
+  Project card used by the projects list page.
+  Expects a page context.
+*/ -}}
+<article class="project-card">
+  {{ $cover := .Resources.GetMatch "cover.*" }}
+  <a class="project-card__media-link" href="{{ .RelPermalink }}" tabindex="-1" aria-hidden="true">
+    <div class="project-card__media{{ if not $cover }} project-card__media--fallback{{ end }}">
+      {{ with $cover }}
+      <img src="{{ .RelPermalink }}" alt="{{ $.Title }}" loading="lazy" decoding="async">
+      {{ end }}
+    </div>
+  </a>
+
+  <div class="project-card__body">
+    <h2 class="project-card__title">
+      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+    </h2>
+
+    {{ with .Params.caption }}
+    <p class="project-card__caption">{{ . }}</p>
+    {{ end }}
+
+    {{ with .Params.links }}
+    <div class="project-card__links">
+      {{ range . }}
+      <a href="{{ .url }}" class="project-card__link" rel="noopener noreferrer" target="_blank">
+        {{ .title }} <span aria-hidden="true">&rarr;</span>
+      </a>
+      {{ end }}
+    </div>
+    {{ end }}
+  </div>
+</article>
