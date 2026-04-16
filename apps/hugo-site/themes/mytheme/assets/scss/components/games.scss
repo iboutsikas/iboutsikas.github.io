@@ -8,7 +8,7 @@
 // ── Games grid ────────────────────────────────────────────────────────────────
 //
 // 1 column mobile → 2 columns desktop.
-// First card spans both columns (featured slot).
+// featured: true in frontmatter → full-width featured slot.
 
 .games-grid {
   margin-top: 2rem;
@@ -18,13 +18,16 @@
 
   @media (min-width: 42em) {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
 
-    // First card always spans full width — works as a natural hero
-    .game-card:first-child {
-      grid-column: 1 / -1;
+// Featured card spans both columns
 
-      .game-card__title { font-size: 2rem; }
-    }
+.game-card--featured {
+  @media (min-width: 42em) {
+    grid-column: 1 / -1;
+
+    .game-card__title { font-size: 2rem; }
   }
 }
 

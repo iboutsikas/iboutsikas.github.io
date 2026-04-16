@@ -9,6 +9,7 @@ links:
     url: https://www.arahistoryuntold.com
 tags:
   - frontpage
+featured: true
 ---
 
 I worked primarily on the UI team, both on the implementation side as well as

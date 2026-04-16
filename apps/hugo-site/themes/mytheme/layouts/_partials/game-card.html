@@ -3,7 +3,7 @@
   Expects a page context.
 */ -}}
 {{ $cover := .Resources.GetMatch "cover.*" }}
-<article class="game-card">
+<article class="game-card{{ if .Params.featured }} game-card--featured{{ end }}">
   <a href="{{ .RelPermalink }}" class="game-card__link">
 
     {{/* ── Background image ── */}}

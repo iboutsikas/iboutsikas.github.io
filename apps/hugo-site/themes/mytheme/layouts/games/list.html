@@ -6,7 +6,12 @@
   </header>
 
   <div class="games-grid">
-    {{ range .Pages.ByDate.Reverse }}
+    {{/* Featured card first, then rest sorted by date */}}
+    {{ range where .Pages "Params.featured" true }}
+    {{ partial "game-card.html" . }}
+    {{ end }}
+    {{ $rest := where .Pages "Params.featured" "ne" true }}
+    {{ range $rest.ByDate.Reverse }}
     {{ partial "game-card.html" . }}
     {{ end }}
   </div>
