@@ -1,5 +1,41 @@
 {{ define "main" }}
-<div class="page-content">
-  {{ .Content }}
-</div>
+
+{{/* ── Welcome intro ──────────────────────────────────────────────────────── */}}
+<section class="home-intro">
+  <h1 class="home-intro__title">{{ .Title }}</h1>
+  <div class="home-intro__body">{{ .Content }}</div>
+</section>
+
+{{/* ── Featured Games ──────────────────────────────────────────────────────── */}}
+{{ $featuredGames := where (where site.RegularPages "Section" "games") "Params.frontpage" true }}
+{{ with $featuredGames }}
+<section class="home-section">
+  <header class="home-section__header">
+    <h2 class="home-section__title">Featured Games</h2>
+    <a class="home-section__all" href="/games/">All games <span aria-hidden="true">&rarr;</span></a>
+  </header>
+  <div class="games-grid">
+    {{ range sort . "Date" "desc" }}
+    {{ partial "game-card.html" . }}
+    {{ end }}
+  </div>
+</section>
+{{ end }}
+
+{{/* ── Featured Projects ────────────────────────────────────────────────────── */}}
+{{ $featuredProjects := where (where site.RegularPages "Section" "projects") "Params.frontpage" true }}
+{{ with $featuredProjects }}
+<section class="home-section">
+  <header class="home-section__header">
+    <h2 class="home-section__title">Featured Projects</h2>
+    <a class="home-section__all" href="/projects/">All projects <span aria-hidden="true">&rarr;</span></a>
+  </header>
+  <div class="projects-grid">
+    {{ range sort . "Date" "desc" }}
+    {{ partial "project-card.html" . }}
+    {{ end }}
+  </div>
+</section>
+{{ end }}
+
 {{ end }}

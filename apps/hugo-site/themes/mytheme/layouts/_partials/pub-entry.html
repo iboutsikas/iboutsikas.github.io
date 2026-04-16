@@ -1,0 +1,52 @@
+{{- /*
+  Academic publication entry card for the publications list.
+  Expects a page context.
+*/ -}}
+{{ $selfName := site.Params.author.name }}
+<article class="pub-entry">
+
+  <div class="pub-entry__aside">
+    <span class="pub-entry__year">{{ .Date | time.Format "2006" }}</span>
+  </div>
+
+  <div class="pub-entry__body">
+
+    {{ with .Params.type_label }}
+    <span class="pub-entry__type">{{ . }}</span>
+    {{ end }}
+
+    <h2 class="pub-entry__title">
+      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+    </h2>
+
+    {{ with .Params.authors }}
+    <p class="pub-entry__authors">
+      {{ range $i, $a := . }}
+        {{- if $i }}, {{ end -}}
+        {{- if eq $a $selfName -}}
+          <span class="pub-entry__self">{{ $a }}</span>
+        {{- else -}}
+          {{- $a -}}
+        {{- end -}}
+      {{ end }}
+    </p>
+    {{ end }}
+
+    {{ with .Params.venue }}
+    <p class="pub-entry__venue">{{ . }}</p>
+    {{ end }}
+
+    {{ with .Description }}
+    <p class="pub-entry__description">{{ . }}</p>
+    {{ end }}
+
+    {{ with .Params.links }}
+    <div class="pub-entry__links">
+      {{ range . }}
+      <a href="{{ .url }}" class="pub-entry__link" rel="noopener noreferrer" target="_blank">{{ .title }}</a>
+      {{ end }}
+    </div>
+    {{ end }}
+
+  </div>
+</article>

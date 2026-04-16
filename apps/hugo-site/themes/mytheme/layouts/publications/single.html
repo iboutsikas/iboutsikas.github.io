@@ -1,0 +1,89 @@
+{{ define "main" }}
+{{ $selfName := site.Params.author.name }}
+{{ $cover := .Resources.GetMatch "cover.*" }}
+<article class="pub-single">
+
+  {{/* ── Header ────────────────────────────────────────────────────────────── */}}
+  <header class="pub-single__header">
+
+    <div class="pub-single__meta-top">
+      {{ with .Params.type_label }}
+      <span class="pub-single__type">{{ . }}</span>
+      {{ end }}
+      {{ with .Params.venue }}
+      <span class="pub-single__venue-inline">{{ . }}</span>
+      {{ end }}
+      {{ if not .Date.IsZero }}
+      <time class="pub-single__date" datetime="{{ .Date | time.Format `2006-01-02` }}">
+        {{ .Date | time.Format "2006" }}
+      </time>
+      {{ end }}
+    </div>
+
+    <h1 class="pub-single__title">{{ .Title }}</h1>
+
+    {{ with .Params.authors }}
+    <p class="pub-single__authors">
+      {{ range $i, $a := . }}
+        {{- if $i }}, {{ end -}}
+        {{- if eq $a $selfName -}}
+          <strong class="pub-single__self">{{ $a }}</strong>
+        {{- else -}}
+          {{- $a -}}
+        {{- end -}}
+      {{ end }}
+    </p>
+    {{ end }}
+
+    {{ with .Params.links }}
+    <div class="pub-single__links">
+      {{ range . }}
+      <a href="{{ .url }}" class="pub-single__link" rel="noopener noreferrer" target="_blank">
+        {{ .title }}
+      </a>
+      {{ end }}
+    </div>
+    {{ end }}
+
+  </header>
+
+  {{/* ── Cover image ─────────────────────────────────────────────────────── */}}
+  {{ with $cover }}
+  <div class="pub-cover">
+    <img src="{{ .RelPermalink }}" alt="{{ $.Title }}">
+  </div>
+  {{ end }}
+
+  {{/* ── Abstract ─────────────────────────────────────────────────────────── */}}
+  {{ with .Description }}
+  <div class="pub-abstract">
+    <p class="pub-abstract__label">Abstract</p>
+    <p>{{ . }}</p>
+  </div>
+  {{ end }}
+
+  {{/* ── Table of contents ──────────────────────────────────────────────── */}}
+  {{ with .TableOfContents }}
+  <details class="post-toc" open>
+    <summary class="post-toc__toggle">Contents</summary>
+    <div class="post-toc__body">{{ . }}</div>
+  </details>
+  {{ end }}
+
+  {{/* ── Body ──────────────────────────────────────────────────────────── */}}
+  <div class="post-single__body">
+    {{ .Content }}
+  </div>
+
+  {{/* ── BibTeX citation ─────────────────────────────────────────────────── */}}
+  {{ with .Params.bibtex }}
+  <details class="pub-bibtex">
+    <summary class="pub-bibtex__toggle">BibTeX Citation</summary>
+    <div class="pub-bibtex__body">
+      <pre><code>{{ . }}</code></pre>
+    </div>
+  </details>
+  {{ end }}
+
+</article>
+{{ end }}

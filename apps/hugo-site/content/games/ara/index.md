@@ -7,9 +7,8 @@ role: "Software Engineer (UI & Graphics)"
 links:
   - title: Homepage
     url: https://www.arahistoryuntold.com
-tags:
-  - frontpage
 featured: true
+frontpage: true
 ---
 
 I worked primarily on the UI team, both on the implementation side as well as
