@@ -3,8 +3,6 @@ title: "Putting the Rails on Docker: Containerizing a Rails API"
 date: 2026-01-29
 categories: ["capstoneed"]
 cover: "/assets/img/capstoneed/rails_on_docker.png"
-related:
-  - "/posts/capstoneed/2026-01-30-containerizing-angular"
 ---
 
 One of my primary goals with CapstoneED v2 was to have the repo be

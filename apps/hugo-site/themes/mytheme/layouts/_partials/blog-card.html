@@ -1,0 +1,42 @@
+{{- /*
+  Shared blog post card used by the posts list and taxonomy term pages.
+  Expects a page context.
+*/ -}}
+<article class="blog-card">
+  <a class="blog-card__media-link" href="{{ .RelPermalink }}" tabindex="-1" aria-hidden="true">
+    {{ $cover := .Resources.GetMatch "cover.*" }}
+    <div class="blog-card__media{{ if not $cover }} blog-card__media--fallback{{ end }}">
+      {{ with $cover }}
+      <img src="{{ .RelPermalink }}" alt="{{$.Title}}" loading="lazy" decoding="async">
+      {{ end }}
+    </div>
+  </a>
+
+  <div class="blog-card__body">
+    <p class="blog-card__meta">
+      {{ if not .Date.IsZero }}
+      <time datetime="{{ .Date | time.Format `2006-01-02T15:04:05-07:00` }}">{{ .Date | time.Format "Jan 2, 2006" }}</time>
+      {{ end }}
+      {{ with .GetTerms "categories" }}
+      <span class="blog-card__meta-sep" aria-hidden="true">&middot;</span>
+      {{ range $i, $t := . }}{{ if $i }}, {{ end }}<a href="{{ $t.RelPermalink }}">{{ $t.LinkTitle }}</a>{{ end }}
+      {{ end }}
+      {{ if gt .ReadingTime 0 }}
+      <span class="blog-card__meta-sep" aria-hidden="true">&middot;</span>
+      <span>{{ .ReadingTime }} min read</span>
+      {{ end }}
+    </p>
+
+    <h2 class="blog-card__title">
+      <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+    </h2>
+
+    {{ with .Summary }}
+    <p class="blog-card__summary">{{ . }}</p>
+    {{ end }}
+
+    <a class="blog-card__read-more" href="{{ .RelPermalink }}">
+      Continue reading <span aria-hidden="true">&rarr;</span>
+    </a>
+  </div>
+</article>

@@ -1,0 +1,48 @@
+{{ define "main" }}
+<article class="post-single">
+
+  {{/* ── Cover hero ─────────────────────────────────────────────────────── */}}
+  {{ with .Params.cover }}
+  <div class="post-hero">
+    <img src="{{ . }}" alt="" loading="eager" decoding="async">
+  </div>
+  {{ end }}
+
+  {{/* ── Header ──────────────────────────────────────────────────────────── */}}
+  <header class="post-single__header">
+    <h1 class="post-single__title">{{ .Title }}</h1>
+
+    <p class="post-single__meta">
+      {{ if not .Date.IsZero }}
+      <time datetime="{{ .Date | time.Format `2006-01-02T15:04:05-07:00` }}">{{ .Date | time.Format "Jan 2, 2006" }}</time>
+      {{ end }}
+      {{ with .GetTerms "categories" }}
+      <span class="post-single__meta-sep" aria-hidden="true">&middot;</span>
+      {{ range $i, $t := . }}<a href="{{ $t.RelPermalink }}">{{ $t.LinkTitle }}</a>{{ end }}
+      {{ end }}
+      {{ with .GetTerms "tags" }}
+      <span class="post-single__meta-sep" aria-hidden="true">&middot;</span>
+      {{ range $i, $t := . }}{{ if $i }}, {{ end }}<a href="{{ $t.RelPermalink }}">{{ $t.LinkTitle }}</a>{{ end }}
+      {{ end }}
+      {{ if gt .ReadingTime 0 }}
+      <span class="post-single__meta-sep" aria-hidden="true">&middot;</span>
+      <span>{{ .ReadingTime }} min read</span>
+      {{ end }}
+    </p>
+  </header>
+
+  {{/* ── Table of contents ───────────────────────────────────────────────── */}}
+  {{ with .TableOfContents }}
+  <details class="post-toc" open>
+    <summary class="post-toc__toggle">Contents</summary>
+    <div class="post-toc__body">{{ . }}</div>
+  </details>
+  {{ end }}
+
+  {{/* ── Body ───────────────────────────────────────────────────────────── */}}
+  <div class="post-single__body">
+    {{ .Content }}
+  </div>
+
+</article>
+{{ end }}

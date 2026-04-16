@@ -3,11 +3,10 @@ title: "The Saga Continues: Hosting Angular Apps in Docker"
 date: 2026-01-30
 categories: ["capstoneed"]
 cover: "/assets/img/capstoneed/angular-on-docker.png"
-related:
-  - "/posts/capstoneed/2026-01-29-containerizing-the-api"
+
 ---
 
-In my [previous post]({{< relref "/posts/capstoneed/2026-01-29-containerizing-the-api" >}})
+In my [previous post]({{< relref "/posts/capstoneed/containerizing-the-api" >}})
 I went over the Docker setup I came up with for the Rails API. In this post
 I will do the same for the two frontends, and it should be much shorter!
 
@@ -21,7 +20,7 @@ today as it will make the entire deployment dead simple.
 
 Let's take a look at the files we will be working with today.
 `docker-compose.base.yml` and `docker-compose.yml` serve the same purpose we saw
-[last time]({{< relref "/posts/capstoneed/2026-01-29-containerizing-the-api" >}}).
+[last time]({{< relref "/posts/capstoneed/containerizing-the-api" >}}).
 The TL;DR is that `docker-compose.base.yml` defines shared configuration, and then
 `docker-compose.yml` extends it to provide profiles and development/production
 specifics.
