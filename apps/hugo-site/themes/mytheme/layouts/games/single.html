@@ -47,26 +47,8 @@
     {{ .Content }}
   </div>
 
-  {{/* ── Related posts (by tag) ─────────────────────────────────────────── */}}
-  {{ $relatedPosts := slice }}
-  {{ range .GetTerms "tags" }}
-    {{ range where .Pages "Section" "posts" }}
-      {{ $relatedPosts = $relatedPosts | append . }}
-    {{ end }}
-  {{ end }}
-  {{ with $relatedPosts }}
-  <section class="game-related">
-    <h2 class="game-related__title">Posts about this game</h2>
-    <ul class="game-related__list">
-      {{ range . }}
-      <li>
-        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-        <small>{{ .Date | time.Format "January 2, 2006" }}</small>
-      </li>
-      {{ end }}
-    </ul>
-  </section>
-  {{ end }}
+  {{/* ── Related posts ──────────────────────────────────────────────────── */}}
+  {{ partial "related-posts.html" . }}
 
 </article>
 {{ end }}

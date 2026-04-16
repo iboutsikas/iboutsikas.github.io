@@ -1,0 +1,20 @@
+{{- /*
+  Related posts section using Hugo's built-in related content engine.
+  Filters to the posts section only. Expects a page context.
+*/ -}}
+{{ $related := where (site.RegularPages.Related .) "Section" "posts" }}
+{{ with $related }}
+<section class="related-posts">
+  <h2 class="related-posts__title">Related Posts</h2>
+  <ul class="related-posts__list">
+    {{ range .ByDate.Reverse }}
+    <li class="related-posts__item">
+      <a href="{{ .RelPermalink }}" class="related-posts__link">{{ .Title }}</a>
+      <time class="related-posts__date" datetime="{{ .Date | time.Format `2006-01-02` }}">
+        {{ .Date | time.Format "January 2, 2006" }}
+      </time>
+    </li>
+    {{ end }}
+  </ul>
+</section>
+{{ end }}

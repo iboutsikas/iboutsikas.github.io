@@ -1,8 +1,7 @@
 ---
 title: "First Contact: Common UI and Enhanced Input"
 date: 2025-12-08
-categories: ["unreal"]
-tags: ["quickdraw"]
+categories: ["unreal", "quickdraw"]
 ---
 
 ## Intro
