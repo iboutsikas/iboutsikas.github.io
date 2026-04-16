@@ -2,7 +2,6 @@
 title: "Putting the Rails on Docker: Containerizing a Rails API"
 date: 2026-01-29
 categories: ["capstoneed"]
-cover: "/assets/img/capstoneed/rails_on_docker.png"
 ---
 
 One of my primary goals with CapstoneED v2 was to have the repo be
@@ -39,7 +38,7 @@ of the common services, configuration, etc, while `docker-compose.yml` extends
 those services and groups them in profiles. For example, let's say we have the
 following in base:
 
-```yml
+{{< highlight yaml >}}
 # in docker-compose.base.yml
 services:
   database:
@@ -47,11 +46,11 @@ services:
   ports:
     - "5432:5432"
     # ... omitted for brevity
-```
+{{< /highlight >}}
 
 Then in our compose file we can setup the following:
 
-```yml
+{{< highlight yaml >}}
 # in docker-compose.yml
 services:
   database-dev:
@@ -61,7 +60,7 @@ services:
   profiles: ["backend-dev"]
   ports:
     - "5480:5432" # 5432 is for the production database, we use 5480 in dev
-```
+{{< /highlight >}}
 
 What this affords is to share common config while overriding whatever we need
 per profile. Now by running `docker compose --profile backend-dev up`, Docker
