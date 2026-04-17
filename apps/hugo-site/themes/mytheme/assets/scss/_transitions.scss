@@ -20,7 +20,7 @@
 /* Content area — VT cross-fade + non-VT fallback */
 #_content {
   view-transition-name: content-area;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.25s ease;
 }
 
 #_content.spa-fade-out {
