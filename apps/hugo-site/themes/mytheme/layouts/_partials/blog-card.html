@@ -27,7 +27,7 @@
       {{ end }}
     </p>
 
-    <h2 class="blog-card__title">
+    <h2 class="blog-card__title" style="view-transition-name: vt-{{ .File.UniqueID }}">
       <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
     </h2>
 

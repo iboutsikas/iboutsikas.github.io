@@ -1,0 +1,18 @@
+/* Enable automatic cross-document view transitions for same-origin navigations */
+@view-transition {
+  navigation: auto;
+}
+
+/* Suppress the default full-page cross-fade; let only named elements animate */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* Timing for all named transition elements (title flips) */
+::view-transition-old(*),
+::view-transition-new(*) {
+  animation-duration: 0.35s;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}

@@ -15,7 +15,7 @@
     <span class="pub-entry__type">{{ . }}</span>
     {{ end }}
 
-    <h2 class="pub-entry__title">
+    <h2 class="pub-entry__title" style="view-transition-name: vt-{{ .File.UniqueID }}">
       <a href="{{ .RelPermalink }}">{{ .Title }}</a>
     </h2>
 

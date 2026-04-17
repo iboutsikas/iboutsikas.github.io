@@ -13,7 +13,7 @@
       {{ with .Params.role }}
       <span class="game-hero__role">{{ . }}</span>
       {{ end }}
-      <h1 class="game-hero__title">{{ .Title }}</h1>
+      <h1 class="game-hero__title" style="view-transition-name: vt-{{ .File.UniqueID }}">{{ .Title }}</h1>
       {{ with .Params.caption }}
       <p class="game-hero__caption">{{ . }}</p>
       {{ end }}

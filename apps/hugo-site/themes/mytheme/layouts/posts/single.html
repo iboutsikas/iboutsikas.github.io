@@ -10,7 +10,7 @@
 
   {{/* ── Header ──────────────────────────────────────────────────────────── */}}
   <header class="post-single__header">
-    <h1 class="post-single__title">{{ .Title }}</h1>
+    <h1 class="post-single__title" style="view-transition-name: vt-{{ .File.UniqueID }}">{{ .Title }}</h1>
 
     <p class="post-single__meta">
       {{ if not .Date.IsZero }}
