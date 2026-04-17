@@ -104,34 +104,39 @@
     flex-direction: column;
   }
 
-  a {
-    display: block;
-    padding: 0.65rem 0.25rem;
-    color: rgba(255, 255, 255, 1.0);
-    text-decoration: none;
-    font-family: var(--font-family-heading);
-    font-weight: var(--font-weight-heading);
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    transition: color var(--transition-speed), padding-left var(--transition-speed);
+  .sidebar-nav-item {
+    a {
+      display: block;
+      padding: 0.65rem 0.25rem;
+      color: rgba(255, 255, 255, 1.0);
+      text-decoration: none;
+      font-family: var(--font-family-heading);
+      font-weight: var(--font-weight-heading);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: color var(--transition-speed), padding-left var(--transition-speed);
 
-    text-decoration-style: solid;
-    text-underline-offset: 0.8rem;
-    text-decoration-thickness: 3px;
-    text-decoration-line: underline;
-    text-decoration-color: rgba(255, 255, 255, 0.25);
+      text-decoration-style: solid;
+      text-underline-offset: 0.8rem;
+      text-decoration-thickness: 3px;
+      text-decoration-line: underline;
+      text-decoration-color: rgba(255, 255, 255, 0.25);
 
-    &:hover {
-      color: var(--sidebar-link-hover);
-      text-decoration-color: var(--accent-color);
-      padding-left: 0.5rem;
+      &:hover {
+        color: var(--sidebar-link-hover);
+        text-decoration-color: var(--accent-color);
+        padding-left: 0.5rem;
+      }
     }
 
     &[aria-current="page"],
     &.active {
-      color: var(--sidebar-link-hover);
-      font-weight: 600;
+      a {
+        color: var(--sidebar-link-hover);
+      }
     }
+
+
   }
 }
 
@@ -195,19 +200,37 @@
     line-height: 1;
   }
 
-  .theme-toggle__icon--dark  { display: flex; }  // shown in light mode (click → go dark)
-  .theme-toggle__icon--light { display: none; }  // shown in dark mode (click → go light)
+  .theme-toggle__icon--dark {
+    display: flex;
+  }
+
+  // shown in light mode (click → go dark)
+  .theme-toggle__icon--light {
+    display: none;
+  }
+
+  // shown in dark mode (click → go light)
 }
 
 // In dark mode, swap which icon is visible
 [data-theme="dark"] .theme-toggle {
-  .theme-toggle__icon--dark  { display: none; }
-  .theme-toggle__icon--light { display: flex; }
+  .theme-toggle__icon--dark {
+    display: none;
+  }
+
+  .theme-toggle__icon--light {
+    display: flex;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) .theme-toggle {
-    .theme-toggle__icon--dark  { display: none; }
-    .theme-toggle__icon--light { display: flex; }
+    .theme-toggle__icon--dark {
+      display: none;
+    }
+
+    .theme-toggle__icon--light {
+      display: flex;
+    }
   }
 }
