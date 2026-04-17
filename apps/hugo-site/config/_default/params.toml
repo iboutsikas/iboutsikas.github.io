@@ -13,7 +13,7 @@ copyright = "© 2026. All rights reserved."
 [author]
   name   = "Ioannis Boutsikas"
   email  = "mgioanni@outlook.com"
-  avatar = "/img/logo.png"
+  avatar = "/img/resume-photo-sm.png"
   about  = "Ioannis is a software engineer with focus in real-time rendering. He has also done a lot of work in web development and cloud platforms. Currently working on his own rendering engine."
 
 # Social links (rendered in sidebar)

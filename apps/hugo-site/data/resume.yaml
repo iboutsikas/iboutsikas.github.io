@@ -1,7 +1,7 @@
 basics:
   name: "Ioannis Boutsikas"
   label: "Software Engineer"
-  picture: "https://www.iboutsikas.me/assets/img/resume-photo-sm.png"
+  picture: "/img/resume-photo-sm.png"
   website: "https://iboutsikas.me"
   summary: >
     Software engineer with experience across multiple tech stacks. Passionate about game
