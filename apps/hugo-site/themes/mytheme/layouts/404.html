@@ -1,0 +1,33 @@
+{{ define "main" }}
+<div class="page-content">
+  <div class="not-found">
+    <div class="not-found__code" aria-hidden="true">404</div>
+    <h1 class="not-found__title">Nothing here.</h1>
+    <p class="not-found__message">
+      Whatever you were looking for has either moved, never existed, or
+      escaped into the void. Happens to the best URLs.
+    </p>
+
+    <div class="not-found__suggestions">
+      <p class="not-found__suggest-label">Maybe one of these?</p>
+      <div class="not-found__links">
+        <a class="not-found__link" href="{{ "/posts/" | relURL }}">
+          <span class="not-found__link-icon" aria-hidden="true">✍</span>
+          <span class="not-found__link-text">Posts</span>
+          <span class="not-found__link-sub">Words I managed to finish</span>
+        </a>
+        <a class="not-found__link" href="{{ "/projects/" | relURL }}">
+          <span class="not-found__link-icon" aria-hidden="true">⚙</span>
+          <span class="not-found__link-text">Projects</span>
+          <span class="not-found__link-sub">Things I actually shipped</span>
+        </a>
+        <a class="not-found__link" href="{{ "/" | relURL }}">
+          <span class="not-found__link-icon" aria-hidden="true">⌂</span>
+          <span class="not-found__link-text">Home</span>
+          <span class="not-found__link-sub">Back to safety</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+{{ end }}
