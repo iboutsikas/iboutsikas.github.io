@@ -1,10 +1,11 @@
 {{ define "main" }}
+{{ $cover := .Resources.GetMatch "cover.*" }}
 <article class="post-single">
 
   {{/* ── Cover hero ─────────────────────────────────────────────────────── */}}
-  {{ with .Params.cover }}
+  {{ with $cover }}
   <div class="post-hero">
-    <img src="{{ . }}" alt="" loading="eager" decoding="async">
+    <img src="{{ .RelPermalink }}" alt="" loading="eager" decoding="async">
   </div>
   {{ end }}
 
