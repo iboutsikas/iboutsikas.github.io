@@ -7,6 +7,13 @@ export interface CoverConfig {
   speedThreshold: number;
 }
 
+export interface IConfigProvider {
+  get side(): Side;
+  get range(): number | undefined;
+  get movementThreshold(): number;
+  get speedThreshold(): number;
+}
+
 export interface Vec2 {
   x: number;
   y: number;

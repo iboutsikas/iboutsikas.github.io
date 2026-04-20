@@ -1,6 +1,6 @@
 import { Subject, Observable, merge, fromEvent, animationFrameScheduler, Subscription } from 'rxjs';
 import { map, switchMap, takeUntil, tap, distinctUntilChanged, filter, throttleTime, takeWhile, share } from 'rxjs/operators';
-import type { CoverConfig, Vec2 } from '../types/definitions.js';
+import type { IConfigProvider, Vec2 } from '../types/definitions.js';
 import { type InteractionState, type GestureEvent, createGestureEvent, gestureEventFrom } from '../types/gesture.js';
 import { CoverMath } from '../utils/cover-math.js';
 
@@ -11,14 +11,18 @@ export class GestureController {
   public readonly position$: Observable<Vec2>;
   public readonly gesture$: Observable<GestureEvent>;
 
-  private _subscription?: Subscription;
+  private _subscription: Subscription | undefined;
 
-  constructor(private config: CoverConfig) {
+  constructor(private config: IConfigProvider) {
 
     this.position$ = this.positionSubject.asObservable().pipe(
       distinctUntilChanged((a, b) => a.x === b.x && a.y === b.y)
     );
-    this.gesture$ = this.gestureSubject.asObservable().pipe(share());
+    this.gesture$ = this.gestureSubject.asObservable();
+
+    this.gesture$.subscribe(g => {
+      console.log('From GestureController', g);
+    })
   }
 
   private getPointerPos = (e: PointerEvent): Vec2 => ({
@@ -74,7 +78,7 @@ export class GestureController {
           ),
           end$
         ).pipe(
-          tap(event => {
+          map(event => {
             const velocity = this.computeVelocity(lastEvent, event);
             const velocityMag2 = CoverMath.magnitudeSq(velocity);
             const newEvent = gestureEventFrom(event, { velocity });
@@ -87,8 +91,9 @@ export class GestureController {
             } 
 
             lastEvent = gestureEventFrom(eventToEmit);
-            this.gestureSubject.next(eventToEmit);
+            return eventToEmit;
           }),
+          tap(event => this.gestureSubject.next(event)),
           // Complete after the end event is processed (inclusive so tap runs first)
           takeWhile(event => event.type !== 'end' && event.type !== 'flick', true)
         );
@@ -98,7 +103,6 @@ export class GestureController {
 
   public disconnect(): void {
     this._subscription?.unsubscribe();
-    this.gestureSubject.complete();
-    this.positionSubject.complete();
+    this._subscription = undefined;
   }
 }
