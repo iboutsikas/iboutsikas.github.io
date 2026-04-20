@@ -267,7 +267,6 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
   static styles = css`
     :host {
       display: block;
-      position: fixed;
       --cover-peek-size: 0px;
       --cover-width: 100%;
       --cover-height: 100%;
@@ -278,11 +277,19 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
     }
 
     .scrim {
+      /*
+        Render a 10%x10% rect. Scale to 100%. Make sure the origin 
+        is top left so we do not have to offset via magic numbers.
+      */
       position: fixed;
       top: 0;
       left: 0;
-      right: 0;
-      bottom: 0;
+      width: 10vw;
+      height: 10vh;
+      transform: scale(10, 10);
+      transform-origin: top left;
+
+
       background-color: rgba(0, 0, 0, 0.5);
       opacity: 0;
       transition: opacity var(--anim-duration) ease;
