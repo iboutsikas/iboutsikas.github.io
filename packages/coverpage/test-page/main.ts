@@ -1,19 +1,17 @@
 import '../src/index.js';
+import type { IbCoverpage } from '../src/coverpage.js';
 
-const leftCover = document.querySelector('#left-cover');
-const leftNav = document.getElementById('left-nav');
+const leftCover = document.querySelector<IbCoverpage>('#left-cover');
+const toggleBtn = document.getElementById('toggle-btn');
 
-const isMobile = () => window.matchMedia('(max-width: 767px)').matches;
-
-function resetNavForViewport() {
-  if (!leftNav) return;
-  if (isMobile()) {
-    leftNav.style.opacity = '0';
-    leftNav.style.pointerEvents = 'none';
-  } else {
-    leftNav.style.opacity = '';
-    leftNav.style.pointerEvents = '';
-  }
+if (toggleBtn && leftCover) {
+  toggleBtn.addEventListener('click', () => {
+    if (leftCover.open) {
+      leftCover.hide();
+    } else {
+      leftCover.show();
+    }
+  });
 }
 
 if (leftCover) {

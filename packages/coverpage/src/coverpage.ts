@@ -2,9 +2,9 @@ import { LitElement, html, css, type PropertyValues } from 'lit';
 import { customElement, query, state } from 'lit/decorators.js';
 import { property } from 'lit/decorators.js';
 import { GestureController } from './controllers/gesture-controller.js';
-import type { Side, IConfigProvider } from './types/definitions.js';
+import type { Side, IConfigProvider, Vec2 } from './types/definitions.js';
 import { CoverMath } from './utils/cover-math.js';
-import { defer, filter, share, Subject, Subscription, takeUntil, withLatestFrom } from 'rxjs';
+import { BehaviorSubject, filter, map, Observable, share, shareReplay, Subject, switchMap, takeUntil, withLatestFrom } from 'rxjs';
 import { CoverpageEvents, type CoverpageEventMap } from './types/events.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { observeSize } from './utils/observe.js';
@@ -21,30 +21,34 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
   @property({ type: Number }) accessor speedThreshold: number = 1;
   /** The minimum size of the peeked cover. */
   @property({ type: Number }) accessor peekSize: number = 0;
-  /**
-   * Cover dimensions are set via CSS custom properties, not JS properties.
-   * Use `--cover-width` for left/right sides and `--cover-height` for top/bottom.
-   */
-  /** Internal scrim visibility state. Use `open()` / `close()` to drive it externally. */
-  @state() private accessor _scrimOpen: boolean = false;
-
-  /** Exposes scrim state as a readonly observable property for consumers. */
-  get scrimOpen(): boolean { return this._scrimOpen; }
   /** Duration of cover and scrim animations in milliseconds. */
   @property({ type: Number }) accessor animationDuration: number = 300;
+  /** Whether the cover is open. Setting this attribute on load starts the cover fully open. */
+  @property({ type: Boolean }) accessor open: boolean = false;
 
   /** The cover element. */
   @query('.cover') accessor coverElement!: HTMLElement;
   /** The scrim element. */
   @query('.scrim') accessor scrimElement!: HTMLElement;
 
-  private _opened = false;
   private _isDragging = false;
   /** Cover translate at the moment a gesture starts — used as drag base. */
   private _translationOrigin = 0;
 
   private _gestureController: GestureController = new GestureController(this);
   private _disconnectSubject: Subject<void> = new Subject<void>();
+  /** Shared cover size stream — initialized in firstUpdated when coverElement is available. */
+  private _coverSize$!: Observable<{ width: number; height: number }>;
+
+  /** Source of truth for open/closed state. Drives translate$ and scrim. */
+  private readonly _openState$ = new BehaviorSubject<boolean>(false);
+  /** Observable consumers can use to react to open/closed transitions. */
+  public readonly openState$ = this._openState$.asObservable();
+
+  /** BehaviorSubject driving cover position. Value is the CSS translate in px. */
+  private readonly _translate$ = new BehaviorSubject<number>(0);
+  /** Observable of cover translate position in px. 0 = fully open, negative/positive = closed. */
+  public readonly translate$ = this._translate$.asObservable();
 
   connectedCallback() {
     super.connectedCallback();
@@ -66,144 +70,42 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
       elementId: this.id ?? ''
     });
 
+    // shareReplay(1) so all consumers (drag pipe, future combineLatests) share one ResizeObserver.
+    this._coverSize$ = observeSize(this.coverElement).pipe(shareReplay(1));
+
+    // Disable transition during initial placement — rAF re-enables it after first paint.
+    this.coverElement.classList.add('is-dragging');
     this._setupSubscriptions();
-
-    // Snap to closed position on first render without triggering a transition.
-    // this.coverElement.classList.add('is-dragging');
-    // this.coverElement.style.transform = this._buildTransform(this._closedTranslate());
-    // requestAnimationFrame(() => this.coverElement.classList.remove('is-dragging'));
-
-    // const coverSize$ = observeSize(this.coverElement);
-    // const gesture$ = this._gestureController!.gesture$;
-
-
-    // const start$ = gesture$.pipe(
-    //   filter(g => g.type === 'start'),
-    //   share()
-    // );
-
-    // const move$ = gesture$.pipe(
-    //   filter(g => g.type === 'move'),
-    //   share()
-    // );
-
-    // const end$ = gesture$.pipe(
-    //   filter(g => g.type === 'end' || g.type === 'flick'),
-    //   share()
-    // );
-
-    // // Re-snap to closed position when cover resizes (viewport resize) and not open/dragging.
-    // coverSize$.subscribe(coverSize => {
-    //   if (this._opened || this._isDragging) return;
-    //   const dim = this.side === 'left' || this.side === 'right' ? coverSize.width : coverSize.height;
-    //   this.coverElement.classList.add('is-dragging');
-    //   this.coverElement.style.transform = this._buildTransform(this._closedTranslate(dim));
-    //   requestAnimationFrame(() => this.coverElement.classList.remove('is-dragging'));
-    // });
-
-    // // On gesture start: freeze current translate as the drag baseline.
-    // start$.subscribe(() => {
-    //   this._isDragging = true;
-    //   this._translationOrigin = this._getTranslate();
-    //   this.coverElement.classList.add('is-dragging');
-    //   this._fireCoverpageEvent(CoverpageEvents.BeforeAnimation, {
-    //     elementId: this.id ?? ''
-    //   });
-    // });
-
-    // // During drag: translate directly, no CSS transition.
-    // move$.pipe(
-    //   withLatestFrom(start$, coverSize$)
-    // ).subscribe(([moveEvent, startEvent, coverSize]) => {
-    //   console.group('Movement');
-    //   console.log(moveEvent);
-    //   console.log(startEvent);
-    //   console.log(coverSize);
-    //   console.groupEnd();
-    //   const isHorizontal = this.side === 'left' || this.side === 'right';
-    //   const moveDelta = isHorizontal
-    //     ? moveEvent.position.x - startEvent.position.x
-    //     : moveEvent.position.y - startEvent.position.y;
-
-    //   const closed = this._closedTranslate(isHorizontal ? coverSize.width : coverSize.height);
-    //   const tx = CoverMath.clamp(
-    //     this._translationOrigin + moveDelta,
-    //     Math.min(closed, 0),
-    //     Math.max(closed, 0)
-    //   );
-
-    //   this.coverElement.style.transform = this._buildTransform(tx);
-    //   this._applyScrimOpacity(tx, coverSize);
-    // });
-
-    // // On gesture end or flick: decide open/close, then animate via CSS transition.
-    // end$.pipe(
-    //   withLatestFrom(coverSize$)
-    // ).subscribe(([endEvent, coverSize]) => {
-    //   const isHorizontal = this.side === 'left' || this.side === 'right';
-    //   const coverDim = isHorizontal ? coverSize.width : coverSize.height;
-    //   const currentTx = this._getTranslate();
-
-    //   let shouldOpen: boolean;
-
-    //   if (endEvent.type === 'flick') {
-    //     // Velocity direction decides intent.
-    //     const vel = isHorizontal ? endEvent.velocity.x : endEvent.velocity.y;
-    //     if (this.side === 'left' || this.side === 'bottom') {
-    //       shouldOpen = vel > 0;
-    //     } else {
-    //       shouldOpen = vel < 0;
-    //     }
-    //   } else {
-    //     // Position threshold: past 50% of travel → open.
-    //     const closed = this._closedTranslate(coverDim);
-    //     const travel = Math.abs(closed);
-    //     const progress = Math.abs(currentTx - closed);
-    //     shouldOpen = progress >= travel * 0.5;
-    //   }
-
-    //   this._isDragging = false;
-
-    //   if (shouldOpen) {
-    //     this.open();
-    //   } else {
-    //     this.close();
-    //   }
-
-    //   this._fireCoverpageEvent(CoverpageEvents.AfterAnimation, {
-    //     elementId: this.id ?? ''
-    //   });
-    // });
+    requestAnimationFrame(() => this.coverElement.classList.remove('is-dragging'));
   }
 
   updated(changedProperties: PropertyValues<this>) {
+    if (changedProperties.has('open')) {
+      this._openState$.next(this.open);
+    }
+
     const configKeys = ['side', 'range', 'movementThreshold', 'speedThreshold'] as const;
     const configChanged = configKeys.some(k => changedProperties.has(k));
-
     if (configChanged) {
       this._gestureController.disconnect();
       this._gestureController.connect(this);
     }
   }
 
-  /** Animates the cover to the fully open position and shows the scrim. */
-  public open(): void {
-    this._opened = true;
-    this._scrimOpen = true;
+  /** Slides the cover to the fully open position. */
+  public show(): void {
     this.coverElement.classList.remove('is-dragging');
-    this.coverElement.style.transform = this._buildTransform(0);
+    this.open = true;
   }
 
-  /** Animates the cover back to the resting (peek) position and hides the scrim. */
-  public close(): void {
-    this._opened = false;
-    this._scrimOpen = false;
+  /** Slides the cover back to the resting (peek) position. */
+  public hide(): void {
     this.coverElement.classList.remove('is-dragging');
-    this.coverElement.style.transform = this._buildTransform(this._closedTranslate());
+    this.open = false;
   }
 
   private _handleScrimClick() {
-    this.close();
+    this.hide();
   }
 
   private _setupSubscriptions(): void {
@@ -211,7 +113,24 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
       throw new Error('[_setupSubscriptions] Called before DOM Queries are made available');
     }
 
-    const coverSize$ = observeSize(this.coverElement);
+    // openState$ is the open/close authority — drives translate$ and scrim DOM.
+    this._openState$.pipe(
+      takeUntil(this._disconnectSubject)
+    ).subscribe(isOpen => {
+      this._translate$.next(isOpen ? 0 : this._closedTranslate());
+      if (this.scrimElement) {
+        this.scrimElement.style.opacity = isOpen ? '1' : '0';
+        this.scrimElement.style.pointerEvents = isOpen ? 'auto' : 'none';
+      }
+    });
+
+    // translate$ applies transform to the cover element.
+    this._translate$.pipe(
+      takeUntil(this._disconnectSubject)
+    ).subscribe(tx => {
+      this.coverElement.style.transform = this._buildTransform(tx);
+    });
+
     const gesture$ = this._gestureController!.gesture$;
 
     const start$ = gesture$.pipe(
@@ -219,31 +138,63 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
       share()
     );
 
-    const move$ = gesture$.pipe(
-      filter(g => g.type === 'move'),
-      share()
-    );
-
     const end$ = gesture$.pipe(
       filter(g => g.type === 'end' || g.type === 'flick'),
       share()
     );
-    
 
-    start$.pipe(takeUntil(this._disconnectSubject)).subscribe((e) => {
+    // CSS classes: disable transition while dragging, re-enable on release.
+    start$.pipe(takeUntil(this._disconnectSubject)).subscribe(() => {
       this.coverElement.classList.add('will-change', 'is-dragging');
-
-      this._fireCoverpageEvent(CoverpageEvents.BeforeAnimation, {
-        elementId: this.id ?? ''
-      });
+      this._fireCoverpageEvent(CoverpageEvents.BeforeAnimation, { elementId: this.id ?? '' });
     });
 
-    end$.pipe(takeUntil(this._disconnectSubject)).subscribe((e) => {
+    end$.pipe(takeUntil(this._disconnectSubject)).subscribe(() => {
       this.coverElement.classList.remove('will-change', 'is-dragging');
+      this._fireCoverpageEvent(CoverpageEvents.AfterAnimation, { elementId: this.id ?? '' });
+    });
 
-      this._fireCoverpageEvent(CoverpageEvents.AfterAnimation, {
-        elementId: this.id ?? ''
-      });
+    const isHorizontal = this.side === 'left' || this.side === 'right';
+
+    // Drag: translate cover in real time while pointer is down.
+    start$.pipe(
+      switchMap(startEvent => {
+        const origin = this._translate$.getValue();
+        const startPos = startEvent.position;
+        const closed = this._closedTranslate();
+        const [min, max] = closed < 0 ? [closed, 0] : [0, closed];
+
+        return this._gestureController.position$.pipe(
+          takeUntil(end$),
+          map(pos => {
+            const delta = isHorizontal ? pos.x - startPos.x : pos.y - startPos.y;
+            return CoverMath.clamp(origin + delta, min, max);
+          })
+        );
+      }),
+      withLatestFrom(this._coverSize$),
+      takeUntil(this._disconnectSubject)
+    ).subscribe(([tx, size]) => {
+      this._translate$.next(tx);
+      this._applyScrimOpacity(tx, size);
+    });
+
+    // Drag end: snap to open or closed based on how far cover has traveled.
+    end$.pipe(
+      filter(g => g.type === 'end'),
+      takeUntil(this._disconnectSubject)
+    ).subscribe(() => {
+      const tx = this._translate$.getValue();
+      const closed = this._closedTranslate();
+      Math.abs(tx) < Math.abs(closed) / 2 ? this.show() : this.hide();
+    });
+
+    // Flick: open or close based on velocity direction relative to side.
+    end$.pipe(
+      filter(g => g.type === 'flick'),
+      takeUntil(this._disconnectSubject)
+    ).subscribe(e => {
+      this._flickShouldOpen(e.velocity) ? this.show() : this.hide();
     });
   }
 
@@ -251,21 +202,12 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
   // Helpers
   // ---------------------------------------------------------------------------
 
-  /**
-   * Reads --cover-peek-size from the host computed style.
-   * Falls back to the peekSize JS property if the CSS var is absent or unparseable.
-   */
   private _getCssPeekSize(): number {
     const raw = getComputedStyle(this).getPropertyValue('--cover-peek-size').trim();
     const parsed = parseFloat(raw);
     return isNaN(parsed) ? this.peekSize : parsed;
   }
 
-  /**
-   * Closed-state translate value.
-   * Negative for left/top (push off-screen left/top), positive for right/bottom.
-   * Pass explicit dim to avoid a live DOM read during gesture handling.
-   */
   private _closedTranslate(dim?: number): number {
     const size = dim ?? (
       this.side === 'left' || this.side === 'right'
@@ -281,14 +223,6 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
     }
   }
 
-  /** Reads the current translate value from the cover's inline transform. */
-  private _getTranslate(): number {
-    const transform = this.coverElement?.style.transform ?? '';
-    const match = transform.match(/translate\(([^,]+)px/);
-    return match?.[1] != null ? parseFloat(match[1]) : 0;
-  }
-
-  /** Builds a translate CSS string for the active axis. */
   private _buildTransform(tx: number): string {
     if (this.side === 'top' || this.side === 'bottom') {
       return `translate(0, ${tx}px)`;
@@ -296,10 +230,6 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
     return `translate(${tx}px, 0)`;
   }
 
-  /**
-   * Drives scrim opacity proportionally to how open the cover is.
-   * 0 = fully closed, 1 = fully open.
-   */
   private _applyScrimOpacity(tx: number, coverSize: { width: number; height: number }): void {
     const isHorizontal = this.side === 'left' || this.side === 'right';
     const dim = isHorizontal ? coverSize.width : coverSize.height;
@@ -312,6 +242,16 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
     if (this.scrimElement) {
       this.scrimElement.style.opacity = String(opacity);
       this.scrimElement.style.pointerEvents = opacity > 0 ? 'auto' : 'none';
+    }
+  }
+
+  /** Returns true if a flick in this velocity direction should open the cover. */
+  private _flickShouldOpen(velocity: Vec2): boolean {
+    switch (this.side) {
+      case 'left':   return velocity.x > 0;
+      case 'right':  return velocity.x < 0;
+      case 'top':    return velocity.y > 0;
+      case 'bottom': return velocity.y < 0;
     }
   }
 

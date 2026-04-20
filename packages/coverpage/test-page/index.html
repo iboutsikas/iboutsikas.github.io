@@ -22,23 +22,14 @@
         }
 
         .cover-background {
-            position: relative;
-            width: 100%;
-            height: 100vh;
+            position: absolute;
+            width: 100vw;
+            height: 100%;
+            left: calc(50% - 50vw);
         }
 
         .cover-nav {
-            position: absolute;
-            inset: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            box-sizing: border-box;
-            opacity: 1;
-            transition: opacity 0.2s ease;
+            position: relative;
         }
 
         /* ── Left sidebar ────────────────────────────────────────────── */
@@ -71,9 +62,6 @@
         }
 
         #left-background {
-            left: calc(50% - 50vw);
-            width: 100vw;
-            height: 100%;
             background: #ddd;
             box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
         }
@@ -149,23 +137,39 @@
             margin-top: 100px;
             transition: margin-left 0.3s ease, margin-right 0.3s ease;
         }
+
+        #toggle-btn {
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            z-index: 200;
+            padding: 0.5rem 1rem;
+            background: #333;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 
 <body>
 
-    <ib-coverpage id="left-cover" side="left">
+    <button id="toggle-btn">Toggle Nav</button>
+
+    <ib-coverpage id="left-cover" side="left" open>
         <div id="left-background" class="cover-background">
-            <div id="left-nav" class="cover-nav">
-                <h3>Left Sidebar</h3>
-                <p>Drag right to open. Desktop: always visible at 250px.</p>
-                <ul>
-                    <li><a href="#">Games</a></li>
-                    <li><a href="#">Publications</a></li>
-                    <li><a href="#">Projects</a></li>
-                    <li><a href="#">Resume</a></li>
-                </ul>
-            </div>
+        </div>
+        <div id="left-nav" class="cover-nav">
+            <h3>Left Sidebar</h3>
+            <p>Drag right to open. Desktop: always visible at 250px.</p>
+            <ul>
+                <li><a href="#">Games</a></li>
+                <li><a href="#">Publications</a></li>
+                <li><a href="#">Projects</a></li>
+                <li><a href="#">Resume</a></li>
+            </ul>
         </div>
     </ib-coverpage>
 
@@ -183,7 +187,7 @@
         </div>
     </ib-coverpage>
 
-    {{/*  <ib-coverpage id="top-cover" side="top">
+    <!--  <ib-coverpage id="top-cover" side="top">
         <div id="top-background" class="cover-background">
             <div class="cover-nav">
                 <h3>Top Drawer</h3>
@@ -199,7 +203,7 @@
                 <p>Drag up to open.</p>
             </div>
         </div>
-    </ib-coverpage>  */}}
+    </ib-coverpage>  -->
 
     <div id="content">
         <h1 style="margin-top: 40px;">Coverpage Test Page</h1>

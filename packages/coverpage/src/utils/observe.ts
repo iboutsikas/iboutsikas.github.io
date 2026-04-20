@@ -7,6 +7,9 @@ import { Observable, map } from 'rxjs';
  */
 export function observeSize(element: HTMLElement): Observable<{ width: number; height: number }> {
   return new Observable<{ width: number; height: number }>(subscriber => {
+    // Emit current size synchronously so combinators like combineLatest work immediately.
+    subscriber.next({ width: element.offsetWidth, height: element.offsetHeight });
+
     const observer = new ResizeObserver(entries => {
       for (const entry of entries) {
         subscriber.next({
