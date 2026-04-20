@@ -1,27 +1,24 @@
 import { Subject, Observable, merge, fromEvent, animationFrameScheduler, Subscription } from 'rxjs';
-import { map, switchMap, takeUntil, tap, distinctUntilChanged, filter, throttleTime, takeWhile } from 'rxjs/operators';
+import { map, switchMap, takeUntil, tap, distinctUntilChanged, filter, throttleTime, takeWhile, share } from 'rxjs/operators';
 import type { CoverConfig, Vec2 } from '../types/definitions.js';
 import { type InteractionState, type GestureEvent, createGestureEvent, gestureEventFrom } from '../types/gesture.js';
 import { CoverMath } from '../utils/cover-math.js';
 
 export class GestureController {
   private readonly gestureSubject = new Subject<GestureEvent>();
-  private readonly stateSubject = new Subject<InteractionState>();
   private readonly positionSubject = new Subject<Vec2>();
 
-  public readonly state$: Observable<InteractionState>;
   public readonly position$: Observable<Vec2>;
   public readonly gesture$: Observable<GestureEvent>;
 
-  private _suspended: boolean = false;
   private _subscription?: Subscription;
 
   constructor(private config: CoverConfig) {
-    this.state$ = this.stateSubject.asObservable().pipe(distinctUntilChanged());
+
     this.position$ = this.positionSubject.asObservable().pipe(
       distinctUntilChanged((a, b) => a.x === b.x && a.y === b.y)
     );
-    this.gesture$ = this.gestureSubject.asObservable();
+    this.gesture$ = this.gestureSubject.asObservable().pipe(share());
   }
 
   private getPointerPos = (e: PointerEvent): Vec2 => ({
@@ -64,9 +61,7 @@ export class GestureController {
     );
 
     this._subscription = start$.pipe(
-      filter(_ => !this._suspended),
       tap(event => {
-        this.stateSubject.next('dragging');
         this.gestureSubject.next(gestureEventFrom(event));
       }),
       switchMap(startEvent => {
@@ -87,12 +82,9 @@ export class GestureController {
             let eventToEmit = newEvent;
             if (velocityMag2 > speed2) {
               eventToEmit = gestureEventFrom(newEvent, { type: 'flick' });
-              this.stateSubject.next('sliding');
             } else if (event.type === 'move') {
               this.positionSubject.next({ ...newEvent.position });
-            } else if (event.type === 'end') {
-              this.stateSubject.next('idle');
-            }
+            } 
 
             lastEvent = gestureEventFrom(eventToEmit);
             this.gestureSubject.next(eventToEmit);
@@ -107,15 +99,6 @@ export class GestureController {
   public disconnect(): void {
     this._subscription?.unsubscribe();
     this.gestureSubject.complete();
-    this.stateSubject.complete();
     this.positionSubject.complete();
-  }
-
-  public suspend(): void {
-    this._suspended = true;
-  }
-
-  public resume(): void {
-    this._suspended = false;
   }
 }

@@ -7,10 +7,11 @@
     <title>Coverpage Test Page</title>
     <style>
         body {
+            width: 100%;
+            height: 100%;
             margin: 0;
             padding: 0;
             font-family: sans-serif;
-            min-height: 200vh;
             background-color: #f0f0f0;
         }
 
@@ -18,7 +19,6 @@
 
         ib-coverpage {
             display: block;
-            z-index: 10;
         }
 
         .cover-background {
@@ -44,19 +44,16 @@
         /* ── Left sidebar ────────────────────────────────────────────── */
 
         #left-cover {
-            position: fixed;
-            top: 0;
-            left: 0;
-            bottom: 0;
             --cover-peek-size: 25px;
-            --cover-width: 25px;
+            --cover-width: 100%;
         }
 
         @media (min-width: 768px) {
             #left-cover {
                 --cover-peek-size: 250px;
-                --cover-width: 250px;
+                --cover-width: 100vw;
             }
+
             #content {
                 margin-left: 250px;
             }
@@ -67,12 +64,19 @@
                 --cover-peek-size: 25px;
                 --cover-width: 25px;
             }
+
             #content {
                 margin-left: 0;
             }
         }
 
-        #left-background { background: #ddd; box-shadow: inset 0 0 10px rgba(0,0,0,0.1); }
+        #left-background {
+            left: calc(50% - 50vw);
+            width: 100vw;
+            height: 100%;
+            background: #ddd;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
         /* ── Right sidebar ───────────────────────────────────────────── */
 
@@ -91,12 +95,16 @@
                 --cover-peek-size: 250px;
                 --cover-width: 250px;
             }
+
             #content {
                 margin-right: 250px;
             }
         }
 
-        #right-background { background: #b0c4de; box-shadow: inset 0 0 10px rgba(0,0,0,0.1); }
+        #right-background {
+            background: #b0c4de;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
         /* ── Top drawer ──────────────────────────────────────────────── */
 
@@ -111,7 +119,10 @@
             --cover-height: 25px;
         }
 
-        #top-background { background: #b0deb0; box-shadow: inset 0 0 10px rgba(0,0,0,0.1); }
+        #top-background {
+            background: #b0deb0;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
         /* ── Bottom drawer ───────────────────────────────────────────── */
 
@@ -126,7 +137,10 @@
             --cover-height: 25px;
         }
 
-        #bottom-background { background: #f0c890; box-shadow: inset 0 0 10px rgba(0,0,0,0.1); }
+        #bottom-background {
+            background: #f0c890;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
         /* ── Main content ────────────────────────────────────────────── */
 
@@ -169,7 +183,7 @@
         </div>
     </ib-coverpage>
 
-    <ib-coverpage id="top-cover" side="top">
+    {{/*  <ib-coverpage id="top-cover" side="top">
         <div id="top-background" class="cover-background">
             <div class="cover-nav">
                 <h3>Top Drawer</h3>
@@ -185,7 +199,7 @@
                 <p>Drag up to open.</p>
             </div>
         </div>
-    </ib-coverpage>
+    </ib-coverpage>  */}}
 
     <div id="content">
         <h1 style="margin-top: 40px;">Coverpage Test Page</h1>

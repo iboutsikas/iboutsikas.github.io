@@ -23,5 +23,6 @@ export class CoverMath {
   static magnitudeSq(a: Vec2): number {
     return (a.x * a.x) + (a.y * a.y);
   }
+
 }
 

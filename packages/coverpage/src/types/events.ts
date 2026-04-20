@@ -1,0 +1,38 @@
+export interface CoverpageStartup {
+    elementId: string;
+}
+
+export interface CoverpageShutdown {
+    elementId: string;
+}
+
+export interface CoverpageBeforeAnimation {
+    elementId: string;
+}
+
+export interface CoverpageAfterAnimation {
+    elementId: string;
+}
+
+export enum CoverpageEvents {
+    Startup = 'coverpage-startup',
+    Shutdown = 'coverpage-shutdown',
+    BeforeAnimation = 'coverpage-before-animation',
+    AfterAnimation = 'coverpage-after-animation'
+}
+
+export interface CoverpageEventMap {
+    [CoverpageEvents.Startup]: CoverpageStartup;
+    [CoverpageEvents.Shutdown]: CoverpageShutdown;
+    [CoverpageEvents.BeforeAnimation]: CoverpageBeforeAnimation;
+    [CoverpageEvents.AfterAnimation]: CoverpageAfterAnimation;
+}
+
+declare global {
+    interface WindowEventMap {
+        [CoverpageEvents.Startup]: CustomEvent<CoverpageEventMap[CoverpageEvents.Startup]>;
+        [CoverpageEvents.Shutdown]: CustomEvent<CoverpageEventMap[CoverpageEvents.Shutdown]>;
+        [CoverpageEvents.BeforeAnimation]: CustomEvent<CoverpageEventMap[CoverpageEvents.BeforeAnimation]>
+        [CoverpageEvents.AfterAnimation]: CustomEvent<CoverpageEventMap[CoverpageEvents.AfterAnimation]>
+    }
+}
