@@ -48,7 +48,7 @@ Lit web component: swipeable cover/drawer panel with pointer gesture support.
 
 **Public API:**
 - Properties: `side` (`'left'|'right'|'top'|'bottom'`), `range`, `movementThreshold` (default 10), `speedThreshold` (default 1), `peekSize` (default 0), `animationDuration` (default 300ms)
-- CSS custom properties: `--cover-width`, `--cover-height`, `--cover-peek-size`
+- CSS custom properties: `--cover-size`, `--cover-height`, `--cover-peek-size`
 - Methods: `open()`, `close()`
 - Events: `cover-progress`, `scrim-change`, `peek-mode-change`
 

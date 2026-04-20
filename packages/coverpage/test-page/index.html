@@ -26,23 +26,27 @@
             width: 100vw;
             height: 100%;
             left: calc(50% - 50vw);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .cover-nav {
             position: relative;
+            text-align: center;
         }
 
         /* ── Left sidebar ────────────────────────────────────────────── */
 
         #left-cover {
             --cover-peek-size: 25px;
-            --cover-width: 100%;
+            --cover-size: 100%;
         }
 
         @media (min-width: 768px) {
             #left-cover {
                 --cover-peek-size: 250px;
-                --cover-width: 100vw;
+                --cover-size: 100vw;
             }
 
             #content {
@@ -53,7 +57,7 @@
         @media (max-width: 767px) {
             #left-cover {
                 --cover-peek-size: 25px;
-                --cover-width: 25px;
+                --cover-size: 25px;
             }
 
             #content {
@@ -62,7 +66,7 @@
         }
 
         #left-background {
-            background: #ddd;
+            background: radial-gradient(circle,rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
             box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
@@ -75,13 +79,13 @@
             bottom: 0;
             width: auto;
             --cover-peek-size: 25px;
-            --cover-width: 25px;
+            --cover-size: 25px;
         }
 
         @media (min-width: 768px) {
             #right-cover {
                 --cover-peek-size: 250px;
-                --cover-width: 250px;
+                --cover-size: 250px;
             }
 
             #content {
@@ -103,7 +107,7 @@
             right: 0;
             height: 25px;
             --cover-peek-size: 25px;
-            --cover-width: 100vw;
+            --cover-size: 100vw;
             --cover-height: 25px;
         }
 
@@ -121,7 +125,7 @@
             right: 0;
             height: auto;
             --cover-peek-size: 25px;
-            --cover-width: 100vw;
+            --cover-size: 100vw;
             --cover-height: 25px;
         }
 
@@ -160,8 +164,7 @@
 
     <ib-coverpage id="left-cover" side="left" open>
         <div id="left-background" class="cover-background">
-        </div>
-        <div id="left-nav" class="cover-nav">
+            <div id="left-nav" class="cover-nav">
             <h3>Left Sidebar</h3>
             <p>Drag right to open. Desktop: always visible at 250px.</p>
             <ul>
@@ -170,6 +173,7 @@
                 <li><a href="#">Projects</a></li>
                 <li><a href="#">Resume</a></li>
             </ul>
+        </div>
         </div>
     </ib-coverpage>
 

@@ -19,10 +19,6 @@ export class GestureController {
       distinctUntilChanged((a, b) => a.x === b.x && a.y === b.y)
     );
     this.gesture$ = this.gestureSubject.asObservable();
-
-    this.gesture$.subscribe(g => {
-      console.log('From GestureController', g);
-    })
   }
 
   private getPointerPos = (e: PointerEvent): Vec2 => ({

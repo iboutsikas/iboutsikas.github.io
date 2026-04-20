@@ -2,6 +2,7 @@ import '../src/index.js';
 import type { IbCoverpage } from '../src/coverpage.js';
 
 const leftCover = document.querySelector<IbCoverpage>('#left-cover');
+const leftBackground = document.querySelector<HTMLElement>('#left-background');
 const toggleBtn = document.getElementById('toggle-btn');
 
 if (toggleBtn && leftCover) {
@@ -14,15 +15,19 @@ if (toggleBtn && leftCover) {
   });
 }
 
-if (leftCover) {
-  // leftCover.addEventListener('cover-progress', (e: Event) => {
-  //   if (!leftNav || !isMobile()) return;
-  //   const { offset, peekSize, fullSize } = (e as CustomEvent<{ offset: number; peekSize: number; fullSize: number }>).detail;
-  //   const t = Math.max(0, Math.min(1, (offset - peekSize) / (fullSize - peekSize)));
-  //   leftNav.style.opacity = String(t);
-  //   leftNav.style.pointerEvents = t > 0 ? 'auto' : 'none';
-  // });
+if (leftCover && leftBackground) {
+  // Counter-translate background so it stays visually fixed as the cover slides.
+  // cover.tx = -(coverWidth - peekSize) * (1 - t), background offsets by -tx to cancel.
+  leftCover.addEventListener('coverpage-progress', (e: Event) => {
+    const { t } = (e as CustomEvent<{ t: number }>).detail;
+    const coverWidth = leftCover.offsetWidth;
+    const peekSize = parseFloat(getComputedStyle(leftCover).getPropertyValue('--cover-peek-size')) || 0;
+    const travel = (coverWidth - peekSize) / 2;
+    leftBackground.style.transform = `translateX(${travel * (1 - t)}px)`;
+  });
+}
 
+if (leftCover) {
   leftCover.addEventListener('coverpage-startup', (e: Event) => {
     console.log('Startup', e);
   });

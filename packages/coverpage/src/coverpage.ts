@@ -4,7 +4,7 @@ import { property } from 'lit/decorators.js';
 import { GestureController } from './controllers/gesture-controller.js';
 import type { Side, IConfigProvider, Vec2 } from './types/definitions.js';
 import { CoverMath } from './utils/cover-math.js';
-import { BehaviorSubject, filter, map, Observable, share, shareReplay, Subject, switchMap, takeUntil, withLatestFrom } from 'rxjs';
+import { BehaviorSubject, distinctUntilChanged, filter, map, Observable, share, shareReplay, Subject, switchMap, takeUntil, withLatestFrom } from 'rxjs';
 import { CoverpageEvents, type CoverpageEventMap } from './types/events.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { observeSize } from './utils/observe.js';
@@ -113,15 +113,11 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
       throw new Error('[_setupSubscriptions] Called before DOM Queries are made available');
     }
 
-    // openState$ is the open/close authority — drives translate$ and scrim DOM.
+    // openState$ is the open/close authority — drives translate$. Scrim is driven by t$ below.
     this._openState$.pipe(
       takeUntil(this._disconnectSubject)
     ).subscribe(isOpen => {
       this._translate$.next(isOpen ? 0 : this._closedTranslate());
-      if (this.scrimElement) {
-        this.scrimElement.style.opacity = isOpen ? '1' : '0';
-        this.scrimElement.style.pointerEvents = isOpen ? 'auto' : 'none';
-      }
     });
 
     // translate$ applies transform to the cover element.
@@ -129,6 +125,28 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
       takeUntil(this._disconnectSubject)
     ).subscribe(tx => {
       this.coverElement.style.transform = this._buildTransform(tx);
+    });
+
+    // t$ is progress [0=closed, 1=open]. Drives scrim opacity and Progress event.
+    const isHorizontal = this.side === 'left' || this.side === 'right';
+    const t$ = this._translate$.pipe(
+      withLatestFrom(this._coverSize$),
+      map(([tx, size]) => {
+        const dim = isHorizontal ? size.width : size.height;
+        const closed = this._closedTranslate(dim);
+        const travel = Math.abs(closed);
+        if (travel === 0) return 0;
+        return CoverMath.clamp(Math.abs(tx - closed) / travel, 0, 1);
+      }),
+      distinctUntilChanged()
+    );
+
+    t$.pipe(takeUntil(this._disconnectSubject)).subscribe(t => {
+      if (this.scrimElement) {
+        this.scrimElement.style.opacity = String(t);
+        this.scrimElement.style.pointerEvents = t > 0 ? 'auto' : 'none';
+      }
+      this._fireCoverpageEvent(CoverpageEvents.Progress, { elementId: this.id ?? '', t });
     });
 
     const gesture$ = this._gestureController!.gesture$;
@@ -154,8 +172,6 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
       this._fireCoverpageEvent(CoverpageEvents.AfterAnimation, { elementId: this.id ?? '' });
     });
 
-    const isHorizontal = this.side === 'left' || this.side === 'right';
-
     // Drag: translate cover in real time while pointer is down.
     start$.pipe(
       switchMap(startEvent => {
@@ -172,11 +188,9 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
           })
         );
       }),
-      withLatestFrom(this._coverSize$),
       takeUntil(this._disconnectSubject)
-    ).subscribe(([tx, size]) => {
+    ).subscribe(tx => {
       this._translate$.next(tx);
-      this._applyScrimOpacity(tx, size);
     });
 
     // Drag end: snap to open or closed based on how far cover has traveled.
@@ -230,21 +244,6 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
     return `translate(${tx}px, 0)`;
   }
 
-  private _applyScrimOpacity(tx: number, coverSize: { width: number; height: number }): void {
-    const isHorizontal = this.side === 'left' || this.side === 'right';
-    const dim = isHorizontal ? coverSize.width : coverSize.height;
-    const closed = this._closedTranslate(dim);
-    const travel = Math.abs(closed);
-    if (travel === 0) return;
-
-    const progress = Math.abs(tx - closed) / travel;
-    const opacity = CoverMath.clamp(progress, 0, 1);
-    if (this.scrimElement) {
-      this.scrimElement.style.opacity = String(opacity);
-      this.scrimElement.style.pointerEvents = opacity > 0 ? 'auto' : 'none';
-    }
-  }
-
   /** Returns true if a flick in this velocity direction should open the cover. */
   private _flickShouldOpen(velocity: Vec2): boolean {
     switch (this.side) {
@@ -268,10 +267,9 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
     :host {
       display: block;
       --cover-peek-size: 0px;
-      --cover-width: 100%;
-      --cover-height: 100%;
-      --cover-peek-width: 0px;
-      --anim-duration: 300ms;
+      --cover-size: 100%;
+      --cover-peek-size: 0px;
+      --cover-anim-duration: 300ms;
       --cover-base-z-index: 100;
       z-index: var(--cover-base-z-index);
     }
@@ -292,15 +290,15 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
 
       background-color: rgba(0, 0, 0, 0.5);
       opacity: 0;
-      transition: opacity var(--anim-duration) ease;
-      z-index: calc(var(--cover-base-z-index, 100));
+      transition: opacity var(--cover-anim-duration) ease;
+      z-index: calc(var(--cover-base-z-index, 100) - 1);
     }
 
     .cover {
       position: fixed;
       z-index: calc(var(--cover-base-z-index, 100) + 3);
       contain: strict;
-      transition: transform var(--anim-duration, 300ms) ease;
+      transition: transform var(--cover-anim-duration, 300ms) ease;
     }
 
     .cover.is-dragging {
@@ -318,18 +316,18 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
 
     .cover.horizontal {
       height: 100vh;
-      width: var(--cover-width);
+      width: var(--cover-size);
     }
 
     .cover.vertical {
       width: 100vw;
-      height: var(--cover-height);
+      height: var(--cover-size);
     }
 
-    .cover.left   { top: 0; left: 0; bottom: 0; }
-    .cover.right  { top: 0; right: 0; bottom: 0; }
-    .cover.top    { top: 0; left: 0; right: 0; }
-    .cover.bottom { bottom: 0; left: 0; right: 0; }
+    .cover.left   { top: 0;  bottom: 0; left:   calc(-1 * var(--cover-size) + var(--cover-peek-size); }
+    .cover.right  { top: 0;  bottom: 0; right:  calc(-1 * var(--cover-size) + var(--cover-peek-size); }
+    .cover.top    { left: 0; right: 0;  top:    calc(-1 * var(--cover-size) + var(--cover-peek-size); }
+    .cover.bottom { left: 0; right: 0;  bottom: calc(-1 * var(--cover-size) + var(--cover-peek-size); }
   `;
 
   render() {
