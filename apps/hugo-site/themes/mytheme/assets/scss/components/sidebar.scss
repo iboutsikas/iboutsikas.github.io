@@ -114,7 +114,7 @@
       font-weight: var(--font-weight-heading);
       letter-spacing: 0.04em;
       text-transform: uppercase;
-      transition: color var(--transition-speed), padding-left var(--transition-speed);
+      transition: color var(--transition-speed), transform var(--transition-speed);
 
       text-decoration-style: solid;
       text-underline-offset: 0.8rem;
@@ -125,7 +125,7 @@
       &:hover {
         color: var(--sidebar-link-hover);
         text-decoration-color: var(--accent-color);
-        padding-left: 0.5rem;
+        transform: translateX(0.5rem);
       }
     }
 

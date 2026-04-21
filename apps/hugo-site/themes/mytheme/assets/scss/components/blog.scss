@@ -183,7 +183,7 @@
   color: var(--accent-color);
   text-decoration: none;
   align-self: flex-start;
-  transition: gap var(--transition-speed);
+  transition: color var(--transition-speed);
 
   span { margin-left: 0.2rem; }
 

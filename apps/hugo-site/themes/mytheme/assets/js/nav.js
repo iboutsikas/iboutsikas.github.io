@@ -1,28 +1,66 @@
+
+// TODO: Let's rename these instead of using numbers
+const isMobile = (breakpoints) => {
+  return window.matchMedia(`(max-width: ${breakpoints['3']})`).matches;
+} 
 /**
  * Mobile navigation — wires the hamburger button to the <ib-coverpage> component.
  */
 
-export function initNav() {
+export function initNav(breakpoints) {
   const toggle = document.getElementById('_nav-toggle');
   const coverpage = document.getElementById('_coverpage');
+  const background = document.querySelector('.sidebar-container');
+  const nav = document.querySelector('.sidebar-sticky');
 
   if (!toggle || !coverpage) return;
 
   toggle.addEventListener('click', () => {
-    const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+    const isOpen = coverpage.open;
     if (isOpen) {
-      coverpage.close();
+      coverpage.hide();
       toggle.setAttribute('aria-expanded', 'false');
     } else {
-      coverpage.open();
+      coverpage.show();
       toggle.setAttribute('aria-expanded', 'true');
     }
   });
 
-  // Sync button state when the scrim is dismissed by tapping outside.
-  coverpage.addEventListener('scrim-change', (e) => {
-    if (!e.detail.visible) {
+  coverpage.addEventListener('coverpage-before-animation', (e) => {
+    if (background) {
+      background.style.willChange = 'transform';
+    }
+
+    if (nav) {
+      nav.style.willChange = 'opacity';
+    }
+  });
+
+  coverpage.addEventListener('coverpage-after-animation', (e) => {
+    if (background) {
+      background.style.willChange = 'auto';
+    }
+
+    if (nav) {
+      nav.style.willChange = 'auto';
+    }
+
+    if (coverpage.isOpen)
+      toggle.setAttribute('aria-expanded', 'true');
+    else 
       toggle.setAttribute('aria-expanded', 'false');
+  });
+
+  // Sync button state when the scrim is dismissed by tapping outside.
+  coverpage.addEventListener('coverpage-progress', (e) => {
+    const { t, travel } = e.detail;
+
+    if (background) {
+      background.style.transform = `translateX(${travel * (1 - t)}px)`;
+    }
+
+    if (nav) {
+      nav.style.opacity = isMobile(breakpoints) ? `${t}` : '1';
     }
   });
 }

@@ -44,26 +44,21 @@ a {
     text-decoration: underline;
   }
 }
-
+ 
 img {
   max-width: 100%;
   height: auto;
 }
 
 // ── Coverpage sidebar sizing ──────────────────────────────────────────────────
-//
-// --cover-peek-size is read by the coverpage JS via parseFloat(getComputedStyle).
-// Use literal px so no var() resolution ambiguity.
 
 #_coverpage {
   // Mobile: tiny sliver so swipe-from-edge gesture works
   --cover-peek-size: 15px;
-  --cover-width: 85vw;
 
   // Desktop: sidebar always fully visible at fixed width
-  @media (min-width: 64em) {
+  @media (min-width: $breakpoint-3) {
     --cover-peek-size: 280px;
-    --cover-width: 280px;
   }
 }
 
