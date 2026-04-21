@@ -29,12 +29,16 @@
             text-align: center;
         }
 
+        ib-coverpage {
+            --cover-size: 100vw;
+            --cover-peek-size: 20px;
+            --cover-anim-duration: 450ms;
+        }
+
         /* ── Left sidebar ────────────────────────────────────────────── */
 
         #left-cover {
             --cover-peek-size: 25px;
-            --cover-size: 100vw;
-            --cover-anim-duration: 450ms;
         }
 
         @media (min-width: 768px) {
@@ -42,8 +46,13 @@
                 --cover-peek-size: 250px;
             }
 
+            #right-cover {
+                --cover-peek-size: 250px;
+            }
+
             #content {
                 margin-left: 250px;
+                margin-right: 250px;
             }
         }
 
@@ -52,8 +61,13 @@
                 --cover-peek-size: 25px;
             }
 
+            #right-cover {
+                --cover-peek-size: 25px;
+            }
+
             #content {
                 margin-left: 25px;
+                margin-right: 25px;;
             }
         }
 
@@ -63,36 +77,18 @@
         }
 
         /* ── Right sidebar ───────────────────────────────────────────── */
-
-        #right-cover {
-            --cover-peek-size: 25px;
-            --cover-size: 100vw;
-        }
-
         #right-background {
             background: #b0c4de;
             box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         /* ── Top drawer ──────────────────────────────────────────────── */
-
-        #top-cover {
-            --cover-peek-size: 25px;
-            --cover-size: 200px;
-        }
-
         #top-background {
             background: #b0deb0;
             box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         /* ── Bottom drawer ───────────────────────────────────────────── */
-
-        #bottom-cover {
-            --cover-peek-size: 25px;
-            --cover-size: 200px;
-        }
-
         #bottom-background {
             background: #f0c890;
             box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);

@@ -1,6 +1,10 @@
 import '../src/index.js';
 import type { IbCoverpage } from '../src/coverpage.js';
 
+const isMobile = () => {
+  return window.matchMedia('(max-width: 768px)').matches;
+}
+
 const leftCover   = document.querySelector<IbCoverpage>('#left-cover');
 const rightCover  = document.querySelector<IbCoverpage>('#right-cover');
 const topCover    = document.querySelector<IbCoverpage>('#top-cover');
@@ -55,6 +59,11 @@ if (leftCover && leftBackground) {
     const { t } = (e as CustomEvent<{ t: number }>).detail;
     const travel = (coverWidth(leftCover) - peekSize(leftCover)) / 2;
     leftBackground.style.transform = `translateX(${travel * (1 - t)}px)`;
+
+    const innerContent = leftBackground.querySelector<HTMLElement>('.cover-nav');
+    if (innerContent) {
+      innerContent.style.opacity = isMobile() ? `${t}` : '1';
+    }
   });
 }
 
@@ -63,6 +72,11 @@ if (rightCover && rightBackground) {
     const { t } = (e as CustomEvent<{ t: number }>).detail;
     const travel = (coverWidth(rightCover) - peekSize(rightCover)) / 2;
     rightBackground.style.transform = `translateX(${-travel * (1 - t)}px)`;
+
+    const innerContent = rightBackground.querySelector<HTMLElement>('.cover-nav');
+    if (innerContent) {
+      innerContent.style.opacity = isMobile() ? `${t}` : '1';
+    }
   });
 }
 
