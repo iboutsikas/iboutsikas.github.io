@@ -134,7 +134,14 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
     );
 
     let _scrimActive = false;
-    t$.pipe(takeUntil(this._disconnectSubject)).subscribe(t => {
+    const peekSize = this._getCssPeekSize();
+    t$.pipe(
+      withLatestFrom(this._coverSize$),
+      map(([t, size]) => {
+        const dim = isHorizontal ? size.width : size.height;
+        return { t, travel: (dim - peekSize) / 2 };
+      })
+    ).pipe(takeUntil(this._disconnectSubject)).subscribe(({ t, travel }) => {
       if (this.scrimElement) {
         this.scrimElement.style.opacity = String(t);
         const isActive = t > 0;
@@ -143,7 +150,7 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
           _scrimActive = isActive;
         }
       }
-      this._fireCoverpageEvent(CoverpageEvents.Progress, { elementId: this.id ?? '', t });
+      this._fireCoverpageEvent(CoverpageEvents.Progress, { elementId: this.id ?? '', t, travel, side: this.side });
     });
 
     const gesture$ = this._gestureController!.gesture$;

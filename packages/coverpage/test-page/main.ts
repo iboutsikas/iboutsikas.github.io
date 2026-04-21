@@ -31,33 +31,14 @@ wireToggle('toggle-top',    topCover);
 wireToggle('toggle-bottom', bottomCover);
 
 // ---------------------------------------------------------------------------
-// Cover dimension helpers
-// ---------------------------------------------------------------------------
-
-function coverWidth(cover: IbCoverpage): number {
-  const el = cover.shadowRoot?.querySelector('.cover') as HTMLElement | null;
-  return el?.offsetWidth ?? cover.offsetWidth;
-}
-
-function coverHeight(cover: IbCoverpage): number {
-  const el = cover.shadowRoot?.querySelector('.cover') as HTMLElement | null;
-  return el?.offsetHeight ?? cover.offsetHeight;
-}
-
-function peekSize(cover: IbCoverpage): number {
-  return parseFloat(getComputedStyle(cover).getPropertyValue('--cover-peek-size')) || 0;
-}
-
-// ---------------------------------------------------------------------------
 // Progress → counter-translate
 // Left/top close by going negative (cover slides left/up); background offsets positive.
 // Right/bottom close by going positive; background offsets negative.
 // ---------------------------------------------------------------------------
 
 if (leftCover && leftBackground) {
-  leftCover.addEventListener('coverpage-progress', (e: Event) => {
-    const { t } = (e as CustomEvent<{ t: number }>).detail;
-    const travel = (coverWidth(leftCover) - peekSize(leftCover)) / 2;
+  leftCover.addEventListener('coverpage-progress', (e: CustomEvent) => {
+    const { t, travel } = e.detail;
     leftBackground.style.transform = `translateX(${travel * (1 - t)}px)`;
 
     const innerContent = leftBackground.querySelector<HTMLElement>('.cover-nav');
@@ -68,9 +49,8 @@ if (leftCover && leftBackground) {
 }
 
 if (rightCover && rightBackground) {
-  rightCover.addEventListener('coverpage-progress', (e: Event) => {
-    const { t } = (e as CustomEvent<{ t: number }>).detail;
-    const travel = (coverWidth(rightCover) - peekSize(rightCover)) / 2;
+  rightCover.addEventListener('coverpage-progress', (e: CustomEvent) => {
+    const { t, travel } = e.detail;
     rightBackground.style.transform = `translateX(${-travel * (1 - t)}px)`;
 
     const innerContent = rightBackground.querySelector<HTMLElement>('.cover-nav');
@@ -81,17 +61,15 @@ if (rightCover && rightBackground) {
 }
 
 if (topCover && topBackground) {
-  topCover.addEventListener('coverpage-progress', (e: Event) => {
-    const { t } = (e as CustomEvent<{ t: number }>).detail;
-    const travel = (coverHeight(topCover) - peekSize(topCover)) / 2;
+  topCover.addEventListener('coverpage-progress', (e: CustomEvent) => {
+    const { t, travel } = e.detail;
     topBackground.style.transform = `translateY(${travel * (1 - t)}px)`;
   });
 }
 
 if (bottomCover && bottomBackground) {
-  bottomCover.addEventListener('coverpage-progress', (e: Event) => {
-    const { t } = (e as CustomEvent<{ t: number }>).detail;
-    const travel = (coverHeight(bottomCover) - peekSize(bottomCover)) / 2;
+  bottomCover.addEventListener('coverpage-progress', (e: CustomEvent) => {
+    const { t, travel } = e.detail;
     bottomBackground.style.transform = `translateY(${-travel * (1 - t)}px)`;
   });
 }

@@ -1,3 +1,5 @@
+import type { Side } from "./definitions.js";
+
 export interface CoverpageStartup {
     elementId: string;
 }
@@ -17,6 +19,8 @@ export interface CoverpageAfterAnimation {
 export interface CoverpageProgress {
     elementId: string;
     t: number;
+    travel: number;
+    side: Side;
 }
 
 export enum CoverpageEvents {

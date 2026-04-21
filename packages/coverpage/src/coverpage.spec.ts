@@ -401,6 +401,22 @@ describe('IbCoverpage', () => {
       expect(tValues.some(t => t > 0 && t <= 1)).toBe(true);
     });
 
+    it('progress event includes travel and side fields', async () => {
+      const events: any[] = [];
+      el.addEventListener('coverpage-progress', (e: Event) => {
+        events.push((e as CustomEvent).detail);
+      });
+
+      el.show();
+      await vi.advanceTimersByTimeAsync(400);
+      await el.updateComplete;
+
+      const travelValues = events.map(e => e.travel);
+      const sideValues = events.map(e => e.side);
+      expect(travelValues.every(t => typeof t === 'number' && t > 0)).toBe(true);
+      expect(sideValues.every(s => s === 'left')).toBe(true);
+    });
+
     it('progress event emits t=1 when animation finishes', async () => {
       const tValues: number[] = [];
       el.addEventListener('coverpage-progress', (e: Event) => {
@@ -487,6 +503,8 @@ describe('IbCoverpage', () => {
 
       expect(events.length).toBeGreaterThan(0);
       expect(events.some(e => e.t === 1)).toBe(true);
+      expect(events.every(e => typeof e.travel === 'number' && e.travel > 0)).toBe(true);
+      expect(events.every(e => e.side === 'left')).toBe(true);
 
       newEl.hide();
       await vi.advanceTimersByTimeAsync(400);
