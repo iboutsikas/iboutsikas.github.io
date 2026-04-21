@@ -1,5 +1,5 @@
 import { Subject, Observable, merge, fromEvent, animationFrameScheduler, Subscription } from 'rxjs';
-import { map, switchMap, takeUntil, tap, distinctUntilChanged, filter, throttleTime, takeWhile, share } from 'rxjs/operators';
+import { map, exhaustMap, distinctUntilChanged, filter, throttleTime, takeWhile, tap } from 'rxjs/operators';
 import type { IConfigProvider, Vec2 } from '../types/definitions.js';
 import { type GestureEvent, createGestureEvent, gestureEventFrom } from '../types/gesture.js';
 import { CoverMath } from '../utils/cover-math.js';
@@ -61,11 +61,9 @@ export class GestureController {
     );
 
     this._subscription = start$.pipe(
-      tap(event => {
-        this.gestureSubject.next(gestureEventFrom(event));
-      }),
-      switchMap(startEvent => {
+      exhaustMap(startEvent => {
         let lastEvent = gestureEventFrom(startEvent);
+        this.gestureSubject.next(lastEvent);
         const threshold2 = this.config.movementThreshold * this.config.movementThreshold;
         const speed2 = this.config.speedThreshold * this.config.speedThreshold;
         return merge(
