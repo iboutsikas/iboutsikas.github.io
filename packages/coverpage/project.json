@@ -7,7 +7,7 @@
         "command": "vite build --config vite.lib.config.ts",
         "cwd": "{projectRoot}"
       },
-      "outputs": ["{projectRoot}/dist/bundle"]
+      "outputs": ["{projectRoot}/dist"]
     },
     "test": {
       "executor": "@nx/vitest:test",

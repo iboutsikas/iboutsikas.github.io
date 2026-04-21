@@ -1,7 +1,6 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { GestureController } from './gesture-controller.js';
 import type { CoverConfig } from '../types/definitions.js';
-import type { GestureEvent } from '../types/gesture.js';
 
 // @vitest-environment jsdom
 describe('GestureController', () => {
@@ -16,7 +15,6 @@ describe('GestureController', () => {
     vi.spyOn(performance, 'now').mockReturnValue(0);
     config = {
       side: 'right',
-      range: 300,
       movementThreshold: 10,
       speedThreshold: 5
     };
@@ -259,7 +257,10 @@ describe('GestureController', () => {
 
       await vi.runAllTimersAsync();
 
-      const moveEvent = gestureSpy.mock.calls.find(call => call[0].type === 'move')[0];
+      const calls = gestureSpy.mock.calls.find(call => call[0].type === 'move');
+      expect(calls).toBeTruthy();
+      expect(calls?.length).toBe(1);
+      const moveEvent = calls?.[0];
       expect(moveEvent.velocity.x).toBeCloseTo(1, 0);
       expect(moveEvent.velocity.y).toBeCloseTo(2, 0);
     });
