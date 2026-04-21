@@ -1,7 +1,5 @@
 import type { Vec2 } from './definitions.js';
 
-export type InteractionState = 'idle' | 'dragging' | 'sliding';
-
 export type GestureEventType = 'start' | 'move' | 'end' | 'flick';
 
 /** Pure value type representing a single pointer event in the gesture stream. */

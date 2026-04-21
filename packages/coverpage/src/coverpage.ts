@@ -133,10 +133,15 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
       distinctUntilChanged()
     );
 
+    let _scrimActive = false;
     t$.pipe(takeUntil(this._disconnectSubject)).subscribe(t => {
       if (this.scrimElement) {
         this.scrimElement.style.opacity = String(t);
-        this.scrimElement.style.pointerEvents = t > 0 ? 'auto' : 'none';
+        const isActive = t > 0;
+        if (isActive !== _scrimActive) {
+          this.scrimElement.classList.toggle('is-active', isActive);
+          _scrimActive = isActive;
+        }
       }
       this._fireCoverpageEvent(CoverpageEvents.Progress, { elementId: this.id ?? '', t });
     });
@@ -324,7 +329,6 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
       display: block;
       --cover-peek-size: 0px;
       --cover-size: 100%;
-      --cover-peek-size: 0px;
       --cover-anim-duration: 300ms;
       --cover-base-z-index: 100;
       z-index: var(--cover-base-z-index);
@@ -343,18 +347,21 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
       transform: scale(10, 10);
       transform-origin: top left;
 
-
+      pointer-events: none;
       background-color: rgba(0, 0, 0, 0.5);
       opacity: 0;
       transition: opacity var(--cover-anim-duration) ease;
       z-index: calc(var(--cover-base-z-index, 100) - 1);
     }
 
+    .scrim.is-active {
+      pointer-events: auto;
+    }
+
     .cover {
       position: fixed;
       z-index: calc(var(--cover-base-z-index, 100) + 3);
       contain: strict;
-      background-color: yellow;
     }
 
     .cover.is-interacting {

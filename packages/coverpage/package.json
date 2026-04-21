@@ -49,7 +49,7 @@
   "scripts": {
     "build": "tsc",
     "build:lib": "vite build --config vite.lib.config.ts",
-    "dev": "vite --host 0.0.0.0 test-page",
+    "dev": "vite --config vite.dev.config.ts test-page",
     "test": "nx vite:test run",
     "typecheck": "tsc --noEmit",
     "prepublishOnly": "npm test && npm run build"

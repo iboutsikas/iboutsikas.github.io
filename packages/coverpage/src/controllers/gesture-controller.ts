@@ -1,7 +1,7 @@
 import { Subject, Observable, merge, fromEvent, animationFrameScheduler, Subscription } from 'rxjs';
 import { map, switchMap, takeUntil, tap, distinctUntilChanged, filter, throttleTime, takeWhile, share } from 'rxjs/operators';
 import type { IConfigProvider, Vec2 } from '../types/definitions.js';
-import { type InteractionState, type GestureEvent, createGestureEvent, gestureEventFrom } from '../types/gesture.js';
+import { type GestureEvent, createGestureEvent, gestureEventFrom } from '../types/gesture.js';
 import { CoverMath } from '../utils/cover-math.js';
 
 export class GestureController {
