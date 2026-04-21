@@ -95,7 +95,7 @@ I also wanted to ensure that while the internals are complex, the developer
 experience (DX) remains dead simple. This is why I leaned heavily into **CSS
 Custom Properties**. 
 
-Dimensions like `--cover-width` and animation speeds like `--anim-duration`
+Dimensions like `--cover-size` and animation speeds like `--cover-anim-duration`
 aren't locked behind JavaScript properties. They are part of the CSS cascade.
 This means a designer can completely reshape the component's behavior and
 appearance using nothing but a stylesheet, maintaining a clean separation of

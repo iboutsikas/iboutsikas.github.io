@@ -52,6 +52,7 @@ export class GestureController {
     );
 
     const move$ = pointerMove$.pipe(
+      tap(e => e.preventDefault()),
       throttleTime(0, animationFrameScheduler),
       map(e => createGestureEvent('move', this.getPointerPos(e)))
     );

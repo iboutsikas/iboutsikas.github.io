@@ -12,6 +12,7 @@ export function initNav(breakpoints) {
   const coverpage = document.getElementById('_coverpage');
   const background = document.querySelector('.sidebar-container');
   const nav = document.querySelector('.sidebar-sticky');
+  const mainContent = document.getElementById('_content');
 
   if (!toggle || !coverpage) return;
 
@@ -27,27 +28,41 @@ export function initNav(breakpoints) {
   });
 
   coverpage.addEventListener('coverpage-before-animation', (e) => {
+    document.documentElement.style.overflow = 'hidden';
+
     if (background) {
       background.style.willChange = 'transform';
     }
 
-    if (nav) {
+    if (nav && isMobile(breakpoints)) {
       nav.style.willChange = 'opacity';
+    }
+
+    if (mainContent) {
+      mainContent.style.pointerEvents = 'none';
     }
   });
 
   coverpage.addEventListener('coverpage-after-animation', (e) => {
+    if (!coverpage.open) {
+      document.documentElement.style.overflow = '';
+    }
+
     if (background) {
       background.style.willChange = 'auto';
     }
 
-    if (nav) {
+    if (nav && isMobile(breakpoints)) {
       nav.style.willChange = 'auto';
     }
 
-    if (coverpage.isOpen)
+    if (mainContent) {
+      mainContent.style.pointerEvents = 'auto';
+    }
+
+    if (coverpage.open)
       toggle.setAttribute('aria-expanded', 'true');
-    else 
+    else
       toggle.setAttribute('aria-expanded', 'false');
   });
 

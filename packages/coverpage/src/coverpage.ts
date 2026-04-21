@@ -16,7 +16,7 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
   /** The threshold for movement to trigger an interaction. */
   @property({ type: Number }) accessor movementThreshold: number = 10;
   /** The threshold for velocity to trigger a flick. */
-  @property({ type: Number }) accessor speedThreshold: number = 2.5;
+  @property({ type: Number }) accessor speedThreshold: number = 2;
   /** The minimum size of the peeked cover. */
   @property({ type: Number }) accessor peekSize: number = 0;
   /** Whether the cover is open. Setting this attribute on load starts the cover fully open. */
@@ -168,14 +168,14 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
     start$.pipe(takeUntil(this._disconnectSubject)).subscribe(() => {
       // Cancel any in-progress snap/flick animation — user grabbed the cover mid-flight.
       this._cancelAnimation();
-      this.coverElement.classList.add('will-change', 'is-dragging');
+      this.coverElement.classList.add('will-change');
+      this.scrimElement.classList.add('is-active');
       this._fireCoverpageEvent(CoverpageEvents.BeforeAnimation, { elementId: this.id ?? '' });
     });
 
-    end$.pipe(takeUntil(this._disconnectSubject)).subscribe(() => {
-      this.coverElement.classList.remove('is-dragging');
-      // AfterAnimation fires when the snap/flick animation completes, not here.
-    });
+    // end$.pipe(takeUntil(this._disconnectSubject)).subscribe(() => {
+    //   // AfterAnimation fires when the snap/flick animation completes, not here.
+    // });
 
     // Drag: translate cover in real time while pointer is down.
     start$.pipe(
@@ -246,6 +246,11 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
   private _animateTo(target: number, isOpen: boolean): void {
     this._cancelAnimation();
 
+    // Activate scrim and fire BeforeAnimation immediately — covers button-triggered animations
+    // (gesture-triggered path also calls this via start$.subscribe, double-fire is idempotent).
+    this.scrimElement?.classList.add('is-active');
+    this._fireCoverpageEvent(CoverpageEvents.BeforeAnimation, { elementId: this.id ?? '' });
+
     const start = this._translate$.getValue();
     const duration = this._getAnimDuration();
 
@@ -254,6 +259,9 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
       this._openState$.next(isOpen);
       this.open = isOpen;
       this.coverElement.classList.remove('will-change');
+      if (!isOpen) {
+        this.scrimElement.classList.remove('is-active');
+      }
       this._fireCoverpageEvent(CoverpageEvents.AfterAnimation, { elementId: this.id ?? '' });
       return;
     }
@@ -366,10 +374,11 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
       transform-origin: top left;
 
       pointer-events: none;
+      touch-action: none;
       background-color: rgba(0, 0, 0, 0.5);
       opacity: 0;
       transition: opacity var(--cover-anim-duration) ease;
-      z-index: calc(var(--cover-base-z-index, 100) - 1);
+      z-index: calc(var(--cover-base-z-index, 100));
     }
 
     .scrim.is-active {
@@ -378,8 +387,9 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
 
     .cover {
       position: fixed;
-      z-index: calc(var(--cover-base-z-index, 100) + 3);
+      z-index: calc(var(--cover-base-z-index, 100) + 2);
       contain: strict;
+      pointer-events: auto;
     }
 
     .cover.is-interacting {
@@ -423,6 +433,8 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
      * content correctly anchored to the cover during animations.
      */
     .slot-wrapper {
+      overscroll-behavior: contained;
+      z-index: calc(var(--cover-base-z-index, 100) + 3);
       position: relative;
       width: 100%;
       height: 100%;
