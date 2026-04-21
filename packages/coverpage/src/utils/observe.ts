@@ -23,12 +23,3 @@ export function observeSize(element: HTMLElement): Observable<{ width: number; h
     subscriber.add(() => observer.disconnect());
   });
 }
-
-/**
- * Utility to observe the width of an element using ResizeObserver.
- * @param element The element to observe.
- * @returns An observable that emits the element's width.
- */
-export function observeWidth(element: HTMLElement): Observable<number> {
-  return observeSize(element).pipe(map(size => size.width));
-}

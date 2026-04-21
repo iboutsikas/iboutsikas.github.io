@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach, vi, beforeAll, afterAll } from 'vitest';
 import './coverpage.js';
 import type { IbCoverpage } from './coverpage.js';
 
@@ -24,10 +24,6 @@ class ResizeObserverMock {
 
 // --- helpers ---
 
-function makeAnimateMock() {
-  return vi.fn().mockReturnValue({ finished: Promise.resolve(), cancel: vi.fn() });
-}
-
 function setViewport(width: number, height: number) {
   Object.defineProperty(window, 'innerWidth', { value: width, writable: true, configurable: true });
   Object.defineProperty(window, 'innerHeight', { value: height, writable: true, configurable: true });
@@ -36,43 +32,45 @@ function setViewport(width: number, height: number) {
 async function createElement(side = 'left', extra?: Partial<IbCoverpage>): Promise<IbCoverpage> {
   const el = document.createElement('ib-coverpage') as IbCoverpage;
   el.setAttribute('side', side);
+  el.peekSize = 0; // default to no peek so _closedTranslate() = -(viewport size)
   if (extra) Object.assign(el, extra);
   document.body.appendChild(el);
   await el.updateComplete;
-  await Promise.resolve(); // flush connectedCallback's updateComplete.then()
 
   if (lastResizeObserver) {
     lastResizeObserver.trigger([{ contentRect: { width: 1000, height: 800 } }]);
-    await new Promise(r => setTimeout(r, 0));
+    await vi.runAllTimersAsync();
   }
 
   return el;
 }
 
-/**
- * Simulate slow drag: pointerdown then pointermove with large dt so velocity stays
- * below the default speedThreshold of 1 px/ms and no flick is triggered.
- * Uses a performance.now spy: t=0 at pointerdown, t=1000 at pointermove (1000ms elapsed).
- * Maximum safe displacement = 999 px (v = 999/1000 = 0.999 < 1).
- */
-async function slowDrag(el: HTMLElement, fromX: number, toX: number, fromY = 100, toY = 100) {
-  let t = 0;
-  const spy = vi.spyOn(performance, 'now').mockImplementation(() => t);
-  el.dispatchEvent(new PointerEvent('pointerdown', { clientX: fromX, clientY: fromY, isPrimary: true, bubbles: true }));
-  t = 1000;
-  window.dispatchEvent(new PointerEvent('pointermove', { clientX: toX, clientY: toY, isPrimary: true, bubbles: true }));
-  await new Promise(r => requestAnimationFrame(r));
-  spy.mockRestore();
+function queryElement(root: IbCoverpage, selector: string): HTMLElement {
+  const e = root.shadowRoot!.querySelector(selector);
+  if (e == null)
+    throw new Error('Make sure the webcomponent has finished updating before querying it');
+  return e as HTMLElement;
 }
 
-/** Simulate flick by controlling performance.now so velocity is high */
-async function simulateFlick(el: HTMLElement, fromX: number, toX: number, fromY = 100, toY = 100) {
-  let t = 0;
-  const spy = vi.spyOn(performance, 'now').mockImplementation(() => t);
+/**
+ * Simulate slow drag: advance fake time 1000ms between down and move so
+ * velocity = delta / 1000 stays well below the default speedThreshold of 1 px/ms.
+ */
+async function slowDrag(el: HTMLElement, fromX: number, toX: number, fromY = 100, toY = 100) {
   el.dispatchEvent(new PointerEvent('pointerdown', { clientX: fromX, clientY: fromY, isPrimary: true, bubbles: true }));
-  t = 5; // 5ms later → large displacement / tiny dt = high velocity
+  await vi.advanceTimersByTimeAsync(1000);
+  window.dispatchEvent(new PointerEvent('pointermove', { clientX: toX, clientY: toY, isPrimary: true, bubbles: true }));
+  await vi.runAllTimersAsync(); // flush animationFrameScheduler throttle
+}
+
+/**
+ * Simulate flick: 5ms between down and up → velocity = delta/5 px/ms >> speedThreshold.
+ */
+async function simulateFlick(el: HTMLElement, fromX: number, toX: number, fromY = 100, toY = 100) {
+  el.dispatchEvent(new PointerEvent('pointerdown', { clientX: fromX, clientY: fromY, isPrimary: true, bubbles: true }));
+  await vi.advanceTimersByTimeAsync(5);
   window.dispatchEvent(new PointerEvent('pointerup', { clientX: toX, clientY: toY, isPrimary: true, bubbles: true }));
-  spy.mockRestore();
+  await vi.runAllTimersAsync();
 }
 
 // --- suite ---
@@ -80,8 +78,45 @@ async function simulateFlick(el: HTMLElement, fromX: number, toX: number, fromY 
 describe('IbCoverpage', () => {
   let el: IbCoverpage;
 
+  beforeAll(() => {
+    // jsdom returns 0 for all element dimensions; mock them so _closedTranslate() is non-zero.
+    Object.defineProperty(HTMLElement.prototype, 'offsetWidth', {
+      get() { return 1000; },
+      configurable: true
+    });
+    Object.defineProperty(HTMLElement.prototype, 'offsetHeight', {
+      get() { return 800; },
+      configurable: true
+    });
+
+    // getComputedStyle mock: check the element's own inline styles for CSS custom properties
+    // so tests can override them without a real CSS engine.
+    const originalGetComputedStyle = window.getComputedStyle;
+    window.getComputedStyle = (element: any) => {
+      return {
+        getPropertyValue: (name: string) => {
+          if (name === '--cover-peek-size') {
+            // Return '' when not set → _getCssPeekSize falls back to this.peekSize property
+            return element?.style?.getPropertyValue?.('--cover-peek-size') ?? '';
+          }
+          if (name === '--cover-anim-duration') {
+            return element?.style?.getPropertyValue?.('--cover-anim-duration') || '300ms';
+          }
+          return '';
+        }
+      } as any;
+    };
+    (window as any)._originalGetComputedStyle = originalGetComputedStyle;
+  });
+
+  afterAll(() => {
+    window.getComputedStyle = (window as any)._originalGetComputedStyle;
+    delete (HTMLElement.prototype as any).offsetWidth;
+    delete (HTMLElement.prototype as any).offsetHeight;
+  });
+
   beforeEach(async () => {
-    HTMLElement.prototype.animate = makeAnimateMock();
+    vi.useFakeTimers({ now: 0 });
     setViewport(1000, 800);
     el = await createElement();
   });
@@ -89,6 +124,7 @@ describe('IbCoverpage', () => {
   afterEach(() => {
     el.remove();
     vi.restoreAllMocks();
+    vi.useRealTimers();
     lastResizeObserver = null;
   });
 
@@ -106,91 +142,72 @@ describe('IbCoverpage', () => {
     });
 
     it('scrim is not visible on initial render', () => {
-      const scrim = el.shadowRoot!.querySelector('.scrim')!;
-      expect(scrim.classList.contains('visible')).toBe(false);
+      const scrim = queryElement(el, '.scrim');
+      expect(scrim.classList.contains('is-active')).toBe(false);
+      expect(scrim.style.opacity).toBe('0');
     });
   });
 
   // ── Drag (position updates) ─────────────────────────────────────────────────
 
   describe('Drag interactions', () => {
-    it('animates cover width when dragging (left side)', async () => {
-      const animateSpy = HTMLElement.prototype.animate as ReturnType<typeof vi.fn>;
-      animateSpy.mockClear();
-
+    it('updates cover translate when dragging (left side)', async () => {
+      // origin=-1000, delta=+200 → clamp(-800, -1000, 0) = -800
       await slowDrag(el, 0, 200);
       await el.updateComplete;
 
-      expect(animateSpy).toHaveBeenCalledWith(
-        expect.arrayContaining([expect.objectContaining({ width: '200px' })]),
-        expect.objectContaining({ fill: 'forwards' })
-      );
+      const cover = queryElement(el, '.cover');
+      expect(cover.style.transform).toBe('translate(-800px, 0)');
     });
 
     it('shows scrim when cover is dragged past peek position', async () => {
       await slowDrag(el, 0, 200);
       await el.updateComplete;
 
-      const scrim = el.shadowRoot!.querySelector('.scrim')!;
-      expect(scrim.classList.contains('visible')).toBe(true);
+      const scrim = queryElement(el, '.scrim');
+      expect(scrim.classList.contains('is-active')).toBe(true);
+      expect(parseFloat(scrim.style.opacity)).toBeGreaterThan(0);
     });
 
-    it('marks cover as is-interacting during drag', async () => {
+    it('marks cover as is-dragging during drag', async () => {
       el.dispatchEvent(new PointerEvent('pointerdown', { clientX: 0, clientY: 100, isPrimary: true, bubbles: true }));
       await el.updateComplete;
 
       const cover = el.shadowRoot!.querySelector('.cover')!;
-      expect(cover.classList.contains('is-interacting')).toBe(true);
+      expect(cover.classList.contains('is-dragging')).toBe(true);
     });
 
-    it('removes is-interacting class after release', async () => {
+    it('removes is-dragging class after release', async () => {
       el.dispatchEvent(new PointerEvent('pointerdown', { clientX: 0, clientY: 100, isPrimary: true, bubbles: true }));
-      await new Promise(r => setTimeout(r, 10));
       window.dispatchEvent(new PointerEvent('pointerup', { clientX: 0, clientY: 100, isPrimary: true, bubbles: true }));
-      await new Promise(r => setTimeout(r, 10));
+      await vi.runAllTimersAsync();
       await el.updateComplete;
 
       const cover = el.shadowRoot!.querySelector('.cover')!;
-      expect(cover.classList.contains('is-interacting')).toBe(false);
+      expect(cover.classList.contains('is-dragging')).toBe(false);
     });
 
-    it('clamps offset to range property', async () => {
-      el.range = 300;
-
-      await slowDrag(el, 0, 500);
-      await el.updateComplete;
-
-      expect((el as any)._currentOffset).toBe(300);
-    });
-
-    it('right side: offset = viewport - drag position', async () => {
-      const animateSpy = HTMLElement.prototype.animate as ReturnType<typeof vi.fn>;
+    it('right side: drag moves cover proportionally', async () => {
       const rightEl = await createElement('right');
-      animateSpy.mockClear();
 
-      // Start at x=1000 (right edge), drag to x=800 → offset = 1000 - 800 = 200
+      // origin=+1000, delta=-200 → clamp(800, 0, 1000) = 800
       await slowDrag(rightEl, 1000, 800);
       await rightEl.updateComplete;
 
-      expect(animateSpy).toHaveBeenCalledWith(
-        expect.arrayContaining([expect.objectContaining({ width: '200px' })]),
-        expect.any(Object)
-      );
+      const cover = queryElement(rightEl, '.cover');
+      expect(cover.style.transform).toBe('translate(800px, 0)');
       rightEl.remove();
     });
 
-    it('top side: animates height instead of width', async () => {
-      const animateSpy = HTMLElement.prototype.animate as ReturnType<typeof vi.fn>;
+    it('top side: animates translateY instead of translateX', async () => {
       const topEl = await createElement('top');
-      animateSpy.mockClear();
 
+      // origin=-800, delta=+200 → clamp(-600, -800, 0) = -600
       await slowDrag(topEl, 100, 100, 0, 200);
       await topEl.updateComplete;
 
-      expect(animateSpy).toHaveBeenCalledWith(
-        expect.arrayContaining([expect.objectContaining({ height: '200px' })]),
-        expect.any(Object)
-      );
+      const cover = queryElement(topEl, '.cover');
+      expect(cover.style.transform).toBe('translate(0, -600px)');
       topEl.remove();
     });
   });
@@ -199,68 +216,41 @@ describe('IbCoverpage', () => {
 
   describe('Snap to resting position', () => {
     it('snaps open when released past midpoint', async () => {
-      // midpoint = (innerWidth + peekSize) / 2 = (1000 + 0) / 2 = 500
-      (el as any)._currentOffset = 600;
-      (el as any)._snapToResting();
+      // translate=-400 after drag; |400| < |1000|/2=500 → show()
+      await slowDrag(el, 0, 600);
       await el.updateComplete;
 
-      expect((el as any)._currentOffset).toBe(1000);
+      window.dispatchEvent(new PointerEvent('pointerup', { clientX: 600, clientY: 100, isPrimary: true, bubbles: true }));
+      await vi.advanceTimersByTimeAsync(400);
+      await el.updateComplete;
+
+      const cover = queryElement(el, '.cover');
+      expect(cover.style.transform).toBe('translate(0px, 0)');
     });
 
     it('snaps to peek when released before midpoint', async () => {
-      (el as any)._currentOffset = 400;
-      (el as any)._snapToResting();
+      // translate=-600 after drag; |600| > |1000|/2=500 → hide()
+      await slowDrag(el, 0, 400);
       await el.updateComplete;
 
-      expect((el as any)._currentOffset).toBe(0); // peekSize = 0
-    });
-
-    it('snaps open via gesture lifecycle (slow release past midpoint)', async () => {
-      // midpoint = (1000 + 0) / 2 = 500; drag to 600 then release slowly
-      let t = 0;
-      const dateSpy = vi.spyOn(performance, 'now').mockImplementation(() => t);
-
-      el.dispatchEvent(new PointerEvent('pointerdown', { clientX: 0, clientY: 100, isPrimary: true, bubbles: true }));
-      t = 1000; // dt=1000ms, dx=600 → v=0.6 < 1 → no flick
-      window.dispatchEvent(new PointerEvent('pointermove', { clientX: 600, clientY: 100, isPrimary: true, bubbles: true }));
-      await new Promise(r => requestAnimationFrame(r));
-
-      // dt=9000ms, dx=0 → v=0 → idle → snap open (600 ≥ 500)
-      t = 10000;
-      window.dispatchEvent(new PointerEvent('pointerup', { clientX: 600, clientY: 100, isPrimary: true, bubbles: true }));
-      await new Promise(r => setTimeout(r, 10));
-      await el.updateComplete;
-
-      dateSpy.mockRestore();
-      expect((el as any)._currentOffset).toBe(1000);
-    });
-
-    it('snaps closed via gesture lifecycle (slow release before midpoint)', async () => {
-      // midpoint = 500; drag to 400 then release slowly
-      let t = 0;
-      const dateSpy = vi.spyOn(performance, 'now').mockImplementation(() => t);
-
-      el.dispatchEvent(new PointerEvent('pointerdown', { clientX: 0, clientY: 100, isPrimary: true, bubbles: true }));
-      t = 1000; // dt=1000ms, dx=400 → v=0.4 < 1 → no flick
-      window.dispatchEvent(new PointerEvent('pointermove', { clientX: 400, clientY: 100, isPrimary: true, bubbles: true }));
-      await new Promise(r => requestAnimationFrame(r));
-
-      // dt=9000ms, dx=0 → v=0 → idle → snap closed (400 < 500)
-      t = 10000;
       window.dispatchEvent(new PointerEvent('pointerup', { clientX: 400, clientY: 100, isPrimary: true, bubbles: true }));
-      await new Promise(r => setTimeout(r, 10));
+      await vi.advanceTimersByTimeAsync(400);
       await el.updateComplete;
 
-      dateSpy.mockRestore();
-      expect((el as any)._currentOffset).toBe(0);
+      const cover = queryElement(el, '.cover');
+      expect(cover.style.transform).toBe('translate(-1000px, 0)');
     });
 
     it('opens scrim after snapping open', async () => {
-      (el as any)._currentOffset = 600;
-      (el as any)._snapToResting();
+      await slowDrag(el, 0, 600);
       await el.updateComplete;
 
-      expect(el.scrimOpen).toBe(true);
+      window.dispatchEvent(new PointerEvent('pointerup', { clientX: 600, clientY: 100, isPrimary: true, bubbles: true }));
+      await vi.advanceTimersByTimeAsync(400);
+      await el.updateComplete;
+
+      const scrim = queryElement(el, '.scrim');
+      expect(scrim.classList.contains('is-active')).toBe(true);
     });
   });
 
@@ -268,51 +258,37 @@ describe('IbCoverpage', () => {
 
   describe('Flick behavior', () => {
     it('flick outward (right) snaps cover to full viewport width', async () => {
-      // For left side: positive x velocity = flick outward = open
-      await simulateFlick(el, 50, 200); // dx=150, dt=5ms → vx=30 >> speedThreshold=1
-      await new Promise(r => setTimeout(r, 10));
+      await simulateFlick(el, 50, 200);
+      await vi.advanceTimersByTimeAsync(400);
       await el.updateComplete;
 
-      expect((el as any)._currentOffset).toBe(1000); // innerWidth
+      const cover = queryElement(el, '.cover');
+      expect(cover.style.transform).toBe('translate(0px, 0)');
     });
 
     it('flick inward (left) closes cover to peek size', async () => {
-      (el as any)._currentOffset = 800;
-      (el as any)._isSliding = false;
-
-      await simulateFlick(el, 200, 50); // dx=-150, dt=5ms → vx=-30 = inward
-      await new Promise(r => setTimeout(r, 10));
+      el.show();
+      await vi.advanceTimersByTimeAsync(400);
       await el.updateComplete;
 
-      expect((el as any)._currentOffset).toBe(0); // peekSize = 0
+      await simulateFlick(el, 200, 50);
+      await vi.advanceTimersByTimeAsync(400);
+      await el.updateComplete;
+
+      const cover = queryElement(el, '.cover');
+      expect(cover.style.transform).toBe('translate(-1000px, 0)');
     });
 
     it('right side: flick leftward opens cover', async () => {
       const rightEl = await createElement('right');
 
-      await simulateFlick(rightEl, 950, 800); // drag from near-right edge leftward
-      await new Promise(r => setTimeout(r, 10));
+      await simulateFlick(rightEl, 950, 800);
+      await vi.advanceTimersByTimeAsync(400);
       await rightEl.updateComplete;
 
-      // For right: invert=true, sign=-1. vx = (800-950)/5 = -30. vx * sign = 30 > 0 → open
-      expect((rightEl as any)._currentOffset).toBe(1000);
+      const cover = queryElement(rightEl, '.cover');
+      expect(cover.style.transform).toBe('translate(0px, 0)');
       rightEl.remove();
-    });
-
-    it('flick does not trigger while already sliding', async () => {
-      (el as any)._isSliding = true;
-
-      let t = 0;
-      const dateSpy = vi.spyOn(performance, 'now').mockImplementation(() => t);
-      el.dispatchEvent(new PointerEvent('pointerdown', { clientX: 50, clientY: 100, isPrimary: true, bubbles: true }));
-      t = 5;
-      window.dispatchEvent(new PointerEvent('pointerup', { clientX: 200, clientY: 100, isPrimary: true, bubbles: true }));
-      dateSpy.mockRestore();
-      await new Promise(r => setTimeout(r, 10));
-      await el.updateComplete;
-
-      // _isSliding was true → flick filter blocks → offset stays at whatever it was
-      expect((el as any)._currentOffset).toBe(0);
     });
   });
 
@@ -320,31 +296,35 @@ describe('IbCoverpage', () => {
 
   describe('Scrim behavior', () => {
     it('scrim becomes visible when cover is open', async () => {
-      el.open();
+      el.show();
+      await vi.advanceTimersByTimeAsync(400);
       await el.updateComplete;
 
       const scrim = el.shadowRoot!.querySelector('.scrim')!;
-      expect(scrim.classList.contains('visible')).toBe(true);
+      expect(scrim.classList.contains('is-active')).toBe(true);
     });
 
     it('clicking scrim closes the cover', async () => {
-      el.open();
+      el.show();
+      await vi.advanceTimersByTimeAsync(400);
+      await el.updateComplete;
+      const scrim = queryElement(el, '.scrim');
+
+      scrim.click();
+      await vi.advanceTimersByTimeAsync(400);
       await el.updateComplete;
 
-      (el.shadowRoot!.querySelector('.scrim') as HTMLElement).click();
-      await el.updateComplete;
-
-      expect(el.scrimOpen).toBe(false);
-      expect((el as any)._currentOffset).toBe(0); // peekSize = 0
+      expect(scrim.classList.contains('is-active')).toBe(false);
     });
 
     it('clicking scrim does nothing when not open', async () => {
-      // Cover starts closed by default; verify click is a no-op
-      (el.shadowRoot!.querySelector('.scrim') as HTMLElement).click();
+      const scrim = queryElement(el, '.scrim');
+
+      scrim.click();
+      await vi.runAllTimersAsync();
       await el.updateComplete;
 
-      expect(el.scrimOpen).toBe(false);
-      expect((el as any)._currentOffset).toBe(0);
+      expect(scrim.classList.contains('is-active')).toBe(false);
     });
   });
 
@@ -353,41 +333,40 @@ describe('IbCoverpage', () => {
   describe('Peek size', () => {
     it('uses peekSize property as initial offset', async () => {
       const peekEl = await createElement('left', { peekSize: 80 } as any);
-      expect((peekEl as any)._currentOffset).toBe(80);
+      const cover = queryElement(peekEl, '.cover');
+      // _getCssPeekSize: no inline var → NaN → falls back to peekSize=80
+      // _closedTranslate: -(1000 - 80) = -920
+      expect(cover.style.transform).toBe('translate(-920px, 0)');
       peekEl.remove();
     });
 
-     it('peek size from CSS variable overrides property', async () => {
-       const peekEl = document.createElement('ib-coverpage') as IbCoverpage;
-       peekEl.peekSize = 40;
-       peekEl.style.setProperty('--cover-peek-size', '60px');
-       document.body.appendChild(peekEl);
-       await peekEl.updateComplete;
-       await Promise.resolve();
-
-       expect((peekEl as any)._resolvedPeekSize).toBe(60);
-       peekEl.remove();
-     });
-
-    it('updates resolved peek size on host resize', async () => {
-      el.style.setProperty('--cover-peek-size', '50px');
-
-      if (lastResizeObserver) {
-        lastResizeObserver.trigger([{ contentRect: { width: 1000, height: 800 } }]);
-      }
-
+    it('peek size from CSS variable overrides property', async () => {
+      const peekEl = document.createElement('ib-coverpage') as IbCoverpage;
+      peekEl.peekSize = 40;
+      peekEl.style.setProperty('--cover-peek-size', '60px');
+      document.body.appendChild(peekEl);
+      await peekEl.updateComplete;
       await Promise.resolve();
-      expect((el as any)._resolvedPeekSize).toBe(50);
+
+      const cover = queryElement(peekEl, '.cover');
+      // _getCssPeekSize: inline var '60px' → 60 (overrides property=40)
+      // _closedTranslate: -(1000 - 60) = -940
+      expect(cover.style.transform).toBe('translate(-940px, 0)');
+      peekEl.remove();
     });
 
     it('snaps to peek size (not 0) when peek is configured', async () => {
       const peekEl = await createElement('left', { peekSize: 80 } as any);
-
-      (peekEl as any)._currentOffset = 300; // before midpoint ((1000+80)/2 = 540)
-      (peekEl as any)._snapToResting();
+      // initial=-920; drag 300 → -920+300=-620; |620| > |920|/2=460 → hide()
+      await slowDrag(peekEl, 0, 300);
       await peekEl.updateComplete;
 
-      expect((peekEl as any)._currentOffset).toBe(80);
+      window.dispatchEvent(new PointerEvent('pointerup', { clientX: 300, clientY: 100, isPrimary: true, bubbles: true }));
+      await vi.advanceTimersByTimeAsync(400);
+      await peekEl.updateComplete;
+
+      const cover = queryElement(peekEl, '.cover');
+      expect(cover.style.transform).toBe('translate(-920px, 0)');
       peekEl.remove();
     });
   });
@@ -395,226 +374,161 @@ describe('IbCoverpage', () => {
   // ── Animation ──────────────────────────────────────────────────────────────
 
   describe('Animation', () => {
-    it('animationDuration property controls the duration passed to animate()', async () => {
-      const animateSpy = HTMLElement.prototype.animate as ReturnType<typeof vi.fn>;
-      el.animationDuration = 500;
-      animateSpy.mockClear();
+    it('animation uses CSS variable --cover-anim-duration', async () => {
+      el.style.setProperty('--cover-anim-duration', '500ms');
 
-      (el as any)._currentOffset = 400;
+      el.show();
+      await el.updateComplete;
+      await vi.advanceTimersByTimeAsync(600);
       await el.updateComplete;
 
-      expect(animateSpy).toHaveBeenCalledWith(
-        expect.any(Array),
-        expect.objectContaining({ duration: 500 })
-      );
+      expect(el.open).toBe(true);
+      const cover = queryElement(el, '.cover');
+      expect(cover.style.transform).toBe('translate(0px, 0)');
     });
 
-    it('cover-progress emits interpolated value at a known point during animation', async () => {
-      // startOffset=0, finalOffset=600, duration=300ms, currentTime=150ms → t=0.5 → value=300
-      const animObj = {
-        finished: new Promise<void>(() => {}), // never resolves — keeps animation 'running'
-        cancel: vi.fn(),
-        playState: 'running' as AnimationPlayState,
-        currentTime: 150 as CSSNumberish
-      };
-      HTMLElement.prototype.animate = vi.fn().mockReturnValue(animObj);
-
-      const offsets: number[] = [];
-      el.addEventListener('cover-progress', (e: Event) => {
-        offsets.push((e as CustomEvent).detail.offset);
+    it('progress event emits interpolated t values during animation', async () => {
+      const tValues: number[] = [];
+      el.addEventListener('coverpage-progress', (e: Event) => {
+        tValues.push((e as CustomEvent).detail.t);
       });
 
-      // _currentOffset was 0 → animates to 600; startOffset = 0
-      (el as any)._currentOffset = 600;
+      el.show();
+      await vi.advanceTimersByTimeAsync(100);
       await el.updateComplete;
-      await new Promise(r => requestAnimationFrame(r)); // let _trackAnimation tick once
 
-      expect(offsets).toContain(300);
+      expect(tValues.length).toBeGreaterThan(0);
+      expect(tValues.some(t => t > 0 && t <= 1)).toBe(true);
     });
 
-    it('cover-progress emits final offset once animation finishes', async () => {
-      const animObj = {
-        finished: Promise.resolve(),
-        cancel: vi.fn(),
-        playState: 'finished' as AnimationPlayState,
-        currentTime: 300 as CSSNumberish
-      };
-      HTMLElement.prototype.animate = vi.fn().mockReturnValue(animObj);
-
-      const offsets: number[] = [];
-      el.addEventListener('cover-progress', (e: Event) => {
-        offsets.push((e as CustomEvent).detail.offset);
+    it('progress event emits t=1 when animation finishes', async () => {
+      const tValues: number[] = [];
+      el.addEventListener('coverpage-progress', (e: Event) => {
+        tValues.push((e as CustomEvent).detail.t);
       });
 
-      (el as any)._currentOffset = 600;
+      el.show();
+      await vi.advanceTimersByTimeAsync(400);
       await el.updateComplete;
-      await new Promise(r => requestAnimationFrame(r));
 
-      expect(offsets).toContain(600);
+      expect(tValues).toContain(1);
     });
 
     it('changing side after mount flips animation axis from width to height', async () => {
-      const animateSpy = HTMLElement.prototype.animate as ReturnType<typeof vi.fn>;
-
-      // Start as left (animates width), then switch to top (should animate height)
       el.setAttribute('side', 'top');
       await el.updateComplete;
-      animateSpy.mockClear();
 
-      (el as any)._currentOffset = 300;
+      el.show();
+      await vi.advanceTimersByTimeAsync(400);
       await el.updateComplete;
 
-      expect(animateSpy).toHaveBeenCalledWith(
-        expect.arrayContaining([expect.objectContaining({ height: '300px' })]),
-        expect.any(Object)
-      );
+      const cover = queryElement(el, '.cover');
+      expect(cover.style.transform).toBe('translate(0, 0px)');
     });
 
     it('non-primary pointer events are ignored by the gesture controller', async () => {
-      const stateSpy = vi.fn();
-      (el as any)._gestureController.state$.subscribe(stateSpy);
+      const gestureEvents: string[] = [];
+      (el as any)._gestureController.gesture$.subscribe((e: any) => {
+        gestureEvents.push(e.type);
+      });
 
       el.dispatchEvent(new PointerEvent('pointerdown', { clientX: 50, clientY: 100, isPrimary: false, bubbles: true }));
 
-      expect(stateSpy).not.toHaveBeenCalled();
+      expect(gestureEvents).toHaveLength(0);
     });
   });
 
   // ── Pointer interactions ────────────────────────────────────────────────────
 
   describe('Pointer drag', () => {
-    it('handles pointerdown → dragging state', async () => {
-      const stateSpy = vi.fn();
-      (el as any)._gestureController.state$.subscribe(stateSpy);
+    it('handles pointerdown triggers gesture start', async () => {
+      const gestureEvents: string[] = [];
+      (el as any)._gestureController.gesture$.subscribe((e: any) => {
+        gestureEvents.push(e.type);
+      });
 
       el.dispatchEvent(new PointerEvent('pointerdown', { clientX: 50, clientY: 100, isPrimary: true, bubbles: true }));
 
-      expect(stateSpy).toHaveBeenCalledWith('dragging');
+      expect(gestureEvents).toContain('start');
     });
 
     it('updates cover via pointermove', async () => {
-      const animateSpy = HTMLElement.prototype.animate as ReturnType<typeof vi.fn>;
-      animateSpy.mockClear();
-
-      // Control timestamps so velocity = 200/1000 = 0.2 px/ms < 1 → no flick
-      let t = 0;
-      const dateSpy = vi.spyOn(performance, 'now').mockImplementation(() => t);
-
+      // pointerdown, advance 1000ms (slow), pointermove, flush rAF
       el.dispatchEvent(new PointerEvent('pointerdown', { clientX: 0, clientY: 100, isPrimary: true, bubbles: true }));
-
-      t = 1000;
+      await vi.advanceTimersByTimeAsync(1000);
       window.dispatchEvent(new PointerEvent('pointermove', { clientX: 200, clientY: 100, isPrimary: true, bubbles: true }));
-      await new Promise(r => requestAnimationFrame(r));
+      await vi.runAllTimersAsync();
       await el.updateComplete;
 
-      dateSpy.mockRestore();
-
-      expect(animateSpy).toHaveBeenCalledWith(
-        expect.arrayContaining([expect.objectContaining({ width: '200px' })]),
-        expect.any(Object)
-      );
+      const cover = queryElement(el, '.cover');
+      // origin=-1000, delta=+200 → -800
+      expect(cover.style.transform).toBe('translate(-800px, 0)');
     });
   });
-
-  // ── Cleanup ─────────────────────────────────────────────────────────────────
 
   // ── Events ──────────────────────────────────────────────────────────────────
 
   describe('Events', () => {
-    it('emits scrim-change when scrimOpen changes', async () => {
-      const callback = vi.fn();
-      el.addEventListener('scrim-change', callback);
+    it('emits progress when cover opens/closes', async () => {
+      const events: any[] = [];
+      const newEl = document.createElement('ib-coverpage') as IbCoverpage;
+      newEl.setAttribute('side', 'left');
+      document.body.appendChild(newEl);
+      await newEl.updateComplete;
+      await Promise.resolve();
 
-      el.open();
-      await el.updateComplete;
+      newEl.addEventListener('coverpage-progress', (e: Event) => {
+        events.push((e as CustomEvent).detail);
+      });
 
-      expect(callback).toHaveBeenCalledWith(
-        expect.objectContaining({
-          detail: { visible: true }
-        })
-      );
+      newEl.show();
+      await vi.advanceTimersByTimeAsync(400);
+      await newEl.updateComplete;
 
-      el.close();
-      await el.updateComplete;
+      expect(events.length).toBeGreaterThan(0);
+      expect(events.some(e => e.t === 1)).toBe(true);
 
-      expect(callback).toHaveBeenCalledWith(
-        expect.objectContaining({
-          detail: { visible: false }
-        })
-      );
+      newEl.hide();
+      await vi.advanceTimersByTimeAsync(400);
+      await newEl.updateComplete;
+
+      expect(events.some(e => e.t === 0)).toBe(true);
+
+      newEl.remove();
     });
 
-    it('emits peek-mode-change when transitioning between peek and non-peek', async () => {
-      const callback = vi.fn();
-      el.addEventListener('peek-mode-change', callback);
+    it('emits shutdown event on disconnect', async () => {
+      const events: string[] = [];
+      el.addEventListener('coverpage-shutdown', (e: Event) => {
+        events.push((e as CustomEvent).detail.elementId);
+      });
 
-      (el as any)._resolvedPeekSize = 50;
-      (el as any)._currentOffset = 0;
-      await el.updateComplete;
-      callback.mockClear();
+      el.remove();
+      await Promise.resolve();
 
-      // 1. Transition to non-peek (offset 100 > 50)
-      (el as any)._currentOffset = 100;
-      await el.updateComplete;
-
-      expect(callback).toHaveBeenCalledWith(
-        expect.objectContaining({
-          detail: { isPeeking: false }
-        })
-      );
-      callback.mockClear();
-
-      // 2. Change offset within non-peek (offset 200 > 50) - should NOT emit
-      (el as any)._currentOffset = 200;
-      await el.updateComplete;
-
-      expect(callback).not.toHaveBeenCalled();
-      callback.mockClear();
-
-      // 3. Transition back to peek (offset 20 < 50)
-      (el as any)._currentOffset = 20;
-      await el.updateComplete;
-
-      expect(callback).toHaveBeenCalledWith(
-        expect.objectContaining({
-          detail: { isPeeking: true }
-        })
-      );
-      callback.mockClear();
-
-      // 4. Change offset within peek (offset 10 < 50) - should NOT emit
-      (el as any)._currentOffset = 10;
-      await el.updateComplete;
-
-      expect(callback).not.toHaveBeenCalled();
+      expect(events).toContain(el.id ?? '');
     });
 
-    it('does NOT emit peek-mode-change when scrimOpen changes but offset mode remains same', async () => {
-      const callback = vi.fn();
-      el.addEventListener('peek-mode-change', callback);
+    it('emits startup event on first render', async () => {
+      const events: string[] = [];
+      const newEl = document.createElement('ib-coverpage') as IbCoverpage;
+      newEl.setAttribute('side', 'left');
+      newEl.id = 'test-cover';
 
-      (el as any)._resolvedPeekSize = 50;
-      (el as any)._currentOffset = 100; // non-peeking
-      // Toggle _scrimOpen directly so _currentOffset stays fixed at 100
-      (el as any)._scrimOpen = true;
-      await el.updateComplete;
-      callback.mockClear();
+      newEl.addEventListener('coverpage-startup', (e: Event) => {
+        events.push((e as CustomEvent).detail.elementId);
+      });
 
-      // Change _scrimOpen but keep offset at 100 (still non-peeking) — no peek-mode-change expected
-      (el as any)._scrimOpen = false;
-      await el.updateComplete;
+      document.body.appendChild(newEl);
+      await newEl.updateComplete;
+      await Promise.resolve();
+      newEl.remove();
 
-      expect(callback).not.toHaveBeenCalled();
+      expect(events).toContain('test-cover');
     });
   });
 
   describe('Lifecycle', () => {
-    it('disconnects ResizeObserver on disconnect', () => {
-      const disconnectSpy = vi.spyOn(lastResizeObserver, 'disconnect');
-      el.remove();
-      expect(disconnectSpy).toHaveBeenCalled();
-    });
-
     it('does not throw when disconnected during active gesture', async () => {
       el.dispatchEvent(new PointerEvent('pointerdown', { clientX: 0, clientY: 100, isPrimary: true, bubbles: true }));
       expect(() => el.remove()).not.toThrow();

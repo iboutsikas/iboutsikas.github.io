@@ -7,7 +7,6 @@ export interface CoverConfig {
 }
 
 export interface IConfigProvider {
-  get side(): Side;
   get movementThreshold(): number;
   get speedThreshold(): number;
 }

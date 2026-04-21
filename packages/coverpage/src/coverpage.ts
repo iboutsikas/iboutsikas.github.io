@@ -16,9 +16,9 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
   /** The threshold for movement to trigger an interaction. */
   @property({ type: Number }) accessor movementThreshold: number = 10;
   /** The threshold for velocity to trigger a flick. */
-  @property({ type: Number }) accessor speedThreshold: number = 1;
+  @property({ type: Number }) accessor speedThreshold: number = 2.5;
   /** The minimum size of the peeked cover. */
-  @property({ type: Number }) accessor peekSize: number = 4;
+  @property({ type: Number }) accessor peekSize: number = 0;
   /** Whether the cover is open. Setting this attribute on load starts the cover fully open. */
   @property({ type: Boolean }) accessor open: boolean = false;
 
