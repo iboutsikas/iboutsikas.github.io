@@ -16,16 +16,9 @@
         }
 
         /* ── Shared ─────────────────────────────────────────────────── */
-
-        ib-coverpage {
-            display: block;
-        }
-
         .cover-background {
-            position: absolute;
-            width: 100vw;
+            width: 100%;
             height: 100%;
-            left: calc(50% - 50vw);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -40,13 +33,13 @@
 
         #left-cover {
             --cover-peek-size: 25px;
-            --cover-size: 100%;
+            --cover-size: 100vw;
+            --cover-anim-duration: 450ms;
         }
 
         @media (min-width: 768px) {
             #left-cover {
                 --cover-peek-size: 250px;
-                --cover-size: 100vw;
             }
 
             #content {
@@ -57,11 +50,10 @@
         @media (max-width: 767px) {
             #left-cover {
                 --cover-peek-size: 25px;
-                --cover-size: 25px;
             }
 
             #content {
-                margin-left: 0;
+                margin-left: 25px;
             }
         }
 
@@ -73,24 +65,8 @@
         /* ── Right sidebar ───────────────────────────────────────────── */
 
         #right-cover {
-            position: fixed;
-            right: 0;
-            top: 0;
-            bottom: 0;
-            width: auto;
             --cover-peek-size: 25px;
-            --cover-size: 25px;
-        }
-
-        @media (min-width: 768px) {
-            #right-cover {
-                --cover-peek-size: 250px;
-                --cover-size: 250px;
-            }
-
-            #content {
-                margin-right: 250px;
-            }
+            --cover-size: 100vw;
         }
 
         #right-background {
@@ -101,14 +77,8 @@
         /* ── Top drawer ──────────────────────────────────────────────── */
 
         #top-cover {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 25px;
             --cover-peek-size: 25px;
-            --cover-size: 100vw;
-            --cover-height: 25px;
+            --cover-size: 200px;
         }
 
         #top-background {
@@ -119,14 +89,8 @@
         /* ── Bottom drawer ───────────────────────────────────────────── */
 
         #bottom-cover {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: auto;
             --cover-peek-size: 25px;
-            --cover-size: 100vw;
-            --cover-height: 25px;
+            --cover-size: 200px;
         }
 
         #bottom-background {
@@ -142,38 +106,51 @@
             transition: margin-left 0.3s ease, margin-right 0.3s ease;
         }
 
-        #toggle-btn {
+        /* ── Toggle buttons ──────────────────────────────────────────── */
+
+        #controls {
             position: fixed;
             top: 1rem;
-            left: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
             z-index: 200;
-            padding: 0.5rem 1rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        #controls button {
+            padding: 0.4rem 0.8rem;
             background: #333;
             color: #fff;
             border: none;
             border-radius: 4px;
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
     </style>
 </head>
 
 <body>
 
-    <button id="toggle-btn">Toggle Nav</button>
+    <div id="controls">
+        <button id="toggle-left">Left</button>
+        <button id="toggle-right">Right</button>
+        <button id="toggle-top">Top</button>
+        <button id="toggle-bottom">Bottom</button>
+    </div>
 
     <ib-coverpage id="left-cover" side="left" open>
         <div id="left-background" class="cover-background">
             <div id="left-nav" class="cover-nav">
-            <h3>Left Sidebar</h3>
-            <p>Drag right to open. Desktop: always visible at 250px.</p>
-            <ul>
-                <li><a href="#">Games</a></li>
-                <li><a href="#">Publications</a></li>
-                <li><a href="#">Projects</a></li>
-                <li><a href="#">Resume</a></li>
-            </ul>
-        </div>
+                <h3>Left Sidebar</h3>
+                <p>Drag right to open.</p>
+                <ul>
+                    <li><a href="#">Games</a></li>
+                    <li><a href="#">Publications</a></li>
+                    <li><a href="#">Projects</a></li>
+                    <li><a href="#">Resume</a></li>
+                </ul>
+            </div>
         </div>
     </ib-coverpage>
 
@@ -191,7 +168,7 @@
         </div>
     </ib-coverpage>
 
-    <!--  <ib-coverpage id="top-cover" side="top">
+    <ib-coverpage id="top-cover" side="top">
         <div id="top-background" class="cover-background">
             <div class="cover-nav">
                 <h3>Top Drawer</h3>
@@ -207,16 +184,16 @@
                 <p>Drag up to open.</p>
             </div>
         </div>
-    </ib-coverpage>  -->
+    </ib-coverpage>
 
     <div id="content">
         <h1 style="margin-top: 40px;">Coverpage Test Page</h1>
-        <p>Four drawers — one on each edge. Drag from an edge to open it.</p>
+        <p>Four drawers — one on each edge. Drag from an edge or use the buttons.</p>
         <ul>
-            <li><strong>Left (grey):</strong> Desktop always-visible sidebar (250px). Mobile peek (25px).</li>
-            <li><strong>Right (blue):</strong> Peek 25px. Drag left to expand.</li>
-            <li><strong>Top (green):</strong> Peek 25px. Drag down to expand.</li>
-            <li><strong>Bottom (amber):</strong> Peek 25px. Drag up to expand.</li>
+            <li><strong>Left (purple/pink):</strong> Desktop always-visible 250px. Mobile peek 25px. Drag right.</li>
+            <li><strong>Right (blue):</strong> 300px. Peek 25px. Drag left.</li>
+            <li><strong>Top (green):</strong> 200px. Peek 25px. Drag down.</li>
+            <li><strong>Bottom (amber):</strong> 200px. Peek 25px. Drag up.</li>
         </ul>
         <div style="margin-top: 50px; padding: 20px; background: white; border: 1px solid #ccc;">
             Main content area. Drawers overlay this when open.

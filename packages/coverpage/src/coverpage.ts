@@ -13,16 +13,12 @@ import { observeSize } from './utils/observe.js';
 export class IbCoverpage extends LitElement implements IConfigProvider {
   /** The side from which the cover will be drawn. */
   @property({ type: String }) accessor side: Side = 'left';
-  /** The maximum range for the offset. */
-  @property({ type: Number }) accessor range: number | undefined = undefined;
   /** The threshold for movement to trigger an interaction. */
   @property({ type: Number }) accessor movementThreshold: number = 10;
   /** The threshold for velocity to trigger a flick. */
   @property({ type: Number }) accessor speedThreshold: number = 1;
   /** The minimum size of the peeked cover. */
-  @property({ type: Number }) accessor peekSize: number = 0;
-  /** Duration of cover and scrim animations in milliseconds. */
-  @property({ type: Number }) accessor animationDuration: number = 300;
+  @property({ type: Number }) accessor peekSize: number = 4;
   /** Whether the cover is open. Setting this attribute on load starts the cover fully open. */
   @property({ type: Boolean }) accessor open: boolean = false;
 
@@ -31,16 +27,12 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
   /** The scrim element. */
   @query('.scrim') accessor scrimElement!: HTMLElement;
 
-  private _isDragging = false;
-  /** Cover translate at the moment a gesture starts — used as drag base. */
-  private _translationOrigin = 0;
-
   private _gestureController: GestureController = new GestureController(this);
   private _disconnectSubject: Subject<void> = new Subject<void>();
   /** Shared cover size stream — initialized in firstUpdated when coverElement is available. */
   private _coverSize$!: Observable<{ width: number; height: number }>;
 
-  /** Source of truth for open/closed state. Drives translate$ and scrim. */
+  /** Tracks the settled (post-animation) open/closed state. */
   private readonly _openState$ = new BehaviorSubject<boolean>(false);
   /** Observable consumers can use to react to open/closed transitions. */
   public readonly openState$ = this._openState$.asObservable();
@@ -50,12 +42,17 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
   /** Observable of cover translate position in px. 0 = fully open, negative/positive = closed. */
   public readonly translate$ = this._translate$.asObservable();
 
+  private _animationFrameId: number | undefined;
+  // Guards against animating on first render (open attribute set at parse time).
+  private _firstUpdateDone = false;
+
   connectedCallback() {
     super.connectedCallback();
     this._gestureController.connect(this);
   }
 
   disconnectedCallback() {
+    this._cancelAnimation();
     this._disconnectSubject.next();
     this._gestureController.disconnect();
     super.disconnectedCallback();
@@ -73,35 +70,37 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
     // shareReplay(1) so all consumers (drag pipe, future combineLatests) share one ResizeObserver.
     this._coverSize$ = observeSize(this.coverElement).pipe(shareReplay(1));
 
-    // Disable transition during initial placement — rAF re-enables it after first paint.
-    this.coverElement.classList.add('is-dragging');
     this._setupSubscriptions();
-    requestAnimationFrame(() => this.coverElement.classList.remove('is-dragging'));
+
+    // Place cover at its initial position with no animation.
+    this._translate$.next(this.open ? 0 : this._closedTranslate());
+    this._openState$.next(this.open);
   }
 
   updated(changedProperties: PropertyValues<this>) {
-    if (changedProperties.has('open')) {
-      this._openState$.next(this.open);
+    // Skip first update — initial position is set directly in firstUpdated.
+    if (changedProperties.has('open') && this._firstUpdateDone) {
+      this._animateTo(this.open ? 0 : this._closedTranslate(), this.open);
     }
 
-    const configKeys = ['side', 'range', 'movementThreshold', 'speedThreshold'] as const;
+    const configKeys = ['side', 'movementThreshold', 'speedThreshold'] as const;
     const configChanged = configKeys.some(k => changedProperties.has(k));
     if (configChanged) {
       this._gestureController.disconnect();
       this._gestureController.connect(this);
     }
+
+    this._firstUpdateDone = true;
   }
 
   /** Slides the cover to the fully open position. */
   public show(): void {
-    this.coverElement.classList.remove('is-dragging');
-    this.open = true;
+    this._animateTo(0, true);
   }
 
   /** Slides the cover back to the resting (peek) position. */
   public hide(): void {
-    this.coverElement.classList.remove('is-dragging');
-    this.open = false;
+    this._animateTo(this._closedTranslate(), false);
   }
 
   private _handleScrimClick() {
@@ -112,13 +111,6 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
     if (!this.coverElement) {
       throw new Error('[_setupSubscriptions] Called before DOM Queries are made available');
     }
-
-    // openState$ is the open/close authority — drives translate$. Scrim is driven by t$ below.
-    this._openState$.pipe(
-      takeUntil(this._disconnectSubject)
-    ).subscribe(isOpen => {
-      this._translate$.next(isOpen ? 0 : this._closedTranslate());
-    });
 
     // translate$ applies transform to the cover element.
     this._translate$.pipe(
@@ -161,15 +153,16 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
       share()
     );
 
-    // CSS classes: disable transition while dragging, re-enable on release.
     start$.pipe(takeUntil(this._disconnectSubject)).subscribe(() => {
+      // Cancel any in-progress snap/flick animation — user grabbed the cover mid-flight.
+      this._cancelAnimation();
       this.coverElement.classList.add('will-change', 'is-dragging');
       this._fireCoverpageEvent(CoverpageEvents.BeforeAnimation, { elementId: this.id ?? '' });
     });
 
     end$.pipe(takeUntil(this._disconnectSubject)).subscribe(() => {
-      this.coverElement.classList.remove('will-change', 'is-dragging');
-      this._fireCoverpageEvent(CoverpageEvents.AfterAnimation, { elementId: this.id ?? '' });
+      this.coverElement.classList.remove('is-dragging');
+      // AfterAnimation fires when the snap/flick animation completes, not here.
     });
 
     // Drag: translate cover in real time while pointer is down.
@@ -210,6 +203,69 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
     ).subscribe(e => {
       this._flickShouldOpen(e.velocity) ? this.show() : this.hide();
     });
+  }
+
+  // ---------------------------------------------------------------------------
+  // Animation
+  // ---------------------------------------------------------------------------
+
+  private _cancelAnimation(): void {
+    if (this._animationFrameId !== undefined) {
+      cancelAnimationFrame(this._animationFrameId);
+      this._animationFrameId = undefined;
+    }
+  }
+
+  private _getAnimDuration(): number {
+    const raw = getComputedStyle(this).getPropertyValue('--cover-anim-duration').trim();
+    if (raw.endsWith('ms')) return parseFloat(raw);
+    if (raw.endsWith('s')) return parseFloat(raw) * 1000;
+    return 300;
+  }
+
+  /*
+   * Drives the snap/flick animation via rAF instead of CSS transitions.
+   *
+   * CSS transitions on .cover promote it to a compositor layer. Slotted light-DOM
+   * content is composited separately and does NOT move with the shadow-DOM transform
+   * during a CSS transition — only during JS-driven style updates. Using rAF here
+   * keeps the animation on the main thread, matching the drag path that works correctly.
+   */
+  private _animateTo(target: number, isOpen: boolean): void {
+    this._cancelAnimation();
+
+    const start = this._translate$.getValue();
+    const duration = this._getAnimDuration();
+
+    if (duration <= 0 || start === target) {
+      this._translate$.next(target);
+      this._openState$.next(isOpen);
+      this.open = isOpen;
+      this.coverElement.classList.remove('will-change');
+      this._fireCoverpageEvent(CoverpageEvents.AfterAnimation, { elementId: this.id ?? '' });
+      return;
+    }
+
+    this.coverElement.classList.add('will-change');
+    const startTime = performance.now();
+    const easeOut = (t: number): number => 1 - Math.pow(1 - t, 3);
+
+    const tick = (now: number) => {
+      const t = Math.min((now - startTime) / duration, 1);
+      this._translate$.next(start + (target - start) * easeOut(t));
+
+      if (t < 1) {
+        this._animationFrameId = requestAnimationFrame(tick);
+      } else {
+        this._animationFrameId = undefined;
+        this.coverElement.classList.remove('will-change');
+        this._openState$.next(isOpen);
+        this.open = isOpen;
+        this._fireCoverpageEvent(CoverpageEvents.AfterAnimation, { elementId: this.id ?? '' });
+      }
+    };
+
+    this._animationFrameId = requestAnimationFrame(tick);
   }
 
   // ---------------------------------------------------------------------------
@@ -276,7 +332,7 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
 
     .scrim {
       /*
-        Render a 10%x10% rect. Scale to 100%. Make sure the origin 
+        Render a 10%x10% rect. Scale to 100%. Make sure the origin
         is top left so we do not have to offset via magic numbers.
       */
       position: fixed;
@@ -298,11 +354,7 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
       position: fixed;
       z-index: calc(var(--cover-base-z-index, 100) + 3);
       contain: strict;
-      transition: transform var(--cover-anim-duration, 300ms) ease;
-    }
-
-    .cover.is-dragging {
-      transition: none;
+      background-color: yellow;
     }
 
     .cover.is-interacting {
@@ -324,10 +376,28 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
       height: var(--cover-size);
     }
 
-    .cover.left   { top: 0;  bottom: 0; left:   calc(-1 * var(--cover-size) + var(--cover-peek-size); }
-    .cover.right  { top: 0;  bottom: 0; right:  calc(-1 * var(--cover-size) + var(--cover-peek-size); }
-    .cover.top    { left: 0; right: 0;  top:    calc(-1 * var(--cover-size) + var(--cover-peek-size); }
-    .cover.bottom { left: 0; right: 0;  bottom: calc(-1 * var(--cover-size) + var(--cover-peek-size); }
+    .cover.left   { top: 0;  bottom: 0; left:   0; }
+    .cover.right  { top: 0;  bottom: 0; right:  0; }
+    .cover.top    { left: 0; right: 0;  top:    0; }
+    .cover.bottom { left: 0; right: 0;  bottom: 0; }
+
+    /*
+     * Slotted light-DOM elements with position:absolute resolve their containing
+     * block up the LIGHT DOM ancestor chain, bypassing this shadow root entirely.
+     * That means they are positioned relative to the viewport and are NOT
+     * transformed when .cover translates — they stay fixed in viewport space while
+     * the cover slides underneath them.
+     *
+     * This wrapper is position:relative inside the shadow DOM, so it becomes the
+     * containing block for any absolutely-positioned slotted content. Because it
+     * lives inside .cover it participates in .cover's transform, keeping slotted
+     * content correctly anchored to the cover during animations.
+     */
+    .slot-wrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
   `;
 
   render() {
@@ -339,7 +409,7 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
       vertical: this.side === 'top' || this.side === 'bottom',
       [this.side]: true
     })}>
-        <slot></slot>
+        <div class="slot-wrapper"><slot></slot></div>
       </div>
     `;
   }

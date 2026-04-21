@@ -1,49 +1,83 @@
 import '../src/index.js';
 import type { IbCoverpage } from '../src/coverpage.js';
 
-const leftCover = document.querySelector<IbCoverpage>('#left-cover');
-const leftBackground = document.querySelector<HTMLElement>('#left-background');
-const toggleBtn = document.getElementById('toggle-btn');
+const leftCover   = document.querySelector<IbCoverpage>('#left-cover');
+const rightCover  = document.querySelector<IbCoverpage>('#right-cover');
+const topCover    = document.querySelector<IbCoverpage>('#top-cover');
+const bottomCover = document.querySelector<IbCoverpage>('#bottom-cover');
 
-if (toggleBtn && leftCover) {
-  toggleBtn.addEventListener('click', () => {
-    if (leftCover.open) {
-      leftCover.hide();
-    } else {
-      leftCover.show();
-    }
-  });
+const leftBackground   = document.querySelector<HTMLElement>('#left-background');
+const rightBackground  = document.querySelector<HTMLElement>('#right-background');
+const topBackground    = document.querySelector<HTMLElement>('#top-background');
+const bottomBackground = document.querySelector<HTMLElement>('#bottom-background');
+
+// ---------------------------------------------------------------------------
+// Toggle buttons
+// ---------------------------------------------------------------------------
+
+function wireToggle(btnId: string, cover: IbCoverpage | null) {
+  const btn = document.getElementById(btnId);
+  if (!btn || !cover) return;
+  btn.addEventListener('click', () => cover.open ? cover.hide() : cover.show());
 }
 
+wireToggle('toggle-left',   leftCover);
+wireToggle('toggle-right',  rightCover);
+wireToggle('toggle-top',    topCover);
+wireToggle('toggle-bottom', bottomCover);
+
+// ---------------------------------------------------------------------------
+// Cover dimension helpers
+// ---------------------------------------------------------------------------
+
+function coverWidth(cover: IbCoverpage): number {
+  const el = cover.shadowRoot?.querySelector('.cover') as HTMLElement | null;
+  return el?.offsetWidth ?? cover.offsetWidth;
+}
+
+function coverHeight(cover: IbCoverpage): number {
+  const el = cover.shadowRoot?.querySelector('.cover') as HTMLElement | null;
+  return el?.offsetHeight ?? cover.offsetHeight;
+}
+
+function peekSize(cover: IbCoverpage): number {
+  return parseFloat(getComputedStyle(cover).getPropertyValue('--cover-peek-size')) || 0;
+}
+
+// ---------------------------------------------------------------------------
+// Progress → counter-translate
+// Left/top close by going negative (cover slides left/up); background offsets positive.
+// Right/bottom close by going positive; background offsets negative.
+// ---------------------------------------------------------------------------
+
 if (leftCover && leftBackground) {
-  // Counter-translate background so it stays visually fixed as the cover slides.
-  // cover.tx = -(coverWidth - peekSize) * (1 - t), background offsets by -tx to cancel.
   leftCover.addEventListener('coverpage-progress', (e: Event) => {
     const { t } = (e as CustomEvent<{ t: number }>).detail;
-    const coverWidth = leftCover.offsetWidth;
-    const peekSize = parseFloat(getComputedStyle(leftCover).getPropertyValue('--cover-peek-size')) || 0;
-    const travel = (coverWidth - peekSize) / 2;
+    const travel = (coverWidth(leftCover) - peekSize(leftCover)) / 2;
     leftBackground.style.transform = `translateX(${travel * (1 - t)}px)`;
   });
 }
 
-if (leftCover) {
-  leftCover.addEventListener('coverpage-startup', (e: Event) => {
-    console.log('Startup', e);
-  });
-
-  leftCover.addEventListener('coverpage-shutdown', (e: Event) => {
-    console.log('Shutdown', e);
-  });
-
-  leftCover.addEventListener('coverpage-before-animation', (e: Event) => {
-    console.log('Before animation', e);
-  });
-
-  leftCover.addEventListener('coverpage-after-animation', (e: Event) => {
-    console.log('After animation', e);
+if (rightCover && rightBackground) {
+  rightCover.addEventListener('coverpage-progress', (e: Event) => {
+    const { t } = (e as CustomEvent<{ t: number }>).detail;
+    const travel = (coverWidth(rightCover) - peekSize(rightCover)) / 2;
+    rightBackground.style.transform = `translateX(${-travel * (1 - t)}px)`;
   });
 }
 
-// window.addEventListener('resize', resetNavForViewport);
-// resetNavForViewport();
+if (topCover && topBackground) {
+  topCover.addEventListener('coverpage-progress', (e: Event) => {
+    const { t } = (e as CustomEvent<{ t: number }>).detail;
+    const travel = (coverHeight(topCover) - peekSize(topCover)) / 2;
+    topBackground.style.transform = `translateY(${travel * (1 - t)}px)`;
+  });
+}
+
+if (bottomCover && bottomBackground) {
+  bottomCover.addEventListener('coverpage-progress', (e: Event) => {
+    const { t } = (e as CustomEvent<{ t: number }>).detail;
+    const travel = (coverHeight(bottomCover) - peekSize(bottomCover)) / 2;
+    bottomBackground.style.transform = `translateY(${-travel * (1 - t)}px)`;
+  });
+}
