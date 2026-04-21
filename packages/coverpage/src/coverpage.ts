@@ -334,6 +334,17 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
       z-index: var(--cover-base-z-index);
     }
 
+    /* Declared on :host (light DOM) so browser sees it in the composed tree touch-action walk. */
+    :host([side="top"]),
+    :host([side="bottom"]) {
+      touch-action: none;
+    }
+
+    :host([side="left"]),
+    :host([side="right"]) {
+      touch-action: pan-y;
+    }
+
     .scrim {
       /*
         Render a 10%x10% rect. Scale to 100%. Make sure the origin
@@ -376,11 +387,15 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
     .cover.horizontal {
       height: 100vh;
       width: var(--cover-size);
+      /* Allow browser to handle vertical scroll/pan; component owns horizontal axis. */
+      touch-action: pan-y;
     }
 
     .cover.vertical {
       width: 100vw;
       height: var(--cover-size);
+      /* Block vertical pan to suppress pull-to-refresh; component owns vertical axis. */
+      touch-action: pan-x;
     }
 
     .cover.left   { top: 0;  bottom: 0; left:   0; }
@@ -416,7 +431,9 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
       vertical: this.side === 'top' || this.side === 'bottom',
       [this.side]: true
     })}>
-        <div class="slot-wrapper"><slot></slot></div>
+        <div class="slot-wrapper">
+          <slot></slot>
+        </div>
       </div>
     `;
   }
