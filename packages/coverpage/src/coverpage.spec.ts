@@ -552,4 +552,55 @@ describe('IbCoverpage', () => {
       expect(() => el.remove()).not.toThrow();
     });
   });
+
+  // ── Window resize ────────────────────────────────────────────────────────────
+
+  describe('Window resize handling', () => {
+    it('snaps closed panel to new closed position when viewport narrows', async () => {
+      lastResizeObserver.trigger([{ contentRect: { width: 500, height: 800 } }]);
+      await vi.runAllTimersAsync();
+      await el.updateComplete;
+
+      const cover = queryElement(el, '.cover');
+      expect(cover.style.transform).toBe('translate(-500px, 0)');
+    });
+
+    it('snaps closed panel to new closed position when viewport widens', async () => {
+      lastResizeObserver.trigger([{ contentRect: { width: 500, height: 800 } }]);
+      await vi.runAllTimersAsync();
+      await el.updateComplete;
+
+      lastResizeObserver.trigger([{ contentRect: { width: 1200, height: 800 } }]);
+      await vi.runAllTimersAsync();
+      await el.updateComplete;
+
+      const cover = queryElement(el, '.cover');
+      expect(cover.style.transform).toBe('translate(-1200px, 0)');
+    });
+
+    it('does not change translate when open panel resizes', async () => {
+      el.show();
+      await vi.advanceTimersByTimeAsync(400);
+      await el.updateComplete;
+
+      lastResizeObserver.trigger([{ contentRect: { width: 500, height: 800 } }]);
+      await vi.runAllTimersAsync();
+      await el.updateComplete;
+
+      const cover = queryElement(el, '.cover');
+      expect(cover.style.transform).toBe('translate(0px, 0)');
+    });
+
+    it('snaps closed vertical panel to new height on resize', async () => {
+      const topEl = await createElement('top');
+
+      lastResizeObserver.trigger([{ contentRect: { width: 1000, height: 600 } }]);
+      await vi.runAllTimersAsync();
+      await topEl.updateComplete;
+
+      const cover = queryElement(topEl, '.cover');
+      expect(cover.style.transform).toBe('translate(0, -600px)');
+      topEl.remove();
+    });
+  });
 });

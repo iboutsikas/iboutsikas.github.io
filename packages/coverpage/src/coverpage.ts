@@ -4,7 +4,7 @@ import { property } from 'lit/decorators.js';
 import { GestureController } from './controllers/gesture-controller.js';
 import type { Side, IConfigProvider, Vec2 } from './types/definitions.js';
 import { CoverMath } from './utils/cover-math.js';
-import { BehaviorSubject, distinctUntilChanged, filter, map, Observable, share, shareReplay, Subject, switchMap, takeUntil, withLatestFrom } from 'rxjs';
+import { BehaviorSubject, combineLatest, distinctUntilChanged, EMPTY, filter, map, Observable, share, shareReplay, skip, Subject, switchMap, takeUntil, withLatestFrom } from 'rxjs';
 import { CoverpageEvents, type CoverpageEventMap } from './types/events.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { observeSize } from './utils/observe.js';
@@ -121,8 +121,7 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
 
     // t$ is progress [0=closed, 1=open]. Drives scrim opacity and Progress event.
     const isHorizontal = this.side === 'left' || this.side === 'right';
-    const t$ = this._translate$.pipe(
-      withLatestFrom(this._coverSize$),
+    const t$ = combineLatest([this._translate$, this._coverSize$]).pipe(
       map(([tx, size]) => {
         const dim = isHorizontal ? size.width : size.height;
         const closed = this._closedTranslate(dim);
@@ -168,7 +167,7 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
     start$.pipe(takeUntil(this._disconnectSubject)).subscribe(() => {
       // Cancel any in-progress snap/flick animation — user grabbed the cover mid-flight.
       this._cancelAnimation();
-      this.coverElement.classList.add('will-change');
+      this.coverElement.classList.add('will-change', 'is-dragging');
       this.scrimElement.classList.add('is-active');
       this._fireCoverpageEvent(CoverpageEvents.BeforeAnimation, { elementId: this.id ?? '' });
     });
@@ -215,6 +214,25 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
     ).subscribe(e => {
       this._flickShouldOpen(e.velocity) ? this.show() : this.hide();
     });
+
+    // Resize: when settled closed, recompute translate from the new cover dimensions.
+    // switchMap gates on open state — EMPTY while open, size stream while closed.
+    // skip(1) drops shareReplay's immediate replay so only genuine resize events pass.
+    this._openState$.pipe(
+      switchMap(isOpen => {
+        if (isOpen) return EMPTY;
+        return this._coverSize$.pipe(
+          skip(1),
+          map(size => {
+            const dim = isHorizontal ? size.width : size.height;
+            return this._closedTranslate(dim);
+          })
+        );
+      }),
+      takeUntil(this._disconnectSubject)
+    ).subscribe(tx => {
+      this._translate$.next(tx);
+    });
   }
 
   // ---------------------------------------------------------------------------
@@ -258,7 +276,7 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
       this._translate$.next(target);
       this._openState$.next(isOpen);
       this.open = isOpen;
-      this.coverElement.classList.remove('will-change');
+      this.coverElement.classList.remove('will-change', 'is-dragging');
       if (!isOpen) {
         this.scrimElement.classList.remove('is-active');
       }
