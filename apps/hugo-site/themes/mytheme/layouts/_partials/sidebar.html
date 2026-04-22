@@ -7,11 +7,14 @@
 
     <div class="sidebar-sticky">
       <div class="sidebar-about">
-        <a href="{{ .Site.BaseURL }}">
           {{ with .Site.Params.logo }}
-          <img src="{{ . | relURL }}" class="avatar" alt="{{ $.Site.Title }}">
+          <a href="{{ $.Site.BaseURL }}">
+            <img src="{{ . | relURL }}" class="avatar" alt="{{ $.Site.Title }}">
+          </a>
           {{ end }}
-          <h1 class="site-title">{{ .Site.Title }}</h1>
+          <a class="site-title" href="{{ .Site.BaseURL }}">
+            {{ .Site.Title }}
+          </a>
           {{ with .Site.Params.tagline }}
           <p class="site-tagline">{{ . }}</p>
           {{ end }}

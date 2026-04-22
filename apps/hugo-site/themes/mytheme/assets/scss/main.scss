@@ -58,7 +58,7 @@ img {
 
   // Desktop: sidebar always fully visible at fixed width
   @media (min-width: $bp-lg) {
-    --cover-peek-size: 280px;
+    --cover-peek-size: var(--sidebar-width);
   }
 }
 
