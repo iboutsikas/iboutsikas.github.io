@@ -57,7 +57,7 @@ img {
   --cover-peek-size: 15px;
 
   // Desktop: sidebar always fully visible at fixed width
-  @media (min-width: $breakpoint-3) {
+  @media (min-width: $bp-lg) {
     --cover-peek-size: 280px;
   }
 }
@@ -71,7 +71,7 @@ img {
   // Offset content past the peeking edge on mobile
   padding-left: 15px;
 
-  @media (min-width: 64em) {
+  @media (min-width: $bp-lg) {
     padding-left: var(--sidebar-width);
   }
 }
@@ -100,7 +100,7 @@ img {
     transition: opacity var(--transition-speed);
   }
 
-  @media (min-width: 64em) {
+  @media (min-width: $bp-lg) {
     display: none;
   }
 }

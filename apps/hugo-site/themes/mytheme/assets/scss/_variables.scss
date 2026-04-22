@@ -1,20 +1,22 @@
-// ── Breakpoints ──────────────────────────────────────────
-$breakpoint-1: 42em;
-$breakpoint-2: 54em;
-$breakpoint-3: 64em;
-$breakpoint-4: 72em;
-$breakpoint-5: 86em;
-$bp-dynamic:    104rem;
-$bp-font-large: 124em;
+// ── Breakpoints (Bootstrap 5 aligned) ────────────────────
+$bp-sm:   576px;
+$bp-md:   768px;
+$bp-lg:   992px;
+$bp-xl:   1200px;
+$bp-2xl:  1400px;
+$bp-3xl:  1600px;
+$bp-4xl:  1800px;
 
 
 :root {
   // Breakpoints
-  --breakpoint-1: #{$breakpoint-1};
-  --breakpoint-2: #{$breakpoint-2};
-  --breakpoint-3: #{$breakpoint-3};
-  --breakpoint-4: #{$breakpoint-4};
-  --breakpoint-5: #{$breakpoint-5};
+  --bp-sm: #{$bp-sm};
+  --bp-md: #{$bp-md};
+  --bp-lg: #{$bp-lg};
+  --bp-xl: #{$bp-xl};
+  --bp-2xl: #{$bp-2xl};
+  --bp-3xl: #{$bp-3xl};
+  --bp-4xl: #{$bp-4xl};
 
   // Brand colors — theme-invariant
   --accent-color: rgb(177, 61, 219);

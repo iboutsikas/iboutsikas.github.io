@@ -1,7 +1,7 @@
 
 // TODO: Let's rename these instead of using numbers
 const isMobile = (breakpoints) => {
-  return window.matchMedia(`(max-width: ${breakpoints['3']})`).matches;
+  return window.matchMedia(`(max-width: ${breakpoints['lg']})`).matches;
 } 
 /**
  * Mobile navigation — wires the hamburger button to the <ib-coverpage> component.

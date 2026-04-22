@@ -1,15 +1,15 @@
 @use "variables";
 
 // ── Responsive root font size ─────────────────────────────────────────────────
-// 15px base → 16px at ≥42em → 17px at ≥124em
+// 15px base → 16px at ≥576px → 17px at ≥1800px
 html {
   font-size: 15px;
 
-  @media screen and (min-width: $breakpoint-1) {
+  @media screen and (min-width: $bp-sm) {
     font-size: 16px;
   }
 
-  @media screen and (min-width: $bp-font-large) {
+  @media screen and (min-width: $bp-4xl) {
     font-size: 17px;
   }
 }
@@ -42,12 +42,12 @@ h6, .h6 { @extend .f6; }
   h1, .h1 {
     > a { text-decoration: none; border-bottom: none; }
 
-    @media screen and (max-width: $breakpoint-1) {
+    @media screen and (max-width: $bp-sm) {
       font-size: 1.7rem;
       line-height: 1.35;
     }
 
-    @media screen and (min-width: $breakpoint-5) {
+    @media screen and (min-width: $bp-2xl) {
       font-size: 2.4rem;
       line-height: 1.25;
     }
@@ -58,13 +58,13 @@ h6, .h6 { @extend .f6; }
 // (matches Hydejack's body:not(.no-large-headings) behaviour)
 .content {
   h1, .h1 {
-    @media screen and (min-width: $bp-dynamic) {
+    @media screen and (min-width: $bp-3xl) {
       width: calc(100% + 50vw - 32rem);
       font-size: 3rem;
       line-height: 1.2;
     }
 
-    @media screen and (min-width: $bp-font-large) {
+    @media screen and (min-width: $bp-4xl) {
       font-size: 4rem;
       line-height: 1.1;
     }

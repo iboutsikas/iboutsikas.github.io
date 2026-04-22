@@ -8,11 +8,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const styles = getComputedStyle(root);
 
   const breakpoints = {
-    '1': styles.getPropertyValue('--breakpoint-1').trim(),
-    '2': styles.getPropertyValue('--breakpoint-2').trim(),
-    '3': styles.getPropertyValue('--breakpoint-3').trim(),
-    '4': styles.getPropertyValue('--breakpoint-4').trim(),
-    '5': styles.getPropertyValue('--breakpoint-5').trim(),
+    'sm': styles.getPropertyValue('--bp-sm').trim(),
+    'md': styles.getPropertyValue('--bp-md').trim(),
+    'lg': styles.getPropertyValue('--bp-lg').trim(),
+    'xl': styles.getPropertyValue('--bp-xl').trim(),
+    'xxl': styles.getPropertyValue('--bp-2xl').trim(),
+    '3xl': styles.getPropertyValue('--bp-3xl').trim(),
+    '4xl': styles.getPropertyValue('--bp-4xl').trim(),
   }
 
   initTheme();
