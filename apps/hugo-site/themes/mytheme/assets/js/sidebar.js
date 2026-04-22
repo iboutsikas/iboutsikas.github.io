@@ -10,13 +10,15 @@ const isMobile = (breakpoints) => {
 export function initSidebar(breakpoints) {
   const toggle = document.getElementById('_nav-toggle');
   const coverpage = document.getElementById('_coverpage');
-  const background = document.querySelector('.sidebar-container');
-  const nav = document.querySelector('.sidebar-sticky');
-  const mainContent = document.getElementById('_content');
-  // All the links that are to our own website
-  const sidebarLinks = nav.querySelectorAll('a[href^="/"]');
-
   if (!toggle || !coverpage) return;
+  
+  const sidebarContainer = document.querySelector('.sidebar-container');
+  const sidebarContent = document.querySelector('.sidebar-sticky');
+  const pageContent = document.getElementById('_content');
+  // All the links that are to our own website
+  const sidebarLinks = sidebarContent.querySelectorAll('a[href^="/"]');
+  const swipeIcon = sidebarContent.querySelector('#_swipe-icon');
+
 
   // When we click _our_ links, we close the cover so we can see the content
   sidebarLinks.forEach(a => {
@@ -37,17 +39,21 @@ export function initSidebar(breakpoints) {
   coverpage.addEventListener('coverpage-before-animation', (e) => {
     document.documentElement.style.overflow = 'hidden';
 
-    if (background) {
-      background.style.willChange = 'transform';
+    if (sidebarContainer) {
+      sidebarContainer.style.willChange = 'transform';
     }
 
-    if (nav && isMobile(breakpoints)) {
-      nav.style.willChange = 'opacity';
+    if (sidebarContent && isMobile(breakpoints)) {
+      sidebarContent.style.willChange = 'opacity';
     }
 
-    if (mainContent) {
-      mainContent.style.pointerEvents = 'none';
+    if (pageContent) {
+      pageContent.style.pointerEvents = 'none';
     }
+
+    // if (swipeIcon && coverpage.open) {
+    //   swipeIcon.classList.remove('hidden');
+    // }
   });
 
   coverpage.addEventListener('coverpage-after-animation', (e) => {
@@ -55,34 +61,40 @@ export function initSidebar(breakpoints) {
       document.documentElement.style.overflow = '';
     }
 
-    if (background) {
-      background.style.willChange = 'auto';
+    if (sidebarContainer) {
+      sidebarContainer.style.willChange = 'auto';
     }
 
-    if (nav && isMobile(breakpoints)) {
-      nav.style.willChange = 'auto';
+    if (sidebarContent && isMobile(breakpoints)) {
+      sidebarContent.style.willChange = 'auto';
     }
 
-    if (mainContent) {
-      mainContent.style.pointerEvents = 'auto';
+    if (pageContent) {
+      pageContent.style.pointerEvents = 'auto';
     }
 
-    if (coverpage.open)
+    // if (swipeIcon) {
+    //   swipeIcon.classList.toggle('hidden', !coverpage.open);
+    // }
+
+    if (coverpage.open) {
       toggle.setAttribute('aria-expanded', 'true');
-    else
+    }
+    else {
       toggle.setAttribute('aria-expanded', 'false');
+    }
   });
 
   // Sync button state when the scrim is dismissed by tapping outside.
   coverpage.addEventListener('coverpage-progress', (e) => {
     const { t, travel } = e.detail;
 
-    if (background) {
-      background.style.transform = `translateX(${travel * (1 - t)}px)`;
+    if (sidebarContainer) {
+      sidebarContainer.style.transform = `translateX(${travel * (1 - t)}px)`;
     }
 
-    if (nav) {
-      nav.style.opacity = isMobile(breakpoints) ? `${t}` : '1';
+    if (sidebarContent) {
+      sidebarContent.style.opacity = isMobile(breakpoints) ? `${t}` : '1';
     }
   });
 }

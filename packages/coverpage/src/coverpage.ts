@@ -408,6 +408,11 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
       z-index: calc(var(--cover-base-z-index, 100) + 2);
       contain: strict;
       pointer-events: auto;
+      cursor: grab;
+    }
+
+    .cover.is-dragging {
+      cursor: grabbing;
     }
 
     .cover.is-interacting {

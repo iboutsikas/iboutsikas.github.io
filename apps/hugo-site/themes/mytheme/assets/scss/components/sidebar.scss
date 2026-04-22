@@ -34,6 +34,7 @@
 // Scrollable content layer on top of the background
 .sidebar-sticky {
   width: calc(var(--sidebar-width) - 2em);
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -45,6 +46,10 @@
 
   overflow-y: auto;
   overflow-x: hidden;
+
+  @media (max-width: $bp-sm) {
+    width: 100%;    
+  }
 }
 
 // ── About block ───────────────────────────────────────────────────────────────
@@ -211,6 +216,21 @@
   }
 
   // shown in dark mode (click → go light)
+}
+
+// ── Swipe Icon  ───────────────────────────────────────────────────────────────
+
+#_swipe-icon {
+  position: absolute;
+  right: 5%;
+  color: white;
+  opacity: .6;
+  top: 50%;
+  font-size: 3rem;
+
+  &.hidden {
+    display: none;
+  }
 }
 
 // In dark mode, swap which icon is visible
