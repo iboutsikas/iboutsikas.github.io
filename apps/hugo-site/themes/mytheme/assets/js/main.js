@@ -1,5 +1,5 @@
 import { initTheme } from './theme.js';
-import { initNav } from './nav.js';
+import { initSidebar } from './sidebar.js';
 import { initCodeCopy } from './code-copy.js';
 import { initTransitions } from './transitions.js';
 
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   initTheme();
-  initNav(breakpoints);
+  initSidebar(breakpoints);
   initCodeCopy();
   initTransitions({ initCodeCopy });
 });

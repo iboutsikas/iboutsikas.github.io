@@ -7,14 +7,21 @@ const isMobile = (breakpoints) => {
  * Mobile navigation — wires the hamburger button to the <ib-coverpage> component.
  */
 
-export function initNav(breakpoints) {
+export function initSidebar(breakpoints) {
   const toggle = document.getElementById('_nav-toggle');
   const coverpage = document.getElementById('_coverpage');
   const background = document.querySelector('.sidebar-container');
   const nav = document.querySelector('.sidebar-sticky');
   const mainContent = document.getElementById('_content');
+  // All the links that are to our own website
+  const sidebarLinks = nav.querySelectorAll('a[href^="/"]');
 
   if (!toggle || !coverpage) return;
+
+  // When we click _our_ links, we close the cover so we can see the content
+  sidebarLinks.forEach(a => {
+    a.addEventListener('click', () => coverpage.hide());
+  });
 
   toggle.addEventListener('click', () => {
     const isOpen = coverpage.open;
