@@ -23,6 +23,19 @@
   transition: opacity 0.25s ease;
 }
 
+::view-transition-old(content-area) {
+  opacity: 0;
+}
+
+::view-transition-new(content-area) {
+  animation: router-fade-in 0.35s cubic-bezier(0.4, 0, 0.2, 1) 0.35s;
+}
+
+@keyframes router-fade-in {
+  0% { opacity: 0; transform: translateY(-3rem); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
 #_content.spa-fade-out {
   opacity: 0;
   pointer-events: none;

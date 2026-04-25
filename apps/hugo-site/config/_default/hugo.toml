@@ -1,7 +1,8 @@
 baseURL = "https://www.iboutsikas.me"
-languageCode = "en"
+locale = "en"
 title = "Ioannis Boutsikas"
 defaultContentLanguage = "en"
+theme = 'mytheme'
 
 # Enables .Lastmod from git history
 enableGitInfo = true
