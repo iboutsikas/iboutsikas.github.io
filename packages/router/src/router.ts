@@ -87,10 +87,11 @@ export class IbRouter extends LitElement {
           location.assign(url);
           return;
         }
-        const transition = document.startViewTransition(() =>
-          this._applySwap(url, html, title, pushState)
-        );
-        await transition.ready.catch(() => {});
+        const transition = document.startViewTransition(() => {
+          this._applySwap(url, html, title, pushState);
+          this._dispatchNavigated(url, title, from, isBackForward);
+        });
+        await transition.finished.catch(() => {});
         this._dispatchNavigationComplete(url, title, from, isBackForward);
       } else {
         const prevented = this._beforeNavigate(url, title);
@@ -98,9 +99,10 @@ export class IbRouter extends LitElement {
           location.assign(url);
           return;
         }
-        await this._fadeOut(content);
+        await this._markLeaving(content);
         this._applySwap(url, html, title, pushState);
-        this._fadeIn(content);
+        this._dispatchNavigated(url, title, from, isBackForward);
+        await this._markEntering(content);
         this._dispatchNavigationComplete(url, title, from, isBackForward);
       }
     } catch (err: unknown) {
@@ -146,9 +148,24 @@ export class IbRouter extends LitElement {
       detail,
       bubbles: true,
       composed: true,
+      cancelable: true,
     });
-    this.dispatchEvent(event);
-    return detail.defaultPrevented;
+    try {
+      this.dispatchEvent(event);
+    } catch (err: unknown) {
+      this._dispatchNavigationError(url, err, 'listener');
+    }
+    detail.defaultPrevented = event.defaultPrevented;
+    return event.defaultPrevented;
+  }
+
+  private _dispatchNavigated(url: string, title: string, from: string, isBackForward: boolean): void {
+    const detail: RouterNavigatedDetail = { url, title, from, isBackForward };
+    this.dispatchEvent(new CustomEvent(RouterEvents.Navigated, {
+      detail,
+      bubbles: true,
+      composed: true,
+    }));
   }
 
   private _dispatchNavigationComplete(url: string, title: string, from: string, isBackForward: boolean): void {
@@ -171,15 +188,6 @@ export class IbRouter extends LitElement {
         composed: true,
       }));
     });
-  }
-
-  private _dispatchNavigated(url: string, title: string, from: string, isBackForward: boolean): void {
-    const detail: RouterNavigatedDetail = { url, title, from, isBackForward };
-    this.dispatchEvent(new CustomEvent(RouterEvents.Navigated, {
-      detail,
-      bubbles: true,
-      composed: true,
-    }));
   }
 
   private _handleClick(e: MouseEvent): void {
@@ -208,27 +216,22 @@ export class IbRouter extends LitElement {
     this._navigate(location.href, { pushState: false, isBackForward: true });
   }
 
-  private async _fadeOut(el: HTMLElement): Promise<void> {
+  private async _markLeaving(el: HTMLElement): Promise<void> {
     el.classList.add(this.leavingClass);
     return new Promise<void>(resolve => {
-      const handler = () => {
-        el.removeEventListener('transitionend', handler);
-        resolve();
-      };
-      el.addEventListener('transitionend', handler, { once: true });
-      // Fall through after a timeout if no transition fires
-      setTimeout(resolve, 1000);
+      const timer = setTimeout(resolve, 1000);
+      el.addEventListener('transitionend', () => { clearTimeout(timer); resolve(); }, { once: true });
     });
   }
 
-  private _fadeIn(el: HTMLElement): void {
+  private async _markEntering(el: HTMLElement): Promise<void> {
     el.classList.remove(this.leavingClass);
     el.classList.add(this.enteringClass);
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        el.classList.remove(this.enteringClass);
-      });
+    await new Promise<void>(resolve => {
+      const timer = setTimeout(resolve, 1000);
+      el.addEventListener('transitionend', () => { clearTimeout(timer); resolve(); }, { once: true });
     });
+    el.classList.remove(this.enteringClass);
   }
 
   createRenderRoot() {
