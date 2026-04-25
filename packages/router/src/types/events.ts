@@ -28,7 +28,6 @@ export interface RouterNavigationCompleteDetail {
 export interface RouterNavigationErrorDetail {
   url: string;
   error: Error;
-  type: 'listener' | 'internal';
 }
 
 declare global {

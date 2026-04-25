@@ -107,7 +107,7 @@ export class IbRouter extends LitElement {
       }
     } catch (err: unknown) {
       if (err instanceof Error && err.name === 'AbortError') return;
-      this._dispatchNavigationError(url, err, 'internal');
+      this._dispatchNavigationError(url, err);
       location.assign(url);
     } finally {
       this._controller = null;
@@ -150,11 +150,7 @@ export class IbRouter extends LitElement {
       composed: true,
       cancelable: true,
     });
-    try {
-      this.dispatchEvent(event);
-    } catch (err: unknown) {
-      this._dispatchNavigationError(url, err, 'listener');
-    }
+    this.dispatchEvent(event);
     detail.defaultPrevented = event.defaultPrevented;
     return event.defaultPrevented;
   }
@@ -179,8 +175,8 @@ export class IbRouter extends LitElement {
     });
   }
 
-  private _dispatchNavigationError(url: string, error: unknown, type: 'listener' | 'internal'): void {
-    const detail: RouterNavigationErrorDetail = { url, error: error instanceof Error ? error : new Error(String(error)), type };
+  private _dispatchNavigationError(url: string, error: unknown): void {
+    const detail: RouterNavigationErrorDetail = { url, error: error instanceof Error ? error : new Error(String(error)) };
     queueMicrotask(() => {
       this.dispatchEvent(new CustomEvent(RouterEvents.NavigationError, {
         detail,
