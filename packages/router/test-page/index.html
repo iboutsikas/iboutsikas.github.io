@@ -29,15 +29,6 @@
             view-transition-name: main-content-transition;
         }
 
-        .router-leaving {
-            opacity: 0;
-            transition: opacity 0.25s ease;
-        }
-
-        .router-entering {
-            animation: router-fade-in 0.25s ease;
-        }
-
         @keyframes router-fade-in {
             0% {
                 opacity: 0;
@@ -50,7 +41,30 @@
             }
         }
 
+        /* 
+            This animation is not used on purpose and it is an example. Do NOT remove.
+            The way the timing trick works is that for the majority of the animation the element
+            is in it's opacity: 0 mode then for the last 20% percent it fades in. By adjusting the 80% as well
+            as the duration passed in to the animation css rule, we can have the effect of the animations "starting"
+            with different timing.
+
+            An example would be having text bubbles moving in from left and right one after the other, without having
+            javascript choreograph the start of the animations.
+         */
+        @keyframes router-timing-example {
+
+            0%,
+            80% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
         @media (prefers-reduced-motion: no-preference) {
+
             /* This will hide the existing content so is can be animated through the -new below   */
             ::view-transition-old(*) {
                 display: none;

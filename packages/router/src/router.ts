@@ -1,7 +1,13 @@
 import { LitElement, nothing } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { property } from 'lit/decorators.js';
-import { RouterEvents, type RouterNavigatedDetail } from './types/events.js';
+import {
+  RouterEvents,
+  type RouterBeforeNavigateDetail,
+  type RouterNavigatedDetail,
+  type RouterNavigationCompleteDetail,
+  type RouterNavigationErrorDetail,
+} from './types/events.js';
 
 const SUPPORTS_VT = typeof document.startViewTransition === 'function';
 
@@ -61,12 +67,14 @@ export class IbRouter extends LitElement {
     }
   }
 
-  private async _navigate(url: string, { pushState = true }: { pushState?: boolean } = {}): Promise<void> {
+  private async _navigate(url: string, { pushState = true, isBackForward = false }: { pushState?: boolean; isBackForward?: boolean } = {}): Promise<void> {
     if (this._controller) {
       this._controller.abort();
     }
     this._controller = new AbortController();
     const signal = this._controller.signal;
+
+    const from = location.pathname;
 
     try {
       const { html, title } = await this._fetchPage(url, signal);
@@ -74,22 +82,33 @@ export class IbRouter extends LitElement {
       if (!content) return;
 
       if (SUPPORTS_VT) {
+        const prevented = this._beforeNavigate(url, title);
+        if (prevented) {
+          location.assign(url);
+          return;
+        }
         const transition = document.startViewTransition(() =>
           this._applySwap(url, html, title, pushState)
         );
         await transition.ready.catch(() => {});
+        this._dispatchNavigationComplete(url, title, from, isBackForward);
       } else {
+        const prevented = this._beforeNavigate(url, title);
+        if (prevented) {
+          location.assign(url);
+          return;
+        }
         await this._fadeOut(content);
         this._applySwap(url, html, title, pushState);
         this._fadeIn(content);
+        this._dispatchNavigationComplete(url, title, from, isBackForward);
       }
     } catch (err: unknown) {
       if (err instanceof Error && err.name === 'AbortError') return;
+      this._dispatchNavigationError(url, err, 'internal');
       location.assign(url);
     } finally {
-      if (!signal.aborted) {
-        this._controller = null;
-      }
+      this._controller = null;
     }
   }
 
@@ -119,11 +138,43 @@ export class IbRouter extends LitElement {
       history.pushState({ spa: true }, title, url);
     }
     window.scrollTo({ top: 0, behavior: 'instant' });
-    this._dispatchNavigated(url, title);
   }
 
-  private _dispatchNavigated(url: string, title: string): void {
-    const detail: RouterNavigatedDetail = { url, title };
+  private _beforeNavigate(url: string, title: string): boolean {
+    const detail: RouterBeforeNavigateDetail = { url, title, defaultPrevented: false };
+    const event = new CustomEvent(RouterEvents.BeforeNavigate, {
+      detail,
+      bubbles: true,
+      composed: true,
+    });
+    this.dispatchEvent(event);
+    return detail.defaultPrevented;
+  }
+
+  private _dispatchNavigationComplete(url: string, title: string, from: string, isBackForward: boolean): void {
+    const detail: RouterNavigationCompleteDetail = { url, title, from, isBackForward };
+    queueMicrotask(() => {
+      this.dispatchEvent(new CustomEvent(RouterEvents.NavigationComplete, {
+        detail,
+        bubbles: true,
+        composed: true,
+      }));
+    });
+  }
+
+  private _dispatchNavigationError(url: string, error: unknown, type: 'listener' | 'internal'): void {
+    const detail: RouterNavigationErrorDetail = { url, error: error instanceof Error ? error : new Error(String(error)), type };
+    queueMicrotask(() => {
+      this.dispatchEvent(new CustomEvent(RouterEvents.NavigationError, {
+        detail,
+        bubbles: true,
+        composed: true,
+      }));
+    });
+  }
+
+  private _dispatchNavigated(url: string, title: string, from: string, isBackForward: boolean): void {
+    const detail: RouterNavigatedDetail = { url, title, from, isBackForward };
     this.dispatchEvent(new CustomEvent(RouterEvents.Navigated, {
       detail,
       bubbles: true,
@@ -154,7 +205,7 @@ export class IbRouter extends LitElement {
   }
 
   private _handlePopstate(): void {
-    this._navigate(location.href, { pushState: false });
+    this._navigate(location.href, { pushState: false, isBackForward: true });
   }
 
   private async _fadeOut(el: HTMLElement): Promise<void> {
