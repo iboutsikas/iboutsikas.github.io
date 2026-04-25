@@ -1,0 +1,60 @@
+{
+  "name": "@iboutsikas/router",
+  "version": "0.1.0",
+  "description": "A Lit web component implementing SPA navigation with View Transitions API support",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/router.d.ts",
+      "import": "./dist/router.js"
+    }
+  },
+  "main": "dist/router.js",
+  "module": "dist/router.js",
+  "types": "dist/router.d.ts",
+  "files": [
+    "dist/",
+    "src/",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "keywords": [
+    "web-component",
+    "custom-element",
+    "lit",
+    "spa",
+    "navigation",
+    "router",
+    "view-transitions"
+  ],
+  "author": {
+    "name": "Ioannis Boutsikas"
+  },
+  "license": "GPL-3.0-only",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iboutsikas/iboutsikas.github.io"
+  },
+  "bugs": {
+    "url": "https://github.com/iboutsikas/iboutsikas.github.io/issues"
+  },
+  "homepage": "https://github.com/iboutsikas/iboutsikas.github.io/packages/router#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsc",
+    "build:lib": "vite build --config vite.lib.config.ts",
+    "dev": "vite --config vite.dev.config.ts test-page",
+    "test": "nx vite:test run",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm test && npm run build"
+  },
+  "peerDependencies": {
+    "lit": "^3.0.0"
+  }
+}

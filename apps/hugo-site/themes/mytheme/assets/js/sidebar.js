@@ -1,30 +1,19 @@
-
-// TODO: Let's rename these instead of using numbers
 const isMobile = (breakpoints) => {
   return window.matchMedia(`(max-width: ${breakpoints['lg']})`).matches;
-} 
-/**
- * Mobile navigation — wires the hamburger button to the <ib-coverpage> component.
- */
+};
 
-export function initSidebar(breakpoints) {
-  const toggle = document.getElementById('_nav-toggle');
-  const coverpage = document.getElementById('_coverpage');
-  if (!toggle || !coverpage) return;
-  
-  const sidebarContainer = document.querySelector('.sidebar-container');
-  const sidebarContent = document.querySelector('.sidebar-sticky');
-  const pageContent = document.getElementById('_content');
-  // All the links that are to our own website
+const logMissing = (name) => {
+  console.warn(`[sidebar] Element not found: ${name}`);
+};
+
+function setupSidebarLinks(sidebarContent, coverpage) {
   const sidebarLinks = sidebarContent.querySelectorAll('a[href^="/"]');
-  const swipeIcon = sidebarContent.querySelector('#_swipe-icon');
-
-
-  // When we click _our_ links, we close the cover so we can see the content
-  sidebarLinks.forEach(a => {
+  sidebarLinks.forEach((a) => {
     a.addEventListener('click', () => coverpage.hide());
   });
+}
 
+function setupToggle(toggle, coverpage) {
   toggle.addEventListener('click', () => {
     const isOpen = coverpage.open;
     if (isOpen) {
@@ -35,58 +24,50 @@ export function initSidebar(breakpoints) {
       toggle.setAttribute('aria-expanded', 'true');
     }
   });
+}
 
-  coverpage.addEventListener('coverpage-before-animation', (e) => {
-    document.documentElement.style.overflow = 'hidden';
+function onBeforeAnimation(sidebarContainer, sidebarContent, pageContent, breakpoints) {
+  document.documentElement.style.overflow = 'hidden';
 
-    if (sidebarContainer) {
-      sidebarContainer.style.willChange = 'transform';
-    }
+  if (sidebarContainer) {
+    sidebarContainer.style.willChange = 'transform';
+  }
 
-    if (sidebarContent && isMobile(breakpoints)) {
-      sidebarContent.style.willChange = 'opacity';
-    }
+  if (sidebarContent && isMobile(breakpoints)) {
+    sidebarContent.style.willChange = 'opacity';
+  }
 
-    if (pageContent) {
-      pageContent.style.pointerEvents = 'none';
-    }
+  if (pageContent) {
+    pageContent.style.pointerEvents = 'none';
+  }
+}
 
-    // if (swipeIcon && coverpage.open) {
-    //   swipeIcon.classList.remove('hidden');
-    // }
-  });
+function onAfterAnimation(sidebarContainer, sidebarContent, pageContent, toggle, breakpoints, coverpage) {
+  if (!coverpage.open) {
+    document.documentElement.style.overflow = '';
+  }
 
-  coverpage.addEventListener('coverpage-after-animation', (e) => {
-    if (!coverpage.open) {
-      document.documentElement.style.overflow = '';
-    }
+  if (sidebarContainer) {
+    sidebarContainer.style.willChange = 'auto';
+  }
 
-    if (sidebarContainer) {
-      sidebarContainer.style.willChange = 'auto';
-    }
+  if (sidebarContent && isMobile(breakpoints)) {
+    sidebarContent.style.willChange = 'auto';
+  }
 
-    if (sidebarContent && isMobile(breakpoints)) {
-      sidebarContent.style.willChange = 'auto';
-    }
+  if (pageContent) {
+    pageContent.style.pointerEvents = 'auto';
+  }
 
-    if (pageContent) {
-      pageContent.style.pointerEvents = 'auto';
-    }
+  if (coverpage.open) {
+    toggle.setAttribute('aria-expanded', 'true');
+  } else {
+    toggle.setAttribute('aria-expanded', 'false');
+  }
+}
 
-    // if (swipeIcon) {
-    //   swipeIcon.classList.toggle('hidden', !coverpage.open);
-    // }
-
-    if (coverpage.open) {
-      toggle.setAttribute('aria-expanded', 'true');
-    }
-    else {
-      toggle.setAttribute('aria-expanded', 'false');
-    }
-  });
-
-  // Sync button state when the scrim is dismissed by tapping outside.
-  coverpage.addEventListener('coverpage-progress', (e) => {
+function onCoverpageProgress(sidebarContainer, sidebarContent, breakpoints, coverpage) {
+  return (e) => {
     const { t, travel } = e.detail;
 
     if (sidebarContainer) {
@@ -96,5 +77,49 @@ export function initSidebar(breakpoints) {
     if (sidebarContent) {
       sidebarContent.style.opacity = isMobile(breakpoints) ? `${t}` : '1';
     }
-  });
+  };
+}
+
+/**
+ * Mobile navigation — wires the hamburger button to the <ib-coverpage> component.
+ */
+export function initSidebar(breakpoints) {
+  const toggle = document.getElementById('_nav-toggle');
+  const coverpage = document.getElementById('_coverpage');
+  if (!toggle) {
+    logMissing('_nav-toggle');
+    return;
+  }
+  if (!coverpage) {
+    logMissing('_coverpage');
+    return;
+  }
+
+  const sidebarContainer = document.querySelector('.sidebar-container');
+  const sidebarContent = document.querySelector('.sidebar-sticky');
+  const pageContent = document.getElementById('_content');
+
+  if (!sidebarContainer) logMissing('.sidebar-container');
+  if (!sidebarContent) logMissing('.sidebar-sticky');
+  if (!pageContent) logMissing('_content');
+
+  if (sidebarContent) {
+    setupSidebarLinks(sidebarContent, coverpage);
+  }
+
+  if (toggle && coverpage) {
+    setupToggle(toggle, coverpage);
+  }
+
+  if (coverpage) {
+    coverpage.addEventListener('coverpage-before-animation', () => {
+      onBeforeAnimation(sidebarContainer, sidebarContent, pageContent, breakpoints);
+    });
+
+    coverpage.addEventListener('coverpage-after-animation', () => {
+      onAfterAnimation(sidebarContainer, sidebarContent, pageContent, toggle, breakpoints, coverpage);
+    });
+
+    coverpage.addEventListener('coverpage-progress', onCoverpageProgress(sidebarContainer, sidebarContent, breakpoints, coverpage));
+  }
 }

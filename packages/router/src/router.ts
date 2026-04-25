@@ -1,0 +1,190 @@
+import { LitElement, nothing } from 'lit';
+import { customElement } from 'lit/decorators.js';
+import { property } from 'lit/decorators.js';
+import { RouterEvents, type RouterNavigatedDetail } from './types/events.js';
+
+const SUPPORTS_VT = typeof document.startViewTransition === 'function';
+
+function isSameOrigin(url: string): boolean {
+  try {
+    return new URL(url, location.href).origin === location.origin;
+  } catch {
+    return false;
+  }
+}
+
+function isSamePage(url: string): boolean {
+  const t = new URL(url, location.href);
+  return t.pathname === location.pathname && t.search === location.search;
+}
+
+@customElement('ib-router')
+export class IbRouter extends LitElement {
+  /** Element whose innerHTML gets swapped. */
+  @property({ type: String }) accessor contentSelector: string = '#_content';
+
+  /** Class added to content element before swap. */
+  @property({ type: String }) accessor leavingClass: string = 'router-leaving';
+
+  /** Class added to content element after swap. */
+  @property({ type: String }) accessor enteringClass: string = 'router-entering';
+
+  private _clickHandler: ((e: MouseEvent) => void) | null = null;
+  private _popstateHandler: (() => void) | null = null;
+  private _controller: AbortController | null = null;
+
+  connectedCallback() {
+    super.connectedCallback();
+    this._clickHandler = this._handleClick.bind(this);
+    this._popstateHandler = this._handlePopstate.bind(this);
+    document.addEventListener('click', this._clickHandler);
+    window.addEventListener('popstate', this._popstateHandler);
+  }
+
+  disconnectedCallback() {
+    this._disconnect();
+    super.disconnectedCallback();
+  }
+
+  private _disconnect() {
+    if (this._clickHandler) {
+      document.removeEventListener('click', this._clickHandler);
+      this._clickHandler = null;
+    }
+    if (this._popstateHandler) {
+      window.removeEventListener('popstate', this._popstateHandler);
+      this._popstateHandler = null;
+    }
+    if (this._controller) {
+      this._controller.abort();
+      this._controller = null;
+    }
+  }
+
+  private async _navigate(url: string, { pushState = true }: { pushState?: boolean } = {}): Promise<void> {
+    if (this._controller) {
+      this._controller.abort();
+    }
+    this._controller = new AbortController();
+    const signal = this._controller.signal;
+
+    try {
+      const { html, title } = await this._fetchPage(url, signal);
+      const content = this._getContent();
+      if (!content) return;
+
+      if (SUPPORTS_VT) {
+        const transition = document.startViewTransition(() =>
+          this._applySwap(url, html, title, pushState)
+        );
+        await transition.ready.catch(() => {});
+      } else {
+        await this._fadeOut(content);
+        this._applySwap(url, html, title, pushState);
+        this._fadeIn(content);
+      }
+    } catch (err: unknown) {
+      if (err instanceof Error && err.name === 'AbortError') return;
+      location.assign(url);
+    } finally {
+      if (!signal.aborted) {
+        this._controller = null;
+      }
+    }
+  }
+
+  private _getContent(): HTMLElement | null {
+    const selector = this.contentSelector;
+    return document.querySelector<HTMLElement>(selector);
+  }
+
+  private async _fetchPage(url: string, signal: AbortSignal): Promise<{ html: string; title: string }> {
+    const res = await fetch(url, { signal });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const html = await res.text();
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    return {
+      html: doc.getElementById('_content')?.innerHTML ?? '',
+      title: doc.title,
+    };
+  }
+
+  private _applySwap(url: string, html: string, title: string, pushState: boolean): void {
+    const content = this._getContent();
+    if (!content) return;
+
+    content.innerHTML = html;
+    document.title = title;
+    if (pushState) {
+      history.pushState({ spa: true }, title, url);
+    }
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    this._dispatchNavigated(url, title);
+  }
+
+  private _dispatchNavigated(url: string, title: string): void {
+    const detail: RouterNavigatedDetail = { url, title };
+    this.dispatchEvent(new CustomEvent(RouterEvents.Navigated, {
+      detail,
+      bubbles: true,
+      composed: true,
+    }));
+  }
+
+  private _handleClick(e: MouseEvent): void {
+    if (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
+    if (e.defaultPrevented) return;
+    if (e.button !== 0) return;
+
+    const target = e.target;
+    if (!(target instanceof Node)) return;
+    const a = (target as Element).closest('a');
+    if (!a || !a.href) return;
+    if (a.target === '_blank') return;
+    if (a.hasAttribute('download')) return;
+    if (a.getAttribute('rel')?.includes('external')) return;
+    if (!isSameOrigin(a.href)) return;
+
+    const parsed = new URL(a.href);
+    if (isSamePage(a.href) && parsed.hash !== '') return;
+    if (isSamePage(a.href) && !parsed.hash) return;
+
+    e.preventDefault();
+    this._navigate(a.href);
+  }
+
+  private _handlePopstate(): void {
+    this._navigate(location.href, { pushState: false });
+  }
+
+  private async _fadeOut(el: HTMLElement): Promise<void> {
+    el.classList.add(this.leavingClass);
+    return new Promise<void>(resolve => {
+      const handler = () => {
+        el.removeEventListener('transitionend', handler);
+        resolve();
+      };
+      el.addEventListener('transitionend', handler, { once: true });
+      // Fall through after a timeout if no transition fires
+      setTimeout(resolve, 1000);
+    });
+  }
+
+  private _fadeIn(el: HTMLElement): void {
+    el.classList.remove(this.leavingClass);
+    el.classList.add(this.enteringClass);
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        el.classList.remove(this.enteringClass);
+      });
+    });
+  }
+
+  createRenderRoot() {
+    return this;
+  }
+
+  render() {
+    return nothing;
+  }
+}

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="view-transition" content="same-origin">
+    <title>Router Test Page</title>
+    <style>
+        ::view-transition-old(*),
+        ::view-transition-new(*) {
+            animation: none;
+            mix-blend-mode: normal;
+        }
+
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        #_content {
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            view-transition-name: main-content-transition;
+        }
+
+        .router-leaving {
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+
+        .router-entering {
+            animation: router-fade-in 0.25s ease;
+        }
+
+        @keyframes router-fade-in {
+            0% {
+                opacity: 0;
+                transform: translateY(-3rem);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            /* This will hide the existing content so is can be animated through the -new below   */
+            ::view-transition-old(*) {
+                display: none;
+            }
+
+            ::view-transition-new(main-content-transition) {
+                animation: router-fade-in 0.5s ease;
+            }
+        }
+
+        nav {
+            background: #333;
+            padding: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        nav a {
+            color: #fff;
+            margin-right: 1rem;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <ib-router content-selector="#_content"></ib-router>
+
+    <nav>
+        <a href="/page1">Page 1</a>
+        <a href="/page2">Page 2</a>
+        <a href="/page3">Page 3</a>
+        <a href="https://example.com" rel="external">External (should not intercept)</a>
+    </nav>
+
+    <div id="_content">
+        <h1>Router Test Page</h1>
+        <p>Click the links above to test SPA navigation.</p>
+        <p>Check the console for <code>router-navigated</code> events.</p>
+    </div>
+
+    <script type="module" src="./main.ts"></script>
+</body>
+
+</html>
