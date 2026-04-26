@@ -14,10 +14,8 @@ Lit web component: swipeable cover/drawer panel with pointer gesture support.
 src/
   coverpage.ts                  # IbCoverpage — LitElement host
   index.ts                      # public re-export
-  coverpage.spec.ts
   controllers/
     gesture-controller.ts       # RxJS pointer → gesture pipeline
-    gesture-controller.spec.ts
   types/
     definitions.ts              # Side, CoverConfig, IConfigProvider, Vec2
     gesture.ts                  # GestureEvent, createGestureEvent, gestureEventFrom
@@ -25,6 +23,11 @@ src/
   utils/
     cover-math.ts               # CoverMath.clamp / distanceSq / magnitudeSq (static)
     observe.ts                  # observeSize(el) → Observable<{width,height}>
+tests/
+  coverpage.spec.ts             # IbCoverpage integration tests
+  controllers/
+    gesture-controller.spec.ts  # GestureController unit tests
+  test-utils.ts                 # ResizeObserver mock, pointer helpers, fake timers
 ```
 
 ---
@@ -174,7 +177,7 @@ Run all tasks via `npx <target> coverpage`.
 - All imports use `.js` extension (nodenext module resolution)
 - `useDefineForClassFields: false` — required for Lit decorators
 - `verbatimModuleSyntax: true` — use `import type` for type-only imports
-- Tests co-located with source (`*.spec.ts`)
+- Tests in `tests/` directory (`*.spec.ts`)
 - Lit accessor pattern: `@property() accessor foo` (not legacy `get/set`)
 - Peer dep: `lit ^3.0.0`, `rxjs ^7.8.2`
 - All runetime deps are marked as peer since we are in a monorepo

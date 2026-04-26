@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, afterEach, vi, beforeAll, afterAll } from 'vitest';
-import './coverpage.js';
-import type { IbCoverpage } from './coverpage.js';
+import '../src/coverpage.js';
+import type { IbCoverpage } from '../src/coverpage.js';
 
 // Mock ResizeObserver since jsdom doesn't implement it
 let lastResizeObserver: any = null;

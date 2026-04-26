@@ -10,8 +10,6 @@
   },
   "include": ["src/**/*.ts"],
   "exclude": [
-    "test-page",
-    "dist",
     "vite.config.ts",
     "vite.config.mts",
     "vitest.config.ts",
@@ -23,6 +21,9 @@
     "src/**/*.test.js",
     "src/**/*.spec.js",
     "src/**/*.test.jsx",
-    "src/**/*.spec.jsx"
+    "src/**/*.spec.jsx",
+    "tests/**/*.ts",
+    "test-page",
+    "dist",
   ]
 }

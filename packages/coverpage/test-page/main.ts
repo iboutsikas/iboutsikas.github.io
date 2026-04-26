@@ -1,6 +1,4 @@
-import '../src/index.js';
-import type { IbCoverpage } from '../src/coverpage.js';
-import { CoverpageEvents } from '../src/index.js';
+import type { CoverpageProgress, IbCoverpage } from '../src/index.js';
 
 const isMobile = () => {
   return window.matchMedia('(max-width: 768px)').matches;
@@ -38,7 +36,7 @@ wireToggle('toggle-bottom', bottomCover);
 // ---------------------------------------------------------------------------
 
 if (leftCover && leftBackground) {
-  leftCover.addEventListener('coverpage-progress', (e: CustomEvent<CoverpageEvents.Progress>) => {
+  leftCover.addEventListener('coverpage-progress', ((e: CustomEvent<CoverpageProgress>) => {
     if (!e.detail)
       return;
 
@@ -49,11 +47,11 @@ if (leftCover && leftBackground) {
     if (innerContent) {
       innerContent.style.opacity = isMobile() ? `${t}` : '1';
     }
-  });
+  }) as EventListener);
 }
 
 if (rightCover && rightBackground) {
-  rightCover.addEventListener('coverpage-progress', (e: CustomEvent) => {
+  rightCover.addEventListener('coverpage-progress', ((e: CustomEvent<CoverpageProgress>) => {
     const { t, travel } = e.detail;
     rightBackground.style.transform = `translateX(${-travel * (1 - t)}px)`;
 
@@ -61,19 +59,19 @@ if (rightCover && rightBackground) {
     if (innerContent) {
       innerContent.style.opacity = isMobile() ? `${t}` : '1';
     }
-  });
+  }) as EventListener);
 }
 
 if (topCover && topBackground) {
-  topCover.addEventListener('coverpage-progress', (e: CustomEvent) => {
+  topCover.addEventListener('coverpage-progress', ((e: CustomEvent<CoverpageProgress>) => {
     const { t, travel } = e.detail;
     topBackground.style.transform = `translateY(${travel * (1 - t)}px)`;
-  });
+  }) as EventListener);
 }
 
 if (bottomCover && bottomBackground) {
-  bottomCover.addEventListener('coverpage-progress', (e: CustomEvent) => {
+  bottomCover.addEventListener('coverpage-progress', ((e: CustomEvent<CoverpageProgress>) => {
     const { t, travel } = e.detail;
     bottomBackground.style.transform = `translateY(${-travel * (1 - t)}px)`;
-  });
+  }) as EventListener);
 }

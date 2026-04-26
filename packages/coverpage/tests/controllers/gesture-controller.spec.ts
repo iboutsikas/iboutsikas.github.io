@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
-import { GestureController } from './gesture-controller.js';
-import type { CoverConfig } from '../types/definitions.js';
+import { GestureController } from '../../src/controllers/gesture-controller.js';
+import type { CoverConfig } from '../../src/types/definitions.js';
 
 // @vitest-environment jsdom
 describe('GestureController', () => {
