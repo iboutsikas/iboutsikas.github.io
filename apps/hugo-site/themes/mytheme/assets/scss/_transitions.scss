@@ -1,47 +1,139 @@
-/* Enable automatic cross-document view transitions for same-origin navigations */
-@view-transition {
-  navigation: auto;
-}
-
-/* Suppress the default full-page cross-fade; let only named elements animate */
-::view-transition-old(root),
-::view-transition-new(root) {
+// Fallback default or when the user has turned off motion
+::view-transition-old(*),
+::view-transition-new(*) {
   animation: none;
   mix-blend-mode: normal;
 }
 
-/* Timing for all named transition elements (title flips) */
-::view-transition-old(*),
-::view-transition-new(*) {
-  animation-duration: 0.35s;
-  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Content area — VT cross-fade + non-VT fallback */
 #_content {
-  view-transition-name: content-area;
-  transition: opacity 0.25s ease;
+  view-transition-name: main-content-transition;
 }
 
-::view-transition-old(content-area) {
-  opacity: 0;
+@media(prefers-reduced-motion: no-preference) {
+  // Only apply view transition animations when they are not disabled
+  ::view-transition-old(*) {
+    display: none;
+  }
+
+  // ── Post title hero animation ─────────────────────────────────────────────
+  //
+  // The post title carries the same view-transition-name (vt-<UniqueID>) on
+  // both the list page and the single post page. When a matched pair exists,
+  // the browser performs a hero animation: ::view-transition-image-pair handles
+  // the position/size interpolation (the "move"), while ::view-transition-old
+  // and ::view-transition-new control what happens to the content *inside* that
+  // moving box. Timing is controlled at the pair level; old/new only fade.
+  //
+  // Important: do NOT put a transform on ::view-transition-new(.flip-title).
+  // That transform compounds with the pair's position animation and causes the
+  // element to slide up while also flying to its new position.
+  //
+  // Fallback (*) — for browsers without view-transition-class (Firefox/Safari
+  // as of 2026-04). Matches all named transitions; overrides below restore
+  // correct behavior for main-content-transition and the pair timing.
+  // Remove the (*) rules once view-transition-class has broad support.
+
+  ::view-transition-image-pair(*) {
+    animation-duration: 0.45s;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  // Progressive enhancement: Chrome 125+ via view-transition-class
+  ::view-transition-image-pair(.flip-title) {
+    animation-duration: 0.45s;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  // Opacity-only inside the moving box — no transform (see note above)
+  ::view-transition-new(*) {
+    animation: flip-title-fade-in 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  ::view-transition-new(.flip-title) {
+    animation: flip-title-fade-in 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  // ── Content area ─────────────────────────────────────────────────────────
+  // Explicit override needed because ::view-transition-new(*) above would
+  // otherwise apply flip-title-fade-in to the content area too.
+  ::view-transition-image-pair(main-content-transition) {
+    animation: none;
+  }
+
+  ::view-transition-new(main-content-transition) {
+    // animation: router-enter 1s cubic-bezier(.93,.93,.5,1);
+    animation: router-enter 1s cubic-bezier(0.4, 0, 0.2, 1);
+  }
 }
 
-::view-transition-new(content-area) {
-  animation: router-fade-in 0.35s cubic-bezier(0.4, 0, 0.2, 1) 0.35s;
+@keyframes flip-title-fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
-@keyframes router-fade-in {
-  0% { opacity: 0; transform: translateY(-3rem); }
-  100% { opacity: 1; transform: translateY(0); }
+@keyframes router-enter {
+    0% {
+        opacity: 0;
+        transform: translateY(-3rem);
+    }
+
+    // 50% {
+    //   opacity: 0;
+    // }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-#_content.spa-fade-out {
-  opacity: 0;
-  pointer-events: none;
-}
+// /* Suppress the default full-page cross-fade; let only named elements animate */
+// ::view-transition-old(root),
+// ::view-transition-new(root) {
+//   animation: none;
+//   mix-blend-mode: normal;
+// }
 
-/* applied 1 frame before class removal so 0→1 transition fires */
-#_content.spa-fade-in {
-  opacity: 0;
-}
+// ::view-transition-old(*) {
+//   display: none;
+// }
+
+// /* Timing for all named transition elements (title flips) */
+// ::view-transition-new(*) {
+//   animation-duration: 0.35s;
+//   animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+// }
+
+// /* Content area — VT cross-fade + non-VT fallback */
+// #_content {
+//   view-transition-name: content-area;
+//   transition: opacity 0.25s ease;
+// }
+
+// ::view-transition-new(content-area) {
+//   animation: router-fade-in 0.35s cubic-bezier(0.4, 0, 0.2, 1) 0.35s;
+// }
+
+// @keyframes router-fade-in {
+
+//   0%,
+//   70% {
+//     opacity: 0;
+//     transform: translateY(-3rem);
+//   }
+
+//   100% {
+//     opacity: 1;
+//     transform: translateY(0);
+//   }
+// }
+
+// #_content.spa-fade-out {
+//   opacity: 0;
+//   pointer-events: none;
+// }
+
+// /* applied 1 frame before class removal so 0→1 transition fires */
+// #_content.spa-fade-in {
+//   opacity: 0;
+// }

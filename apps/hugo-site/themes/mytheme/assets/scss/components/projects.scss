@@ -74,6 +74,7 @@
   font-weight: var(--font-weight-heading);
   margin: 0 0 0.5rem;
   line-height: 1.3;
+  view-transition-class: flip-title;
 
   a {
     color: var(--heading-color);

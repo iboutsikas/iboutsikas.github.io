@@ -162,6 +162,7 @@
   line-height: 1.15;
   text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
   transition: color 0.25s ease;
+  view-transition-class: flip-title;
 }
 
 .game-card:hover .game-card__title {
@@ -324,6 +325,7 @@
   margin: 0;
   line-height: 1.1;
   text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+  view-transition-class: flip-title;
 }
 
 .game-hero__caption {

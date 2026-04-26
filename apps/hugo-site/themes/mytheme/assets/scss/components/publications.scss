@@ -67,6 +67,7 @@
   font-weight: 700;
   line-height: 1.35;
   margin: 0;
+  view-transition-class: flip-title;
 
   a {
     color: var(--heading-color);
@@ -213,6 +214,7 @@
   line-height: 1.2;
   color: var(--heading-color);
   margin: 0 0 0.6rem;
+  view-transition-class: flip-title;
 }
 
 .pub-single__authors {
