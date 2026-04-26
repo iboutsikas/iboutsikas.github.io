@@ -37,13 +37,13 @@ function makeFetch(contentHtml = '<p>new</p>', title = 'New Page') {
     new Response(buildPageHtml(contentHtml, title), {
       status: 200,
       headers: { 'Content-Type': 'text/html' },
-    }),
+    })
   );
 }
 
 function clickAnchor(
   href: string,
-  opts: Partial<MouseEventInit> = {},
+  opts: Partial<MouseEventInit> = {}
 ): { event: MouseEvent; anchor: HTMLAnchorElement } {
   const a = document.createElement('a');
   a.href = href;
@@ -55,7 +55,7 @@ function clickAnchor(
 }
 
 function flushMicrotasks(): Promise<void> {
-  return new Promise(resolve => queueMicrotask(resolve));
+  return new Promise((resolve) => queueMicrotask(resolve));
 }
 
 // Advance fake timers through both markLeaving + markEntering (each 1000ms) and flush microtasks.
@@ -152,7 +152,7 @@ describe('IbRouter', () => {
         vi.fn((_url: string, init: RequestInit) => {
           capturedSignal = init.signal as AbortSignal;
           return new Promise(() => {}); // never resolves
-        }),
+        })
       );
 
       clickAnchor('http://localhost/slow');
@@ -172,7 +172,7 @@ describe('IbRouter', () => {
       clickAnchor('http://localhost/page2');
       expect(vi.mocked(fetch)).toHaveBeenCalledWith(
         'http://localhost/page2',
-        expect.objectContaining({ signal: expect.any(AbortSignal) }),
+        expect.objectContaining({ signal: expect.any(AbortSignal) })
       );
     });
 
@@ -310,7 +310,7 @@ describe('IbRouter', () => {
       expect(history.pushState).toHaveBeenCalledWith(
         { spa: true },
         expect.any(String),
-        'http://localhost/page2',
+        'http://localhost/page2'
       );
     });
 
@@ -327,10 +327,7 @@ describe('IbRouter', () => {
     });
 
     it('falls back to location.assign on HTTP error', async () => {
-      vi.stubGlobal(
-        'fetch',
-        vi.fn().mockResolvedValue(new Response('Not Found', { status: 404 })),
-      );
+      vi.stubGlobal('fetch', vi.fn().mockResolvedValue(new Response('Not Found', { status: 404 })));
       clickAnchor('http://localhost/missing');
       await advanceNavigation();
       expect(assignMock).toHaveBeenCalledWith('http://localhost/missing');
@@ -339,7 +336,7 @@ describe('IbRouter', () => {
     it('does not swap content on HTTP error', async () => {
       vi.stubGlobal(
         'fetch',
-        vi.fn().mockResolvedValue(new Response('Server Error', { status: 500 })),
+        vi.fn().mockResolvedValue(new Response('Server Error', { status: 500 }))
       );
       clickAnchor('http://localhost/broken');
       await advanceNavigation();
@@ -349,10 +346,10 @@ describe('IbRouter', () => {
     it('silently ignores AbortError (cancelled fetch)', async () => {
       vi.stubGlobal(
         'fetch',
-        vi.fn().mockRejectedValue(Object.assign(new Error('Aborted'), { name: 'AbortError' })),
+        vi.fn().mockRejectedValue(Object.assign(new Error('Aborted'), { name: 'AbortError' }))
       );
       const errors: CustomEvent[] = [];
-      router.addEventListener(RouterEvents.NavigationError, e => errors.push(e as CustomEvent));
+      router.addEventListener(RouterEvents.NavigationError, (e) => errors.push(e as CustomEvent));
 
       clickAnchor('http://localhost/page2');
       await advanceNavigation();
@@ -368,7 +365,7 @@ describe('IbRouter', () => {
         vi.fn((_url: string, init: RequestInit) => {
           signals.push(init.signal as AbortSignal);
           return new Promise(() => {}); // never resolves
-        }),
+        })
       );
 
       clickAnchor('http://localhost/page1');
@@ -418,7 +415,7 @@ describe('IbRouter', () => {
     it('fires router-before-navigate with url and title before swap', async () => {
       vi.stubGlobal('fetch', makeFetch('<p>x</p>', 'Target'));
       const events: CustomEvent[] = [];
-      router.addEventListener(RouterEvents.BeforeNavigate, e => events.push(e as CustomEvent));
+      router.addEventListener(RouterEvents.BeforeNavigate, (e) => events.push(e as CustomEvent));
 
       clickAnchor('http://localhost/target');
       await advanceNavigation();
@@ -431,7 +428,7 @@ describe('IbRouter', () => {
     it('fires router-navigated with url, title, from, isBackForward', async () => {
       const fromPath = location.pathname;
       const events: CustomEvent[] = [];
-      router.addEventListener(RouterEvents.Navigated, e => events.push(e as CustomEvent));
+      router.addEventListener(RouterEvents.Navigated, (e) => events.push(e as CustomEvent));
 
       clickAnchor('http://localhost/page2');
       await advanceNavigation();
@@ -444,7 +441,9 @@ describe('IbRouter', () => {
 
     it('fires router-navigation-complete after full navigation', async () => {
       const events: CustomEvent[] = [];
-      router.addEventListener(RouterEvents.NavigationComplete, e => events.push(e as CustomEvent));
+      router.addEventListener(RouterEvents.NavigationComplete, (e) =>
+        events.push(e as CustomEvent)
+      );
 
       clickAnchor('http://localhost/page2');
       await advanceNavigation();
@@ -454,12 +453,9 @@ describe('IbRouter', () => {
     });
 
     it('fires router-navigation-error on HTTP error with correct detail', async () => {
-      vi.stubGlobal(
-        'fetch',
-        vi.fn().mockResolvedValue(new Response('', { status: 500 })),
-      );
+      vi.stubGlobal('fetch', vi.fn().mockResolvedValue(new Response('', { status: 500 })));
       const errors: CustomEvent[] = [];
-      router.addEventListener(RouterEvents.NavigationError, e => errors.push(e as CustomEvent));
+      router.addEventListener(RouterEvents.NavigationError, (e) => errors.push(e as CustomEvent));
 
       clickAnchor('http://localhost/broken');
       await advanceNavigation();
@@ -470,7 +466,7 @@ describe('IbRouter', () => {
     });
 
     it('calls location.assign and skips swap when before-navigate is prevented', async () => {
-      router.addEventListener(RouterEvents.BeforeNavigate, e => e.preventDefault());
+      router.addEventListener(RouterEvents.BeforeNavigate, (e) => e.preventDefault());
 
       clickAnchor('http://localhost/page2');
       await advanceNavigation();
@@ -481,7 +477,7 @@ describe('IbRouter', () => {
 
     it('fires router-navigated with isBackForward=true on popstate', async () => {
       const events: CustomEvent[] = [];
-      router.addEventListener(RouterEvents.Navigated, e => events.push(e as CustomEvent));
+      router.addEventListener(RouterEvents.Navigated, (e) => events.push(e as CustomEvent));
 
       window.dispatchEvent(new PopStateEvent('popstate'));
       await advanceNavigation();
@@ -521,9 +517,11 @@ describe('IbRouter', () => {
       const before: CustomEvent[] = [];
       const navigated: CustomEvent[] = [];
       const complete: CustomEvent[] = [];
-      router.addEventListener(RouterEvents.BeforeNavigate, e => before.push(e as CustomEvent));
-      router.addEventListener(RouterEvents.Navigated, e => navigated.push(e as CustomEvent));
-      router.addEventListener(RouterEvents.NavigationComplete, e => complete.push(e as CustomEvent));
+      router.addEventListener(RouterEvents.BeforeNavigate, (e) => before.push(e as CustomEvent));
+      router.addEventListener(RouterEvents.Navigated, (e) => navigated.push(e as CustomEvent));
+      router.addEventListener(RouterEvents.NavigationComplete, (e) =>
+        complete.push(e as CustomEvent)
+      );
 
       clickAnchor(location.href);
       await flushMicrotasks();
@@ -550,13 +548,17 @@ describe('IbRouter', () => {
     it('pushes state to history on same-page navigation', async () => {
       clickAnchor(location.href);
       await flushMicrotasks();
-      expect(history.pushState).toHaveBeenCalledWith({ spa: true }, expect.any(String), location.href);
+      expect(history.pushState).toHaveBeenCalledWith(
+        { spa: true },
+        expect.any(String),
+        location.href
+      );
     });
 
     it('Navigated detail has correct url, from, isBackForward', async () => {
       const fromPath = location.pathname;
       const events: CustomEvent[] = [];
-      router.addEventListener(RouterEvents.Navigated, e => events.push(e as CustomEvent));
+      router.addEventListener(RouterEvents.Navigated, (e) => events.push(e as CustomEvent));
 
       clickAnchor(location.href);
       await flushMicrotasks();
@@ -567,9 +569,9 @@ describe('IbRouter', () => {
     });
 
     it('location.assign called and no events fire when BeforeNavigate prevented', async () => {
-      router.addEventListener(RouterEvents.BeforeNavigate, e => e.preventDefault());
+      router.addEventListener(RouterEvents.BeforeNavigate, (e) => e.preventDefault());
       const navigated: CustomEvent[] = [];
-      router.addEventListener(RouterEvents.Navigated, e => navigated.push(e as CustomEvent));
+      router.addEventListener(RouterEvents.Navigated, (e) => navigated.push(e as CustomEvent));
 
       clickAnchor(location.href);
       await flushMicrotasks();
@@ -586,7 +588,7 @@ describe('IbRouter', () => {
         vi.fn((_url: string, init: RequestInit) => {
           signals.push(init.signal as AbortSignal);
           return new Promise(() => {});
-        }),
+        })
       );
 
       clickAnchor('http://localhost/page2');
@@ -614,7 +616,7 @@ describe('IbRouter', () => {
         vi.fn(async () => {
           // fetch is called, but markLeaving runs AFTER fetch resolves
           return new Response(buildPageHtml('<p>new</p>', 'New'), { status: 200 });
-        }),
+        })
       );
 
       clickAnchor('http://localhost/page2');

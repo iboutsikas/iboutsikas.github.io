@@ -34,7 +34,7 @@ function makeFetch(contentHtml = '<p>vt-new</p>', title = 'VT Page') {
     new Response(buildPageHtml(contentHtml, title), {
       status: 200,
       headers: { 'Content-Type': 'text/html' },
-    }),
+    })
   );
 }
 
@@ -49,7 +49,7 @@ function clickAnchor(href: string): MouseEvent {
 }
 
 function flushMicrotasks(): Promise<void> {
-  return new Promise(resolve => queueMicrotask(resolve));
+  return new Promise((resolve) => queueMicrotask(resolve));
 }
 
 async function settleNavigation(): Promise<void> {
@@ -131,13 +131,17 @@ describe('IbRouter (View Transitions)', () => {
   it('pushes state to history', async () => {
     clickAnchor('http://localhost/page2');
     await settleNavigation();
-    expect(history.pushState).toHaveBeenCalledWith({ spa: true }, expect.any(String), 'http://localhost/page2');
+    expect(history.pushState).toHaveBeenCalledWith(
+      { spa: true },
+      expect.any(String),
+      'http://localhost/page2'
+    );
   });
 
   it('fires router-before-navigate before transition', async () => {
     vi.stubGlobal('fetch', makeFetch('<p>x</p>', 'T'));
     const events: CustomEvent[] = [];
-    router.addEventListener(RouterEvents.BeforeNavigate, e => events.push(e as CustomEvent));
+    router.addEventListener(RouterEvents.BeforeNavigate, (e) => events.push(e as CustomEvent));
 
     clickAnchor('http://localhost/page2');
     await settleNavigation();
@@ -148,7 +152,7 @@ describe('IbRouter (View Transitions)', () => {
 
   it('fires router-navigated inside the transition callback', async () => {
     const events: CustomEvent[] = [];
-    router.addEventListener(RouterEvents.Navigated, e => events.push(e as CustomEvent));
+    router.addEventListener(RouterEvents.Navigated, (e) => events.push(e as CustomEvent));
 
     clickAnchor('http://localhost/page2');
     await settleNavigation();
@@ -159,7 +163,7 @@ describe('IbRouter (View Transitions)', () => {
 
   it('fires router-navigation-complete after transition.finished', async () => {
     const events: CustomEvent[] = [];
-    router.addEventListener(RouterEvents.NavigationComplete, e => events.push(e as CustomEvent));
+    router.addEventListener(RouterEvents.NavigationComplete, (e) => events.push(e as CustomEvent));
 
     clickAnchor('http://localhost/page2');
     await settleNavigation();
@@ -169,7 +173,7 @@ describe('IbRouter (View Transitions)', () => {
   });
 
   it('calls location.assign and skips transition when before-navigate prevented', async () => {
-    router.addEventListener(RouterEvents.BeforeNavigate, e => e.preventDefault());
+    router.addEventListener(RouterEvents.BeforeNavigate, (e) => e.preventDefault());
 
     clickAnchor('http://localhost/page2');
     await settleNavigation();
@@ -182,7 +186,7 @@ describe('IbRouter (View Transitions)', () => {
   it('fires router-navigation-error on HTTP error', async () => {
     vi.stubGlobal('fetch', vi.fn().mockResolvedValue(new Response('', { status: 503 })));
     const errors: CustomEvent[] = [];
-    router.addEventListener(RouterEvents.NavigationError, e => errors.push(e as CustomEvent));
+    router.addEventListener(RouterEvents.NavigationError, (e) => errors.push(e as CustomEvent));
 
     clickAnchor('http://localhost/broken');
     await settleNavigation();
@@ -211,9 +215,11 @@ describe('IbRouter (View Transitions)', () => {
       const before: CustomEvent[] = [];
       const navigated: CustomEvent[] = [];
       const complete: CustomEvent[] = [];
-      router.addEventListener(RouterEvents.BeforeNavigate, e => before.push(e as CustomEvent));
-      router.addEventListener(RouterEvents.Navigated, e => navigated.push(e as CustomEvent));
-      router.addEventListener(RouterEvents.NavigationComplete, e => complete.push(e as CustomEvent));
+      router.addEventListener(RouterEvents.BeforeNavigate, (e) => before.push(e as CustomEvent));
+      router.addEventListener(RouterEvents.Navigated, (e) => navigated.push(e as CustomEvent));
+      router.addEventListener(RouterEvents.NavigationComplete, (e) =>
+        complete.push(e as CustomEvent)
+      );
 
       clickAnchor('http://localhost/');
       await settleNavigation();

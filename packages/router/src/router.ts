@@ -67,7 +67,13 @@ export class IbRouter extends LitElement {
     }
   }
 
-  private async _navigate(url: string, { pushState = true, isBackForward = false }: { pushState?: boolean; isBackForward?: boolean } = {}): Promise<void> {
+  private async _navigate(
+    url: string,
+    {
+      pushState = true,
+      isBackForward = false,
+    }: { pushState?: boolean; isBackForward?: boolean } = {}
+  ): Promise<void> {
     if (this._controller) {
       this._controller.abort();
     }
@@ -135,7 +141,10 @@ export class IbRouter extends LitElement {
     return document.querySelector<HTMLElement>(selector);
   }
 
-  private async _fetchPage(url: string, signal: AbortSignal): Promise<{ html: string; title: string }> {
+  private async _fetchPage(
+    url: string,
+    signal: AbortSignal
+  ): Promise<{ html: string; title: string }> {
     const res = await fetch(url, { signal });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const html = await res.text();
@@ -171,34 +180,53 @@ export class IbRouter extends LitElement {
     return event.defaultPrevented;
   }
 
-  private _dispatchNavigated(url: string, title: string, from: string, isBackForward: boolean): void {
+  private _dispatchNavigated(
+    url: string,
+    title: string,
+    from: string,
+    isBackForward: boolean
+  ): void {
     const detail: RouterNavigatedDetail = { url, title, from, isBackForward };
-    this.dispatchEvent(new CustomEvent(RouterEvents.Navigated, {
-      detail,
-      bubbles: true,
-      composed: true,
-    }));
-  }
-
-  private _dispatchNavigationComplete(url: string, title: string, from: string, isBackForward: boolean): void {
-    const detail: RouterNavigationCompleteDetail = { url, title, from, isBackForward };
-    queueMicrotask(() => {
-      this.dispatchEvent(new CustomEvent(RouterEvents.NavigationComplete, {
+    this.dispatchEvent(
+      new CustomEvent(RouterEvents.Navigated, {
         detail,
         bubbles: true,
         composed: true,
-      }));
+      })
+    );
+  }
+
+  private _dispatchNavigationComplete(
+    url: string,
+    title: string,
+    from: string,
+    isBackForward: boolean
+  ): void {
+    const detail: RouterNavigationCompleteDetail = { url, title, from, isBackForward };
+    queueMicrotask(() => {
+      this.dispatchEvent(
+        new CustomEvent(RouterEvents.NavigationComplete, {
+          detail,
+          bubbles: true,
+          composed: true,
+        })
+      );
     });
   }
 
   private _dispatchNavigationError(url: string, error: unknown): void {
-    const detail: RouterNavigationErrorDetail = { url, error: error instanceof Error ? error : new Error(String(error)) };
+    const detail: RouterNavigationErrorDetail = {
+      url,
+      error: error instanceof Error ? error : new Error(String(error)),
+    };
     queueMicrotask(() => {
-      this.dispatchEvent(new CustomEvent(RouterEvents.NavigationError, {
-        detail,
-        bubbles: true,
-        composed: true,
-      }));
+      this.dispatchEvent(
+        new CustomEvent(RouterEvents.NavigationError, {
+          detail,
+          bubbles: true,
+          composed: true,
+        })
+      );
     });
   }
 
@@ -226,18 +254,32 @@ export class IbRouter extends LitElement {
 
   private async _markLeaving(el: HTMLElement): Promise<void> {
     el.classList.add(this.leavingClass);
-    return new Promise<void>(resolve => {
+    return new Promise<void>((resolve) => {
       const timer = setTimeout(resolve, 1000);
-      el.addEventListener('transitionend', () => { clearTimeout(timer); resolve(); }, { once: true });
+      el.addEventListener(
+        'transitionend',
+        () => {
+          clearTimeout(timer);
+          resolve();
+        },
+        { once: true }
+      );
     });
   }
 
   private async _markEntering(el: HTMLElement): Promise<void> {
     el.classList.remove(this.leavingClass);
     el.classList.add(this.enteringClass);
-    await new Promise<void>(resolve => {
+    await new Promise<void>((resolve) => {
       const timer = setTimeout(resolve, 1000);
-      el.addEventListener('transitionend', () => { clearTimeout(timer); resolve(); }, { once: true });
+      el.addEventListener(
+        'transitionend',
+        () => {
+          clearTimeout(timer);
+          resolve();
+        },
+        { once: true }
+      );
     });
     el.classList.remove(this.enteringClass);
   }

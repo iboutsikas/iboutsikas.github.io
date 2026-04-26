@@ -1,47 +1,46 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="view-transition" content="same-origin">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="view-transition" content="same-origin" />
     <title>Router Test Page</title>
     <style>
-        ::view-transition-old(*),
-        ::view-transition-new(*) {
-            animation: none;
-            mix-blend-mode: normal;
+      ::view-transition-old(*),
+      ::view-transition-new(*) {
+        animation: none;
+        mix-blend-mode: normal;
+      }
+
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        background-color: #f0f0f0;
+      }
+
+      #_content {
+        padding: 2rem;
+        max-width: 800px;
+        margin: 0 auto;
+        view-transition-name: main-content-transition;
+      }
+
+      @keyframes router-fade-in {
+        0% {
+          opacity: 0;
+          transform: translateY(-3rem);
         }
 
-        body {
-            width: 100%;
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            font-family: sans-serif;
-            background-color: #f0f0f0;
+        100% {
+          opacity: 1;
+          transform: translateY(0);
         }
+      }
 
-        #_content {
-            padding: 2rem;
-            max-width: 800px;
-            margin: 0 auto;
-            view-transition-name: main-content-transition;
-        }
-
-        @keyframes router-fade-in {
-            0% {
-                opacity: 0;
-                transform: translateY(-3rem);
-            }
-
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* 
+      /* 
             This animation is not used on purpose and it is an example. Do NOT remove.
             The way the timing trick works is that for the majority of the animation the element
             is in it's opacity: 0 mode then for the last 20% percent it fades in. By adjusting the 80% as well
@@ -51,65 +50,62 @@
             An example would be having text bubbles moving in from left and right one after the other, without having
             javascript choreograph the start of the animations.
          */
-        @keyframes router-timing-example {
-
-            0%,
-            80% {
-                opacity: 0;
-            }
-
-            100% {
-                opacity: 1;
-            }
+      @keyframes router-timing-example {
+        0%,
+        80% {
+          opacity: 0;
         }
 
-        @media (prefers-reduced-motion: no-preference) {
+        100% {
+          opacity: 1;
+        }
+      }
 
-            /* This will hide the existing content so is can be animated through the -new below   */
-            ::view-transition-old(*) {
-                display: none;
-            }
-
-            ::view-transition-new(main-content-transition) {
-                animation: router-fade-in 0.5s ease;
-            }
+      @media (prefers-reduced-motion: no-preference) {
+        /* This will hide the existing content so is can be animated through the -new below   */
+        ::view-transition-old(*) {
+          display: none;
         }
 
-        nav {
-            background: #333;
-            padding: 1rem;
-            margin-bottom: 2rem;
+        ::view-transition-new(main-content-transition) {
+          animation: router-fade-in 0.5s ease;
         }
+      }
 
-        nav a {
-            color: #fff;
-            margin-right: 1rem;
-            text-decoration: none;
-        }
+      nav {
+        background: #333;
+        padding: 1rem;
+        margin-bottom: 2rem;
+      }
 
-        nav a:hover {
-            text-decoration: underline;
-        }
+      nav a {
+        color: #fff;
+        margin-right: 1rem;
+        text-decoration: none;
+      }
+
+      nav a:hover {
+        text-decoration: underline;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <ib-router content-selector="#_content"></ib-router>
 
     <nav>
-        <a href="/page1">Page 1</a>
-        <a href="/page2">Page 2</a>
-        <a href="/page3">Page 3</a>
-        <a href="https://example.com" rel="external">External (should not intercept)</a>
+      <a href="/page1">Page 1</a>
+      <a href="/page2">Page 2</a>
+      <a href="/page3">Page 3</a>
+      <a href="https://example.com" rel="external">External (should not intercept)</a>
     </nav>
 
     <div id="_content">
-        <h1>Router Test Page</h1>
-        <p>Click the links above to test SPA navigation.</p>
-        <p>Check the console for <code>router-navigated</code> events.</p>
+      <h1>Router Test Page</h1>
+      <p>Click the links above to test SPA navigation.</p>
+      <p>Check the console for <code>router-navigated</code> events.</p>
     </div>
 
     <script type="module" src="./main.ts"></script>
-</body>
-
+  </body>
 </html>

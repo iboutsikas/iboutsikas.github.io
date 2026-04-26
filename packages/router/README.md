@@ -13,7 +13,11 @@ A Lit web component implementing SPA navigation with View Transitions API suppor
 ## Usage
 
 ```html
-<ib-router content-selector="#_content" leaving-class="router-leaving" entering-class="router-entering"></ib-router>
+<ib-router
+  content-selector="#_content"
+  leaving-class="router-leaving"
+  entering-class="router-entering"
+></ib-router>
 ```
 
 ```js
@@ -26,16 +30,16 @@ document.addEventListener('router-navigated', (e) => {
 
 ## Properties
 
-| Property | Type | Default | Description |
-|----------|------|---------|-------------|
-| `contentSelector` | `string` | `'#_content'` | CSS selector for the element whose `innerHTML` gets swapped |
-| `leavingClass` | `string` | `'router-leaving'` | Class added to content element before swap |
-| `enteringClass` | `string` | `'router-entering'` | Class added to content element after swap |
+| Property          | Type     | Default             | Description                                                 |
+| ----------------- | -------- | ------------------- | ----------------------------------------------------------- |
+| `contentSelector` | `string` | `'#_content'`       | CSS selector for the element whose `innerHTML` gets swapped |
+| `leavingClass`    | `string` | `'router-leaving'`  | Class added to content element before swap                  |
+| `enteringClass`   | `string` | `'router-entering'` | Class added to content element after swap                   |
 
 ## Events
 
-| Event | Detail | Description |
-|-------|--------|-------------|
+| Event              | Detail                           | Description                                   |
+| ------------------ | -------------------------------- | --------------------------------------------- |
 | `router-navigated` | `{ url: string, title: string }` | Dispatched after each successful content swap |
 
 ```ts
@@ -63,8 +67,12 @@ Define animations using the `leavingClass` and `enteringClass` class names:
 }
 
 @keyframes router-fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 ```
 

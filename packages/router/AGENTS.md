@@ -19,26 +19,27 @@ Registers global listeners on connect, removes them on disconnect.
 
 ## Public properties (all `@property({ type: String })`)
 
-| Property | Default | Purpose |
-|---|---|---|
-| `contentSelector` | `'#_content'` | `querySelector` target for innerHTML swap |
-| `leavingClass` | `'router-leaving'` | Class added to content before swap (non-VT path) |
-| `enteringClass` | `'router-entering'` | Class added to content after swap (non-VT path) |
+| Property          | Default             | Purpose                                          |
+| ----------------- | ------------------- | ------------------------------------------------ |
+| `contentSelector` | `'#_content'`       | `querySelector` target for innerHTML swap        |
+| `leavingClass`    | `'router-leaving'`  | Class added to content before swap (non-VT path) |
+| `enteringClass`   | `'router-entering'` | Class added to content after swap (non-VT path)  |
 
 ## Events (all `bubbles: true, composed: true`, dispatched on the element)
 
-| Event | Const | Detail type | Timing |
-|---|---|---|---|
-| `router-before-navigate` | `RouterEvents.BeforeNavigate` | `{ url, title, defaultPrevented }` | Before swap; `cancelable: true` — call `e.preventDefault()` to abort SPA nav and fall back to `location.assign` |
-| `router-navigated` | `RouterEvents.Navigated` | `{ url, title, from, isBackForward }` | Synchronous, inside VT callback or after `_markLeaving` |
-| `router-navigation-complete` | `RouterEvents.NavigationComplete` | `{ url, title, from, isBackForward }` | Via `queueMicrotask` after transition finishes |
-| `router-navigation-error` | `RouterEvents.NavigationError` | `{ url, error }` | Via `queueMicrotask`; fired on HTTP errors or network failures |
+| Event                        | Const                             | Detail type                           | Timing                                                                                                          |
+| ---------------------------- | --------------------------------- | ------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `router-before-navigate`     | `RouterEvents.BeforeNavigate`     | `{ url, title, defaultPrevented }`    | Before swap; `cancelable: true` — call `e.preventDefault()` to abort SPA nav and fall back to `location.assign` |
+| `router-navigated`           | `RouterEvents.Navigated`          | `{ url, title, from, isBackForward }` | Synchronous, inside VT callback or after `_markLeaving`                                                         |
+| `router-navigation-complete` | `RouterEvents.NavigationComplete` | `{ url, title, from, isBackForward }` | Via `queueMicrotask` after transition finishes                                                                  |
+| `router-navigation-error`    | `RouterEvents.NavigationError`    | `{ url, error }`                      | Via `queueMicrotask`; fired on HTTP errors or network failures                                                  |
 
 ## Navigation flow
 
 ### Click interception (`_handleClick` on `document`)
 
 Passes through (does NOT navigate) when any of:
+
 - Modifier key held (`ctrlKey / metaKey / shiftKey / altKey`)
 - `e.defaultPrevented`
 - `e.button !== 0`
@@ -95,10 +96,10 @@ Evaluated once at import time. In jsdom (vitest) this is `false` by default.
 
 ## Test files
 
-| File | Environment | What it covers |
-|---|---|---|
-| `src/router.spec.ts` | jsdom (SUPPORTS_VT=false) | lifecycle, click bypasses, navigation core, events, transition classes |
-| `src/router-vt.spec.ts` | jsdom + hoisted VT mock (SUPPORTS_VT=true) | VT code path |
+| File                    | Environment                                | What it covers                                                         |
+| ----------------------- | ------------------------------------------ | ---------------------------------------------------------------------- |
+| `src/router.spec.ts`    | jsdom (SUPPORTS_VT=false)                  | lifecycle, click bypasses, navigation core, events, transition classes |
+| `src/router-vt.spec.ts` | jsdom + hoisted VT mock (SUPPORTS_VT=true) | VT code path                                                           |
 
 ### Test setup notes
 
@@ -109,10 +110,10 @@ Evaluated once at import time. In jsdom (vitest) this is `false` by default.
 
 ## Nx targets
 
-| Target | Command |
-|---|---|
-| `build` | `npm exec nx -- build router` |
-| `build:lib` | `npm exec nx -- build:lib router` |
-| `vite:test` | `npm exec nx -- vite:test router` |
-| `dev` | `npm exec nx -- dev router` |
+| Target           | Command                                |
+| ---------------- | -------------------------------------- |
+| `build`          | `npm exec nx -- build router`          |
+| `build:lib`      | `npm exec nx -- build:lib router`      |
+| `vite:test`      | `npm exec nx -- vite:test router`      |
+| `dev`            | `npm exec nx -- dev router`            |
 | `vite:typecheck` | `npm exec nx -- vite:typecheck router` |
