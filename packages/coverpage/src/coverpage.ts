@@ -212,6 +212,7 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
       filter(g => g.type === 'flick'),
       takeUntil(this._disconnectSubject)
     ).subscribe(e => {
+      console.log('We have a flick');
       this._flickShouldOpen(e.velocity) ? this.show() : this.hide();
     });
 

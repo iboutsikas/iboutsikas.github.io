@@ -125,7 +125,7 @@ export class IbRouter extends LitElement {
     const html = await res.text();
     const doc = new DOMParser().parseFromString(html, 'text/html');
     return {
-      html: doc.getElementById('_content')?.innerHTML ?? '',
+      html: doc.getElementById(this.contentSelector)?.innerHTML ?? '',
       title: doc.title,
     };
   }
@@ -202,7 +202,10 @@ export class IbRouter extends LitElement {
 
     const parsed = new URL(a.href);
     if (isSamePage(a.href) && parsed.hash !== '') return;
-    if (isSamePage(a.href) && !parsed.hash) return;
+    if (isSamePage(a.href) && !parsed.hash) {
+      e.preventDefault();
+      return;
+    }
 
     e.preventDefault();
     this._navigate(a.href);

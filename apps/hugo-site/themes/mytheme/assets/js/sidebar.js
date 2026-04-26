@@ -6,13 +6,6 @@ const logMissing = (name) => {
   console.warn(`[sidebar] Element not found: ${name}`);
 };
 
-function setupSidebarLinks(sidebarContent, coverpage) {
-  const sidebarLinks = sidebarContent.querySelectorAll('a[href^="/"]');
-  sidebarLinks.forEach((a) => {
-    a.addEventListener('click', () => coverpage.hide());
-  });
-}
-
 function setupToggle(toggle, coverpage) {
   toggle.addEventListener('click', () => {
     const isOpen = coverpage.open;
@@ -103,9 +96,17 @@ export function initSidebar(breakpoints) {
   if (!sidebarContent) logMissing('.sidebar-sticky');
   if (!pageContent) logMissing('_content');
 
-  if (sidebarContent) {
-    setupSidebarLinks(sidebarContent, coverpage);
-  }
+  document.addEventListener('router-navigated', () => coverpage.hide());
+
+  // Same-page links are skipped by the router (no router-navigated fires).
+  // Close the cover immediately on click so the user can see current content.
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('a');
+    if (!a || !a.href) return;
+    const t = new URL(a.href, location.href);
+    const isSamePage = t.pathname === location.pathname && t.search === location.search && !t.hash;
+    if (isSamePage) coverpage.hide();
+  });
 
   if (toggle && coverpage) {
     setupToggle(toggle, coverpage);
