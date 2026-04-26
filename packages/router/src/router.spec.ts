@@ -252,13 +252,15 @@ describe('IbRouter', () => {
       expect(vi.mocked(fetch)).not.toHaveBeenCalled();
     });
 
-    it('ignores same-page hash-only navigation', () => {
-      clickAnchor(`${location.href}#section`);
+    it('intercepts same-page hash-only link but does not fetch', () => {
+      const { event } = clickAnchor(`${location.href}#section`);
+      expect(event.defaultPrevented).toBe(true);
       expect(vi.mocked(fetch)).not.toHaveBeenCalled();
     });
 
-    it('ignores same-page click with no hash', () => {
-      clickAnchor(location.href);
+    it('intercepts same-page click with no hash but does not fetch', () => {
+      const { event } = clickAnchor(location.href);
+      expect(event.defaultPrevented).toBe(true);
       expect(vi.mocked(fetch)).not.toHaveBeenCalled();
     });
 
@@ -509,6 +511,93 @@ describe('IbRouter', () => {
       await advanceNavigation();
 
       expect(htmlAtEvent).toBe('<p>initial</p>');
+    });
+  });
+
+  // ── same-page navigation ──────────────────────────────────────────────────
+
+  describe('same-page navigation', () => {
+    it('fires BeforeNavigate, Navigated, NavigationComplete without fetching', async () => {
+      const before: CustomEvent[] = [];
+      const navigated: CustomEvent[] = [];
+      const complete: CustomEvent[] = [];
+      router.addEventListener(RouterEvents.BeforeNavigate, e => before.push(e as CustomEvent));
+      router.addEventListener(RouterEvents.Navigated, e => navigated.push(e as CustomEvent));
+      router.addEventListener(RouterEvents.NavigationComplete, e => complete.push(e as CustomEvent));
+
+      clickAnchor(location.href);
+      await flushMicrotasks();
+      await flushMicrotasks();
+
+      expect(vi.mocked(fetch)).not.toHaveBeenCalled();
+      expect(before).toHaveLength(1);
+      expect(navigated).toHaveLength(1);
+      expect(complete).toHaveLength(1);
+    });
+
+    it('does not swap content on same-page navigation', async () => {
+      clickAnchor(location.href);
+      await flushMicrotasks();
+      expect(content.innerHTML).toBe('<p>initial</p>');
+    });
+
+    it('does not scroll to top on same-page navigation', async () => {
+      clickAnchor(location.href);
+      await flushMicrotasks();
+      expect(vi.mocked(scrollTo)).not.toHaveBeenCalled();
+    });
+
+    it('pushes state to history on same-page navigation', async () => {
+      clickAnchor(location.href);
+      await flushMicrotasks();
+      expect(history.pushState).toHaveBeenCalledWith({ spa: true }, expect.any(String), location.href);
+    });
+
+    it('Navigated detail has correct url, from, isBackForward', async () => {
+      const fromPath = location.pathname;
+      const events: CustomEvent[] = [];
+      router.addEventListener(RouterEvents.Navigated, e => events.push(e as CustomEvent));
+
+      clickAnchor(location.href);
+      await flushMicrotasks();
+
+      expect(events[0].detail.url).toBe(location.href);
+      expect(events[0].detail.from).toBe(fromPath);
+      expect(events[0].detail.isBackForward).toBe(false);
+    });
+
+    it('location.assign called and no events fire when BeforeNavigate prevented', async () => {
+      router.addEventListener(RouterEvents.BeforeNavigate, e => e.preventDefault());
+      const navigated: CustomEvent[] = [];
+      router.addEventListener(RouterEvents.Navigated, e => navigated.push(e as CustomEvent));
+
+      clickAnchor(location.href);
+      await flushMicrotasks();
+
+      expect(assignMock).toHaveBeenCalledWith(location.href);
+      expect(history.pushState).not.toHaveBeenCalled();
+      expect(navigated).toHaveLength(0);
+    });
+
+    it('same-page navigation aborts in-flight fetch', async () => {
+      const signals: AbortSignal[] = [];
+      vi.stubGlobal(
+        'fetch',
+        vi.fn((_url: string, init: RequestInit) => {
+          signals.push(init.signal as AbortSignal);
+          return new Promise(() => {});
+        }),
+      );
+
+      clickAnchor('http://localhost/page2');
+      await flushMicrotasks();
+
+      expect(signals[0].aborted).toBe(false);
+
+      clickAnchor(location.href);
+      await flushMicrotasks();
+
+      expect(signals[0].aborted).toBe(true);
     });
   });
 

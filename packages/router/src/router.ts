@@ -71,10 +71,26 @@ export class IbRouter extends LitElement {
     if (this._controller) {
       this._controller.abort();
     }
-    this._controller = new AbortController();
-    const signal = this._controller.signal;
 
     const from = location.pathname;
+
+    if (isSamePage(url)) {
+      const title = document.title;
+      const prevented = this._beforeNavigate(url, title);
+      if (prevented) {
+        location.assign(url);
+        return;
+      }
+      if (pushState) {
+        history.pushState({ spa: true }, title, url);
+      }
+      this._dispatchNavigated(url, title, from, isBackForward);
+      this._dispatchNavigationComplete(url, title, from, isBackForward);
+      return;
+    }
+
+    this._controller = new AbortController();
+    const signal = this._controller.signal;
 
     try {
       const { html, title } = await this._fetchPage(url, signal);
@@ -125,7 +141,7 @@ export class IbRouter extends LitElement {
     const html = await res.text();
     const doc = new DOMParser().parseFromString(html, 'text/html');
     return {
-      html: doc.getElementById(this.contentSelector)?.innerHTML ?? '',
+      html: doc.querySelector('#_content')?.innerHTML ?? '',
       title: doc.title,
     };
   }
@@ -199,13 +215,6 @@ export class IbRouter extends LitElement {
     if (a.hasAttribute('download')) return;
     if (a.getAttribute('rel')?.includes('external')) return;
     if (!isSameOrigin(a.href)) return;
-
-    const parsed = new URL(a.href);
-    if (isSamePage(a.href) && parsed.hash !== '') return;
-    if (isSamePage(a.href) && !parsed.hash) {
-      e.preventDefault();
-      return;
-    }
 
     e.preventDefault();
     this._navigate(a.href);

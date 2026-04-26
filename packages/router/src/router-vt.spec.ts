@@ -199,4 +199,35 @@ describe('IbRouter (View Transitions)', () => {
     expect(content.classList.contains('router-leaving')).toBe(false);
     expect(content.classList.contains('router-entering')).toBe(false);
   });
+
+  describe('same-page navigation', () => {
+    it('does not call startViewTransition on same-page click', async () => {
+      clickAnchor('http://localhost/');
+      await settleNavigation();
+      expect(startViewTransitionMock).not.toHaveBeenCalled();
+    });
+
+    it('fires all three events on same-page click without fetching', async () => {
+      const before: CustomEvent[] = [];
+      const navigated: CustomEvent[] = [];
+      const complete: CustomEvent[] = [];
+      router.addEventListener(RouterEvents.BeforeNavigate, e => before.push(e as CustomEvent));
+      router.addEventListener(RouterEvents.Navigated, e => navigated.push(e as CustomEvent));
+      router.addEventListener(RouterEvents.NavigationComplete, e => complete.push(e as CustomEvent));
+
+      clickAnchor('http://localhost/');
+      await settleNavigation();
+
+      expect(vi.mocked(fetch)).not.toHaveBeenCalled();
+      expect(before).toHaveLength(1);
+      expect(navigated).toHaveLength(1);
+      expect(complete).toHaveLength(1);
+    });
+
+    it('does not swap content on same-page click', async () => {
+      clickAnchor('http://localhost/');
+      await settleNavigation();
+      expect(content.innerHTML).toBe('<p>initial</p>');
+    });
+  });
 });
