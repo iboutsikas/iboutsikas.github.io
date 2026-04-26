@@ -9,8 +9,15 @@
   view-transition-name: main-content-transition;
 }
 
+// Only apply view transition animations when they are not disabled
 @media(prefers-reduced-motion: no-preference) {
-  // Only apply view transition animations when they are not disabled
+  // Supress the animation on the entirety of the html. This leaves
+  // all elements outside #_content exactly where they were.
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+  }
+
   ::view-transition-old(*) {
     display: none;
   }
