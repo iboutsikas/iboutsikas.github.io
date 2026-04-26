@@ -48,16 +48,16 @@
   },
   "scripts": {
     "build": "tsc",
-    "build:lib": "vite build --config vite.lib.config.ts",
-    "dev": "vite --config vite.dev.config.ts test-page",
+    "build:lib": "vite build",
+    "dev": "vite test-page",
     "test": "nx vite:test run",
     "typecheck": "tsc --noEmit",
     "prepublishOnly": "npm test && npm run build"
   },
   "peerDependencies": {
-    "lit": "^3.0.0"
+    "lit": "^3.0.0",
+    "rxjs": "^7.8.2"
   },
   "dependencies": {
-    "rxjs": "^7.8.2"
   }
 }
