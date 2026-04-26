@@ -82,7 +82,14 @@ describe('IbCoverpage', () => {
     });
 
     it('marks cover as is-dragging during drag', async () => {
-      el.dispatchEvent(new PointerEvent('pointerdown', { clientX: 0, clientY: 100, isPrimary: true, bubbles: true }));
+      el.dispatchEvent(
+        new PointerEvent('pointerdown', {
+          clientX: 0,
+          clientY: 100,
+          isPrimary: true,
+          bubbles: true,
+        })
+      );
       await el.updateComplete;
 
       const cover = el.shadowRoot!.querySelector('.cover')!;
@@ -90,8 +97,17 @@ describe('IbCoverpage', () => {
     });
 
     it('removes is-dragging class after release', async () => {
-      el.dispatchEvent(new PointerEvent('pointerdown', { clientX: 0, clientY: 100, isPrimary: true, bubbles: true }));
-      window.dispatchEvent(new PointerEvent('pointerup', { clientX: 0, clientY: 100, isPrimary: true, bubbles: true }));
+      el.dispatchEvent(
+        new PointerEvent('pointerdown', {
+          clientX: 0,
+          clientY: 100,
+          isPrimary: true,
+          bubbles: true,
+        })
+      );
+      window.dispatchEvent(
+        new PointerEvent('pointerup', { clientX: 0, clientY: 100, isPrimary: true, bubbles: true })
+      );
       await vi.runAllTimersAsync();
       await el.updateComplete;
 
@@ -132,7 +148,14 @@ describe('IbCoverpage', () => {
       await slowDrag(el, 0, 600);
       await el.updateComplete;
 
-      window.dispatchEvent(new PointerEvent('pointerup', { clientX: 600, clientY: 100, isPrimary: true, bubbles: true }));
+      window.dispatchEvent(
+        new PointerEvent('pointerup', {
+          clientX: 600,
+          clientY: 100,
+          isPrimary: true,
+          bubbles: true,
+        })
+      );
       await vi.advanceTimersByTimeAsync(400);
       await el.updateComplete;
 
@@ -145,7 +168,14 @@ describe('IbCoverpage', () => {
       await slowDrag(el, 0, 400);
       await el.updateComplete;
 
-      window.dispatchEvent(new PointerEvent('pointerup', { clientX: 400, clientY: 100, isPrimary: true, bubbles: true }));
+      window.dispatchEvent(
+        new PointerEvent('pointerup', {
+          clientX: 400,
+          clientY: 100,
+          isPrimary: true,
+          bubbles: true,
+        })
+      );
       await vi.advanceTimersByTimeAsync(400);
       await el.updateComplete;
 
@@ -157,7 +187,14 @@ describe('IbCoverpage', () => {
       await slowDrag(el, 0, 600);
       await el.updateComplete;
 
-      window.dispatchEvent(new PointerEvent('pointerup', { clientX: 600, clientY: 100, isPrimary: true, bubbles: true }));
+      window.dispatchEvent(
+        new PointerEvent('pointerup', {
+          clientX: 600,
+          clientY: 100,
+          isPrimary: true,
+          bubbles: true,
+        })
+      );
       await vi.advanceTimersByTimeAsync(400);
       await el.updateComplete;
 
@@ -273,7 +310,14 @@ describe('IbCoverpage', () => {
       await slowDrag(peekEl, 0, 300);
       await peekEl.updateComplete;
 
-      window.dispatchEvent(new PointerEvent('pointerup', { clientX: 300, clientY: 100, isPrimary: true, bubbles: true }));
+      window.dispatchEvent(
+        new PointerEvent('pointerup', {
+          clientX: 300,
+          clientY: 100,
+          isPrimary: true,
+          bubbles: true,
+        })
+      );
       await vi.advanceTimersByTimeAsync(400);
       await peekEl.updateComplete;
 
@@ -310,7 +354,7 @@ describe('IbCoverpage', () => {
       await el.updateComplete;
 
       expect(tValues.length).toBeGreaterThan(0);
-      expect(tValues.some(t => t > 0 && t <= 1)).toBe(true);
+      expect(tValues.some((t) => t > 0 && t <= 1)).toBe(true);
     });
 
     it('progress event includes travel and side fields', async () => {
@@ -323,8 +367,8 @@ describe('IbCoverpage', () => {
       await vi.advanceTimersByTimeAsync(400);
       await el.updateComplete;
 
-      expect(events.every(e => typeof e.travel === 'number' && e.travel > 0)).toBe(true);
-      expect(events.every(e => e.side === 'left')).toBe(true);
+      expect(events.every((e) => typeof e.travel === 'number' && e.travel > 0)).toBe(true);
+      expect(events.every((e) => e.side === 'left')).toBe(true);
     });
 
     it('progress event emits t=1 when animation finishes', async () => {
@@ -359,7 +403,14 @@ describe('IbCoverpage', () => {
         gestureEvents.push(e.type);
       });
 
-      el.dispatchEvent(new PointerEvent('pointerdown', { clientX: 50, clientY: 100, isPrimary: false, bubbles: true }));
+      el.dispatchEvent(
+        new PointerEvent('pointerdown', {
+          clientX: 50,
+          clientY: 100,
+          isPrimary: false,
+          bubbles: true,
+        })
+      );
 
       expect(gestureEvents).toHaveLength(0);
     });
@@ -375,16 +426,37 @@ describe('IbCoverpage', () => {
         gestureEvents.push(e.type);
       });
 
-      el.dispatchEvent(new PointerEvent('pointerdown', { clientX: 50, clientY: 100, isPrimary: true, bubbles: true }));
+      el.dispatchEvent(
+        new PointerEvent('pointerdown', {
+          clientX: 50,
+          clientY: 100,
+          isPrimary: true,
+          bubbles: true,
+        })
+      );
 
       expect(gestureEvents).toContain('start');
     });
 
     it('updates cover via pointermove', async () => {
       // pointerdown, advance 1000ms (slow), pointermove, flush rAF
-      el.dispatchEvent(new PointerEvent('pointerdown', { clientX: 0, clientY: 100, isPrimary: true, bubbles: true }));
+      el.dispatchEvent(
+        new PointerEvent('pointerdown', {
+          clientX: 0,
+          clientY: 100,
+          isPrimary: true,
+          bubbles: true,
+        })
+      );
       await vi.advanceTimersByTimeAsync(1000);
-      window.dispatchEvent(new PointerEvent('pointermove', { clientX: 200, clientY: 100, isPrimary: true, bubbles: true }));
+      window.dispatchEvent(
+        new PointerEvent('pointermove', {
+          clientX: 200,
+          clientY: 100,
+          isPrimary: true,
+          bubbles: true,
+        })
+      );
       await vi.runAllTimersAsync();
       await el.updateComplete;
 
@@ -414,15 +486,15 @@ describe('IbCoverpage', () => {
       await newEl.updateComplete;
 
       expect(events.length).toBeGreaterThan(0);
-      expect(events.some(e => e.t === 1)).toBe(true);
-      expect(events.every(e => typeof e.travel === 'number' && e.travel > 0)).toBe(true);
-      expect(events.every(e => e.side === 'left')).toBe(true);
+      expect(events.some((e) => e.t === 1)).toBe(true);
+      expect(events.every((e) => typeof e.travel === 'number' && e.travel > 0)).toBe(true);
+      expect(events.every((e) => e.side === 'left')).toBe(true);
 
       newEl.hide();
       await vi.advanceTimersByTimeAsync(400);
       await newEl.updateComplete;
 
-      expect(events.some(e => e.t === 0)).toBe(true);
+      expect(events.some((e) => e.t === 0)).toBe(true);
 
       newEl.remove();
     });
@@ -460,7 +532,14 @@ describe('IbCoverpage', () => {
 
   describe('Lifecycle', () => {
     it('does not throw when disconnected during active gesture', () => {
-      el.dispatchEvent(new PointerEvent('pointerdown', { clientX: 0, clientY: 100, isPrimary: true, bubbles: true }));
+      el.dispatchEvent(
+        new PointerEvent('pointerdown', {
+          clientX: 0,
+          clientY: 100,
+          isPrimary: true,
+          bubbles: true,
+        })
+      );
       expect(() => el.remove()).not.toThrow();
     });
   });

@@ -4,7 +4,22 @@ import { property } from 'lit/decorators.js';
 import { GestureController } from './controllers/gesture-controller.js';
 import type { Side, IConfigProvider, Vec2 } from './types/definitions.js';
 import { CoverMath } from './utils/cover-math.js';
-import { BehaviorSubject, combineLatest, distinctUntilChanged, EMPTY, filter, map, Observable, share, shareReplay, skip, Subject, switchMap, takeUntil, withLatestFrom } from 'rxjs';
+import {
+  BehaviorSubject,
+  combineLatest,
+  distinctUntilChanged,
+  EMPTY,
+  filter,
+  map,
+  Observable,
+  share,
+  shareReplay,
+  skip,
+  Subject,
+  switchMap,
+  takeUntil,
+  withLatestFrom,
+} from 'rxjs';
 import { CoverpageEvents, type CoverpageEventMap } from './types/events.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { observeSize } from './utils/observe.js';
@@ -58,13 +73,13 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
     super.disconnectedCallback();
 
     this._fireCoverpageEvent(CoverpageEvents.Shutdown, {
-      elementId: this.id ?? ''
+      elementId: this.id ?? '',
     });
   }
 
   override firstUpdated() {
     this._fireCoverpageEvent(CoverpageEvents.Startup, {
-      elementId: this.id ?? ''
+      elementId: this.id ?? '',
     });
 
     // shareReplay(1) so all consumers (drag pipe, future combineLatests) share one ResizeObserver.
@@ -84,7 +99,7 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
     }
 
     const configKeys = ['side', 'movementThreshold', 'speedThreshold'] as const;
-    const configChanged = configKeys.some(k => changedProperties.has(k));
+    const configChanged = configKeys.some((k) => changedProperties.has(k));
     if (configChanged) {
       this._gestureController.disconnect();
       this._gestureController.connect(this);
@@ -113,9 +128,7 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
     }
 
     // translate$ applies transform to the cover element.
-    this._translate$.pipe(
-      takeUntil(this._disconnectSubject)
-    ).subscribe(tx => {
+    this._translate$.pipe(takeUntil(this._disconnectSubject)).subscribe((tx) => {
       this.coverElement.style.transform = this._buildTransform(tx);
     });
 
@@ -140,27 +153,34 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
         const dim = isHorizontal ? size.width : size.height;
         return { t, travel: (dim - peekSize) / 2 };
       })
-    ).pipe(takeUntil(this._disconnectSubject)).subscribe(({ t, travel }) => {
-      if (this.scrimElement) {
-        this.scrimElement.style.opacity = String(t);
-        const isActive = t > 0;
-        if (isActive !== _scrimActive) {
-          this.scrimElement.classList.toggle('is-active', isActive);
-          _scrimActive = isActive;
+    )
+      .pipe(takeUntil(this._disconnectSubject))
+      .subscribe(({ t, travel }) => {
+        if (this.scrimElement) {
+          this.scrimElement.style.opacity = String(t);
+          const isActive = t > 0;
+          if (isActive !== _scrimActive) {
+            this.scrimElement.classList.toggle('is-active', isActive);
+            _scrimActive = isActive;
+          }
         }
-      }
-      this._fireCoverpageEvent(CoverpageEvents.Progress, { elementId: this.id ?? '', t, travel, side: this.side });
-    });
+        this._fireCoverpageEvent(CoverpageEvents.Progress, {
+          elementId: this.id ?? '',
+          t,
+          travel,
+          side: this.side,
+        });
+      });
 
     const gesture$ = this._gestureController.gesture$;
 
     const start$ = gesture$.pipe(
-      filter(g => g.type === 'start'),
+      filter((g) => g.type === 'start'),
       share()
     );
 
     const end$ = gesture$.pipe(
-      filter(g => g.type === 'end' || g.type === 'flick'),
+      filter((g) => g.type === 'end' || g.type === 'flick'),
       share()
     );
 
@@ -177,75 +197,80 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
     // });
 
     // Drag: translate cover in real time while pointer is down.
-    start$.pipe(
-      switchMap(startEvent => {
-        const origin = this._translate$.getValue();
-        const startPos = startEvent.position;
-        const closed = this._closedTranslate();
-        const [min, max] = closed < 0 ? [closed, 0] : [0, closed];
+    start$
+      .pipe(
+        switchMap((startEvent) => {
+          const origin = this._translate$.getValue();
+          const startPos = startEvent.position;
+          const closed = this._closedTranslate();
+          const [min, max] = closed < 0 ? [closed, 0] : [0, closed];
 
-        return this._gestureController.position$.pipe(
-          takeUntil(end$),
-          map(pos => {
-            const delta = isHorizontal ? pos.x - startPos.x : pos.y - startPos.y;
-            return CoverMath.clamp(origin + delta, min, max);
-          })
-        );
-      }),
-      takeUntil(this._disconnectSubject)
-    ).subscribe(tx => {
-      this._translate$.next(tx);
-    });
+          return this._gestureController.position$.pipe(
+            takeUntil(end$),
+            map((pos) => {
+              const delta = isHorizontal ? pos.x - startPos.x : pos.y - startPos.y;
+              return CoverMath.clamp(origin + delta, min, max);
+            })
+          );
+        }),
+        takeUntil(this._disconnectSubject)
+      )
+      .subscribe((tx) => {
+        this._translate$.next(tx);
+      });
 
     // Drag end: snap to open or closed based on how far cover has traveled.
-    end$.pipe(
-      filter(g => g.type === 'end'),
-      takeUntil(this._disconnectSubject)
-    ).subscribe(() => {
-      const tx = this._translate$.getValue();
-      const closed = this._closedTranslate();
+    end$
+      .pipe(
+        filter((g) => g.type === 'end'),
+        takeUntil(this._disconnectSubject)
+      )
+      .subscribe(() => {
+        const tx = this._translate$.getValue();
+        const closed = this._closedTranslate();
 
-      if (Math.abs(tx) < Math.abs(closed) / 2)
-      {
-        this.show();
-      }
-      else {
-        this.hide();
-      }
-    });
+        if (Math.abs(tx) < Math.abs(closed) / 2) {
+          this.show();
+        } else {
+          this.hide();
+        }
+      });
 
     // Flick: open or close based on velocity direction relative to side.
-    end$.pipe(
-      filter(g => g.type === 'flick'),
-      takeUntil(this._disconnectSubject)
-    ).subscribe(e => {
-      // console.log('We have a flick');
-      if (this._flickShouldOpen(e.velocity)) {
-        this.show();
-      }
-      else {
-        this.hide();
-      }
-    });
+    end$
+      .pipe(
+        filter((g) => g.type === 'flick'),
+        takeUntil(this._disconnectSubject)
+      )
+      .subscribe((e) => {
+        // console.log('We have a flick');
+        if (this._flickShouldOpen(e.velocity)) {
+          this.show();
+        } else {
+          this.hide();
+        }
+      });
 
     // Resize: when settled closed, recompute translate from the new cover dimensions.
     // switchMap gates on open state — EMPTY while open, size stream while closed.
     // skip(1) drops shareReplay's immediate replay so only genuine resize events pass.
-    this._openState$.pipe(
-      switchMap(isOpen => {
-        if (isOpen) return EMPTY;
-        return this._coverSize$.pipe(
-          skip(1),
-          map(size => {
-            const dim = isHorizontal ? size.width : size.height;
-            return this._closedTranslate(dim);
-          })
-        );
-      }),
-      takeUntil(this._disconnectSubject)
-    ).subscribe(tx => {
-      this._translate$.next(tx);
-    });
+    this._openState$
+      .pipe(
+        switchMap((isOpen) => {
+          if (isOpen) return EMPTY;
+          return this._coverSize$.pipe(
+            skip(1),
+            map((size) => {
+              const dim = isHorizontal ? size.width : size.height;
+              return this._closedTranslate(dim);
+            })
+          );
+        }),
+        takeUntil(this._disconnectSubject)
+      )
+      .subscribe((tx) => {
+        this._translate$.next(tx);
+      });
   }
 
   // ---------------------------------------------------------------------------
@@ -330,17 +355,21 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
   }
 
   private _closedTranslate(dim?: number): number {
-    const size = dim ?? (
-      this.side === 'left' || this.side === 'right'
-        ? this.coverElement?.offsetWidth ?? 0
-        : this.coverElement?.offsetHeight ?? 0
-    );
+    const size =
+      dim ??
+      (this.side === 'left' || this.side === 'right'
+        ? (this.coverElement?.offsetWidth ?? 0)
+        : (this.coverElement?.offsetHeight ?? 0));
     const travel = size - this._getCssPeekSize();
     switch (this.side) {
-      case 'left': return -travel;
-      case 'right': return travel;
-      case 'top': return -travel;
-      case 'bottom': return travel;
+      case 'left':
+        return -travel;
+      case 'right':
+        return travel;
+      case 'top':
+        return -travel;
+      case 'bottom':
+        return travel;
     }
   }
 
@@ -354,20 +383,28 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
   /** Returns true if a flick in this velocity direction should open the cover. */
   private _flickShouldOpen(velocity: Vec2): boolean {
     switch (this.side) {
-      case 'left':   return velocity.x > 0;
-      case 'right':  return velocity.x < 0;
-      case 'top':    return velocity.y > 0;
-      case 'bottom': return velocity.y < 0;
+      case 'left':
+        return velocity.x > 0;
+      case 'right':
+        return velocity.x < 0;
+      case 'top':
+        return velocity.y > 0;
+      case 'bottom':
+        return velocity.y < 0;
     }
   }
 
   private _fireCoverpageEvent<TEventName extends keyof CoverpageEventMap>(
-    name: TEventName, payload: CoverpageEventMap[TEventName]) {
-    this.dispatchEvent(new CustomEvent<CoverpageEventMap[TEventName]>(name, {
-      detail: payload,
-      bubbles: true,
-      composed: true
-    }));
+    name: TEventName,
+    payload: CoverpageEventMap[TEventName]
+  ) {
+    this.dispatchEvent(
+      new CustomEvent<CoverpageEventMap[TEventName]>(name, {
+        detail: payload,
+        bubbles: true,
+        composed: true,
+      })
+    );
   }
 
   static override styles = css`
@@ -381,13 +418,13 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
     }
 
     /* Declared on :host (light DOM) so browser sees it in the composed tree touch-action walk. */
-    :host([side="top"]),
-    :host([side="bottom"]) {
+    :host([side='top']),
+    :host([side='bottom']) {
       touch-action: none;
     }
 
-    :host([side="left"]),
-    :host([side="right"]) {
+    :host([side='left']),
+    :host([side='right']) {
       touch-action: pan-y;
     }
 
@@ -451,10 +488,26 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
       touch-action: pan-x;
     }
 
-    .cover.left   { top: 0;  bottom: 0; left:   0; }
-    .cover.right  { top: 0;  bottom: 0; right:  0; }
-    .cover.top    { left: 0; right: 0;  top:    0; }
-    .cover.bottom { left: 0; right: 0;  bottom: 0; }
+    .cover.left {
+      top: 0;
+      bottom: 0;
+      left: 0;
+    }
+    .cover.right {
+      top: 0;
+      bottom: 0;
+      right: 0;
+    }
+    .cover.top {
+      left: 0;
+      right: 0;
+      top: 0;
+    }
+    .cover.bottom {
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
 
     /*
      * Slotted light-DOM elements with position:absolute resolve their containing
@@ -480,12 +533,14 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
   override render() {
     return html`
       <div class="scrim" @click=${() => this._handleScrimClick()}></div>
-      <div class=${classMap({
-      cover: true,
-      horizontal: this.side === 'left' || this.side === 'right',
-      vertical: this.side === 'top' || this.side === 'bottom',
-      [this.side]: true
-    })}>
+      <div
+        class=${classMap({
+          cover: true,
+          horizontal: this.side === 'left' || this.side === 'right',
+          vertical: this.side === 'top' || this.side === 'bottom',
+          [this.side]: true,
+        })}
+      >
         <div class="slot-wrapper">
           <slot></slot>
         </div>

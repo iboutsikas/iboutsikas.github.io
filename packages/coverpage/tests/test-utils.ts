@@ -18,7 +18,8 @@ export function createResizeObserverMock(): ResizeObserverMockInstance {
   const observe = vi.fn();
   const unobserve = vi.fn();
   const disconnect = vi.fn();
-  let callback: ((entries: { contentRect: { width: number; height: number } }[]) => void) | null = null;
+  let callback: ((entries: { contentRect: { width: number; height: number } }[]) => void) | null =
+    null;
 
   class ResizeObserverMock {
     constructor(cb: (entries: { contentRect: { width: number; height: number } }[]) => void) {
@@ -55,23 +56,31 @@ export function createResizeObserverMock(): ResizeObserverMockInstance {
 export function setupCoverpageJsdomMocks(): () => void {
   // jsdom returns 0 for all element dimensions; mock so _closedTranslate() is non-zero.
   Object.defineProperty(HTMLElement.prototype, 'offsetWidth', {
-    get() { return 1000; },
+    get() {
+      return 1000;
+    },
     configurable: true,
   });
   Object.defineProperty(HTMLElement.prototype, 'offsetHeight', {
-    get() { return 800; },
+    get() {
+      return 800;
+    },
     configurable: true,
   });
 
   // Mock getComputedStyle to read inline CSS custom properties.
   // A real CSS engine is not available in jsdom, so tests set inline styles directly.
   const savedGetComputedStyle = window.getComputedStyle;
-  (window as unknown as Record<string, unknown>).getComputedStyle = (element: Element): CSSStyleDeclaration => {
+  (window as unknown as Record<string, unknown>).getComputedStyle = (
+    element: Element
+  ): CSSStyleDeclaration => {
     const el = element as HTMLElement;
     return {
       getPropertyValue(name: string): string {
-        if (name === '--cover-peek-size') return el.style.getPropertyValue('--cover-peek-size') ?? '';
-        if (name === '--cover-anim-duration') return el.style.getPropertyValue('--cover-anim-duration') || '300ms';
+        if (name === '--cover-peek-size')
+          return el.style.getPropertyValue('--cover-peek-size') ?? '';
+        if (name === '--cover-anim-duration')
+          return el.style.getPropertyValue('--cover-anim-duration') || '300ms';
         return '';
       },
     } as CSSStyleDeclaration;
@@ -90,13 +99,17 @@ export function setupCoverpageJsdomMocks(): () => void {
 
 export function setViewport(width: number, height: number): void {
   Object.defineProperty(window, 'innerWidth', { value: width, writable: true, configurable: true });
-  Object.defineProperty(window, 'innerHeight', { value: height, writable: true, configurable: true });
+  Object.defineProperty(window, 'innerHeight', {
+    value: height,
+    writable: true,
+    configurable: true,
+  });
 }
 
 export async function createElement(
   resizeObserver: ResizeObserverMockInstance,
   side = 'left',
-  extra?: Partial<IbCoverpage>,
+  extra?: Partial<IbCoverpage>
 ): Promise<IbCoverpage> {
   const el = document.createElement('ib-coverpage') as IbCoverpage;
   el.setAttribute('side', side);
@@ -111,7 +124,8 @@ export async function createElement(
 
 export function queryShadowElement(root: IbCoverpage, selector: string): HTMLElement {
   const e = root.shadowRoot?.querySelector(selector);
-  if (e == null) throw new Error(`"${selector}" not found — ensure the component has finished updating.`);
+  if (e == null)
+    throw new Error(`"${selector}" not found — ensure the component has finished updating.`);
   return e as HTMLElement;
 }
 
@@ -121,19 +135,28 @@ export function queryShadowElement(root: IbCoverpage, selector: string): HTMLEle
 
 export function pointerDown(clientX = 0, clientY = 100, isPrimary = true): PointerEvent {
   return new PointerEvent('pointerdown', {
-    clientX, clientY, isPrimary, bubbles: true,
+    clientX,
+    clientY,
+    isPrimary,
+    bubbles: true,
   });
 }
 
 export function pointerMove(clientX = 0, clientY = 100, isPrimary = true): PointerEvent {
   return new PointerEvent('pointermove', {
-    clientX, clientY, isPrimary, bubbles: true,
+    clientX,
+    clientY,
+    isPrimary,
+    bubbles: true,
   });
 }
 
 export function pointerUp(clientX = 0, clientY = 100, isPrimary = true): PointerEvent {
   return new PointerEvent('pointerup', {
-    clientX, clientY, isPrimary, bubbles: true,
+    clientX,
+    clientY,
+    isPrimary,
+    bubbles: true,
   });
 }
 
@@ -150,7 +173,7 @@ export async function slowDrag(
   fromX: number,
   toX: number,
   fromY = 100,
-  toY = 100,
+  toY = 100
 ): Promise<void> {
   el.dispatchEvent(pointerDown(fromX, fromY));
   await vi.advanceTimersByTimeAsync(1000);
@@ -166,7 +189,7 @@ export async function simulateFlick(
   fromX: number,
   toX: number,
   fromY = 100,
-  toY = 100,
+  toY = 100
 ): Promise<void> {
   el.dispatchEvent(pointerDown(fromX, fromY));
   await vi.advanceTimersByTimeAsync(5);
@@ -191,7 +214,7 @@ export function isGestureEvent(obj: unknown): obj is GestureEvent {
 
 export function filterGestureByType(
   calls: unknown[][],
-  type: GestureEventType,
+  type: GestureEventType
 ): GestureEvent | undefined {
   const match = calls.find((call) => {
     const event = call[0];

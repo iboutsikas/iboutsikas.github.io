@@ -24,6 +24,6 @@
     "src/**/*.spec.jsx",
     "tests/**/*.ts",
     "test-page",
-    "dist",
+    "dist"
   ]
 }

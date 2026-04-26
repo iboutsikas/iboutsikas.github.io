@@ -9,11 +9,9 @@ export default [
       parserOptions: {
         tsconfigRootDir: import.meta.dirname,
         projectService: {
-          allowDefaultProject: [
-            'test-page/*.ts'
-          ],
+          allowDefaultProject: ['test-page/*.ts'],
           defaultProject: './tsconfig.spec.json',
-        }
+        },
       },
     },
   },
@@ -33,6 +31,6 @@ export default [
   },
   {
     ...tseslint.configs.disableTypeChecked,
-    files: ['**/*.js', '**/*.mjs']
-  }
+    files: ['**/*.js', '**/*.mjs'],
+  },
 ];

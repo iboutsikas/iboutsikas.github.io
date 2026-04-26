@@ -6,15 +6,15 @@ import { Observable } from 'rxjs';
  * @returns An observable that emits the element's width and height.
  */
 export function observeSize(element: HTMLElement): Observable<{ width: number; height: number }> {
-  return new Observable<{ width: number; height: number }>(subscriber => {
+  return new Observable<{ width: number; height: number }>((subscriber) => {
     // Emit current size synchronously so combinators like combineLatest work immediately.
     subscriber.next({ width: element.offsetWidth, height: element.offsetHeight });
 
-    const observer = new ResizeObserver(entries => {
+    const observer = new ResizeObserver((entries) => {
       for (const entry of entries) {
         subscriber.next({
           width: entry.contentRect.width,
-          height: entry.contentRect.height
+          height: entry.contentRect.height,
         });
       }
     });

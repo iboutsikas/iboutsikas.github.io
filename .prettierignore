@@ -4,3 +4,7 @@
 /.nx/cache
 /.nx/workspace-data
 .nx/self-healing
+node_modules/
+
+# Hugo Go templates — Prettier breaks Go template syntax
+apps/hugo-site/themes/**/layouts/**/*.html

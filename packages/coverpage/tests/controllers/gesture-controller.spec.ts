@@ -21,7 +21,7 @@ describe('GestureController', () => {
     config = {
       side: 'right',
       movementThreshold: 10,
-      speedThreshold: 5
+      speedThreshold: 5,
     };
     element = document.createElement('div');
     document.body.appendChild(element);
@@ -43,11 +43,13 @@ describe('GestureController', () => {
       element.dispatchEvent(pointerDown(100, 100));
       await vi.runAllTimersAsync();
 
-      expect(gestureSpy).toHaveBeenCalledWith(expect.objectContaining({
-        type: 'start',
-        position: { x: 100, y: 100 },
-        velocity: { x: 0, y: 0 }
-      }));
+      expect(gestureSpy).toHaveBeenCalledWith(
+        expect.objectContaining({
+          type: 'start',
+          position: { x: 100, y: 100 },
+          velocity: { x: 0, y: 0 },
+        })
+      );
     });
 
     it('should emit move gesture on pointermove', async () => {
@@ -63,10 +65,12 @@ describe('GestureController', () => {
       window.dispatchEvent(pointerMove(150, 150));
       await vi.runAllTimersAsync();
 
-      expect(gestureSpy).toHaveBeenCalledWith(expect.objectContaining({
-        type: 'move',
-        position: { x: 150, y: 150 }
-      }));
+      expect(gestureSpy).toHaveBeenCalledWith(
+        expect.objectContaining({
+          type: 'move',
+          position: { x: 150, y: 150 },
+        })
+      );
     });
 
     it('should emit end gesture on pointerup', async () => {
@@ -82,10 +86,12 @@ describe('GestureController', () => {
       window.dispatchEvent(pointerUp(105, 105));
       await vi.runAllTimersAsync();
 
-      expect(gestureSpy).toHaveBeenCalledWith(expect.objectContaining({
-        type: 'end',
-        position: { x: 105, y: 105 }
-      }));
+      expect(gestureSpy).toHaveBeenCalledWith(
+        expect.objectContaining({
+          type: 'end',
+          position: { x: 105, y: 105 },
+        })
+      );
     });
   });
 
@@ -107,30 +113,36 @@ describe('GestureController', () => {
       element.dispatchEvent(pointerDown(100, 100));
       await vi.runAllTimersAsync();
 
-      expect(gestureSpy).toHaveBeenCalledWith(expect.objectContaining({
-        type: 'start',
-        position: expect.objectContaining({ x: 100, y: 100 }),
-        velocity: expect.objectContaining({ x: expect.any(Number), y: expect.any(Number) }),
-        timestamp: expect.any(Number)
-      }));
+      expect(gestureSpy).toHaveBeenCalledWith(
+        expect.objectContaining({
+          type: 'start',
+          position: expect.objectContaining({ x: 100, y: 100 }),
+          velocity: expect.objectContaining({ x: expect.any(Number), y: expect.any(Number) }),
+          timestamp: expect.any(Number),
+        })
+      );
 
       window.dispatchEvent(pointerMove(150, 150));
       await vi.runAllTimersAsync();
 
-      expect(gestureSpy).toHaveBeenCalledWith(expect.objectContaining({
-        type: 'move',
-        position: { x: 150, y: 150 },
-        timestamp: expect.any(Number)
-      }));
+      expect(gestureSpy).toHaveBeenCalledWith(
+        expect.objectContaining({
+          type: 'move',
+          position: { x: 150, y: 150 },
+          timestamp: expect.any(Number),
+        })
+      );
 
       window.dispatchEvent(pointerUp(150, 150));
       await vi.runAllTimersAsync();
 
-      expect(gestureSpy).toHaveBeenCalledWith(expect.objectContaining({
-        type: 'end',
-        position: { x: 150, y: 150 },
-        timestamp: expect.any(Number)
-      }));
+      expect(gestureSpy).toHaveBeenCalledWith(
+        expect.objectContaining({
+          type: 'end',
+          position: { x: 150, y: 150 },
+          timestamp: expect.any(Number),
+        })
+      );
     });
 
     it('should emit start gesture on duplicate pointerdown', async () => {

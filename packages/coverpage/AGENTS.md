@@ -36,13 +36,13 @@ tests/
 
 ### Properties (`@property`)
 
-| Property | Type | Default | Notes |
-|---|---|---|---|
-| `side` | `'left'\|'right'\|'top'\|'bottom'` | `'left'` | Which edge cover slides from |
-| `movementThreshold` | `number` | `10` | Min px² distance before drag registers |
-| `speedThreshold` | `number` | `2` | px/ms velocity for flick detection |
-| `peekSize` | `number` | `0` | Px visible when closed (also via CSS) |
-| `open` | `boolean` | `false` | Setting at parse time = no animation |
+| Property            | Type                               | Default  | Notes                                  |
+| ------------------- | ---------------------------------- | -------- | -------------------------------------- |
+| `side`              | `'left'\|'right'\|'top'\|'bottom'` | `'left'` | Which edge cover slides from           |
+| `movementThreshold` | `number`                           | `10`     | Min px² distance before drag registers |
+| `speedThreshold`    | `number`                           | `2`      | px/ms velocity for flick detection     |
+| `peekSize`          | `number`                           | `0`      | Px visible when closed (also via CSS)  |
+| `open`              | `boolean`                          | `false`  | Setting at parse time = no animation   |
 
 ### Public methods
 
@@ -56,24 +56,24 @@ tests/
 
 ### CSS custom properties
 
-| Property | Default | Effect |
-|---|---|---|
-| `--cover-size` | `100%` | Width (horizontal) or height (vertical) |
-| `--cover-anim-duration` | `300ms` | Snap/flick animation duration |
-| `--cover-peek-size` | `0px` | Visible size when closed (overrides `peekSize`) |
-| `--cover-base-z-index` | `100` | Stacking base; scrim = base, cover = base+2, slot-wrapper = base+3 |
+| Property                | Default | Effect                                                             |
+| ----------------------- | ------- | ------------------------------------------------------------------ |
+| `--cover-size`          | `100%`  | Width (horizontal) or height (vertical)                            |
+| `--cover-anim-duration` | `300ms` | Snap/flick animation duration                                      |
+| `--cover-peek-size`     | `0px`   | Visible size when closed (overrides `peekSize`)                    |
+| `--cover-base-z-index`  | `100`   | Stacking base; scrim = base, cover = base+2, slot-wrapper = base+3 |
 
 ### Events (all bubble + composed)
 
 All events use `CoverpageEvents` enum as names. Payloads:
 
-| Event | Name string | Payload fields |
-|---|---|---|
-| `Startup` | `coverpage-startup` | `elementId` |
-| `Shutdown` | `coverpage-shutdown` | `elementId` |
-| `BeforeAnimation` | `coverpage-before-animation` | `elementId` |
-| `AfterAnimation` | `coverpage-after-animation` | `elementId` |
-| `Progress` | `coverpage-progress` | `elementId, t (0–1), travel (px), side` |
+| Event             | Name string                  | Payload fields                          |
+| ----------------- | ---------------------------- | --------------------------------------- |
+| `Startup`         | `coverpage-startup`          | `elementId`                             |
+| `Shutdown`        | `coverpage-shutdown`         | `elementId`                             |
+| `BeforeAnimation` | `coverpage-before-animation` | `elementId`                             |
+| `AfterAnimation`  | `coverpage-after-animation`  | `elementId`                             |
+| `Progress`        | `coverpage-progress`         | `elementId, t (0–1), travel (px), side` |
 
 ### Shadow DOM structure
 
@@ -104,9 +104,11 @@ All events use `CoverpageEvents` enum as names. Payloads:
 RxJS-based pointer event processor. Not a Lit ReactiveController — manually wired.
 
 ### Constructor
+
 ```ts
 new GestureController(config: IConfigProvider)
 ```
+
 `IConfigProvider` = `{ movementThreshold: number, speedThreshold: number }`
 
 ### Public API
@@ -130,17 +132,20 @@ new GestureController(config: IConfigProvider)
 ## Types (`src/types/`)
 
 ### `definitions.ts`
+
 - `Side` — `'left'|'right'|'top'|'bottom'`
 - `CoverConfig` — `{ side, movementThreshold, speedThreshold }`
 - `IConfigProvider` — getter subset of `CoverConfig` (used by `GestureController`)
 - `Vec2` — `{ x: number, y: number }`
 
 ### `gesture.ts`
+
 - `GestureEvent` — `{ type, position: Vec2, velocity: Vec2, timestamp: number }` (readonly)
 - `createGestureEvent(type, position, velocity?, timestamp?)` — factory
 - `gestureEventFrom(other, overrides?)` — shallow-copy + override
 
 ### `events.ts`
+
 - `CoverpageEvents` enum — string event names
 - `CoverpageEventMap` — maps enum keys to payload interfaces
 - Global `WindowEventMap` augmentation for typed `addEventListener`
@@ -150,11 +155,13 @@ new GestureController(config: IConfigProvider)
 ## Utils (`src/utils/`)
 
 ### `cover-math.ts` — `CoverMath` (static class)
+
 - `clamp(value, min, max)` — generic number clamp
 - `distanceSq(a, b)` — squared Euclidean distance between two `Vec2`
 - `magnitudeSq(a)` — squared magnitude of `Vec2`
 
 ### `observe.ts`
+
 - `observeSize(element)` → `Observable<{width, height}>` — wraps `ResizeObserver`, emits current size synchronously on subscribe, disconnects on unsubscribe
 
 ---
@@ -163,12 +170,12 @@ new GestureController(config: IConfigProvider)
 
 Run all tasks via `npx <target> coverpage`.
 
-| Target | What it does |
-|---|---|
-| `build` | builds ES bundle to `dist/` |
-| `test` | Vitest, jsdom environment, single run; not watch |
-| `dev` | Serves `test-page/` on 0.0.0.0 (manual dev harness) |
-| `typecheck` | `tsc --noEmit` |
+| Target      | What it does                                        |
+| ----------- | --------------------------------------------------- |
+| `build`     | builds ES bundle to `dist/`                         |
+| `test`      | Vitest, jsdom environment, single run; not watch    |
+| `dev`       | Serves `test-page/` on 0.0.0.0 (manual dev harness) |
+| `typecheck` | `tsc --noEmit`                                      |
 
 ---
 

@@ -2,16 +2,16 @@ import type { CoverpageProgress, IbCoverpage } from '../src/index.js';
 
 const isMobile = () => {
   return window.matchMedia('(max-width: 768px)').matches;
-}
+};
 
-const leftCover   = document.querySelector<IbCoverpage>('#left-cover');
-const rightCover  = document.querySelector<IbCoverpage>('#right-cover');
-const topCover    = document.querySelector<IbCoverpage>('#top-cover');
+const leftCover = document.querySelector<IbCoverpage>('#left-cover');
+const rightCover = document.querySelector<IbCoverpage>('#right-cover');
+const topCover = document.querySelector<IbCoverpage>('#top-cover');
 const bottomCover = document.querySelector<IbCoverpage>('#bottom-cover');
 
-const leftBackground   = document.querySelector<HTMLElement>('#left-background');
-const rightBackground  = document.querySelector<HTMLElement>('#right-background');
-const topBackground    = document.querySelector<HTMLElement>('#top-background');
+const leftBackground = document.querySelector<HTMLElement>('#left-background');
+const rightBackground = document.querySelector<HTMLElement>('#right-background');
+const topBackground = document.querySelector<HTMLElement>('#top-background');
 const bottomBackground = document.querySelector<HTMLElement>('#bottom-background');
 
 // ---------------------------------------------------------------------------
@@ -21,12 +21,12 @@ const bottomBackground = document.querySelector<HTMLElement>('#bottom-background
 function wireToggle(btnId: string, cover: IbCoverpage | null) {
   const btn = document.getElementById(btnId);
   if (!btn || !cover) return;
-  btn.addEventListener('click', () => cover.open ? cover.hide() : cover.show());
+  btn.addEventListener('click', () => (cover.open ? cover.hide() : cover.show()));
 }
 
-wireToggle('toggle-left',   leftCover);
-wireToggle('toggle-right',  rightCover);
-wireToggle('toggle-top',    topCover);
+wireToggle('toggle-left', leftCover);
+wireToggle('toggle-right', rightCover);
+wireToggle('toggle-top', topCover);
 wireToggle('toggle-bottom', bottomCover);
 
 // ---------------------------------------------------------------------------
@@ -37,8 +37,7 @@ wireToggle('toggle-bottom', bottomCover);
 
 if (leftCover && leftBackground) {
   leftCover.addEventListener('coverpage-progress', ((e: CustomEvent<CoverpageProgress>) => {
-    if (!e.detail)
-      return;
+    if (!e.detail) return;
 
     const { t, travel } = e.detail;
     leftBackground.style.transform = `translateX(${travel * (1 - t)}px)`;

@@ -27,11 +27,14 @@ export function createGestureEvent(
  * Creates a new GestureEvent from an existing one with optional field overrides.
  * Position is shallow-copied to prevent accidental mutation.
  */
-export function gestureEventFrom(other: GestureEvent, overrides?: Partial<GestureEvent>): GestureEvent {
+export function gestureEventFrom(
+  other: GestureEvent,
+  overrides?: Partial<GestureEvent>
+): GestureEvent {
   return {
     type: overrides?.type ?? other.type,
     position: overrides?.position ?? { ...other.position },
     velocity: overrides?.velocity ?? other.velocity,
-    timestamp: overrides?.timestamp ?? other.timestamp
+    timestamp: overrides?.timestamp ?? other.timestamp,
   };
 }

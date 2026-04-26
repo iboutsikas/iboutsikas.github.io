@@ -2,7 +2,6 @@ import path from 'path';
 /// <reference types="vitest" />
 import { defineConfig, LibraryFormats } from 'vite';
 
-
 export default defineConfig(() => ({
   root: __dirname,
   cacheDir: '../../node_modules/.vite/packages/@iboutsikas/coverpage',
@@ -13,12 +12,12 @@ export default defineConfig(() => ({
   // },
   build: {
     lib: {
-        name: '@iboutsikas/coverpage',
-        entry: path.resolve(__dirname, 'src/index.ts'),
-        fileName: 'coverpage',
-        formats: ["es"] as LibraryFormats[]
+      name: '@iboutsikas/coverpage',
+      entry: path.resolve(__dirname, 'src/index.ts'),
+      fileName: 'coverpage',
+      formats: ['es'] as LibraryFormats[],
     },
-    outDir: 'dist'
+    outDir: 'dist',
   },
   test: {
     name: '@iboutsikas/coverpage',
@@ -33,6 +32,6 @@ export default defineConfig(() => ({
     },
   },
   server: {
-    host: true
-  }
+    host: true,
+  },
 }));

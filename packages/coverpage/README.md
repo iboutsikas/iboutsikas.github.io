@@ -29,45 +29,45 @@ A Lit web component implementing a swipeable cover/drawer panel with pointer ges
 import '@iboutsikas/coverpage';
 
 const cover = document.querySelector('ib-coverpage');
-cover.show();  // open
-cover.hide();  // close
+cover.show(); // open
+cover.hide(); // close
 ```
 
 ## Properties
 
-| Property | Type | Default | Description |
-|----------|------|---------|-------------|
-| `side` | `'left' \| 'right' \| 'top' \| 'bottom'` | `'left'` | Edge the cover slides from |
-| `movementThreshold` | `number` | `10` | Pixels of movement to trigger a drag |
-| `speedThreshold` | `number` | `2.5` | Velocity threshold for flick detection |
-| `peekSize` | `number` | `0` | Minimum visible size of the closed cover |
-| `open` | `boolean` | `false` | Whether the cover is open |
+| Property            | Type                                     | Default  | Description                              |
+| ------------------- | ---------------------------------------- | -------- | ---------------------------------------- |
+| `side`              | `'left' \| 'right' \| 'top' \| 'bottom'` | `'left'` | Edge the cover slides from               |
+| `movementThreshold` | `number`                                 | `10`     | Pixels of movement to trigger a drag     |
+| `speedThreshold`    | `number`                                 | `2.5`    | Velocity threshold for flick detection   |
+| `peekSize`          | `number`                                 | `0`      | Minimum visible size of the closed cover |
+| `open`              | `boolean`                                | `false`  | Whether the cover is open                |
 
 ## CSS Custom Properties
 
-| Property | Default | Description |
-|----------|---------|-------------|
-| `--cover-peek-size` | `0px` | Size of the cover when closed |
-| `--cover-size` | `100%` | Size of the cover when open |
-| `--cover-anim-duration` | `300ms` | Duration of open/close animations |
-| `--cover-base-z-index` | `100` | Base z-index for the cover and scrim |
+| Property                | Default | Description                          |
+| ----------------------- | ------- | ------------------------------------ |
+| `--cover-peek-size`     | `0px`   | Size of the cover when closed        |
+| `--cover-size`          | `100%`  | Size of the cover when open          |
+| `--cover-anim-duration` | `300ms` | Duration of open/close animations    |
+| `--cover-base-z-index`  | `100`   | Base z-index for the cover and scrim |
 
 ## Methods
 
-| Method | Description |
-|--------|-------------|
-| `show()` | Slide the cover to the fully open position |
+| Method   | Description                                         |
+| -------- | --------------------------------------------------- |
+| `show()` | Slide the cover to the fully open position          |
 | `hide()` | Slide the cover back to the resting (peek) position |
 
 ## Events
 
-| Event | Detail | Description |
-|-------|--------|-------------|
-| `coverpage-startup` | `{ elementId: string }` | Component connected and initialized |
-| `coverpage-shutdown` | `{ elementId: string }` | Component disconnected |
-| `coverpage-before-animation` | `{ elementId: string }` | Animation about to start |
-| `coverpage-after-animation` | `{ elementId: string }` | Animation completed |
-| `coverpage-progress` | `{ elementId: string, t: number }` | Progress during drag/animation (`0` = closed, `1` = open) |
+| Event                        | Detail                             | Description                                               |
+| ---------------------------- | ---------------------------------- | --------------------------------------------------------- |
+| `coverpage-startup`          | `{ elementId: string }`            | Component connected and initialized                       |
+| `coverpage-shutdown`         | `{ elementId: string }`            | Component disconnected                                    |
+| `coverpage-before-animation` | `{ elementId: string }`            | Animation about to start                                  |
+| `coverpage-after-animation`  | `{ elementId: string }`            | Animation completed                                       |
+| `coverpage-progress`         | `{ elementId: string, t: number }` | Progress during drag/animation (`0` = closed, `1` = open) |
 
 ```js
 cover.addEventListener('coverpage-progress', (e) => {
