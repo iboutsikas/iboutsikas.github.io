@@ -1,5 +1,5 @@
 import { LitElement, html, css, type PropertyValues } from 'lit';
-import { customElement, query, state } from 'lit/decorators.js';
+import { customElement, query } from 'lit/decorators.js';
 import { property } from 'lit/decorators.js';
 import { GestureController } from './controllers/gesture-controller.js';
 import type { Side, IConfigProvider, Vec2 } from './types/definitions.js';
@@ -14,13 +14,13 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
   /** The side from which the cover will be drawn. */
   @property({ type: String }) accessor side: Side = 'left';
   /** The threshold for movement to trigger an interaction. */
-  @property({ type: Number }) accessor movementThreshold: number = 10;
+  @property({ type: Number }) accessor movementThreshold = 10;
   /** The threshold for velocity to trigger a flick. */
-  @property({ type: Number }) accessor speedThreshold: number = 2;
+  @property({ type: Number }) accessor speedThreshold = 2;
   /** The minimum size of the peeked cover. */
-  @property({ type: Number }) accessor peekSize: number = 0;
+  @property({ type: Number }) accessor peekSize = 0;
   /** Whether the cover is open. Setting this attribute on load starts the cover fully open. */
-  @property({ type: Boolean }) accessor open: boolean = false;
+  @property({ type: Boolean }) accessor open = false;
 
   /** The cover element. */
   @query('.cover') accessor coverElement!: HTMLElement;
@@ -46,12 +46,12 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
   // Guards against animating on first render (open attribute set at parse time).
   private _firstUpdateDone = false;
 
-  connectedCallback() {
+  override connectedCallback() {
     super.connectedCallback();
     this._gestureController.connect(this);
   }
 
-  disconnectedCallback() {
+  override disconnectedCallback() {
     this._cancelAnimation();
     this._disconnectSubject.next();
     this._gestureController.disconnect();
@@ -62,7 +62,7 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
     });
   }
 
-  firstUpdated() {
+  override firstUpdated() {
     this._fireCoverpageEvent(CoverpageEvents.Startup, {
       elementId: this.id ?? ''
     });
@@ -77,7 +77,7 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
     this._openState$.next(this.open);
   }
 
-  updated(changedProperties: PropertyValues<this>) {
+  override updated(changedProperties: PropertyValues<this>) {
     // Skip first update — initial position is set directly in firstUpdated.
     if (changedProperties.has('open') && this._firstUpdateDone) {
       this._animateTo(this.open ? 0 : this._closedTranslate(), this.open);
@@ -152,7 +152,7 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
       this._fireCoverpageEvent(CoverpageEvents.Progress, { elementId: this.id ?? '', t, travel, side: this.side });
     });
 
-    const gesture$ = this._gestureController!.gesture$;
+    const gesture$ = this._gestureController.gesture$;
 
     const start$ = gesture$.pipe(
       filter(g => g.type === 'start'),
@@ -204,7 +204,14 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
     ).subscribe(() => {
       const tx = this._translate$.getValue();
       const closed = this._closedTranslate();
-      Math.abs(tx) < Math.abs(closed) / 2 ? this.show() : this.hide();
+
+      if (Math.abs(tx) < Math.abs(closed) / 2)
+      {
+        this.show();
+      }
+      else {
+        this.hide();
+      }
     });
 
     // Flick: open or close based on velocity direction relative to side.
@@ -213,7 +220,12 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
       takeUntil(this._disconnectSubject)
     ).subscribe(e => {
       console.log('We have a flick');
-      this._flickShouldOpen(e.velocity) ? this.show() : this.hide();
+      if (this._flickShouldOpen(e.velocity)) {
+        this.show();
+      }
+      else {
+        this.hide();
+      }
     });
 
     // Resize: when settled closed, recompute translate from the new cover dimensions.
@@ -358,7 +370,7 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
     }));
   }
 
-  static styles = css`
+  static override styles = css`
     :host {
       display: block;
       --cover-peek-size: 0px;
@@ -465,9 +477,9 @@ export class IbCoverpage extends LitElement implements IConfigProvider {
     }
   `;
 
-  render() {
+  override render() {
     return html`
-      <div class="scrim" @click=${this._handleScrimClick}></div>
+      <div class="scrim" @click=${() => this._handleScrimClick()}></div>
       <div class=${classMap({
       cover: true,
       horizontal: this.side === 'left' || this.side === 'right',

@@ -1,4 +1,4 @@
-import { Observable, map } from 'rxjs';
+import { Observable } from 'rxjs';
 
 /**
  * Utility to observe the size of an element using ResizeObserver.

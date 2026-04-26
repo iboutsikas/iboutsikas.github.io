@@ -1,5 +1,6 @@
 import '../src/index.js';
 import type { IbCoverpage } from '../src/coverpage.js';
+import { CoverpageEvents } from '../src/index.js';
 
 const isMobile = () => {
   return window.matchMedia('(max-width: 768px)').matches;
@@ -37,7 +38,10 @@ wireToggle('toggle-bottom', bottomCover);
 // ---------------------------------------------------------------------------
 
 if (leftCover && leftBackground) {
-  leftCover.addEventListener('coverpage-progress', (e: CustomEvent) => {
+  leftCover.addEventListener('coverpage-progress', (e: CustomEvent<CoverpageEvents.Progress>) => {
+    if (!e.detail)
+      return;
+
     const { t, travel } = e.detail;
     leftBackground.style.transform = `translateX(${travel * (1 - t)}px)`;
 
