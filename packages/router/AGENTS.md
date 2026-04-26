@@ -110,10 +110,9 @@ Evaluated once at import time. In jsdom (vitest) this is `false` by default.
 
 ## Nx targets
 
-| Target           | Command                                |
-| ---------------- | -------------------------------------- |
-| `build`          | `npm exec nx -- build router`          |
-| `build:lib`      | `npm exec nx -- build:lib router`      |
-| `vite:test`      | `npm exec nx -- vite:test router`      |
-| `dev`            | `npm exec nx -- dev router`            |
-| `vite:typecheck` | `npm exec nx -- vite:typecheck router` |
+| Target      | Command                   |
+| ----------- | ------------------------- |
+| `build`     | `npx nx build router`     |
+| `test`      | `npx nx test router`      |
+| `dev`       | `npx nx dev router`       |
+| `typecheck` | `npx nx typecheck router` |
