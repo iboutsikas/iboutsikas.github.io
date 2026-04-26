@@ -27,27 +27,25 @@ function isSamePage(url: string): boolean {
 @customElement('ib-router')
 export class IbRouter extends LitElement {
   /** Element whose innerHTML gets swapped. */
-  @property({ type: String }) accessor contentSelector: string = '#_content';
+  @property({ type: String }) accessor contentSelector = '#_content';
 
   /** Class added to content element before swap. */
-  @property({ type: String }) accessor leavingClass: string = 'router-leaving';
+  @property({ type: String }) accessor leavingClass = 'router-leaving';
 
   /** Class added to content element after swap. */
-  @property({ type: String }) accessor enteringClass: string = 'router-entering';
+  @property({ type: String }) accessor enteringClass = 'router-entering';
 
   private _clickHandler: ((e: MouseEvent) => void) | null = null;
   private _popstateHandler: (() => void) | null = null;
   private _controller: AbortController | null = null;
 
-  connectedCallback() {
+  override connectedCallback() {
     super.connectedCallback();
-    this._clickHandler = this._handleClick.bind(this);
-    this._popstateHandler = this._handlePopstate.bind(this);
-    document.addEventListener('click', this._clickHandler);
-    window.addEventListener('popstate', this._popstateHandler);
+    document.addEventListener('click', (_) => this._clickHandler());
+    window.addEventListener('popstate', (_) => this._popstateHandler());
   }
 
-  disconnectedCallback() {
+  override disconnectedCallback() {
     this._disconnect();
     super.disconnectedCallback();
   }
@@ -113,7 +111,9 @@ export class IbRouter extends LitElement {
           this._applySwap(url, html, title, pushState);
           this._dispatchNavigated(url, title, from, isBackForward);
         });
-        await transition.finished.catch(() => {});
+        await transition.finished.catch(() => {
+          // noop
+        });
         this._dispatchNavigationComplete(url, title, from, isBackForward);
       } else {
         const prevented = this._beforeNavigate(url, title);
@@ -284,11 +284,11 @@ export class IbRouter extends LitElement {
     el.classList.remove(this.enteringClass);
   }
 
-  createRenderRoot() {
+  override createRenderRoot() {
     return this;
   }
 
-  render() {
+  override render() {
     return nothing;
   }
 }

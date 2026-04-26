@@ -96,10 +96,11 @@ Evaluated once at import time. In jsdom (vitest) this is `false` by default.
 
 ## Test files
 
-| File                    | Environment                                | What it covers                                                         |
-| ----------------------- | ------------------------------------------ | ---------------------------------------------------------------------- |
-| `src/router.spec.ts`    | jsdom (SUPPORTS_VT=false)                  | lifecycle, click bypasses, navigation core, events, transition classes |
-| `src/router-vt.spec.ts` | jsdom + hoisted VT mock (SUPPORTS_VT=true) | VT code path                                                           |
+| File                       | Environment                                | What it covers                                                         |
+| -------------------------- | ------------------------------------------ | ---------------------------------------------------------------------- |
+| `tests/router.spec.ts`     | jsdom (SUPPORTS_VT=false)                  | lifecycle, click bypasses, navigation core, events, transition classes |
+| `tests/router-vt.spec.ts`  | jsdom + hoisted VT mock (SUPPORTS_VT=true) | VT code path                                                           |
+| `tests/test-utils.ts`      | —                                          | shared helpers: DOM setup, event collectors, fetch/location mocks      |
 
 ### Test setup notes
 

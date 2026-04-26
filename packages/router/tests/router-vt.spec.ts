@@ -20,48 +20,23 @@ const startViewTransitionMock = vi.hoisted(() => {
   return mock;
 });
 
-// Import AFTER hoisted patch — SUPPORTS_VT is now true
-import { IbRouter, RouterEvents } from './index.js';
+import { IbRouter, RouterEvents } from '../src/index.js';
+import {
+  makeFetch,
+  clickAnchor,
+  flushMicrotasks,
+  makeLocationValue,
+  createRouterTestBed,
+  teardownRouterTestBed,
+  listenFor,
+} from './test-utils.js';
 
-// ─── helpers ─────────────────────────────────────────────────────────────────
-
-function buildPageHtml(contentHtml: string, title: string): string {
-  return `<!DOCTYPE html><html><head><title>${title}</title></head><body><div id="_content">${contentHtml}</div></body></html>`;
-}
-
-function makeFetch(contentHtml = '<p>vt-new</p>', title = 'VT Page') {
-  return vi.fn().mockResolvedValue(
-    new Response(buildPageHtml(contentHtml, title), {
-      status: 200,
-      headers: { 'Content-Type': 'text/html' },
-    })
-  );
-}
-
-function clickAnchor(href: string): MouseEvent {
-  const a = document.createElement('a');
-  a.href = href;
-  document.body.appendChild(a);
-  const event = new MouseEvent('click', { bubbles: true, cancelable: true, button: 0 });
-  a.dispatchEvent(event);
-  a.remove();
-  return event;
-}
-
-function flushMicrotasks(): Promise<void> {
-  return new Promise((resolve) => queueMicrotask(resolve));
-}
+const assignMock = vi.fn();
 
 async function settleNavigation(): Promise<void> {
   // VT path: fetch tick + 2 ticks for `await transition.finished.catch()` chain + queueMicrotask tick
   for (let i = 0; i < 6; i++) await flushMicrotasks();
 }
-
-// ─── location mock ────────────────────────────────────────────────────────────
-
-const assignMock = vi.fn();
-
-// ─── suite ───────────────────────────────────────────────────────────────────
 
 describe('IbRouter (View Transitions)', () => {
   let router: IbRouter;
@@ -71,41 +46,19 @@ describe('IbRouter (View Transitions)', () => {
     Object.defineProperty(window, 'location', {
       configurable: true,
       writable: true,
-      value: {
-        href: 'http://localhost/',
-        origin: 'http://localhost',
-        pathname: '/',
-        search: '',
-        hash: '',
-        assign: assignMock,
-        replace: vi.fn(),
-        reload: vi.fn(),
-        toString: () => 'http://localhost/',
-      },
+      value: makeLocationValue({ assign: assignMock }),
     });
   });
 
   beforeEach(() => {
-    assignMock.mockReset();
+    const bed = createRouterTestBed(assignMock);
+    router = bed.router as unknown as IbRouter;
+    content = bed.content;
     startViewTransitionMock.mockClear();
-    vi.stubGlobal('fetch', makeFetch());
-    vi.stubGlobal('scrollTo', vi.fn());
-    vi.spyOn(history, 'pushState').mockImplementation(() => {});
-
-    content = document.createElement('div');
-    content.id = '_content';
-    content.innerHTML = '<p>initial</p>';
-    document.body.appendChild(content);
-
-    router = document.createElement('ib-router') as IbRouter;
-    document.body.appendChild(router);
   });
 
   afterEach(() => {
-    router.remove();
-    content.remove();
-    vi.restoreAllMocks();
-    vi.unstubAllGlobals();
+    teardownRouterTestBed(router, content);
   });
 
   it('calls document.startViewTransition for navigation', async () => {
@@ -140,8 +93,7 @@ describe('IbRouter (View Transitions)', () => {
 
   it('fires router-before-navigate before transition', async () => {
     vi.stubGlobal('fetch', makeFetch('<p>x</p>', 'T'));
-    const events: CustomEvent[] = [];
-    router.addEventListener(RouterEvents.BeforeNavigate, (e) => events.push(e as CustomEvent));
+    const events = listenFor(router, RouterEvents.BeforeNavigate);
 
     clickAnchor('http://localhost/page2');
     await settleNavigation();
@@ -151,8 +103,7 @@ describe('IbRouter (View Transitions)', () => {
   });
 
   it('fires router-navigated inside the transition callback', async () => {
-    const events: CustomEvent[] = [];
-    router.addEventListener(RouterEvents.Navigated, (e) => events.push(e as CustomEvent));
+    const events = listenFor(router, RouterEvents.Navigated);
 
     clickAnchor('http://localhost/page2');
     await settleNavigation();
@@ -162,8 +113,7 @@ describe('IbRouter (View Transitions)', () => {
   });
 
   it('fires router-navigation-complete after transition.finished', async () => {
-    const events: CustomEvent[] = [];
-    router.addEventListener(RouterEvents.NavigationComplete, (e) => events.push(e as CustomEvent));
+    const events = listenFor(router, RouterEvents.NavigationComplete);
 
     clickAnchor('http://localhost/page2');
     await settleNavigation();
@@ -185,8 +135,7 @@ describe('IbRouter (View Transitions)', () => {
 
   it('fires router-navigation-error on HTTP error', async () => {
     vi.stubGlobal('fetch', vi.fn().mockResolvedValue(new Response('', { status: 503 })));
-    const errors: CustomEvent[] = [];
-    router.addEventListener(RouterEvents.NavigationError, (e) => errors.push(e as CustomEvent));
+    const errors = listenFor(router, RouterEvents.NavigationError);
 
     clickAnchor('http://localhost/broken');
     await settleNavigation();
@@ -212,14 +161,9 @@ describe('IbRouter (View Transitions)', () => {
     });
 
     it('fires all three events on same-page click without fetching', async () => {
-      const before: CustomEvent[] = [];
-      const navigated: CustomEvent[] = [];
-      const complete: CustomEvent[] = [];
-      router.addEventListener(RouterEvents.BeforeNavigate, (e) => before.push(e as CustomEvent));
-      router.addEventListener(RouterEvents.Navigated, (e) => navigated.push(e as CustomEvent));
-      router.addEventListener(RouterEvents.NavigationComplete, (e) =>
-        complete.push(e as CustomEvent)
-      );
+      const before = listenFor(router, RouterEvents.BeforeNavigate);
+      const navigated = listenFor(router, RouterEvents.Navigated);
+      const complete = listenFor(router, RouterEvents.NavigationComplete);
 
       clickAnchor('http://localhost/');
       await settleNavigation();
