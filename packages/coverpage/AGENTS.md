@@ -158,15 +158,14 @@ new GestureController(config: IConfigProvider)
 
 ## Nx targets
 
-Run all tasks via `npm exec nx <target> coverpage`.
+Run all tasks via `npx <target> coverpage`.
 
 | Target | What it does |
 |---|---|
-| `build` | `tsc` — type declarations only |
-| `build:lib` | `vite build --config vite.lib.config.ts` — ES bundle to `dist/` |
-| `vite:test` | Vitest, jsdom environment |
+| `build` | builds ES bundle to `dist/` |
+| `test` | Vitest, jsdom environment, single run; not watch |
 | `dev` | Serves `test-page/` on 0.0.0.0 (manual dev harness) |
-| `vite:typecheck` | `tsc --noEmit` |
+| `typecheck` | `tsc --noEmit` |
 
 ---
 
@@ -177,4 +176,5 @@ Run all tasks via `npm exec nx <target> coverpage`.
 - `verbatimModuleSyntax: true` — use `import type` for type-only imports
 - Tests co-located with source (`*.spec.ts`)
 - Lit accessor pattern: `@property() accessor foo` (not legacy `get/set`)
-- Peer dep: `lit ^3.0.0`; runtime dep: `rxjs ^7.8.2`
+- Peer dep: `lit ^3.0.0`, `rxjs ^7.8.2`
+- All runetime deps are marked as peer since we are in a monorepo
