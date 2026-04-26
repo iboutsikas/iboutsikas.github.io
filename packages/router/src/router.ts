@@ -35,14 +35,12 @@ export class IbRouter extends LitElement {
   /** Class added to content element after swap. */
   @property({ type: String }) accessor enteringClass = 'router-entering';
 
-  private _clickHandler: ((e: MouseEvent) => void) | null = null;
-  private _popstateHandler: (() => void) | null = null;
   private _controller: AbortController | null = null;
 
   override connectedCallback() {
     super.connectedCallback();
-    document.addEventListener('click', (_) => this._clickHandler());
-    window.addEventListener('popstate', (_) => this._popstateHandler());
+    document.addEventListener('click', this._handleClick);
+    window.addEventListener('popstate', this._handlePopstate);
   }
 
   override disconnectedCallback() {
@@ -51,14 +49,8 @@ export class IbRouter extends LitElement {
   }
 
   private _disconnect() {
-    if (this._clickHandler) {
-      document.removeEventListener('click', this._clickHandler);
-      this._clickHandler = null;
-    }
-    if (this._popstateHandler) {
-      window.removeEventListener('popstate', this._popstateHandler);
-      this._popstateHandler = null;
-    }
+    document.removeEventListener('click', this._handleClick);
+    window.removeEventListener('popstate', this._handlePopstate);
     if (this._controller) {
       this._controller.abort();
       this._controller = null;
@@ -230,7 +222,7 @@ export class IbRouter extends LitElement {
     });
   }
 
-  private _handleClick(e: MouseEvent): void {
+  private _handleClick = (e: MouseEvent): void => {
     if (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
     if (e.defaultPrevented) return;
     if (e.button !== 0) return;
@@ -246,11 +238,11 @@ export class IbRouter extends LitElement {
 
     e.preventDefault();
     this._navigate(a.href);
-  }
+  };
 
-  private _handlePopstate(): void {
+  private _handlePopstate = (): void => {
     this._navigate(location.href, { pushState: false, isBackForward: true });
-  }
+  };
 
   private async _markLeaving(el: HTMLElement): Promise<void> {
     el.classList.add(this.leavingClass);
