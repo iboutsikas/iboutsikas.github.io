@@ -4,12 +4,11 @@
   "targets": {
     "serve": {
       "executor": "nx:run-commands",
-      "dependsOn": [{ "projects": "@iboutsikas/coverpage", "target": "build" }, { "projects": "@iboutsikas/router", "target": "build" }],
       "options": {
         "parallel": true,
         "commands": [
-          "cd packages/coverpage && vite build --watch --config vite.lib.config.ts",
-          "cd packages/router && vite build --watch --config vite.lib.config.ts",
+          "npm exec nx run @iboutsikas/coverpage:build:watch",
+          "npm exec nx run @iboutsikas/router:build:watch",
           "cd apps/hugo-site && hugo server --bind 0.0.0.0"
         ],
         "cwd": "{workspaceRoot}"
@@ -17,7 +16,10 @@
     },
     "build": {
       "executor": "nx:run-commands",
-      "dependsOn": [{ "projects": "@iboutsikas/coverpage", "target": "build" }, { "projects": "@iboutsikas/router", "target": "build" }],
+      "dependsOn": [
+        { "projects": "@iboutsikas/coverpage", "target": "build" },
+        { "projects": "@iboutsikas/router", "target": "build" }
+      ],
       "options": {
         "command": "hugo",
         "cwd": "{projectRoot}"

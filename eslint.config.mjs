@@ -8,7 +8,7 @@ export default [
     ignores: [
       '**/dist',
       '**/build',
-      "**/out-tsc",
+      '**/out-tsc',
       '**/vite.config.*.timestamp*',
       '**/vitest.config.*.timestamp*',
     ],
@@ -44,14 +44,7 @@ export default [
     },
   },
   {
-    files: [
-      '**/*.ts',
-      '**/*.cts',
-      '**/*.mts',
-      '**/*.js',
-      '**/*.cjs',
-      '**/*.mjs',
-    ],
+    files: ['**/*.ts', '**/*.cts', '**/*.mts', '**/*.js', '**/*.cjs', '**/*.mjs'],
     // Override or add rules here
     rules: {},
   },

@@ -182,7 +182,7 @@ Run all tasks via `npx <target> coverpage`.
 ## Conventions
 
 - All imports use `.js` extension (nodenext module resolution)
-- `useDefineForClassFields: false` — required for Lit decorators
+- `"experimentalDecorators": true,useDefineForClassFields: false` — required for Lit decorators
 - `verbatimModuleSyntax: true` — use `import type` for type-only imports
 - Tests in `tests/` directory (`*.spec.ts`)
 - Lit accessor pattern: `@property() accessor foo` (not legacy `get/set`)
