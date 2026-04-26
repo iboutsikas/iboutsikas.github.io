@@ -49,17 +49,18 @@ export function makeLocationValue(overrides: Partial<Location> = {}): Location {
     toString: () => 'http://localhost/',
     ancestorOrigins: [] as unknown as DOMStringList,
     ...overrides,
-  } as Location;
+  };
 }
 
 export function createRouterTestBed(assignMock: ReturnType<typeof vi.fn>): {
   router: HTMLElement;
   content: HTMLDivElement;
+  pushStateSpy: ReturnType<typeof vi.spyOn<History, 'pushState'>>;
 } {
   assignMock.mockReset();
   vi.stubGlobal('fetch', makeFetch());
   vi.stubGlobal('scrollTo', vi.fn());
-  vi.spyOn(history, 'pushState').mockImplementation(() => {});
+  const pushStateSpy = vi.spyOn(history, 'pushState').mockImplementation(() => { /* no-op */ });
 
   const content = document.createElement('div');
   content.id = '_content';
@@ -69,7 +70,7 @@ export function createRouterTestBed(assignMock: ReturnType<typeof vi.fn>): {
   const router = document.createElement('ib-router');
   document.body.appendChild(router);
 
-  return { router, content };
+  return { router, content, pushStateSpy };
 }
 
 export function teardownRouterTestBed(router: HTMLElement, content: HTMLElement): void {

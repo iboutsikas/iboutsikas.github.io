@@ -9,7 +9,7 @@ import { describe, it, expect, vi, beforeEach, afterEach, beforeAll } from 'vite
 
 const startViewTransitionMock = vi.hoisted(() => {
   const mock = vi.fn((cb: () => void | Promise<void>) => {
-    cb();
+    void cb();
     return { finished: Promise.resolve() };
   });
   Object.defineProperty(document, 'startViewTransition', {
@@ -41,6 +41,7 @@ async function settleNavigation(): Promise<void> {
 describe('IbRouter (View Transitions)', () => {
   let router: IbRouter;
   let content: HTMLDivElement;
+  let pushStateSpy: ReturnType<typeof vi.spyOn<History, 'pushState'>>;
 
   beforeAll(() => {
     Object.defineProperty(window, 'location', {
@@ -54,6 +55,7 @@ describe('IbRouter (View Transitions)', () => {
     const bed = createRouterTestBed(assignMock);
     router = bed.router as unknown as IbRouter;
     content = bed.content;
+    pushStateSpy = bed.pushStateSpy;
     startViewTransitionMock.mockClear();
   });
 
@@ -84,7 +86,7 @@ describe('IbRouter (View Transitions)', () => {
   it('pushes state to history', async () => {
     clickAnchor('http://localhost/page2');
     await settleNavigation();
-    expect(history.pushState).toHaveBeenCalledWith(
+    expect(pushStateSpy).toHaveBeenCalledWith(
       { spa: true },
       expect.any(String),
       'http://localhost/page2'

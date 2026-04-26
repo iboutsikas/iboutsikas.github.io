@@ -237,11 +237,11 @@ export class IbRouter extends LitElement {
     if (!isSameOrigin(a.href)) return;
 
     e.preventDefault();
-    this._navigate(a.href);
+    void this._navigate(a.href);
   };
 
   private _handlePopstate = (): void => {
-    this._navigate(location.href, { pushState: false, isBackForward: true });
+    void this._navigate(location.href, { pushState: false, isBackForward: true });
   };
 
   private async _markLeaving(el: HTMLElement): Promise<void> {

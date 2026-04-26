@@ -22,6 +22,7 @@ async function advanceNavigation(): Promise<void> {
 describe('IbRouter', () => {
   let router: IbRouter;
   let content: HTMLDivElement;
+  let pushStateSpy: ReturnType<typeof vi.spyOn<History, 'pushState'>>;
 
   beforeAll(() => {
     Object.defineProperty(window, 'location', {
@@ -35,6 +36,7 @@ describe('IbRouter', () => {
     const bed = createRouterTestBed(assignMock);
     router = bed.router as unknown as IbRouter;
     content = bed.content;
+    pushStateSpy = bed.pushStateSpy;
   });
 
   afterEach(() => {
@@ -87,7 +89,7 @@ describe('IbRouter', () => {
         'fetch',
         vi.fn((_url: string, init: RequestInit) => {
           capturedSignal = init.signal as AbortSignal;
-          return new Promise(() => {});
+          return new Promise(() => { /* never resolves */ });
         })
       );
 
@@ -228,7 +230,7 @@ describe('IbRouter', () => {
     it('pushes state to history with spa flag', async () => {
       clickAnchor('http://localhost/page2');
       await advanceNavigation();
-      expect(history.pushState).toHaveBeenCalledWith(
+      expect(pushStateSpy).toHaveBeenCalledWith(
         { spa: true },
         expect.any(String),
         'http://localhost/page2'
@@ -244,7 +246,7 @@ describe('IbRouter', () => {
     it('does not push to history on popstate navigation', async () => {
       window.dispatchEvent(new PopStateEvent('popstate'));
       await advanceNavigation();
-      expect(history.pushState).not.toHaveBeenCalled();
+      expect(pushStateSpy).not.toHaveBeenCalled();
     });
 
     it('falls back to location.assign on HTTP error', async () => {
@@ -284,7 +286,7 @@ describe('IbRouter', () => {
         'fetch',
         vi.fn((_url: string, init: RequestInit) => {
           signals.push(init.signal as AbortSignal);
-          return new Promise(() => {});
+          return new Promise(() => { /* never resolves */ });
         })
       );
 
@@ -455,7 +457,7 @@ describe('IbRouter', () => {
     it('pushes state to history on same-page navigation', async () => {
       clickAnchor(location.href);
       await flushMicrotasks();
-      expect(history.pushState).toHaveBeenCalledWith(
+      expect(pushStateSpy).toHaveBeenCalledWith(
         { spa: true },
         expect.any(String),
         location.href
@@ -482,7 +484,7 @@ describe('IbRouter', () => {
       await flushMicrotasks();
 
       expect(assignMock).toHaveBeenCalledWith(location.href);
-      expect(history.pushState).not.toHaveBeenCalled();
+      expect(pushStateSpy).not.toHaveBeenCalled();
       expect(navigated).toHaveLength(0);
     });
 
@@ -492,7 +494,7 @@ describe('IbRouter', () => {
         'fetch',
         vi.fn((_url: string, init: RequestInit) => {
           signals.push(init.signal as AbortSignal);
-          return new Promise(() => {});
+          return new Promise(() => { /* never resolves */ });
         })
       );
 
@@ -518,8 +520,8 @@ describe('IbRouter', () => {
       let classAtFetch = '';
       vi.stubGlobal(
         'fetch',
-        vi.fn(async () => {
-          return new Response(buildPageHtml('<p>new</p>', 'New'), { status: 200 });
+        vi.fn(() => {
+          return Promise.resolve(new Response(buildPageHtml('<p>new</p>', 'New'), { status: 200 }));
         })
       );
 
