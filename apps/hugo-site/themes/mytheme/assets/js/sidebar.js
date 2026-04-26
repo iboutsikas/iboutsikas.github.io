@@ -73,6 +73,16 @@ function onCoverpageProgress(sidebarContainer, sidebarContent, breakpoints, cove
   };
 }
 
+function updateActiveNav(url) {
+  const pathname = new URL(url, location.href).pathname;
+  document.querySelectorAll('.sidebar-nav-item[data-nav-path]').forEach(li => {
+    const linkPath = new URL(li.dataset.navPath, location.href).pathname;
+    const isActive = linkPath === pathname ||
+      (linkPath !== '/' && pathname.startsWith(linkPath));
+    li.classList.toggle('active', isActive);
+  });
+}
+
 /**
  * Mobile navigation — wires the hamburger button to the <ib-coverpage> component.
  */
@@ -96,7 +106,12 @@ export function initSidebar(breakpoints) {
   if (!sidebarContent) logMissing('.sidebar-sticky');
   if (!pageContent) logMissing('_content');
 
-  document.addEventListener('router-navigated', () => coverpage.hide());
+  updateActiveNav(location.href);
+
+  document.addEventListener('router-navigated', (e) => {
+    coverpage.hide();
+    updateActiveNav(e.detail.url);
+  });
 
   // Same-page links are skipped by the router (no router-navigated fires).
   // Close the cover immediately on click so the user can see current content.

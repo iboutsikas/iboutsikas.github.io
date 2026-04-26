@@ -25,18 +25,6 @@ function isSamePage(url) {
   return t.pathname === location.pathname && t.search === location.search;
 }
 
-function updateActiveNav(url) {
-  const pathname = new URL(url, location.href).pathname;
-  document.querySelectorAll('.sidebar-nav-item').forEach(li => {
-    const a = li.querySelector('a');
-    if (!a) return;
-    const linkPath = new URL(a.href, location.href).pathname;
-    const isActive = linkPath === pathname ||
-      (linkPath !== '/' && pathname.startsWith(linkPath));
-    li.classList.toggle('active', isActive);
-  });
-}
-
 async function fetchPage(url, signal) {
   const res = await fetch(url, { signal });
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -52,7 +40,7 @@ function applySwap(url, content, title, { initCodeCopy, pushState = true }) {
   document.getElementById('_content').innerHTML = content;
   document.title = title;
   if (pushState) history.pushState({ spa: true }, title, url);
-  updateActiveNav(url);
+  document.dispatchEvent(new CustomEvent('router-navigated', { detail: { url } }));
   window.scrollTo({ top: 0, behavior: 'instant' });
   initCodeCopy();
 }

@@ -1,6 +1,6 @@
 <ul class="sidebar-nav">
   {{ range .Site.Menus.main }}
-  <li class="sidebar-nav-item{{ if or (eq $.RelPermalink .URL) (and .URL (hasPrefix $.RelPermalink .URL) (ne .URL "/")) }} active{{ end }}">
+  <li class="sidebar-nav-item" data-nav-path="{{ .URL }}">
     <a href="{{ .URL }}">{{ .Name }}</a>
   </li>
   {{ end }}
