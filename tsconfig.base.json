@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
+    "rootDir": ".",
+    "baseUrl": ".",
     "composite": true,
-    "declarationMap": true,
-    "emitDeclarationOnly": true,
     "importHelpers": true,
     "isolatedModules": true,
     "lib": ["esnext", "dom"],
@@ -15,6 +15,16 @@
     "noUnusedLocals": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "esnext"
-  }
+    "target": "esnext",
+    "forceConsistentCasingInFileNames": true,
+    "declaration": true,
+    "declarationMap": true,
+    "experimentalDecorators": true,
+    "useDefineForClassFields": false,
+    "paths": {
+      "@iboutsikas/coverpage": ["packages/coverpage/src/index.ts"],
+      "@iboutsikas/router": ["packages/router/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp", "dist", "out-tsc"]
 }

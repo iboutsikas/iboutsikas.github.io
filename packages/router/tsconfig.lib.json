@@ -5,11 +5,7 @@
     "outDir": "dist",
     "tsBuildInfoFile": "dist/tsconfig.tsbuildinfo",
     "emitDeclarationOnly": false,
-    "forceConsistentCasingInFileNames": true,
-    "types": ["node"],
-    "declaration": true,
-    "experimentalDecorators": true,
-    "useDefineForClassFields": false
+    "types": ["node"]
   },
   "include": ["src/**/*.ts"],
   "exclude": [
