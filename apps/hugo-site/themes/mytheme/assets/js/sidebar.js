@@ -19,7 +19,7 @@ function setupToggle(toggle, coverpage) {
   });
 }
 
-function onBeforeAnimation(sidebarContainer, sidebarContent, pageContent, breakpoints) {
+function onBeforeAnimation(sidebarContainer, sidebarContent, pageContent, swipeIcon, breakpoints) {
   document.documentElement.style.overflow = 'hidden';
 
   if (sidebarContainer) {
@@ -33,9 +33,21 @@ function onBeforeAnimation(sidebarContainer, sidebarContent, pageContent, breakp
   if (pageContent) {
     pageContent.style.pointerEvents = 'none';
   }
+
+  if (swipeIcon) {
+    swipeIcon.classList.add('hidden');
+  }
 }
 
-function onAfterAnimation(sidebarContainer, sidebarContent, pageContent, toggle, breakpoints, coverpage) {
+function onAfterAnimation(
+  sidebarContainer,
+  sidebarContent,
+  pageContent,
+  toggle,
+  swipeIcon,
+  breakpoints,
+  coverpage
+) {
   if (!coverpage.open) {
     document.documentElement.style.overflow = '';
   }
@@ -57,6 +69,10 @@ function onAfterAnimation(sidebarContainer, sidebarContent, pageContent, toggle,
   } else {
     toggle.setAttribute('aria-expanded', 'false');
   }
+
+  if (swipeIcon) {
+    swipeIcon.classList.toggle('hidden', !coverpage?.open ?? true);
+  }
 }
 
 function onCoverpageProgress(sidebarContainer, sidebarContent, breakpoints, coverpage) {
@@ -75,10 +91,9 @@ function onCoverpageProgress(sidebarContainer, sidebarContent, breakpoints, cove
 
 function updateActiveNav(url) {
   const pathname = new URL(url, location.href).pathname;
-  document.querySelectorAll('.sidebar-nav-item[data-nav-path]').forEach(li => {
+  document.querySelectorAll('.sidebar-nav-item[data-nav-path]').forEach((li) => {
     const linkPath = new URL(li.dataset.navPath, location.href).pathname;
-    const isActive = linkPath === pathname ||
-      (linkPath !== '/' && pathname.startsWith(linkPath));
+    const isActive = linkPath === pathname || (linkPath !== '/' && pathname.startsWith(linkPath));
     li.classList.toggle('active', isActive);
   });
 }
@@ -101,10 +116,12 @@ export function initSidebar(breakpoints) {
   const sidebarContainer = document.querySelector('.sidebar-container');
   const sidebarContent = document.querySelector('.sidebar-sticky');
   const pageContent = document.getElementById('_content');
+  const swipeIcon = document.getElementById('_swipe-icon');
 
   if (!sidebarContainer) logMissing('.sidebar-container');
   if (!sidebarContent) logMissing('.sidebar-sticky');
   if (!pageContent) logMissing('_content');
+  if (!swipeIcon) logMissing('_swipe-icon');
 
   updateActiveNav(location.href);
 
@@ -129,13 +146,24 @@ export function initSidebar(breakpoints) {
 
   if (coverpage) {
     coverpage.addEventListener('coverpage-before-animation', () => {
-      onBeforeAnimation(sidebarContainer, sidebarContent, pageContent, breakpoints);
+      onBeforeAnimation(sidebarContainer, sidebarContent, pageContent, swipeIcon, breakpoints);
     });
 
     coverpage.addEventListener('coverpage-after-animation', () => {
-      onAfterAnimation(sidebarContainer, sidebarContent, pageContent, toggle, breakpoints, coverpage);
+      onAfterAnimation(
+        sidebarContainer,
+        sidebarContent,
+        pageContent,
+        toggle,
+        swipeIcon,
+        breakpoints,
+        coverpage
+      );
     });
 
-    coverpage.addEventListener('coverpage-progress', onCoverpageProgress(sidebarContainer, sidebarContent, breakpoints, coverpage));
+    coverpage.addEventListener(
+      'coverpage-progress',
+      onCoverpageProgress(sidebarContainer, sidebarContent, breakpoints, coverpage)
+    );
   }
 }

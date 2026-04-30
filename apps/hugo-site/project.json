@@ -6,7 +6,11 @@
       "executor": "nx:run-commands",
       "options": {
         "parallel": true,
-        "commands": ["cd apps/hugo-site && hugo server --bind 0.0.0.0"],
+        "commands": [
+          "npx nx build coverpage -c watch",
+          "npx nx build router -c watch",
+          "cd apps/hugo-site && hugo server --bind 0.0.0.0"
+        ],
         "cwd": "{workspaceRoot}"
       }
     },

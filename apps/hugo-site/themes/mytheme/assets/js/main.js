@@ -1,6 +1,3 @@
-import '@iboutsikas/coverpage';
-import '@iboutsikas/router';
-
 import { initTheme } from './theme.js';
 import { initSidebar } from './sidebar.js';
 import { initCopyButtons } from './code-copy.js';
