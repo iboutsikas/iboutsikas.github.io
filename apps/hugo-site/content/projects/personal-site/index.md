@@ -61,7 +61,7 @@ The new architecture is built upon four core pillars:
 The following technical deep dives explore the implementation details of the
 core modules developed for this project.
 
-### [The Custom Router (`@iboutsikas/router`)](./blog/router-implementation)
+### [The Custom Router (`@iboutsikas/router`)]({{< ref "posts/website/seamless-spa-router-lit-view-transitions" >}})
 
 To achieve SPA-like fluidity within a Hugo-generated MPA, I developed a custom
 router using Web Components. The router intercepts same-page navigation
@@ -70,13 +70,17 @@ Transition API** to animate the transition between states. This allows for a
 highly interactive user experience while maintaining the SEO and performance
 benefits of a static site.
 
-### [The Interactive Coverpage (`@iboutsikas/coverpage`)](./blog/coverpage-component)
+You can read more in [this deep dive]({{< ref "posts/website/seamless-spa-router-lit-view-transitions" >}}).
+
+### [The Interactive Coverpage (`@iboutsikas/coverpage`)]({{< ref "posts/website/gesture-driven-web-components-lit-rxjs" >}})
 
 This module demonstrates the power of encapsulated Web Components. The
 `@iboutsikas/coverpage` component allows for the placement of interactive,
 draggable UI elements on any side of the viewport. It handles its own state,
 lifecycle, and event orchestration, providing a highly polished user interface
 that remains completely decoupled from the site's core HTML structure.
+
+You can read more in [this deep dive]({{< ref "posts/website/gesture-driven-web-components-lit-rxjs" >}}).
 
 ## Orchestration: The Nx Monorepo
 
@@ -187,4 +191,4 @@ Total in 353 ms
  NX   Successfully ran target build for project @iboutsikas/site and 2 tasks it depends on (3s)
 ```
 
-{{< figcaption >}}Building the entire monorepo from a clean state{{< /figcaption > }}
+{{< figcaption >}}Building the entire monorepo from a clean state{{< /figcaption >}}

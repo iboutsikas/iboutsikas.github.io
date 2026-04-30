@@ -18,6 +18,8 @@ sync their own UI, such as fading in sidebar contents or adjusting background
 image positioning to ensure they always look centered relative to the cover
 itself.
 
+{{< video src="coverpage-preview.webm" loop="true" caption="Coverpage 4-sided demo." / >}}
+
 ## The Challenge of Noisy Gestures
 
 Pointer events are notoriously noisy. To interpret a single meaningful gesture
@@ -122,9 +124,14 @@ experience.
 
 ## Theming and Customization
 
-A key design principle for `@iboutsikas/coverpage` was to ensure it's highly customizable without requiring complex JavaScript configuration for every visual tweak. I achieved this by exposing several CSS custom properties directly on the `:host` element.
+A key design principle for `@iboutsikas/coverpage` was to ensure it's highly
+customizable without requiring complex JavaScript configuration for every visual
+tweak. I achieved this by exposing several CSS custom properties directly on the
+`:host` element.
 
-This allows consumers to control the component's behavior and appearance using standard stylesheets. For example, you can easily change the "peek" amount or the animation speed:
+This allows consumers to control the component's behavior and appearance using
+standard stylesheets. For example, you can easily change the "peek" amount or
+the animation speed:
 
 ```css
 ib-coverpage {
@@ -136,24 +143,45 @@ ib-coverpage {
 
 The available properties include:
 
-- `--cover-peek-size`: Defines how many pixels of the cover remain visible when it is in its "closed" state.
-- `--cover-size`: Controls the dimensions of the cover (width for horizontal, height for vertical).
+- `--cover-peek-size`: Defines how many pixels of the cover remain visible when
+  it is in its "closed" state.
+- `--cover-size`: Controls the dimensions of the cover (width for horizontal,
+  height for vertical).
 - `--cover-anim-duration`: Sets the duration for the snap and flick animations.
 - `--cover-base-z-index`: Allows adjusting the stacking order of the component.
 
-By leveraging CSS variables, the component remains lightweight and integrates seamlessly into any existing design system.
+By leveraging CSS variables, the component remains lightweight and integrates
+seamlessly into any existing design system.
 
 ## Technical Nuances
 
-Beyond the core animation and gesture logic, several subtle engineering choices help make the component feel truly "native."
+Beyond the core animation and gesture logic, several subtle engineering choices
+help make the component feel truly "native."
 
 ### Synchronized Progress with `ResizeObserver`
-One of the most useful features for consumers is the `Progress` event. Rather than just a boolean `open` state, the component emits a normalized value from `0` to `1`. By combining the translation stream with a `ResizeObserver` (via `observeSize`), the component ensures this progress value remains accurate even if the viewport or the component's dimensions change mid-interaction. This allows consumers to perfectly sync other UI elements, like background image parallax or opacity fades, to the user's movement.
+
+One of the most useful features for consumers is the `Progress` event. Rather
+than just a boolean `open` state, the component emits a normalized value from
+`0` to `1`. By combining the translation stream with a `ResizeObserver` (via
+`observeSize`), the component ensures this progress value remains accurate even
+if the viewport or the component's dimensions change mid-interaction. This
+allows consumers to perfectly sync other UI elements, like background image
+parallax or opacity fades, to the user's movement.
 
 ### The "Tiny Scrim" Optimization
-To handle the darkened overlay (the scrim) efficiently, I used a small optimization: instead of rendering a full-screen overlay, the component renders a tiny `10vw` by `10vh` element and scales it up using `transform: scale(10, 10)`. This ensures the overlay is performant and avoids the overhead of managing a large, complex element during the initial render.
+
+To handle the darkened overlay (the scrim) efficiently, I used a small
+optimization: instead of rendering a full-screen overlay, the component renders
+a tiny `10vw` by `10vh` element and scales it up using `transform: scale(10,
+10)`. This ensures the overlay is performant and avoids the overhead of managing
+a large, complex element during the initial render.
 
 ### Intelligent `touch-action` Management
-A common pitfall in mobile web development is the conflict between custom gestures and native scrolling. I addressed this by carefully managing the `touch-action` CSS property. For a horizontal cover, the component uses `touch-action: pan-y`, which tells the browser that the component "owns" the horizontal axis for gestures but should allow native vertical scrolling. This prevents the "stuck" feeling users often experience when a component intercepts all touch input.
 
-## Conclusion
+A common pitfall in mobile web development is the conflict between custom
+gestures and native scrolling. I addressed this by carefully managing the
+`touch-action` CSS property. For a horizontal cover, the component uses
+`touch-action: pan-y`, which tells the browser that the component "owns" the
+horizontal axis for gestures but should allow native vertical scrolling. This
+prevents the "stuck" feeling users often experience when a component intercepts
+all touch input.
