@@ -6,87 +6,79 @@ const logMissing = (name) => {
   console.warn(`[sidebar] Element not found: ${name}`);
 };
 
-function setupToggle(toggle, coverpage) {
-  toggle.addEventListener('click', () => {
-    const isOpen = coverpage.open;
+function setupToggle(ctx) {
+  if (!ctx.toggle || !ctx.coverpage) return;
+
+  ctx.toggle.addEventListener('click', () => {
+    const isOpen = ctx.coverpage.open;
     if (isOpen) {
-      coverpage.hide();
-      toggle.setAttribute('aria-expanded', 'false');
+      ctx.coverpage.hide();
+      ctx.toggle.setAttribute('aria-expanded', 'false');
     } else {
-      coverpage.show();
-      toggle.setAttribute('aria-expanded', 'true');
+      ctx.coverpage.show();
+      ctx.toggle.setAttribute('aria-expanded', 'true');
     }
   });
 }
 
-function onBeforeAnimation(sidebarContainer, sidebarContent, pageContent, swipeIcon, breakpoints) {
+function onBeforeAnimation(ctx) {
   document.documentElement.style.overflow = 'hidden';
 
-  if (sidebarContainer) {
-    sidebarContainer.style.willChange = 'transform';
+  if (ctx.sidebarContainer) {
+    ctx.sidebarContainer.style.willChange = 'transform';
   }
 
-  if (sidebarContent && isMobile(breakpoints)) {
-    sidebarContent.style.willChange = 'opacity';
+  if (ctx.sidebarContent && isMobile(ctx.breakpoints)) {
+    ctx.sidebarContent.style.willChange = 'opacity';
   }
 
-  if (pageContent) {
-    pageContent.style.pointerEvents = 'none';
+  if (ctx.pageContent) {
+    ctx.pageContent.style.pointerEvents = 'none';
   }
 
-  if (swipeIcon) {
-    swipeIcon.classList.add('hidden');
+  if (ctx.swipeIcon) {
+    ctx.swipeIcon.classList.add('hidden');
   }
 }
 
-function onAfterAnimation(
-  sidebarContainer,
-  sidebarContent,
-  pageContent,
-  toggle,
-  swipeIcon,
-  breakpoints,
-  coverpage
-) {
-  if (!coverpage.open) {
+function onAfterAnimation(ctx) {
+  if (!ctx.coverpage.open) {
     document.documentElement.style.overflow = '';
   }
 
-  if (sidebarContainer) {
-    sidebarContainer.style.willChange = 'auto';
+  if (ctx.sidebarContainer) {
+    ctx.sidebarContainer.style.willChange = 'auto';
   }
 
-  if (sidebarContent && isMobile(breakpoints)) {
-    sidebarContent.style.willChange = 'auto';
+  if (ctx.sidebarContent && isMobile(ctx.breakpoints)) {
+    ctx.sidebarContent.style.willChange = 'auto';
   }
 
-  if (pageContent) {
-    pageContent.style.pointerEvents = 'auto';
+  if (ctx.pageContent) {
+    ctx.pageContent.style.pointerEvents = 'auto';
   }
 
-  if (coverpage.open) {
-    toggle.setAttribute('aria-expanded', 'true');
+  if (ctx.coverpage.open) {
+    ctx.toggle.setAttribute('aria-expanded', 'true');
   } else {
-    toggle.setAttribute('aria-expanded', 'false');
+    ctx.toggle.setAttribute('aria-expanded', 'false');
   }
 
-  if (swipeIcon) {
-    swipeIcon.classList.toggle('hidden', !coverpage?.open ?? true);
+  if (ctx.swipeIcon) {
+    ctx.swipeIcon.classList.toggle('hidden', !ctx.coverpage?.open ?? true);
   }
 }
 
-function onCoverpageProgress(sidebarContainer, sidebarContent, breakpoints, coverpage) {
-  return (e) => {
-    const { t, travel } = e.detail;
+function onCoverpageProgress(e, ctx) {
+  const { t, travel } = e.detail;
 
-    if (sidebarContainer) {
-      sidebarContainer.style.transform = `translateX(${travel * (1 - t)}px)`;
-    }
+  if (ctx.sidebarContainer) {
+    ctx.sidebarContainer.style.transform = `translateX(${travel * (1 - t)}px)`;
+  }
 
-    if (sidebarContent) {
-      sidebarContent.style.opacity = isMobile(breakpoints) ? `${t}` : '1';
-    }
-  };
+  if (ctx.sidebarContent) {
+    ctx.sidebarContent.style.opacity = isMobile(ctx.breakpoints) ? `${t}` : '1';
+  }
 }
 
 function updateActiveNav(url) {
@@ -99,7 +91,7 @@ function updateActiveNav(url) {
 }
 
 /**
- * Mobile navigation — wires the hamburger button to the <ib-coverpage> component.
+ * Wires up interactions based on and in the sidebar
  */
 export function initSidebar(breakpoints) {
   const toggle = document.getElementById('_nav-toggle');
@@ -123,6 +115,16 @@ export function initSidebar(breakpoints) {
   if (!pageContent) logMissing('_content');
   if (!swipeIcon) logMissing('_swipe-icon');
 
+  const ctx = {
+    toggle,
+    coverpage,
+    sidebarContainer,
+    sidebarContent,
+    pageContent,
+    swipeIcon,
+    breakpoints,
+  };
+
   updateActiveNav(location.href);
 
   document.addEventListener('router-navigated', (e) => {
@@ -130,40 +132,9 @@ export function initSidebar(breakpoints) {
     updateActiveNav(e.detail.url);
   });
 
-  // Same-page links are skipped by the router (no router-navigated fires).
-  // Close the cover immediately on click so the user can see current content.
-  document.addEventListener('click', (e) => {
-    const a = e.target.closest('a');
-    if (!a || !a.href) return;
-    const t = new URL(a.href, location.href);
-    const isSamePage = t.pathname === location.pathname && t.search === location.search && !t.hash;
-    if (isSamePage) coverpage.hide();
-  });
+  setupToggle(ctx);
 
-  if (toggle && coverpage) {
-    setupToggle(toggle, coverpage);
-  }
-
-  if (coverpage) {
-    coverpage.addEventListener('coverpage-before-animation', () => {
-      onBeforeAnimation(sidebarContainer, sidebarContent, pageContent, swipeIcon, breakpoints);
-    });
-
-    coverpage.addEventListener('coverpage-after-animation', () => {
-      onAfterAnimation(
-        sidebarContainer,
-        sidebarContent,
-        pageContent,
-        toggle,
-        swipeIcon,
-        breakpoints,
-        coverpage
-      );
-    });
-
-    coverpage.addEventListener(
-      'coverpage-progress',
-      onCoverpageProgress(sidebarContainer, sidebarContent, breakpoints, coverpage)
-    );
-  }
+  coverpage.addEventListener('coverpage-before-animation', () => onBeforeAnimation(ctx));
+  coverpage.addEventListener('coverpage-after-animation', () => onAfterAnimation(ctx));
+  coverpage.addEventListener('coverpage-progress', (event) => onCoverpageProgress(event, ctx));
 }
