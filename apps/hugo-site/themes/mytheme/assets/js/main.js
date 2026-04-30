@@ -4,7 +4,6 @@ import '@iboutsikas/router';
 import { initTheme } from './theme.js';
 import { initSidebar } from './sidebar.js';
 import { initCodeCopy } from './code-copy.js';
-import { initTransitions } from './transitions.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.documentElement;
@@ -23,5 +22,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initTheme();
   initSidebar(breakpoints);
   initCodeCopy();
-  initTransitions({ initCodeCopy });
+  document.addEventListener('router-navigated', () => initCodeCopy());
 });
