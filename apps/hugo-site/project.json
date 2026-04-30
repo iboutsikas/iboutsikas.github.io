@@ -6,11 +6,7 @@
       "executor": "nx:run-commands",
       "options": {
         "parallel": true,
-        "commands": [
-          "npm exec nx run @iboutsikas/coverpage:build:watch",
-          "npm exec nx run @iboutsikas/router:build:watch",
-          "cd apps/hugo-site && hugo server --bind 0.0.0.0"
-        ],
+        "commands": ["cd apps/hugo-site && hugo server --bind 0.0.0.0"],
         "cwd": "{workspaceRoot}"
       }
     },
