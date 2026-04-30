@@ -12,7 +12,7 @@
 <details class="post-toc" open>
   <summary class="post-toc__toggle">Contents</summary>
   <div class="post-toc__body">
-    {{ if $hasToc }}{{ $page.TableOfContents }}{{ end }}
+    {{ if $hasToc }}{{ $page.TableOfContents | replaceRE "/#" "#" | safeHTML }}{{ end }}
     {{ with $related }}
     <div class="post-toc__extra">
       <ul>

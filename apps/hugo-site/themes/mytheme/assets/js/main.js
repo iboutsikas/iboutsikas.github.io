@@ -22,4 +22,11 @@ document.addEventListener('DOMContentLoaded', () => {
   initTheme();
   initSidebar(breakpoints);
   initCopyButtons();
+
+  document.addEventListener('router-navigation-complete', () => {
+    const hash = location.hash;
+    if (!hash) return;
+    const target = document.getElementById(hash.slice(1));
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+  });
 });
