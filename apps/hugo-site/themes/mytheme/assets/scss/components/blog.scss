@@ -490,7 +490,11 @@
   }
 }
 
-pre:hover .code-copy-btn {
+.code-block {
+  position: relative;
+}
+
+.code-block:hover .code-copy-btn {
   opacity: 1;
 }
 

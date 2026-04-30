@@ -3,7 +3,7 @@ import '@iboutsikas/router';
 
 import { initTheme } from './theme.js';
 import { initSidebar } from './sidebar.js';
-import { initCodeCopy } from './code-copy.js';
+import { initCopyButtons } from './code-copy.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.documentElement;
@@ -21,6 +21,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initTheme();
   initSidebar(breakpoints);
-  initCodeCopy();
-  document.addEventListener('router-navigated', () => initCodeCopy());
+  initCopyButtons();
 });
