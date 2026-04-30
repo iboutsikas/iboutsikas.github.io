@@ -10,7 +10,7 @@
 }
 
 // Only apply view transition animations when they are not disabled
-@media(prefers-reduced-motion: no-preference) {
+@media (prefers-reduced-motion: no-preference) {
   // Supress the animation on the entirety of the html. This leaves
   // all elements outside #_content exactly where they were.
   ::view-transition-old(root),
@@ -41,23 +41,23 @@
   // Remove the (*) rules once view-transition-class has broad support.
 
   ::view-transition-image-pair(*) {
-    animation-duration: 0.45s;
+    animation-duration: var(--transition-title-flip);
     animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   // Progressive enhancement: Chrome 125+ via view-transition-class
   ::view-transition-image-pair(.flip-title) {
-    animation-duration: 0.45s;
+    animation-duration: var(--transition-title-flip);
     animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   // Opacity-only inside the moving box — no transform (see note above)
   ::view-transition-new(*) {
-    animation: flip-title-fade-in 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: flip-title-fade-in var(--transition-title-flip) cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   ::view-transition-new(.flip-title) {
-    animation: flip-title-fade-in 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: flip-title-fade-in var(--transition-title-flip) cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   // ── Content area ─────────────────────────────────────────────────────────
@@ -68,30 +68,49 @@
   }
 
   ::view-transition-new(main-content-transition) {
-    // animation: router-enter 1s cubic-bezier(.93,.93,.5,1);
-    animation: router-enter 1s cubic-bezier(0.4, 0, 0.2, 1);
+    // Based on Material Design's "magic" animation curve
+    // animation: router-enter 1s cubic-bezier(0.4, 0, 0.2, 1);
+    // Heavy in
+    // animation: router-enter-heavy 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    // Heavy in with bounce
+    animation: router-enter-heavy var(--transition-content-in) cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 }
 
 @keyframes flip-title-fade-in {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes router-enter-heavy {
+  0% {
+    opacity: 0;
+    transform: translateY(-1.5rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes router-enter {
-    0% {
-        opacity: 0;
-        transform: translateY(-3rem);
-    }
+  0% {
+    opacity: 0;
+    transform: translateY(-3rem);
+  }
 
-    // 50% {
-    //   opacity: 0;
-    // }
+  // 50% {
+  //   opacity: 0;
+  // }
 
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 // /* Suppress the default full-page cross-fade; let only named elements animate */
