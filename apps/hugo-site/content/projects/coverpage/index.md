@@ -1,12 +1,12 @@
 ---
-title: "Covering Fluidity: Creating a coverpage web component for my blog"
+title: 'Covering Fluidity: Creating a coverpage web component for my blog'
 date: 2026-04-16
 description: >
-    "A technical journal on building a high-performance, reactive cover component using Web Components, 
-    RxJS, and the Web Animations API."
+  "A technical journal on building a high-performance, reactive cover component
+  using Web Components, RxJS, and the Web Animations API."
 links:
-    - title: Repository
-      url: https://github.com/iboutsikas
+  - title: Repository
+    url: https://github.com/iboutsikas
 ---
 
 # Covering Fluidity: Creating a coverpage web component for my blog
@@ -42,8 +42,7 @@ using those.
 
 In addition to that, input events are noisy, unpredictable, and difficult to
 reason about in isolation. To solve this, I decided to treat interaction as a
-stream. 
-
+stream.
 
 Enter the `GestureController`.
 
@@ -67,7 +66,7 @@ they are a black box. If I want to know exactly how far the cover has moved
 during an automated animation (for example, to fade content in and out), a CSS
 transition leaves me in the dark.
 
-I chose the **Web Animations API** as the engine for `@iboutsikas/coverpage`. 
+I chose the **Web Animations API** as the engine for `@iboutsikas/coverpage`.
 
 An unfortunate trap I fell for early on with WAAPI was tracking the animation by
 querying the DOM for the current width/height and calculating progress based off
@@ -93,7 +92,7 @@ HTML page without any friction.
 
 I also wanted to ensure that while the internals are complex, the developer
 experience (DX) remains dead simple. This is why I leaned heavily into **CSS
-Custom Properties**. 
+Custom Properties**.
 
 Dimensions like `--cover-size` and animation speeds like `--cover-anim-duration`
 aren't locked behind JavaScript properties. They are part of the CSS cascade.
