@@ -249,6 +249,21 @@ describe('IbRouter', () => {
       expect(pushStateSpy).not.toHaveBeenCalled();
     });
 
+    it('fetches and swaps content on popstate even when target url matches current location', async () => {
+      // Regression: _handlePopstate calls _navigate(location.href) AFTER the browser has
+      // already updated location to the back-target. isSamePage() then compared the target
+      // URL against itself and always returned true, so no fetch ever happened on back nav.
+      vi.stubGlobal('fetch', makeFetch('<p>previous-page</p>', 'Previous'));
+      window.location.href = 'http://localhost/previous-page';
+      (window.location as unknown as Record<string, unknown>).pathname = '/previous-page';
+
+      window.dispatchEvent(new PopStateEvent('popstate'));
+      await advanceNavigation();
+
+      expect(vi.mocked(fetch)).toHaveBeenCalledWith('http://localhost/previous-page', expect.any(Object));
+      expect(content.innerHTML).toBe('<p>previous-page</p>');
+    });
+
     it('falls back to location.assign on HTTP error', async () => {
       vi.stubGlobal('fetch', vi.fn().mockResolvedValue(new Response('Not Found', { status: 404 })));
       clickAnchor('http://localhost/missing');

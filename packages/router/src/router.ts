@@ -70,7 +70,7 @@ export class IbRouter extends LitElement {
 
     const from = location.pathname;
 
-    if (isSamePage(url)) {
+    if (!isBackForward && isSamePage(url)) {
       const title = document.title;
       const prevented = this._beforeNavigate(url, title);
       if (prevented) {
