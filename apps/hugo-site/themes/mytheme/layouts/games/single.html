@@ -6,7 +6,7 @@
   {{/* ── Full-bleed hero ──────────────────────────────────────────────────── */}}
   <div class="game-hero{{ if not $cover }} game-hero--no-cover{{ end }}">
     {{ with $cover }}
-    <img class="game-hero__img" src="{{ .RelPermalink }}" alt="{{ $.Title }}" loading="eager" decoding="async">
+    {{ partial "responsive-image.html" (dict "Image" . "Alt" $.Title "Loading" "eager" "Class" "game-hero__img") }}
     {{ end }}
     <div class="game-hero__overlay" aria-hidden="true"></div>
     <div class="game-hero__content">

@@ -5,7 +5,7 @@
   {{/* ── Cover hero ─────────────────────────────────────────────────────── */}}
   {{ with .Resources.GetMatch "cover.*" }}
   <div class="post-hero">
-    <img src="{{ .RelPermalink }}" alt="{{ $.Title }}" loading="eager" decoding="async">
+    {{ partial "responsive-image.html" (dict "Image" . "Alt" $.Title "Loading" "eager") }}
   </div>
   {{ end }}
 

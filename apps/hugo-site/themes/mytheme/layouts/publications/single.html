@@ -50,7 +50,7 @@
   {{/* ── Cover image ─────────────────────────────────────────────────────── */}}
   {{ with $cover }}
   <div class="pub-cover">
-    <img src="{{ .RelPermalink }}" alt="{{ $.Title }}">
+    {{ partial "responsive-image.html" (dict "Image" . "Alt" $.Title "Loading" "eager") }}
   </div>
   {{ end }}
 
