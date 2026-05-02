@@ -1,5 +1,6 @@
 ---
 title: 'Building Gesture-Driven Web Components with Lit and RxJS'
+date: 2026-04-29
 categories: [webdev, rxjs, lit, webcomponents]
 caption: 'From layout thrashing to GPU-accelerated gestures.'
 description: 'A technical deep dive into the engineering decisions behind a swipeable web component, covering RxJS gesture pipelines, performance optimizations, and the nuances of Shadow DOM and slotted content.'

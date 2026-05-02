@@ -1,6 +1,6 @@
 ---
 title: 'Project: Personal Website Re-architecture'
-date: 2026-04-27
+date: 2026-04-01
 categories: ['engineering', 'webdev']
 caption: 'From Jekyll to Hugo and monorepos'
 description: 'A technical showcase of migrating a legacy Jekyll site to a modern, Nx-orchestrated Hugo monorepo.'
