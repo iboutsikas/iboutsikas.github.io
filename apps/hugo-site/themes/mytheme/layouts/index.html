@@ -6,6 +6,42 @@
   <div class="home-intro__body">{{ .Content }}</div>
 </section>
 
+{{/* ── Latest Posts ─────────────────────────────────────────────────────────── */}}
+{{ $latestPosts := first 3 (where (sort site.RegularPages "Date" "desc") "Section" "posts") }}
+{{ with $latestPosts }}
+<section class="home-section home-section--latest">
+  <header class="home-section__header">
+    <h2 class="home-section__title">Latest Posts</h2>
+    <a class="home-section__all" href="/posts/">All posts <span aria-hidden="true">&rarr;</span></a>
+  </header>
+  <ol class="latest-posts">
+    {{ range $i, $p := . }}
+    {{ $cover := $p.Resources.GetMatch "cover.*" }}
+    {{ $desc := or $p.Params.caption $p.Description }}
+    <li class="latest-post{{ if eq $i 0 }} latest-post--new{{ end }}">
+      <a class="latest-post__link" href="{{ $p.RelPermalink }}">
+        <span class="latest-post__num" aria-hidden="true">{{ printf "%02d" (add $i 1) }}</span>
+        <div class="latest-post__thumb{{ if not $cover }} latest-post__thumb--fallback{{ end }}" aria-hidden="true">
+          {{ with $cover }}
+          <img src="{{ .RelPermalink }}" alt="" loading="lazy" decoding="async">
+          {{ end }}
+        </div>
+        <div class="latest-post__info">
+          <span class="latest-post__title">{{ $p.LinkTitle }}</span>
+          {{ with $desc }}
+          <span class="latest-post__desc">{{ . }}</span>
+          {{ end }}
+        </div>
+        {{ if eq $i 0 }}
+        <span class="latest-post__badge" aria-label="New post">NEW</span>
+        {{ end }}
+      </a>
+    </li>
+    {{ end }}
+  </ol>
+</section>
+{{ end }}
+
 {{/* ── Featured Games ──────────────────────────────────────────────────────── */}}
 {{ $featuredGames := where (where site.RegularPages "Section" "games") "Params.frontpage" true }}
 {{ with $featuredGames }}
