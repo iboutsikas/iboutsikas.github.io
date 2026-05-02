@@ -1,12 +1,10 @@
 ---
 title: Welcome!
 ---
-I am Ioannis, a Software Engineer with experience in various areas including AAA
-games, desktop and web development, and tutoring.
+# Engineering passion into reality.
 
-My primary interest is in game engine development and I am working on my own
-personal engine when time permits. I also spend a sizable amount of time doing
-home improvement projects, but that is more of necessity turned into a hobby.
+I'm Ioannis, a Software Engineer driven by a fundamental curiosity about how complex systems function—and the drive to make them better.
 
-Please feel free to read more about the [Games](/games/) I've worked on or my
-[Projects](/projects/).
+My work spans the spectrum of modern engineering. In the digital realm, I specialize in the high-performance, low-level world of AAA game development and engine architecture, where every millisecond of performance is a victory. I balance this with the versatile, user-centric landscapes of web development, constantly seeking new ways to bridge the gap between complex logic and intuitive interaction.
+
+This passion for engineering isn't confined to the screen. I find as much satisfaction in the tangible, structural challenges of home improvement as I do in a well-optimized codebase. For me, whether I am designing a rendering pipeline or a physical renovation, the goal remains the same: precision, performance, and purposeful design.

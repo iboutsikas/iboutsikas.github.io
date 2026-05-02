@@ -20,15 +20,21 @@
   font-size: 1.05rem;
   line-height: 1.8;
   color: var(--body-color);
-  max-width: 68ch;
 
-  p { margin-bottom: 0.85rem; &:last-child { margin-bottom: 0; } }
+  p {
+    margin-bottom: 0.85rem;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 
   a {
     color: var(--accent-color);
     font-weight: 600;
     text-decoration: none;
-    &:hover { text-decoration: underline; }
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
 
@@ -65,9 +71,13 @@
   white-space: nowrap;
   flex-shrink: 0;
 
-  span { margin-left: 0.15rem; }
+  span {
+    margin-left: 0.15rem;
+  }
 
-  &:hover { text-decoration: underline; }
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 // ── Latest Posts feed ─────────────────────────────────────────────────────────
@@ -81,7 +91,9 @@
 .latest-post {
   border-bottom: 1px solid var(--border-color);
 
-  &:last-child { border-bottom: none; }
+  &:last-child {
+    border-bottom: none;
+  }
 }
 
 .latest-post__link {
@@ -97,7 +109,7 @@
   transition: background var(--transition-speed);
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     left: 0;
     top: 50%;
@@ -114,11 +126,17 @@
     background: color-mix(in srgb, var(--accent-color) 5%, transparent);
     text-decoration: none;
 
-    &::before { transform: translateY(-50%) scaleY(1); }
+    &::before {
+      transform: translateY(-50%) scaleY(1);
+    }
 
-    .latest-post__thumb img { transform: scale(1.1); }
+    .latest-post__thumb img {
+      transform: scale(1.1);
+    }
 
-    .latest-post__title { color: var(--accent-color); }
+    .latest-post__title {
+      color: var(--accent-color);
+    }
   }
 }
 
@@ -204,6 +222,11 @@
 }
 
 @keyframes badge-pulse {
-  0%, 100% { opacity: 0.85; }
-  50%       { opacity: 0.4; }
+  0%,
+  100% {
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 0.4;
+  }
 }
