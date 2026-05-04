@@ -1,7 +1,7 @@
 ---
 title: 'Titanium Rose'
-description: 'A decoupled rendering engine written in C++ and using DirectX 12.'
-lead: 'Titanium Rose is a rendering engine that I have been developing in the scope of my research endeavors'
+description: 'A research-oriented, decoupled rendering engine written in C++ and DirectX 12.'
+lead: 'Titanium Rose explores the potential of decoupled and asynchronous shading, enabling high-performance rendering by separating shading and frame rates.'
 date: 2022-12-01
 frontpage: true
 links:

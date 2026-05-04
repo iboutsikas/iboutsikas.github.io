@@ -1,7 +1,7 @@
 ---
 title: 'Ara: History Untold'
-description: 'A 4X, grand strategy game developed by Oxide Games and published by XBOX'
-lead: 'ARA is a historical, turn-based grand strategy game, where you play as various leaders from history and lead your nation to victory.'
+description: 'My work on the UI and Graphics systems for ARA: History Untold, a 4X grand strategy game.'
+lead: 'I contributed to the UI and Graphics teams for ARA, developing systems like data-driven gradients and specialized blending techniques to bring this grand strategy epic to life.'
 date: 2025-01-31
 role: 'Software Engineer (UI & Graphics)'
 links:

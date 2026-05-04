@@ -1,7 +1,7 @@
 ---
 title: 'CapstoneED v2'
-description: 'Bringing a 2017 Angular project into the modern web'
-lead: 'I am rebuilding the frontend for CapstoneED in Angular v21 following modern practices and patterns'
+description: 'Modernizing a 2017 Angular application with the latest framework features and best practices.'
+lead: 'I am rebuilding the CapstoneED frontend using Angular v21, focusing on a mobile-first approach, simplified architecture, and reduced dependency overhead.'
 date: 2025-12-01
 frontpage: true
 categories: [capstoneed]

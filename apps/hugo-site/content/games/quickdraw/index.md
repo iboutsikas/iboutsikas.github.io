@@ -1,7 +1,7 @@
 ---
 title: 'Quickdraw'
-description: "A simple mini-game based on Quick Draw from Kirby's adventure"
-lead: "A simple mini-game based on Quick Draw from Kirby's adventure, and driver to experiment with Unreal Engine's CommonUI and Enhanced Input"
+description: "A mini-game experiment using Unreal Engine's CommonUI and Enhanced Input systems."
+lead: "Quickdraw is a personal project designed to explore the depths of Unreal Engine 5's CommonUI and Enhanced Input, inspired by the classic Quick Draw mechanic from Kirby's Adventure."
 date: 2025-12-07
 links:
   - title: Repository

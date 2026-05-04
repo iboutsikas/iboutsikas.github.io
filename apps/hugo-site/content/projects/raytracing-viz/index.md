@@ -1,7 +1,7 @@
 ---
 title: 'Raytracing Visualizer'
-description: 'A raytracing educational tool'
-lead: "An educational project I use when talking about raytracing in UMBC's CMSC 435."
+description: 'An interactive educational tool for visualizing raytracing concepts.'
+lead: "Designed for teaching raytracing at UMBC, this tool allows students to interactively visualize how camera parameters and image planes affect the resulting raytraced image."
 date: 2022-10-11
 links:
   - title: Repository

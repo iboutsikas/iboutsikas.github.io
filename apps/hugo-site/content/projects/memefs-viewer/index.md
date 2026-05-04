@@ -1,7 +1,7 @@
 ---
 title: 'MEMEfs Viewer'
-description: "A filesystem browser for Dreamcast's VMU, written in Angular + Electron"
-lead: "This is a tool developed for UMBC's CMSC421 - Operating Systems. It allows students to get information about a VMU image."
+description: 'An Angular and Electron-based filesystem browser for inspecting Dreamcast VMU images.'
+lead: "Developed for UMBC's Operating Systems course, this tool aids students in inspecting VMU images by providing a visual interface for raw bytes, superblocks, and file entries."
 date: 2018-10-27
 ---
 

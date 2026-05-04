@@ -1,7 +1,7 @@
 ---
 title: 'Native Dialogs'
-description: 'A Unity plugin for native widgets on mobile'
-lead: 'A Unity plugin for native widgets on mobile'
+description: 'A Unity plugin that enables the use of native OS widgets on mobile devices.'
+lead: 'Bridge the gap between Unity and mobile operating systems by leveraging native date pickers and widgets for a seamless user experience on iOS and Android.'
 date: 2022-02-17
 links:
   - title: Repository

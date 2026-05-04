@@ -1,7 +1,7 @@
 ---
 title: 'Under the Bay'
-description: 'An interactive, AR experience telling a story about the Chesapeake Bay.'
-lead: '"Under the Bay" tells the story of a world beneath the surface of the Chesapeake Bay'
+description: 'An interactive AR experience using Unity to tell the story of the Chesapeake Bay.'
+lead: '"Under the Bay" is an interactive AR experience that brings the world beneath the Chesapeake Bay to life, driven by real-time environmental data.'
 date: 2022-08-01
 role: 'Software Engineer (Unity)'
 links:
