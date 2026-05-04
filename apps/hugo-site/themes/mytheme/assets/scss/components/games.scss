@@ -27,7 +27,9 @@
   @media (min-width: 42em) {
     grid-column: 1 / -1;
 
-    .game-card__title { font-size: 2rem; }
+    .game-card__title {
+      font-size: 2rem;
+    }
   }
 }
 
@@ -42,7 +44,9 @@
   isolation: isolate; // keep stacking context clean
 
   // Subtle glow on hover via box-shadow
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
 
   &:hover {
     transform: translateY(-3px) scale(1.01);
@@ -59,7 +63,9 @@
   text-decoration: none;
   color: inherit;
 
-  &:hover { text-decoration: none; }
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 // Background image layer
@@ -108,12 +114,7 @@
   right: 0;
   height: 2px;
   z-index: 3;
-  background: linear-gradient(
-    to right,
-    transparent,
-    var(--accent-color),
-    transparent
-  );
+  background: linear-gradient(to right, transparent, var(--accent-color), transparent);
   opacity: 0;
   transition: opacity 0.4s ease;
 }
@@ -167,8 +168,9 @@
 
 .game-card:hover .game-card__title {
   color: #fff; // stays white, glow effect via text-shadow
-  text-shadow: 0 0 20px color-mix(in srgb, var(--accent-color) 50%, transparent),
-               0 1px 6px rgba(0, 0, 0, 0.6);
+  text-shadow:
+    0 0 20px color-mix(in srgb, var(--accent-color) 50%, transparent),
+    0 1px 6px rgba(0, 0, 0, 0.6);
 }
 
 // Caption — hidden until hover
@@ -180,7 +182,9 @@
   line-height: 1.5;
   opacity: 0;
   transform: translateY(4px);
-  transition: opacity 0.3s ease 0.05s, transform 0.3s ease 0.05s;
+  transition:
+    opacity 0.3s ease 0.05s,
+    transform 0.3s ease 0.05s;
 }
 
 .game-card:hover .game-card__caption {
@@ -201,7 +205,9 @@
   color: var(--accent-color);
   opacity: 0;
   transform: translateY(8px);
-  transition: opacity 0.3s ease 0.1s, transform 0.3s ease 0.1s;
+  transition:
+    opacity 0.3s ease 0.1s,
+    transform 0.3s ease 0.1s;
   margin-top: 0.3rem;
 }
 
@@ -260,7 +266,7 @@
   background: linear-gradient(
     160deg,
     rgba(0, 0, 0, 0.08) 0%,
-    rgba(0, 0, 0, 0.3)  30%,
+    rgba(0, 0, 0, 0.3) 30%,
     rgba(0, 0, 0, 0.88) 100%
   );
 }
@@ -360,7 +366,10 @@
   color: #fff;
   text-decoration: none;
   backdrop-filter: blur(4px);
-  transition: border-color 0.2s, color 0.2s, background 0.2s;
+  transition:
+    border-color 0.2s,
+    color 0.2s,
+    background 0.2s;
 
   &:hover {
     border-color: var(--accent-color);
@@ -379,7 +388,6 @@
   margin: 0 0 2rem;
   padding-bottom: 1.75rem;
   border-bottom: 1px solid var(--border-color);
-  max-width: 72ch;
 }
 
 // ── Related posts ─────────────────────────────────────────────────────────────

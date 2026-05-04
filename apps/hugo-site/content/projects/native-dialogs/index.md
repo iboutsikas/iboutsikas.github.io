@@ -1,7 +1,7 @@
 ---
-title: "Native Dialogs"
-caption: "A Unity plugin for native widgets on mobile"
-description: "A Unity plugin for native widgets on mobile"
+title: 'Native Dialogs'
+description: 'A Unity plugin for native widgets on mobile'
+lead: 'A Unity plugin for native widgets on mobile'
 date: 2022-02-17
 links:
   - title: Repository

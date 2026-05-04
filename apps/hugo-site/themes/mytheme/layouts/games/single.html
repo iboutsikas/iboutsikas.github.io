@@ -14,7 +14,7 @@
       <span class="game-hero__role">{{ . }}</span>
       {{ end }}
       <h1 class="game-hero__title" style="view-transition-name: vt-{{ .File.UniqueID }}">{{ .Title }}</h1>
-      {{ with .Params.caption }}
+      {{ with .Description }}
       <p class="game-hero__caption">{{ . }}</p>
       {{ end }}
       <div class="game-hero__meta">
@@ -31,7 +31,7 @@
   </div>
 
   {{/* ── Description lead ───────────────────────────────────────────────── */}}
-  {{ with .Description }}
+  {{ with .Params.lead }}
   <p class="game-lead">{{ . }}</p>
   {{ end }}
 

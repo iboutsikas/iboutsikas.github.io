@@ -1,9 +1,9 @@
 ---
-title: "Under the Bay"
-caption: "An interactive, AR experience telling a story about the Chesapeake Bay."
-description: "\"Under the Bay\" tells the story of a world beneath the surface of the Chesapeake Bay"
+title: 'Under the Bay'
+description: 'An interactive, AR experience telling a story about the Chesapeake Bay.'
+lead: '"Under the Bay" tells the story of a world beneath the surface of the Chesapeake Bay'
 date: 2022-08-01
-role: "Software Engineer (Unity)"
+role: 'Software Engineer (Unity)'
 links:
   - title: Project Page
     url: https://www.lisamoren.com/underthebay
@@ -38,12 +38,12 @@ We ended up implementing a gesture-centric system that directly integrates with 
 System"](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.4/manual/QuickStartGuide.html)(which
 itself was still stabilizing at the time). The system works in the following way:
 
-* Intercept mouse and touch input and attempt to convert it into our gestures.
+- Intercept mouse and touch input and attempt to convert it into our gestures.
   If successful we stop propagation to Unity's input system and we process it through our own.
-* If the gesture is "desired" by our application (i.e. we detected a swipe and
+- If the gesture is "desired" by our application (i.e. we detected a swipe and
   there is _some_ element of ours listening for one), our system will keep
   reporting progress until the gesture finishes/is canceled.
-* If there is nothing registered to listen for our gesture we conditionally fall
+- If there is nothing registered to listen for our gesture we conditionally fall
   back to Unity's default input handling.
 
 This architecture enabled us to define our own arbitrary gestures that made
@@ -63,12 +63,12 @@ scene, try to "touch" the micro-organisms, etc. This quickly resulted in users
 changing scenes without intending to. To address that we designed the following
 system:
 
-* When a scene swipe (i.e. swipe that was not used by anything else in the scene) is detected:
-    * We pause the current scene
-    * Grab a screen shot of the current state
-* Render two side-by-side full screen panels; the left is the current screen
+- When a scene swipe (i.e. swipe that was not used by anything else in the scene) is detected:
+  - We pause the current scene
+  - Grab a screen shot of the current state
+- Render two side-by-side full screen panels; the left is the current screen
   shot, the right is a design-time preview of the next scene.
-* These two panels now move in tandem to the user's gesture.
+- These two panels now move in tandem to the user's gesture.
 
 This approach allows the user to easily notice and cancel the transition if
 needed (they simply swipe back or release the touch), and it allows us to resume
@@ -132,13 +132,13 @@ shape the user experience. However, during development it is often necessary to
 replay data from a specific date or station—for instance, to simulate an algal
 bloom scenario.
 
-* Debug mode: Artists can toggle debug mode on a modifier to override live data
-with a manually set value. This option is compiled out of release builds to
-prevent accidental inclusion.
+- Debug mode: Artists can toggle debug mode on a modifier to override live data
+  with a manually set value. This option is compiled out of release builds to
+  prevent accidental inclusion.
 
-* Data stream window: A dedicated editor window allows artists to select a date,
-station, and sample. Once chosen, all modifiers update to reflect that snapshot,
-enabling a realistic preview of the scene at that point in time.
+- Data stream window: A dedicated editor window allows artists to select a date,
+  station, and sample. Once chosen, all modifiers update to reflect that snapshot,
+  enabling a realistic preview of the scene at that point in time.
 
 ![](data-stream.jpg)
 

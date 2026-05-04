@@ -17,7 +17,7 @@
   <ol class="latest-posts">
     {{ range $i, $p := . }}
     {{ $cover := $p.Resources.GetMatch "cover.*" }}
-    {{ $desc := or $p.Params.caption $p.Description }}
+    {{ $desc := $p.Description }}
     <li class="latest-post{{ if eq $i 0 }} latest-post--new{{ end }}">
       <a class="latest-post__link" href="{{ $p.RelPermalink }}">
         <span class="latest-post__num" aria-hidden="true">{{ printf "%02d" (add $i 1) }}</span>

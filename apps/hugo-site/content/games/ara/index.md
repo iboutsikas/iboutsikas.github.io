@@ -1,9 +1,9 @@
 ---
-title: "Ara: History Untold"
-caption: "A 4X, grand strategy game developed by Oxide Games and published by XBOX"
-description: "ARA is a historical, turn-based grand strategy game, where you play as various leaders from history and lead your nation to victory."
+title: 'Ara: History Untold'
+description: 'A 4X, grand strategy game developed by Oxide Games and published by XBOX'
+lead: 'ARA is a historical, turn-based grand strategy game, where you play as various leaders from history and lead your nation to victory.'
 date: 2025-01-31
-role: "Software Engineer (UI & Graphics)"
+role: 'Software Engineer (UI & Graphics)'
 links:
   - title: Homepage
     url: https://www.arahistoryuntold.com
@@ -57,13 +57,13 @@ workflow, and experience, of multiple artists.
 This is another feature that might sound like a given or trivial, but we had
 some unique constraints to deal with. The constraints were the following:
 
-* The UI is rendered to a separate texture then composed at the end with the
+- The UI is rendered to a separate texture then composed at the end with the
   game scene.
-* The final UI texture needs to be alpha pre-multiplied and the alpha of that
+- The final UI texture needs to be alpha pre-multiplied and the alpha of that
   texture will be used to blend with the scene texture.
-* Most of the UI look and feel is based on transparency, therefore needs alpha
+- Most of the UI look and feel is based on transparency, therefore needs alpha
   blending.
-* The entire UI needs to be rendered with a single blend state.
+- The entire UI needs to be rendered with a single blend state.
 
 The first two should be very obvious as well as familiar to anyone that has
 worked with UI or even games in general. The third is just a stylistic choice
@@ -71,9 +71,10 @@ and the last one is just a restriction that I had to work around.
 
 Before I move on, I would like to provide some resources about pre-multiplied
 alpha and why would (and more than likely should) want to use it:
-* [https://tomforsyth1000.github.io/blog.wiki.html](https://tomforsyth1000.github.io/blog.wiki.html) (look for `Premultipled alpha` and `Premultiplied alpha part 2` on the right side bar).
-* [https://iquilezles.org/articles/premultipliedalpha/](https://iquilezles.org/articles/premultipliedalpha/)
-* [https://github.com/dtrebilco/PreMulAlpha](https://github.com/dtrebilco/PreMulAlpha)
+
+- [https://tomforsyth1000.github.io/blog.wiki.html](https://tomforsyth1000.github.io/blog.wiki.html) (look for `Premultipled alpha` and `Premultiplied alpha part 2` on the right side bar).
+- [https://iquilezles.org/articles/premultipliedalpha/](https://iquilezles.org/articles/premultipliedalpha/)
+- [https://github.com/dtrebilco/PreMulAlpha](https://github.com/dtrebilco/PreMulAlpha)
 
 With all of that out of the way, how do we get a single blend state to perform
 different types of blending? The resources above do go into detail about similar

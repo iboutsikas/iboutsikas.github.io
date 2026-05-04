@@ -22,7 +22,7 @@
       <span class="game-card__role">{{ . }}</span>
       {{ end }}
       <h2 class="game-card__title" style="view-transition-name: vt-{{ .File.UniqueID }}">{{ .Title }}</h2>
-      <p class="game-card__caption">{{ .Params.caption }}</p>
+      <p class="game-card__caption">{{ .Description }}</p>
       <span class="game-card__cta" aria-hidden="true">
         Explore <span>&#8594;</span>
       </span>

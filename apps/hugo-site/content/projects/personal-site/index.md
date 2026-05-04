@@ -2,8 +2,8 @@
 title: 'Project: Personal Website Re-architecture'
 date: 2026-04-01
 categories: ['engineering', 'webdev']
-caption: 'From Jekyll to Hugo and monorepos'
-description: 'A technical showcase of migrating a legacy Jekyll site to a modern, Nx-orchestrated Hugo monorepo.'
+description: 'From Jekyll to Hugo and monorepos'
+lead: 'A technical showcase of migrating a legacy Jekyll site to a modern, Nx-orchestrated Hugo monorepo.'
 links:
   - title: Repository
     url: https://github.com/iboutsikas/iboutsikas.github.io

@@ -2,7 +2,6 @@
 title: 'Building a Seamless SPA Router with Lit and View Transitions'
 date: 2026-04-30
 categories: [webdev, lit, webcomponents, spa]
-caption: 'Smooth transitions and robust SPA navigation.'
 description: 'A technical deep dive into implementing a lightweight SPA router using Lit, leveraging the View Transitions API for seamless page swaps and fallback mechanisms for older browsers.'
 ---
 

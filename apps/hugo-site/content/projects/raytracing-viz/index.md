@@ -1,7 +1,7 @@
 ---
-title: "Raytracing Visualizer"
-caption: "A raytracing educational tool"
-description: "An educational project I use when talking about raytracing in UMBC's CMSC 435."
+title: 'Raytracing Visualizer'
+description: 'A raytracing educational tool'
+lead: "An educational project I use when talking about raytracing in UMBC's CMSC 435."
 date: 2022-10-11
 links:
   - title: Repository

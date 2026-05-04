@@ -4,13 +4,13 @@
 
 <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}</title>
 
-{{- $desc := or .Description .Summary site.Params.description -}}
+{{- $desc := or .Description .Summary site.Params.description | plainify | htmlUnescape -}}
 <meta name="description" content="{{ $desc }}">
 <meta name="theme-color" content="{{ site.Params.theme_color | default `#193747` }}">
 <link rel="canonical" href="{{ .Permalink }}">
 
-{{ template "_internal/opengraph.html" . }} 
-{{ template "_internal/twitter_cards.html" . }}
+{{ partial "opengraph.html" . }}
+{{ partial "twitter_cards.html" . }}
 
 {{/* Inline script: apply stored/OS theme before first paint to prevent flash */}}
 <script>
