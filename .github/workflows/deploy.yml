@@ -48,7 +48,7 @@ jobs:
             nx-${{ hashFiles('**/project.json', '**/vite.config.ts', 'nx.json') }}-
 
       - name: Build site
-        run: npm exec nx build @iboutsikas/site -c production
+        run: npm exec nx -- build @iboutsikas/site -c production
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
