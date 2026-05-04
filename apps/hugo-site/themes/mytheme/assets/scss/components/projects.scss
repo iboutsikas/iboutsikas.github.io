@@ -122,6 +122,10 @@
   margin: 0 auto;
 }
 
+.project-lead {
+  @include lead;
+}
+
 // ── Related posts ─────────────────────────────────────────────────────────────
 
 .project-related {

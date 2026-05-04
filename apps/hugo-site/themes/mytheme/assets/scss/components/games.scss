@@ -382,12 +382,7 @@
 // ── Lead description ──────────────────────────────────────────────────────────
 
 .game-lead {
-  font-size: 1.05rem;
-  color: var(--muted-color);
-  line-height: 1.8;
-  margin: 0 0 2rem;
-  padding-bottom: 1.75rem;
-  border-bottom: 1px solid var(--border-color);
+  @include lead;
 }
 
 // ── Related posts ─────────────────────────────────────────────────────────────

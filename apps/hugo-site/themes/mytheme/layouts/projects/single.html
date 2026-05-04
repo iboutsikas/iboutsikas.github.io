@@ -26,6 +26,11 @@
     </p>
   </header>
 
+  {{/* ── Description lead ───────────────────────────────────────────────── */}}
+  {{ with .Params.lead }}
+  <p class="project-lead">{{ . }}</p>
+  {{ end }}
+
   {{/* ── Table of contents ───────────────────────────────────────────────── */}}
   {{ partial "toc.html" (dict "page" . "related" $related) }}
 
