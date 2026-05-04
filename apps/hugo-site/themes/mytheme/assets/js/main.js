@@ -20,7 +20,35 @@ document.addEventListener('DOMContentLoaded', () => {
   initSidebar(breakpoints);
   initCopyButtons();
 
-  document.addEventListener('router-navigation-complete', () => {
+  document.addEventListener('router-navigation-complete', (event) => {
+    const { doc } = event.detail;
+    if (doc) {
+      const newMetas = doc.querySelectorAll('meta');
+      newMetas.forEach(newMeta => {
+        const name = newMeta.getAttribute('name') || newMeta.getAttribute('property');
+        if (name) {
+          const existingMeta = document.querySelector(`meta[name="${name}"], meta[property="${name}"]`);
+          if (existingMeta) {
+            for (const attr of newMeta.attributes) {
+              if (attr.name !== 'name' && attr.name !== 'property') {
+                existingMeta.setAttribute(attr.name, attr.value);
+              }
+            }
+          } else {
+            document.head.appendChild(newMeta.cloneNode(true));
+          }
+        }
+      });
+
+      const currentMetas = document.querySelectorAll('meta');
+      currentMetas.forEach(meta => {
+        const name = meta.getAttribute('name') || meta.getAttribute('property');
+        if (name && !doc.querySelector(`meta[name="${name}"], meta[property="${name}"]`)) {
+          meta.remove();
+        }
+      });
+    }
+
     const hash = location.hash;
     if (!hash) return;
     const target = document.getElementById(hash.slice(1));

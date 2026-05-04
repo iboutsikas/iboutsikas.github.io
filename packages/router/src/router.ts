@@ -77,19 +77,19 @@ export class IbRouter extends LitElement {
         location.assign(url);
         return;
       }
-      if (pushState) {
-        history.pushState({ spa: true }, title, url);
-      }
-      this._dispatchNavigated(url, title, from, isBackForward);
-      this._dispatchNavigationComplete(url, title, from, isBackForward);
-      return;
-    }
+       if (pushState) {
+         history.pushState({ spa: true }, title, url);
+       }
+       this._dispatchNavigated(url, title, from, isBackForward, document);
+       this._dispatchNavigationComplete(url, title, from, isBackForward, document);
+       return;
+     }
 
     this._controller = new AbortController();
     const signal = this._controller.signal;
 
     try {
-      const { html, title } = await this._fetchPage(url, signal);
+      const { html, title, doc } = await this._fetchPage(url, signal);
       const content = this._getContent();
       if (!content) return;
 
@@ -101,12 +101,12 @@ export class IbRouter extends LitElement {
         }
         const transition = document.startViewTransition(() => {
           this._applySwap(url, html, title, pushState);
-          this._dispatchNavigated(url, title, from, isBackForward);
+          this._dispatchNavigated(url, title, from, isBackForward, doc);
         });
         await transition.finished.catch(() => {
           // noop
         });
-        this._dispatchNavigationComplete(url, title, from, isBackForward);
+        this._dispatchNavigationComplete(url, title, from, isBackForward, doc);
       } else {
         const prevented = this._beforeNavigate(url, title);
         if (prevented) {
@@ -115,9 +115,9 @@ export class IbRouter extends LitElement {
         }
         await this._markLeaving(content);
         this._applySwap(url, html, title, pushState);
-        this._dispatchNavigated(url, title, from, isBackForward);
+        this._dispatchNavigated(url, title, from, isBackForward, doc);
         await this._markEntering(content);
-        this._dispatchNavigationComplete(url, title, from, isBackForward);
+        this._dispatchNavigationComplete(url, title, from, isBackForward, doc);
       }
     } catch (err: unknown) {
       if (err instanceof Error && err.name === 'AbortError') return;
@@ -136,7 +136,7 @@ export class IbRouter extends LitElement {
   private async _fetchPage(
     url: string,
     signal: AbortSignal
-  ): Promise<{ html: string; title: string }> {
+  ): Promise<{ html: string; title: string; doc: Document }> {
     const res = await fetch(url, { signal });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const html = await res.text();
@@ -144,6 +144,7 @@ export class IbRouter extends LitElement {
     return {
       html: doc.querySelector('#_content')?.innerHTML ?? '',
       title: doc.title,
+      doc,
     };
   }
 
@@ -176,9 +177,10 @@ export class IbRouter extends LitElement {
     url: string,
     title: string,
     from: string,
-    isBackForward: boolean
+    isBackForward: boolean,
+    doc: Document
   ): void {
-    const detail: RouterNavigatedDetail = { url, title, from, isBackForward };
+    const detail: RouterNavigatedDetail = { url, title, from, isBackForward, doc };
     this.dispatchEvent(
       new CustomEvent(RouterEvents.Navigated, {
         detail,
@@ -192,9 +194,10 @@ export class IbRouter extends LitElement {
     url: string,
     title: string,
     from: string,
-    isBackForward: boolean
+    isBackForward: boolean,
+    doc: Document
   ): void {
-    const detail: RouterNavigationCompleteDetail = { url, title, from, isBackForward };
+    const detail: RouterNavigationCompleteDetail = { url, title, from, isBackForward, doc };
     queueMicrotask(() => {
       this.dispatchEvent(
         new CustomEvent(RouterEvents.NavigationComplete, {

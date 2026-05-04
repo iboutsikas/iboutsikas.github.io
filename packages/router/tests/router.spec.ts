@@ -373,14 +373,23 @@ describe('IbRouter', () => {
       expect(events[0].detail.isBackForward).toBe(false);
     });
 
-    it('fires router-navigation-complete after full navigation', async () => {
-      const events = listenFor(router, RouterEvents.NavigationComplete);
+    it('includes the fetched document in Navigated and NavigationComplete events', async () => {
+      const html = '<html><head><meta name="test" content="value"></head><body><div id="_content">test</div></body></html>';
+      vi.stubGlobal('fetch', makeFetch(html, 'Test Title'));
+      
+      const navigatedEvents = listenFor(router, RouterEvents.Navigated);
+      const completeEvents = listenFor(router, RouterEvents.NavigationComplete);
 
       clickAnchor('http://localhost/page2');
       await advanceNavigation();
 
-      expect(events).toHaveLength(1);
-      expect(events[0].detail.url).toBe('http://localhost/page2');
+      expect(navigatedEvents).toHaveLength(1);
+      expect(navigatedEvents[0].detail.doc).toBeInstanceOf(Document);
+      expect(navigatedEvents[0].detail.doc.querySelector('meta[name="test"]')?.getAttribute('content')).toBe('value');
+
+      expect(completeEvents).toHaveLength(1);
+      expect(completeEvents[0].detail.doc).toBeInstanceOf(Document);
+      expect(completeEvents[0].detail.doc.querySelector('meta[name="test"]')?.getAttribute('content')).toBe('value');
     });
 
     it('fires router-navigation-error on HTTP error with correct detail', async () => {

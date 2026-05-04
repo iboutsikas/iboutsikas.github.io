@@ -16,6 +16,7 @@ export interface RouterNavigatedDetail {
   title: string;
   from: string;
   isBackForward: boolean;
+  doc: Document;
 }
 
 export interface RouterNavigationCompleteDetail {
@@ -23,6 +24,7 @@ export interface RouterNavigationCompleteDetail {
   title: string;
   from: string;
   isBackForward: boolean;
+  doc: Document;
 }
 
 export interface RouterNavigationErrorDetail {

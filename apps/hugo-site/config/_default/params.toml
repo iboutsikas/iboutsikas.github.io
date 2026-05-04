@@ -4,7 +4,7 @@ accent_color = "rgb(215,109,255)"
 theme_color  = "rgb(25,55,71)"
 tagline      = "Software engineer with focus on game engine development and real-time graphics."
 # Description (used as default OG description)
-description = "Ioannis Boutsikas | Software Engineering portfolio - Showcasing my work in game and web development as well as encounters with Unreal Engine."
+description = "Ioannis Boutsikas | Software Engineer specializing in game engine architecture, computer graphics, and web development."
 
 # Copyright
 copyright = "© 2026. All rights reserved."
