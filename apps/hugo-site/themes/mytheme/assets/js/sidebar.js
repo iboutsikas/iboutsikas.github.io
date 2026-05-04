@@ -137,4 +137,10 @@ export function initSidebar(breakpoints) {
   coverpage.addEventListener('coverpage-before-animation', () => onBeforeAnimation(ctx));
   coverpage.addEventListener('coverpage-after-animation', () => onAfterAnimation(ctx));
   coverpage.addEventListener('coverpage-progress', (event) => onCoverpageProgress(event, ctx));
+
+  // When we open the link directly to some content, we immediately close the
+  // coverpage so the user can see the content
+  if (window.location.pathname !== '/') {
+    ctx.coverpage.hide();
+  }
 }

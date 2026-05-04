@@ -23,11 +23,16 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('router-navigation-complete', (event) => {
     const { doc } = event.detail;
     if (doc) {
+      // We only update the <meta /> tags. For tags like og:whatever, we do not really care as these will
+      // be used by crawling/bots media sites. And those will never actually perform a navigation, it is just
+      // for the post we linked!
       const newMetas = doc.querySelectorAll('meta');
-      newMetas.forEach(newMeta => {
+      newMetas.forEach((newMeta) => {
         const name = newMeta.getAttribute('name') || newMeta.getAttribute('property');
         if (name) {
-          const existingMeta = document.querySelector(`meta[name="${name}"], meta[property="${name}"]`);
+          const existingMeta = document.querySelector(
+            `meta[name="${name}"], meta[property="${name}"]`
+          );
           if (existingMeta) {
             for (const attr of newMeta.attributes) {
               if (attr.name !== 'name' && attr.name !== 'property') {
@@ -41,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       const currentMetas = document.querySelectorAll('meta');
-      currentMetas.forEach(meta => {
+      currentMetas.forEach((meta) => {
         const name = meta.getAttribute('name') || meta.getAttribute('property');
         if (name && !doc.querySelector(`meta[name="${name}"], meta[property="${name}"]`)) {
           meta.remove();
