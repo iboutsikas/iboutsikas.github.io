@@ -41,23 +41,16 @@
 // Right column — content
 
 .pub-entry__body {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
+  @include flex-col(0.2rem);
 }
 
 // Type badge (Preprint, Dissertation, etc.)
 
 .pub-entry__type {
-  display: inline-block;
+  @include badge-pill;
   align-self: flex-start;
   font-size: 0.6rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--accent-color);
-  border: 1px solid color-mix(in srgb, var(--accent-color) 40%, transparent);
-  border-radius: 3px;
+  border-color: color-mix(in srgb, var(--accent-color) 40%, transparent);
   padding: 0.18em 0.55em;
   margin-bottom: 0.25rem;
 }
@@ -74,7 +67,7 @@
     text-decoration: none;
     transition: color var(--transition-speed);
 
-    &:hover { color: var(--accent-color); }
+    @include link-hover-accent;
   }
 }
 
@@ -82,7 +75,7 @@
   font-size: 0.83rem;
   color: var(--muted-color);
   margin: 0;
-  line-height: 1.5;
+  line-height: var(--line-height-normal);
 }
 
 .pub-entry__self {
@@ -120,7 +113,7 @@
   font-weight: 600;
   color: var(--accent-color);
   border: 1px solid color-mix(in srgb, var(--accent-color) 35%, transparent);
-  border-radius: 3px;
+  border-radius: var(--radius-sm);
   padding: 0.2em 0.6em;
   text-decoration: none;
   transition: background var(--transition-speed), border-color var(--transition-speed);
@@ -158,9 +151,7 @@
 // ── Header ────────────────────────────────────────────────────────────────────
 
 .pub-single__header {
-  margin-bottom: 2rem;
-  padding-bottom: 1.75rem;
-  border-bottom: 1px solid var(--border-color);
+  @include section-divider(1.75rem, 2rem);
 }
 
 // Type · Venue · Year row
@@ -175,13 +166,9 @@
 }
 
 .pub-single__type {
+  @include badge-pill;
   font-size: 0.62rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--accent-color);
-  border: 1px solid color-mix(in srgb, var(--accent-color) 40%, transparent);
-  border-radius: 3px;
+  border-color: color-mix(in srgb, var(--accent-color) 40%, transparent);
   padding: 0.2em 0.55em;
 }
 
@@ -211,7 +198,7 @@
 .pub-single__title {
   font-size: clamp(1.6rem, 3.5vw, 2.1rem);
   font-weight: var(--font-weight-heading);
-  line-height: 1.2;
+  line-height: var(--line-height-tight);
   color: var(--heading-color);
   margin: 0 0 0.6rem;
   view-transition-class: flip-title;
@@ -238,11 +225,11 @@
 
 .pub-single__link {
   display: inline-block;
-  font-size: 0.8rem;
+  font-size: var(--font-size-md);
   font-weight: 600;
   color: var(--accent-color);
   border: 1px solid color-mix(in srgb, var(--accent-color) 45%, transparent);
-  border-radius: 4px;
+  border-radius: var(--radius-md);
   padding: 0.3em 0.8em;
   text-decoration: none;
   transition: background var(--transition-speed), border-color var(--transition-speed);
@@ -258,7 +245,7 @@
 
 .pub-cover {
   margin-bottom: 2rem;
-  border-radius: 6px;
+  border-radius: var(--radius-lg);
   overflow: hidden;
   border: 1px solid var(--card-border);
 
@@ -272,20 +259,14 @@
 // ── Abstract block ────────────────────────────────────────────────────────────
 
 .pub-abstract {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
+  @include card-base(0 var(--radius-lg) var(--radius-lg) 0);
   border-left: 3px solid var(--accent-color);
-  border-radius: 0 6px 6px 0;
   padding: 1.1rem 1.4rem;
   margin-bottom: 2.5rem;
 }
 
 .pub-abstract__label {
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--accent-color);
+  @include label-uppercase(0.65rem, var(--accent-color));
   margin: 0 0 0.6rem;
 }
 
@@ -299,9 +280,8 @@
 // ── BibTeX citation ───────────────────────────────────────────────────────────
 
 .pub-bibtex {
+  @include card-base;
   margin-top: 3rem;
-  border: 1px solid var(--card-border);
-  border-radius: 6px;
   font-size: 0.88rem;
 
   &[open] .pub-bibtex__toggle::after { transform: rotate(180deg); }
@@ -312,29 +292,14 @@
   align-items: center;
   justify-content: space-between;
   padding: 0.75rem 1.1rem;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-  color: var(--muted-color);
+  @include label-uppercase(var(--font-size-xs));
   cursor: pointer;
   list-style: none;
   user-select: none;
 
   &::-webkit-details-marker { display: none; }
 
-  &::after {
-    content: "";
-    display: block;
-    width: 0.5rem;
-    height: 0.5rem;
-    border-right: 2px solid var(--muted-color);
-    border-bottom: 2px solid var(--muted-color);
-    transform: rotate(45deg);
-    transition: transform var(--transition-speed);
-    margin-top: -0.2rem;
-    flex-shrink: 0;
-  }
+  @include details-arrow;
 }
 
 .pub-bibtex__body {
@@ -367,7 +332,7 @@
   img {
     flex: 1 1 200px;
     min-width: 0;
-    border-radius: 4px;
+    border-radius: var(--radius-md);
     height: auto;
     display: block;
   }

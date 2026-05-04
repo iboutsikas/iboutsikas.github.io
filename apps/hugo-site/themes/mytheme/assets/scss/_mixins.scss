@@ -8,3 +8,107 @@
   padding-bottom: 1.75rem;
   border-bottom: 1px solid var(--border-color);
 }
+
+// ── card-base — Background + Border + Radius ───────────────────────────────────
+
+@mixin card-base($radius: var(--radius-lg)) {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: $radius;
+}
+
+// ── image-hover-scale — Image Zoom on Card Hover ──────────────────────────────
+
+@mixin image-hover-scale($scale: 1.04, $duration: var(--duration-medium)) {
+  img {
+    transition: transform $duration ease;
+  }
+
+  &:hover img {
+    transform: scale($scale);
+  }
+}
+
+// ── label-uppercase — Small Uppercase Section Labels ──────────────────────────
+
+@mixin label-uppercase($size: var(--font-size-md), $color: var(--muted-color)) {
+  font-size: $size;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $color;
+}
+
+// ── badge-pill — Inline Pill/Badge ────────────────────────────────────────────
+
+@mixin badge-pill($color: var(--accent-color), $radius: var(--radius-sm)) {
+  display: inline-block;
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $color;
+  border: 1px solid color-mix(in srgb, #{$color} 30%, transparent);
+  border-radius: $radius;
+  padding: 0.2em 0.55em;
+}
+
+// ── link-hover-accent — Standard Accent Hover ─────────────────────────────────
+
+@mixin link-hover-accent {
+  &:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+  }
+}
+
+// ── section-divider — Border-Bottom Separator Row ─────────────────────────────
+
+@mixin section-divider($pad: 1rem, $margin: 1.5rem) {
+  padding-bottom: $pad;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: $margin;
+}
+
+// ── overlay-gradient — Absolute Gradient Overlay ──────────────────────────────
+
+@mixin overlay-gradient($gradient, $z: $z-overlay) {
+  position: absolute;
+  inset: 0;
+  z-index: $z;
+  background: $gradient;
+}
+
+// ── details-arrow — Collapsible Toggle Arrow ──────────────────────────────────
+
+@mixin details-arrow($size: 0.5rem, $color: var(--muted-color)) {
+  &::after {
+    content: "";
+    display: block;
+    width: $size;
+    height: $size;
+    border-right: 2px solid $color;
+    border-bottom: 2px solid $color;
+    transform: rotate(45deg);
+    transition: transform var(--transition-speed);
+    margin-top: -0.2rem;
+    flex-shrink: 0;
+  }
+}
+
+// ── flex-col — Flex Column with Gap ───────────────────────────────────────────
+
+@mixin flex-col($gap: var(--gap-lg)) {
+  display: flex;
+  flex-direction: column;
+  gap: $gap;
+}
+
+// ── blockquote-style — Prose Blockquote ───────────────────────────────────────
+
+@mixin blockquote-style {
+  margin: 1.5rem 0;
+  padding: 0.5rem 1rem;
+  color: var(--muted-color);
+  border-left: 3px solid var(--accent-color);
+}

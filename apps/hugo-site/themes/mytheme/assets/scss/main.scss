@@ -90,7 +90,7 @@ img {
   align-self: flex-start;
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: $z-nav;
 
   span {
     display: block;
@@ -123,9 +123,7 @@ img {
 // ── Page header ──────────────────────────────────────────────────────────────
 
 .page-header {
-  margin-bottom: 2rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid var(--border-color);
+  @include section-divider(1rem, 2rem);
 }
 
 .page-title {
@@ -136,7 +134,7 @@ img {
 .page-date {
   display: block;
   color: var(--muted-color);
-  font-size: 0.875rem;
+  font-size: var(--font-size-code);
 }
 
 .page-intro {
@@ -153,20 +151,20 @@ img {
     font-size: 0.875em;
     background: var(--code-bg);
     padding: 0.15em 0.35em;
-    border-radius: 3px;
+    border-radius: var(--radius-sm);
   }
 
   pre {
     background: var(--code-bg);
     padding: 1rem 1.25rem;
-    border-radius: 6px;
+    border-radius: var(--radius-lg);
     overflow-x: auto;
 
     code {
       background: none;
       padding: 0;
-      font-size: 0.875rem;
-      line-height: 1.65;
+      font-size: var(--font-size-code);
+      line-height: var(--line-height-code);
     }
   }
 
@@ -175,7 +173,7 @@ img {
 
     pre.chroma {
       margin: 0;
-      border-radius: 6px;
+      border-radius: var(--radius-lg);
       border: 1px solid var(--border-color);
       overflow-x: auto;
       padding: 1rem 2.5rem 1rem 1.25rem;
@@ -183,10 +181,7 @@ img {
   }
 
   blockquote {
-    border-left: 3px solid var(--accent-color);
-    margin: 1.5rem 0;
-    padding: 0.5rem 1rem;
-    color: var(--muted-color);
+    @include blockquote-style;
 
     p { margin: 0; }
   }
@@ -220,10 +215,8 @@ img {
 }
 
 .post-card {
+  @include card-base;
   padding: 1.5rem;
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 6px;
   transition: border-color var(--transition-speed);
 
   &:hover {
@@ -248,7 +241,7 @@ img {
 .post-card-date {
   display: block;
   color: var(--muted-color);
-  font-size: 0.8rem;
+  font-size: var(--font-size-md);
   margin-bottom: 0.5rem;
 }
 

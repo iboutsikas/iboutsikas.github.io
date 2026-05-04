@@ -35,11 +35,7 @@
 // ── Suggestion links ──────────────────────────────────────────────────────────
 
 .not-found__suggest-label {
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--muted-color);
+  @include label-uppercase(var(--font-size-md));
   margin-bottom: 1rem;
 }
 
@@ -58,7 +54,7 @@
   padding: 1.25rem 1.75rem;
   background: var(--card-bg);
   border: 1px solid var(--card-border);
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
   text-decoration: none;
   color: var(--body-color);
   min-width: 140px;
