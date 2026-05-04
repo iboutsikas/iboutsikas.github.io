@@ -9,26 +9,9 @@
 <meta name="theme-color" content="{{ site.Params.theme_color | default `#193747` }}">
 <link rel="canonical" href="{{ .Permalink }}">
 
-{{- /* Open Graph */ -}}
-<meta property="og:site_name" content="{{ site.Title }}">
-<meta property="og:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }}{{ end }}">
-<meta property="og:description" content="{{ $desc }}">
-<meta property="og:url" content="{{ .Permalink }}">
-<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
-{{- if .IsPage }}
-{{- with .Date }}<meta property="article:published_time" content="{{ .Format `2006-01-02T15:04:05-07:00` }}">{{ end }}
-{{- with .Lastmod }}<meta property="article:modified_time" content="{{ .Format `2006-01-02T15:04:05-07:00` }}">{{ end }}
-{{- end }}
-{{ partial "social-image.html" . }}
+{{ template "_internal/opengraph.html" . }} 
+{{ template "_internal/twitter_cards.html" . }}
 
-{{- /* Twitter / X Card */ -}}
-{{- $hasImage := or (and .IsPage (.Resources.GetMatch "cover.*")) site.Params.og_image -}}
-<meta name="twitter:card" content="{{ if $hasImage }}summary_large_image{{ else }}summary{{ end }}">
-<meta name="twitter:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }}{{ end }}">
-<meta name="twitter:description" content="{{ $desc }}">
-{{- with site.Params.twitter_handle }}
-<meta name="twitter:site" content="{{ . }}">
-{{- end }}
 {{/* Inline script: apply stored/OS theme before first paint to prevent flash */}}
 <script>
 (function () {
