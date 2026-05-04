@@ -24,6 +24,11 @@
         "command": "hugo",
         "cwd": "{projectRoot}"
       },
+      "configurations": {
+        "production": {
+          "command": "hugo --environment production"
+        }
+      },
       "outputs": ["{projectRoot}/public"]
     }
   }

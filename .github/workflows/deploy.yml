@@ -22,7 +22,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Full history required for Hugo's enableGitInfo
+          fetch-depth: 0 # Full history required for Hugo's enableGitInfo
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -34,17 +34,21 @@ jobs:
         run: npm ci
 
       - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v3
+        uses: peaceiris/actions-hugo@75d2e84710de30f6ff7268e08f310b60ef14033f # v3
         with:
-          hugo-version: 'latest'
-          extended: true  # Required for SCSS/Sass processing
+          hugo-version: '0.161.1'
+          extended: true # Required for SCSS/Sass processing
 
-      - name: Build coverpage
-        run: npm exec nx run @iboutsikas/coverpage:build
+      - name: Cache Nx
+        uses: actions/cache@v4
+        with:
+          path: .nx/cache
+          key: nx-${{ hashFiles('**/project.json', '**/vite.config.ts', 'nx.json') }}-${{ github.sha }}
+          restore-keys: |
+            nx-${{ hashFiles('**/project.json', '**/vite.config.ts', 'nx.json') }}-
 
       - name: Build site
-        run: hugo --environment production
-        working-directory: apps/hugo-site
+        run: npm exec nx build @iboutsikas/site -c production
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
