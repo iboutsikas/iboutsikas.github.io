@@ -53,6 +53,18 @@ img {
 
 // ── Coverpage sidebar sizing ──────────────────────────────────────────────────
 
+// Before JS upgrades ib-coverpage, pull it out of flow so #_layout doesn't shift.
+// Mirrors what the shadow DOM .cover does post-upgrade (position: fixed).
+ib-coverpage:not(:defined) {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--sidebar-width);
+  height: 100vh;
+  overflow: hidden;
+  z-index: 100;
+}
+
 #_coverpage {
   // Mobile: tiny sliver so swipe-from-edge gesture works
   --cover-peek-size: 15px;
