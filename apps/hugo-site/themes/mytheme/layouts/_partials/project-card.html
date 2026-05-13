@@ -7,7 +7,7 @@
   <a class="project-card__media-link" href="{{ .RelPermalink }}" tabindex="-1" aria-hidden="true">
     <div class="project-card__media{{ if not $cover }} project-card__media--fallback{{ end }}">
       {{ with $cover }}
-      <img src="{{ .RelPermalink }}" alt="{{ $.Title }}" loading="lazy" decoding="async">
+      {{ partial "responsive-image" (dict "Image" . "Alt" $.Title "Sizes" "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px") }}
       {{ end }}
     </div>
   </a>

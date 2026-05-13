@@ -2,14 +2,33 @@
 
   <div class="sidebar-container">
     {{ with .Site.Params.sidebar_bg }}
-    <div class="sidebar-bg" style="--sidebar-bg-image: url({{ . | relURL }})"></div>
+      {{ $bgPath := strings.TrimLeft "/" . }}
+      {{ $bgImg := resources.Get $bgPath }}
+      {{ if $bgImg }}
+        {{ $webp := $bgImg.Resize "1920x webp q85" }}
+        {{ $fallback := $bgImg.Resize "1920x" }}
+        <div class="sidebar-bg" style="--sidebar-bg-image: image-set(url('{{ $webp.RelPermalink }}') type('image/webp'), url('{{ $fallback.RelPermalink }}') 1x)"></div>
+      {{ else }}
+        <div class="sidebar-bg" style="--sidebar-bg-image: url({{ . | relURL }})"></div>
+      {{ end }}
     {{ end }}
 
     <div class="sidebar-sticky">
       <div class="sidebar-about">
           {{ with .Site.Params.logo }}
+          {{ $logoPath := strings.TrimLeft "/" . }}
+          {{ $logoImg := resources.Get $logoPath }}
           <a href="{{ $.Site.BaseURL }}">
-            <img src="{{ . | relURL }}" class="avatar" alt="{{ $.Site.Title }}">
+            {{ if $logoImg }}
+              {{ $webp := $logoImg.Resize "160x160 webp q85" }}
+              {{ $fallback := $logoImg.Resize "160x160" }}
+              <picture>
+                <source type="image/webp" srcset="{{ $webp.RelPermalink }}">
+                <img src="{{ $fallback.RelPermalink }}" class="avatar" alt="{{ $.Site.Title }}" width="160" height="160" loading="eager" decoding="async">
+              </picture>
+            {{ else }}
+              <img src="{{ . | relURL }}" class="avatar" alt="{{ $.Site.Title }}" loading="eager" decoding="async">
+            {{ end }}
           </a>
           {{ end }}
           <a class="site-title" href="{{ .Site.BaseURL }}">

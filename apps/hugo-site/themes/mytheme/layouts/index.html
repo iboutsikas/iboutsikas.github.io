@@ -23,7 +23,7 @@
         <span class="latest-post__num" aria-hidden="true">{{ printf "%02d" (add $i 1) }}</span>
         <div class="latest-post__thumb{{ if not $cover }} latest-post__thumb--fallback{{ end }}" aria-hidden="true">
           {{ with $cover }}
-          <img src="{{ .RelPermalink }}" alt="" loading="lazy" decoding="async">
+          {{ partial "responsive-image" (dict "Image" . "Alt" "" "Sizes" "80px") }}
           {{ end }}
         </div>
         <div class="latest-post__info">

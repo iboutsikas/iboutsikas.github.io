@@ -19,17 +19,18 @@
   {{- $title := $img.Title -}}
   {{- $loading := .Loading | default "lazy" -}}
   {{- $class := .Class | default "" -}}
+  {{- $sizes := .Sizes | default "(max-width: 1200px) 100vw, 1200px" -}}
 
   {{- if eq $srcset "" -}}
     <img {{ with $class }}class="{{ . }}"{{ end }} src="{{ $img.RelPermalink }}" width="{{ $img.Width }}" height="{{ $img.Height }}" alt="{{ $alt }}" loading="{{ $loading }}" decoding="async">
   {{- else -}}
     <picture>
       {{- if ne $webpSrcset "" -}}
-        <source type="image/webp" srcset="{{ $webpSrcset }}" sizes="(max-width: 1200px) 100vw, 1200px">
+        <source type="image/webp" srcset="{{ $webpSrcset }}" sizes="{{ $sizes }}">
       {{- end -}}
       <img {{ with $class }}class="{{ . }}"{{ end }} src="{{ $img.RelPermalink }}"
            srcset="{{ $srcset }}"
-           sizes="(max-width: 1200px) 100vw, 1200px"
+           sizes="{{ $sizes }}"
            width="{{ $img.Width }}" height="{{ $img.Height }}"
            alt="{{ $alt }}"
            loading="{{ $loading }}"
